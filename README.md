@@ -1,27 +1,33 @@
 ![alt text](https://github.com/hxtree/PXP/raw/master/site/assets/images/pxp/logo/179x100.jpg "PXP")
 
 # Overview
-PXP (PHP XML Preprocessor) is a server-side object-oriented approach to XML transformations.
-In PXP any desired XML element can become instantiated as an object and processed.
+PXP (PHP XML Preprocessor) is a server-side object-oriented approach to handling XML transformations.
+In PXP any XML element desired can be instantiated with arguments as an object. Its design makes
+it suited for the easily maintaining both a website's static and dynamic content. Although PXP
+is not limited by implementation, this project is designed as a Content Management System. 
 
-This PXP implementation is designed around Content Management System. PXP design allows 
-for handling of both static and dynamic content making it suited for the web.
 
-In short, PXP allows you to take this:
+## Example
+To get a feel for how PXP might be used, take a look at this simple example. 
+Use any element you, established or not, and decide what it does it's encountered.
 
+example.html
 ```php
 <body>
-    <block name="Test">
-        <arg name="heading">Hello World</arg>
-    </block>
+    <condition toggle="signed_in">
+	<h2>Welcome, <var name="user.first_name"/></h2>
+	<block name="Messages" limit="5"/>
+    </condtion>
 </body>
 ```
 
+Results
 ```HTML
-<body>
-    <div name="TestBlock">
-	<h1>Hello World</h1>
-    </div>
+<body class="page">
+	<h2>Welcome, Smith</h2>
+	<div class="messages">
+		<p>You have no new messages</p>
+	</div>
 </body>
 ```
 
@@ -44,12 +50,12 @@ A Content Management System should:
 * XSLT (eXtensible Stylesheet Language) is bad.
 
 # Guidelines for PXP Implementations
-Processors may load only valid XML or HTML documents.
-No element must be instantiated.	
-Any element contained within the loaded document may be instantiated.
-An element's name may be used to decide the class that it is instantiated as.
-An element's id may be used to load a specific arguments.
-An element's arguments shall be passed to the element's object for processing.
-A element that is instantiated as an object must return a string.
-A instantiated object may feature hooks to orchestrate it's executing with other elements.
-A processed PXP document must return valid XML or HTML.
+* Processors may load only valid XML or HTML documents.
+* No element must be instantiated.	
+* Any element contained within the loaded document may be instantiated.
+* An element's name may be used to decide the class that it is instantiated as.
+* An element's id may be used to load a specific arguments.
+* An element's arguments shall be passed to the element's object for processing.
+* A element that is instantiated as an object must return a string.
+* A instantiated object may feature hooks to orchestrate it's executing with other elements.
+* A processed PXP document must return valid XML or HTML.
