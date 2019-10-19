@@ -1,6 +1,6 @@
 ![alt text](https://github.com/hxtree/PXP/raw/master/site/assets/images/pxp/logo/179x100.jpg "PXP")
 
-> "PXP is for HTML what SASS is for CSS."
+***"PXP is for HTML what SASS is for CSS."***
 
 # Overview
 PXP (PHP XML Preprocessor) is a server-side object-oriented approach to handling HTML/XML transformations.
@@ -33,13 +33,6 @@ Output
 </body>
 ```
 
-## Version
-Version 0.1.3 Pre-alpha
-
-### Naming Convention
-The version name consists of three numbers each separated by a period. The first number is the major version,
-the next is the minor version and the last is the patch version. 
-
 # Guidelines for PXP Implementations
 ## Document / DOM
 * A PXP document is either a valid XML or HTML DOM.  
@@ -66,6 +59,3 @@ the next is the minor version and the last is the patch version.
 ## Hooks
 * A instantiated object may feature hooks to orchestrate it's executing with other elements.
 * Processor Hooks are used to decide the order of the objects method calls.
-
-
-
