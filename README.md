@@ -1,4 +1,4 @@
-![alt text](https://raw.githubusercontent.com/hxtree/pxp/master/assets/images/pxp/logo/179x100.jpg "PXP")
+![alt text](https://github.com/hxtree/PXP/raw/master/site/assets/images/pxp/logo/179x100.jpg "PXP")
 
 This Content Management System implementation PXP (PHP XML Preprocessor). PXP is a server-side object-oriented alternative to XSLT.
 
