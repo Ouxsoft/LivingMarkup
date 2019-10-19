@@ -1,0 +1,19 @@
+{
+	"autoload" : {
+		"psr-0" : {
+			"Pxp" : "core/modules/",
+			"Logic" : "core/modules/",
+			"Elements" : "core/modules/",
+			"DynamicDataType" : "core/modules/",
+			"Widgets" : "core/modules/",
+			"Templates" : "site/modules/",
+			"Themes" : "site/modules/",
+			"Partials" : "site/modules/"
+		}
+	},
+	"require": {
+		"twbs/bootstrap": "^4.3",
+		"webonyx/graphql-php": "^0.13.1",
+		"psr/http-message": "^1.0"
+	}
+}
