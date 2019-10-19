@@ -2,16 +2,17 @@
 
 # Overview
 PXP (PHP XML Preprocessor) is a server-side object-oriented approach to handling XML transformations.
-In PXP any XML element desired can be instantiated with arguments as an object. Its design makes
-it suited for the easily maintaining both a website's static and dynamic content. Although PXP
-is not limited by implementation, this project is designed as a Content Management System. 
+In PXP any XML element desired can be instantiated with arguments as an object. This makes
+it easy to maintain both a website's static and dynamic content. Although PXP is not limited by
+implementation, this is a Content Management System. 
 
 
 ## Example
-To get a feel for how PXP might be used, take a look at this simple example. 
-Use any element you, established or not, and decide what it does it's encountered.
+Take a look at this simple example to get a feel for how you migh use PXP. Remember you 
+can use any tag, established or not, and decide what it does and ultimately look like when 
+it's encountered.
 
-example.html
+Input
 ```php
 <body>
     <condition toggle="signed_in">
@@ -21,7 +22,7 @@ example.html
 </body>
 ```
 
-Results
+Output
 ```HTML
 <body class="page">
 	<h2>Welcome, Smith</h2>
