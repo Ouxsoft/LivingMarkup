@@ -1,16 +1,17 @@
 ![alt text](https://github.com/hxtree/PXP/raw/master/site/assets/images/pxp/logo/179x100.jpg "PXP")
 
-# Overview
-PXP (PHP XML Preprocessor) is a server-side object-oriented approach to handling XML transformations.
-In PXP any XML element desired can be instantiated with arguments as an object. This makes
-it easy to maintain both a website's static and dynamic content. Although PXP is not limited by
-implementation, this is a Content Management System. 
+> "PXP is for HTML what SASS is for CSS."
 
+# Overview
+PXP (PHP XML Preprocessor) is a server-side object-oriented approach to handling HTML/XML transformations.
+In PXP, any HTML/XML element can be instantiated with arguments from the elements attributes as an object. 
+Allowing for easier design and maintaince of a website's static and dynamic content. Although PXP is not 
+limited by implementation, it lends itself well to a Content Management WYSIWYG.
 
 ## Example
-Take a look at this simple example to get a feel for how you migh use PXP. Remember you 
-can use any tag, established or not, and decide what it does and ultimately look like when 
-it's encountered.
+Take a look at this example to get a feel for how you might use PXP. Remember you can use any tag, 
+established or not, and decide what it does and ultimately look like when it's encountered using a 
+PXP Class.
 
 Input
 ```php
@@ -39,24 +40,32 @@ Version 0.1.3 Pre-alpha
 The version name consists of three numbers each separated by a period. The first number is the major version,
 the next is the minor version and the last is the patch version. 
 
-# Principle Assumptions
-A Content Management System should:
-* Allow authenticated users to change server side logic related how data is display.
-* Prevent any CMS user from using server side functions to break the site.
-* Be easy to edit and understand from both an XML/HTML and WYSIWYG.
-* Be scalable
-* Keep it simiple.
-* Help editors adhere to the DRY (don't repeat yourself) design principle.
-* Allow for easy dyanmic content management
-* XSLT (eXtensible Stylesheet Language) is bad.
-
 # Guidelines for PXP Implementations
-* Processors may load only valid XML or HTML documents.
-* No element must be instantiated.	
+## Document / DOM
+* A PXP document is either a valid XML or HTML DOM.  
+* Only valid XML and HTML documents can be loaded.
+* Only valid XML or HTML can be returned.
+## Handlers
+* Handlers are used to create dynamic elements.
+* Handlers consist of two parts an XPath expressions, which is used to find the element, and a class names that is used to decide which class to instantiate the element as.
+## Elements
+* A element without an handler is a static element where as an element with a handler is a dyanmic element.
+### Dynamic
+* Allow for easy dyanmic content management
+* An element's class must be autoloaded.
 * Any element contained within the loaded document may be instantiated.
 * An element's name may be used to decide the class that it is instantiated as.
-* An element's id may be used to load a specific arguments.
 * An element's arguments shall be passed to the element's object for processing.
 * A element that is instantiated as an object must return a string.
+* Dynamic element should not allow a CMS user to use server side functions to break the site.
+#### Arguments
+* An element's id may be used to load a specific arguments.
+### Static
+* Element's left uninstantiated are considered static as they do not change how they are delivered.
+* No element must be instantiated.
+## Hooks
 * A instantiated object may feature hooks to orchestrate it's executing with other elements.
-* A processed PXP document must return valid XML or HTML.
+* Processor Hooks are used to decide the order of the objects method calls.
+
+
+
