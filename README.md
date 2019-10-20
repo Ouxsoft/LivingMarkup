@@ -1,39 +1,50 @@
 ![alt text](https://github.com/hxtree/PXP/raw/master/site/assets/images/pxp/logo/179x100.jpg "PXP")
 
-***"PXP is for HTML what SASS is for CSS."***
+***PXP turns markup into code.*** It impowers front end designers and back end developers to work together in a way that makes sense.
 
-# Overview
-PXP (PHP XML Preprocessor) is a server-side object-oriented approach to handling HTML/XML transformations.
-In PXP, any HTML/XML element can be instantiated with arguments from the elements attributes as an object. 
-Allowing for easier design and maintaince of a website's static and dynamic content. Although PXP is not 
-limited by implementation, it lends itself well to a Content Management WYSIWYG.
-
-## Example
-Take a look at this example to get a feel for how you might use PXP. Remember you can use any tag, 
-established or not, and decide what it does and ultimately look like when it's encountered using a 
-PXP Class.
-
-Input
-```php
-<body>
-    <condition toggle="signed_in">
-	<h2>Welcome, <var name="user.first_name"/></h2>
-	<block name="Messages" limit="5"/>
-    </condtion>
-</body>
-```
-
-Output
+Web Browser
 ```HTML
 <body class="page">
-	<h2>Welcome, Smith</h2>
+	<h2>Welcome, Jane</h2>
 	<div class="messages">
-		<p>You have no new messages</p>
+		<p>You have no new messages.</p>
 	</div>
 </body>
 ```
 
+Server Front End (/site/pages/dashboard.)
+```XML
+<body>
+    <condition toggle="signed_in">
+		<h2>Welcome, <var name="first_name"/></h2>
+		<block name="Messages" limit="5"/>
+    </condtion>
+</body>
+```
+
+Server Back End (/site/modules/Block/Messages.php)
+```php
+<?php
+
+namespace Block;
+
+class Messages extends \Pxp\Element
+{
+	public function view(){
+        return <<<HTML
+<div class="messages">
+	<p>You have no new messages</p>
+</div>
+HTML;
+    }
+}
+```
+
 # Guidelines for PXP Implementations
+
+PXP by nature solves common Content Management System design flaws. But the framework 
+is not limited to this implementions. Here are some guidelines for how PXP should work.
+
 ## Document / DOM
 * A PXP document is either a valid XML or HTML DOM.  
 * Only valid XML and HTML documents can be loaded.
