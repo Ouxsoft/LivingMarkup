@@ -15,10 +15,10 @@ Web Browser
 Server Front End (/site/pages/dashboard)
 ```XML
 <body>
-    <condition toggle="signed_in">
-		<h2>Welcome, <var name="first_name"/></h2>
-		<block name="Messages" limit="5"/>
-    </condtion>
+	<condition toggle="signed_in">
+	<h2>Welcome, <var name="first_name"/></h2>
+	<block name="Messages" limit="5"/>
+	</condtion>
 </body>
 ```
 
@@ -30,13 +30,13 @@ namespace Block;
 
 class Messages extends \Pxp\Element
 {
-    public function view(){
-        return <<<HTML
-<div class="messages">
-	<p>You have no new messages</p>
-</div>
+	public function view(){
+		return <<<HTML
+	<div class="messages">
+		<p>You have no new messages</p>
+	</div>
 HTML;
-    }
+	}
 }
 ```
 
