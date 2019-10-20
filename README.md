@@ -30,7 +30,7 @@ namespace Block;
 
 class Messages extends \Pxp\Element
 {
-	public function view(){
+    public function view(){
         return <<<HTML
 <div class="messages">
 	<p>You have no new messages</p>
