@@ -5,7 +5,7 @@
 			"Logic" : "core/modules/",
 			"Elements" : "core/modules/",
 			"DynamicDataType" : "core/modules/",
-			"Widgets" : "core/modules/",
+			"Widgets" : "site/modules/",
 			"Templates" : "site/modules/",
 			"Themes" : "site/modules/",
 			"Partials" : "site/modules/"

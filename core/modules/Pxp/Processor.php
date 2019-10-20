@@ -17,7 +17,7 @@ $pxp_processor = new PXP\Processor();
     modules > 
     class A extends Elements {
         const XPATH / HANDLER = '//a';
-        const HOOKS = ['afterFormSubmit','beforeDisplay'];
+        const HOOKS = ['afterFormSubmit'];
         const REQUIRED = ['Processor',]
     }
 
@@ -26,7 +26,8 @@ $pxp_processor->process($pxp_doc);
 // like how mustash was done
 */
 
-class Processor {
+class Processor 
+{
 
     public $completed = true;
 

@@ -3,7 +3,8 @@
 
 Pxp\Document
 
-PHP XML Preprocessor Document class  extends Document Object Model (DOM) Document class to provide class handler for specified XML elements.
+PHP XML Preprocessor Document class extends Document Object Model (DOM) Document class to provide
+class handler for specified XML elements.
 
 */
  
@@ -23,7 +24,6 @@ interface DocumentDefaultInterface
 
 class Document extends \DomDocument implements DocumentDefaultInterface 
 { 
-
     const VERSION = '1.0';
 
     private $pxp_processed = false;

@@ -14,16 +14,14 @@
         <p>This is a demostration of Pxp.</p>
     </div>
     <div>
-        <partial name="UserMenu"/>
-        
-        <p><var name="location" format="str_replace('r','l')"/></p>
-        
+        <p>
+            <var name="location" format="str_replace('r','l')"/>
+        </p>
+        <partial name="UserMenu"/>       
         <widget name="News" id="4522"/>    
-        <widget name="News">
-            <size>6</size>
-        </widget>
+        <widget name="Bitwise"/>
+        <widget name="HelloWorld"/>
     </div>
-
     <footer/>
 </body>
 </html>
