@@ -2,51 +2,130 @@
 
 /*
 
-Tag Handlers
+Handler
 
-A tag handler consists of a key (XPath expression) and a value (Class).
+A handler consists of a key (XPath expression) and a value (Class).
 The XPath expression is used to find elements and the Class specifies how to instantiate that element once found.
-The same tag may be instatiated using different classes provided the element's name attribute is in the class (e.g. '\Templates\{name}').
-*/
 
+The element's name attribute may be instatiated different classes (e.g. '\Templates\{name}').
+
+*/
 
 namespace Pxp;
 
 interface HandlerDefaultInterface
 {
+    function __construct($xpath_expression, $class_name);
+    function process(&$pxp_doc, \DOMElement &$element) : bool;
 }
 
 final class Handler implements HandlerDefaultInterface
 {
     const VERSION = 0.1;
 
-    public $xpath_expression;    // the XPath expression is used to find elements 
-    public $class_name;    // the Class Name specifies how to instantiate that element found
+    public $xpath_expression;    // used to find elements 
+    public $class_name;    // specifies how to instantiate that element found
+    private $tmp_class_name;   // class name of the current object
 
-    private $class_name_temp;
-
-    function __construct(&$pxp_doc, $xpath_expression, $class_name){
-        $this->pxp_doc = $pxp_doc;
+    public function __construct($xpath_expression, $class_name){
         $this->xpath_expression = $xpath_expression;
         $this->class_name = $class_name;
     }
 
+    // TODO: build elements object storage in document?
+
+    // element process
+    public function process(&$pxp_doc, \DOMElement &$element) : bool {
+
+        // load current element's class name
+        if( ! $this->classNameResolve($element) ){
+            return false;
+        }
+
+        // instantiate element
+        $pxp_element = $this->instantiate($element);
+        
+        if( ! is_object($pxp_element) ){
+            $new_xml = $this->error('Not Found');
+        } else  if( method_exists($pxp_element, 'view') ){
+            $new_xml = $pxp_element->view();
+        } else {
+            $new_xml = $this->error('No Content');
+        }
+
+        // replace old element value with new xml content
+        $this->replace($pxp_doc, $element, $new_xml);
+
+        return true;
+    }   
+
+    // elements are instatiation separately because they may call different class names
+    // and to clear the object properties
+    private function instantiate(\DOMElement &$element) : ?object {
+
+        // get args from element
+        $args = $this->argsGet($element);
+
+        // get xml from element
+        $xml = $this->xmlGet($element);
+
+        // instantiate element as class name
+        $element_object = new $this->tmp_class_name($args, $xml);
+
+        return $element_object;
+    }
+
     // get class name
-    function elementClassNameGet(\DOMElement &$element) : string {
+    private function classNameResolve(\DOMElement &$element) : bool {
+        $class_name = $this->class_name;
+        
         // load class based on element name attribute
         if( $element->hasAttribute('name') ) {
             $element_name = $element->getAttribute('name');
-            return str_replace('{name}', $element_name, $this->class_name);
+            $class_name = str_replace('{name}', $element_name, $this->class_name);
         } 
 
-        return $this->class_name;
+        if( ! class_exists($class_name) ){
+            return false;
+        }
+
+        $this->tmp_class_name = $class_name;
+
+        return true;
     }
 
-    
-    // TODO: load class based on id? or may be args?
-    function elementArgsGet(\DOMElement &$element) : array {
-        // get args from element
-        $args = $this->pxp_doc->argsGetFromElement($element);
+    // get element's innerXML
+    private function xmlGet(\DOMElement $element){
+
+        $xml = '';
+
+        $children = $element->childNodes;
+        foreach($children as $child){
+            $xml .= $element->ownerDocument->saveHTML($child);
+        }
+        return $xml;
+    }
+
+
+    // get element args
+    private function argsGet(\DOMElement &$element) : array {
+
+        $args = [];
+
+        // get attributes
+        if( $element->hasAttributes() ){
+            foreach($element->attributes as $name => $attribute){
+                $args[$name] = $attribute->value;
+            }
+        }
+
+        // get child args
+        $objects = $element->getElementsByTagName('arg');
+        foreach($objects as $object) {
+            $name = $object->getAttribute('name');
+            $value = $object->nodeValue;
+            $args[$name] = $value;
+        }
 
         // load element ID
         if( $element->hasAttribute('id') ) {
@@ -57,53 +136,25 @@ final class Handler implements HandlerDefaultInterface
 
             // merge args
             $args = array_merge($id_args, $args);
-        }        
-
+        } 
+        
         return $args;
     }
 
-    // Elements are instatiation separately because they may call different class names
-    // and to clear the object properties
-    function elementInstantiate(\DOMElement &$element) : ?object {
 
-        // if class exists return name
-        if( ! class_exists($this->class_name_temp) ){
-            return NULL;
-        }
+    // replace element contents
+    private function replace(&$document, \DOMElement &$element, string $new_xml){
 
-        $args = $this->elementArgsGet($element);
+        // create a blank document fragment
+        $fragment = $document->createDocumentFragment();
+        $fragment->appendXML($new_xml);
 
-        // get xml version of element
-        $xml = $this->pxp_doc->innerXML($element);
-
-        // instantiate element as class name
-        $element_object = new $this->class_name_temp($args, $xml);
-
-        return $element_object;
-    }
+        // replace parent nodes child element with new fragement
+        $element->parentNode->replaceChild($fragment, $element);
+    }    
 
     // comment for errors
-    function error($type){
-        return '<!-- Handler "' . $this->class_name_temp . '" ' . $type . ' -->';
-    }
-
-    // element process
-    function elementProcess(\DOMElement &$element) : string {
-        
-        // instantiate element 
-        $this->class_name_temp = $this->elementClassNameGet($element);
-
-        // instantiate element
-        $pxp_element = $this->elementInstantiate($element);
-
-        if( ! is_object($pxp_element) ){
-            return $this->error('Not Found');
-        }
-        
-        if( method_exists($pxp_element, 'view') ){
-            return $pxp_element->view();
-        } 
-
-        return $this->error('No Content');
-    }   
+    private function error($type){
+        return '<!-- Handler "' . $this->tmp_class_name . '" ' . $type . ' -->';
+    }    
 }
