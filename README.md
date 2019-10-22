@@ -41,14 +41,13 @@ HTML;
 ```
 
 # Guidelines for PXP Implementations
-PXP solves common Content Management System design flaws, but the framework is not limited to this implementions. Here's how PXP works.
+PXP solves common Content Management System issues, but the framework is not limited to this implementions. Here's how PXP works.
 ## Modules
-PXP consists of modules that can be swapped in and out using autoloading. This implementation has two different
-module directories, core/modules and site/modules, that can be autoloaded as desired.  
+PXP is implemented though modules that can be swapped in and out using autoloading. 
 ## Processor
 The PXP processor is passed a Document to load, a list Handlers, and Hooks. It starts by loading the Document. Next, using Handlers it finds and instantiate Elements. Then, the Processor interates through the Hooks making call to Element's with those methods. In then returns the Processed Document.
 ## Document
-The PXP Document during runtime is loaded by the Process loads and modifies the Document using Handlers and Hooks. In order to be loaded, a Document must be either valid XML or HTML. When complete it delivers the processed Document as either valid XML or HTML.
+The PXP Document is loaded by the PXP Process. During runtime the Processor modifies the Document using Handlers and Hooks. In order to be loaded and returned, a Document must be well-formed and valid XML or HTML.
 ## Handlers
 A Handler is used to define a type of Element and consist of two main parts: an XPath expressions and a class name. The XPath expression finds Document elements ("//block"). The class name defines the class used to instantiate the Element. A Handler's class name may feature variables ("/Blocks/{name}") for the Processor to resolve using the Document element's attributes (<block name="Message"/>). PXP is modular, and does not require specific Handlers, although core Logic and Element are typically included.
 ## Hooks

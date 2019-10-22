@@ -6,9 +6,8 @@ class UserMenu extends \Pxp\Element
 {
 	public function view(){
         return <<<HTML
-           
+<!-- User Menu -->
 <div>
-        <!-- User Menu -->
 <condition toggle="signed_in">
     <h2>Welcome, <var name="username"/></h2>
     <p>You're signed in right now</p>

@@ -24,6 +24,7 @@ abstract class Element implements ElementDefaultInterface
     public $include_in_search_index = true;
     public $name = 'unknown';
     public $id = 0;
+    public $attributes = [];
     public $args = [];
     public $tags = [];
 
@@ -64,29 +65,19 @@ abstract class Element implements ElementDefaultInterface
     // extending class must define this method
     abstract public function view();
 
-    // load and merge args
-    public function loadArgs($id){
-        // $this->args = 
-        // merege with args passed
-    }
-
     // get any argments set in element passed by Pxp\Document
     public function __construct($args, $element){
         $this->args = $args; //func_get_args();
         $this->element = $element;
-        
-        // if ID passed load arguments
-        if(isset($args['@attributes']['id'])){
-            // load args 
-            $this->loadArgs($args['@attributes']['id']);            
-        }
     }
+
     /*
     public function __call($a,$b) {
         // this function does not exist
 //        return false;
     }
     */
+    
 	public function __toString(){
         // view
         if( method_exists($this,'view') ){
