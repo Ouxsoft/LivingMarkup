@@ -1,8 +1,7 @@
 <?php
-
 /*
 
-Handler
+Pxp\Handler
 
 A handler consists of a key (XPath expression) and a value (Class).
 The XPath expression is used to find elements and the Class specifies how to instantiate that element once found.
@@ -32,8 +31,6 @@ final class Handler implements HandlerDefaultInterface
         $this->class_name = $class_name;
     }
 
-    // TODO: build elements object storage in document?
-
     // element build
     public function build(\DOMElement &$element) : ?object {
 
@@ -57,7 +54,7 @@ final class Handler implements HandlerDefaultInterface
         $args = $this->argsGet($element);
 
         // instantiate element as class name
-        return new $this->tmp_class_name($element, $xml, $args);
+        return new $this->tmp_class_name($xml, $args);
     }
 
     // get class name

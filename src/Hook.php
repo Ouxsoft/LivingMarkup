@@ -1,8 +1,7 @@
 <?php
-
 /*
 
-Tag Hook
+Pxp\Hook
 
 Define initial list of methods calls made sequentially to dyanmic element objects.
 To orchestrate the method execution addition hooks may be defined within Tag Handlers. 

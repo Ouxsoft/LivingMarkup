@@ -1,8 +1,7 @@
 <?php
-
 /*
 
-PXP Path
+Pxp\Path
 
 Static methods for parameterized paths
 
