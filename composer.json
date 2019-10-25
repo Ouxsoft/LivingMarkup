@@ -13,6 +13,9 @@
     	"php" : ">=7.1"
     },
     "minimum-stability" : "dev",
+    "support": {
+         "issues": "https://github.com/hxtree/pxp/issues"
+    },
     "autoload" : {
     	"psr-4" : {
 		"Pxp\\" : "src/"
