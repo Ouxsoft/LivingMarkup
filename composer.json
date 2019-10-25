@@ -14,8 +14,8 @@
     },
     "minimum-stability" : "dev",
     "autoload" : {
-    	"psr-0" : {
-		"Pxp" : "src/"
+    	"psr-4" : {
+		"Pxp\\" : "src/"
 	}
     }
 }
