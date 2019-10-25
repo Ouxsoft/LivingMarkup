@@ -40,6 +40,10 @@ HTML;
 }
 ```
 
+# Quick start
+
+Install with Composer: `composer require hxtree/pxp`
+
 # Guidelines for PXP Implementations
 Here's how PXP works.
 ## Processor
