@@ -2,6 +2,7 @@
 
 namespace Pxp;
 
+
 class Processor 
 {
     // SPLObjectStorage
@@ -33,13 +34,73 @@ class Processor
             // iterate through handler's expression searching for applicable elements
             foreach ($this->xpath->query($handler->xpath_expression) as $element) {
 
-                // process element to get its new xml content
-                $handler->process($pxp_doc, $element);
+                // instantiate object of element
+                $pxp_element = $handler->build($element);
+
+                // if not found then replace with notice
+                if( ! is_object($pxp_element) ){
+                    $new_xml = $this->error('Not Found');
+                    $this->replace($pxp_doc, $element, $new_xml);
+                    continue;
+                } 
+
+                // assign object id to xml
+                $element_id = spl_object_hash($pxp_element);
+                $pxp_element->pxp_id = $element_id;
+                $element->setAttribute('pxp_id', $element_id);
+                
+                // store object
+                $this->elements->attach($pxp_element);          
             }
         }
 
+        // interate through hooks
+        foreach($this->hooks as $hook){
+    
+            // iterate through elements
+            foreach($this->elements as $element){
+    
+                // skip if element does not feature hook
+                if ( ! method_exists($element, $hook->name) ) {
+                    continue;
+                }
+                
+                // if view
+                if($hook->name == 'view'){
+                    
+                    $new_xml = $element->view();
+                    
+                    $query = '//*[@pxp_id="' . $element->pxp_id . '"]';
+                    foreach ($this->xpath->query($query) as $replace_element) {
+                        $this->replace($pxp_doc, $replace_element, $new_xml);
+
+                    }
+                } else {
+
+                    // call element method
+                    call_user_func([$element, $hook->name]);
+                }
+            }
+        }       
+
         return true;
     }
+
+    // replace element contents
+    private function replace(&$pxp_doc, \DOMElement &$element, string $new_xml){
+
+        // create a blank document fragment
+        $fragment = $pxp_doc->createDocumentFragment();
+        $fragment->appendXML($new_xml);
+
+        // replace parent nodes child element with new fragement
+        $element->parentNode->replaceChild($fragment, $element);
+    }    
+
+    // comment for errors
+    private function error($type){
+        return '<!-- Handler "' . $this->tmp_class_name . '" ' . $type . ' -->';
+    }    
 
     // add multiple tag/element handlers at once
     public function handlersAdd(array $handlers) : bool {

@@ -1,5 +1,13 @@
 <?php
 
+/*
+
+PXP Path
+
+Static methods for parameterized paths
+
+*/
+
 namespace Pxp;
 
 class Path {
