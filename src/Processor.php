@@ -2,31 +2,6 @@
 
 namespace Pxp;
 
-/*
-// separate the PXP document from it's processing
-
-$pxp_doc = new PxP\Document($file);
-
-$pxp_processor = new PXP\Processor();
-    // hooks
-    // elements
-    // handlers
-    // processor directory
-    // maybe can allow hook to be inside module.
-    // variables
-    
-    modules > 
-    class A extends Elements {
-        const XPATH / HANDLER = '//a';
-        const HOOKS = ['afterFormSubmit'];
-        const REQUIRED = ['Processor',]
-    }
-
-$pxp_processor->process($pxp_doc);
-
-// like how mustash was done
-*/
-
 class Processor 
 {
     // SPLObjectStorage
@@ -138,6 +113,5 @@ class Processor
     // register the hook
     public function hookRegister(Hook $hook){    
         $this->hooks->attach($hook);
-    }    
-
+    }
 }
