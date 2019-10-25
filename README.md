@@ -1,4 +1,4 @@
-![alt text](https://github.com/hxtree/PXP/raw/master/site/assets/images/pxp/logo/179x100.jpg "PXP")
+![alt text](https://github.com/hxtree/PXP/raw/master/docs/logo/179x100.jpg "PXP")
 
 ***PXP turns markup into code.*** It allows front end and back end developers to work together.
 
