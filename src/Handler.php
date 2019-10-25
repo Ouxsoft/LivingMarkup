@@ -16,7 +16,7 @@ namespace Pxp;
 interface HandlerDefaultInterface
 {
     function __construct($xpath_expression, $class_name);
-    function process(&$pxp_doc, \DOMElement &$element) : bool;
+    function build(\DOMElement &$element) : ?object;
 }
 
 final class Handler implements HandlerDefaultInterface
@@ -34,45 +34,30 @@ final class Handler implements HandlerDefaultInterface
 
     // TODO: build elements object storage in document?
 
-    // element process
-    public function process(&$pxp_doc, \DOMElement &$element) : bool {
+    // element build
+    public function build(\DOMElement &$element) : ?object {
 
         // load current element's class name
         if( ! $this->classNameResolve($element) ){
-            return false;
+            return NULL;
         }
 
-        // instantiate element
-        $pxp_element = $this->instantiate($element);
-        
-        if( ! is_object($pxp_element) ){
-            $new_xml = $this->error('Not Found');
-        } else  if( method_exists($pxp_element, 'view') ){
-            $new_xml = $pxp_element->view();
-        } else {
-            $new_xml = $this->error('No Content');
-        }
-
-        // replace old element value with new xml content
-        $this->replace($pxp_doc, $element, $new_xml);
-
-        return true;
+        // return instantiate element        
+        return $this->instantiate($element);
     }   
 
     // elements are instatiation separately because they may call different class names
     // and to clear the object properties
     private function instantiate(\DOMElement &$element) : ?object {
 
-        // get args from element
-        $args = $this->argsGet($element);
-
         // get xml from element
         $xml = $this->xmlGet($element);
 
-        // instantiate element as class name
-        $element_object = new $this->tmp_class_name($args, $xml);
+        // get args from element
+        $args = $this->argsGet($element);
 
-        return $element_object;
+        // instantiate element as class name
+        return new $this->tmp_class_name($element, $xml, $args);
     }
 
     // get class name
@@ -105,7 +90,6 @@ final class Handler implements HandlerDefaultInterface
         }
         return $xml;
     }
-
 
     // get element args
     private function argsGet(\DOMElement &$element) : array {
@@ -140,21 +124,4 @@ final class Handler implements HandlerDefaultInterface
         
         return $args;
     }
-
-
-    // replace element contents
-    private function replace(&$document, \DOMElement &$element, string $new_xml){
-
-        // create a blank document fragment
-        $fragment = $document->createDocumentFragment();
-        $fragment->appendXML($new_xml);
-
-        // replace parent nodes child element with new fragement
-        $element->parentNode->replaceChild($fragment, $element);
-    }    
-
-    // comment for errors
-    private function error($type){
-        return '<!-- Handler "' . $this->tmp_class_name . '" ' . $type . ' -->';
-    }    
 }
