@@ -1,19 +1,20 @@
 {
-	"autoload" : {
-		"psr-0" : {
-			"Pxp" : "core/modules/",
-			"Logic" : "core/modules/",
-			"Elements" : "core/modules/",
-			"DynamicDataType" : "core/modules/",
-			"Widgets" : "site/modules/",
-			"Templates" : "site/modules/",
-			"Themes" : "site/modules/",
-			"Partials" : "site/modules/"
-		}
-	},
-	"require": {
-		"twbs/bootstrap": "^4.3",
-		"webonyx/graphql-php": "^0.13.1",
-		"psr/http-message": "^1.0"
+    "name": "hxtree/pxp",
+    "description": "PHP makes markup code",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "hxtree"
+        }
+    ],
+    "require": {
+    	"php" : ">=7.1"
+    },
+    "minimum-stability" : "dev",
+    "autoload" : {
+    	"psr-0" : {
+		"Pxp" : "src/"
 	}
+    }
 }
