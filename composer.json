@@ -1,6 +1,7 @@
 {
     "name": "hxtree/pxp",
-    "description": "PHP makes markup code",
+    "description": "PXP makes markup code",
+    "keywords" : ["pxp","xml","php","preprocessor","template","engine"],
     "type": "library",
     "license": "MIT",
     "authors": [
