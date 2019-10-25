@@ -19,26 +19,20 @@ interface ElementDefaultInterface
 abstract class Element implements ElementDefaultInterface
 {
 
-    public $include_in_search_index = true;
-    public $name = 'unknown';
-    public $element;
-    public $id = 0;
-    public $attributes = [];
-    public $args = [];
-    public $tags = [];
+    public $search_index = true; 
+    public $name = 'unknown'; // name of element
+    public $xml; // inner content on load
+    public $id = 0; // id used to load args
+    public $args = []; // args passed to during constrcution
+    public $tags = []; // tags
 
     // extending class must define this method
     abstract public function view();
 
-    public function display(){
-        $this->element = $this->view();
-    }
-
     // get any argments set in element passed by Pxp\Document
-    public function __construct(&$pxp_doc_object, $element, $args){
-        $this->pxp_doc_object = $pxp_doc_object;
-        $this->element = $element;
-        $this->args = $args; //func_get_args();
+    public function __construct($xml, $args){
+        $this->xml = $xml;
+        $this->args = $args;
     }
 
     public function __toString(){

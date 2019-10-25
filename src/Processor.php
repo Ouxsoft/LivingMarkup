@@ -1,4 +1,11 @@
 <?php
+/*
+
+Pxp\Processor
+
+Processes Pxp\Documents
+
+*/
 
 namespace Pxp;
 
@@ -8,18 +15,15 @@ class Processor
     // SPLObjectStorage
     private $handlers = NULL;
     private $hooks = NULL;
+    private $elements = NULL;
+
+    private $element_attribute_index = "_pxp_ref"; // used as a replacement point
 
     public function __construct(){
 
-        // object containing handlers
-        $this->handlers = new \SplObjectStorage();
-
-        // object containing hooks
-        $this->hooks = new \SplObjectStorage();
-
-        // objects containing elements
-        $this->elements = new \SplObjectStorage();
-
+        $this->handlers = new \SplObjectStorage(); // object containing handlers
+        $this->hooks = new \SplObjectStorage(); // object containing hooks
+        $this->elements = new \SplObjectStorage(); // objects containing elements
     }
 
     // preprocess document
@@ -39,7 +43,7 @@ class Processor
 
                 // if not found then replace with notice
                 if( ! is_object($pxp_element) ){
-                    $new_xml = $this->error('Not Found');
+                    $new_xml = '<!-- Handler "' . $this->tmp_class_name . '" Not Found -->';
                     $this->replace($pxp_doc, $element, $new_xml);
                     continue;
                 } 
@@ -47,7 +51,7 @@ class Processor
                 // assign object id to xml
                 $element_id = spl_object_hash($pxp_element);
                 $pxp_element->pxp_id = $element_id;
-                $element->setAttribute('pxp_id', $element_id);
+                $element->setAttribute($this->element_attribute_index, $element_id);
                 
                 // store object
                 $this->elements->attach($pxp_element);          
@@ -67,10 +71,10 @@ class Processor
                 
                 // if view
                 if($hook->name == 'view'){
-                    
+
                     $new_xml = $element->view();
                     
-                    $query = '//*[@pxp_id="' . $element->pxp_id . '"]';
+                    $query = '//*[@' . $this->element_attribute_index . '="' . $element->pxp_id . '"]';
                     foreach ($this->xpath->query($query) as $replace_element) {
                         $this->replace($pxp_doc, $replace_element, $new_xml);
 
@@ -95,11 +99,6 @@ class Processor
 
         // replace parent nodes child element with new fragement
         $element->parentNode->replaceChild($fragment, $element);
-    }    
-
-    // comment for errors
-    private function error($type){
-        return '<!-- Handler "' . $this->tmp_class_name . '" ' . $type . ' -->';
     }    
 
     // add multiple tag/element handlers at once
