@@ -7,17 +7,19 @@
     "authors": [
         {
             "name": "hxtree"
+            "homepage": "https://github.com/hxtree",
+	    "role": "Developer"
         }
     ],
     "require": {
-    	"php" : ">=7.1"
+    	"php": ">=7.1"
     },
-    "minimum-stability" : "dev",
+    "minimum-stability": "dev",
     "support": {
          "issues": "https://github.com/hxtree/pxp/issues"
     },
-    "autoload" : {
-    	"psr-4" : {
+    "autoload": {
+    	"psr-4": {
 		"Pxp\\" : "src/"
 	}
     }
