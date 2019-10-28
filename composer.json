@@ -1,7 +1,7 @@
 {
     "name": "hxtree/pxp",
     "description": "PXP turns markup into code",
-    "keywords" : ["pxp","xml","php","preprocessor","template","engine"],
+    "keywords" : ["pxp","xml","php","preprocessor","template","engine","markup"],
     "type": "library",
     "license": "MIT",
     "authors": [
