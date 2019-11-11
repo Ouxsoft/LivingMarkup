@@ -23,4 +23,21 @@ final class Hook implements HookDefaultInterface
     public $description;
     public $name;
     public $position;
+    public $is_render_call = FALSE;
+
+    function __construct($name, $description, $position){
+
+        // require name 
+        if( isset($name) ){
+            $this->name = $name;
+        } else {
+            trigger_error('Name missing from Hook supplied', E_USER_WARNING);
+            return;
+        }
+        
+        $this->description = isset($description) ?? $description;
+
+        $this->position = isset($position) ?? $position;
+
+    }
 }

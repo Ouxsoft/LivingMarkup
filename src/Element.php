@@ -12,7 +12,7 @@ namespace Pxp;
 interface ElementDefaultInterface
 {
     const MAX_RESULTS = '240';
-    public function view();
+    public function onRender();
     public function __toString();
 }
 
@@ -27,7 +27,7 @@ abstract class Element implements ElementDefaultInterface
     public $tags = []; // tags
 
     // extending class must define this method
-    abstract public function view();
+    abstract public function onRender();
 
     // get any argments set in element passed by Pxp\Document
     public function __construct($xml, $args){
@@ -42,5 +42,3 @@ abstract class Element implements ElementDefaultInterface
         }
     }
 }
-
-
