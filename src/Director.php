@@ -1,16 +1,16 @@
 <?php
 /*
 
-Pxp\Processor
+Pxp\Director
 
-Processes Pxp\Documents
+Processing Documents
 
 */
 
 namespace Pxp;
 
 
-class Processor 
+class Director
 {
     // SPLObjectStorage
     private $handlers = NULL;
@@ -27,10 +27,15 @@ class Processor
     }
 
     // preprocess document
-    public function process(&$pxp_doc) : bool {
+    public function process(Document &$pxp_doc, Template &$pxp_template = NULL) : bool {
 
         // create iterator to go through document looking for elements
         $this->xpath = new \DOMXPath($pxp_doc);
+
+        // apply decorator/template
+        if($pxp_template != NULL){
+            $pxp_doc = $this->decoratorAdd($pxp_doc, $pxp_template);
+        }
 
         // iterate through handlers
         foreach($this->handlers as $handler){
@@ -69,10 +74,10 @@ class Processor
                     continue;
                 }
                 
-                // if view
-                if($hook->name == 'view'){
+                // on render
+                if($hook->name == 'onRender'){
 
-                    $new_xml = $element->view();
+                    $new_xml = $element->onRender();
                     
                     $query = '//*[@' . $this->element_attribute_index . '="' . $element->pxp_id . '"]';
                     foreach ($this->xpath->query($query) as $replace_element) {
@@ -91,7 +96,7 @@ class Processor
     }
 
     // replace element contents
-    private function replace(&$pxp_doc, \DOMElement &$element, string $new_xml){
+    private function replace(Document &$pxp_doc, \DOMElement &$element, string $new_xml){
 
         // create a blank document fragment
         $fragment = $pxp_doc->createDocumentFragment();
@@ -129,39 +134,9 @@ class Processor
         return true;
     }
 
-
-    // add multiple hooks
-    public function hooksAdd(array $hooks){
-        foreach($hooks as $key => $value){
-            // determine whether key value was passed or array
-            if( is_array($value) ){
-                $hook = $value;
-            } else {
-                $hook['name'] = $key;
-                $hook['description'] = $value;
-            }
-
-            // require name 
-            if( isset($hook['name']) ){
-                $name = $hook['name'];
-            } else {
-                trigger_error('Name missing from Tag Hook supplied', E_USER_WARNING);
-                return;
-            }
-
-            $description = isset($hook['description']) ?? $hook['description'];
-            $position = isset($hook['position']) ?? $hook['position'];
-
-            $this->hookAdd($name, $description, $position);
-        }
-    }
-
     // add a hook and pass to register
-    public function hookAdd(string $name, string $description, string $position = NULL){
-        $hook = new Hook();
-        $hook->name = $name;
-        $hook->description = $description;
-        $hook->position = $position;
+    public function hookAdd(string $name, string $description = '', $position = NULL){
+        $hook = new Hook($name, $description, $position);
         $this->hookRegister($hook);
     }
 
@@ -173,5 +148,14 @@ class Processor
     // register the hook
     public function hookRegister(Hook $hook){    
         $this->hooks->attach($hook);
+    }
+
+    // add decorator
+    public function decoratorAdd(Document &$pxp_doc, Template &$template){
+        // the decorator goes around the document
+        // TODO:
+        // recursively iterate through template appending doc
+        // childern
+        return $pxp_doc;
     }
 }
