@@ -34,7 +34,7 @@ class Director
 
         // apply decorator/template
         if($pxp_template != NULL){
-            $pxp_doc = $this->decoratorAdd($pxp_doc, $pxp_template);
+            $pxp_doc = $this->decoratorApply($pxp_doc, $pxp_template);
         }
 
         // iterate through handlers
@@ -150,9 +150,21 @@ class Director
         $this->hooks->attach($hook);
     }
 
-    // add decorator
-    public function decoratorAdd(Document &$pxp_doc, Template &$template){
+    // apply decorator
+    public function decoratorApply(Document &$pxp_doc, Template &$template){
         // the decorator goes around the document
+
+        // find Document root elements
+
+        // locate first node in the template 
+        // that can be associated with the node
+        // apply a object id
+        // when finished replace all at once to avoid recusrsion
+        // or other method, i.e. storing in list
+        // with element that has all the attributes from the templat
+
+        // template_placeholder="main nav"
+
         // TODO:
         // recursively iterate through template appending doc
         // childern

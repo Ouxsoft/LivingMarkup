@@ -1,10 +1,23 @@
 <html>
-    <head></head>
+    <head>
+        <title><var name="page_title"/></title>
+    </head>
     <body>
+        <navbar>
+
+        </navbar>
+        
+        <breadcrumb>
+            <arg name="seporator"> > </arg>
+        </breadcrumb>
+
         <div id="main-content">
-            <p>
-                Test
-            </p>
+            <wysiwyg id="main"></wysiwyg>
         </div>
+
+        <footer>
+            <hr/>
+            &copy; <var name="site[name]"/>
+        </footer>
     </body>
 </html>
