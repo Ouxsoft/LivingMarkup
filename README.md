@@ -2,7 +2,7 @@
 
 ***PXP turns markup into code.*** Allowing front and back end developers to work in harmony.
 
-Server Front End
+Front End
 ```XML
 <body>
 	<condition toggle="signed_in">
@@ -12,7 +12,7 @@ Server Front End
 </body>
 ```
 
-Server Back End
+Back End
 ```php
 <?php
 
