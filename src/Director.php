@@ -34,11 +34,7 @@ class Director
 
         // apply decorator/template
         if($pxp_template != NULL){
-<<<<<<< HEAD
             $pxp_doc = $this->decoratorApply($pxp_doc, $pxp_template);
-=======
-            $pxp_doc = $this->decoratorAdd($pxp_doc, $pxp_template);
->>>>>>> 8d50e4b2e831e5436965f6b1968affabf2687c99
         }
 
         // iterate through handlers
@@ -154,7 +150,6 @@ class Director
         $this->hooks->attach($hook);
     }
 
-<<<<<<< HEAD
     // apply decorator
     public function decoratorApply(Document &$pxp_doc, Template &$template){
         // the decorator goes around the document
@@ -170,14 +165,5 @@ class Director
 
         // template_placeholder="main nav"
 
-=======
-    // add decorator
-    public function decoratorAdd(Document &$pxp_doc, Template &$template){
-        // the decorator goes around the document
->>>>>>> 8d50e4b2e831e5436965f6b1968affabf2687c99
-        // TODO:
-        // recursively iterate through template appending doc
-        // childern
-        return $pxp_doc;
     }
 }
