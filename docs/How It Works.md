@@ -1,7 +1,4 @@
 # Guidelines for PXP Implementations
-Here's how PXP works.
-
-# Guidelines for PXP Implementations
 ## Director
 The Director is passed a loaded Document, a list Handlers, and Hooks. It finds and instantiate Elements from the Document using Handlers. The Director then interates through the Hooks making call to Element's with those methods.
 ## Document
