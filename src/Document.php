@@ -29,6 +29,8 @@ class Document extends \DomDocument implements DocumentDefaultInterface
     public $validateOnParse = FALSE;
     public $encoding = 'UTF-8';
 
+    public $xpath;
+
     public $includes = [
         'js' => [],
         'css' => []
@@ -48,21 +50,32 @@ class Document extends \DomDocument implements DocumentDefaultInterface
         if( ! $this->libxml_debug){
             libxml_use_internal_errors(true);
         }
+
+    }
+
+    // replace element contents
+    public function replaceElement(\DOMElement &$element, string $new_xml){
+
+        // create a blank document fragment
+        $fragment = $this->createDocumentFragment();
+        $fragment->appendXML($new_xml);
+
+        // replace parent nodes child element with new fragement
+        $element->parentNode->replaceChild($fragment, $element);
     }
 
     // custom load page wrapper for server side HTML5 entity support
     public function loadByPath(string $path) : void {
 
+        // entities are automatically removed before sending to client
+        $entity = '';
+        foreach($this->entities as $key => $value){
+            $entity .= '<!ENTITY ' . $key . ' "' . $value . '">' . PHP_EOL;
+        }
+
         // deliberately build out doc-type and grab file contents 
         // using alternative loadHTMLFile removes entities (&copy; etc.) 
-        $source = '<!DOCTYPE html [';
-
-        // entities are automatically removed before sending to client
-        foreach($this->entities as $key => $value){
-            $source .= '<!ENTITY ' . $key . ' "' . $value . '">' . PHP_EOL;
-        }
-        $source .= ']> ';
-                
+        $source = '<!DOCTYPE html [' . $entity . ']> ';
         $source .= file_get_contents($path);
         $this->loadXML($source);
     }
