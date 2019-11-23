@@ -1,8 +1,8 @@
 # Guidelines for PXP Implementations
 ## Director
 The Director is passed a loaded Document, a list Handlers, and Hooks. It finds and instantiate Elements from the Document using Handlers. The Director then interates through the Hooks making call to Element's with those methods.
-## Document
-The Document is loaded by the Director. During runtime the Director modifies the Document using Handlers and Hooks. A Document must be well-formed and valid XML or HTML.
+## Page
+The Page is loaded by the Director. During runtime the Director modifies the Page using Handlers and Hooks. A Page must be well-formed and valid XML or HTML.
 ## Handlers
 A Handler is used to define a type of Element. It consist of an XPath expressions and a class name. The XPath expression  ("//block") finds the Elements inside the Document. The class name defines the class used to instantiate the Element. A Handler's class name may feature variables ("/Blocks/{name}") for the Director to resolve using the Document element's attributes (<block name="Message"/>). PXP does not require any specific Handlers be implemented, although core Logic and Element Handlers are useful.
 ## Hooks

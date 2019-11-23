@@ -1,17 +1,11 @@
 <?php 
-/*
-
-Pxp\Element
-
-This is an abstract class inteded to be extended by Pxp element handlers
-
-*/
 
 namespace Pxp;
 
 interface ElementDefaultInterface
 {
     const MAX_RESULTS = '240';
+    
     public function onRender();
     public function __toString();
 }
@@ -19,13 +13,13 @@ interface ElementDefaultInterface
 abstract class Element implements ElementDefaultInterface
 {
 
-    public $search_index = true; 
+    public $id = 0; // id used to load args
     public $name = 'unknown'; // name of element
     public $xml; // inner content on load
-    public $id = 0; // id used to load args
     public $args = []; // args passed to during constrcution
     public $tags = []; // tags
-
+    public $search_index = true;
+    
     // extending class must define this method
     abstract public function onRender();
 

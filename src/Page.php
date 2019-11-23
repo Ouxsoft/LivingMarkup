@@ -1,22 +1,15 @@
 <?php
-/* 
-
-Pxp\Document
-
-PXP Document class extends Document Object Model (DOM) Document class.
-It features addition properties and methods to work with PXP.
-*/
  
 namespace Pxp;
 
-interface DocumentDefaultInterface 
+interface PageDefaultInterface 
 {
     public function load(string $filename, int $options = 0);
     public function loadByPath(string $path) : void;
     public function __toString() : string;
 }
 
-class Document extends \DomDocument implements DocumentDefaultInterface 
+class Page extends \DomDocument implements PageDefaultInterface 
 { 
     const VERSION = '1.0';
 
@@ -82,7 +75,8 @@ class Document extends \DomDocument implements DocumentDefaultInterface
 
     // returns the pxp_processed document as string
     public function __toString() : string {
-
+        
         return $this->saveHTML();
     }
+    
 }

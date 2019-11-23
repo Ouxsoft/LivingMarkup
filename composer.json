@@ -1,26 +1,34 @@
 {
-    "name": "hxtree/pxp",
-    "description": "PXP turns markup into code",
-    "keywords" : ["pxp","xml","php","preprocessor","template","engine","markup"],
-    "type": "library",
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "hxtree",
-            "homepage": "https://github.com/hxtree",
-	    "role": "Developer"
-        }
-    ],
-    "require": {
-    	"php": ">=7.1"
-    },
-    "minimum-stability": "dev",
-    "support": {
-         "issues": "https://github.com/hxtree/pxp/issues"
-    },
-    "autoload": {
-    	"psr-4": {
-		"Pxp\\" : "src/"
-	}
-    }
+	"name" : "hxtree/pxp",
+	"description" : "PXP turns markup into code",
+	"keywords" : [
+		"pxp",
+		"xml",
+		"php",
+		"preprocessor",
+		"template",
+		"engine",
+		"markup"
+	],
+	"type" : "library",
+	"license" : "MIT",
+	"authors" : [{
+			"name" : "hxtree",
+			"homepage" : "https://github.com/hxtree",
+			"role" : "Developer"
+		}
+	],
+	"require" : {
+		"php" : ">=7.1"
+	},
+	"minimum-stability" : "dev",
+	"support" : {
+		"issues" : "https://github.com/hxtree/pxp/issues"
+	},
+	"autoload" : {
+		"psr-4" : {
+			"Pxp\\" : "src/"
+		}
+	},
+	"homepage" : "https://github.com/hxtree/Pxp"
 }

@@ -1,11 +1,4 @@
 <?php
-/*
-
-Pxp\Path
-
-Static methods for parameterized paths
-
-*/
 
 namespace Pxp;
 

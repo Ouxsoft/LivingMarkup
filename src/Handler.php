@@ -1,14 +1,4 @@
 <?php
-/*
-
-Pxp\Handler
-
-A handler consists of a key (XPath expression) and a value (Class).
-The XPath expression is used to find elements and the Class specifies how to instantiate that element once found.
-
-The element's name attribute may be instatiated different classes (e.g. '\Templates\{name}').
-
-*/
 
 namespace Pxp;
 
@@ -65,7 +55,7 @@ final class Handler implements HandlerDefaultInterface
         if( $element->hasAttribute('name') ) {
             $element_name = $element->getAttribute('name');
             $class_name = str_replace('{name}', $element_name, $this->class_name);
-        } 
+        }
 
         if( ! class_exists($class_name) ){
             return false;

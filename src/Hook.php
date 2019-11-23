@@ -6,7 +6,7 @@ Pxp\Hook
 Define initial list of methods calls made sequentially to dyanmic element objects.
 To orchestrate the method execution addition hooks may be defined within Tag Handlers. 
 
-For a complete at runtime list, use $pxp_doc->tagHooksList();
+For a complete at runtime list, use $this->page->taglistHooks();
 
 */
 
@@ -14,6 +14,7 @@ namespace Pxp;
 
 interface HookDefaultInterface
 {
+    
 }
 
 final class Hook implements HookDefaultInterface
