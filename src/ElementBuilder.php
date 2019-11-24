@@ -4,17 +4,15 @@ namespace Pxp;
 
 class ElementBuilder extends Builder 
 {
-    
+
     private $element_object;
-    public $element_node;
-    public $class_name;
+    private $element_node;
+    private $class_name;
+    private $xml;
+    private $args;
+    private $load_function;
     
-    public function getObject() : ?object
-    {
-        return $this->element_object;
-    }
-    
-    public function createObject() : ?bool 
+    public function createObject() : ?bool
     {
         $class_name = $this->resolveClassName();
         
@@ -23,16 +21,41 @@ class ElementBuilder extends Builder
             return NULL;
         }
         
-        // get xml from element
-        $xml = $this->getXml($this->element_node);
-        
-        // get args from element
-        $args = $this->getArgs($this->element_node);
-        
         // instantiate element as class name
-        $this->element_object = new $class_name($xml, $args);
+        $this->element_object = new $class_name($this->xml, $this->args);
         
         return true;
+    }
+    
+    public function getObject() : ?object
+    {
+        return $this->element_object;
+    }
+    
+    public function setArgLoader($loader)
+    {
+        $this->load_function = $loader;
+    }
+    
+    public function setElement(\DOMElement $element)
+    {
+        
+        // get element
+        $this->element_node = $element;
+        
+        // get xml from element
+        $this->xml = $this->getXml($this->element_node);
+        
+        // get args from element
+        $this->args = $this->getArgs($this->element_node);
+        
+    }
+    
+    public function setClassName(string $class_name)
+    {
+        
+        $this->class_name = $class_name;
+    
     }
     
     // get class name
@@ -88,15 +111,18 @@ class ElementBuilder extends Builder
             $args[$name] = $value;
         }
         
-        // load element ID
+        // use element id attribute to load args
         if( $element->hasAttribute('id') ) {
             $element_id = $element->getAttribute('id');
             
-            // TODO: load args
-            $id_args = ['test'=>'2'];
+            // allow director to specify function to load args from based on id
+            if(function_exists($this->load_function)){
+                $args_loaded = call_user_func($this->load_function, $element_id);
             
-            // merge args
-            $args = array_merge($id_args, $args);
+                // merge args
+                $args = array_merge($args_loaded, $args);
+            }
+            
         }
         
         return $args;
