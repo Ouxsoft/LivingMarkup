@@ -23,7 +23,7 @@ class PageBuilder extends Builder
         $this->hooks = new \SplObjectStorage();
         
         // objects containing elements
-        $this->elements = new \SplObjectStorage();
+        $this->element_objects = new \SplObjectStorage();
         
     }
     
@@ -58,7 +58,7 @@ class PageBuilder extends Builder
     public function addElement(string $xpath_expression, string $class_name) : bool
     {
 
-        $this->elements_metadata[$xpath_expression] = $class_name;
+        $this->element_metadata[$xpath_expression] = $class_name;
         
         return true;
     }
@@ -68,7 +68,7 @@ class PageBuilder extends Builder
             
         $element_builder = new ElementBuilder();
         
-        foreach($this->elements_metadata as $xpath_expression => $class_name){
+        foreach($this->element_metadata as $xpath_expression => $class_name){
                 
             // iterate through handler's expression searching for applicable elements        
             foreach ($this->query($xpath_expression) as $element) {
@@ -89,7 +89,7 @@ class PageBuilder extends Builder
                 $element->setAttribute($this->element_attribute_index, $element_object->placeholder_id);
                 
                 // store object
-                $this->elements->attach($element_object);
+                $this->element_objects->attach($element_object);
             }
         }
     }
@@ -100,7 +100,7 @@ class PageBuilder extends Builder
         foreach($this->hooks as $hook) {
             
             // iterate through elements
-            foreach($this->elements as $element) {
+            foreach($this->element_objects as $element) {
             
                 // skip if element does not feature hook
                 if ( ! method_exists($element, $hook->name) ) {
