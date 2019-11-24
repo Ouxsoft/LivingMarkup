@@ -9,11 +9,11 @@ class Director
     public function build(Builder &$builder) : object 
     {
         
-        $builder->createPage();
+        $builder->createObject();
 //        $builder->addHooks();
-//        $builder->addHandlers();
+//        $builder->addElements();
 //        $builder->addElements();
 
-        return $builder->getPage();
+        return $builder->getObject();
     }
 }

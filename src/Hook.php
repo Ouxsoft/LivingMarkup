@@ -1,20 +1,10 @@
 <?php
-/*
-
-Pxp\Hook
-
-Define initial list of methods calls made sequentially to dyanmic element objects.
-To orchestrate the method execution addition hooks may be defined within Tag Handlers. 
-
-For a complete at runtime list, use $this->page->taglistHooks();
-
-*/
 
 namespace Pxp;
 
 interface HookDefaultInterface
 {
-    
+    function __construct($name, $description, $position);
 }
 
 final class Hook implements HookDefaultInterface
@@ -26,19 +16,21 @@ final class Hook implements HookDefaultInterface
     public $position;
     public $is_render_call = FALSE;
 
-    function __construct($name, $description, $position){
+    function __construct($name, $description, $position) {
 
         // require name 
         if( isset($name) ){
             $this->name = $name;
         } else {
             trigger_error('Name missing from Hook supplied', E_USER_WARNING);
-            return;
+            return false;
         }
         
         $this->description = isset($description) ?? $description;
 
         $this->position = isset($position) ?? $position;
-
+        
+        return true;
+        
     }
 }

@@ -6,6 +6,7 @@ interface ElementDefaultInterface
 {
     const MAX_RESULTS = '240';
     
+    public function __construct($xml, $args);
     public function onRender();
     public function __toString();
 }
@@ -13,6 +14,7 @@ interface ElementDefaultInterface
 abstract class Element implements ElementDefaultInterface
 {
 
+    public $placeholder_id = 0; // used to placeholder for PageBuilder::replaceElement()
     public $id = 0; // id used to load args
     public $name = 'unknown'; // name of element
     public $xml; // inner content on load
@@ -27,12 +29,16 @@ abstract class Element implements ElementDefaultInterface
     public function __construct($xml, $args){
         $this->xml = $xml;
         $this->args = $args;
+        
+        // assign object id to xml
+        $this->placeholder_id = spl_object_hash($this);
+        
     }
 
+    // alias for onRender
     public function __toString(){
-        // view
-        if( method_exists($this,'view') ){
-            return $this->view();
+        if( method_exists($this,'onRender') ){
+            return $this->onRender();
         }
     }
 }

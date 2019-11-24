@@ -2,10 +2,8 @@
 
 namespace Pxp;
 
-
 abstract class Builder
 {
-    abstract function createPage();
-    abstract function getPage();
-    
+    abstract function createObject() : ?bool;
+    abstract function getObject() : ?object;
 }

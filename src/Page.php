@@ -5,7 +5,7 @@ namespace Pxp;
 interface PageDefaultInterface 
 {
     public function load(string $filename, int $options = 0);
-    public function loadByPath(string $path) : void;
+    public function loadByPath(string $filepath) : void;
     public function __toString() : string;
 }
 
@@ -38,7 +38,8 @@ class Page extends \DomDocument implements PageDefaultInterface
         'mdash' => '&#8212;'
     ];    
 
-    public function __construct(){
+    public function __construct()
+    {
         // surpress xml parse errors unless debugging
         if( ! $this->libxml_debug){
             libxml_use_internal_errors(true);
@@ -47,7 +48,8 @@ class Page extends \DomDocument implements PageDefaultInterface
     }
 
     // replace element contents
-    public function replaceElement(\DOMElement &$element, string $new_xml){
+    public function replaceElement(\DOMElement &$element, string $new_xml) : void
+    {
 
         // create a blank document fragment
         $fragment = $this->createDocumentFragment();
@@ -55,10 +57,12 @@ class Page extends \DomDocument implements PageDefaultInterface
 
         // replace parent nodes child element with new fragement
         $element->parentNode->replaceChild($fragment, $element);
+       
     }
 
     // custom load page wrapper for server side HTML5 entity support
-    public function loadByPath(string $path) : void {
+    public function loadByPath(string $filepath) : void 
+    {
 
         // entities are automatically removed before sending to client
         $entity = '';
@@ -69,12 +73,13 @@ class Page extends \DomDocument implements PageDefaultInterface
         // deliberately build out doc-type and grab file contents 
         // using alternative loadHTMLFile removes entities (&copy; etc.) 
         $source = '<!DOCTYPE html [' . $entity . ']> ';
-        $source .= file_get_contents($path);
+        $source .= file_get_contents($filepath);
         $this->loadXML($source);
     }
 
     // returns the pxp_processed document as string
-    public function __toString() : string {
+    public function __toString() : string 
+    {
         
         return $this->saveHTML();
     }

@@ -8,126 +8,131 @@ class PageBuilder extends Builder
     private $page;
     
     // SPLObjectStorage
-    private $handlers = NULL;
     private $hooks = NULL;
     private $elements = NULL;
     
-    // used as a replacement point
+    private $elements_metadata = [];
+    
+    // placeholder for replacement
     private $element_attribute_index = "_pxp_ref";
     
     public function __construct()
     {
-         // object containing handlers
-         $this->handlers = new \SplObjectStorage();
-         
-         // object containing hooks
-         $this->hooks = new \SplObjectStorage();
-         
-         // objects containing elements
-         $this->elements = new \SplObjectStorage();
+                        
+        // object containing hooks
+        $this->hooks = new \SplObjectStorage();
+        
+        // objects containing elements
+        $this->elements = new \SplObjectStorage();
+        
     }
     
-    public function createPage()
+    public function createObject() : ?bool
     {       
         $this->page = new Page();
         $this->page->loadByPath($this->path);
      
-        // create iterator to go through document looking for elements
+        // create document iterator
         $this->xpath = new \DOMXPath($this->page);
         
-        // iterate through handlers
-        foreach($this->handlers as $handler){            
-            $this->handlerBuilder($handler);
-        }
+        // build elements
+        $this->elementsBuild();
         
-        // interate through hooks
-        foreach($this->hooks as $hook){
-            $this->hooksBuilder($hook);
-        }
-    
+        // build hooks
+        $this->hooksBuild();
+      
+        return true;
     }
     
-    public function getPage()
+    public function getObject() : ?object
     {
         return $this->page;       
     }
     
-    // add a tag/element handler to storage
-    // only tags with handlers are built; elements without handlers are left alone
-    public function addHandler(string $xpath_expression, string $class_name) : bool
+    public function setPath($path)
     {
-        
-        $handler = new Handler($xpath_expression, $class_name);
-        
-        $this->handlers->attach($handler);
+        $this->path = $path;
+    }
+
+    
+    public function addElement(string $xpath_expression, string $class_name) : bool
+    {
+
+        $this->elements_metadata[$xpath_expression] = $class_name;
         
         return true;
     }
     
-    // builds handlers
-    private function handlerBuilder(Handler $handler)
+    private function elementsBuild()
     {
+            
+        $element_builder = new ElementBuilder();
         
-        // iterate through handler's expression searching for applicable elements
-        foreach ($this->query($handler->xpath_expression) as $element) {
-        
-            // instantiate object of element
-            $pxp_element = $handler->build($element);
+        foreach($this->elements_metadata as $xpath_expression => $class_name){
+                
+            // iterate through handler's expression searching for applicable elements        
+            foreach ($this->query($xpath_expression) as $element) {
             
-            // if not found then replace with notice
-            if( ! is_object($pxp_element) ){
-                $new_xml = '<!-- Handler "' . $this->tmp_class_name . '" Not Found -->';
-                $this->page->replaceElement($element, $new_xml);
+                $element_builder->element_node = $element;
+                $element_builder->class_name = $class_name;
+                $element_builder->createObject();
                 
-                continue;
-            }
-            
-            // assign object id to xml
-            $element_id = spl_object_hash($pxp_element);
-            $pxp_element->pxp_id = $element_id;
-            $element->setAttribute($this->element_attribute_index, $element_id);
-            
-            // store object
-            $this->elements->attach($pxp_element);
-        }
-    }
-    
-    // hooks builder
-    private function hooksBuilder(Hook $hook)
-    {
-    
-        // iterate through elements
-        foreach($this->elements as $element){
-        
-            // skip if element does not feature hook
-            if ( ! method_exists($element, $hook->name) ) {
-                continue;
-            }
-            
-            // on render
-            if($hook->name == 'onRender'){
+                $element_object = $element_builder->getObject();
                 
-                $new_xml = $element->onRender();
-                
-                $query = '//*[@' . $this->element_attribute_index . '="' . $element->pxp_id . '"]';
-                
-                foreach ($this->query($query) as $replace_element) {
-                
-                    $this->page->replaceElement($replace_element, $new_xml);
-                
+                // if not found then replace with notice
+                if( ! is_object($element_object) ){
+                    $this->page->replaceElement($element, '<!-- Handler "' . $this->tmp_class_name . '" Not Found -->');                    
+                    continue;
                 }
                 
-            } else {
-            
-                // call element method
-                call_user_func([$element, $hook->name]);
+                // store object placeholder
+                $element->setAttribute($this->element_attribute_index, $element_object->placeholder_id);
                 
+                // store object
+                $this->elements->attach($element_object);
+            }
+        }
+    }
+            
+    // hooks builder
+    private function hooksBuild()
+    {
+        foreach($this->hooks as $hook) {
+            
+            // iterate through elements
+            foreach($this->elements as $element) {
+            
+                // skip if element does not feature hook
+                if ( ! method_exists($element, $hook->name) ) {
+                    continue;
+                }
+                
+                // on render
+                if($hook->name == 'onRender') {
+                    
+                    $new_xml = $element->onRender();
+                    
+                    $query = '//*[@' . $this->element_attribute_index . '="' . $element->placeholder_id . '"]';
+                    
+                    foreach ($this->query($query) as $replace_element) {
+                    
+                        $this->page->replaceElement($replace_element, $new_xml);
+                    
+                    }
+                    
+                } else {
+                
+                    // call element method
+                    call_user_func([$element, $hook->name]);
+                    
+                }
             }
         }
     }
     
     // add a hook and pass to register
-    public function addHook(string $name, string $description = '', $position = NULL){
+    public function addHook(string $name, string $description = '', $position = NULL)
+    {
         
         $hook = new Hook($name, $description, $position);
         $this->registerHook($hook);
@@ -135,21 +140,24 @@ class PageBuilder extends Builder
     }
     
     // return a list of hooks
-    public function listHooks(){
+    public function listHooks()
+    {
     
         return $this->hooks;
     
     }
     
     // register the hook
-    public function registerHook(Hook $hook){
+    public function registerHook(Hook $hook)
+    {
     
         $this->hooks->attach($hook);
     
     }
     
     // TODO: consider using generator
-    public function query($query){
+    public function query($query)
+    {
         
         return $this->xpath->query($query);
         
