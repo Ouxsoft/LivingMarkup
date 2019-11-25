@@ -4,10 +4,10 @@ namespace Pxp;
 
 class Director
 {
-    public function build(Builder &$builder) : object 
+    public function build(Builder &$builder, $parameters) : object 
     {
         
-        $builder->createObject();
+        $builder->createObject($parameters);
         
         return $builder->getObject();
     }

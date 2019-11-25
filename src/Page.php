@@ -14,6 +14,7 @@ class Page implements PageDefaultInterface
     public $dom;
     public $xpath;
     public $element_objects;
+    public $arg_load_function;
     
     private $element_index_attribute = '_pxp_ref';
   
@@ -40,7 +41,7 @@ class Page implements PageDefaultInterface
         'mdash' => '&#8212;'
     ];    
 
-    public function __construct()
+    public function __construct($filename = NULL)
     {
     
         // create a document object model
@@ -53,11 +54,14 @@ class Page implements PageDefaultInterface
         if( ! $this->libxml_debug){
             libxml_use_internal_errors(true);
         }
-
+        
+        if($filename != NULL){
+            $this->loadByPath($filename);
+        }
     }
 
     // calls method from each instaniated element
-    public function callHook(string $hook_name, string $description = '', $options = NULL) : bool
+    public function callHook(string $hook_name, string $options = NULL) : bool
     {
         
         // iterate through elements
@@ -95,25 +99,38 @@ class Page implements PageDefaultInterface
     // instantiates dynamic elements found during xpath query
     public function instantiateElement(string $xpath_expression, string $class_name) : bool
     {
-        
-        $element_builder = new ElementBuilder();
-                
+        // if class does not exist replace element with informative comment
         // iterate through handler's expression searching for applicable elements
         foreach ($this->query($xpath_expression) as $element) {
+    
+            // resolve class name 
+            if( $element->hasAttribute('name') ) {
+                $element_name = $element->getAttribute('name');
+                $class_name = str_replace('{name}', $element_name, $class_name);
+            }
             
-            $element_builder->setElement($element);
-            $element_builder->setClassName($class_name);
-            $element_builder->createObject();
+            // if class does not exist
+            if( ! class_exists($class_name) ){
+                $this->replaceElement($element, '<!-- Handler "' . $class_name . '" Not Found -->');
+                return false;
+            }
             
-            $element_object = $element_builder->getObject();
+            // get xml from element
+            $xml = $this->getXml($element);
             
-            // if class does not exist replace element with informative comment
+            // get args from element
+            $args = $this->getArgs($element);
+            
+            // instantiate element
+            $element_object = new $class_name($xml, $args);
+                        
+            // object not instantiated
             if( ! is_object($element_object) ){
-                $this->replaceElement($element, '<!-- Handler "' . $this->tmp_class_name . '" Not Found -->');
+                $this->replaceElement($element, '<!-- Handler "' . $class_name . '" Error -->');
                 continue;
             }
             
-            // store object placeholder
+            // set element object placeholder
             $element->setAttribute($this->element_index_attribute, $element_object->placeholder_id);
             
             // store object
@@ -121,6 +138,59 @@ class Page implements PageDefaultInterface
         }
         
         return true;
+    }
+    
+    
+    // get element's innerXML
+    private function getXml(\DOMElement $element) : string
+    {
+        
+        $xml = '';
+        
+        $children = $element->childNodes;
+        foreach($children as $child){
+            $xml .= $element->ownerDocument->saveHTML($child);
+        }
+        
+        return $xml;
+    }
+    
+    // get element args
+    private function getArgs(\DOMElement &$element) : array
+    {
+        
+        $args = [];
+        
+        // get attributes
+        if( $element->hasAttributes() ){
+            foreach($element->attributes as $name => $attribute){
+                $args[$name] = $attribute->value;
+            }
+        }
+        
+        // get child args
+        $objects = $element->getElementsByTagName('arg');
+        foreach($objects as $object) {
+            $name = $object->getAttribute('name');
+            $value = $object->nodeValue;
+            $args[$name] = $value;
+        }
+        
+        // use element id attribute to load args
+        if( $element->hasAttribute('id') ) {
+            $element_id = $element->getAttribute('id');
+            
+            // allow director to specify function to load args from based on id
+            if(function_exists($this->arg_load_function)){
+                $args_loaded = call_user_func($this->arg_load_function, $element_id);
+                
+                // merge args
+                $args = array_merge($args_loaded, $args);
+            }
+            
+        }
+        
+        return $args;
     }
     
     // replace element contents
