@@ -2,7 +2,7 @@
 
 namespace Pxp;
 
-class PageBuilder extends Builder
+class PageEditorBuilder extends Builder
 {
     private $page;
         
@@ -13,20 +13,7 @@ class PageBuilder extends Builder
         }
         
         $this->page = new Page($parameters['filename']);
-        
-        // instantiate dynamic elements
-        if(is_array($parameters['handlers'])){
-            foreach($parameters['handlers'] as $xpath_expression => $class_name){
-                $this->page->instantiateElement($xpath_expression, $class_name);
-            }
-        }
-
-        if(is_array($parameters['hooks'])){
-            foreach($parameters['hooks'] as $name => $description){
-                $this->page->callHook($name, $description);
-            }
-        }
-            
+                    
         return true;
     }
     

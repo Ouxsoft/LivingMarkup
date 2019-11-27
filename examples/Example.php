@@ -10,7 +10,7 @@ require_once __DIR__ . '/vendor/autoload.php';
 $director = new Pxp\Director();
 
 // create PageBuilder
-$page_builder = new Pxp\PageBuilder();
+$page_builder = new Pxp\PageDynamicBuilder();
 
 // specify build parameters
 $parameters = [
