@@ -1,16 +1,37 @@
 # Guidelines for PXP Implementations
-## Director
-The Director is passed a loaded Document, a list Handlers, and Hooks. It finds and instantiate Elements from the Document using Handlers. The Director then interates through the Hooks making call to Element's with those methods.
+PXP uses a Builder design pattern to build Pages featuring DynamicElements.
+
+## PageDirector
+The PageDirector is passed a PageBuilder and parameters, such as the path to be loaded, Handlers, and Hooks. 
+
+## PageBuilder
+The PageBuilder receives parameters passed from the PageDirector that is uses to instantiate and return a Page object.
+
 ## Page
-The Page is loaded by the Director. During runtime the Director modifies the Page using Handlers and Hooks. A Page must be well-formed and valid XML or HTML.
+A Page loads a DOM object and uses Handlers and Hooks to instantiate DynamicElements and modify the DOM.
+
 ## Handlers
-A Handler consists of an XPath expressions and a class name and is used to define a type of Element. The XPath expression  ("//block") finds the Elements inside the Document. The class name defines the class used to instantiate the Element. A Handler's class name may feature variables ("/Blocks/{name}") for the Director to resolve using the Document element's attributes (<block name="Message"/>). PXP does not require any specific Handlers be implemented, although core Logic and Element Handlers are useful.
+A Handler consists of an XPath expressions and a class name and is used to define the DynamicElement. 
+The XPath expression  ("//block") finds the elements inside the Page DOM. 
+The class name defines the class used to instantiate elements found as DynamicElements.
+A Handler's class name may feature variables ("/Blocks/{name}") that are resolved using the Page DOM element's attributes (<block name="Message"/>). 
+
 ## Hooks
-The Director orchestrates Element method execution using Hooks which are defined at runtime. Hooks order the execution of Element method calls.
-## Elements
-An Element is object instantiated by a Director and defined by a Handler. During construction, the Process sends the Document XML/HTML element's attributes, arguments, and content to the object which are all stored as property within the object. Elements are often used to return dynamic content which the Director uses to replace the Document's element. Element's should be designed for the CMS user, and have safe gaurds in place. Not every Document XML/HTML element is instantiated. Only those with a Handler are Elements. The rest are generally considered static content.
+Hooks are used to orchestrates method calls against all the DynamicElements instantiated.
+
+## DynamicElements
+The DynamicElement constructor is passed the DOM element's attributes, arguments, and stored parameters.
+DynamicElements are most often used to replace DOM element with dynamic content.
+DynamicElements should be designed for the content management system user with safe gaurds in place.
+Only Page DOM elements with Handlers are instantiated as DynamicElements; the rest are generally static content.
+
 ### Atrributes
-A Handler can feature a Document's element name attribute to specify the object's class name. An Element's id attribute may be numerical to load Arguments.
-The PXP director is passed a loaded Document, a list Handlers, and Hooks. It finds and instantiate Elements using Handlers. Then, the Director interates through the Hooks making call to Element's with those methods. Afterwards, the processed Document is returned.
+A Handler can feature a Document's element name attribute to specify the object's class name. 
+An Element's id attribute may be numerical to load Arguments.
+The PXP director is passed a loaded Document, a list Handlers, and Hooks. 
+It finds and instantiate Elements using Handlers. 
+Then, the Director interates through the Hooks making call to Element's with those methods. 
+Afterwards, the processed Document is returned.
+
 #### Arguments
-During instantiation to the object, an elment's attributes ("id","name", etc.) and child elements with tag "arg" are passed to the constructor for use.
+The DynamicElement constructor is passed a Page DOM elment's attributes ("id", "name", etc.) and "arg" tag child elements.

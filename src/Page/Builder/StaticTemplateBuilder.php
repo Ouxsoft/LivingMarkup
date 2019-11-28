@@ -1,8 +1,8 @@
 <?php
 
-namespace Pxp;
+namespace Pxp\Page\Builder;
 
-class TemplateBuilder extends Builder
+class StaticTemplateBuilder extends Builder
 {
     private $page;
     
@@ -17,7 +17,7 @@ class TemplateBuilder extends Builder
             return false;
         }
         
-        $this->page = new Page($parameters['filename']);        
+        $this->page = new Pxp\Page\Page($parameters['filename']);        
         
         return true;
     }

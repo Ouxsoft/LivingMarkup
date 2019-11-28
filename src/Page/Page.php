@@ -1,11 +1,15 @@
 <?php
  
-namespace Pxp;
+namespace Pxp\Page;
 
 interface PageDefaultInterface 
 {
     public function loadByPath(string $filepath) : void;
     public function __toString() : string;
+    public function callHook(string $hook_name, string $options = NULL) : bool;
+    public function instantiateElement(string $xpath_expression, string $class_name) : bool;
+    public function replaceElement(\DOMElement &$element, string $new_xml) : void;
+    public function query($query);
 }
 
 class Page implements PageDefaultInterface 
@@ -139,7 +143,6 @@ class Page implements PageDefaultInterface
         
         return true;
     }
-    
     
     // get element's innerXML
     private function getXml(\DOMElement $element) : string

@@ -1,8 +1,9 @@
 <?php
 
-namespace Pxp;
+namespace Pxp\Page;
+use Pxp\Page\Builder\Builder;
 
-class Director
+class PageDirector
 {
     public function build(Builder &$builder, $parameters) : object 
     {

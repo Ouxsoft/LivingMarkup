@@ -1,6 +1,6 @@
 <?php 
 
-namespace Pxp;
+namespace Pxp\DynamicElement;
 
 interface ElementDefaultInterface
 {
@@ -11,7 +11,7 @@ interface ElementDefaultInterface
     public function __toString();
 }
 
-abstract class Element implements ElementDefaultInterface
+abstract class DynamicElement implements ElementDefaultInterface
 {
 
     public $placeholder_id = 0; // used to placeholder for PageBuilder::replaceElement()

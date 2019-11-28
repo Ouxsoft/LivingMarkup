@@ -1,6 +1,6 @@
 <?php
 
-namespace Pxp;
+namespace Pxp\Page\Builder;
 
 abstract class Builder
 {

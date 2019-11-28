@@ -1,8 +1,10 @@
 <?php
 
-namespace Pxp;
+namespace Pxp\Page\Builder;
 
-class PageBuilder extends Builder
+use Pxp\Page\Page as Page;
+
+class DynamicBuilder extends Builder
 {
     private $page;
         
