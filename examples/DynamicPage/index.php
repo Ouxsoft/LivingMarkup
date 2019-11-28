@@ -1,18 +1,17 @@
 <?php
-
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-// create PageDirector
+// instantiate PageDirector
 $director = new Pxp\Page\PageDirector();
 
-// create PageBuilder
+// instantiate PageBuilder
 $page_builder = new Pxp\Page\Builder\DynamicBuilder();
 
-// specify build parameters
+// define build parameters
 $parameters = [
-    'filename' => 'page.html',
+    'filename' => __DIR__ . DIRECTORY_SEPARATOR . 'page.html',
     'handlers' => [
         '//partial'     => 'Pxp\DynamicElement\Partials\{name}',
         '//widget'      => 'Pxp\DynamicElement\Widgets\{name}',
@@ -34,5 +33,5 @@ $parameters = [
     ]
 ];
 
-// output
+// echo PageDirector build PageBuilder
 echo $director->build($page_builder, $parameters);

@@ -1,24 +1,36 @@
 <?php
-
 namespace Pxp\DynamicElement\Widgets;
-use Pxp\DynamicElement\DynamicElement as DynamicElement;
 
-class Breadcrumb extends DynamicElement
+class Breadcrumb extends \Pxp\DynamicElement\DynamicElement
 {
+
     public $separator = '/';
 
-	public function onRender(){
+    public function onRender()
+    {
         $pages = [
-            ['title' => 'Home', 'href' => '/'], 
-            ['title' => 'Groups', 'href' => '/groups'],
-            ['title' => 'User', 'href' => '/groups/user'],
-            ['title' => 'Settings', 'href' => '/groups/user/settings']
+            [
+                'title' => 'Home',
+                'href' => '/'
+            ],
+            [
+                'title' => 'Groups',
+                'href' => '/groups'
+            ],
+            [
+                'title' => 'User',
+                'href' => '/groups/user'
+            ],
+            [
+                'title' => 'Settings',
+                'href' => '/groups/user/settings'
+            ]
         ];
-
+        
         $out = '<!-- Breadcrumb -->' . PHP_EOL;
         $out .= '<div class="breadcrumb">';
         $out .= '<ul>';
-        foreach($pages as $page){
+        foreach ($pages as $page) {
             $out .= '<li>';
             $out .= '<a href="' . $page['href'] . '">';
             $out .= $page['title'];
@@ -29,6 +41,5 @@ class Breadcrumb extends DynamicElement
         $out .= '</ul>';
         $out .= '</div>';
         return $out;
-
     }
 }

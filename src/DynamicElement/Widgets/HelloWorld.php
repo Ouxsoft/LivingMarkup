@@ -1,8 +1,7 @@
 <?php
 namespace Pxp\DynamicElement\Widgets;
-use Pxp\DynamicElement\DynamicElement as DynamicElement;
 
-class HelloWorld extends DynamicElement
+class HelloWorld extends \Pxp\DynamicElement\DynamicElement
 {
 	public function onRender(){
 		return 'Hello World';

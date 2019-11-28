@@ -1,9 +1,8 @@
 <?php
 
 namespace Pxp\DynamicElement\Widgets;
-use Pxp\DynamicElement\DynamicElement as DynamicElement;
 
-class UserMenu extends DynamicElement
+class UserMenu extends \Pxp\DynamicElement\DynamicElement
 {
 	public function onRender(){
         return <<<HTML

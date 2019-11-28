@@ -1,9 +1,8 @@
 <?php
 
 namespace Pxp\DynamicElement\Widgets;
-use Pxp\DynamicElement\DynamicElement as DynamicElement;
 
-class News extends DynamicElement
+class News extends \Pxp\DynamicElement\DynamicElement
 {
 	public function onRender(){
 		//$out = 'y='.$_POST['focal_point_y'].'x='.$_POST['focal_point_x'] .

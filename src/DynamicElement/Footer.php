@@ -1,10 +1,15 @@
 <?php
-
 namespace Pxp\DynamicElement;
 
 class Footer extends DynamicElement
 {
-	public function onRender() {
+
+    public function getPageScripts(){
+        // TODO: figure out how this works
+    }
+    
+    public function onRender()
+    {
         return <<<HTML
 <footer>
     <hr/>
@@ -12,6 +17,5 @@ class Footer extends DynamicElement
 </footer>
 <script/>
 HTML;
-
-	}
+    }
 }
