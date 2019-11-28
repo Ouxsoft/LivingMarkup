@@ -12,7 +12,7 @@ $page_builder = new Pxp\Page\Builder\DynamicBuilder();
 
 // specify build parameters
 $parameters = [
-    'filename' => 'site/pages/index.php',
+    'filename' => 'page.html',
     'handlers' => [
         '//partial'     => 'Pxp\DynamicElement\Partials\{name}',
         '//widget'      => 'Pxp\DynamicElement\Widgets\{name}',
