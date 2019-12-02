@@ -1,4 +1,9 @@
 <?php
+/*
+ * <condition toggle="signed_in">
+ * <p>Welcome Member</p>
+ * </condition>
+ */
 namespace\Pxp\DynamicElement;
 
 class Condition extends DynamicElement

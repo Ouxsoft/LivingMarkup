@@ -1,36 +1,42 @@
 <?php
-
+/*
+ * <widget name="News">
+ * <arg name="heading">Latest News</arg>
+ * <arg name="heading_level">3</arg>
+ * </widget>
+ */
 namespace Pxp\DynamicElement\Widgets;
 
 class News extends \Pxp\DynamicElement\DynamicElement
 {
-	public function onRender(){
-		//$out = 'y='.$_POST['focal_point_y'].'x='.$_POST['focal_point_x'] .
-		$out =
-		'<p>News story</p>
-		
-		<form method="post">
-			<img src="/assets/images/pxp/logo/original.jpg" style="width:100px; height:100px"/>
-		</form>
-		';
 
-		if(isset($this->args['@attributes']['id'])){
-			$out .= '<!-- widget #' . $this->args['@attributes']['id'] . '-->' . PHP_EOL;
-		}
-		/*}
+    public $heading_level = 3;
 
-		// heading
-		if(isset($this->args['heading'])){
-			$out .= '<h' . $this->size . '>' . $this->args['heading'] . '</h' . $this->size . '>';
-		}
-
-		$out .= '<ul>';
-		foreach($this->myGenerator() as $row){
-			$out .= '<li>' . $row . '</li>';
-		}
-		$out .= '</ul>';
-*/
-		return $out;
-		
-	}
+    public function onRender()
+    {
+        $out = '';
+        
+        // add widget comment
+        if (isset($this->args['id'])) {
+            $out .= '<!-- widget #' . $this->args['id'] . '-->' . PHP_EOL;
+        }
+        
+        // heading
+        if (isset($this->args['heading'])) {
+            if (isset($this->args['heading_level']) && (in_array($this->args['heading_level'], range(1, 6)))) {
+                $this->heading_level = $this->args['heading_level'];
+            }
+            
+            $out .= '<h' . $this->heading_level . '>' . $this->args['heading'] . '</h' . $this->heading_level . '>';
+        }
+        
+        /*
+         * $out .= '<ul>';
+         * foreach($this->myGenerator() as $row){
+         * $out .= '<li>' . $row . '</li>';
+         * }
+         * $out .= '</ul>';
+         */
+        return $out;
+    }
 }

@@ -1,4 +1,5 @@
 <?php
+
 namespace Pxp\DynamicElement;
 
 interface ElementDefaultInterface
@@ -30,11 +31,9 @@ abstract class DynamicElement implements ElementDefaultInterface
     public $search_index = true;
     // maximum results of data pulled
     public $max_results = '240';
-    
-    // extending class must define this method
-    abstract public function onRender();
 
-    // store parameters
+    // extending class must define this method
+
     public function __construct($xml, $args)
     {
         // store elements inner xml
@@ -45,11 +44,16 @@ abstract class DynamicElement implements ElementDefaultInterface
         $this->placeholder_id = spl_object_hash($this);
     }
 
-    // call to output method
+    // store parameters
+
     public function __toString()
     {
         if (method_exists($this, 'onRender')) {
             return $this->onRender();
         }
     }
+
+    // call to output method
+
+    abstract public function onRender();
 }

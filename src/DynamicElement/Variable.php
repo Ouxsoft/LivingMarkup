@@ -1,4 +1,7 @@
 <?php
+/*
+ * <var name="username"/>
+ */
 namespace Pxp\DynamicElement;
 
 class Variable extends DynamicElement

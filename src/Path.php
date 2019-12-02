@@ -2,26 +2,39 @@
 
 namespace Pxp;
 
-class Path {
+/**
+ * Class Path
+ *
+ * @package Pxp
+ */
+class Path
+{
 
-    public static function decode($string){
-        $parts = explode('/',$string);
+    /**
+     * Decodes string of parameters to array
+     *
+     * @param string $string
+     * @return array
+     */
+    public static function decode(string $string): array
+    {
+        $parts = explode('/', $string);
         $parameters = [];
-        foreach($parts as $key => $value){
-            if($value == NULL) {
+        foreach ($parts as $key => $value) {
+            if ($value == NULL) {
                 continue;
             }
-            if($key % 2 == 0){
-                // if comma then array
-                if(strpos($value,',') !== false){
-                    $value = explode(',',$value);
+            if ($key % 2 == 0) {
+                // if comma then is array
+                if (strpos($value, ',') !== false) {
+                    $value = explode(',', $value);
                 }
-                // if dimensions then array
-                if(preg_match('/([0-9]+x[0-9]+)/', $value)){
-                    $value = explode('x',$value);
+                // if dimensions then is array
+                if (preg_match('/([0-9]+x[0-9]+)/', $value)) {
+                    $value = explode('x', $value);
                 }
                 // set parameter
-                $parameters[$parameter_key] = $value;
+                $parameters[$key] = $value;
             } else {
                 $parameter_key = $value;
             }
@@ -31,17 +44,24 @@ class Path {
         return $parameters;
     }
 
-    public static function encode($parameters) {
+    /**
+     * Encodes parameters provided
+     *
+     * @param array $parameters
+     * @return string
+     */
+    public static function encode(array $parameters): string
+    {
         $path = '';
-        foreach($parameters as $parameter => $value){
+        foreach ($parameters as $parameter => $value) {
 
-            if($parameter == 'filename'){
+            if ($parameter == 'filename') {
                 $path .= $value;
                 continue;
             }
 
-            if( is_array($value) ){
-                switch ($parameter){
+            if (is_array($value)) {
+                switch ($parameter) {
                     case 'dimension':
                         $glue = 'x';
                         break;
@@ -49,7 +69,7 @@ class Path {
                         $glue = ',';
                         break;
                 }
-                $value = implode($glue,$value);
+                $value = implode($glue, $value);
             }
 
             $path .= $parameter . '/' . $value . '/';
@@ -59,6 +79,6 @@ class Path {
         $path = str_replace(' ', '-', $path);
         $path = strtolower($path);
 
-        return $path;    
+        return $path;
     }
 }

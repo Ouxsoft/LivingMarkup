@@ -2,11 +2,21 @@
 
 namespace Pxp\Page\Builder;
 
+/**
+ * Class StaticBuilder
+ * @package Pxp\Page\Builder
+ */
 class StaticBuilder extends Builder
 {
     private $page;
-        
-    public function createObject($parameters) : ?bool
+
+    /**
+     * Creates Page object using parameters supplied
+     *
+     * @param $parameters
+     * @return bool|null
+     */
+    public function createObject(array $parameters) : ?bool
     {       
         if( !isset($parameters['filename'])){
             return false;
@@ -16,7 +26,12 @@ class StaticBuilder extends Builder
                     
         return true;
     }
-    
+
+    /**
+     * Returns Page object
+     *
+     * @return object|null
+     */
     public function getObject() : ?object
     {       
         return $this->page;       
