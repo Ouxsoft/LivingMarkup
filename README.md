@@ -2,9 +2,10 @@
 
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://paypal.me/hxtree)
 
-***PXP empower the front end team by turning markup into modular objects.*** It works like a templating engine, but
-isn't limited to replacing values. PXP finds elements, instantiate them as objects, orchestrates method calls to 
-objects, and then replaces the element's value.
+***PXP empowers teams by transforming markup elements into modular objects.*** It works similar to a templating engine, 
+but isn't limited to replacing values. PXP finds builder specified document elements, instantiate them as objects using 
+their attributes and arguments, orchestrates method calls to those objects, and then replaces the element 
+with rendered output. 
 
 # Installation
 
@@ -18,34 +19,38 @@ $ composer require hxtree/pxp
 
 # Overview
 Front End
-```XML
+```xml
 <body>
 	<condition toggle="signed_in">
 	<h2>Welcome, <var name="first_name"/></h2>
-	<block name="Messages" limit="5">
+	<block name="MessageExample" limit="5">
+	    <arg name="format">list</arg>
+    </block>
 	</condtion>
 </body>
 ```
-
-Back End
+MessageExample.php
 ```php
 <?php
 
-namespace Block;
+namespace Pxp\DynamicElement\Blocks;
 
-class Messages extends \Pxp\DynamicElement\DynamicElement
+class MessageExample extends \Pxp\DynamicElement\DynamicElement
 {
-	public function view(){
-		return <<<HTML
-	<div class="messages">
-		<p>You have no new messages</p>
-	</div>
+	public function onRender(){
+        switch($this->arg['format']) {
+            case 'list':
+                return <<<HTML
+    <div class="messages">
+        <p>You have no new messages</p>
+    </div>
 HTML;
+        }
 	}
 }
 ```
 
-Web Browser
+Output
 ```HTML
 <body class="page">
 	<h2>Welcome, Jane</h2>
