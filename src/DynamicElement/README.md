@@ -1,7 +1,10 @@
 # DynamicElement
 
-DynamicElements are modular. These packaged DynamicElements are provided for 
-demonstration purposes and can be optionally included by Builder.
+DynamicElements are modular. 
+
+## Examples
+The packaged DynamicElements provided for demonstration purposes and can be 
+optionally included by Builder.
 
 ## Atomic Design
 Although not required, developers are encouraged to think of atomic design
