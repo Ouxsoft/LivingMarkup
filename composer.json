@@ -19,7 +19,8 @@
 		}
 	],
 	"require" : {
-		"php" : ">=7.1"
+		"php" : ">=7.1",
+		"phpdocumentor/reflection": " ~4.0"
 	},
 	"minimum-stability" : "dev",
 	"support" : {
@@ -30,5 +31,8 @@
 			"Pxp\\" : "src/"
 		}
 	},
-	"homepage" : "https://github.com/hxtree/Pxp"
+	"homepage" : "https://github.com/hxtree/Pxp",
+	"require-dev": {
+		"phpdocumentor/phpdocumentor": "dev-master"
+	}
 }

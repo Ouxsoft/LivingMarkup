@@ -1,13 +1,19 @@
 ![alt text](https://github.com/hxtree/PXP/raw/master/docs/logo/179x100.jpg "PXP")
 
-***PXP transforms markup into code .*** It similar to a templating engine, but instead of strictly replacing 
-values it instantiate modular dynamic elements and orchestrates method calls. Finally, back end developers 
-can empower the front end team.
+[![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://paypal.me/hxtree)
 
-# Quick start
+***PXP transforms markup into code.***  It is a back end tool developed to empower the front end team.
+It works like a templating engine, but does more than replace values it instantiate objects, orchestrates method calls,
+and then replaces the value. Did we mention it is modular? 
+
+
+# Installation
+## Via Composer
+
+PXP is available on [Packagist](https://packagist.org/packages/hxtree/pxp).
 
 Install with Composer:
->composer require hxtree/pxp
+>$ composer require hxtree/pxp
 
 # Overview
 Front End
@@ -48,5 +54,5 @@ Web Browser
 </body>
 ```
 
-# Docs
-[How It Works](https://github.com/hxtree/PXP/blob/master/docs/How%20It%20Works.md)
+# Documentation
+For more detailed information check our online documentation at [pxp.readthedocs.io](pxp.readthedocs.io)
