@@ -81,7 +81,7 @@ class Page implements PageDefaultInterface
     private $libxml_debug = false;
 
     /**
-     * Page constructor.
+     * Page constructor
      *
      * @param null $filename
      */
@@ -119,7 +119,7 @@ class Page implements PageDefaultInterface
         }
 
         // deliberately build out doc-type and grab file contents
-        // using alternative loadHTMLFile removes entities (&copy; etc.)
+        // using alternative loadHTMLFile removes HTML entities (&copy; etc.)
         $source = '<!DOCTYPE html [' . $entity . ']> ';
         $source .= file_get_contents($filepath);
         $this->dom->loadXML($source);
@@ -273,7 +273,7 @@ class Page implements PageDefaultInterface
     }
 
     /**
-     * Get element args
+     * Get element's ARGs
      *
      * @param \DOMElement $element
      * @return array
@@ -314,7 +314,7 @@ class Page implements PageDefaultInterface
     }
 
     /**
-     * Returns DOM as HTML
+     * Returns DomDocument as HTML
      *
      * @return string
      */

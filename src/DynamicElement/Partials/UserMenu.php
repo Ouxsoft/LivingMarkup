@@ -1,6 +1,6 @@
 <?php
 
-namespace Pxp\DynamicElement\Widgets;
+namespace Pxp\DynamicElement\Partials;
 
 class UserMenu extends \Pxp\DynamicElement\DynamicElement
 {

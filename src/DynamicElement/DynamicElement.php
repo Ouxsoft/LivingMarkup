@@ -2,7 +2,11 @@
 
 namespace Pxp\DynamicElement;
 
-interface ElementDefaultInterface
+/**
+ * Interface ElementDefaultInterface
+ * @package Pxp\DynamicElement
+ */
+interface DynamicElementDefaultInterface
 {
 
     public function __construct($xml, $args);
@@ -12,7 +16,15 @@ interface ElementDefaultInterface
     public function __toString();
 }
 
-abstract class DynamicElement implements ElementDefaultInterface
+/**
+ * Class DynamicElement
+ *
+ * An abstract class extended to instantiate DynamicElements. During construction arguments and xml contained within
+ * the Page's DomElement are passed to constructor.
+ *
+ * @package Pxp\DynamicElement
+ */
+abstract class DynamicElement implements DynamicElementDefaultInterface
 {
 
     // placeholder id for PageBuilder::replaceElement()
@@ -32,8 +44,12 @@ abstract class DynamicElement implements ElementDefaultInterface
     // maximum results of data pulled
     public $max_results = '240';
 
-    // extending class must define this method
-
+    /**
+     * DynamicElement constructor
+     *
+     * @param $xml
+     * @param $args
+     */
     public function __construct($xml, $args)
     {
         // store elements inner xml
@@ -44,8 +60,11 @@ abstract class DynamicElement implements ElementDefaultInterface
         $this->placeholder_id = spl_object_hash($this);
     }
 
-    // store parameters
-
+    /**
+     * Call onRender if exists on echo / output
+     *
+     * @return mixed
+     */
     public function __toString()
     {
         if (method_exists($this, 'onRender')) {
@@ -53,7 +72,12 @@ abstract class DynamicElement implements ElementDefaultInterface
         }
     }
 
-    // call to output method
-
+    /**
+     * Abstract output method called by magic method
+     *
+     * The extending class must define this method
+     *
+     * @return mixed
+     */
     abstract public function onRender();
 }

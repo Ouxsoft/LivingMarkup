@@ -1,16 +1,27 @@
 <?php
-/*
+namespace Pxp\DynamicElement\Widgets;
+
+/**
+ * Class Bitwise
+ *
+ * This is an widget example designed to demonstrate how PHP BitWise operators work
+ *
  * <widget name="Bitwise">
  * <arg name="number">2</arg>
  * <arg name="count">6</arg>
  * <arg name="operator">^</arg>
  * </widget>
+ *
+ * @package Pxp\DynamicElement\Widgets
  */
-namespace Pxp\DynamicElement\Widgets;
-
 class Bitwise extends \Pxp\DynamicElement\DynamicElement
 {
 
+    /**
+     * Renders output of BitWise operator
+     *
+     * @return mixed|string
+     */
     public function onRender()
     {
         $x = $this->args['number'];
