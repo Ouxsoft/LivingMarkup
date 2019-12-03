@@ -56,3 +56,4 @@ Web Browser
 
 # Documentation
 For more detailed information check our online documentation at [pxp.readthedocs.io](pxp.readthedocs.io)
+[![Documentation Status](https://readthedocs.org/projects/pxp/badge/?version=latest)](https://pxp.readthedocs.io/en/latest/?badge=latest)
