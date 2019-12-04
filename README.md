@@ -2,9 +2,9 @@
 
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://paypal.me/hxtree)
 
-***PXP empowers web teams by making markup magical.*** It works similar to a templating engine, but does more than 
-replace values inside braces :P, it makes HTML useful. Like when you first learned HTML and thought it could do 
-everything on the web? Well now it can!
+***PXP adds the markup tags you wish were there.*** It works similar to a templating engine, but does more than 
+replace values inside braces :P. It a whole new set of building blocks.. no, it's a block builder! Remember, when you 
+first thought markup could do everything on the web? Well now it can. Go ahead build it!
 
 # Installation
 
@@ -14,54 +14,6 @@ PXP is available on [Packagist](https://packagist.org/packages/hxtree/pxp).
 Install with Composer:
 ```shell script
 $ composer require hxtree/pxp
-```
-
-# Overview
-A PageDirector is passed a PageBuilder and parameters (containing a HTML/XML document and a list of elements to make
-dynamic), it then instantiates those elements as objects using their attributes and arguments, orchestrates method calls 
-to those objects (hooks), replaces the element with returned value from a method call, and returns provides the parsed
-document. 
-
-Front End
-```xml
-<body>
-	<condition toggle="signed_in">
-	<h2>Welcome, <var name="first_name"/></h2>
-	<block name="MessageExample" limit="5">
-	    <arg name="format">list</arg>
-    </block>
-	</condtion>
-</body>
-```
-MessageExample.php
-```php
-<?php
-
-namespace Pxp\DynamicElement\Blocks;
-
-class MessageExample extends \Pxp\DynamicElement\DynamicElement
-{
-	public function onRender(){
-        switch($this->arg['format']) {
-            case 'list':
-                return <<<HTML
-    <div class="messages">
-        <p>You have no new messages</p>
-    </div>
-HTML;
-        }
-    }
-}
-```
-
-Output
-```HTML
-<body class="page">
-	<h2>Welcome, Jane</h2>
-	<div class="messages">
-		<p>You have no new messages.</p>
-	</div>
-</body>
 ```
 
 # Documentation

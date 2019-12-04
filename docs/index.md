@@ -1,4 +1,10 @@
-# Guidelines for PXP Implementations
+# Overview
+A PageDirector is passed a PageBuilder and parameters (containing a HTML/XML document and a list of elements to make
+dynamic), it then instantiates those elements as objects using their attributes and arguments, orchestrates method calls 
+to those objects (hooks), replaces the element with returned value from a method call, and returns provides the parsed
+document. 
+
+# Design Pattern
 PXP uses a Builder design pattern to build Pages featuring DynamicElements.
 
 ## PageDirector
@@ -35,3 +41,47 @@ Afterwards, the processed Document is returned.
 
 #### Arguments
 The DynamicElement constructor is passed a Page DOM elment's attributes ("id", "name", etc.) and "arg" tag child elements.
+
+# Example
+
+your-markup.html
+```xml
+<body>
+	<condition toggle="signed_in">
+	<h2>Welcome, <var name="first_name"/></h2>
+	<block name="MessageExample" limit="5">
+	    <arg name="format">list</arg>
+    </block>
+	</condtion>
+</body>
+```
+MessageExample.php
+```php
+<?php
+
+namespace Pxp\DynamicElement\Blocks;
+
+class MessageExample extends \Pxp\DynamicElement\DynamicElement
+{
+	public function onRender(){
+        switch($this->arg['format']) {
+            case 'list':
+                return <<<HTML
+    <div class="messages">
+        <p>You have no new messages</p>
+    </div>
+HTML;
+        }
+    }
+}
+```
+
+Output
+```HTML
+<body class="page">
+	<h2>Welcome, Jane</h2>
+	<div class="messages">
+		<p>You have no new messages.</p>
+	</div>
+</body>
+```
