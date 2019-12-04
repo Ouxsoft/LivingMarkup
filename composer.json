@@ -33,6 +33,7 @@
 	},
 	"homepage" : "https://github.com/hxtree/Pxp",
 	"require-dev": {
-		"phpdocumentor/phpdocumentor": "dev-master"
+		"phpdocumentor/phpdocumentor": "dev-master",
+		"phpunit/phpunit": "^8"
 	}
 }
