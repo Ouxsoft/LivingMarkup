@@ -2,9 +2,9 @@
 
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://paypal.me/hxtree)
 
-***PXP adds the markup tags you wish were there.*** It works similar to a templating engine, but does more than 
-replace values inside braces :P. It a whole new set of building blocks.. no, it's a block builder! Remember, when you 
-first thought markup could do everything on the web? Well now it can. Go ahead build it!
+***PXP is used to build custom markup tags and improve existing ones.*** It works similar to a templating 
+engine, but does more than replace values inside braces. If HTML markup tags are considered the building 
+blocks of a web page, then PXP would be a 3D printer. Go ahead, build it!
 
 # Installation
 
