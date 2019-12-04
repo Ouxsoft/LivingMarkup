@@ -2,9 +2,9 @@
 
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://paypal.me/hxtree)
 
-***PXP empowers teams by transforming markup elements into modular objects.*** It works similar to a templating engine, 
-but isn't limited to replacing values. PXP finds builder specified document elements, instantiate them as objects using 
-their attributes and arguments, orchestrates method calls to those objects, and then replaces the element 
+***PXP empowers web teams by transforming markup elements into modular objects.*** It works similar to a templating 
+engine, but isn't limited to replacing values. PXP finds builder specified document elements, instantiate them as 
+objects using their attributes and arguments, orchestrates method calls to those objects, and then replaces the element 
 with rendered output. 
 
 # Installation
