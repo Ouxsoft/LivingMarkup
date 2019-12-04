@@ -2,10 +2,9 @@
 
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://paypal.me/hxtree)
 
-***PXP empowers web teams by transforming markup elements into modular objects.*** It works similar to a templating 
-engine, but isn't limited to replacing values. PXP finds builder specified document elements, instantiate them as 
-objects using their attributes and arguments, orchestrates method calls to those objects, and then replaces the element 
-with rendered output. 
+***PXP empowers web teams by making markup magical.*** It works similar to a templating engine, but does more than 
+replace values inside braces :P, it makes HTML useful. Like when you first learned HTML and thought it could do 
+everything on the web? Well now it can!
 
 # Installation
 
@@ -18,6 +17,11 @@ $ composer require hxtree/pxp
 ```
 
 # Overview
+A PageDirector is passed a PageBuilder and parameters (containing a HTML/XML document and a list of elements to make
+dynamic), it then instantiate those elements as objects using their attributes and arguments, orchestrates method calls 
+to those objects (hooks), replaces the element with return value from a method call, and returns provides the parsed
+document. 
+
 Front End
 ```xml
 <body>
@@ -46,7 +50,7 @@ class MessageExample extends \Pxp\DynamicElement\DynamicElement
     </div>
 HTML;
         }
-	}
+    }
 }
 ```
 
