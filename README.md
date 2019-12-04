@@ -18,8 +18,8 @@ $ composer require hxtree/pxp
 
 # Overview
 A PageDirector is passed a PageBuilder and parameters (containing a HTML/XML document and a list of elements to make
-dynamic), it then instantiate those elements as objects using their attributes and arguments, orchestrates method calls 
-to those objects (hooks), replaces the element with return value from a method call, and returns provides the parsed
+dynamic), it then instantiates those elements as objects using their attributes and arguments, orchestrates method calls 
+to those objects (hooks), replaces the element with returned value from a method call, and returns provides the parsed
 document. 
 
 Front End
