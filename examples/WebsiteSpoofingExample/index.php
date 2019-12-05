@@ -1,14 +1,10 @@
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
 /**
- * Class MarkupInjection
- *
- * This class will replace a element on the page to indicate it is not actually the original site
- *
+ * This example demonstrates how easy is it is to spoof an existing web page using PHP.
  */
+
+require '../../vendor/autoload.php';
+
 class MarkupInjection extends \Pxp\DynamicElement\DynamicElement
 {
     public function onRender()
@@ -16,7 +12,6 @@ class MarkupInjection extends \Pxp\DynamicElement\DynamicElement
         return '<h1 style="color:#F00">Spoofed :-)</h1>';
     }
 }
-
 
 // instantiate PageDirector
 $director = new Pxp\Page\PageDirector();

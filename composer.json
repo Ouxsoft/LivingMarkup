@@ -34,7 +34,8 @@
 	"homepage" : "https://github.com/hxtree/Pxp",
 	"require-dev": {
 		"phpdocumentor/phpdocumentor": "dev-master",
-		"phpunit/phpunit": "^8"
+		"phpunit/phpunit": "^8",
+		"friendsofphp/php-cs-fixer": "^2.17@dev"
 	},
 	"scripts": {
 		"test": [
