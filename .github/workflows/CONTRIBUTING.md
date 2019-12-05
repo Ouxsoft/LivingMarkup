@@ -12,11 +12,12 @@
 * PXP implements a builder design pattern.
 * PXP use PHPDocs
 * PSR Standards (TBD)
+
 // TODO: Complete list
 
 ## Using PXP from a Git checkout
 
-The following commands can be used to perform the initial checkout of PHPUnit:
+The following commands can be used to perform the initial checkout of PXP:
 
 ```bash
 $ git clone git://github.com/hxtree/pxp.git
