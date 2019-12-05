@@ -1,5 +1,5 @@
 .project
 .buildpath
 .idea
+.phpunit.result.cache
 vendor
-
