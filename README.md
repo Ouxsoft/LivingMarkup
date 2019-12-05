@@ -25,5 +25,5 @@ For more detailed information check our online documentation at [pxp.readthedocs
 
 # Contribute
 
-Please refer to [CONTRIBUTING.md](https://github.com/hxtree/pxp/blob/master/.github/CONTRIBUTING.md) for information on 
-how to contribute to PXP.
+Please refer to [CONTRIBUTING.md](https://github.com/hxtree/PXP/blob/master/.github/workflows/CONTRIBUTING.md) for 
+information on how to contribute to PXP.
