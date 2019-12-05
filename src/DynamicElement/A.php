@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-namespace\Pxp\DynamicElement;
+namespace \Pxp\DynamicElement;
 
 /**
  * Class A

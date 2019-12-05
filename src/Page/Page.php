@@ -120,17 +120,25 @@ class Page implements PageDefaultInterface
     public function loadByPath(string $filepath): void
     {
 
-        // entities are automatically removed before sending to client
-        $entity = '';
-        foreach ($this->entities as $key => $value) {
-            $entity .= '<!ENTITY ' . $key . ' "' . $value . '">' . PHP_EOL;
+        if (filter_var($filepath, FILTER_VALIDATE_URL)) {
+            // if existing website
+            $source = file_get_contents($filepath);
+            $this->dom->loadHTML($source);
+        } else {
+            // entities are automatically removed before sending to client
+            $entity = '';
+            foreach ($this->entities as $key => $value) {
+                $entity .= '<!ENTITY ' . $key . ' "' . $value . '">' . PHP_EOL;
+            }
+
+            // deliberately build out doc-type and grab file contents
+            // using alternative loadHTMLFile removes HTML entities (&copy; etc.)
+            $source = '<!DOCTYPE html [' . $entity . ']> ';
+            $source .= file_get_contents($filepath);
+            $this->dom->loadXML($source);
         }
 
-        // deliberately build out doc-type and grab file contents
-        // using alternative loadHTMLFile removes HTML entities (&copy; etc.)
-        $source = '<!DOCTYPE html [' . $entity . ']> ';
-        $source .= file_get_contents($filepath);
-        $this->dom->loadXML($source);
+
 
         // create document iterator
         $this->xpath = new \DOMXPath($this->dom);
