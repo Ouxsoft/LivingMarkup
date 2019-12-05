@@ -1,4 +1,5 @@
 <?php
+// ./vendor/bin/phpunit --bootstrap vendor/autoload.php tests/DirectorTest
 
 declare(strict_types=1);
 

@@ -35,5 +35,10 @@
 	"require-dev": {
 		"phpdocumentor/phpdocumentor": "dev-master",
 		"phpunit/phpunit": "^8"
+	},
+	"scripts": {
+		"test": [
+			"phpunit --bootstrap vendor/autoload.php tests/DirectorTest"
+		]
 	}
 }
