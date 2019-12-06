@@ -2,4 +2,5 @@
 .buildpath
 .idea
 .phpunit.result.cache
+.php_cs.cache
 vendor

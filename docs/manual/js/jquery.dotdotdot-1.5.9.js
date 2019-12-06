@@ -1,15 +1,10 @@
-/*	
- *	jQuery dotdotdot 1.5.9
- *	
- *	Copyright (c) 2013 Fred Heusschen
- *	www.frebsite.nl
+/*
+ * This file is part of the PXP package.
  *
- *	Plugin website:
- *	dotdotdot.frebsite.nl
+ * (c) Matthew Heroux <matthewheroux@gmail.com>
  *
- *	Dual licensed under the MIT and GPL licenses.
- *	http://en.wikipedia.org/wiki/MIT_License
- *	http://en.wikipedia.org/wiki/GNU_General_Public_License
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
 (function( $ )

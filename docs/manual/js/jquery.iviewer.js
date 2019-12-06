@@ -1,14 +1,10 @@
 /*
- * iviewer Widget for jQuery UI
- * https://github.com/can3p/iviewer
+ * This file is part of the PXP package.
  *
- * Copyright (c) 2009 - 2012 Dmitry Petrov
- * Dual licensed under the MIT and GPL licenses.
- *  - http://www.opensource.org/licenses/mit-license.php
- *  - http://www.gnu.org/copyleft/gpl.html
+ * (c) Matthew Heroux <matthewheroux@gmail.com>
  *
- * Author: Dmitry Petrov
- * Version: 0.7.7
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
 ( function( $, undefined ) {

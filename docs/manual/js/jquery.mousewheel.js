@@ -1,9 +1,10 @@
-/*! Copyright (c) 2013 Brandon Aaron (http://brandon.aaron.sh)
- * Licensed under the MIT License (LICENSE.txt).
+/*
+ * This file is part of the PXP package.
  *
- * Version: 3.1.9
+ * (c) Matthew Heroux <matthewheroux@gmail.com>
  *
- * Requires: jQuery 1.2.2+
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
 (function (factory) {
