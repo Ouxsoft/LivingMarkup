@@ -12,7 +12,8 @@ namespace Pxp\DynamicElement\Partials;
 
 class UserMenu extends \Pxp\DynamicElement\DynamicElement
 {
-	public function onRender(){
+    public function onRender()
+    {
         return <<<HTML
 <!-- User Menu -->
 <div>

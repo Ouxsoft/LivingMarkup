@@ -18,7 +18,6 @@ namespace \Pxp\DynamicElement;
  */
 class A extends DynamicElement
 {
-
     private $href;
 
     private $alt;
@@ -32,7 +31,6 @@ class A extends DynamicElement
      */
     public function onRender()
     {
-
         $this->href = isset($this->args['href']) ? $this->args['href'] : '#';
         $attribute_href = ' href="' . $this->href . '"';
 

@@ -1,6 +1,6 @@
 <?php
 /**
- * This is a Hello World example
+ * This is a "Hello, World" example
  */
 
 require '../../vendor/autoload.php';
@@ -17,13 +17,13 @@ require '../../vendor/autoload.php';
 class HelloWorld extends \Pxp\DynamicElement\DynamicElement
 {
     /**
-     * Prints HelloWorld
+     * Prints Hello, World
      *
      * @return mixed|string
      */
     public function onRender()
     {
-        return 'Hello World';
+        return 'Hello, World';
     }
 }
 

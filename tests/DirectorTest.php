@@ -8,7 +8,6 @@ use PHPUnit\Framework\TestCase;
 
 final class DirectorTest extends TestCase
 {
-
     public function testCanBuildPage()
     {
         $parameters = [

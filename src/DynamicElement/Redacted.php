@@ -12,7 +12,6 @@ namespace Pxp\DynamicElement;
 
 class Redacted extends DynamicElement
 {
-
     public $char = '&#9608;';
 
     public function onRender(): string

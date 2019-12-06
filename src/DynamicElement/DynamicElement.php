@@ -16,7 +16,6 @@ namespace Pxp\DynamicElement;
  */
 interface DynamicElementDefaultInterface
 {
-
     public function __construct($xml, $args);
 
     public function onRender();

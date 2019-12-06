@@ -19,7 +19,6 @@ namespace Pxp\DynamicElement\Partials;
  */
 class Breadcrumb extends \Pxp\DynamicElement\DynamicElement
 {
-
     public $separator = '/';
 
     /**

@@ -29,7 +29,7 @@ class Condition extends DynamicElement
      */
     public function onRender(): string
     {
-        $variable['signed_in'] = TRUE;
+        $variable['signed_in'] = true;
 
         // if no toggle set return empty
         if (!isset($this->args['@attributes']['toggle'])) {
@@ -45,7 +45,7 @@ class Condition extends DynamicElement
         }
 
         // return inner content
-        if ($variable[$toggle_name] == TRUE) {
+        if ($variable[$toggle_name] == true) {
             return $this->element;
         }
 

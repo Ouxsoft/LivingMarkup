@@ -16,12 +16,11 @@ namespace Pxp\Page;
  */
 interface PageDefaultInterface
 {
-
     public function loadByPath(string $filepath): void;
 
     public function __toString(): string;
 
-    public function callHook(string $hook_name, string $options = NULL): bool;
+    public function callHook(string $hook_name, string $options = null): bool;
 
     public function instantiateElement(string $xpath_expression, string $class_name): bool;
 
@@ -59,10 +58,10 @@ class Page implements PageDefaultInterface
     public $formatOutput = true;
 
     // DomDocument strict error checking setting
-    public $strictErrorChecking = FALSE;
+    public $strictErrorChecking = false;
 
     // validate DOM on Parse
-    public $validateOnParse = FALSE;
+    public $validateOnParse = false;
 
     // DomDocument encoding
     public $encoding = 'UTF-8';
@@ -93,7 +92,7 @@ class Page implements PageDefaultInterface
      *
      * @param null $filename
      */
-    public function __construct($filename = NULL)
+    public function __construct($filename = null)
     {
 
         // create a document object model
@@ -107,7 +106,7 @@ class Page implements PageDefaultInterface
             libxml_use_internal_errors(true);
         }
 
-        if ($filename != NULL) {
+        if ($filename != null) {
             $this->loadByPath($filename);
         }
     }
@@ -119,7 +118,6 @@ class Page implements PageDefaultInterface
      */
     public function loadByPath(string $filepath): void
     {
-
         if (filter_var($filepath, FILTER_VALIDATE_URL)) {
             // if existing website
             $source = file_get_contents($filepath);
@@ -151,7 +149,7 @@ class Page implements PageDefaultInterface
      * @param string|NULL $options
      * @return bool
      */
-    public function callHook(string $hook_name, string $options = NULL): bool
+    public function callHook(string $hook_name, string $options = null): bool
     {
         // iterate through elements
         foreach ($this->element_objects as $element) {
@@ -163,11 +161,9 @@ class Page implements PageDefaultInterface
 
             // on render
             if ($options == 'RETURN_CALL') {
-
                 $query = '//*[@' . $this->element_index_attribute . '="' . $element->placeholder_id . '"]';
 
                 foreach ($this->query($query) as $replace_element) {
-
                     $new_xml = $element->__toString();
 
                     $this->replaceElement($replace_element, $new_xml);

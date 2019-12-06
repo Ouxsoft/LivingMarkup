@@ -29,7 +29,7 @@ class Path
         $parts = explode('/', $string);
         $parameters = [];
         foreach ($parts as $key => $value) {
-            if ($value == NULL) {
+            if ($value == null) {
                 continue;
             }
             if ($key % 2 == 0) {
@@ -62,7 +62,6 @@ class Path
     {
         $path = '';
         foreach ($parameters as $parameter => $value) {
-
             if ($parameter == 'filename') {
                 $path .= $value;
                 continue;

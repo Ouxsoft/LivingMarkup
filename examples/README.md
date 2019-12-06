@@ -2,8 +2,8 @@
 
 This folder contains a collection of examples using PXP.
 
-## [HelloWolrdExample](HelloWorldExample/index.php)
-This is a Hello World example 
+## [HelloWorldExample](HelloWorldExample/index.php)
+This is a "Hello, World" example 
 
 ## [DynamicPageExample](DynamicPageExample/index.php)
 This example shows how to build a dynamic page using PXP.

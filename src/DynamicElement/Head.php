@@ -12,7 +12,6 @@ namespace Pxp\DynamicElement;
 
 class Head extends DynamicElement
 {
-
     public function onRender()
     {
         return <<<HTML

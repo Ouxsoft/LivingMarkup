@@ -12,8 +12,8 @@ namespace Pxp\DynamicElement;
 
 class Footer extends DynamicElement
 {
-
-    public function getPageScripts(){
+    public function getPageScripts()
+    {
         // TODO: figure out how this works
     }
     

@@ -12,7 +12,6 @@ namespace Pxp\DynamicElement;
 
 class Img extends DynamicElement
 {
-
     const IMAGE_DIR = '/assets/images/';
 
     const IMAGE_CACHE_DIR = '/cache/type/images/';
@@ -52,11 +51,12 @@ class Img extends DynamicElement
     
     // id / X-Y / X-Y . jpg
     public function onSubmit()
-    {}
+    {
+    }
 
     public function loadSourceInfo()
     {
-        list ($width, $height, $type, $attr) = getimagesize($filename);
+        list($width, $height, $type, $attr) = getimagesize($filename);
     }
 
     // cache/image/{id}/
@@ -129,7 +129,7 @@ HTML;
         }
         
         if (isset($this->args['@attributes']['offset'])) {
-            list ($this->offset['x'], $this->offset['y']) = explode(',', $this->args['@attributes']['offset']);
+            list($this->offset['x'], $this->offset['y']) = explode(',', $this->args['@attributes']['offset']);
         }
         
         $this->source = $this->getCacheSrc($this->source);

@@ -22,12 +22,12 @@ abstract class Builder
      * @param $parameters
      * @return bool|null
      */
-    abstract function createObject(array $parameters) : ?bool;
+    abstract public function createObject(array $parameters) : ?bool;
 
     /**
      * Returns object
      *
      * @return object|null
      */
-    abstract function getObject() : ?object;
+    abstract public function getObject() : ?object;
 }

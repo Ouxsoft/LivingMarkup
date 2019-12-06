@@ -25,8 +25,8 @@ class StaticBuilder extends Builder
      * @return bool|null
      */
     public function createObject(array $parameters) : ?bool
-    {       
-        if( !isset($parameters['filename'])){
+    {
+        if (!isset($parameters['filename'])) {
             return false;
         }
         
@@ -41,7 +41,7 @@ class StaticBuilder extends Builder
      * @return object|null
      */
     public function getObject() : ?object
-    {       
-        return $this->page;       
+    {
+        return $this->page;
     }
 }

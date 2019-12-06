@@ -57,23 +57,22 @@ class StaticTemplateBuilder extends Builder
      * @param string $template_dir
      * @return bool
      */
-    public function isTemplateFile(string $path = NULL, string $template_dir = NULL): bool
+    public function isTemplateFile(string $path = null, string $template_dir = null): bool
     {
-
         $directory = dirname($path);
         $directory = realpath($directory);
         $folder = substr($path, strlen($directory));
         $folder = preg_replace('/[^a-z0-9\.\-_]/i', '', $folder);
 
         if ((!$directory) || (!$folder) || ($folder === '.')) {
-            return FALSE;
+            return false;
         }
 
         $path = $directory . DIRECTORY_SEPARATOR . $folder;
         if (strcasecmp($path, $template_dir) > 0) {
-            return TRUE;
+            return true;
         }
 
-        return FALSE;
+        return false;
     }
 }

@@ -21,6 +21,9 @@ Install with Composer:
 $ composer require hxtree/pxp
 ```
 
+# Examples
+See how PXP can be used through our [Examples](https://github.com/hxtree/PXP/blob/master/examples/README.md).
+
 # Documentation
 For more detailed information check our online documentation at [pxp.readthedocs.io](https://pxp.readthedocs.io)
 
