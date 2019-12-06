@@ -1,14 +1,9 @@
 <?php
 /**
- * This file is part of the PXP package.
- *
- * (c) Matthew Heroux <contact@mrheroux.com>
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
+ * This example shows how to use variable named dynamic elements and pass arguments
  */
 
-namespace Pxp\DynamicElement\Widgets;
+require '../../vendor/autoload.php';
 
 /**
  * Class Bitwise
@@ -16,9 +11,9 @@ namespace Pxp\DynamicElement\Widgets;
  * This is an widget example designed to demonstrate how PHP BitWise operators work
  *
  * <widget name="Bitwise">
- * <arg name="number">2</arg>
- * <arg name="count">6</arg>
- * <arg name="operator">^</arg>
+ *  <arg name="number">2</arg>
+ *  <arg name="count">6</arg>
+ *  <arg name="operator">^</arg>
  * </widget>
  *
  * @package Pxp\DynamicElement\Widgets
@@ -36,7 +31,7 @@ class Bitwise extends \Pxp\DynamicElement\DynamicElement
         $x = $this->args['number'];
         $count = $this->args['count'];
         $operator = $this->args['operator'];
-        
+
         $operators = [
             '>>',
             '<<',
@@ -45,14 +40,14 @@ class Bitwise extends \Pxp\DynamicElement\DynamicElement
             '|',
             '^'
         ];
-        
+
         // only accept valid operator
-        if (! in_array($operator, $operators)) {
+        if (!in_array($operator, $operators)) {
             return '<p>Bitwise operator invalid.</p>';
         }
-        
+
         $out = '<ul class="bitwise">';
-        for ($x; $x <= $count; $x ++) {
+        for ($x; $x <= $count; $x++) {
             $out .= '<li>';
             switch ($operator) {
                 case '>>':
@@ -77,7 +72,7 @@ class Bitwise extends \Pxp\DynamicElement\DynamicElement
                     break;
                 case '~':
                     // if one or the other but not both is a 1, it will insert a 1 in to the result, otherwise it will insert a 0.
-                    $out .= '~' . $x . ' is ' . decbin(~ $x) . ' is ' . (~ $x);
+                    $out .= '~' . $x . ' is ' . decbin(~$x) . ' is ' . (~$x);
                     break;
                 default:
                     $out .= $x . ' in binary is ' . decbin($x);
@@ -85,7 +80,27 @@ class Bitwise extends \Pxp\DynamicElement\DynamicElement
             $out .= '</li>' . PHP_EOL;
         }
         $out .= '</ul>' . PHP_EOL;
-        
+
         return $out;
     }
 }
+
+// instantiate PageDirector
+$director = new Pxp\Page\PageDirector();
+
+// instantiate PageBuilder
+$page_builder = new Pxp\Page\Builder\DynamicBuilder();
+
+// define build parameters
+$parameters = [
+    'filename' => __DIR__ . DIRECTORY_SEPARATOR . 'page.html',
+    'handlers' => [
+        '//widget'         => '{name}',
+    ],
+    'hooks' => [
+        'onRender'      => 'RETURN_CALL',
+    ]
+];
+
+// echo PageDirector build PageBuilder
+echo $director->build($page_builder, $parameters);
