@@ -1,7 +1,8 @@
 ![alt text](https://github.com/hxtree/PXP/raw/master/docs/logo/179x100.jpg "PXP")
 
-***PXP enables you to write markup to instantiate objects and call their methods to generate dynamic HTML.***
-It works similar to a server-side templating engine, but focuses on empowering developers rather than enforcing braces.
+***PXP enables you process markup that instantiates objects, call methods, and to generates dynamic HTML.***
+It works similar to a server-side templating engine, but rather than enforcing braces it focuses on empowering 
+developers.
 
 [![Latest Stable Version](https://img.shields.io/packagist/v/hxtree/pxp.svg?style=flat-square)](https://packagist.org/packages/hxtree/pxp)
 [![Minimum PHP Version](https://img.shields.io/badge/php-%3E%3D%207.2-8892BF.svg?style=flat-square)](https://php.net/)
