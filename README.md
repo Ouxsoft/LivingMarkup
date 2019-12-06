@@ -1,6 +1,6 @@
 ![alt text](https://github.com/hxtree/PXP/raw/master/docs/logo/179x100.jpg "PXP")
 
-***PXP enables you process markup that instantiates objects, call methods, and to generates dynamic HTML.***
+***PXP enables you process markup that instantiates objects, call methods, and generates dynamic HTML.***
 It works similar to a server-side templating engine, but rather than enforcing braces it focuses on empowering 
 developers.
 
