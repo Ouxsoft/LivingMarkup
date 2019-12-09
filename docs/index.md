@@ -1,4 +1,11 @@
-# Overview
+// TODO MAKE THIS MAKE SENSE
+// FOR NOW PLEASE SEE EXAMPLES
+
+## Why PXP?
+PXP stands for PHP XML Preprocessor.
+
+
+
 A PageDirector is passed a PageBuilder and parameters (containing a HTML/XML document and a list of elements to make
 dynamic), it then instantiates those elements as objects using their attributes and arguments, orchestrates method calls 
 to those objects (hooks), replaces the element with returned value from a method call, and returns provides the parsed
@@ -31,7 +38,7 @@ DynamicElements are most often used to replace DOM element with dynamic content.
 DynamicElements should be designed for the content management system user with safe gaurds in place.
 Only Page DOM elements with Handlers are instantiated as DynamicElements; the rest are generally static content.
 
-### Atrributes
+### Attributes
 A Handler can feature a Document's element name attribute to specify the object's class name. 
 An Element's id attribute may be numerical to load Arguments.
 The PXP director is passed a loaded Document, a list Handlers, and Hooks. 
