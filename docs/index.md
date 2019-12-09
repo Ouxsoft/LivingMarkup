@@ -1,35 +1,40 @@
-// TODO MAKE THIS MAKE SENSE
-// FOR NOW PLEASE SEE EXAMPLES
+# Welcome to PXP documentation
 
-## Why PXP?
-PXP stands for PHP XML Preprocessor.
+![alt text](https://github.com/hxtree/PXP/raw/master/docs/logo/179x100.jpg "PXP")
 
+***PXP enables markup to instantiate objects, call methods, and generate HTML.*** It works similar to a server-side 
+templating engine, but rather than enforcing braces it enables developers to use markup to build dynamic web pages.
 
-
-A PageDirector is passed a PageBuilder and parameters (containing a HTML/XML document and a list of elements to make
-dynamic), it then instantiates those elements as objects using their attributes and arguments, orchestrates method calls 
-to those objects (hooks), replaces the element with returned value from a method call, and returns provides the parsed
-document. 
+# Examples
+See how PXP can be used through our [Examples](https://github.com/hxtree/PXP/blob/master/examples/README.md).
 
 # Design Pattern
-PXP uses a Builder design pattern to build Pages featuring DynamicElements.
+Pages are created using a Builder design pattern. This design pattern was chosen to separate the construction of the 
+complex page objects from its representation to build pages for different purposes, e.g.
++ The DynamicBuilder renders a dynamic Page for the client.
++ The StaticBuilder renders a static Page for a WYSIWYG.
++ The SearchBuilder renders a dynamic Page with only some DynamicElements for search indexes.
 
-## PageDirector
-The PageDirector is passed a PageBuilder and parameters, such as the path to be loaded, Handlers, and Hooks. 
+# PageDirector
+The PageDirector is passed a PageBuilder and parameters (containing a HTML/XML document and a list of elements to make
+dynamic), it then instantiates those elements as objects using their attributes and arguments, orchestrates method calls 
+to those objects (hooks), replaces the element with returned value from a method call, and returns provides the parsed
+document.
 
 ## PageBuilder
-The PageBuilder receives parameters passed from the PageDirector that is uses to instantiate and return a Page object.
+The PageBuilder receives parameters passed from the PageDirector and uses them to instantiate and return a Page object.
 
 ## Page
-A Page loads a DOM object and uses Handlers and Hooks to instantiate DynamicElements and modify the DOM.
+The Page loads a DOM object and uses Handlers and Hooks to instantiate DynamicElements and modify the DOM.
 
-## Handlers
+### Handlers
 A Handler consists of an XPath expressions and a class name and is used to define the DynamicElement. 
 The XPath expression  ("//block") finds the elements inside the Page DOM. 
 The class name defines the class used to instantiate elements found as DynamicElements.
-A Handler's class name may feature variables ("/Blocks/{name}") that are resolved using the Page DOM element's attributes (<block name="Message"/>). 
+A Handler's class name may feature variables ("/Blocks/{name}") that are resolved using the Page DOM element's 
+attributes (<block name="Message"/>). 
 
-## Hooks
+### Hooks
 Hooks are used to orchestrates method calls against all the DynamicElements instantiated.
 
 ## DynamicElements
@@ -49,46 +54,5 @@ Afterwards, the processed Document is returned.
 #### Arguments
 The DynamicElement constructor is passed a Page DOM elment's attributes ("id", "name", etc.) and "arg" tag child elements.
 
-# Example
-
-your-markup.html
-```xml
-<body>
-	<condition toggle="signed_in">
-	<h2>Welcome, <var name="first_name"/></h2>
-	<block name="MessageExample" limit="5">
-	    <arg name="format">list</arg>
-    </block>
-	</condtion>
-</body>
-```
-MessageExample.php
-```php
-<?php
-
-namespace Pxp\DynamicElement\Blocks;
-
-class MessageExample extends \Pxp\DynamicElement\DynamicElement
-{
-	public function onRender(){
-        switch($this->arg['format']) {
-            case 'list':
-                return <<<HTML
-    <div class="messages">
-        <p>You have no new messages</p>
-    </div>
-HTML;
-        }
-    }
-}
-```
-
-Output
-```HTML
-<body class="page">
-	<h2>Welcome, Jane</h2>
-	<div class="messages">
-		<p>You have no new messages.</p>
-	</div>
-</body>
-```
+## Why "PXP?"
+PXP stands for PHP XML Preprocessor.
