@@ -241,11 +241,11 @@ class Page implements PageDefaultInterface
                 continue;
             }
 
+            // get args from element and remove child arg
+            $args = $this->getArgs($element);
+
             // get xml from element
             $xml = $this->getXml($element);
-
-            // get args from element
-            $args = $this->getArgs($element);
 
             // instantiate element
             $element_object = new $element_class_name($xml, $args);
@@ -285,6 +285,35 @@ class Page implements PageDefaultInterface
     }
 
     /**
+     * Adds an item to smart list.
+     *
+     * @param array $args
+     * @param string $name
+     * @param string $value
+     */
+    private function addToSmartList(array &$args, string $name, string $value) : void {
+
+        if( ! isset($args[$name]) ) {
+            // set value
+            $args[$name] = $value;
+        } else if ($args[$name] == $value ) {
+            // if item value exists as string skip
+        } else if( is_string($args[$name]) ) {
+            // change string value to array
+            $present_value = $args[$name];
+            $args[$name] = [];
+            array_push($args[$name], $present_value);
+            array_push($args[$name], $value);
+        } else if (in_array($value, $args[$name]) ) {
+            // if item already exists return
+            return;
+        } else if ( is_array($args[$name]) ) {
+            // add to array
+            array_push($args[$name], $value);
+        }
+    }
+
+    /**
      * Get element's ARGs
      *
      * @param \DOMElement $element
@@ -297,16 +326,26 @@ class Page implements PageDefaultInterface
         // get attributes
         if ($element->hasAttributes()) {
             foreach ($element->attributes as $name => $attribute) {
-                $args[$name] = $attribute->value;
+                $this->addToSmartList($args, $name, $attribute->value);
             }
         }
 
         // get child args
-        $objects = $element->getElementsByTagName('arg');
-        foreach ($objects as $object) {
-            $name = $object->getAttribute('name');
-            $value = $object->nodeValue;
-            $args[$name] = $value;
+        $arg_elements = $element->getElementsByTagName('arg');
+        // iterate in reverse threw list of arguments to avoid bug with removing
+        for($i = $arg_elements->length - 1; $i >= 0; $i--){
+
+            // get argument
+            $arg_element = $arg_elements->item($i);
+
+            // add item to args
+            $name = $arg_element->getAttribute('name');
+            $value = $arg_element->nodeValue;
+
+            $this->addToSmartList($args, $name, $value);
+
+            // remove element
+            $arg_element->parentNode->removeChild($arg_element);
         }
 
         // use element id attribute to load args
