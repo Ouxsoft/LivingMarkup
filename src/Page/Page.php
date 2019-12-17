@@ -281,7 +281,7 @@ class Page implements PageDefaultInterface
             $xml .= $element->ownerDocument->saveHTML($child);
         }
 
-        return $xml;
+        return trim($xml);
     }
 
     /**

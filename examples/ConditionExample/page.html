@@ -17,16 +17,21 @@
 
 	<h1>Condition Examples</h1>
 
+	<condition time_start="4:00am" time_end="3:59pm">
+		<p>Good morning.</p>
+	</condition>
+	<condition time_start="4:00pm" time_end="3:59am">
+		<p>Good evening</p>
+	</condition>
+
+	<condition>
+		<arg name="date_start">7:00am</arg>
+		<arg name="date_end">8:30am</arg>
+		<p>Good morning, Did you grab your coffee?</p>
+	</condition>
+
 	<!--
-	<condition date_start="12:00pm" date_end="1:00pm">
-		<p>This page was loaded during lunch time</p>
-	</condition>
-	<condition>
-		<arg name="date_start">1:00pm</arg>
-		<arg name="date_end">2:00pm</arg>
-		<p>This page was loaded during lunch time</p>
-	</condition>
-	<condition>
+		<condition>
 		<arg name="date_start">Tuesday</arg>
 		<arg name="date_end">Tuesday</arg>
 		<p>This page was loaded on a Tuesday</p>
@@ -35,7 +40,7 @@
 	<condition>
 		<arg name="date_start">Aug 1. 2019</arg>
 		<arg name="date_end">December 30, 2019</arg>
-		<p>This page was loaded between Aug 1 and Dec 30 2019</p>
+		<p>You come here between certain dates</p>
 	</condition>
 
 </body>

@@ -1,8 +1,7 @@
 ![alt text](https://github.com/hxtree/PXP/raw/master/docs/logo/179x100.jpg "PXP")
 
-***PXP enables markup to instantiate objects, call methods, and generate HTML.*** It works similar to a server-side 
-templating engine, but doesn't hinge on replacing braces. The markup becomes the language, it takes arguments and 
-builds dynamic web pages.
+***PHP XML Processor (PXP) takes markup to instantiate objects, call their methods, and return dynamic HTML document.***
+It works similar to a server-side templating engine, but is engineered to build web pages.
 
 [![Latest Stable Version](https://img.shields.io/packagist/v/hxtree/pxp.svg?style=flat-square)](https://packagist.org/packages/hxtree/pxp)
 [![Minimum PHP Version](https://img.shields.io/badge/php-%3E%3D%207.2-8892BF.svg?style=flat-square)](https://php.net/)
@@ -23,7 +22,7 @@ $ composer require hxtree/pxp
 ```
 
 # Examples
-See how PXP can be used through our [Examples](https://github.com/hxtree/PXP/blob/master/examples/README.md).
+Learn how PXP can be used through our [Examples](https://github.com/hxtree/PXP/blob/master/examples/README.md).
 
 # Documentation
 For more detailed information check our online documentation at [pxp.readthedocs.io](https://pxp.readthedocs.io)
