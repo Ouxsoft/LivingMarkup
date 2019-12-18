@@ -24,20 +24,34 @@ class Condition extends DynamicElement
 
     private $days_of_week = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
+    /**
+     * Check if now is between start and end time
+     *
+     * @param string $time_start
+     * @param string $time_end
+     * @return bool
+     * @throws \Exception
+     */
     public function isTimeNowBetween(string $time_start, string $time_end)
     {
-        // now
-        $now_datetime = new \DateTime('NOW');
 
         // start
         $start = date_parse($time_start);
         $start_datetime = new \DateTime();
         $start_datetime->setTime($start['hour'], $start['minute'], $start['second']);
 
+        // now
+        $now_datetime = new \DateTime('NOW');
+
         // end
         $end = date_parse($time_end);
         $end_datetime = new \DateTime();
         $end_datetime->setTime($end['hour'], $end['minute'], $end['second']);
+
+        // use next day if end time before start time
+        if($start_datetime->getTimestamp() > $end_datetime->getTimestamp() ){
+            $end_datetime->modify('+ 1 day');
+        }
 
         // if now between start and end return true
         if (($now_datetime->getTimestamp() > $start_datetime->getTimestamp()) &&
@@ -49,15 +63,56 @@ class Condition extends DynamicElement
     }
 
     /**
-     * Checks if NOW is between to start and end date
+     * Checks if date is between start and end date
      *
      * @param string $date_start
      * @param string $date_end
      * @return bool
      * @throws \Exception
      */
-    public function isNowBetween(string $date_start, string $date_end)
+    public function isDateNowBetween(string $date_start, string $date_end)
     {
+
+        // start
+        $start = date_parse($date_start);
+        $start_datetime = new \DateTime();
+        $start_datetime->setDate($start['year'], $start['month'], $start['day']);
+        $start_datetime->setTime(0, 0, 0);
+
+        // now
+        $now_datetime = new \DateTime('NOW');
+
+        // end
+        $end = date_parse($date_end);
+        $end_datetime = new \DateTime();
+        $end_datetime->setDate($end['year'], $end['month'], $end['day']);
+        $end_datetime->setTime(23, 59, 59);
+
+        // use next day if end time before start time
+        if($start_datetime->getTimestamp() > $end_datetime->getTimestamp() ){
+            $end_datetime->modify('+ 1 day');
+        }
+
+        // if now between start and end return true
+        if (($now_datetime->getTimestamp() > $start_datetime->getTimestamp()) &&
+            ($now_datetime->getTimestamp() < $end_datetime->getTimestamp())) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * Checks if NOW is between to start and end datetime
+     *
+     * @param string $date_start
+     * @param string $date_end
+     * @return bool
+     * @throws \Exception
+     */
+    public function isDatetimeNowBetween(string $date_start, string $date_end)
+    {
+        // TODO FIX STILL BUGGY
 
         // now
         $now_datetime = new \DateTime('NOW');
@@ -184,42 +239,37 @@ class Condition extends DynamicElement
      */
     public function onRender(): string
     {
-        $variable['signed_in'] = true;
+        /*
+         * This section contains conditional checks based on arguments
+         * Ire passed the check is run if the check fails an empty string is returned.
+         * This allows for different conditions to be added
+         */
+
+        // if condition based on time_start and time_end
+        if ( isset($this->args['time_start']) && isset($this->args['time_end']) ) {
+            if ( ! $this->isTimeNowBetween($this->args['time_start'], $this->args['time_end']) ) {
+                return '';
+            }
+        }
 
         // if condition based on date_start and date_end
         if (isset($this->args['date_end']) && isset($this->args['date_start'])) {
-            if ($this->isNowBetween($this->args['date_start'], $this->args['date_end'])) {
-                return $this->xml;
+            if ( ! $this->isDateNowBetween($this->args['date_start'], $this->args['date_end'])) {
+                return '';
             }
-            return '';
         }
 
-        // if condition based on time_start and time_end
-        if (isset($this->args['time_end']) && isset($this->args['time_start'])) {
-            if ($this->isTimeNowBetween($this->args['time_start'], $this->args['time_end'])) {
-                return $this->xml;
-            }
-            return '';
-        }
+        // if condition based on day_of_week
 
-        // if no toggle set return empty
-        if (!isset($this->args['toggle'])) {
-            return '';
-        }
+        // if condition based on variable
+        // <arg name="parent.limit" operator="equals">5</arg>
+        // <arg name="this.limit" operator="GREATER_THAN">5</arg>
+        // <arg name="child.limit" operator="LESS_THAN">5</arg>
+        // <arg name="child.limit" operator="NOT_EQUAL">5</arg>
+        // <arg name="child.limit" operator="CONTAINS">5</arg>
 
-        // get name of condition toggle variable
-        $toggle_name = $this->args['@attributes']['toggle'];
+        // all conditions pass return xml
+        return $this->xml;
 
-        // check if variable set in processor
-        if (!isset($variable[$toggle_name])) {
-            return '';
-        }
-
-        // return inner content
-        if ($variable[$toggle_name] == true) {
-            return $this->xml;
-        }
-
-        return '';
     }
 }
