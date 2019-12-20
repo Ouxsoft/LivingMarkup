@@ -20,7 +20,9 @@
 	<condition time_start="12:00pm" time_end="3:59pm">
 		<p>Good day.</p>
 	</condition>
-	<condition time_start="4:00pm" time_end="11:59pm">
+	<condition>
+		<arg name="time_start">4:00pm</arg>
+		<arg name="time_end">11:59pm</arg>
 		<p>Good evening.</p>
 	</condition>
 
@@ -46,6 +48,13 @@
 		<arg name="date_start">December 18. 2019</arg>
 		<arg name="date_end">December 16, 2020</arg>
 		<p>You've missed our sale :-(</p>
+	</condition>
+
+	<!-- datetime -->
+	<condition>
+		<arg name="datetime_start">December 20. 2019 2:30 pm</arg>
+		<arg name="datetime_end">December 20, 2019 5:23 pm</arg>
+		<p>You've come during our extra special sale!</p>
 	</condition>
 
 </body>
