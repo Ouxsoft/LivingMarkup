@@ -1,7 +1,7 @@
 ![alt text](https://github.com/hxtree/PXP/raw/master/docs/logo/179x100.jpg "PXP")
 
-***PXP loads markup to instantiate objects, call their methods, and return an HTML document.***
-It works similar to a server-side templating engine, but is better suited for building dynamic web pages.
+***PXP converts markup into objects that collaborate to build a dynamic HTML page.*** It works similar to a server-side 
+templating engine, but is better suited for the web.
 
 [![Latest Stable Version](https://img.shields.io/packagist/v/hxtree/pxp.svg?style=flat-square)](https://packagist.org/packages/hxtree/pxp)
 [![Minimum PHP Version](https://img.shields.io/badge/php-%3E%3D%207.2-8892BF.svg?style=flat-square)](https://php.net/)
@@ -10,6 +10,7 @@ It works similar to a server-side templating engine, but is better suited for bu
 ![GitHub](https://img.shields.io/github/license/hxtree/pxp)
 [![Help Wanted!](https://img.shields.io/badge/help-wanted-brightgreen.svg?style=flat "Please Help Us")](https://github.com/hxtree/PXP/blob/master/.github/workflows/CONTRIBUTING.md)
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://paypal.me/hxtree)
+![GitHub issues](https://img.shields.io/github/issues/hxtree/LXD-Cloud)
 
 # Installation
 

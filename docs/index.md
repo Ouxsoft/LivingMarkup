@@ -2,8 +2,9 @@
 
 ![alt text](https://github.com/hxtree/PXP/raw/master/docs/logo/179x100.jpg "PXP")
 
-***PXP enables markup to instantiate objects, call methods, and generate HTML.*** It works similar to a server-side 
-templating engine, but rather than enforcing braces it enables developers to use markup to build dynamic web pages.
+***PXP loads markup to instantiate objects, call their methods, and return an HTML document.*** It works similar to a 
+server-side templating engine, but rather than enforcing braces it enables developers to use markup to build dynamic 
+web pages.
 
 # Examples
 See how PXP can be used through our [Examples](https://github.com/hxtree/PXP/blob/master/examples/README.md).

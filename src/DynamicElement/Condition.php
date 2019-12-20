@@ -102,6 +102,32 @@ class Condition extends DynamicElement
         }
     }
 
+
+    /**
+     * Checks if NOW is the same day of week
+     *
+     * @param $day_of_week
+     * @return bool
+     */
+    public function isNowSameDayOfWeek($day_of_week) {
+        $now_day_of_week = date('l', strtotime('NOW'));
+
+        // check for multiple days of week if provided
+        if(is_array($day_of_week)){
+            foreach($day_of_week as $key => $value){
+                if($now_day_of_week ==  date('l', strtotime($value)) ) {
+                    return true;
+                }
+
+            }
+        // check for one day of week if provided
+        } else if (is_string($day_of_week) && ($now_day_of_week == date('l', strtotime($value) ) ) ) {
+            return true;
+        }
+
+        return false;
+    }
+
     /**
      * Checks if NOW is between to start and end datetime
      *
@@ -245,21 +271,27 @@ class Condition extends DynamicElement
          * This allows for different conditions to be added
          */
 
-        // if condition based on time_start and time_end
+        // allow a condition based on time_start and time_end
         if ( isset($this->args['time_start']) && isset($this->args['time_end']) ) {
             if ( ! $this->isTimeNowBetween($this->args['time_start'], $this->args['time_end']) ) {
                 return '';
             }
         }
 
-        // if condition based on date_start and date_end
+        // allow a condition based on date_start and date_end
         if (isset($this->args['date_end']) && isset($this->args['date_start'])) {
             if ( ! $this->isDateNowBetween($this->args['date_start'], $this->args['date_end'])) {
                 return '';
             }
         }
 
-        // if condition based on day_of_week
+        // allow a condition based on day_of_week
+        if (isset($this->args['day_of_week']) ) {
+            if ( ! $this->isNowSameDayOfWeek($this->args['day_of_week'])) {
+                return '';
+            }
+        }
+
 
         // if condition based on variable
         // <arg name="parent.limit" operator="equals">5</arg>
