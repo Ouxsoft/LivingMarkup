@@ -32,6 +32,7 @@ class Condition extends DynamicElement
      */
     public function onRender(): string
     {
+
         /*
          * To allow for modular conditions this section contains conditional checks based on optional arguments.
          * If optional arguments are passed, the check is ran and if any check fails an empty string is returned.

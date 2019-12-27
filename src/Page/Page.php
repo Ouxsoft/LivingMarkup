@@ -51,21 +51,6 @@ class Page implements PageDefaultInterface
     // name of function called to load DynamicElement Args by ID
     public $arg_load_function;
 
-    // DomDocument object setting to preserve white space
-    public $preserveWhiteSpace = false;
-
-    // DomDocument  format output option
-    public $formatOutput = true;
-
-    // DomDocument strict error checking setting
-    public $strictErrorChecking = false;
-
-    // validate DOM on Parse
-    public $validateOnParse = false;
-
-    // DomDocument encoding
-    public $encoding = 'UTF-8';
-
     // registered includes added during output
     public $includes = [
         'js' => [],
@@ -98,17 +83,35 @@ class Page implements PageDefaultInterface
         // create a document object model
         $this->dom = new \DomDocument();
 
+        // DomDocument object setting to preserve white space
+        $this->dom->preserveWhiteSpace = false;
+
+        // DomDocument format output option
+        $this->dom->formatOutput = true;
+
+        // DomDocument strict error checking setting
+        $this->dom->strictErrorChecking = false;
+
+        // validate DOM on Parse
+        $this->dom->validateOnParse = false;
+
+        // DomDocument encoding
+        $this->dom->encoding = 'UTF-8';
+
         // objects containing elements
         $this->element_objects = new \SplObjectStorage();
 
-        // surpress xml parse errors unless debugging
+        // suppress xml parse errors unless debugging
         if (!$this->libxml_debug) {
             libxml_use_internal_errors(true);
         }
 
-        if ($filename != null) {
-            $this->loadByPath($filename);
+        // return if filename missing
+        if ($filename == null) {
+            return;
         }
+
+        $this->loadByPath($filename);
     }
 
     /**
@@ -135,8 +138,6 @@ class Page implements PageDefaultInterface
             $source .= file_get_contents($filepath);
             $this->dom->loadXML($source);
         }
-
-
 
         // create document iterator
         $this->xpath = new \DOMXPath($this->dom);
@@ -291,7 +292,7 @@ class Page implements PageDefaultInterface
      * @param string $name
      * @param string $value
      */
-    private function addToSmartList(array &$args, string $name, string $value) : void {
+    private function addToArgsList(array &$args, string $name, string $value) : void {
 
         if( ! isset($args[$name]) ) {
             // set value
@@ -326,7 +327,7 @@ class Page implements PageDefaultInterface
         // get attributes
         if ($element->hasAttributes()) {
             foreach ($element->attributes as $name => $attribute) {
-                $this->addToSmartList($args, $name, $attribute->value);
+                $this->addToArgsList($args, $name, $attribute->value);
             }
         }
 
@@ -342,7 +343,7 @@ class Page implements PageDefaultInterface
             $name = $arg_element->getAttribute('name');
             $value = $arg_element->nodeValue;
 
-            $this->addToSmartList($args, $name, $value);
+            $this->addToArgsList($args, $name, $value);
 
             // remove element
             $arg_element->parentNode->removeChild($arg_element);

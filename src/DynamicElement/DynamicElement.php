@@ -52,6 +52,12 @@ abstract class DynamicElement implements DynamicElementDefaultInterface
     public $max_results = '240';
 
     /**
+     * TODO: Need a class that allows dynamic elements to access other properties
+    $page->dom->
+    $this->placeholder_id
+     */
+
+    /**
      * DynamicElement constructor
      *
      * @param $xml
