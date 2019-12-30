@@ -13,7 +13,7 @@ namespace Pxp\Page;
 use Pxp\Page\Builder\Builder;
 
 /**
- * Class PageDirector
+ * Class PageDirectorTest
  * @package Pxp\Page
  */
 class PageDirector

@@ -10,6 +10,8 @@
 
 namespace Pxp\Page\Builder;
 
+use Pxp\Page\Page as Page;
+
 /**
  * Class StaticBuilder
  * @package Pxp\Page\Builder
@@ -24,23 +26,23 @@ class StaticBuilder extends Builder
      * @param $parameters
      * @return bool|null
      */
-    public function createObject(array $parameters) : ?bool
+    public function createObject(array $parameters): ?bool
     {
         if (!isset($parameters['filename'])) {
             return false;
         }
-        
-        $this->page = new Pxp\Page\Page($parameters['filename']);
-                    
+
+        $this->page = new Page($parameters['filename']);
+
         return true;
     }
 
     /**
-     * Returns Page object
+     * Gets Page object
      *
      * @return object|null
      */
-    public function getObject() : ?object
+    public function getObject(): ?object
     {
         return $this->page;
     }

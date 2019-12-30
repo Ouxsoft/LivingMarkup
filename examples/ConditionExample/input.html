@@ -14,7 +14,7 @@
 	<h1>Condition Examples</h1>
 
 	<!-- time -->
-	<condition time_start="12:00am" time_end="11:59am">
+	<condition time_start="0:00" time_end="23:59">
 		<p>Good morning.</p>
 	</condition>
 	<condition time_start="12:00pm" time_end="3:59pm">
@@ -30,7 +30,7 @@
 	<condition>
 		<arg name="day_of_week">Tuesday</arg>
 		<arg name="day_of_week">Friday</arg>
-		<p>You've come during our Tuesday and Friday sale!</p>
+		<p>You've come during Tuesday and Friday sale!</p>
 	</condition>
 	<condition>
 		<arg name="day_of_week">Sunday</arg>
@@ -40,20 +40,20 @@
 
 	<!-- date -->
 	<condition>
-		<arg name="date_start">December 17. 2019</arg>
-		<arg name="date_end">December 17, 2019</arg>
-		<p>You've come during our sale!</p>
+		<arg name="date_start">December 3. 2019</arg>
+		<arg name="date_end">December 3, 2019</arg>
+		<p>We are offering FREE shipping for a limited time.</p>
 	</condition>
 	<condition>
 		<arg name="date_start">December 18. 2019</arg>
 		<arg name="date_end">December 16, 2020</arg>
-		<p>You've missed our sale :-(</p>
+		<p>Regular shipping rates apply.</p>
 	</condition>
 
 	<!-- datetime -->
 	<condition>
-		<arg name="datetime_start">December 20. 2019 2:30 pm</arg>
-		<arg name="datetime_end">December 20, 2019 5:23 pm</arg>
+		<arg name="datetime_start">December 3. 2019 1:00 am</arg>
+		<arg name="datetime_end">December 3, 2019 2:00 am</arg>
 		<p>You've come during our extra special sale!</p>
 	</condition>
 

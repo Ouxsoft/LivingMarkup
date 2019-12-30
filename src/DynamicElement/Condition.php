@@ -25,6 +25,15 @@ class Condition extends DynamicElement
     private $days_of_week = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
     /**
+     * Allow NOW to be define by constant for unit testing and debugging purposes
+     *
+     * @return string
+     */
+    public function now() : string {
+        return defined('PXP_DATETIME') ? PXP_DATETIME : 'NOW';
+    }
+
+    /**
      * Renders output if condition toggle is true
      *
      * @return string
@@ -92,15 +101,15 @@ class Condition extends DynamicElement
 
         // start
         $start = date_parse($time_start);
-        $start_datetime = new \DateTime();
+        $start_datetime = new \DateTime($this->now());
         $start_datetime->setTime($start['hour'], $start['minute'], $start['second']);
 
         // now
-        $now_datetime = new \DateTime('NOW');
+        $now_datetime = new \DateTime($this->now());
 
         // end
         $end = date_parse($time_end);
-        $end_datetime = new \DateTime();
+        $end_datetime = new \DateTime($this->now());
         $end_datetime->setTime($end['hour'], $end['minute'], $end['second']);
 
         // use next day if end time before start time
@@ -135,7 +144,7 @@ class Condition extends DynamicElement
         $start_datetime->setTime(0, 0, 0);
 
         // now
-        $now_datetime = new \DateTime('NOW');
+        $now_datetime = new \DateTime($this->now());
 
         // end
         $end = date_parse($date_end);
@@ -195,7 +204,7 @@ class Condition extends DynamicElement
         $start_datetime->setTime($start['hour'], $start['minute'], $start['second']);
 
         // now
-        $now_datetime = new \DateTime('NOW');
+        $now_datetime = new \DateTime($this->now());
 
         // end
         $end = date_parse($date_end);
@@ -243,7 +252,7 @@ class Condition extends DynamicElement
      */
     public function isNowSameDayOfWeek($day_of_week)
     {
-        $now_day_of_week = date('l', strtotime('NOW'));
+        $now_day_of_week = date('l', strtotime($this->now()));
 
         // check for multiple days of week if provided
         if (is_array($day_of_week)) {

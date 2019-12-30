@@ -14,7 +14,7 @@ namespace Pxp\Tests;
 
 use PHPUnit\Framework\TestCase;
 
-final class DirectorTest extends TestCase
+final class PageDirectorTest extends TestCase
 {
     public function testCanBuildPage()
     {
@@ -41,6 +41,6 @@ final class DirectorTest extends TestCase
         $new_page = (new \Pxp\Page\PageDirector())->build($page_builder, $parameters);
 
         // TODO: assure this is correct class
-        $this->assertInstanceOf(\PXP\Page\Page::class, $new_page);
+        $this->assertInstanceOf(\Pxp\Page\Page::class, $new_page);
     }
 }

@@ -26,9 +26,13 @@ $director = new Pxp\Page\PageDirector();
 // instantiate PageBuilder
 $page_builder = new Pxp\Page\Builder\DynamicBuilder();
 
+// define a datetime to allow consistent display results
+// comment out to default to NOW
+define('PXP_DATETIME', '2019-12-03 01:30:00');
+
 // define build parameters
 $parameters = [
-    'filename' => __DIR__ . DIRECTORY_SEPARATOR . 'page.html',
+    'filename' => __DIR__ . DIRECTORY_SEPARATOR . 'input.html',
     'handlers' => [
         '//condition'   => 'Pxp\DynamicElement\Condition',
     ],

@@ -16,7 +16,7 @@ namespace Pxp\Page;
  */
 interface PageDefaultInterface
 {
-    public function loadByPath(string $filepath): void;
+    public function loadDom(string $filepath): void;
 
     public function __toString(): string;
 
@@ -41,6 +41,9 @@ class Page implements PageDefaultInterface
 
     // Document Object Model (DOM)
     public $dom;
+
+    // DOM doctype
+    public $doctype;
 
     // DOM XPath Query object
     public $xpath;
@@ -111,35 +114,54 @@ class Page implements PageDefaultInterface
             return;
         }
 
-        $this->loadByPath($filename);
+        // set doctype string for loading DOM
+        $this->setDoctype();
+
+        // load DOM from filename
+        $this->loadDom($filename);
+    }
+
+    /**
+     * Returns an HTML5 doctype string with entities set
+     *
+     * build out doctype with HTML entities (&copy; etc.)
+     *
+     * @return void
+     */
+    public function setDoctype() : void
+    {
+        $entity = '';
+        foreach ($this->entities as $key => $value) {
+            $entity .= '<!ENTITY ' . $key . ' "' . $value . '">' . PHP_EOL;
+        }
+
+        $this->doctype = '<!DOCTYPE html [' . $entity . ']> ';
     }
 
     /**
      * Custom load page wrapper for server side HTML5 entity support
+     * Using base class loadHTMLFile removes HTML5 entities
      *
      * @param string $filepath
      */
-    public function loadByPath(string $filepath): void
+    public function loadDom(string $filepath): void
     {
-        if (filter_var($filepath, FILTER_VALIDATE_URL)) {
-            // if existing website
-            $source = file_get_contents($filepath);
-            $this->dom->loadHTML($source);
-        } else {
-            // entities are automatically removed before sending to client
-            $entity = '';
-            foreach ($this->entities as $key => $value) {
-                $entity .= '<!ENTITY ' . $key . ' "' . $value . '">' . PHP_EOL;
-            }
+        // get source file as string
+        $source = file_get_contents($filepath);
 
-            // deliberately build out doc-type and grab file contents
-            // using alternative loadHTMLFile removes HTML entities (&copy; etc.)
-            $source = '<!DOCTYPE html [' . $entity . ']> ';
-            $source .= file_get_contents($filepath);
+        // convert source file to Document Object Model for manipulation
+        // set doctype if $this->dom->doctype would not get set
+        $count = 1;
+        str_ireplace('<!doctype html>', $this->doctype, $source, $count);
+
+        if($count == 0){
+            $source = $this->doctype . $source;
             $this->dom->loadXML($source);
+        } else {
+            $this->dom->loadHTML($source);
         }
 
-        // create document iterator
+        // create document iterator for this dom
         $this->xpath = new \DOMXPath($this->dom);
     }
 
