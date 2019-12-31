@@ -74,3 +74,14 @@ The DynamicElement constructor is passed a Page DOM elment's attributes ("id", "
 
 ## Why "PXP?"
 PXP stands for PHP XML Preprocessor.
+
+## What is the difference between PXP and ColdFusion?
+PXP uses a well-formatted markup langauge. Coldfusionisn't truly a markup scripting language, as items like <cfelse>
+in <cfif><cfelse></cfif> are not properly open or closed, which doesn't adhere to the way markup works. 
+
+Rather than building a 10 layer deep statement of conditions for a navbar, PXP design encourages the create of 
+DynamicElement, such as navbar. Thus, PXP relies less on large nested objects than Coldfusion and is more easily read.
+
+Coldfusion limits developers to a set of prebuilt tags. In PXP any tag can be used including pre-exist HTML5 tags. 
+This has the added benefit of enhancing existing tags. For example, with PXP one could easily add a alt attribute set to
+ decorator when missing from img elements.

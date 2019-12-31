@@ -10,7 +10,7 @@ better suited for the web. PXP is modular and fully customizable.
 ![GitHub](https://img.shields.io/github/license/hxtree/pxp)
 [![Help Wanted!](https://img.shields.io/badge/help-wanted-brightgreen.svg?style=flat "Please Help Us")](https://github.com/hxtree/PXP/blob/master/.github/workflows/CONTRIBUTING.md)
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://paypal.me/hxtree)
-![GitHub issues](https://img.shields.io/github/issues/hxtree/LXD-Cloud)
+![GitHub issues](https://img.shields.io/github/issues/hxtree/pxp)
 
 # Installation
 
