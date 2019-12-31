@@ -76,7 +76,7 @@ The DynamicElement constructor is passed a Page DOM elment's attributes ("id", "
 PXP stands for PHP XML Preprocessor.
 
 ## What is the difference between PXP and ColdFusion?
-PXP uses a well-formatted markup langauge. Coldfusionisn't truly a markup scripting language, as items like <cfelse>
+PXP uses a well-formatted markup language. Coldfusion isn't truly a markup scripting language, as items like <cfelse>
 in <cfif><cfelse></cfif> are not properly open or closed, which doesn't adhere to the way markup works. 
 
 Rather than building a 10 layer deep statement of conditions for a navbar, PXP design encourages the create of 

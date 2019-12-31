@@ -13,6 +13,7 @@ namespace Pxp\Page;
 use DomDocument;
 use DOMElement;
 use DOMXPath;
+use phpDocumentor\Reflection\Types\Mixed_;
 use SplObjectStorage;
 
 /**
@@ -56,7 +57,7 @@ class Page implements PageDefaultInterface
     // instantiated DynamicElements
     public $element_objects;
 
-    // name of function called to load DynamicElement Args by ID
+    // name of function called to load DynamicElement Args using element's `id` attribute
     public $arg_load_function;
 
     // registered includes added during output
@@ -158,7 +159,6 @@ class Page implements PageDefaultInterface
         // set doctype if $this->dom->doctype would not get set
         $count = 1;
         str_ireplace('<!doctype html>', $this->doctype, $source, $count);
-
         if($count == 0){
             $source = $this->doctype . $source;
             $this->dom->loadXML($source);
@@ -179,6 +179,7 @@ class Page implements PageDefaultInterface
      */
     public function callHook(string $hook_name, string $options = null): bool
     {
+
         // iterate through elements
         foreach ($this->element_objects as $element) {
 
@@ -187,15 +188,13 @@ class Page implements PageDefaultInterface
                 continue;
             }
 
-            // on render
+            // if RETURN_CALL hook, default onRender
             if ($options == 'RETURN_CALL') {
+                // find and replace element
+
                 $query = '//*[@' . $this->element_index_attribute . '="' . $element->placeholder_id . '"]';
-
                 foreach ($this->query($query) as $replace_element) {
-                    $new_xml = $element->__toString();
-
-                    $this->replaceElement($replace_element, $new_xml);
-
+                    $this->replaceElement($replace_element, $element->__toString());
                     continue;
                 }
             } else {
@@ -235,8 +234,47 @@ class Page implements PageDefaultInterface
         $fragment = $this->dom->createDocumentFragment();
         $fragment->appendXML($new_xml);
 
-        // replace parent nodes child element with new fragement
+        // replace parent nodes child element with new fragment
         $element->parentNode->replaceChild($fragment, $element);
+    }
+
+
+    /**
+     * Get Element Public Property
+     *
+     * @param string $placeholder_id
+     * @param string $property
+     * @return mixed|null
+     */
+    public function getElementProperty(string $placeholder_id, string $property) {
+
+        $properties = $this->getElementProperties($placeholder_id);
+
+        if(!isset($properties[$property])){
+            return NULL;
+        }
+
+        return $properties[$property];
+    }
+
+    /**
+     * Get Element Public Properties
+     *
+     * @param string $placeholder_id
+     * @return array
+     */
+    public function getElementProperties(string $placeholder_id) : array {
+
+        // doesn't appear to be a quicker way using SLPObject
+        foreach($this->element_objects as $element)
+        {
+            if($placeholder_id != $element->placeholder_id){
+                continue;
+            }
+            return get_object_vars($element);
+        }
+
+        return [];
     }
 
     /**
@@ -314,7 +352,7 @@ class Page implements PageDefaultInterface
     }
 
     /**
-     * Adds an item to smart list.
+     * Adds item to an args list
      *
      * @param array $args
      * @param string $name
