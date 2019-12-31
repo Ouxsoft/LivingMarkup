@@ -10,6 +10,8 @@
 
 namespace Pxp\DynamicElement\Widgets;
 
+use Pxp\DynamicElement\DynamicElement;
+
 /**
  * Class News
  *
@@ -21,7 +23,7 @@ namespace Pxp\DynamicElement\Widgets;
  *
  * @package Pxp\DynamicElement\Widgets
  */
-class News extends \Pxp\DynamicElement\DynamicElement
+class News extends DynamicElement
 {
     public $heading_level = 3;
 

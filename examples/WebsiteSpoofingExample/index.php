@@ -8,19 +8,14 @@
  * file that was distributed with this source code.
  */
 
+use Pxp\DynamicElement\DynamicElement;
+
 /**
  * This example demonstrates how easy is it is to spoof an existing web page using PHP.
  */
 
 require '../../vendor/autoload.php';
-
-class MarkupInjection extends \Pxp\DynamicElement\DynamicElement
-{
-    public function onRender()
-    {
-        return '<h1 style="color:#F00">Spoofed :-)</h1>';
-    }
-}
+require 'MarkupInjection.php';
 
 // instantiate PageDirector
 $director = new Pxp\Page\PageDirector();
@@ -32,7 +27,7 @@ $page_builder = new Pxp\Page\Builder\DynamicBuilder();
 $parameters = [
     'filename' => 'http://example.com',
     'handlers' => [
-        '//h1'           => 'MarkupInjection',
+        '//h1'           => 'Pxp\DynamicElement\MarkupInjection',
     ],
     'hooks' => [
         'onRender'      => 'RETURN_CALL',

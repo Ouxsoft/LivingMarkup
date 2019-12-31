@@ -10,6 +10,8 @@
 
 namespace Pxp\DynamicElement;
 
+use Pxp\Path;
+
 class Img extends DynamicElement
 {
     const IMAGE_DIR = '/assets/images/';
@@ -91,7 +93,7 @@ HTML;
         
         $filename = (empty($this->alt) ? 'decorative' : $this->alt) . '.jpg';
         
-        $src .= \Pxp\Path::encode([
+        $src .= Path::encode([
             'id' => $this->id,
             'dimension' => [
                 $this->width,

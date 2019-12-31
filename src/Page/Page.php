@@ -10,6 +10,11 @@
 
 namespace Pxp\Page;
 
+use DomDocument;
+use DOMElement;
+use DOMXPath;
+use SplObjectStorage;
+
 /**
  * Interface PageDefaultInterface
  * @package Pxp\Page
@@ -24,7 +29,7 @@ interface PageDefaultInterface
 
     public function instantiateElement(string $xpath_expression, string $class_name): bool;
 
-    public function replaceElement(\DOMElement &$element, string $new_xml): void;
+    public function replaceElement(DOMElement &$element, string $new_xml): void;
 
     public function query($query);
 }
@@ -84,7 +89,7 @@ class Page implements PageDefaultInterface
     {
 
         // create a document object model
-        $this->dom = new \DomDocument();
+        $this->dom = new DomDocument();
 
         // DomDocument object setting to preserve white space
         $this->dom->preserveWhiteSpace = false;
@@ -102,7 +107,7 @@ class Page implements PageDefaultInterface
         $this->dom->encoding = 'UTF-8';
 
         // objects containing elements
-        $this->element_objects = new \SplObjectStorage();
+        $this->element_objects = new SplObjectStorage();
 
         // suppress xml parse errors unless debugging
         if (!$this->libxml_debug) {
@@ -162,7 +167,7 @@ class Page implements PageDefaultInterface
         }
 
         // create document iterator for this dom
-        $this->xpath = new \DOMXPath($this->dom);
+        $this->xpath = new DOMXPath($this->dom);
     }
 
     /**
@@ -190,6 +195,7 @@ class Page implements PageDefaultInterface
                     $new_xml = $element->__toString();
 
                     $this->replaceElement($replace_element, $new_xml);
+
                     continue;
                 }
             } else {
@@ -219,10 +225,10 @@ class Page implements PageDefaultInterface
     /**
      * Replaces element contents
      *
-     * @param \DOMElement $element
+     * @param DOMElement $element
      * @param string $new_xml
      */
-    public function replaceElement(\DOMElement &$element, string $new_xml): void
+    public function replaceElement(DOMElement &$element, string $new_xml): void
     {
 
         // create a blank document fragment
@@ -292,10 +298,10 @@ class Page implements PageDefaultInterface
     /**
      * Get element's innerXML
      *
-     * @param \DOMElement $element
+     * @param DOMElement $element
      * @return string
      */
-    private function getXml(\DOMElement $element): string
+    private function getXml(DOMElement $element): string
     {
         $xml = '';
 
@@ -339,10 +345,10 @@ class Page implements PageDefaultInterface
     /**
      * Get element's ARGs
      *
-     * @param \DOMElement $element
+     * @param DOMElement $element
      * @return array
      */
-    private function getArgs(\DOMElement &$element): array
+    private function getArgs(DOMElement &$element): array
     {
         $args = [];
 

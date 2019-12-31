@@ -22,10 +22,11 @@ $page_builder = new Pxp\Page\Builder\DynamicBuilder();
 
 // define build parameters
 $parameters = [
-    'filename' => __DIR__ . DIRECTORY_SEPARATOR . 'page.html',
+    'filename' => __DIR__ . DIRECTORY_SEPARATOR . 'input.html',
     'handlers' => [
         '//img'         => 'Pxp\DynamicElement\Img',
         '//a'           => 'Pxp\DynamicElement\A',
+        '//widget'      => 'Pxp\DynamicElement\Widgets\{name}',
         '//var'         => 'Pxp\DynamicElement\Variable',
         '//condition'   => 'Pxp\DynamicElement\Condition',
         '//redacted'    => 'Pxp\DynamicElement\Redacted'

@@ -8,33 +8,14 @@
  * file that was distributed with this source code.
  */
 
+use Pxp\DynamicElement\DynamicElement;
+
 /**
  * This is a "Hello, World" example
  */
 
 require '../../vendor/autoload.php';
-
-/**
- * Class HelloWorld
- *
- * A simple HelloWorld DynamicElement example
- *
- * <widget name="HelloWorld"/>
- *
- * @package Pxp\DynamicElement\Widgets
- */
-class HelloWorld extends \Pxp\DynamicElement\DynamicElement
-{
-    /**
-     * Prints Hello, World
-     *
-     * @return mixed|string
-     */
-    public function onRender()
-    {
-        return 'Hello, World';
-    }
-}
+require 'HelloWorld.php';
 
 // instantiate PageDirector
 $director = new Pxp\Page\PageDirector();
@@ -44,9 +25,9 @@ $page_builder = new Pxp\Page\Builder\DynamicBuilder();
 
 // define build parameters
 $parameters = [
-    'filename' => __DIR__ . DIRECTORY_SEPARATOR . 'page.html',
+    'filename' => __DIR__ . DIRECTORY_SEPARATOR . 'input.html',
     'handlers' => [
-        '//widget'         => '{name}',
+        '//widget'         => 'Pxp\DynamicElement\Widgets\{name}',
     ],
     'hooks' => [
         'onRender'      => 'RETURN_CALL',

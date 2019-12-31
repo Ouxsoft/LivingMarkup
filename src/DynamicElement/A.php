@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-namespace \Pxp\DynamicElement;
+namespace Pxp\DynamicElement;
 
 /**
  * Class A
@@ -32,14 +32,7 @@ class A extends DynamicElement
     public function onRender()
     {
         $this->href = isset($this->args['href']) ? $this->args['href'] : '#';
-        $attribute_href = ' href="' . $this->href . '"';
 
-        // if alt tag missing add decorative alt
-        $this->alt = isset($this->args['alt']) ? $this->args['alt'] : 'decorative';
-        $attribute_alt = ' alt="' . $this->alt . '"';
-
-        return <<<HTML
-        <a {$attribute_href}{$attribute_alt}>{$this->element}</a>
-HTML;
+        return "<a href=\"{$this->href}\">{$this->xml}</a>";
     }
 }

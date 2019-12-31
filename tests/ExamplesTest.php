@@ -1,0 +1,71 @@
+<?php
+/**
+ * This file is part of the PXP package.
+ *
+ * (c) Matthew Heroux <matthewheroux@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+declare(strict_types=1);
+
+namespace Pxp\Tests;
+
+use PHPUnit\Framework\TestCase;
+use Pxp\Page\Builder\DynamicBuilder;
+use Pxp\Page\Builder\StaticBuilder;
+use Pxp\Page\PageDirector;
+
+// require examples DynamicElement
+require  __DIR__ . '/../examples/HelloWorldExample/HelloWorld.php';
+require  __DIR__ . '/../examples/BitwiseExample/Bitwise.php';
+require  __DIR__ . '/../examples/WebsiteSpoofingExample/MarkupInjection.php';
+
+define('PXP_DATETIME', '2019-12-03 01:30:00');
+
+final class ExamplesTest extends TestCase
+{
+    public function test()
+    {
+
+        $example_folders = glob(__DIR__ . '/../examples/*', GLOB_ONLYDIR);
+
+        foreach($example_folders as $example_folder){
+
+            $parameters = [
+                'filename' => $example_folder . DIRECTORY_SEPARATOR . 'input.html',
+                'handlers' => [
+                    '//h1'          => 'Pxp\DynamicElement\MarkupInjection',
+                    '//widget'      => 'Pxp\DynamicElement\Widgets\{name}',
+                    '//bitwise'     => 'Pxp\DynamicElement\Bitwise',
+                    '//img'         => 'Pxp\DynamicElement\Img',
+                    '//a'           => 'Pxp\DynamicElement\A',
+                    '//var'         => 'Pxp\DynamicElement\Variable',
+                    '//condition'   => 'Pxp\DynamicElement\Condition',
+                    '//redacted'    => 'Pxp\DynamicElement\Redacted'
+                ],
+                'hooks' => [
+                    'beforeLoad'    => 'Executed before onLoad',
+                    'onLoad'        => 'Loads object data',
+                    'afterLoad'     => 'Executed after onLoad',
+                    'beforeRender'  => 'Executed before onLoad',
+                    'onRender'      => 'RETURN_CALL',
+                    'afterRender'   => 'Executed after onRender',
+                ]
+            ];
+
+            // build dynamic page
+            $director = new PageDirector();
+            $dynamic_builder = new DynamicBuilder();
+            $page_results = (string) $director->build($dynamic_builder, $parameters);
+
+            // build static page containing desired output
+            $parameters['filename'] =  $example_folder . DIRECTORY_SEPARATOR . 'output.html';
+            $static_builder = new StaticBuilder();
+            $page_check = (string) $director->build($static_builder, $parameters);
+
+            // compare the two
+            $this->assertEquals($page_check, $page_results);
+        }
+    }
+}

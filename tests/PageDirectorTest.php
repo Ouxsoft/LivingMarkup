@@ -13,6 +13,9 @@ declare(strict_types=1);
 namespace Pxp\Tests;
 
 use PHPUnit\Framework\TestCase;
+use Pxp\Page\Builder\DynamicBuilder;
+use Pxp\Page\Page;
+use Pxp\Page\PageDirector;
 
 final class PageDirectorTest extends TestCase
 {
@@ -37,10 +40,10 @@ final class PageDirectorTest extends TestCase
             ]
         ];
 
-        $page_builder = new \Pxp\Page\Builder\DynamicBuilder();
-        $new_page = (new \Pxp\Page\PageDirector())->build($page_builder, $parameters);
+        $page_builder = new DynamicBuilder();
+        $new_page = (new PageDirector())->build($page_builder, $parameters);
 
         // TODO: assure this is correct class
-        $this->assertInstanceOf(\Pxp\Page\Page::class, $new_page);
+        $this->assertInstanceOf(Page::class, $new_page);
     }
 }

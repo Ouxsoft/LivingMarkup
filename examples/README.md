@@ -9,7 +9,7 @@ This is a "Hello, World" example.
 This example shows how to build a dynamic page using PXP.
 
 ## [BitwiseExample](BitwiseExample/index.php)
-This example shows how to use variable named dynamic elements and pass arguments.
+This example shows how to DynamicElements pass arguments.
 
 ## [WebsiteSpoofingExample](WebsiteSpoofingExample/index.php)
 This example demonstrates how easy is it is to spoof an existing web page using PHP.

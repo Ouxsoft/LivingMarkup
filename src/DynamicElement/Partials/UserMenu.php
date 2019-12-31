@@ -10,7 +10,9 @@
 
 namespace Pxp\DynamicElement\Partials;
 
-class UserMenu extends \Pxp\DynamicElement\DynamicElement
+use Pxp\DynamicElement\DynamicElement;
+
+class UserMenu extends DynamicElement
 {
     public function onRender()
     {

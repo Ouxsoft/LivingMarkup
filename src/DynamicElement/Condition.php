@@ -10,6 +10,9 @@
 
 namespace Pxp\DynamicElement;
 
+use DateTime;
+use Exception;
+
 /**
  * Class Condition
  *
@@ -37,7 +40,7 @@ class Condition extends DynamicElement
      * Renders output if condition toggle is true
      *
      * @return string
-     * @throws \Exception
+     * @throws Exception
      */
     public function onRender(): string
     {
@@ -47,31 +50,33 @@ class Condition extends DynamicElement
          * If optional arguments are passed, the check is ran and if any check fails an empty string is returned.
          */
 
+        $pass = true;
+
         // allow a condition based on time_start and time_end
         if (isset($this->args['time_start']) && isset($this->args['time_end'])) {
             if (!$this->isTimeNowBetween($this->args['time_start'], $this->args['time_end'])) {
-                return '';
+                $pass = false;
             }
         }
 
         // allow a condition based on date_start and date_end
         if (isset($this->args['date_end']) && isset($this->args['date_start'])) {
             if (!$this->isDateNowBetween($this->args['date_start'], $this->args['date_end'])) {
-                return '';
+                $pass = false;
             }
         }
 
         // allow a condition based on day_of_week
         if (isset($this->args['day_of_week'])) {
             if (!$this->isNowSameDayOfWeek($this->args['day_of_week'])) {
-                return '';
+                $pass = false;
             }
         }
 
         // allow a condition based on datetime
         if (isset($this->args['datetime_end']) && isset($this->args['datetime_start'])) {
             if (!$this->isDatetimeNowBetween($this->args['datetime_start'], $this->args['datetime_end'])) {
-                return '';
+                $pass = false;
             }
         }
 
@@ -83,9 +88,18 @@ class Condition extends DynamicElement
         // <arg name="child.limit" operator="NOT_EQUAL">5</arg>
         // <arg name="child.limit" operator="CONTAINS">5</arg>
 
-        // all conditions pass return xml
-        return $this->xml;
+        // all conditions pass return xml children
+        if($pass){
+            return $this->xml;
+        }
 
+        // return else xml child
+        if (isset($this->args['else'])) {
+            return $this->args['else'];
+        }
+
+        // return empty string
+        return '';
     }
 
     /**
@@ -94,22 +108,22 @@ class Condition extends DynamicElement
      * @param string $time_start
      * @param string $time_end
      * @return bool
-     * @throws \Exception
+     * @throws Exception
      */
     public function isTimeNowBetween(string $time_start, string $time_end)
     {
 
         // start
         $start = date_parse($time_start);
-        $start_datetime = new \DateTime($this->now());
+        $start_datetime = new DateTime($this->now());
         $start_datetime->setTime($start['hour'], $start['minute'], $start['second']);
 
         // now
-        $now_datetime = new \DateTime($this->now());
+        $now_datetime = new DateTime($this->now());
 
         // end
         $end = date_parse($time_end);
-        $end_datetime = new \DateTime($this->now());
+        $end_datetime = new DateTime($this->now());
         $end_datetime->setTime($end['hour'], $end['minute'], $end['second']);
 
         // use next day if end time before start time
@@ -132,23 +146,23 @@ class Condition extends DynamicElement
      * @param string $date_start
      * @param string $date_end
      * @return bool
-     * @throws \Exception
+     * @throws Exception
      */
     public function isDateNowBetween(string $date_start, string $date_end)
     {
 
         // start
         $start = date_parse($date_start);
-        $start_datetime = new \DateTime();
+        $start_datetime = new DateTime();
         $start_datetime->setDate($start['year'], $start['month'], $start['day']);
         $start_datetime->setTime(0, 0, 0);
 
         // now
-        $now_datetime = new \DateTime($this->now());
+        $now_datetime = new DateTime($this->now());
 
         // end
         $end = date_parse($date_end);
-        $end_datetime = new \DateTime();
+        $end_datetime = new DateTime();
         $end_datetime->setDate($end['year'], $end['month'], $end['day']);
         $end_datetime->setTime(23, 59, 59);
 
@@ -172,7 +186,7 @@ class Condition extends DynamicElement
      * @param string $date_start
      * @param string $date_end
      * @return bool
-     * @throws \Exception
+     * @throws Exception
      */
     public function isDatetimeNowBetween(string $date_start, string $date_end)
     {
@@ -199,12 +213,12 @@ class Condition extends DynamicElement
                     break;
             }
         }
-        $start_datetime = new \DateTime();
+        $start_datetime = new DateTime();
         $start_datetime->setDate($start['year'], $start['month'], $start['day']);
         $start_datetime->setTime($start['hour'], $start['minute'], $start['second']);
 
         // now
-        $now_datetime = new \DateTime($this->now());
+        $now_datetime = new DateTime($this->now());
 
         // end
         $end = date_parse($date_end);
@@ -232,7 +246,7 @@ class Condition extends DynamicElement
                     break;
             }
         }
-        $end_datetime = new \DateTime();
+        $end_datetime = new DateTime();
         $end_datetime->setDate($end['year'], $end['month'], $end['day']);
         $end_datetime->setTime($end['hour'], $end['minute'], $end['second']);
 
