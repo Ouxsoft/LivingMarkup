@@ -1,6 +1,6 @@
 ![alt text](https://github.com/hxtree/PXP/raw/master/docs/logo/179x100.jpg "PXP")
 
-***PXP is a modular server-side markup scripting language for building dynamic pages..*** It works similar to a 
+***PXP is a modular server-side markup scripting language for building dynamic pages.*** It works similar to a 
 server-side templating engine, but is better suited for the web.
 
 [![Latest Stable Version](https://img.shields.io/packagist/v/hxtree/pxp.svg?style=flat-square)](https://packagist.org/packages/hxtree/pxp)
