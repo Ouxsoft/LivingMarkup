@@ -10,20 +10,11 @@
 
 use Pxp\DynamicElement\DynamicElement;
 
-/**
- * This is a "Hello, World" example
- */
-
 require '../../vendor/autoload.php';
 require 'UserProfile.php';
 
 // instantiate PageDirector
 $director = new Pxp\Page\PageDirector();
-
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
 
 // instantiate PageBuilder
 $page_builder = new Pxp\Page\Builder\DynamicBuilder();

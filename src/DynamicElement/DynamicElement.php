@@ -16,7 +16,7 @@ namespace Pxp\DynamicElement;
  */
 interface DynamicElementDefaultInterface
 {
-    public function __construct($xml, $args);
+    public function __construct($args);
 
     public function onRender();
 
@@ -40,8 +40,6 @@ abstract class DynamicElement implements DynamicElementDefaultInterface
     public $id = 0;
     // name of element
     public $name = 'unknown';
-    // inner content on load
-    public $xml;
     // args passed to during construction
     public $args = [];
     // tags used for filtering
@@ -50,12 +48,10 @@ abstract class DynamicElement implements DynamicElementDefaultInterface
     public $search_index = true;
     // maximum results of data pulled
     public $max_results = '240';
-
-    /**
-     * TODO: Need a class that allows dynamic elements to access other properties
-    $page->dom->
-    $this->placeholder_id
-     */
+    // ancestor public variable updated live
+    public $ancestors = [];
+    // inner content updated live
+    public $xml = '';
 
     /**
      * DynamicElement constructor
@@ -63,10 +59,8 @@ abstract class DynamicElement implements DynamicElementDefaultInterface
      * @param $xml
      * @param $args
      */
-    public function __construct($xml, $args)
+    public function __construct($args)
     {
-        // store elements inner xml
-        $this->xml = $xml;
         // store args passed
         $this->args = $args;
         // assign object id to xml

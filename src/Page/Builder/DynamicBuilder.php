@@ -41,20 +41,6 @@ class DynamicBuilder extends Builder
             }
         }
 
-        // build variable
-        foreach($this->page->element_objects as $object){
-            $parent_placeholder_ids = $this->page->getDomElementParents($object->placeholder_id);
-
-            $parent_vars = [];
-            foreach($parent_placeholder_ids as $parent_placeholder_id){
-
-                $dynamic_element_vars = $this->page->getDynamicElementProperties($parent_placeholder_id);
-                $parent_vars = array_merge($parent_vars, $dynamic_element_vars);
-            }
-
-            $object->parent_vars = $parent_vars;
-        }
-
 
         // call hooks
         if (is_array($parameters['hooks'])) {

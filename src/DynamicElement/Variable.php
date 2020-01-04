@@ -16,16 +16,7 @@ namespace Pxp\DynamicElement;
 class Variable extends DynamicElement
 {
 
-    private $format;
-
-    private $value;
-
-    public function getValue()
-    {
-        return $this->variables[$this->args['name']];
-    }
-
-    public function format(string $variable, string $format)
+    public function format(string $format)
     {
         
         // set format function and parameters
@@ -39,7 +30,8 @@ class Variable extends DynamicElement
             $parameter = trim($parameter, '\'');
         }
         
-        $value = $this->getValue();
+        $value = $this->getVariable();
+
         return $this->$function($value, $parameters);
     }
 
@@ -53,19 +45,25 @@ class Variable extends DynamicElement
         return str_replace($parameters[0], $parameters[1], $string);
     }
 
+    private function getVariable($name){
+        if(array_key_exists($name,$this->ancestors)){
+            return $this->ancestors[$name];
+        }
+        return null;
+    }
     public function onRender(): string
     {
-        /*
+        // get variable
+        $variable = $this->getVariable($this->args['name']);
+
+        if(is_null($variable)){
+            return '<!-- Variable "' . $this->args['name'] . '" Not Found -->';
+        }
+
         if (isset($this->format)) {
             return $this->format($this->name, $this->format);
         }
-        
-        if (isset($this->name)) {
-            return $this->getValue();
-        }
-        */
 
-        return $this->args['name'];
-        return '';
+        return $variable;
     }
 }

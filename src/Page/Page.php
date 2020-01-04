@@ -268,6 +268,66 @@ class Page implements PageDefaultInterface
     }
 
     /**
+     * In DOMDocument replace DOMElement with DynamicElement->__toString() output
+     *
+     * @param $placeholder_id
+     * @return bool
+     */
+    public function renderDynamicElement($placeholder_id) : bool {
+
+
+        // get DOMElement from placeholder id
+        $dom_element = $this->getDomElementByPlaceholderId($placeholder_id);
+
+        if (is_null($dom_element)) {
+            return false;
+        }
+
+        // get DynamicElement from placeholder id
+        $dynamic_element = $this->getDynamicElementByPlaceHolderId($placeholder_id);
+
+        // set inner xml
+        $dynamic_element->xml = $this->getDynamicElementInnerXML($dynamic_element->placeholder_id);
+
+
+        if (!method_exists($dynamic_element, '__toString')) {
+            return false;
+        }
+
+        $new_xml = $dynamic_element->__toString() ?? '';
+
+        $this->replaceDomElement($dom_element, $new_xml);
+
+        return true;
+    }
+
+    /**
+     * Update DynamicElement public ancestors properties
+     */
+    public function updateDynamicElementAncestors() : void {
+        // iterate through elements
+        foreach ($this->element_objects as $dynamic_element) {
+
+            // set element ancestor variables
+            $dynamic_element->ancestors = $this->getDynamicElementAncestorProperties($dynamic_element->placeholder_id);
+        }
+    }
+
+    function getDynamicElementInnerXML($placeholder_id) : string {
+
+        $xml = '';
+
+        $dom_element = $this->getDomElementByPlaceholderId($placeholder_id);
+
+        $children = $dom_element->childNodes;
+        foreach ($children as $child) {
+            $xml .= $dom_element->ownerDocument->saveHTML($child);
+        }
+
+        return trim($xml);
+    }
+
+    /**
      * Call Hooks
      *
      * @param string $hook_name
@@ -276,30 +336,15 @@ class Page implements PageDefaultInterface
      */
     public function callHook(string $hook_name, string $options = null): bool
     {
-
+        // update DynamicElement reference info
+        $this->updateDynamicElementAncestors();
 
         if ($options == 'RETURN_CALL') {
 
             $placeholder_ids = $this->getDynamicElementsPlaceholderIds();
 
             foreach ($placeholder_ids as $placeholder_id) {
-
-                $dom_element = $this->getDomElementByPlaceholderId($placeholder_id);
-
-                if (is_null($dom_element)) {
-                    return false;
-                }
-
-                $dynamic_element = $this->getDynamicElementByPlaceHolderId($placeholder_id);
-
-                if (!method_exists($dynamic_element, '__toString')) {
-                    return false;
-                }
-
-                $new_xml = $dynamic_element->__toString() ?? '';
-
-                $this->replaceDomElement($dom_element, $new_xml);
-
+                $this->renderDynamicElement($placeholder_id);
             }
 
             return true;
@@ -313,6 +358,27 @@ class Page implements PageDefaultInterface
 
         }
         return true;
+    }
+
+    /**
+     * Get a DynamicElement parent properties based on placeholder_id DOMElement ancestors
+     *
+     * @param $placeholder_id
+     * @return array
+     */
+    public function getDynamicElementAncestorProperties($placeholder_id) : array {
+
+        $parent_vars = [];
+
+        $parent_placeholder_ids = $this->getDomElementParents($placeholder_id);
+
+        foreach ($parent_placeholder_ids as $parent_placeholder_id)
+        {
+            $dynamic_element_vars = $this->getDynamicElementProperties($parent_placeholder_id);
+            $parent_vars = array_merge($parent_vars, $dynamic_element_vars);
+        }
+
+        return $parent_vars;
     }
 
     /**
@@ -411,11 +477,8 @@ class Page implements PageDefaultInterface
         // get args from element and remove child arg
         $args = $this->getArgs($element);
 
-        // get xml from element
-        $xml = $this->getXml($element);
-
         // instantiate element
-        $element_object = new $element_class_name($xml, $args);
+        $element_object = new $element_class_name($args);
 
         // if object cannot be instantiated add debug comment
         if (!is_object($element_object)) {
@@ -450,24 +513,6 @@ class Page implements PageDefaultInterface
         }
 
         return true;
-    }
-
-    /**
-     * Get DOMElement's inner XML
-     *
-     * @param DOMElement $element
-     * @return string
-     */
-    private function getXml(DOMElement &$element): string
-    {
-        $xml = '';
-
-        $children = $element->childNodes;
-        foreach ($children as $child) {
-            $xml .= $element->ownerDocument->saveHTML($child);
-        }
-
-        return trim($xml);
     }
 
     /**

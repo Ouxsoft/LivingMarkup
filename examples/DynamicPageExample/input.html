@@ -15,9 +15,6 @@
 
 <body>
 
-	<img src="pxp_icon_logo.jpg" height="100" width="300" offset="100,-100"
-		alt="Chicken Finger 12" />
-
 	<partial name="Breadcrumb" />
 	<h1>Test Site</h1>
 
@@ -25,13 +22,8 @@
 		<p>This is a demonstration of PXP.</p>
 	</div>
 	<div>
-		<p>
-			<var name="location" format="str_replace('r','l')" />
-		</p>
 		<partial name="UserMenu"> <arg name="type">Sponge</arg> </partial>
-		The password is
-		<redacted>Salted Leafs</redacted>
-		, but that's okay.
+		The password is <redacted>Salted Leafs</redacted>, but that's okay.
 
 		<widget name="News" id="4522">
 			<arg name="heading">Latest News</arg>

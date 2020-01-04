@@ -20,8 +20,8 @@ use Pxp\DynamicElement\DynamicElement;
 class UserProfile extends DynamicElement
 {
     public $username = 'jane_doe';
-    public $first_name = 'jane';
-    public $last_name = 'doe';
+    public $first_name = 'Jane';
+    public $last_name = 'Doe';
 
     /**
      * Prints Hello, World

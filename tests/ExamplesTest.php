@@ -11,15 +11,21 @@ declare(strict_types=1);
 
 namespace Pxp\Tests;
 
+ini_set('display_errors', '1');
+ini_set('display_startup_errors', '1');
+error_reporting(E_ALL);
+
 use PHPUnit\Framework\TestCase;
 use Pxp\Page\Builder\DynamicBuilder;
 use Pxp\Page\Builder\StaticBuilder;
 use Pxp\Page\PageDirector;
 
 // require examples DynamicElement
+// TODO: automate
 require  __DIR__ . '/../examples/HelloWorldExample/HelloWorld.php';
 require  __DIR__ . '/../examples/BitwiseExample/Bitwise.php';
 require  __DIR__ . '/../examples/WebsiteSpoofingExample/MarkupInjection.php';
+require  __DIR__ . '/../examples/VariableExample/UserProfile.php';
 
 define('PXP_DATETIME', '2019-12-03 01:30:00');
 
