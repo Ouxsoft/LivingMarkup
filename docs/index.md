@@ -26,13 +26,6 @@ instantiated from.
 # Examples
 See how PXP can be used through our [Examples](https://github.com/hxtree/PXP/blob/master/examples/README.md).
 
-# Design Pattern
-Pages are created using a Builder design pattern. This design pattern was chosen to separate the construction of the 
-complex page objects from its representation to build pages for different purposes, e.g.
-+ The DynamicBuilder renders a dynamic Page for the client.
-+ The StaticBuilder renders a static Page for a WYSIWYG.
-+ The SearchBuilder renders a dynamic Page with only some DynamicElements for search indexes.
-
 # `PageDirector`
 The PageDirector is passed a PageBuilder and parameters (containing a HTML/XML document and a list of elements to make
 dynamic), it then instantiates those elements as objects using their attributes and arguments, orchestrates method calls 
@@ -72,16 +65,24 @@ Afterwards, the processed Document is returned.
 #### `Arguments`
 The DynamicElement constructor is passed a Page DOM elment's attributes ("id", "name", etc.) and "arg" tag child elements.
 
-## Why "PXP?"
-PXP stands for PHP XML Preprocessor.
+# DynamicElement Variable Scope
+TODO: In Progress
+All DynamicElements have access their own private variables. In addition, they can access their ancestors public variables.
+Consider the following:
 
-## What is the difference between PXP and ColdFusion?
-PXP uses a well-formatted markup language. Coldfusion isn't truly a markup scripting language, as items like <cfelse>
-in <cfif><cfelse></cfif> are not properly open or closed, which doesn't adhere to the way markup works. 
+```HTML
+ <div id="1">
+ 	<div id="2">
+ 		<div id="3"/>
+ 	</div>
+ 	<div id="4">
+ 		<div id="5"/>
+ 	</div>
+ </div>
+```
 
-Rather than building a 10 layer deep statement of conditions for a navbar, PXP design encourages the create of 
-DynamicElement, such as navbar. Thus, PXP relies less on large nested objects than Coldfusion and is more easily read.
-
-Coldfusion limits developers to a set of prebuilt tags. In PXP any tag can be used including pre-exist HTML5 tags. 
-This has the added benefit of enhancing existing tags. For example, with PXP one could easily add a alt attribute set to
- decorator when missing from img elements.
+* id #1 can access no other DynamicElement public properties. 
+* id #2 can access #1 DynamicElement public properties.
+* id #3 can access #1 and #2 DynamicElement public properties.
+* id #4 can access #1 DynamicElement public properties.
+* id #5 can access #4 and $1 DynamicElement public properties.

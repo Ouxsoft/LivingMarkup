@@ -28,8 +28,10 @@ final class ExamplesTest extends TestCase
     public function test()
     {
 
+        // get example folders
         $example_folders = glob(__DIR__ . '/../examples/*', GLOB_ONLYDIR);
 
+        // go through each folder
         foreach($example_folders as $example_folder){
 
             $parameters = [
@@ -59,7 +61,7 @@ final class ExamplesTest extends TestCase
             $dynamic_builder = new DynamicBuilder();
             $page_results = (string) $director->build($dynamic_builder, $parameters);
 
-            // build static page containing desired output
+            // build static page of the prebuild desired output
             $parameters['filename'] =  $example_folder . DIRECTORY_SEPARATOR . 'output.html';
             $static_builder = new StaticBuilder();
             $page_check = (string) $director->build($static_builder, $parameters);

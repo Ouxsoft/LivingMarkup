@@ -16,14 +16,6 @@ namespace Pxp\DynamicElement;
 class Variable extends DynamicElement
 {
 
-    // TODO: these should be scoped with the ob buffer
-    private $variables = [
-        'username' => 'Jane Doe',
-        'location' => 'Lost In rome',
-        'page_title' => 'Home',
-        'year' => '2019'
-    ];
-
     private $format;
 
     private $value;
@@ -41,7 +33,7 @@ class Variable extends DynamicElement
         $function = $matches['function'];
         $parameters = explode(',', $matches['parameters']);
         
-        // santize each parameter
+        // sanitize each parameter
         foreach ($parameters as &$parameter) {
             // TODO: lookup and replace variables
             $parameter = trim($parameter, '\'');
@@ -63,6 +55,7 @@ class Variable extends DynamicElement
 
     public function onRender(): string
     {
+        /*
         if (isset($this->format)) {
             return $this->format($this->name, $this->format);
         }
@@ -70,7 +63,9 @@ class Variable extends DynamicElement
         if (isset($this->name)) {
             return $this->getValue();
         }
-        
+        */
+
+        return $this->args['name'];
         return '';
     }
 }
