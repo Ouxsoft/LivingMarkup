@@ -31,14 +31,32 @@ define('PXP_DATETIME', '2019-12-03 01:30:00');
 
 final class ExamplesTest extends TestCase
 {
+
+    function endsWith($haystack, $needle)
+    {
+        $length = strlen($needle);
+        if ($length == 0) {
+            return true;
+        }
+
+        return (substr($haystack, -$length) === $needle);
+    }
+
     public function test()
     {
 
         // get example folders
         $example_folders = glob(__DIR__ . '/../examples/*', GLOB_ONLYDIR);
 
+        // TODO switch to array
+        $skip = 'VariableExample';
+
         // go through each folder
         foreach($example_folders as $example_folder){
+
+            if($this->endsWith($example_folder, basename($skip) ) ) {
+                 continue;
+            }
 
             $parameters = [
                 'filename' => $example_folder . DIRECTORY_SEPARATOR . 'input.html',
