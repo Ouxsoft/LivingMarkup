@@ -37,7 +37,7 @@ class DynamicBuilder extends Builder
         // instantiate dynamic elements
         if (is_array($parameters['handlers'])) {
             foreach ($parameters['handlers'] as $xpath_expression => $class_name) {
-                $this->page->instantiateElements($xpath_expression, $class_name);
+                $this->page->instantiateDynamicElements($xpath_expression, $class_name);
             }
         }
 

@@ -21,6 +21,8 @@ interface DynamicElementDefaultInterface
     public function onRender();
 
     public function __toString();
+
+    public function __invoke(string $method): bool;
 }
 
 /**
@@ -34,8 +36,8 @@ interface DynamicElementDefaultInterface
 abstract class DynamicElement implements DynamicElementDefaultInterface
 {
 
-    // placeholder id for PageBuilder::replaceElement()
-    public $placeholder_id = 0;
+    // id used to reference object
+    public $dynamic_element_id = 0;
     // id used to load args
     public $id = 0;
     // name of element
@@ -56,15 +58,14 @@ abstract class DynamicElement implements DynamicElementDefaultInterface
     /**
      * DynamicElement constructor
      *
-     * @param $xml
      * @param $args
      */
-    public function __construct($args)
+    final public function __construct($args)
     {
         // store args passed
         $this->args = $args;
         // assign object id to xml
-        $this->placeholder_id = spl_object_hash($this);
+        $this->dynamic_element_id = spl_object_hash($this);
     }
 
     /**
@@ -87,4 +88,26 @@ abstract class DynamicElement implements DynamicElementDefaultInterface
      * @return mixed
      */
     abstract public function onRender();
+
+    /**
+     * Invoke wrapper call to method if exists
+     *
+     * @param string $method
+     * @return bool
+     */
+    final public function __invoke(string $method): bool
+    {
+        // if method does not exist, return
+        if (!method_exists($this, $method)) {
+            return false;
+        }
+
+        // call element method
+        call_user_func([
+            $this,
+            $method
+        ]);
+
+        return true;
+    }
 }

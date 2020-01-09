@@ -28,11 +28,11 @@ interface PageDefaultInterface
 
     public function callHook(string $hook_name, string $options = null): bool;
 
-    public function instantiateElements(string $xpath_expression, string $class_name): bool;
+    public function instantiateDynamicElements(string $xpath_expression, string $class_name): bool;
 
     public function replaceDomElement(DOMElement &$element, string $new_xml): void;
 
-    public function query($query);
+    public function query(string $query, DOMElement $node = NULL);
 }
 
 /**
@@ -175,18 +175,15 @@ class Page implements PageDefaultInterface
     public function callHook(string $hook_name, string $options = null): bool
     {
         // set ancestors
-        foreach($this->dynamic_elements as $dynamic_element){
-            $properties = $this->getDynamicElementAncestorProperties($dynamic_element->placeholder_id);
-            $dynamic_element->ancestors = $properties;
+        foreach ($this->dynamic_elements as $dynamic_element) {
+            $dynamic_element->ancestors = $this->getDynamicElementAncestorProperties($dynamic_element->dynamic_element_id);
         }
 
         if ($options == 'RETURN_CALL') {
 
-            $placeholder_ids = $this->getDynamicElementsPlaceholderIds();
+            foreach ($this->dynamic_elements as $dynamic_element) {
 
-            foreach ($placeholder_ids as $placeholder_id) {
-
-                $this->renderDynamicElement($placeholder_id);
+                $this->renderDynamicElement($dynamic_element->dynamic_element_id);
             }
 
             return true;
@@ -196,27 +193,27 @@ class Page implements PageDefaultInterface
         foreach ($this->dynamic_elements as $element_object) {
 
             // invoke DynamicElement method with options, if exists
-            $this->invokeDynamicElementMethod($element_object, $hook_name);
+            $element_object($hook_name);
 
         }
         return true;
     }
 
     /**
-     * Get a DynamicElement parent properties based on placeholder_id DOMElement ancestors
+     * Get a DynamicElement parent properties based on dynamic_element_id DOMElement ancestors
      *
-     * @param $placeholder_id
+     * @param $dynamic_element_id
      * @return array
      */
-    public function getDynamicElementAncestorProperties(string $placeholder_id) : array {
+    public function getDynamicElementAncestorProperties(string $dynamic_element_id): array
+    {
 
         $parent_vars = [];
 
-        $ancestor_placeholder_ids = $this->getDomElementAncestorPlaceholderIds($placeholder_id);
+        $ancestor_dynamic_element_ids = $this->getDomElementAncestorPlaceholderIds($dynamic_element_id);
 
-        foreach ($ancestor_placeholder_ids as $ancestor_placeholder_id)
-        {
-            $dynamic_element_vars = $this->getDynamicElementProperties($ancestor_placeholder_id);
+        foreach ($ancestor_dynamic_element_ids as $ancestor_dynamic_element_id) {
+            $dynamic_element_vars = $this->getDynamicElementProperties($ancestor_dynamic_element_id);
 
             $parent_vars = $parent_vars + $dynamic_element_vars;
 
@@ -227,38 +224,65 @@ class Page implements PageDefaultInterface
 
     /**
      * Gets DynamicElement ancestors that are DynamicElement within DOM structure
-     * @param string $placeholder_id
+     * @param string $dynamic_element_id
      * @return array
      */
-    public function getDomElementAncestorPlaceholderIds(string $placeholder_id): array
+    public function getDomElementAncestorPlaceholderIds(string $dynamic_element_id): array
     {
         $parent_ids = [];
 
-        $query = "//ancestor::*";
-        $node = $this->getDomElementByPlaceholderId($placeholder_id);
+        $query = "//ancestor::*[@{$this->element_index_attribute}]";
+        $node = $this->getDomElementByPlaceholderId($dynamic_element_id);
 
-        foreach($this->query($query, $node) as $element){
-            $parent_ids[] = $element->getAttribute($this->element_index_attribute);
+        foreach ($this->query($query, $node) as $dom_element) {
+            $parent_ids[] = $dom_element->getAttribute($this->element_index_attribute);
 
         }
-
-   //     var_dump($parent_ids);
 
         return $parent_ids;
     }
 
     /**
-     * Get DynamicElement public properties via placeholder_id
+     * Gets DOMElement using dynamic_element_id provided
      *
-     * @param string $placeholder_id
+     * @param string $dynamic_element_id
+     * @return DOMElement
+     */
+    public function getDomElementByPlaceholderId(string $dynamic_element_id): ?\DOMElement
+    {
+        // find and replace element
+        $query = '//*[@' . $this->element_index_attribute . '="' . $dynamic_element_id . '"]';
+
+        foreach ($this->query($query) as $element) {
+            return $element;
+        }
+        return null;
+    }
+
+    /**
+     * XPath query for class $this->DOM property
+     *
+     * @param $query
+     * @param null $node
+     * @return mixed
+     */
+    public function query(string $query, DOMElement $node = NULL)
+    {
+        return $this->xpath->query($query, $node);
+    }
+
+    /**
+     * Get DynamicElement public properties via dynamic_element_id
+     *
+     * @param string $dynamic_element_id
      * @return array
      */
-    public function getDynamicElementProperties(string $placeholder_id): array
+    public function getDynamicElementProperties(string $dynamic_element_id): array
     {
 
         // doesn't appear to be a quicker way using SLPObject
         foreach ($this->dynamic_elements as $element) {
-            if ($placeholder_id != $element->placeholder_id) {
+            if ($dynamic_element_id != $element->dynamic_element_id) {
                 continue;
             }
             return get_object_vars($element);
@@ -268,22 +292,73 @@ class Page implements PageDefaultInterface
     }
 
     /**
-     * Get DynamicElement public property via placeholder_id
+     * In DOMDocument replace DOMElement with DynamicElement->__toString() output
      *
-     * @param string $placeholder_id
-     * @param string $property
-     * @return mixed|null
+     * @param $dynamic_element_id
+     * @return bool
      */
-    public function getDynamicElementProperty(string $placeholder_id, string $property)
+    public function renderDynamicElement($dynamic_element_id): bool
     {
 
-        $properties = $this->getDynamicElementProperties($placeholder_id);
 
-        if (!isset($properties[$property])) {
-            return NULL;
+        // get DOMElement from placeholder id
+        $dom_element = $this->getDomElementByPlaceholderId($dynamic_element_id);
+
+        if (is_null($dom_element)) {
+            return false;
         }
 
-        return $properties[$property];
+        // get DynamicElement from placeholder id
+        $dynamic_element = $this->getDynamicElementByPlaceHolderId($dynamic_element_id);
+
+        // set inner xml
+        $dynamic_element->xml = $this->getDynamicElementInnerXML($dynamic_element->dynamic_element_id);
+
+        if (!method_exists($dynamic_element, '__toString')) {
+            return false;
+        }
+
+        $new_xml = $dynamic_element->__toString() ?? '';
+
+        $this->replaceDomElement($dom_element, $new_xml);
+
+        return true;
+    }
+
+    /**
+     * Get DynamicElement by placeholder id
+     *
+     * @param string $dynamic_element_id
+     * @return object
+     */
+    public function getDynamicElementByPlaceholderId(string $dynamic_element_id)
+    {
+        if(array_key_exists($dynamic_element_id, $this->dynamic_elements)){
+            return $this->dynamic_elements[$dynamic_element_id];
+        }
+
+        return NULL;
+    }
+
+    /**
+     * Get DynamicElement inner XML
+     *
+     * @param $dynamic_element_id
+     * @return string
+     */
+    public function getDynamicElementInnerXML($dynamic_element_id): string
+    {
+
+        $xml = '';
+
+        $dom_element = $this->getDomElementByPlaceholderId($dynamic_element_id);
+
+        $children = $dom_element->childNodes;
+        foreach ($children as $child) {
+            $xml .= $dom_element->ownerDocument->saveHTML($child);
+        }
+
+        return trim($xml);
     }
 
     /**
@@ -304,139 +379,42 @@ class Page implements PageDefaultInterface
     }
 
     /**
-     * Gets DOMElement using placeholder_id provided
+     * Get DynamicElement public property via dynamic_element_id
      *
-     * @param string $placeholder_id
-     * @return DOMElement
+     * @param string $dynamic_element_id
+     * @param string $property
+     * @return mixed|null
      */
-    public function getDomElementByPlaceholderId(string $placeholder_id): ?\DOMElement
+    public function getDynamicElementProperty(string $dynamic_element_id, string $property)
     {
-        // find and replace element
-        $query = '//*[@' . $this->element_index_attribute . '="' . $placeholder_id . '"]';
 
-        foreach ($this->query($query) as $element) {
-            return $element;
+        $properties = $this->getDynamicElementProperties($dynamic_element_id);
+
+        if (!isset($properties[$property])) {
+            return NULL;
         }
-        return null;
+
+        return $properties[$property];
     }
 
     /**
-     * In DOMDocument replace DOMElement with DynamicElement->__toString() output
+     * Instantiates DynamicElements from DOMElement's found during Xpath query against property DOM
      *
-     * @param $placeholder_id
+     * @param string $xpath_expression
+     * @param string $class_name
      * @return bool
      */
-    public function renderDynamicElement($placeholder_id) : bool {
+    public function instantiateDynamicElements(string $xpath_expression, string $class_name): bool
+    {
+        // iterate through handler's expression searching for applicable elements
+        foreach ($this->query($xpath_expression) as $element) {
 
+            // if class does not exist replace element with informative comment
+            $this->instantiateDynamicElement($element, $class_name);
 
-        // get DOMElement from placeholder id
-        $dom_element = $this->getDomElementByPlaceholderId($placeholder_id);
-
-        if (is_null($dom_element)) {
-            return false;
         }
-
-        // get DynamicElement from placeholder id
-        $dynamic_element = $this->getDynamicElementByPlaceHolderId($placeholder_id);
-
-        // set inner xml
-        $dynamic_element->xml = $this->getDynamicElementInnerXML($dynamic_element->placeholder_id);
-
-        if (!method_exists($dynamic_element, '__toString')) {
-            return false;
-        }
-
-        $new_xml = $dynamic_element->__toString() ?? '';
-
-        $this->replaceDomElement($dom_element, $new_xml);
 
         return true;
-    }
-
-
-    /**
-     * Get DynamicElement inner XML
-     *
-     * @param $placeholder_id
-     * @return string
-     */
-    function getDynamicElementInnerXML($placeholder_id) : string {
-
-        $xml = '';
-
-        $dom_element = $this->getDomElementByPlaceholderId($placeholder_id);
-
-        $children = $dom_element->childNodes;
-        foreach ($children as $child) {
-            $xml .= $dom_element->ownerDocument->saveHTML($child);
-        }
-
-        return trim($xml);
-    }
-
-
-    /**
-     * Invoke wrapper call to instantiated DynamicElement method
-     *
-     * @param $dynamic_element
-     * @param string $method
-     * @return bool
-     */
-    public function invokeDynamicElementMethod($dynamic_element, string $method): bool
-    {
-        // if method does not exist, return
-        if (!method_exists($dynamic_element, $method)) {
-            return false;
-        }
-
-        // call element method
-        call_user_func([
-            $dynamic_element,
-            $method
-        ]);
-
-        return true;
-    }
-
-    /**
-     * Get DynamicElements placeholder_id list in order of appearance within DOM.
-     * It is essential to replace in reverse order of appearance
-     *
-     * @param bool $reverse
-     * @return array
-     */
-    public function getDynamicElementsPlaceholderIds(bool $reverse = false): array
-    {
-        $element_indexes = [];
-
-        $query = '//*[@' . $this->element_index_attribute . ']';
-
-        foreach ($this->query($query) as $element) {
-            $element_indexes[] = $element->getAttribute($this->element_index_attribute);
-        }
-
-        // provide reverse option, used for render
-        if ($reverse) {
-            $element_indexes = array_reverse($element_indexes);
-        }
-
-        return $element_indexes;
-    }
-
-    /**
-     * Get DynamicElement by placeholder id
-     *
-     * @param string $placeholder_id
-     * @return object
-     */
-    public function getDynamicElementByPlaceholderId(string $placeholder_id)
-    {
-        foreach ($this->dynamic_elements as $element) {
-            if ($placeholder_id != $element->placeholder_id) {
-                continue;
-            }
-            return $element;
-        }
     }
 
     /**
@@ -446,7 +424,7 @@ class Page implements PageDefaultInterface
      * @param string $class_name
      * @return bool
      */
-    public function instantiateElement(\DOMElement &$element, string $class_name): bool
+    public function instantiateDynamicElement(\DOMElement &$element, string $class_name): bool
     {
         // skip if placeholder already assigned
         if ($element->hasAttribute($this->element_index_attribute)) {
@@ -468,7 +446,7 @@ class Page implements PageDefaultInterface
         }
 
         // get args from element and remove child arg
-        $args = $this->getArgs($element);
+        $args = $this->getDomElementArgs($element);
 
         // instantiate element
         $element_object = new $element_class_name($args);
@@ -480,62 +458,12 @@ class Page implements PageDefaultInterface
         }
 
         // set element object placeholder
-        $element->setAttribute($this->element_index_attribute, $element_object->placeholder_id);
+        $element->setAttribute($this->element_index_attribute, $element_object->dynamic_element_id);
 
-        // store object
-        $this->dynamic_elements[] = $element_object;
-
-        return true;
-    }
-
-    /**
-     * Instantiates DynamicElements from DOMElement's found during Xpath query against property DOM
-     *
-     * @param string $xpath_expression
-     * @param string $class_name
-     * @return bool
-     */
-    public function instantiateElements(string $xpath_expression, string $class_name): bool
-    {
-        // iterate through handler's expression searching for applicable elements
-        foreach ($this->query($xpath_expression) as $element) {
-
-            // if class does not exist replace element with informative comment
-            $this->instantiateElement($element, $class_name);
-
-        }
+        // store object with object hash key
+        $this->dynamic_elements[$element_object->dynamic_element_id] = $element_object;
 
         return true;
-    }
-
-    /**
-     * Add to minified list where array count of 1 are turned to string
-     *
-     * @param array $list
-     * @param string $name
-     * @param string $value
-     */
-    public function addToMinifiedList(array &$list, string $name, string $value): void
-    {
-
-        if (!isset($list[$name])) {
-            // set value
-            $list[$name] = $value;
-        } else if ($list[$name] == $value) {
-            // if item value exists as string skip
-        } else if (is_string($list[$name])) {
-            // change string value to array
-            $present_value = $list[$name];
-            $list[$name] = [];
-            array_push($list[$name], $present_value);
-            array_push($list[$name], $value);
-        } else if (in_array($value, $list[$name])) {
-            // if item already exists return
-            return;
-        } else if (is_array($list[$name])) {
-            // add to array
-            array_push($list[$name], $value);
-        }
     }
 
     /**
@@ -544,7 +472,7 @@ class Page implements PageDefaultInterface
      * @param DOMElement $element
      * @return array
      */
-    private function getArgs(DOMElement &$element): array
+    private function getDomElementArgs(DOMElement &$element): array
     {
         $args = [];
 
@@ -590,15 +518,33 @@ class Page implements PageDefaultInterface
     }
 
     /**
-     * XPath query for class $this->DOM property
+     * Add to minified list where array count of 1 are turned to string
      *
-     * @param $query
-     * @param null $node
-     * @return mixed
+     * @param array $list
+     * @param string $name
+     * @param string $value
      */
-    public function query($query, $node = NULL)
+    public function addToMinifiedList(array &$list, string $name, string $value): void
     {
-        return $this->xpath->query($query, $node);
+
+        if (!isset($list[$name])) {
+            // set value
+            $list[$name] = $value;
+        } else if ($list[$name] == $value) {
+            // if item value exists as string skip
+        } else if (is_string($list[$name])) {
+            // change string value to array
+            $present_value = $list[$name];
+            $list[$name] = [];
+            array_push($list[$name], $present_value);
+            array_push($list[$name], $value);
+        } else if (in_array($value, $list[$name])) {
+            // if item already exists return
+            return;
+        } else if (is_array($list[$name])) {
+            // add to array
+            array_push($list[$name], $value);
+        }
     }
 
     /**
