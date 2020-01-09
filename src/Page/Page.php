@@ -55,7 +55,7 @@ class Page implements PageDefaultInterface
     public $xpath;
 
     // instantiated DynamicElements
-    public $element_objects;
+    public $dynamic_elements = [];
 
     // name of function called to load DynamicElement Args using element's `id` attribute
     public $arg_load_function;
@@ -106,9 +106,6 @@ class Page implements PageDefaultInterface
 
         // DomDocument encoding
         $this->dom->encoding = 'UTF-8';
-
-        // objects containing elements
-        $this->element_objects = new SplObjectStorage();
 
         // suppress xml parse errors unless debugging
         if (!$this->libxml_debug) {
@@ -169,28 +166,105 @@ class Page implements PageDefaultInterface
     }
 
     /**
-     * Gets ordered list of DynamicElement's parent's placeholder_id / object hashes
+     * Call Hooks
+     *
+     * @param string $hook_name
+     * @param string|null $options
+     * @return bool
+     */
+    public function callHook(string $hook_name, string $options = null): bool
+    {
+        // set ancestors
+        foreach($this->dynamic_elements as $dynamic_element){
+            $properties = $this->getDynamicElementAncestorProperties($dynamic_element->placeholder_id);
+            $dynamic_element->ancestors = $properties;
+        }
+
+        if ($options == 'RETURN_CALL') {
+
+            $placeholder_ids = $this->getDynamicElementsPlaceholderIds();
+
+            foreach ($placeholder_ids as $placeholder_id) {
+
+                $this->renderDynamicElement($placeholder_id);
+            }
+
+            return true;
+        }
+
+        // iterate through elements
+        foreach ($this->dynamic_elements as $element_object) {
+
+            // invoke DynamicElement method with options, if exists
+            $this->invokeDynamicElementMethod($element_object, $hook_name);
+
+        }
+        return true;
+    }
+
+    /**
+     * Get a DynamicElement parent properties based on placeholder_id DOMElement ancestors
+     *
+     * @param $placeholder_id
+     * @return array
+     */
+    public function getDynamicElementAncestorProperties(string $placeholder_id) : array {
+
+        $parent_vars = [];
+
+        $ancestor_placeholder_ids = $this->getDomElementAncestorPlaceholderIds($placeholder_id);
+
+        foreach ($ancestor_placeholder_ids as $ancestor_placeholder_id)
+        {
+            $dynamic_element_vars = $this->getDynamicElementProperties($ancestor_placeholder_id);
+
+            $parent_vars = $parent_vars + $dynamic_element_vars;
+
+        }
+
+        return $parent_vars;
+    }
+
+    /**
+     * Gets DynamicElement ancestors that are DynamicElement within DOM structure
+     * @param string $placeholder_id
+     * @return array
+     */
+    public function getDomElementAncestorPlaceholderIds(string $placeholder_id): array
+    {
+        $parent_ids = [];
+
+        $query = "//ancestor::*";
+        $node = $this->getDomElementByPlaceholderId($placeholder_id);
+
+        foreach($this->query($query, $node) as $element){
+            $parent_ids[] = $element->getAttribute($this->element_index_attribute);
+
+        }
+
+   //     var_dump($parent_ids);
+
+        return $parent_ids;
+    }
+
+    /**
+     * Get DynamicElement public properties via placeholder_id
      *
      * @param string $placeholder_id
      * @return array
      */
-    public function getDomElementParents(string $placeholder_id): array
+    public function getDynamicElementProperties(string $placeholder_id): array
     {
 
-        $parent_ids = [];
-
-        // find and replace element
-        $query = '//*[@' . $this->element_index_attribute . '="' . $placeholder_id . '"]/ancestor::*';
-
-        foreach ($this->query($query) as $element) {
-
-            if ($element->hasAttribute($this->element_index_attribute)) {
-                $parent_ids[] = $element->getAttribute($this->element_index_attribute);
+        // doesn't appear to be a quicker way using SLPObject
+        foreach ($this->dynamic_elements as $element) {
+            if ($placeholder_id != $element->placeholder_id) {
+                continue;
             }
-
+            return get_object_vars($element);
         }
 
-        return $parent_ids;
+        return [];
     }
 
     /**
@@ -210,27 +284,6 @@ class Page implements PageDefaultInterface
         }
 
         return $properties[$property];
-    }
-
-
-    /**
-     * Get DynamicElement public properties via placeholder_id
-     *
-     * @param string $placeholder_id
-     * @return array
-     */
-    public function getDynamicElementProperties(string $placeholder_id): array
-    {
-
-        // doesn't appear to be a quicker way using SLPObject
-        foreach ($this->element_objects as $element) {
-            if ($placeholder_id != $element->placeholder_id) {
-                continue;
-            }
-            return get_object_vars($element);
-        }
-
-        return [];
     }
 
     /**
@@ -289,7 +342,6 @@ class Page implements PageDefaultInterface
         // set inner xml
         $dynamic_element->xml = $this->getDynamicElementInnerXML($dynamic_element->placeholder_id);
 
-
         if (!method_exists($dynamic_element, '__toString')) {
             return false;
         }
@@ -301,18 +353,13 @@ class Page implements PageDefaultInterface
         return true;
     }
 
+
     /**
-     * Update DynamicElement public ancestors properties
+     * Get DynamicElement inner XML
+     *
+     * @param $placeholder_id
+     * @return string
      */
-    public function updateDynamicElementAncestors() : void {
-        // iterate through elements
-        foreach ($this->element_objects as $dynamic_element) {
-
-            // set element ancestor variables
-            $dynamic_element->ancestors = $this->getDynamicElementAncestorProperties($dynamic_element->placeholder_id);
-        }
-    }
-
     function getDynamicElementInnerXML($placeholder_id) : string {
 
         $xml = '';
@@ -327,59 +374,6 @@ class Page implements PageDefaultInterface
         return trim($xml);
     }
 
-    /**
-     * Call Hooks
-     *
-     * @param string $hook_name
-     * @param string|null $options
-     * @return bool
-     */
-    public function callHook(string $hook_name, string $options = null): bool
-    {
-        // update DynamicElement reference info
-        $this->updateDynamicElementAncestors();
-
-        if ($options == 'RETURN_CALL') {
-
-            $placeholder_ids = $this->getDynamicElementsPlaceholderIds();
-
-            foreach ($placeholder_ids as $placeholder_id) {
-                $this->renderDynamicElement($placeholder_id);
-            }
-
-            return true;
-        }
-
-        // iterate through elements
-        foreach ($this->element_objects as $element_object) {
-
-            // invoke DynamicElement method with options, if exists
-            $this->invokeDynamicElementMethod($element_object, $hook_name);
-
-        }
-        return true;
-    }
-
-    /**
-     * Get a DynamicElement parent properties based on placeholder_id DOMElement ancestors
-     *
-     * @param $placeholder_id
-     * @return array
-     */
-    public function getDynamicElementAncestorProperties($placeholder_id) : array {
-
-        $parent_vars = [];
-
-        $parent_placeholder_ids = $this->getDomElementParents($placeholder_id);
-
-        foreach ($parent_placeholder_ids as $parent_placeholder_id)
-        {
-            $dynamic_element_vars = $this->getDynamicElementProperties($parent_placeholder_id);
-            $parent_vars = array_merge($parent_vars, $dynamic_element_vars);
-        }
-
-        return $parent_vars;
-    }
 
     /**
      * Invoke wrapper call to instantiated DynamicElement method
@@ -390,7 +384,6 @@ class Page implements PageDefaultInterface
      */
     public function invokeDynamicElementMethod($dynamic_element, string $method): bool
     {
-
         // if method does not exist, return
         if (!method_exists($dynamic_element, $method)) {
             return false;
@@ -438,7 +431,7 @@ class Page implements PageDefaultInterface
      */
     public function getDynamicElementByPlaceholderId(string $placeholder_id)
     {
-        foreach ($this->element_objects as $element) {
+        foreach ($this->dynamic_elements as $element) {
             if ($placeholder_id != $element->placeholder_id) {
                 continue;
             }
@@ -490,7 +483,7 @@ class Page implements PageDefaultInterface
         $element->setAttribute($this->element_index_attribute, $element_object->placeholder_id);
 
         // store object
-        $this->element_objects->attach($element_object);
+        $this->dynamic_elements[] = $element_object;
 
         return true;
     }
@@ -600,11 +593,12 @@ class Page implements PageDefaultInterface
      * XPath query for class $this->DOM property
      *
      * @param $query
+     * @param null $node
      * @return mixed
      */
-    public function query($query)
+    public function query($query, $node = NULL)
     {
-        return $this->xpath->query($query);
+        return $this->xpath->query($query, $node);
     }
 
     /**

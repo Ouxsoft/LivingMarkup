@@ -13,6 +13,12 @@ use Pxp\DynamicElement\DynamicElement;
 require '../../vendor/autoload.php';
 require 'UserProfile.php';
 
+
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+
 // instantiate PageDirector
 $director = new Pxp\Page\PageDirector();
 
