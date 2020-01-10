@@ -49,14 +49,14 @@ final class ExamplesTest extends TestCase
         $example_folders = glob(__DIR__ . '/../examples/*', GLOB_ONLYDIR);
 
         // TODO switch to array
-        //$skip = 'VariableExample';
+        $skip = 'HeadAndFooterExample';
 
         // go through each folder
         foreach($example_folders as $example_folder){
 
-            //if($this->endsWith($example_folder, basename($skip) ) ) {
-            //     continue;
-            //}
+            if($this->endsWith($example_folder, basename($skip) ) ) {
+                 continue;
+            }
 
             $parameters = [
                 'filename' => $example_folder . DIRECTORY_SEPARATOR . 'input.html',

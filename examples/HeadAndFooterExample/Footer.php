@@ -12,17 +12,14 @@ namespace Pxp\DynamicElement;
 
 class Footer extends DynamicElement
 {
-    public function getPageScripts()
-    {
-        // TODO: figure out how this works
-    }
-    
+
     public function onRender()
     {
+        $year = date('Y');
         return <<<HTML
 <footer>
     <hr/>
-    <p>&copy; <var name="year"/> <var name="username"/></p>
+    <p>&copy; {$year} </p>
 </footer>
 <script/>
 HTML;
