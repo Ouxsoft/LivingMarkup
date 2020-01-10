@@ -22,7 +22,7 @@ use SplObjectStorage;
  */
 interface PageDefaultInterface
 {
-    public function loadDom(string $filepath): void;
+    public function loadDom(array $parameters): void;
 
     public function __toString(): string;
 
@@ -84,10 +84,14 @@ class Page implements PageDefaultInterface
     /**
      * Page constructor
      *
-     * @param null $filename
+     * @param array $parameters
      */
-    public function __construct($filename = null)
+    public function __construct(array $parameters)
     {
+        // suppress xml parse errors unless debugging
+        if (!$this->libxml_debug) {
+            libxml_use_internal_errors(true);
+        }
 
         // create a document object model
         $this->dom = new DomDocument();
@@ -107,21 +111,12 @@ class Page implements PageDefaultInterface
         // DomDocument encoding
         $this->dom->encoding = 'UTF-8';
 
-        // suppress xml parse errors unless debugging
-        if (!$this->libxml_debug) {
-            libxml_use_internal_errors(true);
-        }
-
-        // return if filename missing
-        if ($filename == null) {
-            return;
-        }
-
         // set doctype string for loading DOM
         $this->setDoctype();
 
         // load DOM from filename
-        $this->loadDom($filename);
+        $this->loadDom($parameters);
+
     }
 
     /**
@@ -143,12 +138,18 @@ class Page implements PageDefaultInterface
      * Custom load page wrapper for server side HTML5 entity support
      * (cannot use $this->dom->loadHTMLFile as it removes HTML5 entities, such as &copy;)
      *
-     * @param string $filepath
+     * @param array $parameters
      */
-    public function loadDom(string $filepath): void
+    public function loadDom(array $parameters): void
     {
         // get source file as string
-        $source = file_get_contents($filepath);
+        if(isset($parameters['filename'])){
+            $source = file_get_contents($parameters['filename']);
+        } else if (isset($parameters['markup'])) {
+            $source = $parameters['markup'];
+        } else {
+            return;
+        }
 
         // convert source file to Document Object Model for manipulation
         // set doctype if $this->dom->doctype would not get set

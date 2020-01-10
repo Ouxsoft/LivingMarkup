@@ -28,11 +28,8 @@ class StaticBuilder extends Builder
      */
     public function createObject(array $parameters): ?bool
     {
-        if (!isset($parameters['filename'])) {
-            return false;
-        }
 
-        $this->page = new Page($parameters['filename']);
+        $this->page = new Page($parameters);
 
         return true;
     }

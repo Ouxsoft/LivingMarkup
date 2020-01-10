@@ -35,7 +35,7 @@ class StaticTemplateBuilder extends Builder
             return false;
         }
 
-        $this->page = new Pxp\Page\Page($parameters['filename']);
+        $this->page = new Pxp\Page\Page($parameters);
 
         return true;
     }

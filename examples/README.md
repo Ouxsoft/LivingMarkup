@@ -2,17 +2,29 @@
 
 This folder contains a collection of examples using PXP.
 
-## [HelloWorldExample](HelloWorldExample/index.php)
-This is a "Hello, World" example.
-
-## [DynamicPageExample](DynamicPageExample/index.php)
-This example shows how to build a dynamic page using PXP.
-
-## [BitwiseExample](BitwiseExample/index.php)
+## [BitwiseExample](BitwiseExample/)
 This example shows how to DynamicElements pass arguments.
 
-## [WebsiteSpoofingExample](WebsiteSpoofingExample/index.php)
-This example demonstrates how easy is it is to spoof an existing web page using PHP.
+## [ConditionExample](ConditionExample/)
+This example shows how condition statements can be made.
 
-## [ConditionExample](ConditionExample/index.php)
-This example shows how condition statements can be made using PXP.
+## [DynamicPageExample](DynamicPageExample/)
+This example shows how to build a dynamic page.
+
+## [HeadAndFooterExample](HeadAndFooterExample/)
+This example shows how head and footer element can be automatically generated.
+
+## [HelloWorldExample](HelloWorldExample/)
+This is a "Hello, World" example.
+
+## [ImgExample](ImgExample/)
+This example shows dynamically generated images.
+
+## [IncludeHeaderExample](IncludeHeaderExample/)
+This example shows that a single line at top of file takes care of everything.
+
+## [VariableExample](VariableExample/)
+This example demonstrates var tag and how it can use public variables from ancestor elements.
+
+## [WebsiteSpoofingExample](WebsiteSpoofingExample/)
+This example demonstrates how to spoof an existing web page example.
