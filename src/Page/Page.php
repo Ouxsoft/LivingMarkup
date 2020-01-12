@@ -96,11 +96,11 @@ class Page implements PageDefaultInterface
         // create a document object model
         $this->dom = new DomDocument();
 
-        // DomDocument object setting to preserve white space
-        $this->dom->preserveWhiteSpace = false;
-
         // DomDocument format output option
         $this->dom->formatOutput = true;
+
+        // DomDocument object setting to preserve white space
+        $this->dom->preserveWhiteSpace = false;
 
         // DomDocument strict error checking setting
         $this->dom->strictErrorChecking = false;
@@ -171,7 +171,7 @@ class Page implements PageDefaultInterface
      *
      * @param string $hook_name
      * @param string|null $options
-     * @return bool
+     * @return bool-
      */
     public function callHook(string $hook_name, string $options = null): bool
     {
@@ -210,25 +210,21 @@ class Page implements PageDefaultInterface
     public function getDynamicElementAncestorProperties(string $dynamic_element_id): array
     {
         // get ancestor ids
-        $ancestor_ids = [];
+        $ancestor_properties = [];
 
         $query = "//ancestor::*[@{$this->element_index_attribute}]";
         $node = $this->getDomElementByPlaceholderId($dynamic_element_id);
 
         foreach ($this->query($query, $node) as $dom_element) {
-            $ancestor_ids[] = $dom_element->getAttribute($this->element_index_attribute);
+            $ancestor_id = $dom_element->getAttribute($this->element_index_attribute);
+            $ancestor_properties[] = [
+                'id' => $ancestor_id,
+                'tag' => $dom_element->nodeName,
+                'properties' => get_object_vars($this->dynamic_elements[$ancestor_id])
+            ];
         }
 
-        // get ancestor vars
-        $ancestor_properties = [];
-        foreach ($ancestor_ids as $ancestor_id) {
-            // TODO: allow for scope variables
-            // e.g. <var scope="widget" name="first_name"/>
-            // <var name="first_name"/>
-            $ancestor_properties += get_object_vars($this->dynamic_elements[$ancestor_id]);
-        }
-
-        return $ancestor_properties;
+        return array_reverse($ancestor_properties);
     }
 
     /**

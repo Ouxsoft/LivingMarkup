@@ -8,9 +8,6 @@
  * file that was distributed with this source code.
  */
 
-/*
- * <var name="username"/>
- */
 namespace Pxp\DynamicElement;
 
 /**
@@ -72,12 +69,15 @@ class Variable extends DynamicElement
     /**
      * Get variable named
      *
-     * @param $name
+     * @param string $name
+     * @param string $tag
      * @return mixed|null
      */
-    private function getVariable($name){
-        if(array_key_exists($name,$this->ancestors)){
-            return $this->ancestors[$name];
+    private function getVariable(string $name, ?string $tag = '*') : ?string {
+        foreach($this->ancestors as $ancestor){
+            if(array_key_exists($name, $ancestor['properties']) && ( ($tag == '*') || ($tag == $ancestor['tag'])) ) {
+                return $ancestor['properties'][$name];
+            }
         }
         return null;
     }
@@ -89,7 +89,9 @@ class Variable extends DynamicElement
     public function onRender(): string
     {
         // get variable
-        $variable = $this->getVariable($this->args['name']);
+        $name = $this->args['name'] ?? '';
+        $tag = $this->args['tag'] ?? '*';
+        $variable = $this->getVariable($name, $tag);
 
         if(is_null($variable)){
             return '<!-- Variable "' . $this->args['name'] . '" Not Found -->';

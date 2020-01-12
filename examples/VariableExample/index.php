@@ -12,6 +12,7 @@ use Pxp\DynamicElement\DynamicElement;
 
 require '../../vendor/autoload.php';
 require 'UserProfile.php';
+require 'GroupProfile.php';
 
 
 ini_set('display_errors', 1);

@@ -26,6 +26,7 @@ require __DIR__ . '/../examples/HelloWorldExample/HelloWorld.php';
 require __DIR__ . '/../examples/BitwiseExample/Bitwise.php';
 require __DIR__ . '/../examples/WebsiteSpoofingExample/MarkupInjection.php';
 require __DIR__ . '/../examples/VariableExample/UserProfile.php';
+require __DIR__ . '/../examples/VariableExample/GroupProfile.php';
 
 define('PXP_DATETIME', '2019-12-03 01:30:00');
 
