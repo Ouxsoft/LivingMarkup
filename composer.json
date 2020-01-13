@@ -20,7 +20,6 @@
 	],
 	"require" : {
 		"php" : ">=7.1",
-		"phpdocumentor/reflection": " ~4.0"
 	},
 	"minimum-stability" : "dev",
 	"support" : {
