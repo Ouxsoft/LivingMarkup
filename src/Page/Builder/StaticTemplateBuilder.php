@@ -14,7 +14,7 @@ namespace Pxp\Page\Builder;
  * Class StaticTemplateBuilder
  * @package Pxp\Page\Builder
  */
-class StaticTemplateBuilder extends Builder
+class StaticTemplateBuilder implements BuilderInterface
 {
     private $page;
 

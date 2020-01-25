@@ -10,7 +10,7 @@
 
 namespace Pxp\Page;
 
-use Pxp\Page\Builder\Builder;
+use Pxp\Page\Builder\BuilderInterface;
 
 /**
  * Class PageDirectorTest
@@ -21,11 +21,11 @@ class PageDirector
     /**
      * Calls Builder using parameters supplied
      *
-     * @param Builder $builder
+     * @param BuilderInterface $builder
      * @param $parameters
      * @return object
      */
-    public function build(Builder &$builder, $parameters): object
+    public function build(BuilderInterface &$builder, $parameters): object
     {
         $builder->createObject($parameters);
 

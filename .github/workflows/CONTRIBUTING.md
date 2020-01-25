@@ -11,6 +11,7 @@
 
 * PXP implements a builder design pattern.
 * PXP use PHPDocs
+* Classes use S.O.L.I.D. Design Principle
 * PSR Standards (TBD)
 
 // TODO: Complete list

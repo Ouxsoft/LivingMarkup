@@ -16,10 +16,9 @@ use Pxp\Page\Page as Page;
  * Class DynamicBuilder
  * @package Pxp\Page\Builder
  */
-class DynamicBuilder extends Builder
+class DynamicBuilder implements BuilderInterface
 {
-    private $page;
-
+    public $page;
     /**
      * Creates Page object using parameters supplied
      *

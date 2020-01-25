@@ -16,7 +16,7 @@ use Pxp\Page\Page as Page;
  * Class StaticBuilder
  * @package Pxp\Page\Builder
  */
-class StaticBuilder extends Builder
+class StaticBuilder implements BuilderInterface
 {
     private $page;
 
