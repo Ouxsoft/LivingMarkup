@@ -13,11 +13,11 @@ declare(strict_types=1);
 namespace Pxp\Tests;
 
 use PHPUnit\Framework\TestCase;
-use Pxp\Page\Builder\DynamicPageBuilder;
+use Pxp\Builder\DynamicPageBuilder;
 use Pxp\Page\Page;
 use Pxp\Director;
 
-final class PageDirectorTest extends TestCase
+final class DirectorTest extends TestCase
 {
     public function testCanBuildPage()
     {
