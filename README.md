@@ -1,6 +1,6 @@
-![alt text](https://github.com/hxtree/PXP/raw/master/docs/logo/179x100.jpg "PXP")
+![alt text](https://github.com/hxtree/PXP/raw/master/docs/logo/392x100.jpg "LivingMarkup")
 
-***PXP is a modular server-side markup scripting language for building dynamic pages.*** It not only works as 
+***LivingMarkup is a modular server-side markup scripting language for building dynamic pages.*** It not only works as 
 a server-side templating engine but empowers front end curators to use modular backend components to produce 
 dynamic page experiences.
 
