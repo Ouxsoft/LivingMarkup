@@ -3,7 +3,7 @@
 This folder contains a collection of examples using PXP.
 
 ## [BitwiseExample](BitwiseExample/)
-This example shows how to DynamicElements pass arguments.
+This example shows how to Components pass arguments.
 
 ## [ConditionExample](ConditionExample/)
 This example shows how condition statements can be made.

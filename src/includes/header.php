@@ -8,28 +8,28 @@
  * file that was distributed with this source code.
  */
 
-use Pxp\DynamicElement\DynamicElement;
+use Pxp\Component\Component;
 
 require '../../vendor/autoload.php';
 
 function call_director($buffer)
 {
-    // instantiate PageDirector
-    $director = new Pxp\Page\PageDirector();
+    // instantiate Director
+    $director = new Pxp\Director();
 
-    // instantiate PageBuilder
-    $page_builder = new Pxp\Page\Builder\DynamicBuilder();
+    // instantiate Builder
+    $builder = new Pxp\Builder\DynamicPageBuilder();
 
     // define build parameters
     $parameters = [
         'markup' => $buffer,
         'handlers' => [
-            '//widget' => 'Pxp\DynamicElement\Widgets\{name}',
-            '//img' => 'Pxp\DynamicElement\Img',
-            '//a' => 'Pxp\DynamicElement\A',
-            '//var' => 'Pxp\DynamicElement\Variable',
-            '//condition' => 'Pxp\DynamicElement\Condition',
-            '//redacted' => 'Pxp\DynamicElement\Redacted'
+            '//widget' => 'Pxp\Component\Widgets\{name}',
+            '//img' => 'Pxp\Component\Img',
+            '//a' => 'Pxp\Component\A',
+            '//var' => 'Pxp\Component\Variable',
+            '//condition' => 'Pxp\Component\Condition',
+            '//redacted' => 'Pxp\Component\Redacted'
         ],
         'hooks' => [
             'beforeLoad' => 'Executed before onLoad',
@@ -41,8 +41,8 @@ function call_director($buffer)
         ]
     ];
 
-    // echo PageDirector build PageBuilder
-    return $director->build($page_builder, $parameters);
+    // echo Director build of Builder
+    return $director->build($builder, $parameters);
 
 }
 

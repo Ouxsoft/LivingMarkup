@@ -8,18 +8,18 @@
  * file that was distributed with this source code.
  */
 
-namespace Pxp\DynamicElement\Partials;
+namespace Pxp\Component\Partials;
 
-use Pxp\DynamicElement\DynamicElement;
+use Pxp\Component\Component;
 
 /**
  * Class Breadcrumb
  *
  * Returns a breadcrumb trail for currebt oage
  *
- * @package Pxp\DynamicElement\Partials
+ * @package Pxp\Component\Partials
  */
-class Breadcrumb extends DynamicElement
+class Breadcrumb extends Component
 {
     public $separator = '/';
 

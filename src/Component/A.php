@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Pxp\DynamicElement;
+namespace Pxp\Component;
 
 /**
  * Class A
@@ -16,7 +16,7 @@ namespace Pxp\DynamicElement;
  * Replaces <a> tag links on website
  *
  */
-class A extends DynamicElement
+class A extends Component
 {
     private $href;
 

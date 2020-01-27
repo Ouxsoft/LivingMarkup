@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Pxp\DynamicElement;
+namespace Pxp\Component;
 
 use DateTime;
 use Exception;
@@ -22,7 +22,7 @@ use Exception;
  * <p>Welcome Member</p>
  * </condition>
  */
-class Condition extends DynamicElement
+class Condition extends Component
 {
 
     private $days_of_week = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];

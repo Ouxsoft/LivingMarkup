@@ -8,13 +8,13 @@
  * file that was distributed with this source code.
  */
 
-namespace Pxp\DynamicElement;
+namespace Pxp\Component;
 
 /**
  * Interface ElementDefaultInterface
- * @package Pxp\DynamicElement
+ * @package Pxp\Component
  */
-interface DynamicElementDefaultInterface
+interface ComponentDefaultInterface
 {
     public function __construct($args);
 
@@ -26,18 +26,18 @@ interface DynamicElementDefaultInterface
 }
 
 /**
- * Class DynamicElement
+ * Class Component
  *
- * An abstract class extended to instantiate DynamicElements. During construction arguments and xml contained within
+ * An abstract class extended to instantiate Components. During construction arguments and xml contained within
  * the Page's DomElement are passed to constructor.
  *
- * @package Pxp\DynamicElement
+ * @package Pxp\Component
  */
-abstract class DynamicElement implements DynamicElementDefaultInterface
+abstract class Component implements ComponentDefaultInterface
 {
 
     // id used to reference object
-    public $dynamic_element_id = 0;
+    public $component_id = 0;
     // id used to load args
     public $id = 0;
     // name of element
@@ -56,7 +56,7 @@ abstract class DynamicElement implements DynamicElementDefaultInterface
     public $xml = '';
 
     /**
-     * DynamicElement constructor
+     * Component constructor
      *
      * @param $args
      */
@@ -65,7 +65,7 @@ abstract class DynamicElement implements DynamicElementDefaultInterface
         // store args passed
         $this->args = $args;
         // assign object id to xml
-        $this->dynamic_element_id = spl_object_hash($this);
+        $this->component_id = spl_object_hash($this);
     }
 
     /**

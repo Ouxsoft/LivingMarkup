@@ -8,17 +8,18 @@
  * file that was distributed with this source code.
  */
 
-namespace Pxp\Page\Builder;
+namespace Pxp\Builder;
 
 use Pxp\Page\Page as Page;
 
 /**
- * Class DynamicBuilder
+ * Class StaticPageBuilder
  * @package Pxp\Page\Builder
  */
-class DynamicBuilder implements BuilderInterface
+class StaticPageBuilder implements BuilderInterface
 {
-    public $page;
+    private $page;
+
     /**
      * Creates Page object using parameters supplied
      *
@@ -27,22 +28,8 @@ class DynamicBuilder implements BuilderInterface
      */
     public function createObject(array $parameters): ?bool
     {
+
         $this->page = new Page($parameters);
-
-        // instantiate dynamic elements
-        if (is_array($parameters['handlers'])) {
-            foreach ($parameters['handlers'] as $xpath_expression => $class_name) {
-                $this->page->instantiateDynamicElements($xpath_expression, $class_name);
-            }
-        }
-
-
-        // call hooks
-        if (is_array($parameters['hooks'])) {
-            foreach ($parameters['hooks'] as $name => $description) {
-                $this->page->callHook($name, $description);
-            }
-        }
 
         return true;
     }

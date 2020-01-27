@@ -8,16 +8,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Pxp\DynamicElement\Widgets;
+namespace Pxp\Component\Widgets;
 
-use Pxp\DynamicElement\DynamicElement;
+use Pxp\Component\Component;
 
 /**
  * Class UserProfile
  *
- * @package Pxp\DynamicElement\Widgets
+ * @package Pxp\Component\Widgets
  */
-class GroupProfile extends DynamicElement
+class GroupProfile extends Component
 {
     public $group = 'Curators';
     public $first_name = 'Website';

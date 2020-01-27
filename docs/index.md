@@ -12,13 +12,13 @@ PXP loads markup to instantiate objects, call their methods, and return an HTML 
 2. The `PageDirector` is passed a `PageBuilder` object and an array of parameters defining the `Page` build, including:
 - A `filename` string containing the URL or filepath to a XML or HTML document that will be inputted into the `PageBuilder`.
 - A `handlers` array. Each `handler` must contain both Xpath expressions, which is used to lookup elements, and class 
-name that is used to determine how that element once found will be instantiated as a DynamicElement.
-- A `hooks` array. Each `hook` is essentially a method that will be made against all DynamicElements.
+name that is used to determine how that element once found will be instantiated as a Component.
+- A `hooks` array. Each `hook` is essentially a method that will be made against all Components.
 3. The `PageBuilder` loads the `filename` as a string and prefixes it with a HTML5 <!doctype> containing HTML5 entities.
 4. That string is then converted into a Document Object Model for manipulation.
 5. The `PageBuilder` using handlers Xpath expressions to find specified elements. 
 6. Each element found is instantiated as a object using the `hooks` defined class and element is temporarily marked with a placeholder attribute.
-7. Defined method calls `hooks` are made against all instantiated `DynamicElement` objects with defined methods.
+7. Defined method calls `hooks` are made against all instantiated `Component` objects with defined methods.
 8. If the hook is marked to render the object is converted to a string and replace the DOM element from which they were
 instantiated from.
 9. A dynamic page is then returned.
@@ -36,23 +36,23 @@ document.
 The PageBuilder receives parameters passed from the PageDirector and uses them to instantiate and return a Page object.
 
 ## `Page`
-The Page loads a DOM object and uses Handlers and Hooks to instantiate DynamicElements and modify the DOM.
+The Page loads a DOM object and uses Handlers and Hooks to instantiate Components and modify the DOM.
 
 ### `Handlers`
-A Handler consists of an XPath expressions and a class name and is used to define the DynamicElement. 
+A Handler consists of an XPath expressions and a class name and is used to define the Component. 
 The XPath expression  ("//block") finds the elements inside the Page DOM. 
-The class name defines the class used to instantiate elements found as DynamicElements.
+The class name defines the class used to instantiate elements found as Components.
 A Handler's class name may feature variables ("/Blocks/{name}") that are resolved using the Page DOM element's 
 attributes (<block name="Message"/>). 
 
 ### `Hooks`
-Hooks are used to orchestrates method calls against all the DynamicElements instantiated.
+Hooks are used to orchestrates method calls against all the Components instantiated.
 
-## `DynamicElements`
-The DynamicElement constructor is passed the DOM element's attributes, arguments, and stored parameters.
-DynamicElements are most often used to replace DOM element with dynamic content.
-DynamicElements should be designed for the content management system user with safe gaurds in place.
-Only Page DOM elements with Handlers are instantiated as DynamicElements; the rest are generally static content.
+## `Components`
+The Component constructor is passed the DOM element's attributes, arguments, and stored parameters.
+Components are most often used to replace DOM element with dynamic content.
+Components should be designed for the content management system user with safe gaurds in place.
+Only Page DOM elements with Handlers are instantiated as Components; the rest are generally static content.
 
 ### `Attributes`
 A Handler can feature a Document's element name attribute to specify the object's class name. 
@@ -63,11 +63,11 @@ Then, the Director iterates through the Hooks making call to Element's with thos
 Afterwards, the processed Document is returned.
 
 #### `Arguments`
-The DynamicElement constructor is passed a Page DOM elment's attributes ("id", "name", etc.) and "arg" tag child elements.
+The Component constructor is passed a Page DOM elment's attributes ("id", "name", etc.) and "arg" tag child elements.
 
-# DynamicElement Variable Scope
+# Component Variable Scope
 TODO: In Progress
-All DynamicElements have access their own private variables. In addition, they can access their ancestors public variables.
+All Components have access their own private variables. In addition, they can access their ancestors public variables.
 Consider the following:
 
 ```HTML
@@ -81,8 +81,8 @@ Consider the following:
  </div>
 ```
 
-* id #1 can access no other DynamicElement public properties. 
-* id #2 can access #1 DynamicElement public properties.
-* id #3 can access #1 and #2 DynamicElement public properties.
-* id #4 can access #1 DynamicElement public properties.
-* id #5 can access #4 and $1 DynamicElement public properties.
+* id #1 can access no other Component public properties. 
+* id #2 can access #1 Component public properties.
+* id #3 can access #1 and #2 Component public properties.
+* id #4 can access #1 Component public properties.
+* id #5 can access #4 and $1 Component public properties.

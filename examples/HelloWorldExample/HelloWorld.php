@@ -8,20 +8,20 @@
  * file that was distributed with this source code.
  */
 
-namespace Pxp\DynamicElement\Widgets;
+namespace Pxp\Component\Widgets;
 
-use Pxp\DynamicElement\DynamicElement;
+use Pxp\Component\Component;
 
 /**
  * Class HelloWorld
  *
- * A simple HelloWorld DynamicElement example
+ * A simple HelloWorld Component example
  *
  * <widget name="HelloWorld"/>
  *
- * @package Pxp\DynamicElement\Widgets
+ * @package Pxp\Component\Widgets
  */
-class HelloWorld extends DynamicElement
+class HelloWorld extends Component
 {
     /**
      * Prints Hello, World

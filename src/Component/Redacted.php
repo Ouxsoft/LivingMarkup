@@ -8,9 +8,9 @@
  * file that was distributed with this source code.
  */
 
-namespace Pxp\DynamicElement;
+namespace Pxp\Component;
 
-class Redacted extends DynamicElement
+class Redacted extends Component
 {
     public $char = '&#9608;';
 

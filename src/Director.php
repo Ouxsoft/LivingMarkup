@@ -8,24 +8,22 @@
  * file that was distributed with this source code.
  */
 
-namespace Pxp\Page;
-
-use Pxp\Page\Builder\BuilderInterface;
+namespace Pxp;
 
 /**
  * Class PageDirectorTest
  * @package Pxp\Page
  */
-class PageDirector
+class Director
 {
     /**
      * Calls Builder using parameters supplied
      *
-     * @param BuilderInterface $builder
+     * @param Builder\BuilderInterface $builder
      * @param $parameters
      * @return object
      */
-    public function build(BuilderInterface &$builder, $parameters): object
+    public function build(Builder\BuilderInterface &$builder, $parameters): object
     {
         $builder->createObject($parameters);
 

@@ -8,14 +8,22 @@
  * file that was distributed with this source code.
  */
 
-namespace Pxp\Page\Builder;
+namespace Pxp\Page;
 
 /**
- * Class Builder
- * @package Pxp\Page\Builder
+ * Class PageDirectorTest
+ * @package Pxp\Page
  */
+class ComponentPool
+{
 
-interface BuilderInterface {
-    public function createObject(array $parameters) : ?bool;
-    public function getObject() : ?object;
+
+/*
+properties
+render
+innerXML
+invokeMethod
+instantiate
+*/
+
 }

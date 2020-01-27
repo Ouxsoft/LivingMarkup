@@ -8,22 +8,14 @@
  * file that was distributed with this source code.
  */
 
-namespace Pxp\Page;
+namespace Pxp\Builder;
 
 /**
- * Class PageDirectorTest
- * @package Pxp\Page
+ * Class Builder
+ * @package Pxp\Page\Builder
  */
-class DynamicElementStorage
-{
 
-
-/*
-properties
-render
-innerXML
-invokeMethod
-instantiate
-*/
-
+interface BuilderInterface {
+    public function createObject(array $parameters) : ?bool;
+    public function getObject() : ?object;
 }

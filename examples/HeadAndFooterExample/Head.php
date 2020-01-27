@@ -8,9 +8,9 @@
  * file that was distributed with this source code.
  */
 
-namespace Pxp\DynamicElement;
+namespace Pxp\Component;
 
-class Head extends DynamicElement
+class Head extends Component
 {
     public function onRender()
     {

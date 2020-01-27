@@ -8,13 +8,13 @@
  * file that was distributed with this source code.
  */
 
-namespace Pxp\DynamicElement;
+namespace Pxp\Component;
 
 /**
  * Class Variable
- * @package Pxp\DynamicElement
+ * @package Pxp\Component
  */
-class Variable extends DynamicElement
+class Variable extends Component
 {
 
     /**

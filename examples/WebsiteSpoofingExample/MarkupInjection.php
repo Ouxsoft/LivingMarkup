@@ -8,11 +8,11 @@
  * file that was distributed with this source code.
  */
 
-namespace Pxp\DynamicElement;
+namespace Pxp\Component;
 
-use Pxp\DynamicElement\DynamicElement;
+use Pxp\Component\Component;
 
-class MarkupInjection extends DynamicElement
+class MarkupInjection extends Component
 {
     public function onRender()
     {

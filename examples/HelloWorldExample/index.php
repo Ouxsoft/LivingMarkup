@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-use Pxp\DynamicElement\DynamicElement;
+use Pxp\Component\Component;
 
 /**
  * This is a "Hello, World" example
@@ -17,22 +17,22 @@ use Pxp\DynamicElement\DynamicElement;
 require '../../vendor/autoload.php';
 require 'HelloWorld.php';
 
-// instantiate PageDirector
-$director = new Pxp\Page\PageDirector();
+// instantiate Director
+$director = new Pxp\Director();
 
-// instantiate PageBuilder
-$page_builder = new Pxp\Page\Builder\DynamicBuilder();
+// instantiate Builder
+$builder = new Pxp\Builder\DynamicPageBuilder();
 
 // define build parameters
 $parameters = [
     'filename' => __DIR__ . DIRECTORY_SEPARATOR . 'input.html',
     'handlers' => [
-        '//widget'         => 'Pxp\DynamicElement\Widgets\{name}',
+        '//widget'         => 'Pxp\Component\Widgets\{name}',
     ],
     'hooks' => [
         'onRender'      => 'RETURN_CALL',
     ]
 ];
 
-// echo PageDirector build PageBuilder
-echo $director->build($page_builder, $parameters);
+// echo Director build PageBuilder
+echo $director->build($builder, $parameters);

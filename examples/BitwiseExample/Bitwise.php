@@ -8,18 +8,18 @@
  * file that was distributed with this source code.
  */
 
-namespace Pxp\DynamicElement;
+namespace Pxp\Component;
 
-use Pxp\DynamicElement\DynamicElement;
+use Pxp\Component\Component;
 
 /**
  * Class Bitwise
  *
  * This is an widget example designed to demonstrate how PHP BitWise operators work
  *
- * @package Pxp\DynamicElement\Widgets
+ * @package Pxp\Component\Widgets
  */
-class Bitwise extends DynamicElement
+class Bitwise extends Component
 {
 
     /**

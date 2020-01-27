@@ -16,11 +16,11 @@ ini_set('display_startup_errors', '1');
 error_reporting(E_ALL);
 
 use PHPUnit\Framework\TestCase;
-use Pxp\Page\Builder\DynamicBuilder;
-use Pxp\Page\Builder\StaticBuilder;
-use Pxp\Page\PageDirector;
+use Pxp\Builder\DynamicPageBuilder;
+use Pxp\Builder\StaticPageBuilder;
+use Pxp\Director;
 
-// require examples DynamicElement
+// require examples Component
 // TODO: automate
 require __DIR__ . '/../examples/HelloWorldExample/HelloWorld.php';
 require __DIR__ . '/../examples/BitwiseExample/Bitwise.php';
@@ -53,14 +53,14 @@ final class ExamplesTest extends TestCase
             $parameters = [
                 'filename' => $example_folder . DIRECTORY_SEPARATOR . 'input.html',
                 'handlers' => [
-                    '//h1' => 'Pxp\DynamicElement\MarkupInjection',
-                    '//widget' => 'Pxp\DynamicElement\Widgets\{name}',
-                    '//bitwise' => 'Pxp\DynamicElement\Bitwise',
-                    '//img' => 'Pxp\DynamicElement\Img',
-                    '//a' => 'Pxp\DynamicElement\A',
-                    '//var' => 'Pxp\DynamicElement\Variable',
-                    '//condition' => 'Pxp\DynamicElement\Condition',
-                    '//redacted' => 'Pxp\DynamicElement\Redacted'
+                    '//h1' => 'Pxp\Component\MarkupInjection',
+                    '//widget' => 'Pxp\Component\Widgets\{name}',
+                    '//bitwise' => 'Pxp\Component\Bitwise',
+                    '//img' => 'Pxp\Component\Img',
+                    '//a' => 'Pxp\Component\A',
+                    '//var' => 'Pxp\Component\Variable',
+                    '//condition' => 'Pxp\Component\Condition',
+                    '//redacted' => 'Pxp\Component\Redacted'
                 ],
                 'hooks' => [
                     'beforeLoad' => 'Executed before onLoad',
@@ -73,13 +73,13 @@ final class ExamplesTest extends TestCase
             ];
 
             // build dynamic page
-            $director = new PageDirector();
-            $dynamic_builder = new DynamicBuilder();
+            $director = new Director();
+            $dynamic_builder = new DynamicPageBuilder();
             $page_results = (string)$director->build($dynamic_builder, $parameters);
 
             // build static page of the prebuild desired output
             $parameters['filename'] = $example_folder . DIRECTORY_SEPARATOR . 'output.html';
-            $static_builder = new StaticBuilder();
+            $static_builder = new StaticPageBuilder();
             $page_check = (string)$director->build($static_builder, $parameters);
 
             // compare the two

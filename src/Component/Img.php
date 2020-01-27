@@ -8,11 +8,11 @@
  * file that was distributed with this source code.
  */
 
-namespace Pxp\DynamicElement;
+namespace Pxp\Component;
 
 use Pxp\Path;
 
-class Img extends DynamicElement
+class Img extends Component
 {
     const IMAGE_DIR = '/assets/images/';
 

@@ -13,9 +13,9 @@ declare(strict_types=1);
 namespace Pxp\Tests;
 
 use PHPUnit\Framework\TestCase;
-use Pxp\Page\Builder\DynamicBuilder;
+use Pxp\Page\Builder\DynamicPageBuilder;
 use Pxp\Page\Page;
-use Pxp\Page\PageDirector;
+use Pxp\Director;
 
 final class PageDirectorTest extends TestCase
 {
@@ -24,11 +24,11 @@ final class PageDirectorTest extends TestCase
         $parameters = [
             'filename' => __DIR__ . DIRECTORY_SEPARATOR . 'pages/index.html',
             'handlers' => [
-                '//img'         => 'Pxp\DynamicElement\Img',
-                '//a'           => 'Pxp\DynamicElement\A',
-                '//var'         => 'Pxp\DynamicElement\Variable',
-                '//condition'   => 'Pxp\DynamicElement\Condition',
-                '//redacted'    => 'Pxp\DynamicElement\Redacted'
+                '//img'         => 'Pxp\Component\Img',
+                '//a'           => 'Pxp\Component\A',
+                '//var'         => 'Pxp\Component\Variable',
+                '//condition'   => 'Pxp\Component\Condition',
+                '//redacted'    => 'Pxp\Component\Redacted'
             ],
             'hooks' => [
                 'beforeLoad'    => 'Executed before onLoad',
@@ -40,8 +40,8 @@ final class PageDirectorTest extends TestCase
             ]
         ];
 
-        $page_builder = new DynamicBuilder();
-        $new_page = (new PageDirector())->build($page_builder, $parameters);
+        $builder = new DynamicPageBuilder();
+        $new_page = (new Director())->build($builder, $parameters);
 
         // TODO: assure this is correct class
         $this->assertInstanceOf(Page::class, $new_page);

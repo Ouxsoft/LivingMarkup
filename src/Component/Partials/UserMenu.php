@@ -8,11 +8,11 @@
  * file that was distributed with this source code.
  */
 
-namespace Pxp\DynamicElement\Partials;
+namespace Pxp\Component\Partials;
 
-use Pxp\DynamicElement\DynamicElement;
+use Pxp\Component\Component;
 
-class UserMenu extends DynamicElement
+class UserMenu extends Component
 {
     public function onRender()
     {

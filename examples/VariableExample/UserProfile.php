@@ -8,16 +8,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Pxp\DynamicElement\Widgets;
+namespace Pxp\Component\Widgets;
 
-use Pxp\DynamicElement\DynamicElement;
+use Pxp\Component\Component;
 
 /**
  * Class UserProfile
  *
- * @package Pxp\DynamicElement\Widgets
+ * @package Pxp\Component\Widgets
  */
-class UserProfile extends DynamicElement
+class UserProfile extends Component
 {
     public $username = 'jane_doe';
     public $first_name = 'Jane';

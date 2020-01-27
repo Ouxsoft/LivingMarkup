@@ -14,22 +14,22 @@
 
 require '../../vendor/autoload.php';
 
-// instantiate PageDirector
-$director = new Pxp\Page\PageDirector();
+// instantiate Director
+$director = new Pxp\Director();
 
-// instantiate PageBuilder
-$page_builder = new Pxp\Page\Builder\DynamicBuilder();
+// instantiate Builder
+$builder = new Pxp\Builder\DynamicPageBuilder();
 
 // define build parameters
 $parameters = [
     'filename' => __DIR__ . DIRECTORY_SEPARATOR . 'input.html',
     'handlers' => [
-        '//img'         => 'Pxp\DynamicElement\Img',
-        '//a'           => 'Pxp\DynamicElement\A',
-        '//widget'      => 'Pxp\DynamicElement\Widgets\{name}',
-        '//var'         => 'Pxp\DynamicElement\Variable',
-        '//condition'   => 'Pxp\DynamicElement\Condition',
-        '//redacted'    => 'Pxp\DynamicElement\Redacted'
+        '//img'         => 'Pxp\Component\Img',
+        '//a'           => 'Pxp\Component\A',
+        '//widget'      => 'Pxp\Component\Widgets\{name}',
+        '//var'         => 'Pxp\Component\Variable',
+        '//condition'   => 'Pxp\Component\Condition',
+        '//redacted'    => 'Pxp\Component\Redacted'
     ],
     'hooks' => [
         'beforeLoad'    => 'Executed before onLoad',
@@ -41,5 +41,5 @@ $parameters = [
     ]
 ];
 
-// echo PageDirector build PageBuilder
-echo $director->build($page_builder, $parameters);
+// echo Director build PageBuilder
+echo $director->build($builder, $parameters);
