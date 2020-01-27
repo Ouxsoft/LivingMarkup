@@ -1,6 +1,6 @@
 <?php
 /**
- * This file is part of the PXP package.
+ * This file is part of the LivingMarkup package.
  *
  * (c) Matthew Heroux <matthewheroux@gmail.com>
  *
@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-use Pxp\Component\Component;
+use LivingMarkup\Component\Component;
 
 require '../../vendor/autoload.php';
 require 'UserProfile.php';
@@ -21,17 +21,17 @@ error_reporting(E_ALL);
 
 
 // instantiate Director
-$director = new Pxp\Director();
+$director = new LivingMarkup\Director();
 
 // instantiate Builder
-$builder = new Pxp\Builder\DynamicPageBuilder();
+$builder = new LivingMarkup\Builder\DynamicPageBuilder();
 
 // define build parameters
 $parameters = [
     'filename' => __DIR__ . DIRECTORY_SEPARATOR . 'input.html',
     'handlers' => [
-        '//var' => 'Pxp\Component\Variable',
-        '//widget' => 'Pxp\Component\Widgets\{name}',
+        '//var' => 'LivingMarkup\Component\Variable',
+        '//widget' => 'LivingMarkup\Component\Widgets\{name}',
     ],
     'hooks' => [
         'onRender' => 'RETURN_CALL',

@@ -1,6 +1,6 @@
 <?php
 /**
- * This file is part of the PXP package.
+ * This file is part of the LivingMarkup package.
  *
  * (c) Matthew Heroux <matthewheroux@gmail.com>
  *
@@ -10,12 +10,12 @@
 
 declare(strict_types=1);
 
-namespace Pxp\Tests;
+namespace LivingMarkup\Tests;
 
 use PHPUnit\Framework\TestCase;
-use Pxp\Builder\DynamicPageBuilder;
-use Pxp\Page\Page;
-use Pxp\Director;
+use LivingMarkup\Builder\DynamicPageBuilder;
+use LivingMarkup\Page\Page;
+use LivingMarkup\Director;
 
 final class DirectorTest extends TestCase
 {
@@ -24,11 +24,11 @@ final class DirectorTest extends TestCase
         $parameters = [
             'filename' => __DIR__ . DIRECTORY_SEPARATOR . 'pages/index.html',
             'handlers' => [
-                '//img'         => 'Pxp\Component\Img',
-                '//a'           => 'Pxp\Component\A',
-                '//var'         => 'Pxp\Component\Variable',
-                '//condition'   => 'Pxp\Component\Condition',
-                '//redacted'    => 'Pxp\Component\Redacted'
+                '//img'         => 'LivingMarkup\Component\Img',
+                '//a'           => 'LivingMarkup\Component\A',
+                '//var'         => 'LivingMarkup\Component\Variable',
+                '//condition'   => 'LivingMarkup\Component\Condition',
+                '//redacted'    => 'LivingMarkup\Component\Redacted'
             ],
             'hooks' => [
                 'beforeLoad'    => 'Executed before onLoad',

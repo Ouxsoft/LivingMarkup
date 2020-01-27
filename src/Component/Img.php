@@ -1,6 +1,6 @@
 <?php
 /**
- * This file is part of the PXP package.
+ * This file is part of the LivingMarkup package.
  *
  * (c) Matthew Heroux <matthewheroux@gmail.com>
  *
@@ -8,9 +8,9 @@
  * file that was distributed with this source code.
  */
 
-namespace Pxp\Component;
+namespace LivingMarkup\Component;
 
-use Pxp\Path;
+use LivingMarkup\Path;
 
 class Img extends Component
 {
@@ -81,7 +81,7 @@ class Img extends Component
     {
         return <<<HTML
 		<form method="post">
-			<input type="image" name="focal_point" src="/assets/images/pxp/logo/original.jpg"/>
+			<input type="image" name="focal_point" src="/assets/images/livingMarkup/logo/original.jpg"/>
 		</form>
 HTML;
     }

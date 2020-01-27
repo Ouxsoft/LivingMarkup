@@ -1,6 +1,6 @@
 <?php
 /**
- * This file is part of the PXP package.
+ * This file is part of the LivingMarkup package.
  *
  * (c) Matthew Heroux <matthewheroux@gmail.com>
  *
@@ -16,16 +16,16 @@ require '../../vendor/autoload.php';
 require 'Bitwise.php';
 
 // instantiate Director
-$director = new Pxp\Director();
+$director = new LivingMarkup\Director();
 
 // instantiate PageBuilder
-$builder = new Pxp\Builder\DynamicPageBuilder();
+$builder = new LivingMarkup\Builder\DynamicPageBuilder();
 
 // define build parameters
 $parameters = [
     'filename' => __DIR__ . DIRECTORY_SEPARATOR . 'input.html',
     'handlers' => [
-        '//bitwise'         => 'Pxp\Component\Bitwise',
+        '//bitwise'         => 'LivingMarkup\Component\Bitwise',
     ],
     'hooks' => [
         'onRender'      => 'RETURN_CALL',

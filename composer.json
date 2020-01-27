@@ -1,8 +1,8 @@
 {
-	"name" : "hxtree/pxp",
-	"description" : "PXP turns markup into code",
+	"name" : "hxtree/livingMarkup",
+	"description" : "LivingMarkup turns markup into code",
 	"keywords" : [
-		"pxp",
+		"livingMarkup",
 		"xml",
 		"php",
 		"preprocessor",
@@ -23,14 +23,14 @@
 	},
 	"minimum-stability" : "dev",
 	"support" : {
-		"issues" : "https://github.com/hxtree/pxp/issues"
+		"issues" : "https://github.com/hxtree/livingMarkup/issues"
 	},
 	"autoload" : {
 		"psr-4" : {
-			"Pxp\\" : "src/"
+			"LivingMarkup\\" : "src/"
 		}
 	},
-	"homepage" : "https://github.com/hxtree/Pxp",
+	"homepage" : "https://github.com/hxtree/LivingMarkup",
 	"require-dev": {
 		"phpunit/phpunit": "^8",
 		"friendsofphp/php-cs-fixer": "^2.17@dev"

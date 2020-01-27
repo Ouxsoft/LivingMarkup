@@ -1,11 +1,11 @@
-# Welcome to PXP documentation
+# Welcome to LivingMarkup documentation
 
-![alt text](https://github.com/hxtree/PXP/raw/master/docs/logo/179x100.jpg "PXP")
+![alt text](https://github.com/hxtree/LivingMarkup/raw/master/docs/logo/179x100.jpg "LivingMarkup")
 
-PXP enables developers to use markup to build dynamic web pages.
+LivingMarkup enables developers to use markup to build dynamic web pages.
 
 # How it Works
-PXP loads markup to instantiate objects, call their methods, and return an HTML document. 
+LivingMarkup loads markup to instantiate objects, call their methods, and return an HTML document. 
 
 ## Overview
 1. A `PageDirector` and `PageBuilder` objects are instantiated. 
@@ -24,7 +24,7 @@ instantiated from.
 9. A dynamic page is then returned.
 
 # Examples
-See how PXP can be used through our [Examples](https://github.com/hxtree/PXP/blob/master/examples/README.md).
+See how LivingMarkup can be used through our [Examples](https://github.com/hxtree/LivingMarkup/blob/master/examples/README.md).
 
 # `PageDirector`
 The PageDirector is passed a PageBuilder and parameters (containing a HTML/XML document and a list of elements to make
@@ -57,7 +57,7 @@ Only Page DOM elements with Handlers are instantiated as Components; the rest ar
 ### `Attributes`
 A Handler can feature a Document's element name attribute to specify the object's class name. 
 An Element's id attribute may be numerical to load Arguments.
-The PXP director is passed a loaded Document, a list Handlers, and Hooks. 
+The LivingMarkup director is passed a loaded Document, a list Handlers, and Hooks. 
 It finds and instantiate Elements using Handlers. 
 Then, the Director iterates through the Hooks making call to Element's with those methods. 
 Afterwards, the processed Document is returned.

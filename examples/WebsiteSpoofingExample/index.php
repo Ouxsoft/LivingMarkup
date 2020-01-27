@@ -1,6 +1,6 @@
 <?php
 /**
- * This file is part of the PXP package.
+ * This file is part of the LivingMarkup package.
  *
  * (c) Matthew Heroux <matthewheroux@gmail.com>
  *
@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-use Pxp\Component\Component;
+use LivingMarkup\Component\Component;
 
 /**
  * This example demonstrates how easy is it is to spoof an existing web page using PHP.
@@ -18,10 +18,10 @@ require '../../vendor/autoload.php';
 require 'MarkupInjection.php';
 
 // instantiate Director
-$director = new Pxp\Director();
+$director = new LivingMarkup\Director();
 
 // instantiate Builder
-$builder = new Pxp\Builder\DynamicPageBuilder();
+$builder = new LivingMarkup\Builder\DynamicPageBuilder();
 
 // define build parameters
 $parameters = [
@@ -29,7 +29,7 @@ $parameters = [
     'filename' => __DIR__ . DIRECTORY_SEPARATOR . 'input.html',
 
     'handlers' => [
-        '//h1'           => 'Pxp\Component\MarkupInjection',
+        '//h1'           => 'LivingMarkup\Component\MarkupInjection',
     ],
     'hooks' => [
         'onRender'      => 'RETURN_CALL',

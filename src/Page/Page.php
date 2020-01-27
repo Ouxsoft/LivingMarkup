@@ -1,6 +1,6 @@
 <?php
 /**
- * This file is part of the PXP package.
+ * This file is part of the LivingMarkup package.
  *
  * (c) Matthew Heroux <matthewheroux@gmail.com>
  *
@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Pxp\Page;
+namespace LivingMarkup\Page;
 
 use DomDocument;
 use DOMElement;
@@ -18,7 +18,7 @@ use SplObjectStorage;
 
 /**
  * Interface PageDefaultInterface
- * @package Pxp\Page
+ * @package LivingMarkup\Page
  */
 interface PageDefaultInterface
 {
@@ -40,7 +40,7 @@ interface PageDefaultInterface
  *
  * Features a DOM loaded from a HTML/XML document that is modified during runtime
  *
- * @package Pxp\Page
+ * @package LivingMarkup\Page
  */
 class Page implements PageDefaultInterface
 {
@@ -76,7 +76,7 @@ class Page implements PageDefaultInterface
     ];
 
     // Component placeholder ID attribute
-    private $element_index_attribute = '_pxp_ref';
+    private $element_index_attribute = '_livingMarkup_ref';
 
     // DomDocument LibXML debug
     private $libxml_debug = false;

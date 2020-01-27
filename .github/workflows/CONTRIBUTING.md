@@ -1,4 +1,4 @@
-# Contributing to PXP
+# Contributing to LivingMarkup
 
 ## Workflow
 
@@ -9,25 +9,25 @@
 
 ## Coding Guidelines
 
-* PXP implements a builder design pattern.
-* PXP use PHPDocs
+* LivingMarkup implements a builder design pattern.
+* LivingMarkup use PHPDocs
 * Classes use S.O.L.I.D. Design Principle
 * PSR Standards (TBD)
 
 // TODO: Complete list
 
-## Using PXP from a Git checkout
+## Using LivingMarkup from a Git checkout
 
-The following commands can be used to perform the initial checkout of PXP:
+The following commands can be used to perform the initial checkout of LivingMarkup:
 
 ```bash
-$ git clone git://github.com/hxtree/pxp.git
+$ git clone git://github.com/hxtree/livingMarkup.git
 
-$ cd pxp
+$ cd livingMarkup
 ```
 
 ## Reporting issues
 
 Please report issue and open new tickets:
 
-* [Report Issues](https://github.com/hxtree/pxp/issues)
+* [Report Issues](https://github.com/hxtree/livingMarkup/issues)

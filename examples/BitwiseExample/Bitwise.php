@@ -1,6 +1,6 @@
 <?php
 /**
- * This file is part of the PXP package.
+ * This file is part of the LivingMarkup package.
  *
  * (c) Matthew Heroux <matthewheroux@gmail.com>
  *
@@ -8,16 +8,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Pxp\Component;
+namespace LivingMarkup\Component;
 
-use Pxp\Component\Component;
+use LivingMarkup\Component\Component;
 
 /**
  * Class Bitwise
  *
  * This is an widget example designed to demonstrate how PHP BitWise operators work
  *
- * @package Pxp\Component\Widgets
+ * @package LivingMarkup\Component\Widgets
  */
 class Bitwise extends Component
 {

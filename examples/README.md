@@ -1,6 +1,6 @@
-# PXP code examples
+# LivingMarkup code examples
 
-This folder contains a collection of examples using PXP.
+This folder contains a collection of examples using LivingMarkup.
 
 ## [BitwiseExample](BitwiseExample/)
 This example shows how to Components pass arguments.

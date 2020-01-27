@@ -1,6 +1,6 @@
 <?php
 /**
- * This file is part of the PXP package.
+ * This file is part of the LivingMarkup package.
  *
  * (c) Matthew Heroux <matthewheroux@gmail.com>
  *
@@ -8,28 +8,28 @@
  * file that was distributed with this source code.
  */
 
-use Pxp\Component\Component;
+use LivingMarkup\Component\Component;
 
 require '../../vendor/autoload.php';
 
 function call_director($buffer)
 {
     // instantiate Director
-    $director = new Pxp\Director();
+    $director = new LivingMarkup\Director();
 
     // instantiate Builder
-    $builder = new Pxp\Builder\DynamicPageBuilder();
+    $builder = new LivingMarkup\Builder\DynamicPageBuilder();
 
     // define build parameters
     $parameters = [
         'markup' => $buffer,
         'handlers' => [
-            '//widget' => 'Pxp\Component\Widgets\{name}',
-            '//img' => 'Pxp\Component\Img',
-            '//a' => 'Pxp\Component\A',
-            '//var' => 'Pxp\Component\Variable',
-            '//condition' => 'Pxp\Component\Condition',
-            '//redacted' => 'Pxp\Component\Redacted'
+            '//widget' => 'LivingMarkup\Component\Widgets\{name}',
+            '//img' => 'LivingMarkup\Component\Img',
+            '//a' => 'LivingMarkup\Component\A',
+            '//var' => 'LivingMarkup\Component\Variable',
+            '//condition' => 'LivingMarkup\Component\Condition',
+            '//redacted' => 'LivingMarkup\Component\Redacted'
         ],
         'hooks' => [
             'beforeLoad' => 'Executed before onLoad',

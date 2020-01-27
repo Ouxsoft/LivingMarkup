@@ -1,6 +1,6 @@
 <?php
 /**
- * This file is part of the PXP package.
+ * This file is part of the LivingMarkup package.
  *
  * (c) Matthew Heroux <matthewheroux@gmail.com>
  *
@@ -8,9 +8,9 @@
  * file that was distributed with this source code.
  */
 
-namespace Pxp\Component\Widgets;
+namespace LivingMarkup\Component\Widgets;
 
-use Pxp\Component\Component;
+use LivingMarkup\Component\Component;
 
 /**
  * Class News
@@ -21,7 +21,7 @@ use Pxp\Component\Component;
  * <arg name="heading_level">3</arg>
  * </widget>
  *
- * @package Pxp\Component\Widgets
+ * @package LivingMarkup\Component\Widgets
  */
 class News extends Component
 {

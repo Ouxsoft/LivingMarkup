@@ -1,6 +1,6 @@
 <?php
 /**
- * This file is part of the PXP package.
+ * This file is part of the LivingMarkup package.
  *
  * (c) Matthew Heroux <matthewheroux@gmail.com>
  *
@@ -9,7 +9,7 @@
  */
 
 /**
- * This example shows how conditional statements can be made using PXP
+ * This example shows how conditional statements can be made using LivingMarkup
  */
 
 
@@ -21,20 +21,20 @@ error_reporting(E_ALL);
 require '../../vendor/autoload.php';
 
 // instantiate Director
-$director = new Pxp\Director();
+$director = new LivingMarkup\Director();
 
 // instantiate PageBuilder
-$builder = new Pxp\Builder\DynamicPageBuilder();
+$builder = new LivingMarkup\Builder\DynamicPageBuilder();
 
 // define a datetime to allow consistent display results
 // comment out to default to NOW
-define('PXP_DATETIME', '2019-12-03 01:30:00');
+define('LivingMarkup_DATETIME', '2019-12-03 01:30:00');
 
 // define build parameters
 $parameters = [
     'filename' => __DIR__ . DIRECTORY_SEPARATOR . 'input.html',
     'handlers' => [
-        '//condition'   => 'Pxp\Component\Condition',
+        '//condition'   => 'LivingMarkup\Component\Condition',
     ],
     'hooks' => [
         'onRender'      => 'RETURN_CALL',

@@ -1,6 +1,6 @@
 <?php
 /**
- * This file is part of the PXP package.
+ * This file is part of the LivingMarkup package.
  *
  * (c) Matthew Heroux <matthewheroux@gmail.com>
  *
@@ -8,11 +8,11 @@
  * file that was distributed with this source code.
  */
 
-namespace Pxp\Builder;
+namespace LivingMarkup\Builder;
 
 /**
  * Class Builder
- * @package Pxp\Page\Builder
+ * @package LivingMarkup\Page\Builder
  */
 
 interface BuilderInterface {

@@ -1,6 +1,6 @@
 <?php
 /**
- * This file is part of the PXP package.
+ * This file is part of the LivingMarkup package.
  *
  * (c) Matthew Heroux <matthewheroux@gmail.com>
  *
@@ -8,11 +8,11 @@
  * file that was distributed with this source code.
  */
 
-namespace Pxp\Component;
+namespace LivingMarkup\Component;
 
 /**
  * Interface ElementDefaultInterface
- * @package Pxp\Component
+ * @package LivingMarkup\Component
  */
 interface ComponentDefaultInterface
 {
@@ -31,7 +31,7 @@ interface ComponentDefaultInterface
  * An abstract class extended to instantiate Components. During construction arguments and xml contained within
  * the Page's DomElement are passed to constructor.
  *
- * @package Pxp\Component
+ * @package LivingMarkup\Component
  */
 abstract class Component implements ComponentDefaultInterface
 {

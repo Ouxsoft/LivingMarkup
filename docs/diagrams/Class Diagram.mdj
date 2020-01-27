@@ -3587,7 +3587,7 @@
 								"$ref": "AAAAAAFF+qBtyKM79qY="
 							},
 							"model": {
-								"$ref": "AAAAAAFv3gCD79pXpIc="
+								"$ref": "AAAAAAFv3gCD79livingMarkupIc="
 							},
 							"subViews": [
 								{
@@ -3597,7 +3597,7 @@
 										"$ref": "AAAAAAFv3gCD79pZqtM="
 									},
 									"model": {
-										"$ref": "AAAAAAFv3gCD79pXpIc="
+										"$ref": "AAAAAAFv3gCD79livingMarkupIc="
 									},
 									"visible": false,
 									"font": "Arial;13;0",
@@ -3618,7 +3618,7 @@
 										"$ref": "AAAAAAFv3gCD79pZqtM="
 									},
 									"model": {
-										"$ref": "AAAAAAFv3gCD79pXpIc="
+										"$ref": "AAAAAAFv3gCD79livingMarkupIc="
 									},
 									"visible": null,
 									"font": "Arial;13;0",
@@ -3639,7 +3639,7 @@
 										"$ref": "AAAAAAFv3gCD79pZqtM="
 									},
 									"model": {
-										"$ref": "AAAAAAFv3gCD79pXpIc="
+										"$ref": "AAAAAAFv3gCD79livingMarkupIc="
 									},
 									"visible": false,
 									"font": "Arial;13;0",
@@ -5410,7 +5410,7 @@
 					"ownedElements": [
 						{
 							"_type": "UMLDependency",
-							"_id": "AAAAAAFv3gCD79pXpIc=",
+							"_id": "AAAAAAFv3gCD79livingMarkupIc=",
 							"_parent": {
 								"$ref": "AAAAAAFvpNincd/n0Xg="
 							},

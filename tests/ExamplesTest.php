@@ -1,6 +1,6 @@
 <?php
 /**
- * This file is part of the PXP package.
+ * This file is part of the LivingMarkup package.
  *
  * (c) Matthew Heroux <matthewheroux@gmail.com>
  *
@@ -9,16 +9,16 @@
  */
 declare(strict_types=1);
 
-namespace Pxp\Tests;
+namespace LivingMarkup\Tests;
 
 ini_set('display_errors', '1');
 ini_set('display_startup_errors', '1');
 error_reporting(E_ALL);
 
 use PHPUnit\Framework\TestCase;
-use Pxp\Builder\DynamicPageBuilder;
-use Pxp\Builder\StaticPageBuilder;
-use Pxp\Director;
+use LivingMarkup\Builder\DynamicPageBuilder;
+use LivingMarkup\Builder\StaticPageBuilder;
+use LivingMarkup\Director;
 
 // require examples Component
 // TODO: automate
@@ -28,7 +28,7 @@ require __DIR__ . '/../examples/WebsiteSpoofingExample/MarkupInjection.php';
 require __DIR__ . '/../examples/VariableExample/UserProfile.php';
 require __DIR__ . '/../examples/VariableExample/GroupProfile.php';
 
-define('PXP_DATETIME', '2019-12-03 01:30:00');
+define('LivingMarkup_DATETIME', '2019-12-03 01:30:00');
 
 final class ExamplesTest extends TestCase
 {
@@ -53,14 +53,14 @@ final class ExamplesTest extends TestCase
             $parameters = [
                 'filename' => $example_folder . DIRECTORY_SEPARATOR . 'input.html',
                 'handlers' => [
-                    '//h1' => 'Pxp\Component\MarkupInjection',
-                    '//widget' => 'Pxp\Component\Widgets\{name}',
-                    '//bitwise' => 'Pxp\Component\Bitwise',
-                    '//img' => 'Pxp\Component\Img',
-                    '//a' => 'Pxp\Component\A',
-                    '//var' => 'Pxp\Component\Variable',
-                    '//condition' => 'Pxp\Component\Condition',
-                    '//redacted' => 'Pxp\Component\Redacted'
+                    '//h1' => 'LivingMarkup\Component\MarkupInjection',
+                    '//widget' => 'LivingMarkup\Component\Widgets\{name}',
+                    '//bitwise' => 'LivingMarkup\Component\Bitwise',
+                    '//img' => 'LivingMarkup\Component\Img',
+                    '//a' => 'LivingMarkup\Component\A',
+                    '//var' => 'LivingMarkup\Component\Variable',
+                    '//condition' => 'LivingMarkup\Component\Condition',
+                    '//redacted' => 'LivingMarkup\Component\Redacted'
                 ],
                 'hooks' => [
                     'beforeLoad' => 'Executed before onLoad',

@@ -1,6 +1,6 @@
 <?php
 /**
- * This file is part of the PXP package.
+ * This file is part of the LivingMarkup package.
  *
  * (c) Matthew Heroux <matthewheroux@gmail.com>
  *
@@ -8,9 +8,9 @@
  * file that was distributed with this source code.
  */
 
-namespace Pxp\Component;
+namespace LivingMarkup\Component;
 
-use Pxp\Component\Component;
+use LivingMarkup\Component\Component;
 
 class MarkupInjection extends Component
 {

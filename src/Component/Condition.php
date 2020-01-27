@@ -1,6 +1,6 @@
 <?php
 /**
- * This file is part of the PXP package.
+ * This file is part of the LivingMarkup package.
  *
  * (c) Matthew Heroux <matthewheroux@gmail.com>
  *
@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Pxp\Component;
+namespace LivingMarkup\Component;
 
 use DateTime;
 use Exception;
@@ -33,7 +33,7 @@ class Condition extends Component
      * @return string
      */
     public function now() : string {
-        return defined('PXP_DATETIME') ? PXP_DATETIME : 'NOW';
+        return defined('LivingMarkup_DATETIME') ? LivingMarkup_DATETIME : 'NOW';
     }
 
     /**
