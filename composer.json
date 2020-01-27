@@ -1,6 +1,6 @@
 {
-	"name" : "hxtree/livingMarkup",
-	"description" : "LivingMarkup turns markup into code",
+	"name" : "hxtree/livingmarkup",
+	"description" : "LivingMarkup is a LHTML parser used for rapidly building dynamic pages.",
 	"keywords" : [
 		"livingMarkup",
 		"xml",
@@ -8,6 +8,8 @@
 		"preprocessor",
 		"template",
 		"engine",
+		"lhtml",
+		"html",
 		"markup"
 	],
 	"type" : "library",
@@ -23,7 +25,7 @@
 	},
 	"minimum-stability" : "dev",
 	"support" : {
-		"issues" : "https://github.com/hxtree/livingMarkup/issues"
+		"issues" : "https://github.com/hxtree/LivingMarkup/issues"
 	},
 	"autoload" : {
 		"psr-4" : {
