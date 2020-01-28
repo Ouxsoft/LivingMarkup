@@ -12,10 +12,6 @@ declare(strict_types=1);
 
 namespace LivingMarkup\Tests;
 
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
 use PHPUnit\Framework\TestCase;
 use LivingMarkup\Builder\DynamicPageBuilder;
 use LivingMarkup\Page\Page;
@@ -25,6 +21,7 @@ final class DirectorTest extends TestCase
 {
     public function testCanBuildPage()
     {
+
         $parameters = [
             'filename' => __DIR__ . DIRECTORY_SEPARATOR . 'pages/index.html',
             'handlers' => [
