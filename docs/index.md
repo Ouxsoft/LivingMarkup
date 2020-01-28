@@ -1,22 +1,25 @@
 # Welcome to LivingMarkup documentation
 
-![alt text](https://github.com/hxtree/LivingMarkup/raw/master/docs/logo/179x100.jpg "LivingMarkup")
+![alt text](https://github.com/hxtree/LivingMarkup/raw/master/docs/logo/392x100.jpg "LivingMarkup")
 
-LivingMarkup enables developers to use markup to build dynamic web pages.
+***LivingMarkup is an PHP implementation of a Living Hypertext Markup Language (LHTML) parser.*** 
+It instantiates DomElements as customizable backend components and orchestrates methods calls to build dynamic HTML.
 
 # How it Works
 LivingMarkup loads markup to instantiate objects, call their methods, and return an HTML document. 
 
+![alt text](https://github.com/hxtree/LivingMarkup/raw/master/docs/diagrams/Class%20Diagram.png "Class Diagram")
+
 ## Overview
-1. A `PageDirector` and `PageBuilder` objects are instantiated. 
-2. The `PageDirector` is passed a `PageBuilder` object and an array of parameters defining the `Page` build, including:
-- A `filename` string containing the URL or filepath to a XML or HTML document that will be inputted into the `PageBuilder`.
+1. A `Director` object and a `Builder` object are instantiated. 
+2. The `Director` is passed a `Builder` object and an array of parameters defining the `Page` build, including:
+- A `filename` string containing the URL or filepath to a XML or HTML document that will be inputted into the `Builder`.
 - A `handlers` array. Each `handler` must contain both Xpath expressions, which is used to lookup elements, and class 
 name that is used to determine how that element once found will be instantiated as a Component.
 - A `hooks` array. Each `hook` is essentially a method that will be made against all Components.
-3. The `PageBuilder` loads the `filename` as a string and prefixes it with a HTML5 <!doctype> containing HTML5 entities.
+3. The `Builder` loads the `filename` as a string and prefixes it with a HTML5 <!doctype> containing HTML5 entities.
 4. That string is then converted into a Document Object Model for manipulation.
-5. The `PageBuilder` using handlers Xpath expressions to find specified elements. 
+5. The `Builder` using handlers Xpath expressions to find specified elements. 
 6. Each element found is instantiated as a object using the `hooks` defined class and element is temporarily marked with a placeholder attribute.
 7. Defined method calls `hooks` are made against all instantiated `Component` objects with defined methods.
 8. If the hook is marked to render the object is converted to a string and replace the DOM element from which they were
@@ -26,14 +29,14 @@ instantiated from.
 # Examples
 See how LivingMarkup can be used through our [Examples](https://github.com/hxtree/LivingMarkup/blob/master/examples/README.md).
 
-# `PageDirector`
-The PageDirector is passed a PageBuilder and parameters (containing a HTML/XML document and a list of elements to make
+# `Director`
+The Director is passed a Builder and parameters (containing a HTML/XML document and a list of elements to make
 dynamic), it then instantiates those elements as objects using their attributes and arguments, orchestrates method calls 
 to those objects (hooks), replaces the element with returned value from a method call, and returns provides the parsed
 document.
 
-## `PageBuilder`
-The PageBuilder receives parameters passed from the PageDirector and uses them to instantiate and return a Page object.
+## `Builder`
+The Builder receives parameters passed from the Director and uses them to instantiate and return a Page object.
 
 ## `Page`
 The Page loads a DOM object and uses Handlers and Hooks to instantiate Components and modify the DOM.
@@ -63,7 +66,7 @@ Then, the Director iterates through the Hooks making call to Element's with thos
 Afterwards, the processed Document is returned.
 
 #### `Arguments`
-The Component constructor is passed a Page DOM elment's attributes ("id", "name", etc.) and "arg" tag child elements.
+The Component constructor is passed a Page DOM element's attributes ("id", "name", etc.) and "arg" tag child elements.
 
 # Component Variable Scope
 TODO: In Progress
