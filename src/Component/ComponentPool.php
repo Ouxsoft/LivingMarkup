@@ -17,6 +17,12 @@ namespace LivingMarkup\Page;
 class ComponentPool
 {
 
+    private $workers;
+
+    function get(?string $placeholder_id = NULL){
+
+    }
+}
 
 /*
 properties
@@ -25,5 +31,3 @@ innerXML
 invokeMethod
 instantiate
 */
-
-}

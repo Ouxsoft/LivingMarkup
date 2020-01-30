@@ -304,12 +304,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfPHP/PHP-CS-Fixer.git",
-                "reference": "3de25bd513eabd40c6bb4889c4470fb004f5c93f"
+                "reference": "124bdff824fb8bdad35474782b87b9c5660fde03"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfPHP/PHP-CS-Fixer/zipball/3de25bd513eabd40c6bb4889c4470fb004f5c93f",
-                "reference": "3de25bd513eabd40c6bb4889c4470fb004f5c93f",
+                "url": "https://api.github.com/repos/FriendsOfPHP/PHP-CS-Fixer/zipball/124bdff824fb8bdad35474782b87b9c5660fde03",
+                "reference": "124bdff824fb8bdad35474782b87b9c5660fde03",
                 "shasum": ""
             },
             "require": {
@@ -391,7 +391,7 @@
                 }
             ],
             "description": "A tool to automatically fix PHP code style",
-            "time": "2020-01-23T12:20:16+00:00"
+            "time": "2020-01-29T19:38:18+00:00"
         },
         {
             "name": "myclabs/deep-copy",
@@ -1952,12 +1952,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
-                "reference": "caa18f35097816140a87d9d031e7782eb5de9579"
+                "reference": "b341b0d05cbb1e085125705a8cf59d874625d537"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/console/zipball/caa18f35097816140a87d9d031e7782eb5de9579",
-                "reference": "caa18f35097816140a87d9d031e7782eb5de9579",
+                "url": "https://api.github.com/repos/symfony/console/zipball/b341b0d05cbb1e085125705a8cf59d874625d537",
+                "reference": "b341b0d05cbb1e085125705a8cf59d874625d537",
                 "shasum": ""
             },
             "require": {
@@ -1968,6 +1968,7 @@
             },
             "conflict": {
                 "symfony/dependency-injection": "<4.4",
+                "symfony/dotenv": "<5.1",
                 "symfony/event-dispatcher": "<4.4",
                 "symfony/lock": "<4.4",
                 "symfony/process": "<4.4"
@@ -2020,7 +2021,7 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "https://symfony.com",
-            "time": "2020-01-27T10:27:10+00:00"
+            "time": "2020-01-30T12:04:33+00:00"
         },
         {
             "name": "symfony/event-dispatcher",

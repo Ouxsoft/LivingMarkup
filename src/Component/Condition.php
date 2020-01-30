@@ -33,7 +33,7 @@ class Condition extends Component
      * @return string
      */
     public function now() : string {
-        return defined('LivingMarkup_DATETIME') ? LivingMarkup_DATETIME : 'NOW';
+        return defined('LHTML_DATETIME') ? LHTML_DATETIME : 'NOW';
     }
 
     /**

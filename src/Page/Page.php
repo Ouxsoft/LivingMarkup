@@ -420,12 +420,12 @@ class Page implements PageDefaultInterface
      */
     private function getDomElementArgs(DOMElement &$element): array
     {
-        $args = [];
+        $args = new \LivingMarkup\PrunedList;
 
         // get attributes
         if ($element->hasAttributes()) {
             foreach ($element->attributes as $name => $attribute) {
-                $this->addToMinifiedList($args, $name, $attribute->value);
+                $args->add($name, $attribute->value);
             }
         }
 
@@ -441,7 +441,7 @@ class Page implements PageDefaultInterface
             $name = $arg_element->getAttribute('name');
             $value = $arg_element->nodeValue;
 
-            $this->addToMinifiedList($args, $name, $value);
+            $args->add($name, $value);
 
             // remove element
             $arg_element->parentNode->removeChild($arg_element);
@@ -456,41 +456,11 @@ class Page implements PageDefaultInterface
                 $args_loaded = call_user_func($this->arg_load_function, $element_id);
 
                 // merge args
-                $args = array_merge($args_loaded, $args);
+                $args->merge($args_loaded);
             }
         }
 
-        return $args;
-    }
-
-    /**
-     * Add to minified list where array count of 1 are turned to string
-     *
-     * @param array $list
-     * @param string $name
-     * @param string $value
-     */
-    public function addToMinifiedList(array &$list, string $name, string $value): void
-    {
-
-        if (!isset($list[$name])) {
-            // set value
-            $list[$name] = $value;
-        } else if ($list[$name] == $value) {
-            // if item value exists as string skip
-        } else if (is_string($list[$name])) {
-            // change string value to array
-            $present_value = $list[$name];
-            $list[$name] = [];
-            array_push($list[$name], $present_value);
-            array_push($list[$name], $value);
-        } else if (in_array($value, $list[$name])) {
-            // if item already exists return
-            return;
-        } else if (is_array($list[$name])) {
-            // add to array
-            array_push($list[$name], $value);
-        }
+        return $args->get();
     }
 
     /**
