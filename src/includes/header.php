@@ -43,7 +43,6 @@ function call_director($buffer)
 
     // echo Director build of Builder
     return $director->build($builder, $parameters);
-
 }
 
 ob_start('call_director');

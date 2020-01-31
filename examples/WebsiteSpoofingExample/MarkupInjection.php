@@ -16,7 +16,7 @@ class MarkupInjection extends Component
 {
     public function onRender()
     {
-        if($this->xml=='Example Domain'){
+        if ($this->xml=='Example Domain') {
             return '<h1 style="color:#F00">Spoofed :-)</h1>';
         }
 

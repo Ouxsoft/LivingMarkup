@@ -15,7 +15,8 @@ namespace LivingMarkup\Builder;
  * @package LivingMarkup\Page\Builder
  */
 
-interface BuilderInterface {
+interface BuilderInterface
+{
     public function createObject(array $parameters) : ?bool;
     public function getObject() : ?object;
 }

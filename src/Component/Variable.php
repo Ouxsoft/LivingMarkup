@@ -73,9 +73,10 @@ class Variable extends Component
      * @param string $tag
      * @return mixed|null
      */
-    private function getVariable(string $name, ?string $tag = '*') : ?string {
-        foreach($this->ancestors as $ancestor){
-            if(array_key_exists($name, $ancestor['properties']) && ( ($tag == '*') || ($tag == $ancestor['tag'])) ) {
+    private function getVariable(string $name, ?string $tag = '*') : ?string
+    {
+        foreach ($this->ancestors as $ancestor) {
+            if (array_key_exists($name, $ancestor['properties']) && (($tag == '*') || ($tag == $ancestor['tag']))) {
                 return $ancestor['properties'][$name];
             }
         }
@@ -93,7 +94,7 @@ class Variable extends Component
         $tag = $this->args['tag'] ?? '*';
         $variable = $this->getVariable($name, $tag);
 
-        if(is_null($variable)){
+        if (is_null($variable)) {
             return '<!-- Variable "' . $this->args['name'] . '" Not Found -->';
         }
 

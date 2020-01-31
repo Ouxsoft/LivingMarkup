@@ -12,7 +12,6 @@ namespace LivingMarkup\Component;
 
 class Footer extends Component
 {
-
     public function onRender()
     {
         $year = date('Y');

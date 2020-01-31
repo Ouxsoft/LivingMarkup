@@ -38,13 +38,13 @@
 		"friendsofphp/php-cs-fixer": "^2.17@dev"
 	},
 	"scripts": {
+		"build": [
+			"php-cs-fixer fix --rules=@PSR2 --using-cache=no tests/",
+			"php-cs-fixer fix --rules=@PSR2 --using-cache=no src/",
+			"php-cs-fixer fix --rules=@PSR2 --using-cache=no examples/"
+		],
 		"test": [
 			"phpunit --bootstrap vendor/autoload.php tests/."
-		],
-		"repair": [
-			"php-cs-fixer fix tests/.",
-			"php-cs-fixer fix src/.",
-			"php-cs-fixer fix examples/."
 		]
 	}
 }

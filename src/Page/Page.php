@@ -32,7 +32,7 @@ interface PageDefaultInterface
 
     public function replaceDomElement(DOMElement &$element, string $new_xml): void;
 
-    public function query(string $query, DOMElement $node = NULL);
+    public function query(string $query, DOMElement $node = null);
 }
 
 /**
@@ -116,7 +116,6 @@ class Page implements PageDefaultInterface
 
         // load DOM from filename
         $this->loadDom($parameters);
-
     }
 
     /**
@@ -143,9 +142,9 @@ class Page implements PageDefaultInterface
     public function loadDom(array $parameters): void
     {
         // get source file as string
-        if(isset($parameters['filename'])){
+        if (isset($parameters['filename'])) {
             $source = file_get_contents($parameters['filename']);
-        } else if (isset($parameters['markup'])) {
+        } elseif (isset($parameters['markup'])) {
             $source = $parameters['markup'];
         } else {
             return;
@@ -181,9 +180,7 @@ class Page implements PageDefaultInterface
         }
 
         if ($options == 'RETURN_CALL') {
-
             foreach ($this->components as $component) {
-
                 $this->renderComponent($component->component_id);
             }
 
@@ -195,7 +192,6 @@ class Page implements PageDefaultInterface
 
             // invoke Component method with options, if exists
             $element_object($hook_name);
-
         }
 
         return true;
@@ -251,7 +247,7 @@ class Page implements PageDefaultInterface
      * @param DOMElement $node
      * @return mixed
      */
-    public function query(string $query, DOMElement $node = NULL)
+    public function query(string $query, DOMElement $node = null)
     {
         return $this->xpath->query($query, $node);
     }
@@ -298,11 +294,11 @@ class Page implements PageDefaultInterface
      */
     public function getComponentById(string $component_id)
     {
-        if(array_key_exists($component_id, $this->components)){
+        if (array_key_exists($component_id, $this->components)) {
             return $this->components[$component_id];
         }
 
-        return NULL;
+        return null;
     }
 
     /**
@@ -313,7 +309,6 @@ class Page implements PageDefaultInterface
      */
     public function getComponentInnerXML(string $component_id): string
     {
-
         $xml = '';
 
         $dom_element = $this->getDomElementByPlaceholderId($component_id);
@@ -357,7 +352,6 @@ class Page implements PageDefaultInterface
 
             // if class does not exist replace element with informative comment
             $this->instantiateComponent($element, $class_name);
-
         }
 
         return true;

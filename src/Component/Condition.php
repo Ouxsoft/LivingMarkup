@@ -24,7 +24,6 @@ use Exception;
  */
 class Condition extends Component
 {
-
     private $days_of_week = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
     /**
@@ -32,7 +31,8 @@ class Condition extends Component
      *
      * @return string
      */
-    public function now() : string {
+    public function now() : string
+    {
         return defined('LHTML_DATETIME') ? LHTML_DATETIME : 'NOW';
     }
 
@@ -89,7 +89,7 @@ class Condition extends Component
         // <arg name="child.limit" operator="CONTAINS">5</arg>
 
         // all conditions pass return xml children
-        if($pass){
+        if ($pass) {
             return $this->xml;
         }
 
@@ -275,12 +275,11 @@ class Condition extends Component
                     return true;
                 }
             }
-        // check for one day of week if provided
-        } else if (is_string($day_of_week) && ($now_day_of_week == date('l', strtotime($day_of_week)))) {
+            // check for one day of week if provided
+        } elseif (is_string($day_of_week) && ($now_day_of_week == date('l', strtotime($day_of_week)))) {
             return true;
         }
 
         return false;
     }
-
 }

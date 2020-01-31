@@ -16,11 +16,10 @@ namespace LivingMarkup\Page;
  */
 class ComponentPool
 {
-
     private $workers;
 
-    function get(?string $placeholder_id = NULL){
-
+    public function get(?string $placeholder_id = null)
+    {
     }
 }
 

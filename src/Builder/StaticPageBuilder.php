@@ -28,7 +28,6 @@ class StaticPageBuilder implements BuilderInterface
      */
     public function createObject(array $parameters): ?bool
     {
-
         $this->page = new Page($parameters);
 
         return true;

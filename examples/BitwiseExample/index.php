@@ -12,7 +12,7 @@
  * This example demonstrates Components passing arguments
  */
 
-require '../../vendor/autoload.php';
+require_once '../../vendor/autoload.php';
 require 'Bitwise.php';
 
 // instantiate Director
