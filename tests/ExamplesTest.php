@@ -45,7 +45,6 @@ final class ExamplesTest extends TestCase
 
         // go through each folder
         foreach ($example_folders as $example_folder) {
-
             if ($this->isExcluded($example_folder)) {
                 continue;
             }
@@ -96,7 +95,7 @@ final class ExamplesTest extends TestCase
         }
     }
 
-    function endsWith($haystack, $needle)
+    public function endsWith($haystack, $needle)
     {
         $length = strlen($needle);
         if ($length == 0) {

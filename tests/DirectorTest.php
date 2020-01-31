@@ -21,7 +21,6 @@ final class DirectorTest extends TestCase
 {
     public function testCanBuildPage()
     {
-
         $parameters = [
             'filename' => __DIR__ . DIRECTORY_SEPARATOR . 'pages/index.html',
             'handlers' => [
