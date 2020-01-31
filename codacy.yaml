@@ -1,6 +1,3 @@
-engines:
-  coverage:
-    enabled: true
 exclude_paths:
   - 'examples/**/*'
   - 'tests/**'
