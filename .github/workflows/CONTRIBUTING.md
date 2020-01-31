@@ -10,11 +10,10 @@
 ## Coding Guidelines
 
 *  LivingMarkup implements a builder design pattern.
-*  LivingMarkup use PHPDocs
+*  LivingMarkup use PHPDocs blocks
 *  Classes use S.O.L.I.D. Design Principle
-*  PSR Standards (TBD)
-*  Codacy https://app.codacy.com/manual/hxtree/LivingMarkup
-// TODO: Complete list
+*  Run `composer build` and ensure PSR Standards are adhered to
+*  Ensure the commit is an improvement on [Codacy](https://app.codacy.com/manual/hxtree/LivingMarkup)
 
 ## Using LivingMarkup from a Git checkout
 
