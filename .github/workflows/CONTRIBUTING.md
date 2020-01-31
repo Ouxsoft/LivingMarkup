@@ -13,7 +13,7 @@
 *  LivingMarkup use PHPDocs
 *  Classes use S.O.L.I.D. Design Principle
 *  PSR Standards (TBD)
-
+*  Codacy https://app.codacy.com/manual/hxtree/LivingMarkup
 // TODO: Complete list
 
 ## Using LivingMarkup from a Git checkout
