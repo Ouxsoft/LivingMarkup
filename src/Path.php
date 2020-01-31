@@ -41,13 +41,12 @@ class Path
                 if (preg_match('/([0-9]+x[0-9]+)/', $value)) {
                     $value = explode('x', $value);
                 }
-                // set parameter
-                $parameters[$key] = $value;
-            } else {
-                $parameter_key = $value;
             }
+            // set parameter
+            $parameters[$key] = $value;
         }
-        $parameters['name'] = $value;
+
+        $parameters['name'] = end($parts);
 
         return $parameters;
     }
