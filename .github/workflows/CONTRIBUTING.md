@@ -2,17 +2,17 @@
 
 ## Workflow
 
-* Fork the project.
-* Make your code edit.
-* Update or add test for to avoid change breaking in future releases.
-* Send a pull request.
+*  Fork the project.
+*  Make your code edit.
+*  Update or add test for to avoid change breaking in future releases.
+*  Send a pull request.
 
 ## Coding Guidelines
 
-* LivingMarkup implements a builder design pattern.
-* LivingMarkup use PHPDocs
-* Classes use S.O.L.I.D. Design Principle
-* PSR Standards (TBD)
+*  LivingMarkup implements a builder design pattern.
+*  LivingMarkup use PHPDocs
+*  Classes use S.O.L.I.D. Design Principle
+*  PSR Standards (TBD)
 
 // TODO: Complete list
 
@@ -21,13 +21,13 @@
 The following commands can be used to perform the initial checkout of LivingMarkup:
 
 ```bash
-$ git clone git://github.com/hxtree/livingMarkup.git
+git clone git://github.com/hxtree/livingMarkup.git
 
-$ cd livingMarkup
+cd livingMarkup
 ```
 
 ## Reporting issues
 
 Please report issue and open new tickets:
 
-* [Report Issues](https://github.com/hxtree/livingMarkup/issues)
+*  [Report Issues](https://github.com/hxtree/livingMarkup/issues)
