@@ -4,4 +4,4 @@ exclude_paths:
   - 'vendor/**'
   - 'build/**'
   - 'docs/**'
-  - '*.md'
+  - '**/*.md'
