@@ -3,14 +3,15 @@
 ***LivingMarkup is an PHP implementation of a Living Hypertext Markup Language 5 (LHTML5) parser.*** 
 It instantiates DomElements as customizable backend components and orchestrates methods calls to build dynamic HTML.
 
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/bfc76aaebde44a7fa239963e54883755)](https://app.codacy.com/manual/hxtree/LivingMarkup?utm_source=github.com&utm_medium=referral&utm_content=hxtree/LivingMarkup&utm_campaign=Badge_Grade_Dashboard)
 [![Latest Stable Version](https://img.shields.io/packagist/v/hxtree/livingmarkup.svg?style=flat-square)](https://packagist.org/packages/hxtree/livingmarkup)
-[![Minimum PHP Version](https://img.shields.io/badge/php-%3E%3D%207.2-8892BF.svg?style=flat-square)](https://php.net/)
+![Packagist](https://img.shields.io/packagist/dt/hxtree/livingmarkup)
 [![CI Status](https://github.com/hxtree/livingMarkup/workflows/CI/badge.svg)](https://github.com/hxtree/livingMarkup/actions)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/bfc76aaebde44a7fa239963e54883755)](https://app.codacy.com/manual/hxtree/LivingMarkup?utm_source=github.com&utm_medium=referral&utm_content=hxtree/LivingMarkup&utm_campaign=Badge_Grade_Dashboard)
 [![Documentation Status](https://readthedocs.org/projects/livingmarkup/badge/?version=latest)](https://livingmarkup.readthedocs.io/en/latest/?badge=latest)
 ![GitHub issues](https://img.shields.io/github/issues/hxtree/livingMarkup)
 ![GitHub](https://img.shields.io/github/license/hxtree/livingMarkup)
 [![Help Wanted!](https://img.shields.io/badge/help-wanted-brightgreen.svg?style=flat "Please Help Us")](https://github.com/hxtree/LivingMarkup/blob/master/.github/workflows/CONTRIBUTING.md)
+[![Minimum PHP Version](https://img.shields.io/badge/php-%3E%3D%207.2-8892BF.svg?style=flat-square)](https://php.net/)
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://paypal.me/hxtree)
 
 LHTML5

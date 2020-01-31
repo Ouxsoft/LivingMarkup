@@ -12,8 +12,9 @@
  * This example demonstrates Components passing arguments
  */
 
-require_once '../../vendor/autoload.php';
-require 'Bitwise.php';
+namespace LivingMarkup\Examples;
+
+use LivingMarkup\Examples\Bitwise;
 
 // instantiate Director
 $director = new LivingMarkup\Director();
