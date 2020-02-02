@@ -3,6 +3,7 @@
 ***LivingMarkup is an PHP implementation of a Living Hypertext Markup Language 5 (LHTML5) parser.*** 
 It instantiates DomElements as customizable backend components and orchestrates methods calls to build dynamic HTML.
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/bfc76aaebde44a7fa239963e54883755)](https://app.codacy.com/manual/hxtree/LivingMarkup?utm_source=github.com&utm_medium=referral&utm_content=hxtree/LivingMarkup&utm_campaign=Badge_Grade_Dashboard)
 [![Latest Stable Version](https://img.shields.io/packagist/v/hxtree/livingmarkup.svg?style=flat-square)](https://packagist.org/packages/hxtree/livingmarkup)
 ![Packagist](https://img.shields.io/packagist/dt/hxtree/livingmarkup)
 [![CI Status](https://github.com/hxtree/livingMarkup/workflows/CI/badge.svg)](https://github.com/hxtree/livingMarkup/actions)
