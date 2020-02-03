@@ -10,8 +10,6 @@
 
 namespace LivingMarkup\Component;
 
-use LivingMarkup\Component\Component;
-
 /**
  * Class Bitwise
  *

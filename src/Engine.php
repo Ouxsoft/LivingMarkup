@@ -8,41 +8,21 @@
  * file that was distributed with this source code.
  */
 
-namespace LivingMarkup\Page;
+namespace LivingMarkup;
 
 use DomDocument;
 use DOMElement;
 use DOMXPath;
-use phpDocumentor\Reflection\Types\Mixed_;
-use SplObjectStorage;
+use Masterminds\HTML5;
 
 /**
- * Interface PageDefaultInterface
- * @package LivingMarkup\Page
- */
-interface PageDefaultInterface
-{
-    public function loadDom(array $parameters): void;
-
-    public function __toString(): string;
-
-    public function callHook(string $hook_name, string $options = null): bool;
-
-    public function instantiateComponents(string $xpath_expression, string $class_name): bool;
-
-    public function replaceDomElement(DOMElement &$element, string $new_xml): void;
-
-    public function query(string $query, DOMElement $node = null);
-}
-
-/**
- * Class Page
+ * Class Engine
  *
  * Features a DOM loaded from a HTML/XML document that is modified during runtime
  *
- * @package LivingMarkup\Page
+ * @package LivingMarkup\Engine
  */
-class Page implements PageDefaultInterface
+class Engine
 {
 
     // Document Object Model (DOM)
@@ -89,9 +69,7 @@ class Page implements PageDefaultInterface
     public function __construct(array $parameters)
     {
         // suppress xml parse errors unless debugging
-        if (!$this->libxml_debug) {
-            libxml_use_internal_errors(true);
-        }
+        libxml_use_internal_errors(true);
 
         // create a document object model
         $this->dom = new DomDocument();
@@ -464,6 +442,16 @@ class Page implements PageDefaultInterface
      */
     public function __toString(): string
     {
-        return $this->dom->saveHTML();
+
+        // TODO: consider whether to keep HTML5 mastermind
+        $source = $this->dom->saveHTML();
+
+        $html5 = new HTML5([
+            'disable_html_ns' => true
+        ]);
+        $dom = $html5->loadHTML($source);
+
+        return $html5->saveHTML($dom);
+
     }
 }

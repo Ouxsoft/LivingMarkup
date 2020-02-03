@@ -49,7 +49,7 @@
 											"visible": false,
 											"font": "Arial;13;0",
 											"left": -208,
-											"top": -1344,
+											"top": -1376,
 											"height": 13
 										},
 										{
@@ -60,7 +60,7 @@
 											},
 											"font": "Arial;13;1",
 											"left": 29,
-											"top": 38,
+											"top": 22,
 											"width": 1263,
 											"height": 13,
 											"text": "LivingMarkup"
@@ -74,7 +74,7 @@
 											"visible": false,
 											"font": "Arial;13;0",
 											"left": -208,
-											"top": -1344,
+											"top": -1376,
 											"width": 73.67724609375,
 											"height": 13,
 											"text": "(from Model)"
@@ -88,14 +88,14 @@
 											"visible": false,
 											"font": "Arial;13;0",
 											"left": -208,
-											"top": -1344,
+											"top": -1376,
 											"height": 13,
 											"horizontalAlignment": 1
 										}
 									],
 									"font": "Arial;13;0",
 									"left": 24,
-									"top": 31,
+									"top": 15,
 									"width": 1273,
 									"height": 25,
 									"stereotypeLabel": {
@@ -123,7 +123,6 @@
 							"font": "Arial;13;0",
 							"containerChangeable": true,
 							"left": 24,
-							"top": 16,
 							"width": 1273,
 							"height": 849,
 							"nameCompartment": {
@@ -2287,7 +2286,7 @@
 											"top": 159,
 											"width": 243.1279296875,
 											"height": 13,
-											"text": "Page"
+											"text": "LHTML5"
 										},
 										{
 											"_type": "LabelView",
@@ -4778,7 +4777,7 @@
 											"visible": false,
 											"font": "Arial;13;0",
 											"left": -252,
-											"top": 370,
+											"top": 338,
 											"height": 13
 										},
 										{
@@ -4789,7 +4788,7 @@
 											},
 											"font": "Arial;13;1",
 											"left": 485,
-											"top": 687,
+											"top": 671,
 											"width": 150.6689453125,
 											"height": 13,
 											"text": "*"
@@ -4803,7 +4802,7 @@
 											"visible": false,
 											"font": "Arial;13;0",
 											"left": -252,
-											"top": 370,
+											"top": 338,
 											"width": 115.58447265625,
 											"height": 13,
 											"text": "(from LivingMarkup)"
@@ -4817,14 +4816,14 @@
 											"visible": false,
 											"font": "Arial;13;0",
 											"left": -252,
-											"top": 370,
+											"top": 338,
 											"height": 13,
 											"horizontalAlignment": 1
 										}
 									],
 									"font": "Arial;13;0",
 									"left": 480,
-									"top": 680,
+									"top": 664,
 									"width": 160.6689453125,
 									"height": 25,
 									"stereotypeLabel": {
@@ -4851,7 +4850,7 @@
 									},
 									"font": "Arial;13;0",
 									"left": 480,
-									"top": 705,
+									"top": 689,
 									"width": 160.6689453125,
 									"height": 10
 								},
@@ -4876,7 +4875,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 485,
-											"top": 720,
+											"top": 704,
 											"width": 150.6689453125,
 											"height": 13,
 											"text": "+onRender(): string",
@@ -4885,7 +4884,7 @@
 									],
 									"font": "Arial;13;0",
 									"left": 480,
-									"top": 715,
+									"top": 699,
 									"width": 160.6689453125,
 									"height": 23
 								},
@@ -4901,7 +4900,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"left": -126,
-									"top": 229,
+									"top": 213,
 									"width": 10,
 									"height": 10
 								},
@@ -4917,7 +4916,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"left": 460.4599609375,
-									"top": 858,
+									"top": 842,
 									"width": 77.208984375,
 									"height": 10
 								}
@@ -4928,7 +4927,7 @@
 							"font": "Arial;13;0",
 							"containerChangeable": true,
 							"left": 480,
-							"top": 680,
+							"top": 664,
 							"width": 160.6689453125,
 							"height": 76,
 							"nameCompartment": {
@@ -4976,7 +4975,7 @@
 											"visible": false,
 											"font": "Arial;13;0",
 											"left": 96,
-											"top": -120,
+											"top": -152,
 											"height": 13
 										},
 										{
@@ -4987,7 +4986,7 @@
 											},
 											"font": "Arial;13;1",
 											"left": 1141,
-											"top": 679,
+											"top": 663,
 											"width": 80.57080078125,
 											"height": 13,
 											"text": "PrunedList"
@@ -5001,7 +5000,7 @@
 											"visible": false,
 											"font": "Arial;13;0",
 											"left": 96,
-											"top": -120,
+											"top": -152,
 											"width": 115.58447265625,
 											"height": 13,
 											"text": "(from LivingMarkup)"
@@ -5015,14 +5014,14 @@
 											"visible": false,
 											"font": "Arial;13;0",
 											"left": 96,
-											"top": -120,
+											"top": -152,
 											"height": 13,
 											"horizontalAlignment": 1
 										}
 									],
 									"font": "Arial;13;0",
 									"left": 1136,
-									"top": 672,
+									"top": 656,
 									"width": 90.57080078125,
 									"height": 25,
 									"stereotypeLabel": {
@@ -5059,7 +5058,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 1141,
-											"top": 702,
+											"top": 686,
 											"width": 80.57080078125,
 											"height": 13,
 											"text": "-list: array",
@@ -5068,7 +5067,7 @@
 									],
 									"font": "Arial;13;0",
 									"left": 1136,
-									"top": 697,
+									"top": 681,
 									"width": 90.57080078125,
 									"height": 23
 								},
@@ -5093,7 +5092,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 1141,
-											"top": 725,
+											"top": 709,
 											"width": 80.57080078125,
 											"height": 13,
 											"text": "+get()",
@@ -5110,7 +5109,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 1141,
-											"top": 740,
+											"top": 724,
 											"width": 80.57080078125,
 											"height": 13,
 											"text": "+add()",
@@ -5127,7 +5126,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 1141,
-											"top": 755,
+											"top": 739,
 											"width": 80.57080078125,
 											"height": 13,
 											"text": "+merge()",
@@ -5136,7 +5135,7 @@
 									],
 									"font": "Arial;13;0",
 									"left": 1136,
-									"top": 720,
+									"top": 704,
 									"width": 90.57080078125,
 									"height": 53
 								},
@@ -5152,7 +5151,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"left": 64,
-									"top": -80,
+									"top": -96,
 									"width": 10,
 									"height": 10
 								},
@@ -5168,7 +5167,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"left": 64,
-									"top": -80,
+									"top": -96,
 									"width": 10,
 									"height": 10
 								}
@@ -5179,7 +5178,7 @@
 							"font": "Arial;13;0",
 							"containerChangeable": true,
 							"left": 1136,
-							"top": 672,
+							"top": 656,
 							"width": 90.57080078125,
 							"height": 101,
 							"nameCompartment": {
@@ -5197,6 +5196,58 @@
 							"templateParameterCompartment": {
 								"$ref": "AAAAAAFv9ribGAqn5Qg="
 							}
+						},
+						{
+							"_type": "UMLNoteView",
+							"_id": "AAAAAAFwCD5XSrk4oUI=",
+							"_parent": {
+								"$ref": "AAAAAAFF+qBtyKM79qY="
+							},
+							"font": "Arial;13;0",
+							"left": 776,
+							"top": 104,
+							"width": 329,
+							"height": 25,
+							"text": "LHTML5 responsibilty is Document Object Model"
+						},
+						{
+							"_type": "UMLNoteView",
+							"_id": "AAAAAAFwCEWKXbrMOmg=",
+							"_parent": {
+								"$ref": "AAAAAAFF+qBtyKM79qY="
+							},
+							"font": "Arial;13;0",
+							"left": 120,
+							"top": 32,
+							"width": 249,
+							"height": 38,
+							"text": "Directors responsibilty is to call a builder"
+						},
+						{
+							"_type": "UMLNoteView",
+							"_id": "AAAAAAFwCEZtcb1g9tk=",
+							"_parent": {
+								"$ref": "AAAAAAFF+qBtyKM79qY="
+							},
+							"font": "Arial;13;0",
+							"left": 1160,
+							"top": 168,
+							"width": 113.22802734375,
+							"height": 77,
+							"text": "ComponentPool responsibility is to manage components"
+						},
+						{
+							"_type": "UMLNoteView",
+							"_id": "AAAAAAFwCEboGL5QJDU=",
+							"_parent": {
+								"$ref": "AAAAAAFF+qBtyKM79qY="
+							},
+							"font": "Arial;13;0",
+							"left": 112,
+							"top": 408,
+							"width": 217,
+							"height": 38,
+							"text": "Builders resonsibility is to build an object."
 						}
 					]
 				},
@@ -5881,7 +5932,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
 					},
-					"name": "Page",
+					"name": "LHTML5",
 					"ownedElements": [
 						{
 							"_type": "UMLAssociation",

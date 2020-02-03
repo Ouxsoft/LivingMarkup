@@ -10,7 +10,7 @@
 
 namespace LivingMarkup\Builder;
 
-use LivingMarkup\Page\Page as Page;
+use LivingMarkup\Engine as Engine;
 
 /**
  * Class DynamicPageBuilder
@@ -18,7 +18,8 @@ use LivingMarkup\Page\Page as Page;
  */
 class DynamicPageBuilder implements BuilderInterface
 {
-    public $page;
+    public $engine;
+
     /**
      * Creates Page object using parameters supplied
      *
@@ -27,12 +28,12 @@ class DynamicPageBuilder implements BuilderInterface
      */
     public function createObject(array $parameters): ?bool
     {
-        $this->page = new Page($parameters);
+        $this->engine = new Engine($parameters);
 
         // instantiate dynamic elements
         if (is_array($parameters['handlers'])) {
             foreach ($parameters['handlers'] as $xpath_expression => $class_name) {
-                $this->page->instantiateComponents($xpath_expression, $class_name);
+                $this->engine->instantiateComponents($xpath_expression, $class_name);
             }
         }
 
@@ -40,7 +41,7 @@ class DynamicPageBuilder implements BuilderInterface
         // call hooks
         if (is_array($parameters['hooks'])) {
             foreach ($parameters['hooks'] as $name => $description) {
-                $this->page->callHook($name, $description);
+                $this->engine->callHook($name, $description);
             }
         }
 
@@ -54,6 +55,6 @@ class DynamicPageBuilder implements BuilderInterface
      */
     public function getObject(): ?object
     {
-        return $this->page;
+        return $this->engine;
     }
 }

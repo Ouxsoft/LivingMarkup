@@ -12,9 +12,13 @@
  * This example demonstrates Components passing arguments
  */
 
-namespace LivingMarkup\Examples;
 
-use LivingMarkup\Examples\Bitwise;
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+require '../../vendor/autoload.php';
+require 'Bitwise.php';
 
 // instantiate Director
 $director = new LivingMarkup\Director();

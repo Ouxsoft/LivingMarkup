@@ -14,7 +14,7 @@ namespace LivingMarkup\Tests;
 
 use PHPUnit\Framework\TestCase;
 use LivingMarkup\Builder\DynamicPageBuilder;
-use LivingMarkup\Page\Page;
+use LivingMarkup\Engine;
 use LivingMarkup\Director;
 
 final class DirectorTest extends TestCase
@@ -44,6 +44,6 @@ final class DirectorTest extends TestCase
         $new_page = (new Director())->build($builder, $parameters);
 
         // TODO: assure this is correct class
-        $this->assertInstanceOf(Page::class, $new_page);
+        $this->assertInstanceOf(Engine::class, $new_page);
     }
 }

@@ -10,7 +10,7 @@
 
 namespace LivingMarkup\Builder;
 
-use LivingMarkup\Page\Page as Page;
+use LivingMarkup\Engine as Engine;
 
 /**
  * Class StaticPageBuilder
@@ -18,7 +18,7 @@ use LivingMarkup\Page\Page as Page;
  */
 class StaticPageBuilder implements BuilderInterface
 {
-    private $page;
+    private $engine;
 
     /**
      * Creates Page object using parameters supplied
@@ -28,7 +28,7 @@ class StaticPageBuilder implements BuilderInterface
      */
     public function createObject(array $parameters): ?bool
     {
-        $this->page = new Page($parameters);
+        $this->engine = new Engine($parameters);
 
         return true;
     }
@@ -40,6 +40,6 @@ class StaticPageBuilder implements BuilderInterface
      */
     public function getObject(): ?object
     {
-        return $this->page;
+        return $this->engine;
     }
 }
