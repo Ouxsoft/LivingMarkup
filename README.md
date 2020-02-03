@@ -16,6 +16,7 @@ It instantiates DomElements as customizable backend components and orchestrates 
 
 LHTML5
 ```
+<?php require $_SERVER['DOCUMENT_ROOT'] . '/src/Autoloader.php'; ?>
 <body>
     <partial name="userprofile">
         <p><var name="username"/></p>
@@ -24,11 +25,14 @@ LHTML5
 ```
 HTML5
 ```
-<body>
-    <div class="user-profile">
-        <p>Jane Doe</p>
-    </div>
-</body>
+<!DOCTYPE html>
+<html>
+    <body>
+        <div class="user-profile">
+            <p>Jane Doe</p>
+        </div>
+    </body>
+</html>
 ```
 
 # Installation
