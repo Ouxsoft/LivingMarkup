@@ -1,4 +1,4 @@
-<?php require $_SERVER['DOCUMENT_ROOT'] . '/src/includes/header.php'; ?>
+<?php require $_SERVER['DOCUMENT_ROOT'] . '/src/Autoloader.php'; ?>
 
 <html>
     <header></header>
