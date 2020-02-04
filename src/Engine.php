@@ -13,7 +13,6 @@ namespace LivingMarkup;
 use DomDocument;
 use DOMElement;
 use DOMXPath;
-use Masterminds\HTML5;
 
 /**
  * Class Engine
@@ -44,15 +43,6 @@ class Engine
     public $includes = [
         'js' => [],
         'css' => []
-    ];
-
-    // entities are required to avoid server side DOM parse errors
-    public $entities = [
-        'nbsp' => '&#160;',
-        'copy' => '&#169;',
-        'reg' => '&#174;',
-        'trade' => '&#8482;',
-        'mdash' => '&#8212;'
     ];
 
     // Component placeholder ID attribute
@@ -103,11 +93,9 @@ class Engine
      */
     public function setDoctype(): void
     {
-        $entity = '';
-        foreach ($this->entities as $key => $value) {
-            $entity .= '<!ENTITY ' . $key . ' "' . $value . '">' . PHP_EOL;
-        }
 
+        $entities = new Entities;
+        $entity = $entities->get();
         $this->doctype = '<!DOCTYPE html [' . $entity . ']> ';
     }
 
@@ -442,16 +430,6 @@ class Engine
      */
     public function __toString(): string
     {
-
-        // TODO: consider whether to keep HTML5 mastermind
-        $source = $this->dom->saveHTML();
-
-        $html5 = new HTML5([
-            'disable_html_ns' => true
-        ]);
-        $dom = $html5->loadHTML($source);
-
-        return $html5->saveHTML($dom);
-
+        return $this->dom->saveHTML();
     }
 }

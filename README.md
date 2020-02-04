@@ -15,7 +15,7 @@ It instantiates DomElements as customizable backend components and orchestrates 
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://paypal.me/hxtree)
 
 LHTML5
-```
+```PHP
 <?php require $_SERVER['DOCUMENT_ROOT'] . '/src/Autoloader.php'; ?>
 <body>
     <partial name="userprofile">
