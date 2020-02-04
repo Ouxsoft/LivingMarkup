@@ -14,1743 +14,1739 @@ class Entities
     private $url = 'https://www.w3.org/TR/2012/CR-html5-20121217/entities.json';
 
     // hardcoded cache of fetch
-    private $entities = [
-            'aacute' => '&#193',
-            'abreve' => '&#258',
-            'ac' => '&#8766',
-            'acd' => '&#8767',
-            'ace' => '&#8766',
-            'acirc' => '&#194',
-            'acute' => '&#180',
-            'acy' => '&#1040',
-            'aelig' => '&#198',
-            'af' => '&#8289',
-            'afr' => '&#120068',
-            'agrave' => '&#192',
-            'alefsym' => '&#8501',
-            'aleph' => '&#8501',
-            'alpha' => '&#913',
-            'amacr' => '&#256',
-            'amalg' => '&#10815',
-            'amp' => '&#38',
-            'and' => '&#10835',
-            'andand' => '&#10837',
-            'andd' => '&#10844',
-            'andslope' => '&#10840',
-            'andv' => '&#10842',
-            'ang' => '&#8736',
-            'ange' => '&#10660',
-            'angle' => '&#8736',
-            'angmsd' => '&#8737',
-            'angmsdaa' => '&#10664',
-            'angmsdab' => '&#10665',
-            'angmsdac' => '&#10666',
-            'angmsdad' => '&#10667',
-            'angmsdae' => '&#10668',
-            'angmsdaf' => '&#10669',
-            'angmsdag' => '&#10670',
-            'angmsdah' => '&#10671',
-            'angrt' => '&#8735',
-            'angrtvb' => '&#8894',
-            'angrtvbd' => '&#10653',
-            'angsph' => '&#8738',
-            'angst' => '&#197',
-            'angzarr' => '&#9084',
-            'aogon' => '&#260',
-            'aopf' => '&#120120',
-            'ap' => '&#8776',
-            'apacir' => '&#10863',
-            'ape' => '&#10864',
-            'apid' => '&#8779',
-            'apos' => '&#39',
-            'applyfunction' => '&#8289',
-            'approx' => '&#8776',
-            'approxeq' => '&#8778',
-            'aring' => '&#197',
-            'ascr' => '&#119964',
-            'assign' => '&#8788',
-            'ast' => '&#42',
-            'asymp' => '&#8776',
-            'asympeq' => '&#8781',
-            'atilde' => '&#195',
-            'auml' => '&#196',
-            'awconint' => '&#8755',
-            'awint' => '&#10769',
-            'backcong' => '&#8780',
-            'backepsilon' => '&#1014',
-            'backprime' => '&#8245',
-            'backsim' => '&#8765',
-            'backsimeq' => '&#8909',
-            'backslash' => '&#8726',
-            'barv' => '&#10983',
-            'barvee' => '&#8893',
-            'barwed' => '&#8966',
-            'barwedge' => '&#8965',
-            'bbrk' => '&#9141',
-            'bbrktbrk' => '&#9142',
-            'bcong' => '&#8780',
-            'bcy' => '&#1041',
-            'bdquo' => '&#8222',
-            'becaus' => '&#8757',
-            'because' => '&#8757',
-            'bemptyv' => '&#10672',
-            'bepsi' => '&#1014',
-            'bernou' => '&#8492',
-            'bernoullis' => '&#8492',
-            'beta' => '&#914',
-            'beth' => '&#8502',
-            'between' => '&#8812',
-            'bfr' => '&#120069',
-            'bigcap' => '&#8898',
-            'bigcirc' => '&#9711',
-            'bigcup' => '&#8899',
-            'bigodot' => '&#10752',
-            'bigoplus' => '&#10753',
-            'bigotimes' => '&#10754',
-            'bigsqcup' => '&#10758',
-            'bigstar' => '&#9733',
-            'bigtriangledown' => '&#9661',
-            'bigtriangleup' => '&#9651',
-            'biguplus' => '&#10756',
-            'bigvee' => '&#8897',
-            'bigwedge' => '&#8896',
-            'bkarow' => '&#10509',
-            'blacklozenge' => '&#10731',
-            'blacksquare' => '&#9642',
-            'blacktriangle' => '&#9652',
-            'blacktriangledown' => '&#9662',
-            'blacktriangleleft' => '&#9666',
-            'blacktriangleright' => '&#9656',
-            'blank' => '&#9251',
-            'blk12' => '&#9618',
-            'blk14' => '&#9617',
-            'blk34' => '&#9619',
-            'block' => '&#9608',
-            'bne' => '&#61',
-            'bnequiv' => '&#8801',
-            'bnot' => '&#10989',
-            'bopf' => '&#120121',
-            'bot' => '&#8869',
-            'bottom' => '&#8869',
-            'bowtie' => '&#8904',
-            'boxbox' => '&#10697',
-            'boxdl' => '&#9559',
-            'boxdr' => '&#9556',
-            'boxh' => '&#9552',
-            'boxhd' => '&#9574',
-            'boxhu' => '&#9577',
-            'boxminus' => '&#8863',
-            'boxplus' => '&#8862',
-            'boxtimes' => '&#8864',
-            'boxul' => '&#9565',
-            'boxur' => '&#9562',
-            'boxv' => '&#9553',
-            'boxvh' => '&#9580',
-            'boxvl' => '&#9571',
-            'boxvr' => '&#9568',
-            'bprime' => '&#8245',
-            'breve' => '&#728',
-            'brvbar' => '&#166',
-            'bscr' => '&#8492',
-            'bsemi' => '&#8271',
-            'bsim' => '&#8765',
-            'bsime' => '&#8909',
-            'bsol' => '&#92',
-            'bsolb' => '&#10693',
-            'bsolhsub' => '&#10184',
-            'bull' => '&#8226',
-            'bullet' => '&#8226',
-            'bump' => '&#8782',
-            'bumpe' => '&#10926',
-            'bumpeq' => '&#8782',
-            'cacute' => '&#262',
-            'cap' => '&#8914',
-            'capand' => '&#10820',
-            'capbrcup' => '&#10825',
-            'capcap' => '&#10827',
-            'capcup' => '&#10823',
-            'capdot' => '&#10816',
-            'capitaldifferentiald' => '&#8517',
-            'caps' => '&#8745',
-            'caret' => '&#8257',
-            'caron' => '&#711',
-            'cayleys' => '&#8493',
-            'ccaps' => '&#10829',
-            'ccaron' => '&#268',
-            'ccedil' => '&#199',
-            'ccirc' => '&#264',
-            'cconint' => '&#8752',
-            'ccups' => '&#10828',
-            'ccupssm' => '&#10832',
-            'cdot' => '&#266',
-            'cedil' => '&#184',
-            'cedilla' => '&#184',
-            'cemptyv' => '&#10674',
-            'cent' => '&#162',
-            'centerdot' => '&#183',
-            'cfr' => '&#8493',
-            'chcy' => '&#1063',
-            'check' => '&#10003',
-            'checkmark' => '&#10003',
-            'chi' => '&#935',
-            'cir' => '&#9675',
-            'circ' => '&#710',
-            'circeq' => '&#8791',
-            'circlearrowleft' => '&#8634',
-            'circlearrowright' => '&#8635',
-            'circledast' => '&#8859',
-            'circledcirc' => '&#8858',
-            'circleddash' => '&#8861',
-            'circledot' => '&#8857',
-            'circledr' => '&#174',
-            'circleds' => '&#9416',
-            'circleminus' => '&#8854',
-            'circleplus' => '&#8853',
-            'circletimes' => '&#8855',
-            'cire' => '&#10691',
-            'cirfnint' => '&#10768',
-            'cirmid' => '&#10991',
-            'cirscir' => '&#10690',
-            'clockwisecontourintegral' => '&#8754',
-            'closecurlydoublequote' => '&#8221',
-            'closecurlyquote' => '&#8217',
-            'clubs' => '&#9827',
-            'clubsuit' => '&#9827',
-            'colon' => '&#8759',
-            'colone' => '&#10868',
-            'coloneq' => '&#8788',
-            'comma' => '&#44',
-            'commat' => '&#64',
-            'comp' => '&#8705',
-            'compfn' => '&#8728',
-            'complement' => '&#8705',
-            'complexes' => '&#8450',
-            'cong' => '&#8773',
-            'congdot' => '&#10861',
-            'congruent' => '&#8801',
-            'conint' => '&#8751',
-            'contourintegral' => '&#8750',
-            'copf' => '&#8450',
-            'coprod' => '&#8720',
-            'coproduct' => '&#8720',
-            'copy' => '&#169',
-            'copysr' => '&#8471',
-            'counterclockwisecontourintegral' => '&#8755',
-            'crarr' => '&#8629',
-            'cross' => '&#10799',
-            'cscr' => '&#119966',
-            'csub' => '&#10959',
-            'csube' => '&#10961',
-            'csup' => '&#10960',
-            'csupe' => '&#10962',
-            'ctdot' => '&#8943',
-            'cudarrl' => '&#10552',
-            'cudarrr' => '&#10549',
-            'cuepr' => '&#8926',
-            'cuesc' => '&#8927',
-            'cularr' => '&#8630',
-            'cularrp' => '&#10557',
-            'cup' => '&#8915',
-            'cupbrcap' => '&#10824',
-            'cupcap' => '&#8781',
-            'cupcup' => '&#10826',
-            'cupdot' => '&#8845',
-            'cupor' => '&#10821',
-            'cups' => '&#8746',
-            'curarr' => '&#8631',
-            'curarrm' => '&#10556',
-            'curlyeqprec' => '&#8926',
-            'curlyeqsucc' => '&#8927',
-            'curlyvee' => '&#8910',
-            'curlywedge' => '&#8911',
-            'curren' => '&#164',
-            'curvearrowleft' => '&#8630',
-            'curvearrowright' => '&#8631',
-            'cuvee' => '&#8910',
-            'cuwed' => '&#8911',
-            'cwconint' => '&#8754',
-            'cwint' => '&#8753',
-            'cylcty' => '&#9005',
-            'dagger' => '&#8225',
-            'daleth' => '&#8504',
-            'darr' => '&#8609',
-            'dash' => '&#8208',
-            'dashv' => '&#10980',
-            'dbkarow' => '&#10511',
-            'dblac' => '&#733',
-            'dcaron' => '&#270',
-            'dcy' => '&#1044',
-            'dd' => '&#8517',
-            'ddagger' => '&#8225',
-            'ddarr' => '&#8650',
-            'ddotrahd' => '&#10513',
-            'ddotseq' => '&#10871',
-            'deg' => '&#176',
-            'del' => '&#8711',
-            'delta' => '&#916',
-            'demptyv' => '&#10673',
-            'dfisht' => '&#10623',
-            'dfr' => '&#120071',
-            'dhar' => '&#10597',
-            'dharl' => '&#8643',
-            'dharr' => '&#8642',
-            'diacriticalacute' => '&#180',
-            'diacriticaldot' => '&#729',
-            'diacriticaldoubleacute' => '&#733',
-            'diacriticalgrave' => '&#96',
-            'diacriticaltilde' => '&#732',
-            'diam' => '&#8900',
-            'diamond' => '&#8900',
-            'diamondsuit' => '&#9830',
-            'diams' => '&#9830',
-            'die' => '&#168',
-            'differentiald' => '&#8518',
-            'digamma' => '&#989',
-            'disin' => '&#8946',
-            'div' => '&#247',
-            'divide' => '&#247',
-            'divideontimes' => '&#8903',
-            'divonx' => '&#8903',
-            'djcy' => '&#1026',
-            'dlcorn' => '&#8990',
-            'dlcrop' => '&#8973',
-            'dollar' => '&#36',
-            'dopf' => '&#120123',
-            'dot' => '&#168',
-            'dotdot' => '&#8412',
-            'doteq' => '&#8784',
-            'doteqdot' => '&#8785',
-            'dotequal' => '&#8784',
-            'dotminus' => '&#8760',
-            'dotplus' => '&#8724',
-            'dotsquare' => '&#8865',
-            'doublebarwedge' => '&#8966',
-            'doublecontourintegral' => '&#8751',
-            'doubledot' => '&#168',
-            'doubledownarrow' => '&#8659',
-            'doubleleftarrow' => '&#8656',
-            'doubleleftrightarrow' => '&#8660',
-            'doublelefttee' => '&#10980',
-            'doublelongleftarrow' => '&#10232',
-            'doublelongleftrightarrow' => '&#10234',
-            'doublelongrightarrow' => '&#10233',
-            'doublerightarrow' => '&#8658',
-            'doublerighttee' => '&#8872',
-            'doubleuparrow' => '&#8657',
-            'doubleupdownarrow' => '&#8661',
-            'doubleverticalbar' => '&#8741',
-            'downarrow' => '&#8595',
-            'downarrowbar' => '&#10515',
-            'downarrowuparrow' => '&#8693',
-            'downbreve' => '&#785',
-            'downdownarrows' => '&#8650',
-            'downharpoonleft' => '&#8643',
-            'downharpoonright' => '&#8642',
-            'downleftrightvector' => '&#10576',
-            'downleftteevector' => '&#10590',
-            'downleftvector' => '&#8637',
-            'downleftvectorbar' => '&#10582',
-            'downrightteevector' => '&#10591',
-            'downrightvector' => '&#8641',
-            'downrightvectorbar' => '&#10583',
-            'downtee' => '&#8868',
-            'downteearrow' => '&#8615',
-            'drbkarow' => '&#10512',
-            'drcorn' => '&#8991',
-            'drcrop' => '&#8972',
-            'dscr' => '&#119967',
-            'dscy' => '&#1029',
-            'dsol' => '&#10742',
-            'dstrok' => '&#272',
-            'dtdot' => '&#8945',
-            'dtri' => '&#9663',
-            'dtrif' => '&#9662',
-            'duarr' => '&#8693',
-            'duhar' => '&#10607',
-            'dwangle' => '&#10662',
-            'dzcy' => '&#1039',
-            'dzigrarr' => '&#10239',
-            'eacute' => '&#201',
-            'easter' => '&#10862',
-            'ecaron' => '&#282',
-            'ecir' => '&#8790',
-            'ecirc' => '&#202',
-            'ecolon' => '&#8789',
-            'ecy' => '&#1069',
-            'eddot' => '&#10871',
-            'edot' => '&#278',
-            'ee' => '&#8519',
-            'efdot' => '&#8786',
-            'efr' => '&#120072',
-            'eg' => '&#10906',
-            'egrave' => '&#200',
-            'egs' => '&#10902',
-            'egsdot' => '&#10904',
-            'el' => '&#10905',
-            'element' => '&#8712',
-            'elinters' => '&#9191',
-            'ell' => '&#8467',
-            'els' => '&#10901',
-            'elsdot' => '&#10903',
-            'emacr' => '&#274',
-            'empty' => '&#8709',
-            'emptyset' => '&#8709',
-            'emptysmallsquare' => '&#9723',
-            'emptyv' => '&#8709',
-            'emptyverysmallsquare' => '&#9643',
-            'emsp' => '&#8195',
-            'emsp13' => '&#8196',
-            'emsp14' => '&#8197',
-            'eng' => '&#330',
-            'ensp' => '&#8194',
-            'eogon' => '&#280',
-            'eopf' => '&#120124',
-            'epar' => '&#8917',
-            'eparsl' => '&#10723',
-            'eplus' => '&#10865',
-            'epsi' => '&#949',
-            'epsilon' => '&#917',
-            'epsiv' => '&#1013',
-            'eqcirc' => '&#8790',
-            'eqcolon' => '&#8789',
-            'eqsim' => '&#8770',
-            'eqslantgtr' => '&#10902',
-            'eqslantless' => '&#10901',
-            'equal' => '&#10869',
-            'equals' => '&#61',
-            'equaltilde' => '&#8770',
-            'equest' => '&#8799',
-            'equilibrium' => '&#8652',
-            'equiv' => '&#8801',
-            'equivdd' => '&#10872',
-            'eqvparsl' => '&#10725',
-            'erarr' => '&#10609',
-            'erdot' => '&#8787',
-            'escr' => '&#8496',
-            'esdot' => '&#8784',
-            'esim' => '&#10867',
-            'eta' => '&#919',
-            'eth' => '&#208',
-            'euml' => '&#203',
-            'euro' => '&#8364',
-            'excl' => '&#33',
-            'exist' => '&#8707',
-            'exists' => '&#8707',
-            'expectation' => '&#8496',
-            'exponentiale' => '&#8519',
-            'fallingdotseq' => '&#8786',
-            'fcy' => '&#1060',
-            'female' => '&#9792',
-            'ffilig' => '&#64259',
-            'fflig' => '&#64256',
-            'ffllig' => '&#64260',
-            'ffr' => '&#120073',
-            'filig' => '&#64257',
-            'filledsmallsquare' => '&#9724',
-            'filledverysmallsquare' => '&#9642',
-            'fjlig' => '&#102',
-            'flat' => '&#9837',
-            'fllig' => '&#64258',
-            'fltns' => '&#9649',
-            'fnof' => '&#402',
-            'fopf' => '&#120125',
-            'forall' => '&#8704',
-            'fork' => '&#8916',
-            'forkv' => '&#10969',
-            'fouriertrf' => '&#8497',
-            'fpartint' => '&#10765',
-            'frac12' => '&#189',
-            'frac13' => '&#8531',
-            'frac14' => '&#188',
-            'frac15' => '&#8533',
-            'frac16' => '&#8537',
-            'frac18' => '&#8539',
-            'frac23' => '&#8532',
-            'frac25' => '&#8534',
-            'frac34' => '&#190',
-            'frac35' => '&#8535',
-            'frac38' => '&#8540',
-            'frac45' => '&#8536',
-            'frac56' => '&#8538',
-            'frac58' => '&#8541',
-            'frac78' => '&#8542',
-            'frasl' => '&#8260',
-            'frown' => '&#8994',
-            'fscr' => '&#8497',
-            'gacute' => '&#501',
-            'gamma' => '&#915',
-            'gammad' => '&#988',
-            'gap' => '&#10886',
-            'gbreve' => '&#286',
-            'gcedil' => '&#290',
-            'gcirc' => '&#284',
-            'gcy' => '&#1043',
-            'gdot' => '&#288',
-            'ge' => '&#8807',
-            'gel' => '&#10892',
-            'geq' => '&#8805',
-            'geqq' => '&#8807',
-            'geqslant' => '&#10878',
-            'ges' => '&#10878',
-            'gescc' => '&#10921',
-            'gesdot' => '&#10880',
-            'gesdoto' => '&#10882',
-            'gesdotol' => '&#10884',
-            'gesl' => '&#8923',
-            'gesles' => '&#10900',
-            'gfr' => '&#120074',
-            'gg' => '&#8921',
-            'ggg' => '&#8921',
-            'gimel' => '&#8503',
-            'gjcy' => '&#1027',
-            'gl' => '&#8823',
-            'gla' => '&#10917',
-            'gle' => '&#10898',
-            'glj' => '&#10916',
-            'gnap' => '&#10890',
-            'gnapprox' => '&#10890',
-            'gne' => '&#8809',
-            'gneq' => '&#10888',
-            'gneqq' => '&#8809',
-            'gnsim' => '&#8935',
-            'gopf' => '&#120126',
-            'grave' => '&#96',
-            'greaterequal' => '&#8805',
-            'greaterequalless' => '&#8923',
-            'greaterfullequal' => '&#8807',
-            'greatergreater' => '&#10914',
-            'greaterless' => '&#8823',
-            'greaterslantequal' => '&#10878',
-            'greatertilde' => '&#8819',
-            'gscr' => '&#119970',
-            'gsim' => '&#8819',
-            'gsime' => '&#10894',
-            'gsiml' => '&#10896',
-            'gt' => '&#62',
-            'gtcc' => '&#10919',
-            'gtcir' => '&#10874',
-            'gtdot' => '&#8919',
-            'gtlpar' => '&#10645',
-            'gtquest' => '&#10876',
-            'gtrapprox' => '&#10886',
-            'gtrarr' => '&#10616',
-            'gtrdot' => '&#8919',
-            'gtreqless' => '&#8923',
-            'gtreqqless' => '&#10892',
-            'gtrless' => '&#8823',
-            'gtrsim' => '&#8819',
-            'gvertneqq' => '&#8809',
-            'gvne' => '&#8809',
-            'hacek' => '&#711',
-            'hairsp' => '&#8202',
-            'half' => '&#189',
-            'hamilt' => '&#8459',
-            'hardcy' => '&#1066',
-            'harr' => '&#8660',
-            'harrcir' => '&#10568',
-            'harrw' => '&#8621',
-            'hat' => '&#94',
-            'hbar' => '&#8463',
-            'hcirc' => '&#292',
-            'hearts' => '&#9829',
-            'heartsuit' => '&#9829',
-            'hellip' => '&#8230',
-            'hercon' => '&#8889',
-            'hfr' => '&#8460',
-            'hilbertspace' => '&#8459',
-            'hksearow' => '&#10533',
-            'hkswarow' => '&#10534',
-            'hoarr' => '&#8703',
-            'homtht' => '&#8763',
-            'hookleftarrow' => '&#8617',
-            'hookrightarrow' => '&#8618',
-            'hopf' => '&#8461',
-            'horbar' => '&#8213',
-            'horizontalline' => '&#9472',
-            'hscr' => '&#8459',
-            'hslash' => '&#8463',
-            'hstrok' => '&#294',
-            'humpdownhump' => '&#8782',
-            'humpequal' => '&#8783',
-            'hybull' => '&#8259',
-            'hyphen' => '&#8208',
-            'iacute' => '&#205',
-            'ic' => '&#8291',
-            'icirc' => '&#206',
-            'icy' => '&#1048',
-            'idot' => '&#304',
-            'iecy' => '&#1045',
-            'iexcl' => '&#161',
-            'iff' => '&#8660',
-            'ifr' => '&#8465',
-            'igrave' => '&#204',
-            'ii' => '&#8520',
-            'iiiint' => '&#10764',
-            'iiint' => '&#8749',
-            'iinfin' => '&#10716',
-            'iiota' => '&#8489',
-            'ijlig' => '&#306',
-            'im' => '&#8465',
-            'imacr' => '&#298',
-            'image' => '&#8465',
-            'imaginaryi' => '&#8520',
-            'imagline' => '&#8464',
-            'imagpart' => '&#8465',
-            'imath' => '&#305',
-            'imof' => '&#8887',
-            'imped' => '&#437',
-            'implies' => '&#8658',
-            'in' => '&#8712',
-            'incare' => '&#8453',
-            'infin' => '&#8734',
-            'infintie' => '&#10717',
-            'inodot' => '&#305',
-            'int' => '&#8748',
-            'intcal' => '&#8890',
-            'integers' => '&#8484',
-            'integral' => '&#8747',
-            'intercal' => '&#8890',
-            'intersection' => '&#8898',
-            'intlarhk' => '&#10775',
-            'intprod' => '&#10812',
-            'invisiblecomma' => '&#8291',
-            'invisibletimes' => '&#8290',
-            'iocy' => '&#1025',
-            'iogon' => '&#302',
-            'iopf' => '&#120128',
-            'iota' => '&#921',
-            'iprod' => '&#10812',
-            'iquest' => '&#191',
-            'iscr' => '&#8464',
-            'isin' => '&#8712',
-            'isindot' => '&#8949',
-            'isine' => '&#8953',
-            'isins' => '&#8948',
-            'isinsv' => '&#8947',
-            'isinv' => '&#8712',
-            'it' => '&#8290',
-            'itilde' => '&#296',
-            'iukcy' => '&#1030',
-            'iuml' => '&#207',
-            'jcirc' => '&#308',
-            'jcy' => '&#1049',
-            'jfr' => '&#120077',
-            'jmath' => '&#567',
-            'jopf' => '&#120129',
-            'jscr' => '&#119973',
-            'jsercy' => '&#1032',
-            'jukcy' => '&#1028',
-            'kappa' => '&#922',
-            'kappav' => '&#1008',
-            'kcedil' => '&#310',
-            'kcy' => '&#1050',
-            'kfr' => '&#120078',
-            'kgreen' => '&#312',
-            'khcy' => '&#1061',
-            'kjcy' => '&#1036',
-            'kopf' => '&#120130',
-            'kscr' => '&#119974',
-            'laarr' => '&#8666',
-            'lacute' => '&#313',
-            'laemptyv' => '&#10676',
-            'lagran' => '&#8466',
-            'lambda' => '&#923',
-            'lang' => '&#10218',
-            'langd' => '&#10641',
-            'langle' => '&#10216',
-            'lap' => '&#10885',
-            'laplacetrf' => '&#8466',
-            'laquo' => '&#171',
-            'larr' => '&#8606',
-            'larrb' => '&#8676',
-            'larrbfs' => '&#10527',
-            'larrfs' => '&#10525',
-            'larrhk' => '&#8617',
-            'larrlp' => '&#8619',
-            'larrpl' => '&#10553',
-            'larrsim' => '&#10611',
-            'larrtl' => '&#8610',
-            'lat' => '&#10923',
-            'latail' => '&#10523',
-            'late' => '&#10925',
-            'lates' => '&#10925',
-            'lbarr' => '&#10510',
-            'lbbrk' => '&#10098',
-            'lbrace' => '&#123',
-            'lbrack' => '&#91',
-            'lbrke' => '&#10635',
-            'lbrksld' => '&#10639',
-            'lbrkslu' => '&#10637',
-            'lcaron' => '&#317',
-            'lcedil' => '&#315',
-            'lceil' => '&#8968',
-            'lcub' => '&#123',
-            'lcy' => '&#1051',
-            'ldca' => '&#10550',
-            'ldquo' => '&#8220',
-            'ldquor' => '&#8222',
-            'ldrdhar' => '&#10599',
-            'ldrushar' => '&#10571',
-            'ldsh' => '&#8626',
-            'le' => '&#8806',
-            'leftanglebracket' => '&#10216',
-            'leftarrow' => '&#8592',
-            'leftarrowbar' => '&#8676',
-            'leftarrowrightarrow' => '&#8646',
-            'leftarrowtail' => '&#8610',
-            'leftceiling' => '&#8968',
-            'leftdoublebracket' => '&#10214',
-            'leftdownteevector' => '&#10593',
-            'leftdownvector' => '&#8643',
-            'leftdownvectorbar' => '&#10585',
-            'leftfloor' => '&#8970',
-            'leftharpoondown' => '&#8637',
-            'leftharpoonup' => '&#8636',
-            'leftleftarrows' => '&#8647',
-            'leftrightarrow' => '&#8596',
-            'leftrightarrows' => '&#8646',
-            'leftrightharpoons' => '&#8651',
-            'leftrightsquigarrow' => '&#8621',
-            'leftrightvector' => '&#10574',
-            'lefttee' => '&#8867',
-            'leftteearrow' => '&#8612',
-            'leftteevector' => '&#10586',
-            'leftthreetimes' => '&#8907',
-            'lefttriangle' => '&#8882',
-            'lefttrianglebar' => '&#10703',
-            'lefttriangleequal' => '&#8884',
-            'leftupdownvector' => '&#10577',
-            'leftupteevector' => '&#10592',
-            'leftupvector' => '&#8639',
-            'leftupvectorbar' => '&#10584',
-            'leftvector' => '&#8636',
-            'leftvectorbar' => '&#10578',
-            'leg' => '&#10891',
-            'leq' => '&#8804',
-            'leqq' => '&#8806',
-            'leqslant' => '&#10877',
-            'les' => '&#10877',
-            'lescc' => '&#10920',
-            'lesdot' => '&#10879',
-            'lesdoto' => '&#10881',
-            'lesdotor' => '&#10883',
-            'lesg' => '&#8922',
-            'lesges' => '&#10899',
-            'lessapprox' => '&#10885',
-            'lessdot' => '&#8918',
-            'lesseqgtr' => '&#8922',
-            'lesseqqgtr' => '&#10891',
-            'lessequalgreater' => '&#8922',
-            'lessfullequal' => '&#8806',
-            'lessgreater' => '&#8822',
-            'lessgtr' => '&#8822',
-            'lessless' => '&#10913',
-            'lesssim' => '&#8818',
-            'lessslantequal' => '&#10877',
-            'lesstilde' => '&#8818',
-            'lfisht' => '&#10620',
-            'lfloor' => '&#8970',
-            'lfr' => '&#120079',
-            'lg' => '&#8822',
-            'lge' => '&#10897',
-            'lhar' => '&#10594',
-            'lhard' => '&#8637',
-            'lharu' => '&#8636',
-            'lharul' => '&#10602',
-            'lhblk' => '&#9604',
-            'ljcy' => '&#1033',
-            'll' => '&#8920',
-            'llarr' => '&#8647',
-            'llcorner' => '&#8990',
-            'lleftarrow' => '&#8666',
-            'llhard' => '&#10603',
-            'lltri' => '&#9722',
-            'lmidot' => '&#319',
-            'lmoust' => '&#9136',
-            'lmoustache' => '&#9136',
-            'lnap' => '&#10889',
-            'lnapprox' => '&#10889',
-            'lne' => '&#8808',
-            'lneq' => '&#10887',
-            'lneqq' => '&#8808',
-            'lnsim' => '&#8934',
-            'loang' => '&#10220',
-            'loarr' => '&#8701',
-            'lobrk' => '&#10214',
-            'longleftarrow' => '&#10229',
-            'longleftrightarrow' => '&#10231',
-            'longmapsto' => '&#10236',
-            'longrightarrow' => '&#10230',
-            'looparrowleft' => '&#8619',
-            'looparrowright' => '&#8620',
-            'lopar' => '&#10629',
-            'lopf' => '&#120131',
-            'loplus' => '&#10797',
-            'lotimes' => '&#10804',
-            'lowast' => '&#8727',
-            'lowbar' => '&#95',
-            'lowerleftarrow' => '&#8601',
-            'lowerrightarrow' => '&#8600',
-            'loz' => '&#9674',
-            'lozenge' => '&#9674',
-            'lozf' => '&#10731',
-            'lpar' => '&#40',
-            'lparlt' => '&#10643',
-            'lrarr' => '&#8646',
-            'lrcorner' => '&#8991',
-            'lrhar' => '&#8651',
-            'lrhard' => '&#10605',
-            'lrm' => '&#8206',
-            'lrtri' => '&#8895',
-            'lsaquo' => '&#8249',
-            'lscr' => '&#8466',
-            'lsh' => '&#8624',
-            'lsim' => '&#8818',
-            'lsime' => '&#10893',
-            'lsimg' => '&#10895',
-            'lsqb' => '&#91',
-            'lsquo' => '&#8216',
-            'lsquor' => '&#8218',
-            'lstrok' => '&#321',
-            'lt' => '&#60',
-            'ltcc' => '&#10918',
-            'ltcir' => '&#10873',
-            'ltdot' => '&#8918',
-            'lthree' => '&#8907',
-            'ltimes' => '&#8905',
-            'ltlarr' => '&#10614',
-            'ltquest' => '&#10875',
-            'ltri' => '&#9667',
-            'ltrie' => '&#8884',
-            'ltrif' => '&#9666',
-            'ltrpar' => '&#10646',
-            'lurdshar' => '&#10570',
-            'luruhar' => '&#10598',
-            'lvertneqq' => '&#8808',
-            'lvne' => '&#8808',
-            'macr' => '&#175',
-            'male' => '&#9794',
-            'malt' => '&#10016',
-            'maltese' => '&#10016',
-            'map' => '&#10501',
-            'mapsto' => '&#8614',
-            'mapstodown' => '&#8615',
-            'mapstoleft' => '&#8612',
-            'mapstoup' => '&#8613',
-            'marker' => '&#9646',
-            'mcomma' => '&#10793',
-            'mcy' => '&#1052',
-            'mdash' => '&#8212',
-            'mddot' => '&#8762',
-            'measuredangle' => '&#8737',
-            'mediumspace' => '&#8287',
-            'mellintrf' => '&#8499',
-            'mfr' => '&#120080',
-            'mho' => '&#8487',
-            'micro' => '&#181',
-            'mid' => '&#8739',
-            'midast' => '&#42',
-            'midcir' => '&#10992',
-            'middot' => '&#183',
-            'minus' => '&#8722',
-            'minusb' => '&#8863',
-            'minusd' => '&#8760',
-            'minusdu' => '&#10794',
-            'minusplus' => '&#8723',
-            'mlcp' => '&#10971',
-            'mldr' => '&#8230',
-            'mnplus' => '&#8723',
-            'models' => '&#8871',
-            'mopf' => '&#120132',
-            'mp' => '&#8723',
-            'mscr' => '&#8499',
-            'mstpos' => '&#8766',
-            'mu' => '&#924',
-            'multimap' => '&#8888',
-            'mumap' => '&#8888',
-            'nabla' => '&#8711',
-            'nacute' => '&#323',
-            'nang' => '&#8736',
-            'nap' => '&#8777',
-            'nape' => '&#10864',
-            'napid' => '&#8779',
-            'napos' => '&#329',
-            'napprox' => '&#8777',
-            'natur' => '&#9838',
-            'natural' => '&#9838',
-            'naturals' => '&#8469',
-            'nbsp' => '&#160',
-            'nbump' => '&#8782',
-            'nbumpe' => '&#8783',
-            'ncap' => '&#10819',
-            'ncaron' => '&#327',
-            'ncedil' => '&#325',
-            'ncong' => '&#8775',
-            'ncongdot' => '&#10861',
-            'ncup' => '&#10818',
-            'ncy' => '&#1053',
-            'ndash' => '&#8211',
-            'ne' => '&#8800',
-            'nearhk' => '&#10532',
-            'nearr' => '&#8663',
-            'nearrow' => '&#8599',
-            'nedot' => '&#8784',
-            'negativemediumspace' => '&#8203',
-            'negativethickspace' => '&#8203',
-            'negativethinspace' => '&#8203',
-            'negativeverythinspace' => '&#8203',
-            'nequiv' => '&#8802',
-            'nesear' => '&#10536',
-            'nesim' => '&#8770',
-            'nestedgreatergreater' => '&#8811',
-            'nestedlessless' => '&#8810',
-            'newline' => '&#10',
-            'nexist' => '&#8708',
-            'nexists' => '&#8708',
-            'nfr' => '&#120081',
-            'nge' => '&#8807',
-            'ngeq' => '&#8817',
-            'ngeqq' => '&#8807',
-            'ngeqslant' => '&#10878',
-            'nges' => '&#10878',
-            'ngg' => '&#8921',
-            'ngsim' => '&#8821',
-            'ngt' => '&#8811',
-            'ngtr' => '&#8815',
-            'ngtv' => '&#8811',
-            'nharr' => '&#8654',
-            'nhpar' => '&#10994',
-            'ni' => '&#8715',
-            'nis' => '&#8956',
-            'nisd' => '&#8954',
-            'niv' => '&#8715',
-            'njcy' => '&#1034',
-            'nlarr' => '&#8653',
-            'nldr' => '&#8229',
-            'nle' => '&#8806',
-            'nleftarrow' => '&#8653',
-            'nleftrightarrow' => '&#8654',
-            'nleq' => '&#8816',
-            'nleqq' => '&#8806',
-            'nleqslant' => '&#10877',
-            'nles' => '&#10877',
-            'nless' => '&#8814',
-            'nll' => '&#8920',
-            'nlsim' => '&#8820',
-            'nlt' => '&#8810',
-            'nltri' => '&#8938',
-            'nltrie' => '&#8940',
-            'nltv' => '&#8810',
-            'nmid' => '&#8740',
-            'nobreak' => '&#8288',
-            'nonbreakingspace' => '&#160',
-            'nopf' => '&#8469',
-            'not' => '&#10988',
-            'notcongruent' => '&#8802',
-            'notcupcap' => '&#8813',
-            'notdoubleverticalbar' => '&#8742',
-            'notelement' => '&#8713',
-            'notequal' => '&#8800',
-            'notequaltilde' => '&#8770',
-            'notexists' => '&#8708',
-            'notgreater' => '&#8815',
-            'notgreaterequal' => '&#8817',
-            'notgreaterfullequal' => '&#8807',
-            'notgreatergreater' => '&#8811',
-            'notgreaterless' => '&#8825',
-            'notgreaterslantequal' => '&#10878',
-            'notgreatertilde' => '&#8821',
-            'nothumpdownhump' => '&#8782',
-            'nothumpequal' => '&#8783',
-            'notin' => '&#8713',
-            'notindot' => '&#8949',
-            'notine' => '&#8953',
-            'notinva' => '&#8713',
-            'notinvb' => '&#8951',
-            'notinvc' => '&#8950',
-            'notlefttriangle' => '&#8938',
-            'notlefttrianglebar' => '&#10703',
-            'notlefttriangleequal' => '&#8940',
-            'notless' => '&#8814',
-            'notlessequal' => '&#8816',
-            'notlessgreater' => '&#8824',
-            'notlessless' => '&#8810',
-            'notlessslantequal' => '&#10877',
-            'notlesstilde' => '&#8820',
-            'notnestedgreatergreater' => '&#10914',
-            'notnestedlessless' => '&#10913',
-            'notni' => '&#8716',
-            'notniva' => '&#8716',
-            'notnivb' => '&#8958',
-            'notnivc' => '&#8957',
-            'notprecedes' => '&#8832',
-            'notprecedesequal' => '&#10927',
-            'notprecedesslantequal' => '&#8928',
-            'notreverseelement' => '&#8716',
-            'notrighttriangle' => '&#8939',
-            'notrighttrianglebar' => '&#10704',
-            'notrighttriangleequal' => '&#8941',
-            'notsquaresubset' => '&#8847',
-            'notsquaresubsetequal' => '&#8930',
-            'notsquaresuperset' => '&#8848',
-            'notsquaresupersetequal' => '&#8931',
-            'notsubset' => '&#8834',
-            'notsubsetequal' => '&#8840',
-            'notsucceeds' => '&#8833',
-            'notsucceedsequal' => '&#10928',
-            'notsucceedsslantequal' => '&#8929',
-            'notsucceedstilde' => '&#8831',
-            'notsuperset' => '&#8835',
-            'notsupersetequal' => '&#8841',
-            'nottilde' => '&#8769',
-            'nottildeequal' => '&#8772',
-            'nottildefullequal' => '&#8775',
-            'nottildetilde' => '&#8777',
-            'notverticalbar' => '&#8740',
-            'npar' => '&#8742',
-            'nparallel' => '&#8742',
-            'nparsl' => '&#11005',
-            'npart' => '&#8706',
-            'npolint' => '&#10772',
-            'npr' => '&#8832',
-            'nprcue' => '&#8928',
-            'npre' => '&#10927',
-            'nprec' => '&#8832',
-            'npreceq' => '&#10927',
-            'nrarr' => '&#8655',
-            'nrarrc' => '&#10547',
-            'nrarrw' => '&#8605',
-            'nrightarrow' => '&#8655',
-            'nrtri' => '&#8939',
-            'nrtrie' => '&#8941',
-            'nsc' => '&#8833',
-            'nsccue' => '&#8929',
-            'nsce' => '&#10928',
-            'nscr' => '&#119977',
-            'nshortmid' => '&#8740',
-            'nshortparallel' => '&#8742',
-            'nsim' => '&#8769',
-            'nsime' => '&#8772',
-            'nsimeq' => '&#8772',
-            'nsmid' => '&#8740',
-            'nspar' => '&#8742',
-            'nsqsube' => '&#8930',
-            'nsqsupe' => '&#8931',
-            'nsub' => '&#8836',
-            'nsube' => '&#10949',
-            'nsubset' => '&#8834',
-            'nsubseteq' => '&#8840',
-            'nsubseteqq' => '&#10949',
-            'nsucc' => '&#8833',
-            'nsucceq' => '&#10928',
-            'nsup' => '&#8837',
-            'nsupe' => '&#10950',
-            'nsupset' => '&#8835',
-            'nsupseteq' => '&#8841',
-            'nsupseteqq' => '&#10950',
-            'ntgl' => '&#8825',
-            'ntilde' => '&#209',
-            'ntlg' => '&#8824',
-            'ntriangleleft' => '&#8938',
-            'ntrianglelefteq' => '&#8940',
-            'ntriangleright' => '&#8939',
-            'ntrianglerighteq' => '&#8941',
-            'nu' => '&#925',
-            'num' => '&#35',
-            'numero' => '&#8470',
-            'numsp' => '&#8199',
-            'nvap' => '&#8781',
-            'nvdash' => '&#8879',
-            'nvge' => '&#8805',
-            'nvgt' => '&#62',
-            'nvharr' => '&#10500',
-            'nvinfin' => '&#10718',
-            'nvlarr' => '&#10498',
-            'nvle' => '&#8804',
-            'nvlt' => '&#60',
-            'nvltrie' => '&#8884',
-            'nvrarr' => '&#10499',
-            'nvrtrie' => '&#8885',
-            'nvsim' => '&#8764',
-            'nwarhk' => '&#10531',
-            'nwarr' => '&#8662',
-            'nwarrow' => '&#8598',
-            'nwnear' => '&#10535',
-            'oacute' => '&#211',
-            'oast' => '&#8859',
-            'ocir' => '&#8858',
-            'ocirc' => '&#212',
-            'ocy' => '&#1054',
-            'odash' => '&#8861',
-            'odblac' => '&#336',
-            'odiv' => '&#10808',
-            'odot' => '&#8857',
-            'odsold' => '&#10684',
-            'oelig' => '&#338',
-            'ofcir' => '&#10687',
-            'ofr' => '&#120082',
-            'ogon' => '&#731',
-            'ograve' => '&#210',
-            'ogt' => '&#10689',
-            'ohbar' => '&#10677',
-            'ohm' => '&#937',
-            'oint' => '&#8750',
-            'olarr' => '&#8634',
-            'olcir' => '&#10686',
-            'olcross' => '&#10683',
-            'oline' => '&#8254',
-            'olt' => '&#10688',
-            'omacr' => '&#332',
-            'omega' => '&#937',
-            'omicron' => '&#927',
-            'omid' => '&#10678',
-            'ominus' => '&#8854',
-            'oopf' => '&#120134',
-            'opar' => '&#10679',
-            'opencurlydoublequote' => '&#8220',
-            'opencurlyquote' => '&#8216',
-            'operp' => '&#10681',
-            'oplus' => '&#8853',
-            'or' => '&#10836',
-            'orarr' => '&#8635',
-            'ord' => '&#10845',
-            'order' => '&#8500',
-            'orderof' => '&#8500',
-            'ordf' => '&#170',
-            'ordm' => '&#186',
-            'origof' => '&#8886',
-            'oror' => '&#10838',
-            'orslope' => '&#10839',
-            'orv' => '&#10843',
-            'os' => '&#9416',
-            'oscr' => '&#119978',
-            'oslash' => '&#216',
-            'osol' => '&#8856',
-            'otilde' => '&#213',
-            'otimes' => '&#10807',
-            'otimesas' => '&#10806',
-            'ouml' => '&#214',
-            'ovbar' => '&#9021',
-            'overbar' => '&#8254',
-            'overbrace' => '&#9182',
-            'overbracket' => '&#9140',
-            'overparenthesis' => '&#9180',
-            'par' => '&#8741',
-            'para' => '&#182',
-            'parallel' => '&#8741',
-            'parsim' => '&#10995',
-            'parsl' => '&#11005',
-            'part' => '&#8706',
-            'partiald' => '&#8706',
-            'pcy' => '&#1055',
-            'percnt' => '&#37',
-            'period' => '&#46',
-            'permil' => '&#8240',
-            'perp' => '&#8869',
-            'pertenk' => '&#8241',
-            'pfr' => '&#120083',
-            'phi' => '&#934',
-            'phiv' => '&#981',
-            'phmmat' => '&#8499',
-            'phone' => '&#9742',
-            'pi' => '&#928',
-            'pitchfork' => '&#8916',
-            'piv' => '&#982',
-            'planck' => '&#8463',
-            'planckh' => '&#8462',
-            'plankv' => '&#8463',
-            'plus' => '&#43',
-            'plusacir' => '&#10787',
-            'plusb' => '&#8862',
-            'pluscir' => '&#10786',
-            'plusdo' => '&#8724',
-            'plusdu' => '&#10789',
-            'pluse' => '&#10866',
-            'plusminus' => '&#177',
-            'plusmn' => '&#177',
-            'plussim' => '&#10790',
-            'plustwo' => '&#10791',
-            'pm' => '&#177',
-            'poincareplane' => '&#8460',
-            'pointint' => '&#10773',
-            'popf' => '&#8473',
-            'pound' => '&#163',
-            'pr' => '&#10939',
-            'prap' => '&#10935',
-            'prcue' => '&#8828',
-            'pre' => '&#10931',
-            'prec' => '&#8826',
-            'precapprox' => '&#10935',
-            'preccurlyeq' => '&#8828',
-            'precedes' => '&#8826',
-            'precedesequal' => '&#10927',
-            'precedesslantequal' => '&#8828',
-            'precedestilde' => '&#8830',
-            'preceq' => '&#10927',
-            'precnapprox' => '&#10937',
-            'precneqq' => '&#10933',
-            'precnsim' => '&#8936',
-            'precsim' => '&#8830',
-            'prime' => '&#8243',
-            'primes' => '&#8473',
-            'prnap' => '&#10937',
-            'prne' => '&#10933',
-            'prnsim' => '&#8936',
-            'prod' => '&#8719',
-            'product' => '&#8719',
-            'profalar' => '&#9006',
-            'profline' => '&#8978',
-            'profsurf' => '&#8979',
-            'prop' => '&#8733',
-            'proportion' => '&#8759',
-            'proportional' => '&#8733',
-            'propto' => '&#8733',
-            'prsim' => '&#8830',
-            'prurel' => '&#8880',
-            'pscr' => '&#119979',
-            'psi' => '&#936',
-            'puncsp' => '&#8200',
-            'qfr' => '&#120084',
-            'qint' => '&#10764',
-            'qopf' => '&#8474',
-            'qprime' => '&#8279',
-            'qscr' => '&#119980',
-            'quaternions' => '&#8461',
-            'quatint' => '&#10774',
-            'quest' => '&#63',
-            'questeq' => '&#8799',
-            'quot' => '&#34',
-            'raarr' => '&#8667',
-            'race' => '&#8765',
-            'racute' => '&#340',
-            'radic' => '&#8730',
-            'raemptyv' => '&#10675',
-            'rang' => '&#10219',
-            'rangd' => '&#10642',
-            'range' => '&#10661',
-            'rangle' => '&#10217',
-            'raquo' => '&#187',
-            'rarr' => '&#8608',
-            'rarrap' => '&#10613',
-            'rarrb' => '&#8677',
-            'rarrbfs' => '&#10528',
-            'rarrc' => '&#10547',
-            'rarrfs' => '&#10526',
-            'rarrhk' => '&#8618',
-            'rarrlp' => '&#8620',
-            'rarrpl' => '&#10565',
-            'rarrsim' => '&#10612',
-            'rarrtl' => '&#10518',
-            'rarrw' => '&#8605',
-            'ratail' => '&#10524',
-            'ratio' => '&#8758',
-            'rationals' => '&#8474',
-            'rbarr' => '&#10512',
-            'rbbrk' => '&#10099',
-            'rbrace' => '&#125',
-            'rbrack' => '&#93',
-            'rbrke' => '&#10636',
-            'rbrksld' => '&#10638',
-            'rbrkslu' => '&#10640',
-            'rcaron' => '&#344',
-            'rcedil' => '&#342',
-            'rceil' => '&#8969',
-            'rcub' => '&#125',
-            'rcy' => '&#1056',
-            'rdca' => '&#10551',
-            'rdldhar' => '&#10601',
-            'rdquo' => '&#8221',
-            'rdquor' => '&#8221',
-            'rdsh' => '&#8627',
-            're' => '&#8476',
-            'real' => '&#8476',
-            'realine' => '&#8475',
-            'realpart' => '&#8476',
-            'reals' => '&#8477',
-            'rect' => '&#9645',
-            'reg' => '&#174',
-            'reverseelement' => '&#8715',
-            'reverseequilibrium' => '&#8651',
-            'reverseupequilibrium' => '&#10607',
-            'rfisht' => '&#10621',
-            'rfloor' => '&#8971',
-            'rfr' => '&#8476',
-            'rhar' => '&#10596',
-            'rhard' => '&#8641',
-            'rharu' => '&#8640',
-            'rharul' => '&#10604',
-            'rho' => '&#929',
-            'rhov' => '&#1009',
-            'rightanglebracket' => '&#10217',
-            'rightarrow' => '&#8594',
-            'rightarrowbar' => '&#8677',
-            'rightarrowleftarrow' => '&#8644',
-            'rightarrowtail' => '&#8611',
-            'rightceiling' => '&#8969',
-            'rightdoublebracket' => '&#10215',
-            'rightdownteevector' => '&#10589',
-            'rightdownvector' => '&#8642',
-            'rightdownvectorbar' => '&#10581',
-            'rightfloor' => '&#8971',
-            'rightharpoondown' => '&#8641',
-            'rightharpoonup' => '&#8640',
-            'rightleftarrows' => '&#8644',
-            'rightleftharpoons' => '&#8652',
-            'rightrightarrows' => '&#8649',
-            'rightsquigarrow' => '&#8605',
-            'righttee' => '&#8866',
-            'rightteearrow' => '&#8614',
-            'rightteevector' => '&#10587',
-            'rightthreetimes' => '&#8908',
-            'righttriangle' => '&#8883',
-            'righttrianglebar' => '&#10704',
-            'righttriangleequal' => '&#8885',
-            'rightupdownvector' => '&#10575',
-            'rightupteevector' => '&#10588',
-            'rightupvector' => '&#8638',
-            'rightupvectorbar' => '&#10580',
-            'rightvector' => '&#8640',
-            'rightvectorbar' => '&#10579',
-            'ring' => '&#730',
-            'risingdotseq' => '&#8787',
-            'rlarr' => '&#8644',
-            'rlhar' => '&#8652',
-            'rlm' => '&#8207',
-            'rmoust' => '&#9137',
-            'rmoustache' => '&#9137',
-            'rnmid' => '&#10990',
-            'roang' => '&#10221',
-            'roarr' => '&#8702',
-            'robrk' => '&#10215',
-            'ropar' => '&#10630',
-            'ropf' => '&#8477',
-            'roplus' => '&#10798',
-            'rotimes' => '&#10805',
-            'roundimplies' => '&#10608',
-            'rpar' => '&#41',
-            'rpargt' => '&#10644',
-            'rppolint' => '&#10770',
-            'rrarr' => '&#8649',
-            'rrightarrow' => '&#8667',
-            'rsaquo' => '&#8250',
-            'rscr' => '&#8475',
-            'rsh' => '&#8625',
-            'rsqb' => '&#93',
-            'rsquo' => '&#8217',
-            'rsquor' => '&#8217',
-            'rthree' => '&#8908',
-            'rtimes' => '&#8906',
-            'rtri' => '&#9657',
-            'rtrie' => '&#8885',
-            'rtrif' => '&#9656',
-            'rtriltri' => '&#10702',
-            'ruledelayed' => '&#10740',
-            'ruluhar' => '&#10600',
-            'rx' => '&#8478',
-            'sacute' => '&#346',
-            'sbquo' => '&#8218',
-            'sc' => '&#10940',
-            'scap' => '&#10936',
-            'scaron' => '&#352',
-            'sccue' => '&#8829',
-            'sce' => '&#10932',
-            'scedil' => '&#350',
-            'scirc' => '&#348',
-            'scnap' => '&#10938',
-            'scne' => '&#10934',
-            'scnsim' => '&#8937',
-            'scpolint' => '&#10771',
-            'scsim' => '&#8831',
-            'scy' => '&#1057',
-            'sdot' => '&#8901',
-            'sdotb' => '&#8865',
-            'sdote' => '&#10854',
-            'searhk' => '&#10533',
-            'searr' => '&#8664',
-            'searrow' => '&#8600',
-            'sect' => '&#167',
-            'semi' => '&#59',
-            'seswar' => '&#10537',
-            'setminus' => '&#8726',
-            'setmn' => '&#8726',
-            'sext' => '&#10038',
-            'sfr' => '&#120086',
-            'sfrown' => '&#8994',
-            'sharp' => '&#9839',
-            'shchcy' => '&#1065',
-            'shcy' => '&#1064',
-            'shortdownarrow' => '&#8595',
-            'shortleftarrow' => '&#8592',
-            'shortmid' => '&#8739',
-            'shortparallel' => '&#8741',
-            'shortrightarrow' => '&#8594',
-            'shortuparrow' => '&#8593',
-            'shy' => '&#173',
-            'sigma' => '&#931',
-            'sigmaf' => '&#962',
-            'sigmav' => '&#962',
-            'sim' => '&#8764',
-            'simdot' => '&#10858',
-            'sime' => '&#8771',
-            'simeq' => '&#8771',
-            'simg' => '&#10910',
-            'simge' => '&#10912',
-            'siml' => '&#10909',
-            'simle' => '&#10911',
-            'simne' => '&#8774',
-            'simplus' => '&#10788',
-            'simrarr' => '&#10610',
-            'slarr' => '&#8592',
-            'smallcircle' => '&#8728',
-            'smallsetminus' => '&#8726',
-            'smashp' => '&#10803',
-            'smeparsl' => '&#10724',
-            'smid' => '&#8739',
-            'smile' => '&#8995',
-            'smt' => '&#10922',
-            'smte' => '&#10924',
-            'smtes' => '&#10924',
-            'softcy' => '&#1068',
-            'sol' => '&#47',
-            'solb' => '&#10692',
-            'solbar' => '&#9023',
-            'sopf' => '&#120138',
-            'spades' => '&#9824',
-            'spadesuit' => '&#9824',
-            'spar' => '&#8741',
-            'sqcap' => '&#8851',
-            'sqcaps' => '&#8851',
-            'sqcup' => '&#8852',
-            'sqcups' => '&#8852',
-            'sqrt' => '&#8730',
-            'sqsub' => '&#8847',
-            'sqsube' => '&#8849',
-            'sqsubset' => '&#8847',
-            'sqsubseteq' => '&#8849',
-            'sqsup' => '&#8848',
-            'sqsupe' => '&#8850',
-            'sqsupset' => '&#8848',
-            'sqsupseteq' => '&#8850',
-            'squ' => '&#9633',
-            'square' => '&#9633',
-            'squareintersection' => '&#8851',
-            'squaresubset' => '&#8847',
-            'squaresubsetequal' => '&#8849',
-            'squaresuperset' => '&#8848',
-            'squaresupersetequal' => '&#8850',
-            'squareunion' => '&#8852',
-            'squarf' => '&#9642',
-            'squf' => '&#9642',
-            'srarr' => '&#8594',
-            'sscr' => '&#119982',
-            'ssetmn' => '&#8726',
-            'ssmile' => '&#8995',
-            'sstarf' => '&#8902',
-            'star' => '&#8902',
-            'starf' => '&#9733',
-            'straightepsilon' => '&#1013',
-            'straightphi' => '&#981',
-            'strns' => '&#175',
-            'sub' => '&#8912',
-            'subdot' => '&#10941',
-            'sube' => '&#10949',
-            'subedot' => '&#10947',
-            'submult' => '&#10945',
-            'subne' => '&#10955',
-            'subplus' => '&#10943',
-            'subrarr' => '&#10617',
-            'subset' => '&#8912',
-            'subseteq' => '&#8838',
-            'subseteqq' => '&#10949',
-            'subsetequal' => '&#8838',
-            'subsetneq' => '&#8842',
-            'subsetneqq' => '&#10955',
-            'subsim' => '&#10951',
-            'subsub' => '&#10965',
-            'subsup' => '&#10963',
-            'succ' => '&#8827',
-            'succapprox' => '&#10936',
-            'succcurlyeq' => '&#8829',
-            'succeeds' => '&#8827',
-            'succeedsequal' => '&#10928',
-            'succeedsslantequal' => '&#8829',
-            'succeedstilde' => '&#8831',
-            'succeq' => '&#10928',
-            'succnapprox' => '&#10938',
-            'succneqq' => '&#10934',
-            'succnsim' => '&#8937',
-            'succsim' => '&#8831',
-            'suchthat' => '&#8715',
-            'sum' => '&#8721',
-            'sung' => '&#9834',
-            'sup' => '&#8913',
-            'sup1' => '&#185',
-            'sup2' => '&#178',
-            'sup3' => '&#179',
-            'supdot' => '&#10942',
-            'supdsub' => '&#10968',
-            'supe' => '&#10950',
-            'supedot' => '&#10948',
-            'superset' => '&#8835',
-            'supersetequal' => '&#8839',
-            'suphsol' => '&#10185',
-            'suphsub' => '&#10967',
-            'suplarr' => '&#10619',
-            'supmult' => '&#10946',
-            'supne' => '&#10956',
-            'supplus' => '&#10944',
-            'supset' => '&#8913',
-            'supseteq' => '&#8839',
-            'supseteqq' => '&#10950',
-            'supsetneq' => '&#8843',
-            'supsetneqq' => '&#10956',
-            'supsim' => '&#10952',
-            'supsub' => '&#10964',
-            'supsup' => '&#10966',
-            'swarhk' => '&#10534',
-            'swarr' => '&#8665',
-            'swarrow' => '&#8601',
-            'swnwar' => '&#10538',
-            'szlig' => '&#223',
-            'tab' => '&#9',
-            'target' => '&#8982',
-            'tau' => '&#932',
-            'tbrk' => '&#9140',
-            'tcaron' => '&#356',
-            'tcedil' => '&#354',
-            'tcy' => '&#1058',
-            'tdot' => '&#8411',
-            'telrec' => '&#8981',
-            'tfr' => '&#120087',
-            'there4' => '&#8756',
-            'therefore' => '&#8756',
-            'theta' => '&#920',
-            'thetasym' => '&#977',
-            'thetav' => '&#977',
-            'thickapprox' => '&#8776',
-            'thicksim' => '&#8764',
-            'thickspace' => '&#8287',
-            'thinsp' => '&#8201',
-            'thinspace' => '&#8201',
-            'thkap' => '&#8776',
-            'thksim' => '&#8764',
-            'thorn' => '&#222',
-            'tilde' => '&#8764',
-            'tildeequal' => '&#8771',
-            'tildefullequal' => '&#8773',
-            'tildetilde' => '&#8776',
-            'times' => '&#215',
-            'timesb' => '&#8864',
-            'timesbar' => '&#10801',
-            'timesd' => '&#10800',
-            'tint' => '&#8749',
-            'toea' => '&#10536',
-            'top' => '&#8868',
-            'topbot' => '&#9014',
-            'topcir' => '&#10993',
-            'topf' => '&#120139',
-            'topfork' => '&#10970',
-            'tosa' => '&#10537',
-            'tprime' => '&#8244',
-            'trade' => '&#8482',
-            'triangle' => '&#9653',
-            'triangledown' => '&#9663',
-            'triangleleft' => '&#9667',
-            'trianglelefteq' => '&#8884',
-            'triangleq' => '&#8796',
-            'triangleright' => '&#9657',
-            'trianglerighteq' => '&#8885',
-            'tridot' => '&#9708',
-            'trie' => '&#8796',
-            'triminus' => '&#10810',
-            'tripledot' => '&#8411',
-            'triplus' => '&#10809',
-            'trisb' => '&#10701',
-            'tritime' => '&#10811',
-            'trpezium' => '&#9186',
-            'tscr' => '&#119983',
-            'tscy' => '&#1062',
-            'tshcy' => '&#1035',
-            'tstrok' => '&#358',
-            'twixt' => '&#8812',
-            'twoheadleftarrow' => '&#8606',
-            'twoheadrightarrow' => '&#8608',
-            'uacute' => '&#218',
-            'uarr' => '&#8607',
-            'uarrocir' => '&#10569',
-            'ubrcy' => '&#1038',
-            'ubreve' => '&#364',
-            'ucirc' => '&#219',
-            'ucy' => '&#1059',
-            'udarr' => '&#8645',
-            'udblac' => '&#368',
-            'udhar' => '&#10606',
-            'ufisht' => '&#10622',
-            'ufr' => '&#120088',
-            'ugrave' => '&#217',
-            'uhar' => '&#10595',
-            'uharl' => '&#8639',
-            'uharr' => '&#8638',
-            'uhblk' => '&#9600',
-            'ulcorn' => '&#8988',
-            'ulcorner' => '&#8988',
-            'ulcrop' => '&#8975',
-            'ultri' => '&#9720',
-            'umacr' => '&#362',
-            'uml' => '&#168',
-            'underbar' => '&#95',
-            'underbrace' => '&#9183',
-            'underbracket' => '&#9141',
-            'underparenthesis' => '&#9181',
-            'union' => '&#8899',
-            'unionplus' => '&#8846',
-            'uogon' => '&#370',
-            'uopf' => '&#120140',
-            'uparrow' => '&#8593',
-            'uparrowbar' => '&#10514',
-            'uparrowdownarrow' => '&#8645',
-            'updownarrow' => '&#8597',
-            'upequilibrium' => '&#10606',
-            'upharpoonleft' => '&#8639',
-            'upharpoonright' => '&#8638',
-            'uplus' => '&#8846',
-            'upperleftarrow' => '&#8598',
-            'upperrightarrow' => '&#8599',
-            'upsi' => '&#978',
-            'upsih' => '&#978',
-            'upsilon' => '&#933',
-            'uptee' => '&#8869',
-            'upteearrow' => '&#8613',
-            'upuparrows' => '&#8648',
-            'urcorn' => '&#8989',
-            'urcorner' => '&#8989',
-            'urcrop' => '&#8974',
-            'uring' => '&#366',
-            'urtri' => '&#9721',
-            'uscr' => '&#119984',
-            'utdot' => '&#8944',
-            'utilde' => '&#360',
-            'utri' => '&#9653',
-            'utrif' => '&#9652',
-            'uuarr' => '&#8648',
-            'uuml' => '&#220',
-            'uwangle' => '&#10663',
-            'vangrt' => '&#10652',
-            'varepsilon' => '&#1013',
-            'varkappa' => '&#1008',
-            'varnothing' => '&#8709',
-            'varphi' => '&#981',
-            'varpi' => '&#982',
-            'varpropto' => '&#8733',
-            'varr' => '&#8661',
-            'varrho' => '&#1009',
-            'varsigma' => '&#962',
-            'varsubsetneq' => '&#8842',
-            'varsubsetneqq' => '&#10955',
-            'varsupsetneq' => '&#8843',
-            'varsupsetneqq' => '&#10956',
-            'vartheta' => '&#977',
-            'vartriangleleft' => '&#8882',
-            'vartriangleright' => '&#8883',
-            'vbar' => '&#10987',
-            'vbarv' => '&#10985',
-            'vcy' => '&#1042',
-            'vdash' => '&#8875',
-            'vdashl' => '&#10982',
-            'vee' => '&#8897',
-            'veebar' => '&#8891',
-            'veeeq' => '&#8794',
-            'vellip' => '&#8942',
-            'verbar' => '&#8214',
-            'vert' => '&#8214',
-            'verticalbar' => '&#8739',
-            'verticalline' => '&#124',
-            'verticalseparator' => '&#10072',
-            'verticaltilde' => '&#8768',
-            'verythinspace' => '&#8202',
-            'vfr' => '&#120089',
-            'vltri' => '&#8882',
-            'vnsub' => '&#8834',
-            'vnsup' => '&#8835',
-            'vopf' => '&#120141',
-            'vprop' => '&#8733',
-            'vrtri' => '&#8883',
-            'vscr' => '&#119985',
-            'vsubne' => '&#10955',
-            'vsupne' => '&#10956',
-            'vvdash' => '&#8874',
-            'vzigzag' => '&#10650',
-            'wcirc' => '&#372',
-            'wedbar' => '&#10847',
-            'wedge' => '&#8896',
-            'wedgeq' => '&#8793',
-            'weierp' => '&#8472',
-            'wfr' => '&#120090',
-            'wopf' => '&#120142',
-            'wp' => '&#8472',
-            'wr' => '&#8768',
-            'wreath' => '&#8768',
-            'wscr' => '&#119986',
-            'xcap' => '&#8898',
-            'xcirc' => '&#9711',
-            'xcup' => '&#8899',
-            'xdtri' => '&#9661',
-            'xfr' => '&#120091',
-            'xharr' => '&#10234',
-            'xi' => '&#926',
-            'xlarr' => '&#10232',
-            'xmap' => '&#10236',
-            'xnis' => '&#8955',
-            'xodot' => '&#10752',
-            'xopf' => '&#120143',
-            'xoplus' => '&#10753',
-            'xotime' => '&#10754',
-            'xrarr' => '&#10233',
-            'xscr' => '&#119987',
-            'xsqcup' => '&#10758',
-            'xuplus' => '&#10756',
-            'xutri' => '&#9651',
-            'xvee' => '&#8897',
-            'xwedge' => '&#8896',
-            'yacute' => '&#221',
-            'yacy' => '&#1071',
-            'ycirc' => '&#374',
-            'ycy' => '&#1067',
-            'yen' => '&#165',
-            'yfr' => '&#120092',
-            'yicy' => '&#1031',
-            'yopf' => '&#120144',
-            'yscr' => '&#119988',
-            'yucy' => '&#1070',
-            'yuml' => '&#376',
-            'zacute' => '&#377',
-            'zcaron' => '&#381',
-            'zcy' => '&#1047',
-            'zdot' => '&#379',
-            'zeetrf' => '&#8488',
-            'zerowidthspace' => '&#8203',
-            'zeta' => '&#918',
-            'zfr' => '&#8488',
-            'zhcy' => '&#1046',
-            'zigrarr' => '&#8669',
-            'zopf' => '&#8484',
-            'zscr' => '&#119989',
-            'zwj' => '&#8205',
-            'zwnj' => '&#8204',
-    ];
+    const HTML5 = <<<'ENTITY'
+<!ENTITY aacute "&amp;#193">
+<!ENTITY abreve "&amp;#258">
+<!ENTITY ac "&amp;#8766">
+<!ENTITY acd "&amp;#8767">
+<!ENTITY ace "&amp;#8766">
+<!ENTITY acirc "&amp;#194">
+<!ENTITY acute "&amp;#180">
+<!ENTITY acy "&amp;#1040">
+<!ENTITY aelig "&amp;#198">
+<!ENTITY af "&amp;#8289">
+<!ENTITY afr "&amp;#120068">
+<!ENTITY agrave "&amp;#192">
+<!ENTITY alefsym "&amp;#8501">
+<!ENTITY aleph "&amp;#8501">
+<!ENTITY alpha "&amp;#913">
+<!ENTITY amacr "&amp;#256">
+<!ENTITY amalg "&amp;#10815">
+<!ENTITY amp "&amp;#38">
+<!ENTITY and "&amp;#10835">
+<!ENTITY andand "&amp;#10837">
+<!ENTITY andd "&amp;#10844">
+<!ENTITY andslope "&amp;#10840">
+<!ENTITY andv "&amp;#10842">
+<!ENTITY ang "&amp;#8736">
+<!ENTITY ange "&amp;#10660">
+<!ENTITY angle "&amp;#8736">
+<!ENTITY angmsd "&amp;#8737">
+<!ENTITY angmsdaa "&amp;#10664">
+<!ENTITY angmsdab "&amp;#10665">
+<!ENTITY angmsdac "&amp;#10666">
+<!ENTITY angmsdad "&amp;#10667">
+<!ENTITY angmsdae "&amp;#10668">
+<!ENTITY angmsdaf "&amp;#10669">
+<!ENTITY angmsdag "&amp;#10670">
+<!ENTITY angmsdah "&amp;#10671">
+<!ENTITY angrt "&amp;#8735">
+<!ENTITY angrtvb "&amp;#8894">
+<!ENTITY angrtvbd "&amp;#10653">
+<!ENTITY angsph "&amp;#8738">
+<!ENTITY angst "&amp;#197">
+<!ENTITY angzarr "&amp;#9084">
+<!ENTITY aogon "&amp;#260">
+<!ENTITY aopf "&amp;#120120">
+<!ENTITY ap "&amp;#8776">
+<!ENTITY apacir "&amp;#10863">
+<!ENTITY ape "&amp;#10864">
+<!ENTITY apid "&amp;#8779">
+<!ENTITY apos "&amp;#39">
+<!ENTITY applyfunction "&amp;#8289">
+<!ENTITY approx "&amp;#8776">
+<!ENTITY approxeq "&amp;#8778">
+<!ENTITY aring "&amp;#197">
+<!ENTITY ascr "&amp;#119964">
+<!ENTITY assign "&amp;#8788">
+<!ENTITY ast "&amp;#42">
+<!ENTITY asymp "&amp;#8776">
+<!ENTITY asympeq "&amp;#8781">
+<!ENTITY atilde "&amp;#195">
+<!ENTITY auml "&amp;#196">
+<!ENTITY awconint "&amp;#8755">
+<!ENTITY awint "&amp;#10769">
+<!ENTITY backcong "&amp;#8780">
+<!ENTITY backepsilon "&amp;#1014">
+<!ENTITY backprime "&amp;#8245">
+<!ENTITY backsim "&amp;#8765">
+<!ENTITY backsimeq "&amp;#8909">
+<!ENTITY backslash "&amp;#8726">
+<!ENTITY barv "&amp;#10983">
+<!ENTITY barvee "&amp;#8893">
+<!ENTITY barwed "&amp;#8966">
+<!ENTITY barwedge "&amp;#8965">
+<!ENTITY bbrk "&amp;#9141">
+<!ENTITY bbrktbrk "&amp;#9142">
+<!ENTITY bcong "&amp;#8780">
+<!ENTITY bcy "&amp;#1041">
+<!ENTITY bdquo "&amp;#8222">
+<!ENTITY becaus "&amp;#8757">
+<!ENTITY because "&amp;#8757">
+<!ENTITY bemptyv "&amp;#10672">
+<!ENTITY bepsi "&amp;#1014">
+<!ENTITY bernou "&amp;#8492">
+<!ENTITY bernoullis "&amp;#8492">
+<!ENTITY beta "&amp;#914">
+<!ENTITY beth "&amp;#8502">
+<!ENTITY between "&amp;#8812">
+<!ENTITY bfr "&amp;#120069">
+<!ENTITY bigcap "&amp;#8898">
+<!ENTITY bigcirc "&amp;#9711">
+<!ENTITY bigcup "&amp;#8899">
+<!ENTITY bigodot "&amp;#10752">
+<!ENTITY bigoplus "&amp;#10753">
+<!ENTITY bigotimes "&amp;#10754">
+<!ENTITY bigsqcup "&amp;#10758">
+<!ENTITY bigstar "&amp;#9733">
+<!ENTITY bigtriangledown "&amp;#9661">
+<!ENTITY bigtriangleup "&amp;#9651">
+<!ENTITY biguplus "&amp;#10756">
+<!ENTITY bigvee "&amp;#8897">
+<!ENTITY bigwedge "&amp;#8896">
+<!ENTITY bkarow "&amp;#10509">
+<!ENTITY blacklozenge "&amp;#10731">
+<!ENTITY blacksquare "&amp;#9642">
+<!ENTITY blacktriangle "&amp;#9652">
+<!ENTITY blacktriangledown "&amp;#9662">
+<!ENTITY blacktriangleleft "&amp;#9666">
+<!ENTITY blacktriangleright "&amp;#9656">
+<!ENTITY blank "&amp;#9251">
+<!ENTITY blk12 "&amp;#9618">
+<!ENTITY blk14 "&amp;#9617">
+<!ENTITY blk34 "&amp;#9619">
+<!ENTITY block "&amp;#9608">
+<!ENTITY bne "&amp;#61">
+<!ENTITY bnequiv "&amp;#8801">
+<!ENTITY bnot "&amp;#10989">
+<!ENTITY bopf "&amp;#120121">
+<!ENTITY bot "&amp;#8869">
+<!ENTITY bottom "&amp;#8869">
+<!ENTITY bowtie "&amp;#8904">
+<!ENTITY boxbox "&amp;#10697">
+<!ENTITY boxdl "&amp;#9559">
+<!ENTITY boxdr "&amp;#9556">
+<!ENTITY boxh "&amp;#9552">
+<!ENTITY boxhd "&amp;#9574">
+<!ENTITY boxhu "&amp;#9577">
+<!ENTITY boxminus "&amp;#8863">
+<!ENTITY boxplus "&amp;#8862">
+<!ENTITY boxtimes "&amp;#8864">
+<!ENTITY boxul "&amp;#9565">
+<!ENTITY boxur "&amp;#9562">
+<!ENTITY boxv "&amp;#9553">
+<!ENTITY boxvh "&amp;#9580">
+<!ENTITY boxvl "&amp;#9571">
+<!ENTITY boxvr "&amp;#9568">
+<!ENTITY bprime "&amp;#8245">
+<!ENTITY breve "&amp;#728">
+<!ENTITY brvbar "&amp;#166">
+<!ENTITY bscr "&amp;#8492">
+<!ENTITY bsemi "&amp;#8271">
+<!ENTITY bsim "&amp;#8765">
+<!ENTITY bsime "&amp;#8909">
+<!ENTITY bsol "&amp;#92">
+<!ENTITY bsolb "&amp;#10693">
+<!ENTITY bsolhsub "&amp;#10184">
+<!ENTITY bull "&amp;#8226">
+<!ENTITY bullet "&amp;#8226">
+<!ENTITY bump "&amp;#8782">
+<!ENTITY bumpe "&amp;#10926">
+<!ENTITY bumpeq "&amp;#8782">
+<!ENTITY cacute "&amp;#262">
+<!ENTITY cap "&amp;#8914">
+<!ENTITY capand "&amp;#10820">
+<!ENTITY capbrcup "&amp;#10825">
+<!ENTITY capcap "&amp;#10827">
+<!ENTITY capcup "&amp;#10823">
+<!ENTITY capdot "&amp;#10816">
+<!ENTITY capitaldifferentiald "&amp;#8517">
+<!ENTITY caps "&amp;#8745">
+<!ENTITY caret "&amp;#8257">
+<!ENTITY caron "&amp;#711">
+<!ENTITY cayleys "&amp;#8493">
+<!ENTITY ccaps "&amp;#10829">
+<!ENTITY ccaron "&amp;#268">
+<!ENTITY ccedil "&amp;#199">
+<!ENTITY ccirc "&amp;#264">
+<!ENTITY cconint "&amp;#8752">
+<!ENTITY ccups "&amp;#10828">
+<!ENTITY ccupssm "&amp;#10832">
+<!ENTITY cdot "&amp;#266">
+<!ENTITY cedil "&amp;#184">
+<!ENTITY cedilla "&amp;#184">
+<!ENTITY cemptyv "&amp;#10674">
+<!ENTITY cent "&amp;#162">
+<!ENTITY centerdot "&amp;#183">
+<!ENTITY cfr "&amp;#8493">
+<!ENTITY chcy "&amp;#1063">
+<!ENTITY check "&amp;#10003">
+<!ENTITY checkmark "&amp;#10003">
+<!ENTITY chi "&amp;#935">
+<!ENTITY cir "&amp;#9675">
+<!ENTITY circ "&amp;#710">
+<!ENTITY circeq "&amp;#8791">
+<!ENTITY circlearrowleft "&amp;#8634">
+<!ENTITY circlearrowright "&amp;#8635">
+<!ENTITY circledast "&amp;#8859">
+<!ENTITY circledcirc "&amp;#8858">
+<!ENTITY circleddash "&amp;#8861">
+<!ENTITY circledot "&amp;#8857">
+<!ENTITY circledr "&amp;#174">
+<!ENTITY circleds "&amp;#9416">
+<!ENTITY circleminus "&amp;#8854">
+<!ENTITY circleplus "&amp;#8853">
+<!ENTITY circletimes "&amp;#8855">
+<!ENTITY cire "&amp;#10691">
+<!ENTITY cirfnint "&amp;#10768">
+<!ENTITY cirmid "&amp;#10991">
+<!ENTITY cirscir "&amp;#10690">
+<!ENTITY clockwisecontourintegral "&amp;#8754">
+<!ENTITY closecurlydoublequote "&amp;#8221">
+<!ENTITY closecurlyquote "&amp;#8217">
+<!ENTITY clubs "&amp;#9827">
+<!ENTITY clubsuit "&amp;#9827">
+<!ENTITY colon "&amp;#8759">
+<!ENTITY colone "&amp;#10868">
+<!ENTITY coloneq "&amp;#8788">
+<!ENTITY comma "&amp;#44">
+<!ENTITY commat "&amp;#64">
+<!ENTITY comp "&amp;#8705">
+<!ENTITY compfn "&amp;#8728">
+<!ENTITY complement "&amp;#8705">
+<!ENTITY complexes "&amp;#8450">
+<!ENTITY cong "&amp;#8773">
+<!ENTITY congdot "&amp;#10861">
+<!ENTITY congruent "&amp;#8801">
+<!ENTITY conint "&amp;#8751">
+<!ENTITY contourintegral "&amp;#8750">
+<!ENTITY copf "&amp;#8450">
+<!ENTITY coprod "&amp;#8720">
+<!ENTITY coproduct "&amp;#8720">
+<!ENTITY copy "&amp;#169">
+<!ENTITY copysr "&amp;#8471">
+<!ENTITY counterclockwisecontourintegral "&amp;#8755">
+<!ENTITY crarr "&amp;#8629">
+<!ENTITY cross "&amp;#10799">
+<!ENTITY cscr "&amp;#119966">
+<!ENTITY csub "&amp;#10959">
+<!ENTITY csube "&amp;#10961">
+<!ENTITY csup "&amp;#10960">
+<!ENTITY csupe "&amp;#10962">
+<!ENTITY ctdot "&amp;#8943">
+<!ENTITY cudarrl "&amp;#10552">
+<!ENTITY cudarrr "&amp;#10549">
+<!ENTITY cuepr "&amp;#8926">
+<!ENTITY cuesc "&amp;#8927">
+<!ENTITY cularr "&amp;#8630">
+<!ENTITY cularrp "&amp;#10557">
+<!ENTITY cup "&amp;#8915">
+<!ENTITY cupbrcap "&amp;#10824">
+<!ENTITY cupcap "&amp;#8781">
+<!ENTITY cupcup "&amp;#10826">
+<!ENTITY cupdot "&amp;#8845">
+<!ENTITY cupor "&amp;#10821">
+<!ENTITY cups "&amp;#8746">
+<!ENTITY curarr "&amp;#8631">
+<!ENTITY curarrm "&amp;#10556">
+<!ENTITY curlyeqprec "&amp;#8926">
+<!ENTITY curlyeqsucc "&amp;#8927">
+<!ENTITY curlyvee "&amp;#8910">
+<!ENTITY curlywedge "&amp;#8911">
+<!ENTITY curren "&amp;#164">
+<!ENTITY curvearrowleft "&amp;#8630">
+<!ENTITY curvearrowright "&amp;#8631">
+<!ENTITY cuvee "&amp;#8910">
+<!ENTITY cuwed "&amp;#8911">
+<!ENTITY cwconint "&amp;#8754">
+<!ENTITY cwint "&amp;#8753">
+<!ENTITY cylcty "&amp;#9005">
+<!ENTITY dagger "&amp;#8225">
+<!ENTITY daleth "&amp;#8504">
+<!ENTITY darr "&amp;#8609">
+<!ENTITY dash "&amp;#8208">
+<!ENTITY dashv "&amp;#10980">
+<!ENTITY dbkarow "&amp;#10511">
+<!ENTITY dblac "&amp;#733">
+<!ENTITY dcaron "&amp;#270">
+<!ENTITY dcy "&amp;#1044">
+<!ENTITY dd "&amp;#8517">
+<!ENTITY ddagger "&amp;#8225">
+<!ENTITY ddarr "&amp;#8650">
+<!ENTITY ddotrahd "&amp;#10513">
+<!ENTITY ddotseq "&amp;#10871">
+<!ENTITY deg "&amp;#176">
+<!ENTITY del "&amp;#8711">
+<!ENTITY delta "&amp;#916">
+<!ENTITY demptyv "&amp;#10673">
+<!ENTITY dfisht "&amp;#10623">
+<!ENTITY dfr "&amp;#120071">
+<!ENTITY dhar "&amp;#10597">
+<!ENTITY dharl "&amp;#8643">
+<!ENTITY dharr "&amp;#8642">
+<!ENTITY diacriticalacute "&amp;#180">
+<!ENTITY diacriticaldot "&amp;#729">
+<!ENTITY diacriticaldoubleacute "&amp;#733">
+<!ENTITY diacriticalgrave "&amp;#96">
+<!ENTITY diacriticaltilde "&amp;#732">
+<!ENTITY diam "&amp;#8900">
+<!ENTITY diamond "&amp;#8900">
+<!ENTITY diamondsuit "&amp;#9830">
+<!ENTITY diams "&amp;#9830">
+<!ENTITY die "&amp;#168">
+<!ENTITY differentiald "&amp;#8518">
+<!ENTITY digamma "&amp;#989">
+<!ENTITY disin "&amp;#8946">
+<!ENTITY div "&amp;#247">
+<!ENTITY divide "&amp;#247">
+<!ENTITY divideontimes "&amp;#8903">
+<!ENTITY divonx "&amp;#8903">
+<!ENTITY djcy "&amp;#1026">
+<!ENTITY dlcorn "&amp;#8990">
+<!ENTITY dlcrop "&amp;#8973">
+<!ENTITY dollar "&amp;#36">
+<!ENTITY dopf "&amp;#120123">
+<!ENTITY dot "&amp;#168">
+<!ENTITY dotdot "&amp;#8412">
+<!ENTITY doteq "&amp;#8784">
+<!ENTITY doteqdot "&amp;#8785">
+<!ENTITY dotequal "&amp;#8784">
+<!ENTITY dotminus "&amp;#8760">
+<!ENTITY dotplus "&amp;#8724">
+<!ENTITY dotsquare "&amp;#8865">
+<!ENTITY doublebarwedge "&amp;#8966">
+<!ENTITY doublecontourintegral "&amp;#8751">
+<!ENTITY doubledot "&amp;#168">
+<!ENTITY doubledownarrow "&amp;#8659">
+<!ENTITY doubleleftarrow "&amp;#8656">
+<!ENTITY doubleleftrightarrow "&amp;#8660">
+<!ENTITY doublelefttee "&amp;#10980">
+<!ENTITY doublelongleftarrow "&amp;#10232">
+<!ENTITY doublelongleftrightarrow "&amp;#10234">
+<!ENTITY doublelongrightarrow "&amp;#10233">
+<!ENTITY doublerightarrow "&amp;#8658">
+<!ENTITY doublerighttee "&amp;#8872">
+<!ENTITY doubleuparrow "&amp;#8657">
+<!ENTITY doubleupdownarrow "&amp;#8661">
+<!ENTITY doubleverticalbar "&amp;#8741">
+<!ENTITY downarrow "&amp;#8595">
+<!ENTITY downarrowbar "&amp;#10515">
+<!ENTITY downarrowuparrow "&amp;#8693">
+<!ENTITY downbreve "&amp;#785">
+<!ENTITY downdownarrows "&amp;#8650">
+<!ENTITY downharpoonleft "&amp;#8643">
+<!ENTITY downharpoonright "&amp;#8642">
+<!ENTITY downleftrightvector "&amp;#10576">
+<!ENTITY downleftteevector "&amp;#10590">
+<!ENTITY downleftvector "&amp;#8637">
+<!ENTITY downleftvectorbar "&amp;#10582">
+<!ENTITY downrightteevector "&amp;#10591">
+<!ENTITY downrightvector "&amp;#8641">
+<!ENTITY downrightvectorbar "&amp;#10583">
+<!ENTITY downtee "&amp;#8868">
+<!ENTITY downteearrow "&amp;#8615">
+<!ENTITY drbkarow "&amp;#10512">
+<!ENTITY drcorn "&amp;#8991">
+<!ENTITY drcrop "&amp;#8972">
+<!ENTITY dscr "&amp;#119967">
+<!ENTITY dscy "&amp;#1029">
+<!ENTITY dsol "&amp;#10742">
+<!ENTITY dstrok "&amp;#272">
+<!ENTITY dtdot "&amp;#8945">
+<!ENTITY dtri "&amp;#9663">
+<!ENTITY dtrif "&amp;#9662">
+<!ENTITY duarr "&amp;#8693">
+<!ENTITY duhar "&amp;#10607">
+<!ENTITY dwangle "&amp;#10662">
+<!ENTITY dzcy "&amp;#1039">
+<!ENTITY dzigrarr "&amp;#10239">
+<!ENTITY eacute "&amp;#201">
+<!ENTITY easter "&amp;#10862">
+<!ENTITY ecaron "&amp;#282">
+<!ENTITY ecir "&amp;#8790">
+<!ENTITY ecirc "&amp;#202">
+<!ENTITY ecolon "&amp;#8789">
+<!ENTITY ecy "&amp;#1069">
+<!ENTITY eddot "&amp;#10871">
+<!ENTITY edot "&amp;#278">
+<!ENTITY ee "&amp;#8519">
+<!ENTITY efdot "&amp;#8786">
+<!ENTITY efr "&amp;#120072">
+<!ENTITY eg "&amp;#10906">
+<!ENTITY egrave "&amp;#200">
+<!ENTITY egs "&amp;#10902">
+<!ENTITY egsdot "&amp;#10904">
+<!ENTITY el "&amp;#10905">
+<!ENTITY element "&amp;#8712">
+<!ENTITY elinters "&amp;#9191">
+<!ENTITY ell "&amp;#8467">
+<!ENTITY els "&amp;#10901">
+<!ENTITY elsdot "&amp;#10903">
+<!ENTITY emacr "&amp;#274">
+<!ENTITY empty "&amp;#8709">
+<!ENTITY emptyset "&amp;#8709">
+<!ENTITY emptysmallsquare "&amp;#9723">
+<!ENTITY emptyv "&amp;#8709">
+<!ENTITY emptyverysmallsquare "&amp;#9643">
+<!ENTITY emsp "&amp;#8195">
+<!ENTITY emsp13 "&amp;#8196">
+<!ENTITY emsp14 "&amp;#8197">
+<!ENTITY eng "&amp;#330">
+<!ENTITY ensp "&amp;#8194">
+<!ENTITY eogon "&amp;#280">
+<!ENTITY eopf "&amp;#120124">
+<!ENTITY epar "&amp;#8917">
+<!ENTITY eparsl "&amp;#10723">
+<!ENTITY eplus "&amp;#10865">
+<!ENTITY epsi "&amp;#949">
+<!ENTITY epsilon "&amp;#917">
+<!ENTITY epsiv "&amp;#1013">
+<!ENTITY eqcirc "&amp;#8790">
+<!ENTITY eqcolon "&amp;#8789">
+<!ENTITY eqsim "&amp;#8770">
+<!ENTITY eqslantgtr "&amp;#10902">
+<!ENTITY eqslantless "&amp;#10901">
+<!ENTITY equal "&amp;#10869">
+<!ENTITY equals "&amp;#61">
+<!ENTITY equaltilde "&amp;#8770">
+<!ENTITY equest "&amp;#8799">
+<!ENTITY equilibrium "&amp;#8652">
+<!ENTITY equiv "&amp;#8801">
+<!ENTITY equivdd "&amp;#10872">
+<!ENTITY eqvparsl "&amp;#10725">
+<!ENTITY erarr "&amp;#10609">
+<!ENTITY erdot "&amp;#8787">
+<!ENTITY escr "&amp;#8496">
+<!ENTITY esdot "&amp;#8784">
+<!ENTITY esim "&amp;#10867">
+<!ENTITY eta "&amp;#919">
+<!ENTITY eth "&amp;#208">
+<!ENTITY euml "&amp;#203">
+<!ENTITY euro "&amp;#8364">
+<!ENTITY excl "&amp;#33">
+<!ENTITY exist "&amp;#8707">
+<!ENTITY exists "&amp;#8707">
+<!ENTITY expectation "&amp;#8496">
+<!ENTITY exponentiale "&amp;#8519">
+<!ENTITY fallingdotseq "&amp;#8786">
+<!ENTITY fcy "&amp;#1060">
+<!ENTITY female "&amp;#9792">
+<!ENTITY ffilig "&amp;#64259">
+<!ENTITY fflig "&amp;#64256">
+<!ENTITY ffllig "&amp;#64260">
+<!ENTITY ffr "&amp;#120073">
+<!ENTITY filig "&amp;#64257">
+<!ENTITY filledsmallsquare "&amp;#9724">
+<!ENTITY filledverysmallsquare "&amp;#9642">
+<!ENTITY fjlig "&amp;#102">
+<!ENTITY flat "&amp;#9837">
+<!ENTITY fllig "&amp;#64258">
+<!ENTITY fltns "&amp;#9649">
+<!ENTITY fnof "&amp;#402">
+<!ENTITY fopf "&amp;#120125">
+<!ENTITY forall "&amp;#8704">
+<!ENTITY fork "&amp;#8916">
+<!ENTITY forkv "&amp;#10969">
+<!ENTITY fouriertrf "&amp;#8497">
+<!ENTITY fpartint "&amp;#10765">
+<!ENTITY frac12 "&amp;#189">
+<!ENTITY frac13 "&amp;#8531">
+<!ENTITY frac14 "&amp;#188">
+<!ENTITY frac15 "&amp;#8533">
+<!ENTITY frac16 "&amp;#8537">
+<!ENTITY frac18 "&amp;#8539">
+<!ENTITY frac23 "&amp;#8532">
+<!ENTITY frac25 "&amp;#8534">
+<!ENTITY frac34 "&amp;#190">
+<!ENTITY frac35 "&amp;#8535">
+<!ENTITY frac38 "&amp;#8540">
+<!ENTITY frac45 "&amp;#8536">
+<!ENTITY frac56 "&amp;#8538">
+<!ENTITY frac58 "&amp;#8541">
+<!ENTITY frac78 "&amp;#8542">
+<!ENTITY frasl "&amp;#8260">
+<!ENTITY frown "&amp;#8994">
+<!ENTITY fscr "&amp;#8497">
+<!ENTITY gacute "&amp;#501">
+<!ENTITY gamma "&amp;#915">
+<!ENTITY gammad "&amp;#988">
+<!ENTITY gap "&amp;#10886">
+<!ENTITY gbreve "&amp;#286">
+<!ENTITY gcedil "&amp;#290">
+<!ENTITY gcirc "&amp;#284">
+<!ENTITY gcy "&amp;#1043">
+<!ENTITY gdot "&amp;#288">
+<!ENTITY ge "&amp;#8807">
+<!ENTITY gel "&amp;#10892">
+<!ENTITY geq "&amp;#8805">
+<!ENTITY geqq "&amp;#8807">
+<!ENTITY geqslant "&amp;#10878">
+<!ENTITY ges "&amp;#10878">
+<!ENTITY gescc "&amp;#10921">
+<!ENTITY gesdot "&amp;#10880">
+<!ENTITY gesdoto "&amp;#10882">
+<!ENTITY gesdotol "&amp;#10884">
+<!ENTITY gesl "&amp;#8923">
+<!ENTITY gesles "&amp;#10900">
+<!ENTITY gfr "&amp;#120074">
+<!ENTITY gg "&amp;#8921">
+<!ENTITY ggg "&amp;#8921">
+<!ENTITY gimel "&amp;#8503">
+<!ENTITY gjcy "&amp;#1027">
+<!ENTITY gl "&amp;#8823">
+<!ENTITY gla "&amp;#10917">
+<!ENTITY gle "&amp;#10898">
+<!ENTITY glj "&amp;#10916">
+<!ENTITY gnap "&amp;#10890">
+<!ENTITY gnapprox "&amp;#10890">
+<!ENTITY gne "&amp;#8809">
+<!ENTITY gneq "&amp;#10888">
+<!ENTITY gneqq "&amp;#8809">
+<!ENTITY gnsim "&amp;#8935">
+<!ENTITY gopf "&amp;#120126">
+<!ENTITY grave "&amp;#96">
+<!ENTITY greaterequal "&amp;#8805">
+<!ENTITY greaterequalless "&amp;#8923">
+<!ENTITY greaterfullequal "&amp;#8807">
+<!ENTITY greatergreater "&amp;#10914">
+<!ENTITY greaterless "&amp;#8823">
+<!ENTITY greaterslantequal "&amp;#10878">
+<!ENTITY greatertilde "&amp;#8819">
+<!ENTITY gscr "&amp;#119970">
+<!ENTITY gsim "&amp;#8819">
+<!ENTITY gsime "&amp;#10894">
+<!ENTITY gsiml "&amp;#10896">
+<!ENTITY gt "&amp;#62">
+<!ENTITY gtcc "&amp;#10919">
+<!ENTITY gtcir "&amp;#10874">
+<!ENTITY gtdot "&amp;#8919">
+<!ENTITY gtlpar "&amp;#10645">
+<!ENTITY gtquest "&amp;#10876">
+<!ENTITY gtrapprox "&amp;#10886">
+<!ENTITY gtrarr "&amp;#10616">
+<!ENTITY gtrdot "&amp;#8919">
+<!ENTITY gtreqless "&amp;#8923">
+<!ENTITY gtreqqless "&amp;#10892">
+<!ENTITY gtrless "&amp;#8823">
+<!ENTITY gtrsim "&amp;#8819">
+<!ENTITY gvertneqq "&amp;#8809">
+<!ENTITY gvne "&amp;#8809">
+<!ENTITY hacek "&amp;#711">
+<!ENTITY hairsp "&amp;#8202">
+<!ENTITY half "&amp;#189">
+<!ENTITY hamilt "&amp;#8459">
+<!ENTITY hardcy "&amp;#1066">
+<!ENTITY harr "&amp;#8660">
+<!ENTITY harrcir "&amp;#10568">
+<!ENTITY harrw "&amp;#8621">
+<!ENTITY hat "&amp;#94">
+<!ENTITY hbar "&amp;#8463">
+<!ENTITY hcirc "&amp;#292">
+<!ENTITY hearts "&amp;#9829">
+<!ENTITY heartsuit "&amp;#9829">
+<!ENTITY hellip "&amp;#8230">
+<!ENTITY hercon "&amp;#8889">
+<!ENTITY hfr "&amp;#8460">
+<!ENTITY hilbertspace "&amp;#8459">
+<!ENTITY hksearow "&amp;#10533">
+<!ENTITY hkswarow "&amp;#10534">
+<!ENTITY hoarr "&amp;#8703">
+<!ENTITY homtht "&amp;#8763">
+<!ENTITY hookleftarrow "&amp;#8617">
+<!ENTITY hookrightarrow "&amp;#8618">
+<!ENTITY hopf "&amp;#8461">
+<!ENTITY horbar "&amp;#8213">
+<!ENTITY horizontalline "&amp;#9472">
+<!ENTITY hscr "&amp;#8459">
+<!ENTITY hslash "&amp;#8463">
+<!ENTITY hstrok "&amp;#294">
+<!ENTITY humpdownhump "&amp;#8782">
+<!ENTITY humpequal "&amp;#8783">
+<!ENTITY hybull "&amp;#8259">
+<!ENTITY hyphen "&amp;#8208">
+<!ENTITY iacute "&amp;#205">
+<!ENTITY ic "&amp;#8291">
+<!ENTITY icirc "&amp;#206">
+<!ENTITY icy "&amp;#1048">
+<!ENTITY idot "&amp;#304">
+<!ENTITY iecy "&amp;#1045">
+<!ENTITY iexcl "&amp;#161">
+<!ENTITY iff "&amp;#8660">
+<!ENTITY ifr "&amp;#8465">
+<!ENTITY igrave "&amp;#204">
+<!ENTITY ii "&amp;#8520">
+<!ENTITY iiiint "&amp;#10764">
+<!ENTITY iiint "&amp;#8749">
+<!ENTITY iinfin "&amp;#10716">
+<!ENTITY iiota "&amp;#8489">
+<!ENTITY ijlig "&amp;#306">
+<!ENTITY im "&amp;#8465">
+<!ENTITY imacr "&amp;#298">
+<!ENTITY image "&amp;#8465">
+<!ENTITY imaginaryi "&amp;#8520">
+<!ENTITY imagline "&amp;#8464">
+<!ENTITY imagpart "&amp;#8465">
+<!ENTITY imath "&amp;#305">
+<!ENTITY imof "&amp;#8887">
+<!ENTITY imped "&amp;#437">
+<!ENTITY implies "&amp;#8658">
+<!ENTITY in "&amp;#8712">
+<!ENTITY incare "&amp;#8453">
+<!ENTITY infin "&amp;#8734">
+<!ENTITY infintie "&amp;#10717">
+<!ENTITY inodot "&amp;#305">
+<!ENTITY int "&amp;#8748">
+<!ENTITY intcal "&amp;#8890">
+<!ENTITY integers "&amp;#8484">
+<!ENTITY integral "&amp;#8747">
+<!ENTITY intercal "&amp;#8890">
+<!ENTITY intersection "&amp;#8898">
+<!ENTITY intlarhk "&amp;#10775">
+<!ENTITY intprod "&amp;#10812">
+<!ENTITY invisiblecomma "&amp;#8291">
+<!ENTITY invisibletimes "&amp;#8290">
+<!ENTITY iocy "&amp;#1025">
+<!ENTITY iogon "&amp;#302">
+<!ENTITY iopf "&amp;#120128">
+<!ENTITY iota "&amp;#921">
+<!ENTITY iprod "&amp;#10812">
+<!ENTITY iquest "&amp;#191">
+<!ENTITY iscr "&amp;#8464">
+<!ENTITY isin "&amp;#8712">
+<!ENTITY isindot "&amp;#8949">
+<!ENTITY isine "&amp;#8953">
+<!ENTITY isins "&amp;#8948">
+<!ENTITY isinsv "&amp;#8947">
+<!ENTITY isinv "&amp;#8712">
+<!ENTITY it "&amp;#8290">
+<!ENTITY itilde "&amp;#296">
+<!ENTITY iukcy "&amp;#1030">
+<!ENTITY iuml "&amp;#207">
+<!ENTITY jcirc "&amp;#308">
+<!ENTITY jcy "&amp;#1049">
+<!ENTITY jfr "&amp;#120077">
+<!ENTITY jmath "&amp;#567">
+<!ENTITY jopf "&amp;#120129">
+<!ENTITY jscr "&amp;#119973">
+<!ENTITY jsercy "&amp;#1032">
+<!ENTITY jukcy "&amp;#1028">
+<!ENTITY kappa "&amp;#922">
+<!ENTITY kappav "&amp;#1008">
+<!ENTITY kcedil "&amp;#310">
+<!ENTITY kcy "&amp;#1050">
+<!ENTITY kfr "&amp;#120078">
+<!ENTITY kgreen "&amp;#312">
+<!ENTITY khcy "&amp;#1061">
+<!ENTITY kjcy "&amp;#1036">
+<!ENTITY kopf "&amp;#120130">
+<!ENTITY kscr "&amp;#119974">
+<!ENTITY laarr "&amp;#8666">
+<!ENTITY lacute "&amp;#313">
+<!ENTITY laemptyv "&amp;#10676">
+<!ENTITY lagran "&amp;#8466">
+<!ENTITY lambda "&amp;#923">
+<!ENTITY lang "&amp;#10218">
+<!ENTITY langd "&amp;#10641">
+<!ENTITY langle "&amp;#10216">
+<!ENTITY lap "&amp;#10885">
+<!ENTITY laplacetrf "&amp;#8466">
+<!ENTITY laquo "&amp;#171">
+<!ENTITY larr "&amp;#8606">
+<!ENTITY larrb "&amp;#8676">
+<!ENTITY larrbfs "&amp;#10527">
+<!ENTITY larrfs "&amp;#10525">
+<!ENTITY larrhk "&amp;#8617">
+<!ENTITY larrlp "&amp;#8619">
+<!ENTITY larrpl "&amp;#10553">
+<!ENTITY larrsim "&amp;#10611">
+<!ENTITY larrtl "&amp;#8610">
+<!ENTITY lat "&amp;#10923">
+<!ENTITY latail "&amp;#10523">
+<!ENTITY late "&amp;#10925">
+<!ENTITY lates "&amp;#10925">
+<!ENTITY lbarr "&amp;#10510">
+<!ENTITY lbbrk "&amp;#10098">
+<!ENTITY lbrace "&amp;#123">
+<!ENTITY lbrack "&amp;#91">
+<!ENTITY lbrke "&amp;#10635">
+<!ENTITY lbrksld "&amp;#10639">
+<!ENTITY lbrkslu "&amp;#10637">
+<!ENTITY lcaron "&amp;#317">
+<!ENTITY lcedil "&amp;#315">
+<!ENTITY lceil "&amp;#8968">
+<!ENTITY lcub "&amp;#123">
+<!ENTITY lcy "&amp;#1051">
+<!ENTITY ldca "&amp;#10550">
+<!ENTITY ldquo "&amp;#8220">
+<!ENTITY ldquor "&amp;#8222">
+<!ENTITY ldrdhar "&amp;#10599">
+<!ENTITY ldrushar "&amp;#10571">
+<!ENTITY ldsh "&amp;#8626">
+<!ENTITY le "&amp;#8806">
+<!ENTITY leftanglebracket "&amp;#10216">
+<!ENTITY leftarrow "&amp;#8592">
+<!ENTITY leftarrowbar "&amp;#8676">
+<!ENTITY leftarrowrightarrow "&amp;#8646">
+<!ENTITY leftarrowtail "&amp;#8610">
+<!ENTITY leftceiling "&amp;#8968">
+<!ENTITY leftdoublebracket "&amp;#10214">
+<!ENTITY leftdownteevector "&amp;#10593">
+<!ENTITY leftdownvector "&amp;#8643">
+<!ENTITY leftdownvectorbar "&amp;#10585">
+<!ENTITY leftfloor "&amp;#8970">
+<!ENTITY leftharpoondown "&amp;#8637">
+<!ENTITY leftharpoonup "&amp;#8636">
+<!ENTITY leftleftarrows "&amp;#8647">
+<!ENTITY leftrightarrow "&amp;#8596">
+<!ENTITY leftrightarrows "&amp;#8646">
+<!ENTITY leftrightharpoons "&amp;#8651">
+<!ENTITY leftrightsquigarrow "&amp;#8621">
+<!ENTITY leftrightvector "&amp;#10574">
+<!ENTITY lefttee "&amp;#8867">
+<!ENTITY leftteearrow "&amp;#8612">
+<!ENTITY leftteevector "&amp;#10586">
+<!ENTITY leftthreetimes "&amp;#8907">
+<!ENTITY lefttriangle "&amp;#8882">
+<!ENTITY lefttrianglebar "&amp;#10703">
+<!ENTITY lefttriangleequal "&amp;#8884">
+<!ENTITY leftupdownvector "&amp;#10577">
+<!ENTITY leftupteevector "&amp;#10592">
+<!ENTITY leftupvector "&amp;#8639">
+<!ENTITY leftupvectorbar "&amp;#10584">
+<!ENTITY leftvector "&amp;#8636">
+<!ENTITY leftvectorbar "&amp;#10578">
+<!ENTITY leg "&amp;#10891">
+<!ENTITY leq "&amp;#8804">
+<!ENTITY leqq "&amp;#8806">
+<!ENTITY leqslant "&amp;#10877">
+<!ENTITY les "&amp;#10877">
+<!ENTITY lescc "&amp;#10920">
+<!ENTITY lesdot "&amp;#10879">
+<!ENTITY lesdoto "&amp;#10881">
+<!ENTITY lesdotor "&amp;#10883">
+<!ENTITY lesg "&amp;#8922">
+<!ENTITY lesges "&amp;#10899">
+<!ENTITY lessapprox "&amp;#10885">
+<!ENTITY lessdot "&amp;#8918">
+<!ENTITY lesseqgtr "&amp;#8922">
+<!ENTITY lesseqqgtr "&amp;#10891">
+<!ENTITY lessequalgreater "&amp;#8922">
+<!ENTITY lessfullequal "&amp;#8806">
+<!ENTITY lessgreater "&amp;#8822">
+<!ENTITY lessgtr "&amp;#8822">
+<!ENTITY lessless "&amp;#10913">
+<!ENTITY lesssim "&amp;#8818">
+<!ENTITY lessslantequal "&amp;#10877">
+<!ENTITY lesstilde "&amp;#8818">
+<!ENTITY lfisht "&amp;#10620">
+<!ENTITY lfloor "&amp;#8970">
+<!ENTITY lfr "&amp;#120079">
+<!ENTITY lg "&amp;#8822">
+<!ENTITY lge "&amp;#10897">
+<!ENTITY lhar "&amp;#10594">
+<!ENTITY lhard "&amp;#8637">
+<!ENTITY lharu "&amp;#8636">
+<!ENTITY lharul "&amp;#10602">
+<!ENTITY lhblk "&amp;#9604">
+<!ENTITY ljcy "&amp;#1033">
+<!ENTITY ll "&amp;#8920">
+<!ENTITY llarr "&amp;#8647">
+<!ENTITY llcorner "&amp;#8990">
+<!ENTITY lleftarrow "&amp;#8666">
+<!ENTITY llhard "&amp;#10603">
+<!ENTITY lltri "&amp;#9722">
+<!ENTITY lmidot "&amp;#319">
+<!ENTITY lmoust "&amp;#9136">
+<!ENTITY lmoustache "&amp;#9136">
+<!ENTITY lnap "&amp;#10889">
+<!ENTITY lnapprox "&amp;#10889">
+<!ENTITY lne "&amp;#8808">
+<!ENTITY lneq "&amp;#10887">
+<!ENTITY lneqq "&amp;#8808">
+<!ENTITY lnsim "&amp;#8934">
+<!ENTITY loang "&amp;#10220">
+<!ENTITY loarr "&amp;#8701">
+<!ENTITY lobrk "&amp;#10214">
+<!ENTITY longleftarrow "&amp;#10229">
+<!ENTITY longleftrightarrow "&amp;#10231">
+<!ENTITY longmapsto "&amp;#10236">
+<!ENTITY longrightarrow "&amp;#10230">
+<!ENTITY looparrowleft "&amp;#8619">
+<!ENTITY looparrowright "&amp;#8620">
+<!ENTITY lopar "&amp;#10629">
+<!ENTITY lopf "&amp;#120131">
+<!ENTITY loplus "&amp;#10797">
+<!ENTITY lotimes "&amp;#10804">
+<!ENTITY lowast "&amp;#8727">
+<!ENTITY lowbar "&amp;#95">
+<!ENTITY lowerleftarrow "&amp;#8601">
+<!ENTITY lowerrightarrow "&amp;#8600">
+<!ENTITY loz "&amp;#9674">
+<!ENTITY lozenge "&amp;#9674">
+<!ENTITY lozf "&amp;#10731">
+<!ENTITY lpar "&amp;#40">
+<!ENTITY lparlt "&amp;#10643">
+<!ENTITY lrarr "&amp;#8646">
+<!ENTITY lrcorner "&amp;#8991">
+<!ENTITY lrhar "&amp;#8651">
+<!ENTITY lrhard "&amp;#10605">
+<!ENTITY lrm "&amp;#8206">
+<!ENTITY lrtri "&amp;#8895">
+<!ENTITY lsaquo "&amp;#8249">
+<!ENTITY lscr "&amp;#8466">
+<!ENTITY lsh "&amp;#8624">
+<!ENTITY lsim "&amp;#8818">
+<!ENTITY lsime "&amp;#10893">
+<!ENTITY lsimg "&amp;#10895">
+<!ENTITY lsqb "&amp;#91">
+<!ENTITY lsquo "&amp;#8216">
+<!ENTITY lsquor "&amp;#8218">
+<!ENTITY lstrok "&amp;#321">
+<!ENTITY lt "&amp;#60">
+<!ENTITY ltcc "&amp;#10918">
+<!ENTITY ltcir "&amp;#10873">
+<!ENTITY ltdot "&amp;#8918">
+<!ENTITY lthree "&amp;#8907">
+<!ENTITY ltimes "&amp;#8905">
+<!ENTITY ltlarr "&amp;#10614">
+<!ENTITY ltquest "&amp;#10875">
+<!ENTITY ltri "&amp;#9667">
+<!ENTITY ltrie "&amp;#8884">
+<!ENTITY ltrif "&amp;#9666">
+<!ENTITY ltrpar "&amp;#10646">
+<!ENTITY lurdshar "&amp;#10570">
+<!ENTITY luruhar "&amp;#10598">
+<!ENTITY lvertneqq "&amp;#8808">
+<!ENTITY lvne "&amp;#8808">
+<!ENTITY macr "&amp;#175">
+<!ENTITY male "&amp;#9794">
+<!ENTITY malt "&amp;#10016">
+<!ENTITY maltese "&amp;#10016">
+<!ENTITY map "&amp;#10501">
+<!ENTITY mapsto "&amp;#8614">
+<!ENTITY mapstodown "&amp;#8615">
+<!ENTITY mapstoleft "&amp;#8612">
+<!ENTITY mapstoup "&amp;#8613">
+<!ENTITY marker "&amp;#9646">
+<!ENTITY mcomma "&amp;#10793">
+<!ENTITY mcy "&amp;#1052">
+<!ENTITY mdash "&amp;#8212">
+<!ENTITY mddot "&amp;#8762">
+<!ENTITY measuredangle "&amp;#8737">
+<!ENTITY mediumspace "&amp;#8287">
+<!ENTITY mellintrf "&amp;#8499">
+<!ENTITY mfr "&amp;#120080">
+<!ENTITY mho "&amp;#8487">
+<!ENTITY micro "&amp;#181">
+<!ENTITY mid "&amp;#8739">
+<!ENTITY midast "&amp;#42">
+<!ENTITY midcir "&amp;#10992">
+<!ENTITY middot "&amp;#183">
+<!ENTITY minus "&amp;#8722">
+<!ENTITY minusb "&amp;#8863">
+<!ENTITY minusd "&amp;#8760">
+<!ENTITY minusdu "&amp;#10794">
+<!ENTITY minusplus "&amp;#8723">
+<!ENTITY mlcp "&amp;#10971">
+<!ENTITY mldr "&amp;#8230">
+<!ENTITY mnplus "&amp;#8723">
+<!ENTITY models "&amp;#8871">
+<!ENTITY mopf "&amp;#120132">
+<!ENTITY mp "&amp;#8723">
+<!ENTITY mscr "&amp;#8499">
+<!ENTITY mstpos "&amp;#8766">
+<!ENTITY mu "&amp;#924">
+<!ENTITY multimap "&amp;#8888">
+<!ENTITY mumap "&amp;#8888">
+<!ENTITY nabla "&amp;#8711">
+<!ENTITY nacute "&amp;#323">
+<!ENTITY nang "&amp;#8736">
+<!ENTITY nap "&amp;#8777">
+<!ENTITY nape "&amp;#10864">
+<!ENTITY napid "&amp;#8779">
+<!ENTITY napos "&amp;#329">
+<!ENTITY napprox "&amp;#8777">
+<!ENTITY natur "&amp;#9838">
+<!ENTITY natural "&amp;#9838">
+<!ENTITY naturals "&amp;#8469">
+<!ENTITY nbsp "&amp;#160">
+<!ENTITY nbump "&amp;#8782">
+<!ENTITY nbumpe "&amp;#8783">
+<!ENTITY ncap "&amp;#10819">
+<!ENTITY ncaron "&amp;#327">
+<!ENTITY ncedil "&amp;#325">
+<!ENTITY ncong "&amp;#8775">
+<!ENTITY ncongdot "&amp;#10861">
+<!ENTITY ncup "&amp;#10818">
+<!ENTITY ncy "&amp;#1053">
+<!ENTITY ndash "&amp;#8211">
+<!ENTITY ne "&amp;#8800">
+<!ENTITY nearhk "&amp;#10532">
+<!ENTITY nearr "&amp;#8663">
+<!ENTITY nearrow "&amp;#8599">
+<!ENTITY nedot "&amp;#8784">
+<!ENTITY negativemediumspace "&amp;#8203">
+<!ENTITY negativethickspace "&amp;#8203">
+<!ENTITY negativethinspace "&amp;#8203">
+<!ENTITY negativeverythinspace "&amp;#8203">
+<!ENTITY nequiv "&amp;#8802">
+<!ENTITY nesear "&amp;#10536">
+<!ENTITY nesim "&amp;#8770">
+<!ENTITY nestedgreatergreater "&amp;#8811">
+<!ENTITY nestedlessless "&amp;#8810">
+<!ENTITY newline "&amp;#10">
+<!ENTITY nexist "&amp;#8708">
+<!ENTITY nexists "&amp;#8708">
+<!ENTITY nfr "&amp;#120081">
+<!ENTITY nge "&amp;#8807">
+<!ENTITY ngeq "&amp;#8817">
+<!ENTITY ngeqq "&amp;#8807">
+<!ENTITY ngeqslant "&amp;#10878">
+<!ENTITY nges "&amp;#10878">
+<!ENTITY ngg "&amp;#8921">
+<!ENTITY ngsim "&amp;#8821">
+<!ENTITY ngt "&amp;#8811">
+<!ENTITY ngtr "&amp;#8815">
+<!ENTITY ngtv "&amp;#8811">
+<!ENTITY nharr "&amp;#8654">
+<!ENTITY nhpar "&amp;#10994">
+<!ENTITY ni "&amp;#8715">
+<!ENTITY nis "&amp;#8956">
+<!ENTITY nisd "&amp;#8954">
+<!ENTITY niv "&amp;#8715">
+<!ENTITY njcy "&amp;#1034">
+<!ENTITY nlarr "&amp;#8653">
+<!ENTITY nldr "&amp;#8229">
+<!ENTITY nle "&amp;#8806">
+<!ENTITY nleftarrow "&amp;#8653">
+<!ENTITY nleftrightarrow "&amp;#8654">
+<!ENTITY nleq "&amp;#8816">
+<!ENTITY nleqq "&amp;#8806">
+<!ENTITY nleqslant "&amp;#10877">
+<!ENTITY nles "&amp;#10877">
+<!ENTITY nless "&amp;#8814">
+<!ENTITY nll "&amp;#8920">
+<!ENTITY nlsim "&amp;#8820">
+<!ENTITY nlt "&amp;#8810">
+<!ENTITY nltri "&amp;#8938">
+<!ENTITY nltrie "&amp;#8940">
+<!ENTITY nltv "&amp;#8810">
+<!ENTITY nmid "&amp;#8740">
+<!ENTITY nobreak "&amp;#8288">
+<!ENTITY nonbreakingspace "&amp;#160">
+<!ENTITY nopf "&amp;#8469">
+<!ENTITY not "&amp;#10988">
+<!ENTITY notcongruent "&amp;#8802">
+<!ENTITY notcupcap "&amp;#8813">
+<!ENTITY notdoubleverticalbar "&amp;#8742">
+<!ENTITY notelement "&amp;#8713">
+<!ENTITY notequal "&amp;#8800">
+<!ENTITY notequaltilde "&amp;#8770">
+<!ENTITY notexists "&amp;#8708">
+<!ENTITY notgreater "&amp;#8815">
+<!ENTITY notgreaterequal "&amp;#8817">
+<!ENTITY notgreaterfullequal "&amp;#8807">
+<!ENTITY notgreatergreater "&amp;#8811">
+<!ENTITY notgreaterless "&amp;#8825">
+<!ENTITY notgreaterslantequal "&amp;#10878">
+<!ENTITY notgreatertilde "&amp;#8821">
+<!ENTITY nothumpdownhump "&amp;#8782">
+<!ENTITY nothumpequal "&amp;#8783">
+<!ENTITY notin "&amp;#8713">
+<!ENTITY notindot "&amp;#8949">
+<!ENTITY notine "&amp;#8953">
+<!ENTITY notinva "&amp;#8713">
+<!ENTITY notinvb "&amp;#8951">
+<!ENTITY notinvc "&amp;#8950">
+<!ENTITY notlefttriangle "&amp;#8938">
+<!ENTITY notlefttrianglebar "&amp;#10703">
+<!ENTITY notlefttriangleequal "&amp;#8940">
+<!ENTITY notless "&amp;#8814">
+<!ENTITY notlessequal "&amp;#8816">
+<!ENTITY notlessgreater "&amp;#8824">
+<!ENTITY notlessless "&amp;#8810">
+<!ENTITY notlessslantequal "&amp;#10877">
+<!ENTITY notlesstilde "&amp;#8820">
+<!ENTITY notnestedgreatergreater "&amp;#10914">
+<!ENTITY notnestedlessless "&amp;#10913">
+<!ENTITY notni "&amp;#8716">
+<!ENTITY notniva "&amp;#8716">
+<!ENTITY notnivb "&amp;#8958">
+<!ENTITY notnivc "&amp;#8957">
+<!ENTITY notprecedes "&amp;#8832">
+<!ENTITY notprecedesequal "&amp;#10927">
+<!ENTITY notprecedesslantequal "&amp;#8928">
+<!ENTITY notreverseelement "&amp;#8716">
+<!ENTITY notrighttriangle "&amp;#8939">
+<!ENTITY notrighttrianglebar "&amp;#10704">
+<!ENTITY notrighttriangleequal "&amp;#8941">
+<!ENTITY notsquaresubset "&amp;#8847">
+<!ENTITY notsquaresubsetequal "&amp;#8930">
+<!ENTITY notsquaresuperset "&amp;#8848">
+<!ENTITY notsquaresupersetequal "&amp;#8931">
+<!ENTITY notsubset "&amp;#8834">
+<!ENTITY notsubsetequal "&amp;#8840">
+<!ENTITY notsucceeds "&amp;#8833">
+<!ENTITY notsucceedsequal "&amp;#10928">
+<!ENTITY notsucceedsslantequal "&amp;#8929">
+<!ENTITY notsucceedstilde "&amp;#8831">
+<!ENTITY notsuperset "&amp;#8835">
+<!ENTITY notsupersetequal "&amp;#8841">
+<!ENTITY nottilde "&amp;#8769">
+<!ENTITY nottildeequal "&amp;#8772">
+<!ENTITY nottildefullequal "&amp;#8775">
+<!ENTITY nottildetilde "&amp;#8777">
+<!ENTITY notverticalbar "&amp;#8740">
+<!ENTITY npar "&amp;#8742">
+<!ENTITY nparallel "&amp;#8742">
+<!ENTITY nparsl "&amp;#11005">
+<!ENTITY npart "&amp;#8706">
+<!ENTITY npolint "&amp;#10772">
+<!ENTITY npr "&amp;#8832">
+<!ENTITY nprcue "&amp;#8928">
+<!ENTITY npre "&amp;#10927">
+<!ENTITY nprec "&amp;#8832">
+<!ENTITY npreceq "&amp;#10927">
+<!ENTITY nrarr "&amp;#8655">
+<!ENTITY nrarrc "&amp;#10547">
+<!ENTITY nrarrw "&amp;#8605">
+<!ENTITY nrightarrow "&amp;#8655">
+<!ENTITY nrtri "&amp;#8939">
+<!ENTITY nrtrie "&amp;#8941">
+<!ENTITY nsc "&amp;#8833">
+<!ENTITY nsccue "&amp;#8929">
+<!ENTITY nsce "&amp;#10928">
+<!ENTITY nscr "&amp;#119977">
+<!ENTITY nshortmid "&amp;#8740">
+<!ENTITY nshortparallel "&amp;#8742">
+<!ENTITY nsim "&amp;#8769">
+<!ENTITY nsime "&amp;#8772">
+<!ENTITY nsimeq "&amp;#8772">
+<!ENTITY nsmid "&amp;#8740">
+<!ENTITY nspar "&amp;#8742">
+<!ENTITY nsqsube "&amp;#8930">
+<!ENTITY nsqsupe "&amp;#8931">
+<!ENTITY nsub "&amp;#8836">
+<!ENTITY nsube "&amp;#10949">
+<!ENTITY nsubset "&amp;#8834">
+<!ENTITY nsubseteq "&amp;#8840">
+<!ENTITY nsubseteqq "&amp;#10949">
+<!ENTITY nsucc "&amp;#8833">
+<!ENTITY nsucceq "&amp;#10928">
+<!ENTITY nsup "&amp;#8837">
+<!ENTITY nsupe "&amp;#10950">
+<!ENTITY nsupset "&amp;#8835">
+<!ENTITY nsupseteq "&amp;#8841">
+<!ENTITY nsupseteqq "&amp;#10950">
+<!ENTITY ntgl "&amp;#8825">
+<!ENTITY ntilde "&amp;#209">
+<!ENTITY ntlg "&amp;#8824">
+<!ENTITY ntriangleleft "&amp;#8938">
+<!ENTITY ntrianglelefteq "&amp;#8940">
+<!ENTITY ntriangleright "&amp;#8939">
+<!ENTITY ntrianglerighteq "&amp;#8941">
+<!ENTITY nu "&amp;#925">
+<!ENTITY num "&amp;#35">
+<!ENTITY numero "&amp;#8470">
+<!ENTITY numsp "&amp;#8199">
+<!ENTITY nvap "&amp;#8781">
+<!ENTITY nvdash "&amp;#8879">
+<!ENTITY nvge "&amp;#8805">
+<!ENTITY nvgt "&amp;#62">
+<!ENTITY nvharr "&amp;#10500">
+<!ENTITY nvinfin "&amp;#10718">
+<!ENTITY nvlarr "&amp;#10498">
+<!ENTITY nvle "&amp;#8804">
+<!ENTITY nvlt "&amp;#60">
+<!ENTITY nvltrie "&amp;#8884">
+<!ENTITY nvrarr "&amp;#10499">
+<!ENTITY nvrtrie "&amp;#8885">
+<!ENTITY nvsim "&amp;#8764">
+<!ENTITY nwarhk "&amp;#10531">
+<!ENTITY nwarr "&amp;#8662">
+<!ENTITY nwarrow "&amp;#8598">
+<!ENTITY nwnear "&amp;#10535">
+<!ENTITY oacute "&amp;#211">
+<!ENTITY oast "&amp;#8859">
+<!ENTITY ocir "&amp;#8858">
+<!ENTITY ocirc "&amp;#212">
+<!ENTITY ocy "&amp;#1054">
+<!ENTITY odash "&amp;#8861">
+<!ENTITY odblac "&amp;#336">
+<!ENTITY odiv "&amp;#10808">
+<!ENTITY odot "&amp;#8857">
+<!ENTITY odsold "&amp;#10684">
+<!ENTITY oelig "&amp;#338">
+<!ENTITY ofcir "&amp;#10687">
+<!ENTITY ofr "&amp;#120082">
+<!ENTITY ogon "&amp;#731">
+<!ENTITY ograve "&amp;#210">
+<!ENTITY ogt "&amp;#10689">
+<!ENTITY ohbar "&amp;#10677">
+<!ENTITY ohm "&amp;#937">
+<!ENTITY oint "&amp;#8750">
+<!ENTITY olarr "&amp;#8634">
+<!ENTITY olcir "&amp;#10686">
+<!ENTITY olcross "&amp;#10683">
+<!ENTITY oline "&amp;#8254">
+<!ENTITY olt "&amp;#10688">
+<!ENTITY omacr "&amp;#332">
+<!ENTITY omega "&amp;#937">
+<!ENTITY omicron "&amp;#927">
+<!ENTITY omid "&amp;#10678">
+<!ENTITY ominus "&amp;#8854">
+<!ENTITY oopf "&amp;#120134">
+<!ENTITY opar "&amp;#10679">
+<!ENTITY opencurlydoublequote "&amp;#8220">
+<!ENTITY opencurlyquote "&amp;#8216">
+<!ENTITY operp "&amp;#10681">
+<!ENTITY oplus "&amp;#8853">
+<!ENTITY or "&amp;#10836">
+<!ENTITY orarr "&amp;#8635">
+<!ENTITY ord "&amp;#10845">
+<!ENTITY order "&amp;#8500">
+<!ENTITY orderof "&amp;#8500">
+<!ENTITY ordf "&amp;#170">
+<!ENTITY ordm "&amp;#186">
+<!ENTITY origof "&amp;#8886">
+<!ENTITY oror "&amp;#10838">
+<!ENTITY orslope "&amp;#10839">
+<!ENTITY orv "&amp;#10843">
+<!ENTITY os "&amp;#9416">
+<!ENTITY oscr "&amp;#119978">
+<!ENTITY oslash "&amp;#216">
+<!ENTITY osol "&amp;#8856">
+<!ENTITY otilde "&amp;#213">
+<!ENTITY otimes "&amp;#10807">
+<!ENTITY otimesas "&amp;#10806">
+<!ENTITY ouml "&amp;#214">
+<!ENTITY ovbar "&amp;#9021">
+<!ENTITY overbar "&amp;#8254">
+<!ENTITY overbrace "&amp;#9182">
+<!ENTITY overbracket "&amp;#9140">
+<!ENTITY overparenthesis "&amp;#9180">
+<!ENTITY par "&amp;#8741">
+<!ENTITY para "&amp;#182">
+<!ENTITY parallel "&amp;#8741">
+<!ENTITY parsim "&amp;#10995">
+<!ENTITY parsl "&amp;#11005">
+<!ENTITY part "&amp;#8706">
+<!ENTITY partiald "&amp;#8706">
+<!ENTITY pcy "&amp;#1055">
+<!ENTITY percnt "&amp;#37">
+<!ENTITY period "&amp;#46">
+<!ENTITY permil "&amp;#8240">
+<!ENTITY perp "&amp;#8869">
+<!ENTITY pertenk "&amp;#8241">
+<!ENTITY pfr "&amp;#120083">
+<!ENTITY phi "&amp;#934">
+<!ENTITY phiv "&amp;#981">
+<!ENTITY phmmat "&amp;#8499">
+<!ENTITY phone "&amp;#9742">
+<!ENTITY pi "&amp;#928">
+<!ENTITY pitchfork "&amp;#8916">
+<!ENTITY piv "&amp;#982">
+<!ENTITY planck "&amp;#8463">
+<!ENTITY planckh "&amp;#8462">
+<!ENTITY plankv "&amp;#8463">
+<!ENTITY plus "&amp;#43">
+<!ENTITY plusacir "&amp;#10787">
+<!ENTITY plusb "&amp;#8862">
+<!ENTITY pluscir "&amp;#10786">
+<!ENTITY plusdo "&amp;#8724">
+<!ENTITY plusdu "&amp;#10789">
+<!ENTITY pluse "&amp;#10866">
+<!ENTITY plusminus "&amp;#177">
+<!ENTITY plusmn "&amp;#177">
+<!ENTITY plussim "&amp;#10790">
+<!ENTITY plustwo "&amp;#10791">
+<!ENTITY pm "&amp;#177">
+<!ENTITY poincareplane "&amp;#8460">
+<!ENTITY pointint "&amp;#10773">
+<!ENTITY popf "&amp;#8473">
+<!ENTITY pound "&amp;#163">
+<!ENTITY pr "&amp;#10939">
+<!ENTITY prap "&amp;#10935">
+<!ENTITY prcue "&amp;#8828">
+<!ENTITY pre "&amp;#10931">
+<!ENTITY prec "&amp;#8826">
+<!ENTITY precapprox "&amp;#10935">
+<!ENTITY preccurlyeq "&amp;#8828">
+<!ENTITY precedes "&amp;#8826">
+<!ENTITY precedesequal "&amp;#10927">
+<!ENTITY precedesslantequal "&amp;#8828">
+<!ENTITY precedestilde "&amp;#8830">
+<!ENTITY preceq "&amp;#10927">
+<!ENTITY precnapprox "&amp;#10937">
+<!ENTITY precneqq "&amp;#10933">
+<!ENTITY precnsim "&amp;#8936">
+<!ENTITY precsim "&amp;#8830">
+<!ENTITY prime "&amp;#8243">
+<!ENTITY primes "&amp;#8473">
+<!ENTITY prnap "&amp;#10937">
+<!ENTITY prne "&amp;#10933">
+<!ENTITY prnsim "&amp;#8936">
+<!ENTITY prod "&amp;#8719">
+<!ENTITY product "&amp;#8719">
+<!ENTITY profalar "&amp;#9006">
+<!ENTITY profline "&amp;#8978">
+<!ENTITY profsurf "&amp;#8979">
+<!ENTITY prop "&amp;#8733">
+<!ENTITY proportion "&amp;#8759">
+<!ENTITY proportional "&amp;#8733">
+<!ENTITY propto "&amp;#8733">
+<!ENTITY prsim "&amp;#8830">
+<!ENTITY prurel "&amp;#8880">
+<!ENTITY pscr "&amp;#119979">
+<!ENTITY psi "&amp;#936">
+<!ENTITY puncsp "&amp;#8200">
+<!ENTITY qfr "&amp;#120084">
+<!ENTITY qint "&amp;#10764">
+<!ENTITY qopf "&amp;#8474">
+<!ENTITY qprime "&amp;#8279">
+<!ENTITY qscr "&amp;#119980">
+<!ENTITY quaternions "&amp;#8461">
+<!ENTITY quatint "&amp;#10774">
+<!ENTITY quest "&amp;#63">
+<!ENTITY questeq "&amp;#8799">
+<!ENTITY quot "&amp;#34">
+<!ENTITY raarr "&amp;#8667">
+<!ENTITY race "&amp;#8765">
+<!ENTITY racute "&amp;#340">
+<!ENTITY radic "&amp;#8730">
+<!ENTITY raemptyv "&amp;#10675">
+<!ENTITY rang "&amp;#10219">
+<!ENTITY rangd "&amp;#10642">
+<!ENTITY range "&amp;#10661">
+<!ENTITY rangle "&amp;#10217">
+<!ENTITY raquo "&amp;#187">
+<!ENTITY rarr "&amp;#8608">
+<!ENTITY rarrap "&amp;#10613">
+<!ENTITY rarrb "&amp;#8677">
+<!ENTITY rarrbfs "&amp;#10528">
+<!ENTITY rarrc "&amp;#10547">
+<!ENTITY rarrfs "&amp;#10526">
+<!ENTITY rarrhk "&amp;#8618">
+<!ENTITY rarrlp "&amp;#8620">
+<!ENTITY rarrpl "&amp;#10565">
+<!ENTITY rarrsim "&amp;#10612">
+<!ENTITY rarrtl "&amp;#10518">
+<!ENTITY rarrw "&amp;#8605">
+<!ENTITY ratail "&amp;#10524">
+<!ENTITY ratio "&amp;#8758">
+<!ENTITY rationals "&amp;#8474">
+<!ENTITY rbarr "&amp;#10512">
+<!ENTITY rbbrk "&amp;#10099">
+<!ENTITY rbrace "&amp;#125">
+<!ENTITY rbrack "&amp;#93">
+<!ENTITY rbrke "&amp;#10636">
+<!ENTITY rbrksld "&amp;#10638">
+<!ENTITY rbrkslu "&amp;#10640">
+<!ENTITY rcaron "&amp;#344">
+<!ENTITY rcedil "&amp;#342">
+<!ENTITY rceil "&amp;#8969">
+<!ENTITY rcub "&amp;#125">
+<!ENTITY rcy "&amp;#1056">
+<!ENTITY rdca "&amp;#10551">
+<!ENTITY rdldhar "&amp;#10601">
+<!ENTITY rdquo "&amp;#8221">
+<!ENTITY rdquor "&amp;#8221">
+<!ENTITY rdsh "&amp;#8627">
+<!ENTITY re "&amp;#8476">
+<!ENTITY real "&amp;#8476">
+<!ENTITY realine "&amp;#8475">
+<!ENTITY realpart "&amp;#8476">
+<!ENTITY reals "&amp;#8477">
+<!ENTITY rect "&amp;#9645">
+<!ENTITY reg "&amp;#174">
+<!ENTITY reverseelement "&amp;#8715">
+<!ENTITY reverseequilibrium "&amp;#8651">
+<!ENTITY reverseupequilibrium "&amp;#10607">
+<!ENTITY rfisht "&amp;#10621">
+<!ENTITY rfloor "&amp;#8971">
+<!ENTITY rfr "&amp;#8476">
+<!ENTITY rhar "&amp;#10596">
+<!ENTITY rhard "&amp;#8641">
+<!ENTITY rharu "&amp;#8640">
+<!ENTITY rharul "&amp;#10604">
+<!ENTITY rho "&amp;#929">
+<!ENTITY rhov "&amp;#1009">
+<!ENTITY rightanglebracket "&amp;#10217">
+<!ENTITY rightarrow "&amp;#8594">
+<!ENTITY rightarrowbar "&amp;#8677">
+<!ENTITY rightarrowleftarrow "&amp;#8644">
+<!ENTITY rightarrowtail "&amp;#8611">
+<!ENTITY rightceiling "&amp;#8969">
+<!ENTITY rightdoublebracket "&amp;#10215">
+<!ENTITY rightdownteevector "&amp;#10589">
+<!ENTITY rightdownvector "&amp;#8642">
+<!ENTITY rightdownvectorbar "&amp;#10581">
+<!ENTITY rightfloor "&amp;#8971">
+<!ENTITY rightharpoondown "&amp;#8641">
+<!ENTITY rightharpoonup "&amp;#8640">
+<!ENTITY rightleftarrows "&amp;#8644">
+<!ENTITY rightleftharpoons "&amp;#8652">
+<!ENTITY rightrightarrows "&amp;#8649">
+<!ENTITY rightsquigarrow "&amp;#8605">
+<!ENTITY righttee "&amp;#8866">
+<!ENTITY rightteearrow "&amp;#8614">
+<!ENTITY rightteevector "&amp;#10587">
+<!ENTITY rightthreetimes "&amp;#8908">
+<!ENTITY righttriangle "&amp;#8883">
+<!ENTITY righttrianglebar "&amp;#10704">
+<!ENTITY righttriangleequal "&amp;#8885">
+<!ENTITY rightupdownvector "&amp;#10575">
+<!ENTITY rightupteevector "&amp;#10588">
+<!ENTITY rightupvector "&amp;#8638">
+<!ENTITY rightupvectorbar "&amp;#10580">
+<!ENTITY rightvector "&amp;#8640">
+<!ENTITY rightvectorbar "&amp;#10579">
+<!ENTITY ring "&amp;#730">
+<!ENTITY risingdotseq "&amp;#8787">
+<!ENTITY rlarr "&amp;#8644">
+<!ENTITY rlhar "&amp;#8652">
+<!ENTITY rlm "&amp;#8207">
+<!ENTITY rmoust "&amp;#9137">
+<!ENTITY rmoustache "&amp;#9137">
+<!ENTITY rnmid "&amp;#10990">
+<!ENTITY roang "&amp;#10221">
+<!ENTITY roarr "&amp;#8702">
+<!ENTITY robrk "&amp;#10215">
+<!ENTITY ropar "&amp;#10630">
+<!ENTITY ropf "&amp;#8477">
+<!ENTITY roplus "&amp;#10798">
+<!ENTITY rotimes "&amp;#10805">
+<!ENTITY roundimplies "&amp;#10608">
+<!ENTITY rpar "&amp;#41">
+<!ENTITY rpargt "&amp;#10644">
+<!ENTITY rppolint "&amp;#10770">
+<!ENTITY rrarr "&amp;#8649">
+<!ENTITY rrightarrow "&amp;#8667">
+<!ENTITY rsaquo "&amp;#8250">
+<!ENTITY rscr "&amp;#8475">
+<!ENTITY rsh "&amp;#8625">
+<!ENTITY rsqb "&amp;#93">
+<!ENTITY rsquo "&amp;#8217">
+<!ENTITY rsquor "&amp;#8217">
+<!ENTITY rthree "&amp;#8908">
+<!ENTITY rtimes "&amp;#8906">
+<!ENTITY rtri "&amp;#9657">
+<!ENTITY rtrie "&amp;#8885">
+<!ENTITY rtrif "&amp;#9656">
+<!ENTITY rtriltri "&amp;#10702">
+<!ENTITY ruledelayed "&amp;#10740">
+<!ENTITY ruluhar "&amp;#10600">
+<!ENTITY rx "&amp;#8478">
+<!ENTITY sacute "&amp;#346">
+<!ENTITY sbquo "&amp;#8218">
+<!ENTITY sc "&amp;#10940">
+<!ENTITY scap "&amp;#10936">
+<!ENTITY scaron "&amp;#352">
+<!ENTITY sccue "&amp;#8829">
+<!ENTITY sce "&amp;#10932">
+<!ENTITY scedil "&amp;#350">
+<!ENTITY scirc "&amp;#348">
+<!ENTITY scnap "&amp;#10938">
+<!ENTITY scne "&amp;#10934">
+<!ENTITY scnsim "&amp;#8937">
+<!ENTITY scpolint "&amp;#10771">
+<!ENTITY scsim "&amp;#8831">
+<!ENTITY scy "&amp;#1057">
+<!ENTITY sdot "&amp;#8901">
+<!ENTITY sdotb "&amp;#8865">
+<!ENTITY sdote "&amp;#10854">
+<!ENTITY searhk "&amp;#10533">
+<!ENTITY searr "&amp;#8664">
+<!ENTITY searrow "&amp;#8600">
+<!ENTITY sect "&amp;#167">
+<!ENTITY semi "&amp;#59">
+<!ENTITY seswar "&amp;#10537">
+<!ENTITY setminus "&amp;#8726">
+<!ENTITY setmn "&amp;#8726">
+<!ENTITY sext "&amp;#10038">
+<!ENTITY sfr "&amp;#120086">
+<!ENTITY sfrown "&amp;#8994">
+<!ENTITY sharp "&amp;#9839">
+<!ENTITY shchcy "&amp;#1065">
+<!ENTITY shcy "&amp;#1064">
+<!ENTITY shortdownarrow "&amp;#8595">
+<!ENTITY shortleftarrow "&amp;#8592">
+<!ENTITY shortmid "&amp;#8739">
+<!ENTITY shortparallel "&amp;#8741">
+<!ENTITY shortrightarrow "&amp;#8594">
+<!ENTITY shortuparrow "&amp;#8593">
+<!ENTITY shy "&amp;#173">
+<!ENTITY sigma "&amp;#931">
+<!ENTITY sigmaf "&amp;#962">
+<!ENTITY sigmav "&amp;#962">
+<!ENTITY sim "&amp;#8764">
+<!ENTITY simdot "&amp;#10858">
+<!ENTITY sime "&amp;#8771">
+<!ENTITY simeq "&amp;#8771">
+<!ENTITY simg "&amp;#10910">
+<!ENTITY simge "&amp;#10912">
+<!ENTITY siml "&amp;#10909">
+<!ENTITY simle "&amp;#10911">
+<!ENTITY simne "&amp;#8774">
+<!ENTITY simplus "&amp;#10788">
+<!ENTITY simrarr "&amp;#10610">
+<!ENTITY slarr "&amp;#8592">
+<!ENTITY smallcircle "&amp;#8728">
+<!ENTITY smallsetminus "&amp;#8726">
+<!ENTITY smashp "&amp;#10803">
+<!ENTITY smeparsl "&amp;#10724">
+<!ENTITY smid "&amp;#8739">
+<!ENTITY smile "&amp;#8995">
+<!ENTITY smt "&amp;#10922">
+<!ENTITY smte "&amp;#10924">
+<!ENTITY smtes "&amp;#10924">
+<!ENTITY softcy "&amp;#1068">
+<!ENTITY sol "&amp;#47">
+<!ENTITY solb "&amp;#10692">
+<!ENTITY solbar "&amp;#9023">
+<!ENTITY sopf "&amp;#120138">
+<!ENTITY spades "&amp;#9824">
+<!ENTITY spadesuit "&amp;#9824">
+<!ENTITY spar "&amp;#8741">
+<!ENTITY sqcap "&amp;#8851">
+<!ENTITY sqcaps "&amp;#8851">
+<!ENTITY sqcup "&amp;#8852">
+<!ENTITY sqcups "&amp;#8852">
+<!ENTITY sqrt "&amp;#8730">
+<!ENTITY sqsub "&amp;#8847">
+<!ENTITY sqsube "&amp;#8849">
+<!ENTITY sqsubset "&amp;#8847">
+<!ENTITY sqsubseteq "&amp;#8849">
+<!ENTITY sqsup "&amp;#8848">
+<!ENTITY sqsupe "&amp;#8850">
+<!ENTITY sqsupset "&amp;#8848">
+<!ENTITY sqsupseteq "&amp;#8850">
+<!ENTITY squ "&amp;#9633">
+<!ENTITY square "&amp;#9633">
+<!ENTITY squareintersection "&amp;#8851">
+<!ENTITY squaresubset "&amp;#8847">
+<!ENTITY squaresubsetequal "&amp;#8849">
+<!ENTITY squaresuperset "&amp;#8848">
+<!ENTITY squaresupersetequal "&amp;#8850">
+<!ENTITY squareunion "&amp;#8852">
+<!ENTITY squarf "&amp;#9642">
+<!ENTITY squf "&amp;#9642">
+<!ENTITY srarr "&amp;#8594">
+<!ENTITY sscr "&amp;#119982">
+<!ENTITY ssetmn "&amp;#8726">
+<!ENTITY ssmile "&amp;#8995">
+<!ENTITY sstarf "&amp;#8902">
+<!ENTITY star "&amp;#8902">
+<!ENTITY starf "&amp;#9733">
+<!ENTITY straightepsilon "&amp;#1013">
+<!ENTITY straightphi "&amp;#981">
+<!ENTITY strns "&amp;#175">
+<!ENTITY sub "&amp;#8912">
+<!ENTITY subdot "&amp;#10941">
+<!ENTITY sube "&amp;#10949">
+<!ENTITY subedot "&amp;#10947">
+<!ENTITY submult "&amp;#10945">
+<!ENTITY subne "&amp;#10955">
+<!ENTITY subplus "&amp;#10943">
+<!ENTITY subrarr "&amp;#10617">
+<!ENTITY subset "&amp;#8912">
+<!ENTITY subseteq "&amp;#8838">
+<!ENTITY subseteqq "&amp;#10949">
+<!ENTITY subsetequal "&amp;#8838">
+<!ENTITY subsetneq "&amp;#8842">
+<!ENTITY subsetneqq "&amp;#10955">
+<!ENTITY subsim "&amp;#10951">
+<!ENTITY subsub "&amp;#10965">
+<!ENTITY subsup "&amp;#10963">
+<!ENTITY succ "&amp;#8827">
+<!ENTITY succapprox "&amp;#10936">
+<!ENTITY succcurlyeq "&amp;#8829">
+<!ENTITY succeeds "&amp;#8827">
+<!ENTITY succeedsequal "&amp;#10928">
+<!ENTITY succeedsslantequal "&amp;#8829">
+<!ENTITY succeedstilde "&amp;#8831">
+<!ENTITY succeq "&amp;#10928">
+<!ENTITY succnapprox "&amp;#10938">
+<!ENTITY succneqq "&amp;#10934">
+<!ENTITY succnsim "&amp;#8937">
+<!ENTITY succsim "&amp;#8831">
+<!ENTITY suchthat "&amp;#8715">
+<!ENTITY sum "&amp;#8721">
+<!ENTITY sung "&amp;#9834">
+<!ENTITY sup "&amp;#8913">
+<!ENTITY sup1 "&amp;#185">
+<!ENTITY sup2 "&amp;#178">
+<!ENTITY sup3 "&amp;#179">
+<!ENTITY supdot "&amp;#10942">
+<!ENTITY supdsub "&amp;#10968">
+<!ENTITY supe "&amp;#10950">
+<!ENTITY supedot "&amp;#10948">
+<!ENTITY superset "&amp;#8835">
+<!ENTITY supersetequal "&amp;#8839">
+<!ENTITY suphsol "&amp;#10185">
+<!ENTITY suphsub "&amp;#10967">
+<!ENTITY suplarr "&amp;#10619">
+<!ENTITY supmult "&amp;#10946">
+<!ENTITY supne "&amp;#10956">
+<!ENTITY supplus "&amp;#10944">
+<!ENTITY supset "&amp;#8913">
+<!ENTITY supseteq "&amp;#8839">
+<!ENTITY supseteqq "&amp;#10950">
+<!ENTITY supsetneq "&amp;#8843">
+<!ENTITY supsetneqq "&amp;#10956">
+<!ENTITY supsim "&amp;#10952">
+<!ENTITY supsub "&amp;#10964">
+<!ENTITY supsup "&amp;#10966">
+<!ENTITY swarhk "&amp;#10534">
+<!ENTITY swarr "&amp;#8665">
+<!ENTITY swarrow "&amp;#8601">
+<!ENTITY swnwar "&amp;#10538">
+<!ENTITY szlig "&amp;#223">
+<!ENTITY tab "&amp;#9">
+<!ENTITY target "&amp;#8982">
+<!ENTITY tau "&amp;#932">
+<!ENTITY tbrk "&amp;#9140">
+<!ENTITY tcaron "&amp;#356">
+<!ENTITY tcedil "&amp;#354">
+<!ENTITY tcy "&amp;#1058">
+<!ENTITY tdot "&amp;#8411">
+<!ENTITY telrec "&amp;#8981">
+<!ENTITY tfr "&amp;#120087">
+<!ENTITY there4 "&amp;#8756">
+<!ENTITY therefore "&amp;#8756">
+<!ENTITY theta "&amp;#920">
+<!ENTITY thetasym "&amp;#977">
+<!ENTITY thetav "&amp;#977">
+<!ENTITY thickapprox "&amp;#8776">
+<!ENTITY thicksim "&amp;#8764">
+<!ENTITY thickspace "&amp;#8287">
+<!ENTITY thinsp "&amp;#8201">
+<!ENTITY thinspace "&amp;#8201">
+<!ENTITY thkap "&amp;#8776">
+<!ENTITY thksim "&amp;#8764">
+<!ENTITY thorn "&amp;#222">
+<!ENTITY tilde "&amp;#8764">
+<!ENTITY tildeequal "&amp;#8771">
+<!ENTITY tildefullequal "&amp;#8773">
+<!ENTITY tildetilde "&amp;#8776">
+<!ENTITY times "&amp;#215">
+<!ENTITY timesb "&amp;#8864">
+<!ENTITY timesbar "&amp;#10801">
+<!ENTITY timesd "&amp;#10800">
+<!ENTITY tint "&amp;#8749">
+<!ENTITY toea "&amp;#10536">
+<!ENTITY top "&amp;#8868">
+<!ENTITY topbot "&amp;#9014">
+<!ENTITY topcir "&amp;#10993">
+<!ENTITY topf "&amp;#120139">
+<!ENTITY topfork "&amp;#10970">
+<!ENTITY tosa "&amp;#10537">
+<!ENTITY tprime "&amp;#8244">
+<!ENTITY trade "&amp;#8482">
+<!ENTITY triangle "&amp;#9653">
+<!ENTITY triangledown "&amp;#9663">
+<!ENTITY triangleleft "&amp;#9667">
+<!ENTITY trianglelefteq "&amp;#8884">
+<!ENTITY triangleq "&amp;#8796">
+<!ENTITY triangleright "&amp;#9657">
+<!ENTITY trianglerighteq "&amp;#8885">
+<!ENTITY tridot "&amp;#9708">
+<!ENTITY trie "&amp;#8796">
+<!ENTITY triminus "&amp;#10810">
+<!ENTITY tripledot "&amp;#8411">
+<!ENTITY triplus "&amp;#10809">
+<!ENTITY trisb "&amp;#10701">
+<!ENTITY tritime "&amp;#10811">
+<!ENTITY trpezium "&amp;#9186">
+<!ENTITY tscr "&amp;#119983">
+<!ENTITY tscy "&amp;#1062">
+<!ENTITY tshcy "&amp;#1035">
+<!ENTITY tstrok "&amp;#358">
+<!ENTITY twixt "&amp;#8812">
+<!ENTITY twoheadleftarrow "&amp;#8606">
+<!ENTITY twoheadrightarrow "&amp;#8608">
+<!ENTITY uacute "&amp;#218">
+<!ENTITY uarr "&amp;#8607">
+<!ENTITY uarrocir "&amp;#10569">
+<!ENTITY ubrcy "&amp;#1038">
+<!ENTITY ubreve "&amp;#364">
+<!ENTITY ucirc "&amp;#219">
+<!ENTITY ucy "&amp;#1059">
+<!ENTITY udarr "&amp;#8645">
+<!ENTITY udblac "&amp;#368">
+<!ENTITY udhar "&amp;#10606">
+<!ENTITY ufisht "&amp;#10622">
+<!ENTITY ufr "&amp;#120088">
+<!ENTITY ugrave "&amp;#217">
+<!ENTITY uhar "&amp;#10595">
+<!ENTITY uharl "&amp;#8639">
+<!ENTITY uharr "&amp;#8638">
+<!ENTITY uhblk "&amp;#9600">
+<!ENTITY ulcorn "&amp;#8988">
+<!ENTITY ulcorner "&amp;#8988">
+<!ENTITY ulcrop "&amp;#8975">
+<!ENTITY ultri "&amp;#9720">
+<!ENTITY umacr "&amp;#362">
+<!ENTITY uml "&amp;#168">
+<!ENTITY underbar "&amp;#95">
+<!ENTITY underbrace "&amp;#9183">
+<!ENTITY underbracket "&amp;#9141">
+<!ENTITY underparenthesis "&amp;#9181">
+<!ENTITY union "&amp;#8899">
+<!ENTITY unionplus "&amp;#8846">
+<!ENTITY uogon "&amp;#370">
+<!ENTITY uopf "&amp;#120140">
+<!ENTITY uparrow "&amp;#8593">
+<!ENTITY uparrowbar "&amp;#10514">
+<!ENTITY uparrowdownarrow "&amp;#8645">
+<!ENTITY updownarrow "&amp;#8597">
+<!ENTITY upequilibrium "&amp;#10606">
+<!ENTITY upharpoonleft "&amp;#8639">
+<!ENTITY upharpoonright "&amp;#8638">
+<!ENTITY uplus "&amp;#8846">
+<!ENTITY upperleftarrow "&amp;#8598">
+<!ENTITY upperrightarrow "&amp;#8599">
+<!ENTITY upsi "&amp;#978">
+<!ENTITY upsih "&amp;#978">
+<!ENTITY upsilon "&amp;#933">
+<!ENTITY uptee "&amp;#8869">
+<!ENTITY upteearrow "&amp;#8613">
+<!ENTITY upuparrows "&amp;#8648">
+<!ENTITY urcorn "&amp;#8989">
+<!ENTITY urcorner "&amp;#8989">
+<!ENTITY urcrop "&amp;#8974">
+<!ENTITY uring "&amp;#366">
+<!ENTITY urtri "&amp;#9721">
+<!ENTITY uscr "&amp;#119984">
+<!ENTITY utdot "&amp;#8944">
+<!ENTITY utilde "&amp;#360">
+<!ENTITY utri "&amp;#9653">
+<!ENTITY utrif "&amp;#9652">
+<!ENTITY uuarr "&amp;#8648">
+<!ENTITY uuml "&amp;#220">
+<!ENTITY uwangle "&amp;#10663">
+<!ENTITY vangrt "&amp;#10652">
+<!ENTITY varepsilon "&amp;#1013">
+<!ENTITY varkappa "&amp;#1008">
+<!ENTITY varnothing "&amp;#8709">
+<!ENTITY varphi "&amp;#981">
+<!ENTITY varpi "&amp;#982">
+<!ENTITY varpropto "&amp;#8733">
+<!ENTITY varr "&amp;#8661">
+<!ENTITY varrho "&amp;#1009">
+<!ENTITY varsigma "&amp;#962">
+<!ENTITY varsubsetneq "&amp;#8842">
+<!ENTITY varsubsetneqq "&amp;#10955">
+<!ENTITY varsupsetneq "&amp;#8843">
+<!ENTITY varsupsetneqq "&amp;#10956">
+<!ENTITY vartheta "&amp;#977">
+<!ENTITY vartriangleleft "&amp;#8882">
+<!ENTITY vartriangleright "&amp;#8883">
+<!ENTITY vbar "&amp;#10987">
+<!ENTITY vbarv "&amp;#10985">
+<!ENTITY vcy "&amp;#1042">
+<!ENTITY vdash "&amp;#8875">
+<!ENTITY vdashl "&amp;#10982">
+<!ENTITY vee "&amp;#8897">
+<!ENTITY veebar "&amp;#8891">
+<!ENTITY veeeq "&amp;#8794">
+<!ENTITY vellip "&amp;#8942">
+<!ENTITY verbar "&amp;#8214">
+<!ENTITY vert "&amp;#8214">
+<!ENTITY verticalbar "&amp;#8739">
+<!ENTITY verticalline "&amp;#124">
+<!ENTITY verticalseparator "&amp;#10072">
+<!ENTITY verticaltilde "&amp;#8768">
+<!ENTITY verythinspace "&amp;#8202">
+<!ENTITY vfr "&amp;#120089">
+<!ENTITY vltri "&amp;#8882">
+<!ENTITY vnsub "&amp;#8834">
+<!ENTITY vnsup "&amp;#8835">
+<!ENTITY vopf "&amp;#120141">
+<!ENTITY vprop "&amp;#8733">
+<!ENTITY vrtri "&amp;#8883">
+<!ENTITY vscr "&amp;#119985">
+<!ENTITY vsubne "&amp;#10955">
+<!ENTITY vsupne "&amp;#10956">
+<!ENTITY vvdash "&amp;#8874">
+<!ENTITY vzigzag "&amp;#10650">
+<!ENTITY wcirc "&amp;#372">
+<!ENTITY wedbar "&amp;#10847">
+<!ENTITY wedge "&amp;#8896">
+<!ENTITY wedgeq "&amp;#8793">
+<!ENTITY weierp "&amp;#8472">
+<!ENTITY wfr "&amp;#120090">
+<!ENTITY wopf "&amp;#120142">
+<!ENTITY wp "&amp;#8472">
+<!ENTITY wr "&amp;#8768">
+<!ENTITY wreath "&amp;#8768">
+<!ENTITY wscr "&amp;#119986">
+<!ENTITY xcap "&amp;#8898">
+<!ENTITY xcirc "&amp;#9711">
+<!ENTITY xcup "&amp;#8899">
+<!ENTITY xdtri "&amp;#9661">
+<!ENTITY xfr "&amp;#120091">
+<!ENTITY xharr "&amp;#10234">
+<!ENTITY xi "&amp;#926">
+<!ENTITY xlarr "&amp;#10232">
+<!ENTITY xmap "&amp;#10236">
+<!ENTITY xnis "&amp;#8955">
+<!ENTITY xodot "&amp;#10752">
+<!ENTITY xopf "&amp;#120143">
+<!ENTITY xoplus "&amp;#10753">
+<!ENTITY xotime "&amp;#10754">
+<!ENTITY xrarr "&amp;#10233">
+<!ENTITY xscr "&amp;#119987">
+<!ENTITY xsqcup "&amp;#10758">
+<!ENTITY xuplus "&amp;#10756">
+<!ENTITY xutri "&amp;#9651">
+<!ENTITY xvee "&amp;#8897">
+<!ENTITY xwedge "&amp;#8896">
+<!ENTITY yacute "&amp;#221">
+<!ENTITY yacy "&amp;#1071">
+<!ENTITY ycirc "&amp;#374">
+<!ENTITY ycy "&amp;#1067">
+<!ENTITY yen "&amp;#165">
+<!ENTITY yfr "&amp;#120092">
+<!ENTITY yicy "&amp;#1031">
+<!ENTITY yopf "&amp;#120144">
+<!ENTITY yscr "&amp;#119988">
+<!ENTITY yucy "&amp;#1070">
+<!ENTITY yuml "&amp;#376">
+<!ENTITY zacute "&amp;#377">
+<!ENTITY zcaron "&amp;#381">
+<!ENTITY zcy "&amp;#1047">
+<!ENTITY zdot "&amp;#379">
+<!ENTITY zeetrf "&amp;#8488">
+<!ENTITY zerowidthspace "&amp;#8203">
+<!ENTITY zeta "&amp;#918">
+<!ENTITY zfr "&amp;#8488">
+<!ENTITY zhcy "&amp;#1046">
+<!ENTITY zigrarr "&amp;#8669">
+<!ENTITY zopf "&amp;#8484">
+<!ENTITY zscr "&amp;#119989">
+<!ENTITY zwj "&amp;#8205">
+<!ENTITY zwnj "&amp;#8204">
+ENTITY;
 
     /**
      * Get list of entities to pass to DOM. These will prevent the character from causing parse errors.
      *
      * @return string
      */
-    public function get(){
-        $out = '';
-
-        foreach ($this->entities as $key => $value) {
-            $out .= '<!ENTITY ' . $key . ' "' . htmlentities($value) . '">' . PHP_EOL;
-        }
-        return $out;
+    static public function get()
+    {
+        return HTML5;
     }
 
     /**
@@ -1758,23 +1754,44 @@ class Entities
      *
      * @return array
      */
-    public function fetch(){
+    public function fetchArray()
+    {
         $entities_json = file_get_contents($this->url);
-        $entities = json_decode($entities_json);
-        $out = [];
-        foreach($entities as $key => $value){
-            $key = str_replace(';','',$key);
-            $key = str_replace('&','',$key);
+        $entities_array = json_decode($entities_json);
+        $entities_list = [];
+        foreach ($entities_array as $key => $value) {
+            $key = str_replace(';', '', $key);
+            $key = str_replace('&', '', $key);
             $key = strtolower($key);
-            if(array_key_exists($key, $out)){
+            if (array_key_exists($key, $entities_list)) {
                 continue;
             }
-            if(is_array($value->codepoints)){
-                $out[$key] = '&#' . $value->codepoints[0];
+            if (is_array($value->codepoints)) {
+                $entities_list[$key] = '&#' . $value->codepoints[0];
                 continue;
             }
-            $out[$key] = '&#' . $value->codepoints;
+            $entities_list[$key] = '&#' . $value->codepoints;
         }
+
+        return $entities_list;
+    }
+
+    /**
+     * Fetches entity string for use in DomDocument Doctype declaration
+     *
+     * @return string
+     */
+    public function fetchString()
+    {
+        $entities_list = $this->fetchArray();
+
+        $out = '';
+        foreach ($entities_list as $key => $value) {
+            $out .= '<!ENTITY ' . $key . ' "' . htmlentities($value) . '">' . PHP_EOL;
+
+        }
+
         return $out;
     }
+
 }

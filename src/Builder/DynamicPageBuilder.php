@@ -28,7 +28,17 @@ class DynamicPageBuilder implements BuilderInterface
      */
     public function createObject(array $parameters): ?bool
     {
-        $this->engine = new Engine($parameters);
+        // determine source
+        if (isset($parameters['filename'])) {
+            $source = file_get_contents($parameters['filename']);
+        } elseif (isset($parameters['markup'])) {
+            $source = $parameters['markup'];
+        } else {
+            $source = '';
+        }
+
+        // create engine pass source
+        $this->engine = new Engine($source);
 
         // instantiate dynamic elements
         if (is_array($parameters['handlers'])) {

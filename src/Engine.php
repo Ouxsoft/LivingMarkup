@@ -27,9 +27,6 @@ class Engine
     // Document Object Model (DOM)
     public $dom;
 
-    // DOM doctype
-    public $doctype;
-
     // DOM XPath Query object
     public $xpath;
 
@@ -46,20 +43,33 @@ class Engine
     ];
 
     // Component placeholder ID attribute
-    private $element_index_attribute = '_livingMarkup_ref';
-
-    // DomDocument LibXML debug
-    private $libxml_debug = false;
+    private $element_index_attribute = '_LivingMarkup_Ref';
 
     /**
      * Page constructor
      *
-     * @param array $parameters
+     * @param string $source
      */
-    public function __construct(array $parameters)
+    public function __construct(string $source)
     {
+
         // suppress xml parse errors unless debugging
         libxml_use_internal_errors(true);
+
+        $this->createDom($source);
+    }
+
+
+    /**
+     * Custom load page wrapper for server side HTML5 entity support
+     * (cannot use $this->dom->loadHTMLFile as it removes HTML5 entities, such as &copy;)
+     *
+     * @param string $source
+     */
+    public function createDom(string $source): void
+    {
+
+        // TODO: turn into own object
 
         // create a document object model
         $this->dom = new DomDocument();
@@ -79,51 +89,19 @@ class Engine
         // DomDocument encoding
         $this->dom->encoding = 'UTF-8';
 
-        // set doctype string for loading DOM
-        $this->setDoctype();
+        // add DOCTYPE declaration
+        $doctype = '<!DOCTYPE html [' . Entities::HTML5 . ']>'. PHP_EOL;
 
-        // load DOM from filename
-        $this->loadDom($parameters);
-    }
-
-    /**
-     * Set an HTML5 doctype string property with HTML entities (&copy; etc.) included
-     *
-     * @return void
-     */
-    public function setDoctype(): void
-    {
-
-        $entities = new Entities;
-        $entity = $entities->get();
-        $this->doctype = '<!DOCTYPE html [' . $entity . ']> ';
-    }
-
-    /**
-     * Custom load page wrapper for server side HTML5 entity support
-     * (cannot use $this->dom->loadHTMLFile as it removes HTML5 entities, such as &copy;)
-     *
-     * @param array $parameters
-     */
-    public function loadDom(array $parameters): void
-    {
-        // get source file as string
-        if (isset($parameters['filename'])) {
-            $source = file_get_contents($parameters['filename']);
-        } elseif (isset($parameters['markup'])) {
-            $source = $parameters['markup'];
-        } else {
-            return;
-        }
-
-        // convert source file to Document Object Model for manipulation
-        // set doctype if $this->dom->doctype would not get set
+        // replace DOCTYPE if present
         $count = 1;
-        str_ireplace('<!doctype html>', $this->doctype, $source, $count);
+        str_ireplace('<!doctype html>', $doctype, $source, $count);
         if ($count == 0) {
-            $source = $this->doctype . $source;
+            // add doctype if not present
+            $source = $doctype . $source;
+            // load as XML
             $this->dom->loadXML($source);
         } else {
+            // load as HTML
             $this->dom->loadHTML($source);
         }
 

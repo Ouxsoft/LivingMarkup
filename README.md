@@ -14,13 +14,16 @@ It instantiates DomElements as customizable backend components and orchestrates 
 [![Minimum PHP Version](https://img.shields.io/badge/php-%3E%3D%207.2-8892BF.svg?style=flat-square)](https://php.net/)
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://paypal.me/hxtree)
 
+
+# Usage
+
 LHTML5
 ```PHP
 <?php require $_SERVER['DOCUMENT_ROOT'] . '/src/Autoloader.php'; ?>
 <body>
-    <partial name="userprofile">
+    <block name="userprofile">
         <p><var name="username"/></p>
-    </partial>
+    </block>
 </body>
 ```
 HTML5
