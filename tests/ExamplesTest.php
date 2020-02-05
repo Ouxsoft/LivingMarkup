@@ -7,13 +7,8 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-declare(strict_types=1);
 
 namespace LivingMarkup\Tests;
-
-ini_set('display_errors', '1');
-ini_set('display_startup_errors', '1');
-error_reporting(E_ALL);
 
 use PHPUnit\Framework\TestCase;
 use LivingMarkup\Builder\DynamicPageBuilder;
@@ -34,7 +29,9 @@ final class ExamplesTest extends TestCase
 {
     private $excluded_examples = [
         'HeadAndFooterExample',
-        'IncludeHeaderExample'
+        'IncludeHeaderExample',
+        'ImgExample',
+        'RedactExample'
     ];
 
     public function test()
@@ -59,7 +56,7 @@ final class ExamplesTest extends TestCase
                     '//a' => 'LivingMarkup\Component\A',
                     '//var' => 'LivingMarkup\Component\Variable',
                     '//condition' => 'LivingMarkup\Component\Condition',
-                    '//redacted' => 'LivingMarkup\Component\Redacted'
+                    '//redact' => 'LivingMarkup\Component\Redact'
                 ],
                 'hooks' => [
                     'beforeLoad' => 'Executed before onLoad',

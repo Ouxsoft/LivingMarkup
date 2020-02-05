@@ -28,10 +28,10 @@ class StaticPageBuilder implements BuilderInterface
      */
     public function createObject(array $parameters): ?bool
     {
-        // determine source
-        if (isset($parameters['filename'])) {
+        // set source
+        if (array_key_exists('filename', $parameters)) {
             $source = file_get_contents($parameters['filename']);
-        } elseif (isset($parameters['markup'])) {
+        } elseif (array_key_exists('markup', $parameters))  {
             $source = $parameters['markup'];
         } else {
             $source = '';

@@ -12,7 +12,7 @@ LivingMarkup loads markup to instantiate objects, call their methods, and return
 
 ## Overview
 1. A `Director` object and a `Builder` object are instantiated. 
-2. The `Director` is passed a `Builder` object and an array of parameters defining the `Page` build, including:
+2. The `Director` is passed a `Builder` object and an array of parameters defining the `Engine` build, including:
 - A `filename` string containing the URL or filepath to a XML or HTML document that will be inputted into the `Builder`.
 - A `handlers` array. Each `handler` must contain both Xpath expressions, which is used to lookup elements, and class 
 name that is used to determine how that element once found will be instantiated as a Component.
@@ -38,8 +38,8 @@ document.
 ## `Builder`
 The Builder receives parameters passed from the Director and uses them to instantiate and return a Page object.
 
-## `Page`
-The Page loads a DOM object and uses Handlers and Hooks to instantiate Components and modify the DOM.
+## `Engine`
+The Engine loads a DOM object and uses Handlers and Hooks to instantiate Components and modify the DOM.
 
 ### `Handlers`
 A Handler consists of an XPath expressions and a class name and is used to define the Component. 

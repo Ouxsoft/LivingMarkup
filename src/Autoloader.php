@@ -8,6 +8,11 @@
  * file that was distributed with this source code.
  */
 
+
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 use LivingMarkup\Component\Component;
 
 require '../../vendor/autoload.php';
@@ -29,7 +34,7 @@ function call_director($buffer)
             '//a' => 'LivingMarkup\Component\A',
             '//var' => 'LivingMarkup\Component\Variable',
             '//condition' => 'LivingMarkup\Component\Condition',
-            '//redacted' => 'LivingMarkup\Component\Redacted'
+            '//redact' => 'LivingMarkup\Component\Redact'
         ],
         'hooks' => [
             'beforeLoad' => 'Executed before onLoad',

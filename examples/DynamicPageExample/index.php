@@ -29,7 +29,7 @@ $parameters = [
         '//widget'      => 'LivingMarkup\Component\Widgets\{name}',
         '//var'         => 'LivingMarkup\Component\Variable',
         '//condition'   => 'LivingMarkup\Component\Condition',
-        '//redacted'    => 'LivingMarkup\Component\Redacted'
+        '//redact'    => 'LivingMarkup\Component\Redact'
     ],
     'hooks' => [
         'beforeLoad'    => 'Executed before onLoad',

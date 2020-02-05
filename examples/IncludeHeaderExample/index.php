@@ -3,5 +3,5 @@
 <html>
     <header></header>
     <p>Welcome</p>
-    <p>I'm a <redacted>web developer</redacted></p>
+    <p>I'm a <redact>web developer</redact></p>
 </html>

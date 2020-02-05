@@ -28,7 +28,7 @@ final class DirectorTest extends TestCase
                 '//a'           => 'LivingMarkup\Component\A',
                 '//var'         => 'LivingMarkup\Component\Variable',
                 '//condition'   => 'LivingMarkup\Component\Condition',
-                '//redacted'    => 'LivingMarkup\Component\Redacted'
+                '//redact'    => 'LivingMarkup\Component\Redact'
             ],
             'hooks' => [
                 'beforeLoad'    => 'Executed before onLoad',

@@ -107,6 +107,7 @@ class Engine
 
         // create document iterator for this dom
         $this->xpath = new DOMXPath($this->dom);
+
     }
 
     /**
