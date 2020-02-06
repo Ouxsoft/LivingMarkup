@@ -1,4 +1,4 @@
-![alt text](https://github.com/hxtree/LivingMarkup/raw/master/docs/logo/392x100.jpg "LivingMarkup")
+# ![alt text](https://github.com/hxtree/LivingMarkup/raw/master/docs/logo/392x100.jpg "LivingMarkup")
 
 ***LivingMarkup is an PHP implementation of a Living Hypertext Markup Language 5 (LHTML5) parser.*** 
 It instantiates DomElements as customizable backend components and orchestrates methods calls to build dynamic HTML.
@@ -15,7 +15,7 @@ It instantiates DomElements as customizable backend components and orchestrates 
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://paypal.me/hxtree)
 
 
-# Usage
+## Usage
 
 LHTML5
 ```PHP
@@ -27,7 +27,7 @@ LHTML5
 </body>
 ```
 HTML5
-```
+```html
 <!DOCTYPE html>
 <html>
     <body>
@@ -38,23 +38,23 @@ HTML5
 </html>
 ```
 
-# Installation
+## Installation
 
-## Via Composer
+### Via Composer
 LivingMarkup is available on [Packagist](https://packagist.org/packages/hxtree/livingMarkup).
 
 Install with Composer:
 ```shell script
-$ composer require hxtree/livingmarkup
+composer require hxtree/livingmarkup
 ```
 
-# Examples
+## Examples
 Learn how LivingMarkup can be used through our [Examples](https://github.com/hxtree/LivingMarkup/blob/master/examples/README.md).
 
-# Documentation
+## Documentation
 Check our docs for more info at [livingmarkup.readthedocs.io](https://livingmarkup.readthedocs.io)
 
-# Contribute
+## Contribute
 
 Please refer to [CONTRIBUTING.md](https://github.com/hxtree/LivingMarkup/blob/master/.github/workflows/CONTRIBUTING.md) for 
 information on how to contribute to LivingMarkup.
