@@ -11,8 +11,8 @@ class PrunedList
     private $list = [];
 
     /**
-     * Add an item to list property if it does not exist
-     * turn arrays with only one item into strings
+     * Add an item to the list property, if not present
+     * arrays with only one item are stored as strings
      *
      * @param $index
      * @param $value

@@ -15,7 +15,7 @@ use DomDocument;
 /**
  * Class Document
  *
- * A LHTML5 DomDocument that is rendered as HTML5
+ * A DomDocument that is loaded from a well formatted LHTML5 document and returns a HTML5
  *
  * @package LivingMarkup
  */
@@ -42,12 +42,16 @@ class Document extends DomDocument {
         // DomDocument encoding
         $this->encoding = 'UTF-8';
     }
+
     /**
-     * Loads source as LHTML5 Dom Document
+     * Loads source, which is in LHTML5 format, as DomDocument
      *
-     * Custom load page wrapper for server side HTML5 entity support
-     * (cannot use $this->dom->loadHTMLFile as it removes HTML5 entities, such as &copy;)
-    */
+     * A custom load page wrapper is required for server side HTML5 entity support.
+     * Using $this->loadHTMLFile will removes HTML5 entities, such as &copy;
+     *
+     * @param $source must be well formatted and feature a root element, e.g. <html>
+     *
+     */
     function loadSource($source){
         // add DOCTYPE declaration
         $doctype = '<!DOCTYPE html [' . Entities::HTML5 . ']>'. PHP_EOL;
@@ -63,6 +67,13 @@ class Document extends DomDocument {
         } else {
             // load as HTML
             $this->loadHTML($source);
+        }
+
+        // adds HTML root element if one is not present
+        $root_tag = $this->documentElement->tagName;
+        if(strcasecmp($root_tag, 'html') !== 0){
+           $root_element = $this->createElement('html');
+           $this->appendChild($root_element);
         }
     }
 }

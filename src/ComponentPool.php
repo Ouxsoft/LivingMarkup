@@ -13,36 +13,42 @@ namespace LivingMarkup;
 /**
  * Class ComponentPool
  *
- * Initializes and gets components
+ * Initializes and retrieves individual components
  *
  * @package LivingMarkup
  */
 class ComponentPool
 {
-    // TODO: Class is not yet implemented
+    const INDEX_ATTRIBUTE = '_COMPONENT_ID';
 
+    public $component = [];
+
+    // TODO: implement pool design pattern
     private $occupied_components = [];
     private $free_components = [];
-
-    public function get(?string $placeholder_id = null)
-    {
-    }
 
     /**
      * Get Component by placeholder id
      *
-     * @param string $component_id
+     * @param string|null $component_id
      * @return object
      */
-    public function getById(string $component_id)
+    public function getById(?string $component_id = null)
     {
         // TODO: Mark as occupied
-        if (array_key_exists($component_id, $this->free_components)) {
-            return $this->free_components[$component_id];
+        if (array_key_exists($component_id, $this->component)) {
+            return $this->component[$component_id];
         }
 
         return null;
     }
+
+    public function add(&$component){
+        $this->component[$component->component_id] = $component;
+    }
+
+    // TODO in order for worker concept to work the state and data of the object must be separated from the component
+
     /**
      * Gets a component or initializes a component if one is not present and free
      *
@@ -79,12 +85,17 @@ class ComponentPool
             $this->free_components[$id] = $worker;
         }
     }
-}
 
-/*
-properties
-render
-innerXML
-invokeMethod
-instantiate
-*/
+    /**
+     * Invoke Component method if exists
+     *
+     * @param $hook_name
+     */
+    public function __invoke($hook_name){
+        // iterate through elements
+        foreach ($this->component as $component) {
+
+            $component($hook_name);
+        }
+    }
+}
