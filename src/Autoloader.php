@@ -8,14 +8,9 @@
  * file that was distributed with this source code.
  */
 
-
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
 use LivingMarkup\Component\Component;
 
-require '../../vendor/autoload.php';
+require $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php';
 
 function call_director($buffer)
 {
