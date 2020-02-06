@@ -52,7 +52,7 @@ class Engine
     public function __construct(string $source)
     {
         // create a document object model
-        $this->dom = new LivingDocument();
+        $this->dom = new Document();
 
         // load source to DOM
         $this->dom->loadSource($source);

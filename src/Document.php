@@ -13,13 +13,13 @@ namespace LivingMarkup;
 use DomDocument;
 
 /**
- * Class LivingDocument
+ * Class Document
  *
- * A LHTML5 DomDocument
+ * A LHTML5 DomDocument that is rendered as HTML5
  *
  * @package LivingMarkup
  */
-class LivingDocument extends DomDocument {
+class Document extends DomDocument {
 
     function __construct(){
         parent::__construct();
