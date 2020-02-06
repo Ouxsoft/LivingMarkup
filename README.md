@@ -21,8 +21,9 @@ LHTML5
 ```PHP
 <?php require $_SERVER['DOCUMENT_ROOT'] . '/src/Autoloader.php'; ?>
 <body>
-    <block name="userprofile">
-        <p><var name="username"/></p>
+    <block name="UserProfile">
+        <arg name="style">simple</arg>
+        <p>Welcome <var name="first_name"/>!</p>
     </block>
 </body>
 ```
@@ -31,8 +32,8 @@ HTML5
 <!DOCTYPE html>
 <html>
     <body>
-        <div class="user-profile">
-            <p>Jane Doe</p>
+        <div class="user-profile simple">
+            <p>Welcome Jane!</p>
         </div>
     </body>
 </html>
