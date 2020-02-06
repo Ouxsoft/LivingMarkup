@@ -87,15 +87,14 @@ class ComponentPool
     }
 
     /**
-     * Invoke Component method if exists
+     * Invoke a specific method in Component if the method exists
      *
-     * @param $hook_name
+     * @param $method
      */
-    public function __invoke($hook_name){
+    public function callMethod($method){
         // iterate through elements
         foreach ($this->component as $component) {
-
-            $component($hook_name);
+            $component($method);
         }
     }
 }

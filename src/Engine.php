@@ -65,7 +65,7 @@ class Engine
      * @param string|null $options
      * @return bool-
      */
-    public function callHook(string $hook_name, string $options = null): bool
+    public function callHook(string $hook, string $options = null): bool
     {
         // set ancestors
         foreach ($this->components->component as $component) {
@@ -80,7 +80,7 @@ class Engine
             return true;
         }
 
-        $this->components($hook_name);
+        $this->components->callMethod($hook);
 
         return true;
     }
