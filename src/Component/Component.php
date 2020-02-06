@@ -80,6 +80,17 @@ abstract class Component implements ComponentDefaultInterface
         }
     }
 
+
+    /**
+     * Gets the ID of the component, useful for ComponentPool
+     *
+     * @return int|string
+     */
+    public function getId()
+    {
+        return $this->component_id;
+    }
+
     /**
      * Abstract output method called by magic method
      *

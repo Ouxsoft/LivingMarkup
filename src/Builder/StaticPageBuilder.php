@@ -31,7 +31,7 @@ class StaticPageBuilder implements BuilderInterface
         // set source
         if (array_key_exists('filename', $parameters)) {
             $source = file_get_contents($parameters['filename']);
-        } elseif (array_key_exists('markup', $parameters))  {
+        } elseif (array_key_exists('markup', $parameters)) {
             $source = $parameters['markup'];
         } else {
             $source = '';

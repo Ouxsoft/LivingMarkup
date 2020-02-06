@@ -10,7 +10,6 @@
 
 namespace LivingMarkup;
 
-use DomDocument;
 use DOMElement;
 use DOMXPath;
 
@@ -30,8 +29,8 @@ class Engine
     // DOM XPath Query object
     public $xpath;
 
-    // instantiated Components
-    public $components = [];
+    // ComponentPool
+    public $component_pool = [];
 
     // name of function called to load Component Args using element's `id` attribute
     public $arg_load_function;
@@ -52,62 +51,17 @@ class Engine
      */
     public function __construct(string $source)
     {
-
-        // suppress xml parse errors unless debugging
-        libxml_use_internal_errors(true);
-
-        $this->createDom($source);
-    }
-
-
-    /**
-     * Custom load page wrapper for server side HTML5 entity support
-     * (cannot use $this->dom->loadHTMLFile as it removes HTML5 entities, such as &copy;)
-     *
-     * @param string $source
-     */
-    public function createDom(string $source): void
-    {
-
-        // TODO: turn into own object
-
         // create a document object model
-        $this->dom = new DomDocument();
+        $this->dom = new LivingDocument();
 
-        // DomDocument format output option
-        $this->dom->formatOutput = true;
-
-        // DomDocument object setting to preserve white space
-        $this->dom->preserveWhiteSpace = false;
-
-        // DomDocument strict error checking setting
-        $this->dom->strictErrorChecking = false;
-
-        // validate DOM on Parse
-        $this->dom->validateOnParse = false;
-
-        // DomDocument encoding
-        $this->dom->encoding = 'UTF-8';
-
-        // add DOCTYPE declaration
-        $doctype = '<!DOCTYPE html [' . Entities::HTML5 . ']>'. PHP_EOL;
-
-        // replace DOCTYPE if present
-        $count = 1;
-        str_ireplace('<!doctype html>', $doctype, $source, $count);
-        if ($count == 0) {
-            // add doctype if not present
-            $source = $doctype . $source;
-            // load as XML
-            $this->dom->loadXML($source);
-        } else {
-            // load as HTML
-            $this->dom->loadHTML($source);
-        }
+        // load source to DOM
+        $this->dom->loadSource($source);
 
         // create document iterator for this dom
         $this->xpath = new DOMXPath($this->dom);
 
+        // create a component pool
+        $this->component_pool = new ComponentPool();
     }
 
     /**
@@ -120,12 +74,12 @@ class Engine
     public function callHook(string $hook_name, string $options = null): bool
     {
         // set ancestors
-        foreach ($this->components as $component) {
+        foreach ($this->component_pool->component as $component) {
             $component->ancestors = $this->getComponentAncestorProperties($component->component_id);
         }
 
         if ($options == 'RETURN_CALL') {
-            foreach ($this->components as $component) {
+            foreach ($this->component_pool->component as $component) {
                 $this->renderComponent($component->component_id);
             }
 
@@ -133,7 +87,7 @@ class Engine
         }
 
         // iterate through elements
-        foreach ($this->components as $element_object) {
+        foreach ($this->component_pool->component as $element_object) {
 
             // invoke Component method with options, if exists
             $element_object($hook_name);
@@ -161,7 +115,7 @@ class Engine
             $ancestor_properties[] = [
                 'id' => $ancestor_id,
                 'tag' => $dom_element->nodeName,
-                'properties' => get_object_vars($this->components[$ancestor_id])
+                'properties' => get_object_vars($this->component_pool->component[$ancestor_id])
             ];
         }
 
@@ -239,8 +193,8 @@ class Engine
      */
     public function getComponentById(string $component_id)
     {
-        if (array_key_exists($component_id, $this->components)) {
-            return $this->components[$component_id];
+        if (array_key_exists($component_id, $this->component_pool->component)) {
+            return $this->component_pool->component[$component_id];
         }
 
         return null;
@@ -284,7 +238,7 @@ class Engine
     }
 
     /**
-     * Instantiates Components from DOMElement's found during Xpath query against property DOM
+     * Instantiates component_pool from DOMElement's found during Xpath query against property DOM
      *
      * @param string $xpath_expression
      * @param string $class_name
@@ -346,7 +300,7 @@ class Engine
         $element->setAttribute($this->element_index_attribute, $element_object->component_id);
 
         // store object with object hash key
-        $this->components[$element_object->component_id] = $element_object;
+        $this->component_pool->component[$element_object->component_id] = $element_object;
 
         return true;
     }
@@ -403,7 +357,7 @@ class Engine
     }
 
     /**
-     * Returns DomDocument property as HTML
+     * Returns DomDocument property as HTML5
      *
      * @return string
      */

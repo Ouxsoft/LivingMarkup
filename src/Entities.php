@@ -1744,7 +1744,7 @@ ENTITY;
      *
      * @return string
      */
-    static public function get()
+    public static function get()
     {
         return HTML5;
     }
@@ -1788,10 +1788,8 @@ ENTITY;
         $out = '';
         foreach ($entities_list as $key => $value) {
             $out .= '<!ENTITY ' . $key . ' "' . htmlentities($value) . '">' . PHP_EOL;
-
         }
 
         return $out;
     }
-
 }

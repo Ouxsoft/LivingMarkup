@@ -39,7 +39,11 @@ class Variable extends Component
         
         $value = $this->getVariable();
 
-        return $this->$function($value, $parameters);
+        if(method_exists($this,$function)){
+            return $this->$function($value, $parameters);
+        }
+
+        return false;
     }
 
     /**
