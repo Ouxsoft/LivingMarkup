@@ -11,8 +11,8 @@ LivingMarkup loads markup to instantiate objects, call their methods, and return
 ![alt text](https://github.com/hxtree/LivingMarkup/raw/master/docs/diagrams/Class%20Diagram.png "Class Diagram")
 
 ## Overview
-1. A `Director` object and a `Builder` object are instantiated. 
-2. The `Director` is passed a `Builder` object and an array of parameters defining the `Engine` build, including:
+1. A `Director` object and an object using the `Builder` interface are instantiated. 
+2. The `Director` is passed the `Builder` object and an array of parameters defining the `Engine` build, including:
 - A `filename` string containing the URL or filepath to a XML or HTML document that will be inputted into the `Builder`.
 - A `handlers` array. Each `handler` must contain both Xpath expressions, which is used to lookup elements, and class 
 name that is used to determine how that element once found will be instantiated as a Component.
@@ -25,9 +25,6 @@ name that is used to determine how that element once found will be instantiated 
 8. If the hook is marked to render the object is converted to a string and replace the DOM element from which they were
 instantiated from.
 9. A dynamic page is then returned.
-
-# Examples
-See how LivingMarkup can be used through our [Examples](https://github.com/hxtree/LivingMarkup/blob/master/examples/README.md).
 
 # `Director`
 The Director is passed a Builder and parameters (containing a HTML/XML document and a list of elements to make
@@ -67,25 +64,3 @@ Afterwards, the processed Document is returned.
 
 #### `Arguments`
 The Component constructor is passed a Page DOM element's attributes ("id", "name", etc.) and "arg" tag child elements.
-
-# Component Variable Scope
-TODO: In Progress
-All Components have access their own private variables. In addition, they can access their ancestors public variables.
-Consider the following:
-
-```HTML
- <div id="1">
- 	<div id="2">
- 		<div id="3"/>
- 	</div>
- 	<div id="4">
- 		<div id="5"/>
- 	</div>
- </div>
-```
-
-* id #1 can access no other Component public properties. 
-* id #2 can access #1 Component public properties.
-* id #3 can access #1 and #2 Component public properties.
-* id #4 can access #1 Component public properties.
-* id #5 can access #4 and $1 Component public properties.

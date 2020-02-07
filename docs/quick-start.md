@@ -1,7 +1,7 @@
-Quick  start
+# Quick  start
 Get an instance of LivingMarkup up and running in less than 5 minutes.
 
-LivingMarkup is a powerful and flexible rick text . This quick start covers how to use on a web server.
+LivingMarkup is a powerful and flexible way to build dynamic web pages. This quick start covers how to use on a web server.
 
 Step 1: Install the LivingMarkup Package
 
@@ -11,4 +11,4 @@ Next Steps
 
 For information on:
 
-Customizing LivingMarkup, see 
+Customizing LivingMarkup.

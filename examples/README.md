@@ -23,6 +23,9 @@ This example shows dynamically generated images.
 ## [IncludeHeaderExample](IncludeHeaderExample/)
 This example shows that a single line at top of file takes care of everything.
 
+## [RedactedExample](RedactExample/)
+This example shows how to redact text using the autoloader.
+
 ## [VariableExample](VariableExample/)
 This example demonstrates var tag and how it can use public variables from ancestor elements.
 
