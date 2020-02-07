@@ -3,7 +3,7 @@
 LHTML5 stands for Living Hypertext Markup Language 5. LHTML5 looks much like HTML5 with the addition of custom elements called components.
 
 ## Component
-A component can be either an existing HTML tag or a new HTML tag.
+A component can be either an existing HTML tag or a new HTML tag. What makes a component a component is that the parser instantiates the tag as an object when found.
 ```html5
 <block/>
 ```
@@ -62,3 +62,6 @@ If `div` were a component in the above example, the following would be true:
 * Component with id #3 can access components #1 and #2 public properties.
 * Component with id #4 can access component #1 public properties.
 * Component with id #5 can access components #4 and #1 public properties.
+
+## Hooks
+Method calls are orchestrated against all the components instantiated. The hooks can differ project to project but it stands to reason that one of the later called hooks will render the component and it's content will be used to replace the original element.
