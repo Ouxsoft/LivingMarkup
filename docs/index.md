@@ -1,22 +1,21 @@
+![alt text](https://github.com/hxtree/LivingMarkup/raw/master/docs/logo/392x100.jpg "LivingMarkup") 
+
 # Welcome to LivingMarkup documentation
 
-![alt text](https://github.com/hxtree/LivingMarkup/raw/master/docs/logo/392x100.jpg "LivingMarkup")
+***LivingMarkup is an PHP implementation of a LHTML5 parser.***
 
-***LivingMarkup is an PHP implementation of a Living Hypertext Markup Language (LHTML) parser.*** 
-It instantiates DomElements as customizable backend components and orchestrates methods calls to build dynamic HTML.
+It builds dynamic HTML by instantiating DomElements as modular components and orchestrating methods.
 
-# How it Works
-LivingMarkup loads markup to instantiate objects, call their methods, and return an HTML document. 
+## LHTML5 Standard 
+Learn more about the [LHTML5 standard](https://github.com/hxtree/LivingMarkup/blob/master/docs/lhtml5.md).
 
+# How LivingMarkup Parser Works
 ![alt text](https://github.com/hxtree/LivingMarkup/raw/master/docs/diagrams/Class%20Diagram.png "Class Diagram")
 
 ## Overview
-1. A `Director` object and an object using the `Builder` interface are instantiated. 
-2. The `Director` is passed the `Builder` object and an array of parameters defining the `Engine` build, including:
-- A `filename` string containing the URL or filepath to a XML or HTML document that will be inputted into the `Builder`.
-- A `handlers` array. Each `handler` must contain both Xpath expressions, which is used to lookup elements, and class 
-name that is used to determine how that element once found will be instantiated as a Component.
-- A `hooks` array. Each `hook` is essentially a method that will be made against all Components.
+- A `Director` is passed an object using the `Builder` interface. (There are multiple `Builders` depending on the type of page being rendered.)
+
+- Parser Config contains the following:
 3. The `Builder` loads the `filename` as a string and prefixes it with a HTML5 <!doctype> containing HTML5 entities.
 4. That string is then converted into a Document Object Model for manipulation.
 5. The `Builder` using handlers Xpath expressions to find specified elements. 
