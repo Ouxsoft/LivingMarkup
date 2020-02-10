@@ -4,76 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "738ef3d4143310af53135c656b42d554",
-    "packages": [
-        {
-            "name": "masterminds/html5",
-            "version": "2.x-dev",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Masterminds/html5-php.git",
-                "reference": "cadcfaaa13153e0e8eb92c49a53e140cf1a85dea"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Masterminds/html5-php/zipball/cadcfaaa13153e0e8eb92c49a53e140cf1a85dea",
-                "reference": "cadcfaaa13153e0e8eb92c49a53e140cf1a85dea",
-                "shasum": ""
-            },
-            "require": {
-                "ext-ctype": "*",
-                "ext-dom": "*",
-                "ext-libxml": "*",
-                "php": ">=5.3.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "4.*",
-                "sami/sami": "~2.0",
-                "satooshi/php-coveralls": "1.0.*"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "2.2-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Masterminds\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Matt Butcher",
-                    "email": "technosophos@gmail.com"
-                },
-                {
-                    "name": "Asmir Mustafic",
-                    "email": "goetas@gmail.com"
-                },
-                {
-                    "name": "Matt Farina",
-                    "email": "matt@mattfarina.com"
-                }
-            ],
-            "description": "An HTML5 parser and serializer.",
-            "homepage": "http://masterminds.github.io/html5-php",
-            "keywords": [
-                "HTML5",
-                "dom",
-                "html",
-                "parser",
-                "querypath",
-                "serializer",
-                "xml"
-            ],
-            "time": "2018-11-17T20:24:36+00:00"
-        }
-    ],
+    "content-hash": "dcf838306ee439bc21823d75daf4be2d",
+    "packages": [],
     "packages-dev": [
         {
             "name": "composer/semver",
@@ -310,19 +242,19 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/lexer.git",
-                "reference": "db47018871229c8287a31d1520c62ce400ddcae8"
+                "reference": "ec953a1b157db060fc9576a6f6b6b1865a09aac9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/lexer/zipball/db47018871229c8287a31d1520c62ce400ddcae8",
-                "reference": "db47018871229c8287a31d1520c62ce400ddcae8",
+                "url": "https://api.github.com/repos/doctrine/lexer/zipball/ec953a1b157db060fc9576a6f6b6b1865a09aac9",
+                "reference": "ec953a1b157db060fc9576a6f6b6b1865a09aac9",
                 "shasum": ""
             },
             "require": {
                 "php": "^7.2"
             },
             "require-dev": {
-                "doctrine/coding-standard": "^6.0",
+                "doctrine/coding-standard": "^7.0.2",
                 "phpstan/phpstan": "^0.11.8",
                 "phpunit/phpunit": "^8.2"
             },
@@ -364,7 +296,7 @@
                 "parser",
                 "php"
             ],
-            "time": "2020-01-18T11:58:20+00:00"
+            "time": "2020-02-06T21:05:57+00:00"
         },
         {
             "name": "friendsofphp/php-cs-fixer",
@@ -372,12 +304,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfPHP/PHP-CS-Fixer.git",
-                "reference": "124bdff824fb8bdad35474782b87b9c5660fde03"
+                "reference": "e850937711919f694843717dfaea41f7f5d8442a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfPHP/PHP-CS-Fixer/zipball/124bdff824fb8bdad35474782b87b9c5660fde03",
-                "reference": "124bdff824fb8bdad35474782b87b9c5660fde03",
+                "url": "https://api.github.com/repos/FriendsOfPHP/PHP-CS-Fixer/zipball/e850937711919f694843717dfaea41f7f5d8442a",
+                "reference": "e850937711919f694843717dfaea41f7f5d8442a",
                 "shasum": ""
             },
             "require": {
@@ -459,7 +391,7 @@
                 }
             ],
             "description": "A tool to automatically fix PHP code style",
-            "time": "2020-01-29T19:38:18+00:00"
+            "time": "2020-02-06T20:51:19+00:00"
         },
         {
             "name": "myclabs/deep-copy",
@@ -766,12 +698,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/ReflectionDocBlock.git",
-                "reference": "93919e334b0cb304fb04429b4b3a3b1e1787c873"
+                "reference": "a48807183a4b819072f26e347bbd0b5199a9d15f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/ReflectionDocBlock/zipball/93919e334b0cb304fb04429b4b3a3b1e1787c873",
-                "reference": "93919e334b0cb304fb04429b4b3a3b1e1787c873",
+                "url": "https://api.github.com/repos/phpDocumentor/ReflectionDocBlock/zipball/a48807183a4b819072f26e347bbd0b5199a9d15f",
+                "reference": "a48807183a4b819072f26e347bbd0b5199a9d15f",
                 "shasum": ""
             },
             "require": {
@@ -811,7 +743,7 @@
                 }
             ],
             "description": "With this component, a library can provide support for annotations via DocBlocks or otherwise retrieve information that is embedded in a DocBlock.",
-            "time": "2020-01-27T20:01:09+00:00"
+            "time": "2020-02-09T09:16:15+00:00"
         },
         {
             "name": "phpdocumentor/type-resolver",
@@ -819,12 +751,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/TypeResolver.git",
-                "reference": "28517b98024f4d578e7a0774fa4a73ca2a73c724"
+                "reference": "a748970492a3fc0c12a823e27c520cf9820b90fb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/TypeResolver/zipball/28517b98024f4d578e7a0774fa4a73ca2a73c724",
-                "reference": "28517b98024f4d578e7a0774fa4a73ca2a73c724",
+                "url": "https://api.github.com/repos/phpDocumentor/TypeResolver/zipball/a748970492a3fc0c12a823e27c520cf9820b90fb",
+                "reference": "a748970492a3fc0c12a823e27c520cf9820b90fb",
                 "shasum": ""
             },
             "require": {
@@ -857,7 +789,7 @@
                 }
             ],
             "description": "A PSR-5 based resolver of Class names, Types and Structural Element Names",
-            "time": "2019-12-27T21:51:48+00:00"
+            "time": "2020-02-05T20:18:28+00:00"
         },
         {
             "name": "phpspec/prophecy",
@@ -1180,12 +1112,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "2f0ab996ca57beb9598bb6429bdaf94daddb1f9e"
+                "reference": "073d302866d4b961e02f8f25acfeccad8fdd9227"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/2f0ab996ca57beb9598bb6429bdaf94daddb1f9e",
-                "reference": "2f0ab996ca57beb9598bb6429bdaf94daddb1f9e",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/073d302866d4b961e02f8f25acfeccad8fdd9227",
+                "reference": "073d302866d4b961e02f8f25acfeccad8fdd9227",
                 "shasum": ""
             },
             "require": {
@@ -1255,7 +1187,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2020-01-23T15:44:04+00:00"
+            "time": "2020-02-09T08:02:36+00:00"
         },
         {
             "name": "psr/container",
@@ -2020,12 +1952,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
-                "reference": "b341b0d05cbb1e085125705a8cf59d874625d537"
+                "reference": "e1c4b23dfbeb467183887f96857d948986d49885"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/console/zipball/b341b0d05cbb1e085125705a8cf59d874625d537",
-                "reference": "b341b0d05cbb1e085125705a8cf59d874625d537",
+                "url": "https://api.github.com/repos/symfony/console/zipball/e1c4b23dfbeb467183887f96857d948986d49885",
+                "reference": "e1c4b23dfbeb467183887f96857d948986d49885",
                 "shasum": ""
             },
             "require": {
@@ -2089,7 +2021,53 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "https://symfony.com",
-            "time": "2020-01-30T12:04:33+00:00"
+            "time": "2020-02-10T16:05:15+00:00"
+        },
+        {
+            "name": "symfony/deprecation-contracts",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/deprecation-contracts.git",
+                "reference": "8d169030e4790d955aa35e6be0e93d00fe3dd534"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/deprecation-contracts/zipball/8d169030e4790d955aa35e6be0e93d00fe3dd534",
+                "reference": "8d169030e4790d955aa35e6be0e93d00fe3dd534",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.1"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.1-dev"
+                }
+            },
+            "autoload": {
+                "files": [
+                    "function.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nicolas Grekas",
+                    "email": "p@tchwork.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "A generic function and convention to trigger deprecation notices",
+            "homepage": "https://symfony.com",
+            "time": "2020-02-08T13:27:18+00:00"
         },
         {
             "name": "symfony/event-dispatcher",
@@ -2097,16 +2075,17 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/event-dispatcher.git",
-                "reference": "af3ef027421803ae8f3286062eec4335fde92b77"
+                "reference": "ec966bd1c05fbae70a10e5d81e3d34d8d21b8295"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/event-dispatcher/zipball/af3ef027421803ae8f3286062eec4335fde92b77",
-                "reference": "af3ef027421803ae8f3286062eec4335fde92b77",
+                "url": "https://api.github.com/repos/symfony/event-dispatcher/zipball/ec966bd1c05fbae70a10e5d81e3d34d8d21b8295",
+                "reference": "ec966bd1c05fbae70a10e5d81e3d34d8d21b8295",
                 "shasum": ""
             },
             "require": {
                 "php": "^7.2.5",
+                "symfony/deprecation-contracts": "^2.1",
                 "symfony/event-dispatcher-contracts": "^2"
             },
             "conflict": {
@@ -2159,7 +2138,7 @@
             ],
             "description": "Symfony EventDispatcher Component",
             "homepage": "https://symfony.com",
-            "time": "2020-01-10T21:57:55+00:00"
+            "time": "2020-02-08T14:04:50+00:00"
         },
         {
             "name": "symfony/event-dispatcher-contracts",
@@ -2225,12 +2204,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/filesystem.git",
-                "reference": "a75a71f1267bf3779b41b659dc0ba3859a1271de"
+                "reference": "08d46f80a21b2149d1d1c31440d76d2a72a73d94"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/filesystem/zipball/a75a71f1267bf3779b41b659dc0ba3859a1271de",
-                "reference": "a75a71f1267bf3779b41b659dc0ba3859a1271de",
+                "url": "https://api.github.com/repos/symfony/filesystem/zipball/08d46f80a21b2149d1d1c31440d76d2a72a73d94",
+                "reference": "08d46f80a21b2149d1d1c31440d76d2a72a73d94",
                 "shasum": ""
             },
             "require": {
@@ -2267,7 +2246,7 @@
             ],
             "description": "Symfony Filesystem Component",
             "homepage": "https://symfony.com",
-            "time": "2020-01-21T08:44:52+00:00"
+            "time": "2020-02-04T08:09:47+00:00"
         },
         {
             "name": "symfony/finder",
@@ -2324,16 +2303,17 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/options-resolver.git",
-                "reference": "188abc91dd93782c64815fe2e7b5ae2ef91d620d"
+                "reference": "1942f698bc733c45b4f00025a379762885ce8b25"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/options-resolver/zipball/188abc91dd93782c64815fe2e7b5ae2ef91d620d",
-                "reference": "188abc91dd93782c64815fe2e7b5ae2ef91d620d",
+                "url": "https://api.github.com/repos/symfony/options-resolver/zipball/1942f698bc733c45b4f00025a379762885ce8b25",
+                "reference": "1942f698bc733c45b4f00025a379762885ce8b25",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.2.5"
+                "php": "^7.2.5",
+                "symfony/deprecation-contracts": "^2.1"
             },
             "type": "library",
             "extra": {
@@ -2370,7 +2350,7 @@
                 "configuration",
                 "options"
             ],
-            "time": "2020-01-04T14:20:45+00:00"
+            "time": "2020-02-10T08:05:33+00:00"
         },
         {
             "name": "symfony/polyfill-ctype",
@@ -2667,12 +2647,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/process.git",
-                "reference": "7075b84559f3624c9f1fcde37c5af7a3e025ec8a"
+                "reference": "afa309790c0958fca4c49712aa18684ab8feeac7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/process/zipball/7075b84559f3624c9f1fcde37c5af7a3e025ec8a",
-                "reference": "7075b84559f3624c9f1fcde37c5af7a3e025ec8a",
+                "url": "https://api.github.com/repos/symfony/process/zipball/afa309790c0958fca4c49712aa18684ab8feeac7",
+                "reference": "afa309790c0958fca4c49712aa18684ab8feeac7",
                 "shasum": ""
             },
             "require": {
@@ -2708,7 +2688,7 @@
             ],
             "description": "Symfony Process Component",
             "homepage": "https://symfony.com",
-            "time": "2020-01-09T09:56:45+00:00"
+            "time": "2020-02-08T17:01:13+00:00"
         },
         {
             "name": "symfony/service-contracts",
@@ -2910,7 +2890,6 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "masterminds/html5": 20,
         "friendsofphp/php-cs-fixer": 20
     },
     "prefer-stable": false,
