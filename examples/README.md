@@ -3,10 +3,10 @@
 This folder contains a collection of examples using LivingMarkup.
 
 ## [BitwiseExample](BitwiseExample/)
-This example shows how to Components pass arguments.
+This example shows how to pass Component arguments.
 
-## [ConditionExample](ConditionExample/)
-This example shows how condition statements can be made.
+## [IfStatementExample](IfStatementExample/)
+This example shows how if statements are made.
 
 ## [DynamicPageExample](DynamicPageExample/)
 This example shows how to build a dynamic page.

@@ -20,29 +20,12 @@ function call_director($buffer)
     // instantiate Builder
     $builder = new LivingMarkup\Builder\DynamicPageBuilder();
 
-    // define build parameters
-    $parameters = [
-        'markup' => $buffer,
-        'handlers' => [
-            '//widget' => 'LivingMarkup\Component\Widgets\{name}',
-            '//img' => 'LivingMarkup\Component\Img',
-            '//a' => 'LivingMarkup\Component\A',
-            '//var' => 'LivingMarkup\Component\Variable',
-            '//condition' => 'LivingMarkup\Component\Condition',
-            '//redact' => 'LivingMarkup\Component\Redact'
-        ],
-        'hooks' => [
-            'beforeLoad' => 'Executed before onLoad',
-            'onLoad' => 'Loads object data',
-            'afterLoad' => 'Executed after onLoad',
-            'beforeRender' => 'Executed before onLoad',
-            'onRender' => 'RETURN_CALL',
-            'afterRender' => 'Executed after onRender',
-        ]
-    ];
+    // load config
+    $config = \LivingMarkup\Configuration::load();
+    $config['markup'] = $buffer;
 
     // echo Director build of Builder
-    return $director->build($builder, $parameters);
+    return $director->build($builder, $config);
 }
 
 ob_start('call_director');

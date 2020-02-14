@@ -20,26 +20,8 @@ $director = new LivingMarkup\Director();
 // instantiate Builder
 $builder = new LivingMarkup\Builder\DynamicPageBuilder();
 
-// define build parameters
-$parameters = [
-    'filename' => __DIR__ . DIRECTORY_SEPARATOR . 'input.html',
-    'handlers' => [
-        '//img'         => 'LivingMarkup\Component\Img',
-        '//a'           => 'LivingMarkup\Component\A',
-        '//widget'      => 'LivingMarkup\Component\Widgets\{name}',
-        '//var'         => 'LivingMarkup\Component\Variable',
-        '//condition'   => 'LivingMarkup\Component\Condition',
-        '//redact'    => 'LivingMarkup\Component\Redact'
-    ],
-    'hooks' => [
-        'beforeLoad'    => 'Executed before onLoad',
-        'onLoad'        => 'Loads object data',
-        'afterLoad'     => 'Executed after onLoad',
-        'beforeRender'  => 'Executed before onLoad',
-        'onRender'      => 'RETURN_CALL',
-        'afterRender'   => 'Executed after onRender',
-    ]
-];
+// load config
+$config = LivingMarkup\Configuration::load();
+$config['filename'] = __DIR__ . DIRECTORY_SEPARATOR . 'input.html';
 
-// echo Director build PageBuilder
-echo $director->build($builder, $parameters);
+echo $director->build($builder, $config);

@@ -46,37 +46,19 @@ final class ExamplesTest extends TestCase
                 continue;
             }
 
-            $parameters = [
-                'filename' => $example_folder . DIRECTORY_SEPARATOR . 'input.html',
-                'handlers' => [
-                    '//h1' => 'LivingMarkup\Component\MarkupInjection',
-                    '//widget' => 'LivingMarkup\Component\Widgets\{name}',
-                    '//bitwise' => 'LivingMarkup\Component\Bitwise',
-                    '//img' => 'LivingMarkup\Component\Img',
-                    '//a' => 'LivingMarkup\Component\A',
-                    '//var' => 'LivingMarkup\Component\Variable',
-                    '//condition' => 'LivingMarkup\Component\Condition',
-                    '//redact' => 'LivingMarkup\Component\Redact'
-                ],
-                'hooks' => [
-                    'beforeLoad' => 'Executed before onLoad',
-                    'onLoad' => 'Loads object data',
-                    'afterLoad' => 'Executed after onLoad',
-                    'beforeRender' => 'Executed before onLoad',
-                    'onRender' => 'RETURN_CALL',
-                    'afterRender' => 'Executed after onRender',
-                ]
-            ];
+            // load config
+            $config = \LivingMarkup\Configuration::load(__DIR__ . DIRECTORY_SEPARATOR . 'config.yml');
+            $config['filename'] = $example_folder . DIRECTORY_SEPARATOR . 'input.html';
 
             // build dynamic page
             $director = new Director();
             $dynamic_builder = new DynamicPageBuilder();
-            $page_results = (string)$director->build($dynamic_builder, $parameters);
+            $page_results = (string)$director->build($dynamic_builder, $config);
 
             // build static page of the prebuild desired output
-            $parameters['filename'] = $example_folder . DIRECTORY_SEPARATOR . 'output.html';
+            $config['filename'] = $example_folder . DIRECTORY_SEPARATOR . 'output.html';
             $static_builder = new StaticPageBuilder();
-            $page_check = (string)$director->build($static_builder, $parameters);
+            $page_check = (string)$director->build($static_builder, $config);
 
             // compare the two
             $this->assertEquals($page_check, $page_results);

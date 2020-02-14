@@ -12,12 +12,6 @@
  * This example shows how conditional statements can be made using LivingMarkup
  */
 
-
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
-
 require '../../vendor/autoload.php';
 
 // instantiate Director
@@ -30,16 +24,25 @@ $builder = new LivingMarkup\Builder\DynamicPageBuilder();
 // comment out to default to NOW
 define('LivingMarkup_DATETIME', '2019-12-03 01:30:00');
 
-// define build parameters
-$parameters = [
+// define build config
+$config = [
     'filename' => __DIR__ . DIRECTORY_SEPARATOR . 'input.html',
-    'handlers' => [
-        '//condition'   => 'LivingMarkup\Component\Condition',
-    ],
-    'hooks' => [
-        'onRender'      => 'RETURN_CALL',
+    'components' => [
+        'types' => [
+            [
+                'name' => 'If Statement',
+                'class_name' => 'LivingMarkup\Component\IfStatement',
+                'xpath' => '//if',
+            ]
+        ],
+        'methods' => [
+            [
+                'name' => 'onRender',
+                'description' => 'Execute while object is rendering',
+                'execute' => 'RETURN_CALL',
+            ]
+        ]
     ]
 ];
 
-// echo Director build PageBuilder
-echo $director->build($builder, $parameters);
+echo $director->build($builder, $config);

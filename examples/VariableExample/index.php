@@ -14,29 +14,37 @@ require '../../vendor/autoload.php';
 require 'UserProfile.php';
 require 'GroupProfile.php';
 
-
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
-
 // instantiate Director
 $director = new LivingMarkup\Director();
 
 // instantiate Builder
 $builder = new LivingMarkup\Builder\DynamicPageBuilder();
 
-// define build parameters
-$parameters = [
+// define build config
+$config = [
     'filename' => __DIR__ . DIRECTORY_SEPARATOR . 'input.html',
-    'handlers' => [
-        '//var' => 'LivingMarkup\Component\Variable',
-        '//widget' => 'LivingMarkup\Component\Widgets\{name}',
-    ],
-    'hooks' => [
-        'onRender' => 'RETURN_CALL',
+    'components' => [
+        'types' => [
+            [
+                'name' => 'Widget',
+                'class_name' => 'LivingMarkup\Component\Widgets\{name}',
+                'xpath' => '//widget',
+            ],
+            [
+                'name' => 'Variable',
+                'xpath' => '//var',
+                'class_name' => 'LivingMarkup\Component\Variable',
+            ]
+        ],
+        'methods' => [
+            [
+                'name' => 'onRender',
+                'description' => 'Execute while object is rendering',
+                'execute' => 'RETURN_CALL',
+            ]
+        ]
     ]
 ];
 
 // echo Director build PageBuilder
-echo $director->build($builder, $parameters);
+echo $director->build($builder, $config);

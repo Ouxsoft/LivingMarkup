@@ -61,18 +61,17 @@ class Engine
     /**
      * Call Hooks
      *
-     * @param string $hook_name
-     * @param string|null $options
+     * @param array $method
      * @return bool-
      */
-    public function callHook(string $hook, string $options = null): bool
+    public function callHook(array $method): bool
     {
         // set ancestors
         foreach ($this->components->component as $component) {
             $component->ancestors = $this->getComponentAncestorProperties($component->component_id);
         }
 
-        if ($options == 'RETURN_CALL') {
+        if (array_key_exists('execute', $method) && ($method['execute'] == 'RETURN_CALL')) {
             foreach ($this->components->component as $component) {
                 $this->renderComponent($component->component_id);
             }
@@ -80,7 +79,7 @@ class Engine
             return true;
         }
 
-        $this->components->callMethod($hook);
+        $this->components->callMethod($method['name']);
 
         return true;
     }

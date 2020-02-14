@@ -23,16 +23,16 @@ class DynamicPageBuilder implements BuilderInterface
     /**
      * Creates Page object using parameters supplied
      *
-     * @param $parameters
+     * @param $config
      * @return bool|null
      */
-    public function createObject(array $parameters): ?bool
+    public function createObject(array $config): ?bool
     {
         // set source
-        if (array_key_exists('filename', $parameters)) {
-            $source = file_get_contents($parameters['filename']);
-        } elseif (array_key_exists('markup', $parameters)) {
-            $source = $parameters['markup'];
+        if (array_key_exists('filename', $config)) {
+            $source = file_get_contents($config['filename']);
+        } elseif (array_key_exists('markup', $config)) {
+            $source = $config['markup'];
         } else {
             $source = '';
         }
@@ -40,18 +40,29 @@ class DynamicPageBuilder implements BuilderInterface
         // create engine pass source
         $this->engine = new Engine($source);
 
-        // instantiate dynamic elements
-        if (is_array($parameters['handlers'])) {
-            foreach ($parameters['handlers'] as $xpath_expression => $class_name) {
-                $this->engine->instantiateComponents($xpath_expression, $class_name);
-            }
+        // return if no components
+        if (!array_key_exists('components', $config)){
+            return true;
         }
 
-        // call hooks
-        if (is_array($parameters['hooks'])) {
-            foreach ($parameters['hooks'] as $name => $description) {
-                $this->engine->callHook($name, $description);
-            }
+        // return if no components types
+        if (!array_key_exists('types', $config['components'])){
+            return true;
+        }
+
+        // instantiate components
+        foreach($config['components']['types'] as $component){
+            $this->engine->instantiateComponents($component['xpath'], $component['class_name']);
+        }
+
+        // return if no component methods
+        if (!array_key_exists('methods', $config['components'])){
+            return true;
+        }
+
+        // call component method
+        foreach($config['components']['methods'] as $method){
+            $this->engine->callHook($method);
         }
 
         return true;

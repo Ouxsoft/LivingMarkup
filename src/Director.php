@@ -20,12 +20,12 @@ class Director
      * Calls Builder using parameters supplied
      *
      * @param Builder\BuilderInterface $builder
-     * @param $parameters
+     * @param $config
      * @return object
      */
-    public function build(Builder\BuilderInterface &$builder, $parameters): object
+    public function build(Builder\BuilderInterface &$builder, $config): object
     {
-        $builder->createObject($parameters);
+        $builder->createObject($config);
 
         return $builder->getObject();
     }

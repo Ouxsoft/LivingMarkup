@@ -21,8 +21,9 @@
 		}
 	],
 	"require" : {
-		"php" : ">=7.1"
-	},
+		"php" : ">=7.1",
+      "ext-dom": "*"
+    },
 	"minimum-stability" : "dev",
 	"support" : {
 		"issues" : "https://github.com/hxtree/LivingMarkup/issues"

@@ -14,15 +14,15 @@ use DateTime;
 use Exception;
 
 /**
- * Class Condition
+ * Class IfStatement
  *
  * Used to determine whether innerHTML is omitted from rendered output
  *
- * <condition toggle="signed_in">
+ * <if toggle="signed_in">
  * <p>Welcome Member</p>
- * </condition>
+ * </if>
  */
-class Condition extends Component
+class IfStatement extends Component
 {
     private $days_of_week = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 

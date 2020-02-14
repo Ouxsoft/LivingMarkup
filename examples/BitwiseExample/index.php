@@ -26,16 +26,27 @@ $director = new LivingMarkup\Director();
 // instantiate PageBuilder
 $builder = new LivingMarkup\Builder\DynamicPageBuilder();
 
-// define build parameters
-$parameters = [
+
+// define build config
+$config = [
     'filename' => __DIR__ . DIRECTORY_SEPARATOR . 'input.html',
-    'handlers' => [
-        '//bitwise'         => 'LivingMarkup\Component\Bitwise',
-    ],
-    'hooks' => [
-        'onRender'      => 'RETURN_CALL',
+    'components' => [
+        'types' => [
+            [
+                'name' => 'Bitwise',
+                'class_name' => 'LivingMarkup\Component\Bitwise',
+                'xpath' => '//bitwise',
+            ]
+        ],
+        'methods' => [
+            [
+                'name' => 'onRender',
+                'description' => 'Execute while object is rendering',
+                'execute' => 'RETURN_CALL',
+            ]
+        ]
     ]
 ];
 
 // echo Director build PageBuilder
-echo $director->build($builder, $parameters);
+echo $director->build($builder, $config);

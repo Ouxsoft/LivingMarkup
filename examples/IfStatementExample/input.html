@@ -11,52 +11,52 @@
 
 <body>
 
-	<h1>Condition Examples</h1>
+	<h1>If Statement Examples</h1>
 
 	<!-- time -->
-	<condition time_start="0:00" time_end="23:59">
+	<if time_start="0:00" time_end="23:59">
 		<p>Good morning.</p>
-	</condition>
-	<condition time_start="12:00pm" time_end="3:59pm">
+	</if>
+	<if time_start="12:00pm" time_end="3:59pm">
 		<p>Good day.</p>
-	</condition>
-	<condition>
+	</if>
+	<if>
 		<arg name="time_start">4:00pm</arg>
 		<arg name="time_end">11:59pm</arg>
 		<p>Good evening.</p>
-	</condition>
+	</if>
 
 	<!-- day of week -->
-	<condition>
+	<if>
 		<arg name="day_of_week">Tuesday</arg>
 		<arg name="day_of_week">Friday</arg>
 		<p>You've come during Tuesday and Friday sale!</p>
-	</condition>
-	<condition>
+	</if>
+	<if>
 		<arg name="day_of_week">Sunday</arg>
 		<arg name="day_of_week">Saturday</arg>
 		<p>You've come during our weekend sale!</p>
-	</condition>
+	</if>
 
 	<!-- date -->
-	<condition>
+	<if>
 		<arg name="date_start">December 3. 2019</arg>
 		<arg name="date_end">December 3, 2019</arg>
 		<arg name="else">
 			<p>Regular shipping rates apply.</p>
 		</arg>
 		<p>We are offering FREE shipping for a limited time.</p>
-	</condition>
+	</if>
 
 	<!-- datetime -->
-	<condition>
+	<if>
 		<arg name="datetime_start">December 4. 2019 1:00 am</arg>
 		<arg name="datetime_end">December 4, 2019 2:00 am</arg>
 		<arg name="else">
 			<p>FREE pen with each order.</p>
 		</arg>
 		<p>FREE limited edition mousepad with each order.</p>
-	</condition>
+	</if>
 
 </body>
 </html>
