@@ -23,25 +23,8 @@ $director = new LivingMarkup\Director();
 // instantiate Builder
 $builder = new LivingMarkup\Builder\DynamicPageBuilder();
 
-// define build config
-$config = [
-    'filename' => __DIR__ . DIRECTORY_SEPARATOR . 'input.html',
-    'components' => [
-        'types' => [
-            [
-                'name' => 'Widget',
-                'class_name' => 'LivingMarkup\Component\Widgets\{name}',
-                'xpath' => '//widget',
-            ]
-        ],
-        'methods' => [
-            [
-                'name' => 'onRender',
-                'description' => 'Execute while object is rendering',
-                'execute' => 'RETURN_CALL',
-            ]
-        ]
-    ]
-];
+// load config
+$config = LivingMarkup\Configuration::load();
+$config['filename'] = __DIR__ . DIRECTORY_SEPARATOR . 'input.html';
 
 echo $director->build($builder, $config);
