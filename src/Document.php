@@ -72,6 +72,10 @@ class Document extends DomDocument
         }
 
         // adds HTML root element if one is not present
+        if (!is_object($this->documentElement)) {
+            return false;
+        }
+
         $root_tag = $this->documentElement->tagName;
         if (strcasecmp($root_tag, 'html') !== 0) {
             $root_element = $this->createElement('html');

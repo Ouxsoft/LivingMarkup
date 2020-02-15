@@ -30,9 +30,19 @@
     "issues": "https://github.com/hxtree/LivingMarkup/issues"
   },
   "autoload": {
+    "files" : ["src/Autoloader.php"],
     "psr-4": {
       "LivingMarkup\\": "src/",
-      "LivingMarkup\\Modules\\": "modules/"
+      "LivingMarkup\\Modules\\": "modules/",
+      "LivingMarkup\\Examples\\": "examples/"
+    }
+  },
+  "autoload-dev": {
+    "files" : ["src/Autoloader.php"],
+    "psr-4": {
+      "LivingMarkup\\": "src/",
+      "LivingMarkup\\Modules\\": "modules/",
+      "LivingMarkup\\Examples\\": "examples/"
     }
   },
   "homepage": "https://github.com/hxtree/LivingMarkup",

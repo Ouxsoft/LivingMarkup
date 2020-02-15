@@ -1,3 +1,17 @@
+<?php require $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php';
+
+add_module([
+    'name' => 'Footer',
+    'class_name' => 'LivingMarkup\Examples\HeadAndFooter\Footer',
+    'xpath' => '//footer',
+]);
+add_module([
+    'name' => 'Head',
+    'class_name' => 'LivingMarkup\Examples\HeadAndFooter\Head',
+    'xpath' => '//head',
+]);
+
+?>
 <!--
   ~ This file is part of the LivingMarkup package.
   ~

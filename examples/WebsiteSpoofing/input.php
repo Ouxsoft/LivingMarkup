@@ -1,4 +1,10 @@
-<!doctype html>
+<?php require $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php';
+add_module([
+    'name' => 'Markup Injection',
+    'class_name' => 'LivingMarkup\Examples\WebsiteSpoofing\MarkupInjection',
+    'xpath' => '//h1',
+]);
+?><!doctype html>
 <html>
 <head>
     <title>Example Domain</title>

@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-namespace LivingMarkup\Modules;
+namespace LivingMarkup\Examples\Bitwise;
 
 /**
  * Class Bitwise

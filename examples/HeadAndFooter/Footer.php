@@ -8,18 +8,19 @@
  * file that was distributed with this source code.
  */
 
-namespace LivingMarkup\Modules;
+namespace LivingMarkup\Examples\HeadAndFooter;
 
-use LivingMarkup\Modules\Module;
-
-class MarkupInjection extends \LivingMarkup\Module
+class Footer extends \LivingMarkup\Module
 {
     public function onRender()
     {
-        if ($this->xml=='Example Domain') {
-            return '<h1 style="color:#F00">Spoofed :-)</h1>';
-        }
-
-        return '<h1>' . $this->xml . '</h1>';
+        $year = date('Y');
+        return <<<HTML
+<footer>
+    <hr/>
+    <p>&copy; {$year} </p>
+</footer>
+<script/>
+HTML;
     }
 }

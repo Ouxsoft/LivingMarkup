@@ -1,3 +1,12 @@
+<?php require __DIR__ . '/../../vendor/autoload.php';
+
+add_module([
+    'name' => 'Bitwise',
+    'class_name' => 'LivingMarkup\Examples\Bitwise\Bitwise',
+    'xpath' => '//bitwise',
+]);
+
+?>
 <!--
   ~ This file is part of the LivingMarkup package.
   ~

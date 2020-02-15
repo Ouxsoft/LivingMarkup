@@ -1,3 +1,12 @@
+<?php require $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php';
+
+add_module([
+    'name' => 'Widget',
+    'class_name' => 'LivingMarkup\Examples\HelloWorld\HelloWorld',
+    'xpath' => '//widget',
+]);
+
+?>
 <!--
   ~ This file is part of the LivingMarkup package.
   ~
@@ -8,18 +17,7 @@
   -->
 
 <html lang="en">
-
-<head>
-<title>Home Page</title>
-</head>
-
 <body>
-
-	<partial name="Breadcrumb" />
-	<h1>Test Site</h1>
-
-	<div class="main-content">
-		<p>This is a demonstration of LivingMarkup.</p>
-	</div>
+	<widget name="HelloWorld"/>
 </body>
 </html>

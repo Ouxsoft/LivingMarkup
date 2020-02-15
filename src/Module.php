@@ -16,7 +16,7 @@ namespace LivingMarkup;
  */
 interface ModuleDefaultInterface
 {
-    public function __construct($args);
+    public function __construct(array $args);
 
     public function onRender();
 
@@ -60,7 +60,7 @@ abstract class Module implements ModuleDefaultInterface
      *
      * @param $args
      */
-    final public function __construct($args)
+    final public function __construct(array $args = [])
     {
         // store args passed
         $this->args = $args;

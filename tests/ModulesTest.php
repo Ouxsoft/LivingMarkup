@@ -13,19 +13,24 @@ namespace LivingMarkup\Tests;
 use PHPUnit\Framework\TestCase;
 use LivingMarkup\Builder\DynamicPageBuilder;
 use LivingMarkup\Engine;
-use LivingMarkup\Director;
+use LivingMarkup\Module;
 
-final class DirectorTest extends TestCase
+final class ModulesTest extends TestCase
 {
     public function testCanBuildPage()
     {
         $config = \LivingMarkup\Configuration::load(__DIR__ . DIRECTORY_SEPARATOR . 'config.yml');
-        $config['filename'] = __DIR__ . DIRECTORY_SEPARATOR . 'pages/index.html';
 
-        $builder = new DynamicPageBuilder();
-        $new_page = (new Director())->build($builder, $config);
+        foreach ($config['modules']['types'] as $module) {
 
-        // TODO: assure this is correct class
-        $this->assertInstanceOf(Engine::class, $new_page);
+            // skip variable named classes, for now
+            if (strpos($module['class_name'], '{name}')) {
+                continue;
+            }
+
+            $module = new $module['class_name'];
+
+            $this->assertInstanceOf(Module::class, $module);
+        }
     }
 }

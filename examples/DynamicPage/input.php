@@ -1,3 +1,4 @@
+<?php require $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php';?>
 <!--
   ~ This file is part of the LivingMarkup package.
   ~
@@ -8,16 +9,18 @@
   -->
 
 <html lang="en">
-<body>
-	<block name="GroupProfile">
-		<fieldset>
-			<legend>Group:</legend>
-			<var name="group"/>
 
-			<block name="UserProfile">
-				<p>Welcome <var tag="block" name="first_name"/> <var name="last_name"/></p>
-			</block>
-		</fieldset>
-	</block>
+<head>
+<title>Home Page</title>
+</head>
+
+<body>
+
+	<partial name="Breadcrumb" />
+	<h1>Test Site</h1>
+
+	<div class="main-content">
+		<p>This is a demonstration of LivingMarkup.</p>
+	</div>
 </body>
 </html>

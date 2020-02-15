@@ -1,3 +1,10 @@
+<?php require $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php';
+
+// define a datetime to allow consistent display results
+// comment out to default to NOW
+define('LivingMarkup_DATETIME', '2019-12-03 01:30:00');
+
+?>
 <!--
   ~ This file is part of the LivingMarkup package.
   ~

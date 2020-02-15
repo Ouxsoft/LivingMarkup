@@ -8,14 +8,14 @@
  * file that was distributed with this source code.
  */
 
-namespace LivingMarkup\Modules;
+namespace LivingMarkup\Examples\HeadAndFooter;
 
 class Head extends \LivingMarkup\Module
 {
     public function onRender()
     {
         return <<<HTML
-<head>
+<head lang="en">
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/> 
 	<title>My Website</title>
 	<link rel="stylesheet" type="text/css" href="style.css"/>

@@ -8,21 +8,19 @@
  * file that was distributed with this source code.
  */
 
-namespace LivingMarkup\Modules\Widgets;
-
-use LivingMarkup\Modules\Module;
+namespace LivingMarkup\Examples\Variable;
 
 /**
- * Class HelloWorld
- *
- * Hyperlink simple HelloWorld Module example
- *
- * <widget name="HelloWorld"/>
+ * Class UserProfile
  *
  * @package LivingMarkup\Modules\Widgets
  */
-class HelloWorld extends \LivingMarkup\Module
+class UserProfile extends \LivingMarkup\Module
 {
+    public $username = 'jane_doe';
+    public $first_name = 'Jane';
+    public $last_name = 'Doe';
+
     /**
      * Prints Hello, World
      *
@@ -30,6 +28,6 @@ class HelloWorld extends \LivingMarkup\Module
      */
     public function onRender()
     {
-        return 'Hello, World';
+        return '<div class="user_profile">' . $this->xml . '</div>';
     }
 }

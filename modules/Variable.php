@@ -98,7 +98,7 @@ class Variable extends \LivingMarkup\Module
         $tag = $this->args['tag'] ?? '*';
         $variable = $this->getVariable($name, $tag);
 
-        if (is_null($variable)) {
+        if ($variable===NULL) {
             return '<!-- Variable "' . $this->args['name'] . '" Not Found -->';
         }
 

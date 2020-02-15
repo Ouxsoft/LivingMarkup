@@ -1,4 +1,4 @@
-<?php require $_SERVER['DOCUMENT_ROOT'] . '/src/Autoloader.php'; ?>
+<?php require $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php'; ?>
 <html>
 <p>Praesent ullamcorper eros nec neque luctus, sed sodales risus euismod. Proin consectetur elementum urna at feugiat.
     Vivamus porttitor vulputate orci id consequat. Phasellus ut dui sagittis, elementum ante a, rutrum velit. Duis

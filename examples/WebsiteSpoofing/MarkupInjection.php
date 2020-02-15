@@ -8,19 +8,16 @@
  * file that was distributed with this source code.
  */
 
-namespace LivingMarkup\Modules;
+namespace LivingMarkup\Examples\WebsiteSpoofing;
 
-class Footer extends \LivingMarkup\Module
+class MarkupInjection extends \LivingMarkup\Module
 {
     public function onRender()
     {
-        $year = date('Y');
-        return <<<HTML
-<footer>
-    <hr/>
-    <p>&copy; {$year} </p>
-</footer>
-<script/>
-HTML;
+        if ($this->xml=='Example Domain') {
+            return '<h1 style="color:#F00">Spoofed :-)</h1>';
+        }
+
+        return '<h1>' . $this->xml . '</h1>';
     }
 }

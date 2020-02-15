@@ -151,7 +151,7 @@ class Engine
         // get DOMElement from placeholder id
         $dom_element = $this->getDomElementByPlaceholderId($module_id);
 
-        if (is_null($dom_element)) {
+        if ($dom_element===null) {
             return false;
         }
 

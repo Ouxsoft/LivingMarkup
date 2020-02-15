@@ -8,12 +8,21 @@
  * file that was distributed with this source code.
  */
 
-use LivingMarkup\Modules\Module;
+use LivingMarkup\Autoloader;
 
-require $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php';
-
-function call_director($buffer)
+function add_module(array $module): bool
 {
+    if (!array_key_exists('add_modules', $GLOBALS)) {
+        $GLOBALS['add_modules'] = [];
+    }
+    $GLOBALS['add_modules'][] = $module;
+    return true;
+}
+
+function call_director(string $buffer)
+{
+    return $buffer;
+
     // instantiate Director
     $director = new LivingMarkup\Director();
 
@@ -23,6 +32,21 @@ function call_director($buffer)
     // load config
     $config = \LivingMarkup\Configuration::load();
     $config['markup'] = $buffer;
+
+    // add runtime declared modules to config
+    // $GLOBALS['add_modules'] are ordered first so that they are instantiated if same instead of loaded config
+    if (
+        array_key_exists('add_modules', $GLOBALS) &&
+        array_key_exists('modules', $config) &&
+        array_key_exists('types', $config['modules'])
+    ) {
+        $config['modules']['types'] = array_merge($GLOBALS['add_modules'], $config['modules']['types']);
+    }
+
+    /*
+    // uncomment line to debug runtime config
+    $config['markup'] = $buffer . '<!-- '. var_export($config, true).'-->';
+    */
 
     // echo Director build of Builder
     return $director->build($builder, $config);

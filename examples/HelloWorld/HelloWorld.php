@@ -8,24 +8,26 @@
  * file that was distributed with this source code.
  */
 
-namespace LivingMarkup\Modules\Blocks;
+namespace LivingMarkup\Examples\HelloWorld;
 
 /**
- * Class UserProfile
+ * Class HelloWorld
+ *
+ * Hyperlink simple HelloWorld Module example
+ *
+ * <widget name="HelloWorld"/>
  *
  * @package LivingMarkup\Modules\Widgets
  */
-class GroupProfile extends \LivingMarkup\Module
+class HelloWorld extends \LivingMarkup\Module
 {
-    public $group = 'Curators';
-    public $first_name = 'Website';
-    public $last_name = 'Curators';
-
     /**
+     * Prints Hello, World
+     *
      * @return mixed|string
      */
     public function onRender()
     {
-        return '<div class="group_profile">' . $this->xml . '</div>';
+        return 'Hello, World';
     }
 }
