@@ -1,4 +1,4 @@
-# How LivingMarkup Parser Works
+# Classes
 ![alt text](https://github.com/hxtree/LivingMarkup/raw/master/docs/diagrams/Class%20Diagram.png "Class Diagram")
 
 ## Design Pattern

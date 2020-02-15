@@ -16,5 +16,5 @@ You're done!
 Take the rest of the time to read the manual. For information on:
 
 - Customizing LivingMarkup see [configuration](configuration.md) and [module development](module-development.md).
-- The LHTML5 standard see [LHTML5](lhtml5.md) and [LHTML5 FAQ](lhtml5-faw.md).
-- For detail explanation of this package's design see [under the hood](under-the-hood.md).
+- The LHTML5 standard see [LHTML5](lhtml5.md).
+- For detail explanation of this package's design see [classes](classes.md).
