@@ -19,9 +19,10 @@ use DomDocument;
  *
  * @package LivingMarkup
  */
-class Document extends DomDocument {
-
-    function __construct(){
+class Document extends DomDocument
+{
+    public function __construct()
+    {
         parent::__construct();
 
         // suppress xml parse errors unless debugging
@@ -52,7 +53,8 @@ class Document extends DomDocument {
      * @param $source must be well formatted and feature a root element, e.g. <html>
      *
      */
-    function loadSource($source){
+    public function loadSource($source)
+    {
         // add DOCTYPE declaration
         $doctype = '<!DOCTYPE html [' . Entities::HTML5 . ']>'. PHP_EOL;
 
@@ -71,9 +73,9 @@ class Document extends DomDocument {
 
         // adds HTML root element if one is not present
         $root_tag = $this->documentElement->tagName;
-        if(strcasecmp($root_tag, 'html') !== 0){
-           $root_element = $this->createElement('html');
-           $this->appendChild($root_element);
+        if (strcasecmp($root_tag, 'html') !== 0) {
+            $root_element = $this->createElement('html');
+            $this->appendChild($root_element);
         }
     }
 }

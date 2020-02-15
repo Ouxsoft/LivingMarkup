@@ -15,12 +15,13 @@ namespace LivingMarkup;
  * Class Configuration
  * @package LivingMarkup
  */
-class Configuration {
-
+class Configuration
+{
     const LOCAL_FILENAME = 'config.yml';
     const DIST_FILENAME = 'config.dist.yml';
 
-    private function parse($path){
+    private function parse($path)
+    {
         $config = yaml_parse_file($path);
 
         if (empty($config)) {
@@ -34,26 +35,25 @@ class Configuration {
      * @param string $filename
      * @return bool|mixed
      */
-    public function load($filename = NULL)
+    public function load($filename = null)
     {
         // try to load config using filename if parameter set
-        if($filename!==NULL){
+        if ($filename!==null) {
             return self::parse($filename);
         }
 
         // try to load local config
         $path = $_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . self::LOCAL_FILENAME;
-        if(file_exists($path)){
+        if (file_exists($path)) {
             return self::parse($path);
         }
 
         // try to load dist config
         $path = $_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . self::DIST_FILENAME;
-        if(file_exists($path)){
+        if (file_exists($path)) {
             return self::parse($path);
         }
 
         return false;
-
     }
 }

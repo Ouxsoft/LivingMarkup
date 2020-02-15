@@ -217,12 +217,12 @@ class Engine
     public function instantiateModules(array $module): bool
     {
         // check for xpath
-        if(!array_key_exists('xpath', $module)){
+        if (!array_key_exists('xpath', $module)) {
             return false;
         }
 
         // check for class name
-        if(!array_key_exists('class_name', $module)){
+        if (!array_key_exists('class_name', $module)) {
             return false;
         }
 

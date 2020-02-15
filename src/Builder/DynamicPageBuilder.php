@@ -41,27 +41,27 @@ class DynamicPageBuilder implements BuilderInterface
         $this->engine = new Engine($source);
 
         // return if no modules
-        if (!array_key_exists('modules', $config)){
+        if (!array_key_exists('modules', $config)) {
             return true;
         }
 
         // return if no modules types
-        if (!array_key_exists('types', $config['modules'])){
+        if (!array_key_exists('types', $config['modules'])) {
             return true;
         }
 
         // instantiate modules
-        foreach($config['modules']['types'] as $module){
+        foreach ($config['modules']['types'] as $module) {
             $this->engine->instantiateModules($module);
         }
 
         // return if no module methods
-        if (!array_key_exists('methods', $config['modules'])){
+        if (!array_key_exists('methods', $config['modules'])) {
             return true;
         }
 
         // call module method
-        foreach($config['modules']['methods'] as $method){
+        foreach ($config['modules']['methods'] as $method) {
             $this->engine->callHook($method);
         }
 

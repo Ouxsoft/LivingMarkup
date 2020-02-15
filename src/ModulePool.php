@@ -43,7 +43,8 @@ class ModulePool
         return null;
     }
 
-    public function add(&$module){
+    public function add(&$module)
+    {
         $this->module[$module->module_id] = $module;
     }
 
@@ -93,7 +94,8 @@ class ModulePool
      *
      * @param $method
      */
-    public function callMethod($method){
+    public function callMethod($method)
+    {
         // iterate through elements
         foreach ($this->module as $module) {
             $module($method);
