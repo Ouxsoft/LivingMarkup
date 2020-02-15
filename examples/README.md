@@ -2,32 +2,32 @@
 
 This folder contains a collection of examples using LivingMarkup.
 
-## [BitwiseExample](BitwiseExample/)
+## [Bitwise](Bitwise/)
 This example shows how to pass Module arguments.
 
-## [IfStatementExample](IfStatementExample/)
+## [IfStatement](IfStatement/)
 This example shows how if statements are made.
 
-## [DynamicPageExample](DynamicPageExample/)
+## [DynamicPage](DynamicPage/)
 This example shows how to build a dynamic page.
 
-## [HeadAndFooterExample](HeadAndFooterExample/)
+## [HeadAndFooter](HeadAndFooter/)
 This example shows how head and footer element can be automatically generated.
 
-## [HelloWorldExample](HelloWorldExample/)
+## [HelloWorld](HelloWorld/)
 This is a "Hello, World" example.
 
-## [ImgExample](ImgExample/)
+## [Images](Images/)
 This example shows dynamically generated images.
 
-## [IncludeHeaderExample](IncludeHeaderExample/)
+## [Autoloader](Autoloader/)
 This example shows that a single line at top of file takes care of everything.
 
-## [RedactedExample](RedactExample/)
-This example shows how to redact text using the autoloader.
+## [Redacted](Redact/)
+This example shows how to redact text.
 
-## [VariableExample](VariableExample/)
-This example demonstrates var tag and how it can use public variables from ancestor elements.
+## [Variable](Variable/)
+This example demonstrates variable tag, which gets public variables from ancestor elements.
 
-## [WebsiteSpoofingExample](WebsiteSpoofingExample/)
-This example demonstrates how to spoof an existing web page example.
+## [WebsiteSpoofing](WebsiteSpoofing/)
+This example demonstrates how to spoof an existing web page.
