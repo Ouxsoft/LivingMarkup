@@ -18,7 +18,7 @@ It builds dynamic HTML by instantiating DomElements as modules with orchestratin
 
 LHTML5
 ```PHP
-<?php require $_SERVER['DOCUMENT_ROOT'] . '/src/Autoloader.php'; ?>
+<?php require $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php'; ?>
 <body>
     <block name="UserProfile">
         <arg name="style">simple</arg>
