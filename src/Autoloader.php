@@ -21,7 +21,10 @@ function add_module(array $module): bool
 
 function call_director(string $buffer)
 {
-    return $buffer;
+    // return buffer if it's not HTML
+    if($buffer==strip_tags($buffer)){
+        return $buffer;
+    }
 
     // instantiate Director
     $director = new LivingMarkup\Director();

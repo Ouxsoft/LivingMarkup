@@ -57,7 +57,7 @@
       "php-cs-fixer fix --rules=@PSR2 --using-cache=no examples/"
     ],
     "test": [
-      "phpunit --bootstrap vendor/autoload.php tests/."
+      "phpunit -d test=test --bootstrap vendor/autoload.php tests/."
     ]
   }
 }
