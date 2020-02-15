@@ -8,11 +8,11 @@
  * file that was distributed with this source code.
  */
 
-namespace LivingMarkup\Component;
+namespace LivingMarkup\Modules;
 
-use LivingMarkup\Component\Component;
+use LivingMarkup\Modules\Module;
 
-class MarkupInjection extends Component
+class MarkupInjection extends \LivingMarkup\Module
 {
     public function onRender()
     {

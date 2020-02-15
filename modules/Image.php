@@ -8,11 +8,11 @@
  * file that was distributed with this source code.
  */
 
-namespace LivingMarkup\Component;
+namespace LivingMarkup\Modules;
 
 use LivingMarkup\Path;
 
-class Img extends Component
+class Image extends \LivingMarkup\Module
 {
     const IMAGE_DIR = '/assets/images/';
 

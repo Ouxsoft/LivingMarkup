@@ -9,7 +9,7 @@
  */
 
 /**
- * This example demonstrates Components passing arguments
+ * This example demonstrates Modules passing arguments
  */
 
 
@@ -30,11 +30,11 @@ $builder = new LivingMarkup\Builder\DynamicPageBuilder();
 // define build config
 $config = [
     'filename' => __DIR__ . DIRECTORY_SEPARATOR . 'input.html',
-    'components' => [
+    'modules' => [
         'types' => [
             [
                 'name' => 'Bitwise',
-                'class_name' => 'LivingMarkup\Component\Bitwise',
+                'class_name' => 'LivingMarkup\Modules\Bitwise',
                 'xpath' => '//bitwise',
             ]
         ],

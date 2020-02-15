@@ -27,12 +27,12 @@ define('LivingMarkup_DATETIME', '2019-12-03 01:30:00');
 // define build config
 $config = [
     'filename' => __DIR__ . DIRECTORY_SEPARATOR . 'input.html',
-    'components' => [
+    'modules' => [
         'types' => [
             [
                 'name' => 'If Statement',
-                'class_name' => 'LivingMarkup\Component\IfStatement',
-                'xpath' => '//if',
+                'class_name' => 'LivingMarkup\Modules\IfStatement',
+                'xpath' => '//if'
             ]
         ],
         'methods' => [

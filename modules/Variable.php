@@ -8,13 +8,13 @@
  * file that was distributed with this source code.
  */
 
-namespace LivingMarkup\Component;
+namespace LivingMarkup\Modules;
 
 /**
  * Class Variable
- * @package LivingMarkup\Component
+ * @package LivingMarkup\Modules
  */
-class Variable extends Component
+class Variable extends \LivingMarkup\Module
 {
 
     /**

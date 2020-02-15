@@ -8,22 +8,22 @@
  * file that was distributed with this source code.
  */
 
-namespace LivingMarkup\Component;
+namespace LivingMarkup\Modules;
 
 /**
- * Class A
+ * Class Hyperlink
  *
  * Replaces <a> tag links on website
  *
  */
-class A extends Component
+class Hyperlink extends \LivingMarkup\Module
 {
     private $href;
 
     private $alt;
 
     /**
-     * Returns an A tag with HREF attribute similar to original DomElement
+     * Returns an Hyperlink tag with HREF attribute similar to original DomElement
      *
      * TODO: look up href_id to allows for pages to be moved without updating link
      *

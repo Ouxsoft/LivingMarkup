@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-use LivingMarkup\Component\Component;
+use LivingMarkup\Modules\Module;
 
 /**
  * This example demonstrates how easy is it is to spoof an existing web page using PHP.
@@ -27,11 +27,11 @@ $builder = new LivingMarkup\Builder\DynamicPageBuilder();
 $config = [
     // filename => 'https://example.com',
     'filename' => __DIR__ . DIRECTORY_SEPARATOR . 'input.html',
-    'components' => [
+    'modules' => [
         'types' => [
             [
                 'name' => 'Markup Injection',
-                'class_name' => 'LivingMarkup\Component\MarkupInjection',
+                'class_name' => 'LivingMarkup\Modules\MarkupInjection',
                 'xpath' => '//h1',
             ]
         ],

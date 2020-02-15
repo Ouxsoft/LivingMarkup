@@ -1,41 +1,41 @@
 #
-# Component Config
+# Module Config
 #
 version: 1
-components:
-  directory: '/src/Components'
-  # type of components to instantiate
+modules:
+  directory: '/src/Modules'
+  # type of modules to instantiate
   types:
     - name: 'Markup Injection'
-      class_name: 'LivingMarkup\Component\MarkupInjection'
+      class_name: 'LivingMarkup\Modules\MarkupInjection'
       xpath: '//h1'
     - name: 'Bitwise'
-      class_name: 'LivingMarkup\Component\Bitwise'
+      class_name: 'LivingMarkup\Modules\Bitwise'
       xpath: '//bitwise'
     - name: 'Block'
-      class_name: 'LivingMarkup\Component\Blocks\{name}'
+      class_name: 'LivingMarkup\Modules\Blocks\{name}'
       xpath: '//block'
     - name: 'Partial'
-      class_name: 'LivingMarkup\Component\Partials\{name}'
+      class_name: 'LivingMarkup\Modules\Partials\{name}'
       xpath: '//partial'
     - name: 'Widget'
-      class_name: 'LivingMarkup\Component\Widgets\{name}'
+      class_name: 'LivingMarkup\Modules\Widgets\{name}'
       xpath: '//widget'
     - name: 'Images'
       xpath: '//img'
-      class_name: 'LivingMarkup\Component\Img'
-    - name: 'Link'
+      class_name: 'LivingMarkup\Modules\Images'
+    - name: 'Hyperlink'
       xpath: '//a'
-      class_name: 'LivingMarkup\Component\A'
+      class_name: 'LivingMarkup\Modules\Hyperlink'
     - name: 'Variable'
       xpath: '//var'
-      class_name: 'LivingMarkup\Component\Variable'
+      class_name: 'LivingMarkup\Modules\Variable'
     - name: 'If Statement'
       xpath: '//if'
-      class_name: 'LivingMarkup\Component\IfStatement'
+      class_name: 'LivingMarkup\Modules\IfStatement'
     - name: 'Redact'
       xpath: '//redact'
-      class_name: 'LivingMarkup\Component\Redact'
+      class_name: 'LivingMarkup\Modules\Redact'
 
   # order determines execution
   methods:

@@ -8,20 +8,20 @@
  * file that was distributed with this source code.
  */
 
-namespace LivingMarkup\Component\Widgets;
+namespace LivingMarkup\Modules\Widgets;
 
-use LivingMarkup\Component\Component;
+use LivingMarkup\Modules\Module;
 
 /**
  * Class HelloWorld
  *
- * A simple HelloWorld Component example
+ * Hyperlink simple HelloWorld Module example
  *
  * <widget name="HelloWorld"/>
  *
- * @package LivingMarkup\Component\Widgets
+ * @package LivingMarkup\Modules\Widgets
  */
-class HelloWorld extends Component
+class HelloWorld extends \LivingMarkup\Module
 {
     /**
      * Prints Hello, World

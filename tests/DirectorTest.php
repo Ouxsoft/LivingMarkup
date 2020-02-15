@@ -22,11 +22,11 @@ final class DirectorTest extends TestCase
         $parameters = [
             'filename' => __DIR__ . DIRECTORY_SEPARATOR . 'pages/index.html',
             'handlers' => [
-                '//img'         => 'LivingMarkup\Component\Img',
-                '//a'           => 'LivingMarkup\Component\A',
-                '//var'         => 'LivingMarkup\Component\Variable',
-                '//condition'   => 'LivingMarkup\Component\IfStatement',
-                '//redact'    => 'LivingMarkup\Component\Redact'
+                '//img'         => 'LivingMarkup\Modules\Image',
+                '//a'           => 'LivingMarkup\Modules\Hyperlink',
+                '//var'         => 'LivingMarkup\Modules\Variable',
+                '//condition'   => 'LivingMarkup\Modules\IfStatement',
+                '//redact'    => 'LivingMarkup\Modules\Redact'
             ],
             'hooks' => [
                 'beforeLoad'    => 'Executed before onLoad',

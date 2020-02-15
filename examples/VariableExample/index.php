@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-use LivingMarkup\Component\Component;
+use LivingMarkup\Modules;
 
 require '../../vendor/autoload.php';
 require 'UserProfile.php';
@@ -23,17 +23,17 @@ $builder = new LivingMarkup\Builder\DynamicPageBuilder();
 // define build config
 $config = [
     'filename' => __DIR__ . DIRECTORY_SEPARATOR . 'input.html',
-    'components' => [
+    'modules' => [
         'types' => [
             [
-                'name' => 'Widget',
-                'class_name' => 'LivingMarkup\Component\Widgets\{name}',
-                'xpath' => '//widget',
+                'name' => 'Block',
+                'class_name' => 'LivingMarkup\Modules\Blocks\{name}',
+                'xpath' => '//block',
             ],
             [
                 'name' => 'Variable',
                 'xpath' => '//var',
-                'class_name' => 'LivingMarkup\Component\Variable',
+                'class_name' => 'LivingMarkup\Modules\Variable',
             ]
         ],
         'methods' => [

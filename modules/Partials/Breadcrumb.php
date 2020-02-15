@@ -8,18 +8,16 @@
  * file that was distributed with this source code.
  */
 
-namespace LivingMarkup\Component\Partials;
-
-use LivingMarkup\Component\Component;
+namespace LivingMarkup\Modules\Partials;
 
 /**
  * Class Breadcrumb
  *
  * Returns a breadcrumb trail for currebt oage
  *
- * @package LivingMarkup\Component\Partials
+ * @package LivingMarkup\Modules\Partials
  */
-class Breadcrumb extends Component
+class Breadcrumb extends \LivingMarkup\Module
 {
     public $separator = '/';
 

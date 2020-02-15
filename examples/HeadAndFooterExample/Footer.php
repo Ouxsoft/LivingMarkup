@@ -8,9 +8,9 @@
  * file that was distributed with this source code.
  */
 
-namespace LivingMarkup\Component;
+namespace LivingMarkup\Modules;
 
-class Footer extends Component
+class Footer extends \LivingMarkup\Module
 {
     public function onRender()
     {

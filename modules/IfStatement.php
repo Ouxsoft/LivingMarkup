@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-namespace LivingMarkup\Component;
+namespace LivingMarkup\Modules;
 
 use DateTime;
 use Exception;
@@ -22,7 +22,7 @@ use Exception;
  * <p>Welcome Member</p>
  * </if>
  */
-class IfStatement extends Component
+class IfStatement extends \LivingMarkup\Module
 {
     private $days_of_week = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 

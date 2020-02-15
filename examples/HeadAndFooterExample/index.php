@@ -9,7 +9,7 @@
  */
 
 /**
- * This example demonstrates Components passing arguments
+ * This example demonstrates Modules passing arguments
  */
 
 require '../../vendor/autoload.php';
@@ -26,16 +26,16 @@ $builder = new LivingMarkup\Builder\DynamicPageBuilder();
 // define build config
 $config = [
     'filename' => __DIR__ . DIRECTORY_SEPARATOR . 'input.html',
-    'components' => [
+    'modules' => [
         'types' => [
             [
                 'name' => 'Header',
-                'class_name' => 'LivingMarkup\Component\Header',
+                'class_name' => 'LivingMarkup\Modules\Header',
                 'xpath' => '//header',
             ],
             [
                 'name' => 'Footer',
-                'class_name' => 'LivingMarkup\Component\Footer',
+                'class_name' => 'LivingMarkup\Modules\Footer',
                 'xpath' => '//footer',
             ]
         ],

@@ -8,9 +8,9 @@
  * file that was distributed with this source code.
  */
 
-namespace LivingMarkup\Component;
+namespace LivingMarkup\Modules;
 
-class Head extends Component
+class Head extends \LivingMarkup\Module
 {
     public function onRender()
     {

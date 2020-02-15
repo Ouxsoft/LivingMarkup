@@ -15,7 +15,7 @@ use LivingMarkup\Builder\DynamicPageBuilder;
 use LivingMarkup\Builder\StaticPageBuilder;
 use LivingMarkup\Director;
 
-// require examples Component
+// require examples Module
 // TODO: automate
 require __DIR__ . '/../examples/HelloWorldExample/HelloWorld.php';
 require __DIR__ . '/../examples/BitwiseExample/Bitwise.php';

@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-use LivingMarkup\Component\Component;
+use LivingMarkup\Modules\Module;
 
 require $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php';
 

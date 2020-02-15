@@ -3,7 +3,7 @@
 This folder contains a collection of examples using LivingMarkup.
 
 ## [BitwiseExample](BitwiseExample/)
-This example shows how to pass Component arguments.
+This example shows how to pass Module arguments.
 
 ## [IfStatementExample](IfStatementExample/)
 This example shows how if statements are made.

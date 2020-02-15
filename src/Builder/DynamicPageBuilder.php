@@ -40,28 +40,28 @@ class DynamicPageBuilder implements BuilderInterface
         // create engine pass source
         $this->engine = new Engine($source);
 
-        // return if no components
-        if (!array_key_exists('components', $config)){
+        // return if no modules
+        if (!array_key_exists('modules', $config)){
             return true;
         }
 
-        // return if no components types
-        if (!array_key_exists('types', $config['components'])){
+        // return if no modules types
+        if (!array_key_exists('types', $config['modules'])){
             return true;
         }
 
-        // instantiate components
-        foreach($config['components']['types'] as $component){
-            $this->engine->instantiateComponents($component['xpath'], $component['class_name']);
+        // instantiate modules
+        foreach($config['modules']['types'] as $module){
+            $this->engine->instantiateModules($module);
         }
 
-        // return if no component methods
-        if (!array_key_exists('methods', $config['components'])){
+        // return if no module methods
+        if (!array_key_exists('methods', $config['modules'])){
             return true;
         }
 
-        // call component method
-        foreach($config['components']['methods'] as $method){
+        // call module method
+        foreach($config['modules']['methods'] as $method){
             $this->engine->callHook($method);
         }
 

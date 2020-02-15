@@ -8,13 +8,13 @@
  * file that was distributed with this source code.
  */
 
-namespace LivingMarkup\Component;
+namespace LivingMarkup;
 
 /**
  * Interface ElementDefaultInterface
- * @package LivingMarkup\Component
+ * @package LivingMarkup\Module
  */
-interface ComponentDefaultInterface
+interface ModuleDefaultInterface
 {
     public function __construct($args);
 
@@ -26,18 +26,18 @@ interface ComponentDefaultInterface
 }
 
 /**
- * Class Component
+ * Class Module
  *
- * An abstract class extended to instantiate Components. During construction arguments and xml contained within
+ * An abstract class extended to instantiate Modules. During construction arguments and xml contained within
  * the Page's DomElement are passed to constructor.
  *
- * @package LivingMarkup\Component
+ * @package LivingMarkup\Module
  */
-abstract class Component implements ComponentDefaultInterface
+abstract class Module implements ModuleDefaultInterface
 {
 
     // id used to reference object
-    public $component_id = 0;
+    public $module_id = 0;
     // id used to load args
     public $id = 0;
     // name of element
@@ -56,7 +56,7 @@ abstract class Component implements ComponentDefaultInterface
     public $xml = '';
 
     /**
-     * Component constructor
+     * Module constructor
      *
      * @param $args
      */
@@ -65,7 +65,7 @@ abstract class Component implements ComponentDefaultInterface
         // store args passed
         $this->args = $args;
         // assign object id to xml
-        $this->component_id = spl_object_hash($this);
+        $this->module_id = spl_object_hash($this);
     }
 
     /**
@@ -82,13 +82,13 @@ abstract class Component implements ComponentDefaultInterface
 
 
     /**
-     * Gets the ID of the component, useful for ComponentPool
+     * Gets the ID of the Module, useful for ModulePool
      *
      * @return int|string
      */
     public function getId()
     {
-        return $this->component_id;
+        return $this->module_id;
     }
 
     /**

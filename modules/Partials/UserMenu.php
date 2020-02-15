@@ -8,11 +8,11 @@
  * file that was distributed with this source code.
  */
 
-namespace LivingMarkup\Component\Partials;
+namespace LivingMarkup\Modules\Partials;
 
-use LivingMarkup\Component\Component;
+use LivingMarkup\Modules\Component;
 
-class UserMenu extends Component
+class UserMenu extends \LivingMarkup\Module
 {
     public function onRender()
     {

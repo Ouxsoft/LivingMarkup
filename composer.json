@@ -1,51 +1,53 @@
 {
-	"name" : "hxtree/livingmarkup",
-	"description" : "LivingMarkup is a LHTML parser used for rapidly building dynamic pages.",
-	"keywords" : [
-		"livingMarkup",
-		"xml",
-		"php",
-		"preprocessor",
-		"template",
-		"engine",
-		"lhtml",
-		"html",
-		"markup"
-	],
-	"type" : "library",
-	"license" : "MIT",
-	"authors" : [{
-			"name" : "hxtree",
-			"homepage" : "https://github.com/hxtree",
-			"role" : "Developer"
-		}
-	],
-	"require" : {
-		"php" : ">=7.1",
-      "ext-dom": "*"
-    },
-	"minimum-stability" : "dev",
-	"support" : {
-		"issues" : "https://github.com/hxtree/LivingMarkup/issues"
-	},
-	"autoload" : {
-		"psr-4" : {
-			"LivingMarkup\\" : "src/"
-		}
-	},
-	"homepage" : "https://github.com/hxtree/LivingMarkup",
-	"require-dev": {
-		"phpunit/phpunit": "^8",
-		"friendsofphp/php-cs-fixer": "^2.17@dev"
-	},
-	"scripts": {
-		"build": [
-			"php-cs-fixer fix --rules=@PSR2 --using-cache=no tests/",
-			"php-cs-fixer fix --rules=@PSR2 --using-cache=no src/",
-			"php-cs-fixer fix --rules=@PSR2 --using-cache=no examples/"
-		],
-		"test": [
-			"phpunit --bootstrap vendor/autoload.php tests/."
-		]
-	}
+  "name": "hxtree/livingmarkup",
+  "description": "LivingMarkup is a LHTML parser used for rapidly building dynamic pages.",
+  "keywords": [
+    "livingMarkup",
+    "xml",
+    "php",
+    "preprocessor",
+    "template",
+    "engine",
+    "lhtml",
+    "html",
+    "markup"
+  ],
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "hxtree",
+      "homepage": "https://github.com/hxtree",
+      "role": "Developer"
+    }
+  ],
+  "require": {
+    "php": ">=7.1",
+    "ext-dom": "*"
+  },
+  "minimum-stability": "dev",
+  "support": {
+    "issues": "https://github.com/hxtree/LivingMarkup/issues"
+  },
+  "autoload": {
+    "psr-4": {
+      "LivingMarkup\\": "src/",
+      "LivingMarkup\\Modules\\": "modules/"
+    }
+  },
+  "homepage": "https://github.com/hxtree/LivingMarkup",
+  "require-dev": {
+    "phpunit/phpunit": "^8",
+    "friendsofphp/php-cs-fixer": "^2.17@dev"
+  },
+  "scripts": {
+    "build": [
+      "php-cs-fixer fix --rules=@PSR2 --using-cache=no tests/",
+      "php-cs-fixer fix --rules=@PSR2 --using-cache=no src/",
+      "php-cs-fixer fix --rules=@PSR2 --using-cache=no examples/"
+    ],
+    "test": [
+      "phpunit --bootstrap vendor/autoload.php tests/."
+    ]
+  }
 }

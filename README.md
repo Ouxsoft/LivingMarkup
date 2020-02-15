@@ -2,7 +2,7 @@
 
 ***LivingMarkup is an PHP implementation of a LHTML5 parser.***
 
-It builds dynamic HTML by instantiating DomElements as modular components and orchestrating methods.
+It builds dynamic HTML by instantiating DomElements as modules and orchestrating methods.
 
 [![Latest Stable Version](https://img.shields.io/packagist/v/hxtree/livingmarkup.svg?style=flat-square)](https://packagist.org/packages/hxtree/livingmarkup)
 ![Packagist](https://img.shields.io/packagist/dt/hxtree/livingmarkup)

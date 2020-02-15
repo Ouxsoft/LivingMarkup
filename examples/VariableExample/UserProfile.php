@@ -8,16 +8,14 @@
  * file that was distributed with this source code.
  */
 
-namespace LivingMarkup\Component\Widgets;
-
-use LivingMarkup\Component\Component;
+namespace LivingMarkup\Modules\Blocks;
 
 /**
  * Class UserProfile
  *
- * @package LivingMarkup\Component\Widgets
+ * @package LivingMarkup\Modules\Widgets
  */
-class UserProfile extends Component
+class UserProfile extends \LivingMarkup\Module
 {
     public $username = 'jane_doe';
     public $first_name = 'Jane';

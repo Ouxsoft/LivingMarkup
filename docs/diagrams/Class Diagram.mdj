@@ -206,7 +206,7 @@
 											"top": 607,
 											"width": 247,
 											"height": 13,
-											"text": "Component"
+											"text": "Module"
 										},
 										{
 											"_type": "LabelView",
@@ -1524,7 +1524,7 @@
 							"top": 536,
 							"width": 148,
 							"height": 64,
-							"text": "Modular class definition of a component."
+							"text": "Modular class definition of a module."
 						},
 						{
 							"_type": "UMLNoteLinkView",
@@ -2028,7 +2028,7 @@
 							"top": 528,
 							"width": 113.22802734375,
 							"height": 77,
-							"text": "ComponentPool responsibility is to manage components"
+							"text": "ModulePool responsibility is to manage modules"
 						},
 						{
 							"_type": "UMLNoteView",
@@ -2392,7 +2392,7 @@
 											"top": 293,
 											"width": 127,
 											"height": 13,
-											"text": "+component_pool",
+											"text": "+module_pool",
 											"horizontalAlignment": 0
 										}
 									],
@@ -3927,7 +3927,7 @@
 											"top": 495,
 											"width": 143.4443359375,
 											"height": 13,
-											"text": "ComponentPool"
+											"text": "ModulePool"
 										},
 										{
 											"_type": "LabelView",
@@ -3999,7 +3999,7 @@
 											"top": 518,
 											"width": 143.4443359375,
 											"height": 13,
-											"text": "-components: array",
+											"text": "-modules: array",
 											"horizontalAlignment": 0
 										}
 									],
@@ -4033,7 +4033,7 @@
 											"top": 541,
 											"width": 143.4443359375,
 											"height": 13,
-											"text": "+get(?int id): Component",
+											"text": "+get(?int id): Module",
 											"horizontalAlignment": 0
 										},
 										{
@@ -4523,7 +4523,7 @@
 											"top": 125,
 											"width": 243.1279296875,
 											"height": 13,
-											"text": "-components: ComonentPool",
+											"text": "-modules: ComonentPool",
 											"horizontalAlignment": 0
 										},
 										{
@@ -6606,7 +6606,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
 					},
-					"name": "Component",
+					"name": "Module",
 					"ownedElements": [
 						{
 							"_type": "UMLAssociation",
@@ -7051,7 +7051,7 @@
 									"_parent": {
 										"$ref": "AAAAAAFwCz+OxMVd1fA="
 									},
-									"name": "component_pool",
+									"name": "module_pool",
 									"type": ""
 								}
 							],
@@ -7181,7 +7181,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFv6Ax0VPW2w/U="
 							},
-							"name": "ComponentPool",
+							"name": "ModulePool",
 							"ownedElements": [
 								{
 									"_type": "UMLAssociation",
@@ -7219,7 +7219,7 @@
 									"_parent": {
 										"$ref": "AAAAAAFv4+nMR3Rp2qw="
 									},
-									"name": "components",
+									"name": "modules",
 									"visibility": "private",
 									"type": "array"
 								}
@@ -7248,7 +7248,7 @@
 											"_parent": {
 												"$ref": "AAAAAAFv4+uBGHYSwko="
 											},
-											"type": "Component",
+											"type": "Module",
 											"direction": "return"
 										}
 									]
@@ -7345,7 +7345,7 @@
 									"_parent": {
 										"$ref": "AAAAAAFv2M7lNj9d49Y="
 									},
-									"name": "components",
+									"name": "modules",
 									"visibility": "private",
 									"type": "ComonentPool"
 								},

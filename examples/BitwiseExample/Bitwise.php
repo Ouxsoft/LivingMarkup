@@ -8,16 +8,16 @@
  * file that was distributed with this source code.
  */
 
-namespace LivingMarkup\Component;
+namespace LivingMarkup\Modules;
 
 /**
  * Class Bitwise
  *
  * This is an widget example designed to demonstrate how PHP BitWise operators work
  *
- * @package LivingMarkup\Component\Widgets
+ * @package LivingMarkup\Modules\Widgets
  */
-class Bitwise extends Component
+class Bitwise extends \LivingMarkup\Module
 {
 
     /**

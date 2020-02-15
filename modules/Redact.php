@@ -8,9 +8,9 @@
  * file that was distributed with this source code.
  */
 
-namespace LivingMarkup\Component;
+namespace LivingMarkup\Modules;
 
-class Redact extends Component
+class Redact extends \LivingMarkup\Module
 {
     public $char = '&#9608;';
 

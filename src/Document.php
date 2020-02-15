@@ -15,7 +15,7 @@ use DomDocument;
 /**
  * Class Document
  *
- * A DomDocument that is loaded from a well formatted LHTML5 document and returns a HTML5
+ * Hyperlink DomDocument that is loaded from a well formatted LHTML5 document and returns a HTML5
  *
  * @package LivingMarkup
  */
@@ -46,7 +46,7 @@ class Document extends DomDocument {
     /**
      * Loads source, which is in LHTML5 format, as DomDocument
      *
-     * A custom load page wrapper is required for server side HTML5 entity support.
+     * Hyperlink custom load page wrapper is required for server side HTML5 entity support.
      * Using $this->loadHTMLFile will removes HTML5 entities, such as &copy;
      *
      * @param $source must be well formatted and feature a root element, e.g. <html>
