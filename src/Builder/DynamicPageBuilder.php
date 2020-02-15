@@ -10,7 +10,8 @@
 
 namespace LivingMarkup\Builder;
 
-use LivingMarkup\Engine as Engine;
+use LivingMarkup\Configuration;
+use LivingMarkup\Engine;
 
 /**
  * Class DynamicPageBuilder
@@ -23,45 +24,22 @@ class DynamicPageBuilder implements BuilderInterface
     /**
      * Creates Page object using parameters supplied
      *
-     * @param $config
+     * @param Configuration $config
      * @return bool|null
      */
-    public function createObject(array $config): ?bool
+    public function createObject(Configuration $config): ?bool
     {
-        // set source
-        if (array_key_exists('filename', $config)) {
-            $source = file_get_contents($config['filename']);
-        } elseif (array_key_exists('markup', $config)) {
-            $source = $config['markup'];
-        } else {
-            $source = '';
-        }
 
         // create engine pass source
-        $this->engine = new Engine($source);
-
-        // return if no modules
-        if (!array_key_exists('modules', $config)) {
-            return true;
-        }
-
-        // return if no modules types
-        if (!array_key_exists('types', $config['modules'])) {
-            return true;
-        }
+        $this->engine = new Engine($config);
 
         // instantiate modules
-        foreach ($config['modules']['types'] as $module) {
+        foreach ($config->getModules() as $module) {
             $this->engine->instantiateModules($module);
         }
 
-        // return if no module methods
-        if (!array_key_exists('methods', $config['modules'])) {
-            return true;
-        }
-
         // call module method
-        foreach ($config['modules']['methods'] as $method) {
+        foreach ($config->getMethods() as $method) {
             $this->engine->callHook($method);
         }
 

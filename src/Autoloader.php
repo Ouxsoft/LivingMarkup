@@ -37,23 +37,25 @@ function call_kernel(string $buffer)
     $builder = new LivingMarkup\Builder\DynamicPageBuilder();
 
     // load config
-    $config = \LivingMarkup\Configuration::load();
-    $config['markup'] = $buffer;
+    $config = new LivingMarkup\Configuration();
 
+    // TODO : refactor this
     // add runtime declared modules to config
     // $GLOBALS['add_modules'] are ordered first so that they are instantiated if same instead of loaded config
     if (
         array_key_exists('add_modules', $GLOBALS) &&
-        array_key_exists('modules', $config) &&
-        array_key_exists('types', $config['modules'])
+        array_key_exists('modules', $config->config) &&
+        array_key_exists('types', $config->config['modules'])
     ) {
-        $config['modules']['types'] = array_merge($add_modules, $config['modules']['types']);
+        $config->config['modules']['types'] = array_merge($add_modules, $config->config['modules']['types']);
     }
 
     /*
     // uncomment line to debug runtime config
-    $config['markup'] = $buffer . '<!-- '. var_export($config, true).'-->';
+    $buffer .= '<!-- ' . var_export($config->getModules(), true) . ' -->';
     */
+
+    $config->add('markup', $buffer);
 
     // echo Kernel build of Builder
     return $kernel->build($builder, $config);

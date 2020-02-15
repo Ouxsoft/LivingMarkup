@@ -10,6 +10,8 @@
 
 namespace LivingMarkup\Builder;
 
+use LivingMarkup\Configuration;
+
 /**
  * Class Builder
  * @package LivingMarkup\Page\Builder
@@ -17,6 +19,6 @@ namespace LivingMarkup\Builder;
 
 interface BuilderInterface
 {
-    public function createObject(array $parameters) : ?bool;
+    public function createObject(Configuration $config) : ?bool;
     public function getObject() : ?object;
 }

@@ -10,6 +10,7 @@
 
 namespace LivingMarkup\Tests;
 
+use LivingMarkup\Configuration;
 use PHPUnit\Framework\TestCase;
 use LivingMarkup\Builder\DynamicPageBuilder;
 use LivingMarkup\Engine;
@@ -19,8 +20,8 @@ final class KernelTest extends TestCase
 {
     public function testCanBuildPage()
     {
-        $config = \LivingMarkup\Configuration::load(__DIR__ . DIRECTORY_SEPARATOR . 'config.yml');
-        $config['filename'] = __DIR__ . DIRECTORY_SEPARATOR . 'pages/index.html';
+        $config = new Configuration(__DIR__ . DIRECTORY_SEPARATOR . 'config.yml');
+        $config->add('filename', __DIR__ . DIRECTORY_SEPARATOR . 'pages/index.html');
 
         $builder = new DynamicPageBuilder();
         $new_page = (new Kernel())->build($builder, $config);

@@ -41,15 +41,15 @@ class Engine
     /**
      * Page constructor
      *
-     * @param string $source
+     * @param Configuration $config
      */
-    public function __construct(string $source)
+    public function __construct(Configuration $config)
     {
         // create a document object model
         $this->dom = new Document();
 
         // load source to DOM
-        $this->dom->loadSource($source);
+        $this->dom->loadSource($config->getSource());
 
         // create document iterator for this dom
         $this->xpath = new \DOMXPath($this->dom);

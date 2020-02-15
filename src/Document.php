@@ -50,10 +50,10 @@ class Document extends DomDocument
      * Hyperlink custom load page wrapper is required for server side HTML5 entity support.
      * Using $this->loadHTMLFile will removes HTML5 entities, such as &copy;
      *
-     * @param $source must be well formatted and feature a root element, e.g. <html>
-     *
+     * @param string $source must be well formatted and feature a root element, e.g. <html>
+     * @return bool
      */
-    public function loadSource($source)
+    public function loadSource(string $source)
     {
         // add DOCTYPE declaration
         $doctype = '<!DOCTYPE html [' . Entities::HTML5 . ']>'. PHP_EOL;

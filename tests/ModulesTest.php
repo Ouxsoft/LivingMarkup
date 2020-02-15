@@ -11,17 +11,16 @@
 namespace LivingMarkup\Tests;
 
 use PHPUnit\Framework\TestCase;
-use LivingMarkup\Builder\DynamicPageBuilder;
-use LivingMarkup\Engine;
+use LivingMarkup\Configuration;
 use LivingMarkup\Module;
 
 final class ModulesTest extends TestCase
 {
     public function testCanBuildPage()
     {
-        $config = \LivingMarkup\Configuration::load(__DIR__ . DIRECTORY_SEPARATOR . 'config.yml');
+        $config = new Configuration(__DIR__ . DIRECTORY_SEPARATOR . 'config.yml');
 
-        foreach ($config['modules']['types'] as $module) {
+        foreach ($config->getModules() as $module) {
 
             // skip variable named classes, for now
             if (strpos($module['class_name'], '{name}')) {
