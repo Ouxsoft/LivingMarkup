@@ -12,15 +12,19 @@ use LivingMarkup;
 
 function add_module(array $module): bool
 {
+    global $add_modules;
+
     if (!array_key_exists('add_modules', $GLOBALS)) {
-        $GLOBALS['add_modules'] = [];
+        $add_modules = [];
     }
-    $GLOBALS['add_modules'][] = $module;
+    $add_modules[] = $module;
     return true;
 }
 
 function call_kernel(string $buffer)
 {
+    global $add_modules;
+
     // return buffer if it's not HTML
     if($buffer==strip_tags($buffer)){
         return $buffer;
@@ -43,7 +47,7 @@ function call_kernel(string $buffer)
         array_key_exists('modules', $config) &&
         array_key_exists('types', $config['modules'])
     ) {
-        $config['modules']['types'] = array_merge($GLOBALS['add_modules'], $config['modules']['types']);
+        $config['modules']['types'] = array_merge($add_modules, $config['modules']['types']);
     }
 
     /*
