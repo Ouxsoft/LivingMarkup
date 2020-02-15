@@ -26,15 +26,16 @@ The parser config is used to determine which class to instantiate the module as.
 <block name="Test"/>
 ```
 
-## Arguments
+## `args`
 During runtime the parser takes specified elements and instantiates them as objects. 
 The element can feature arguments that may be used by the Module. An arguments purpose is to be passed as a parameter, used by a module's method.
 
-### Attribute Arguments
+### Attribute Derived Arguments
 Arguments can be added as attributes within an element. The following is an example of an argument `limit` being set to 1.
 ```lhtml5
 <block name="Test" limit="1"/>
 ```
+
 ### Child Arguments
 Using arguments in the form of attributes has its limitations. Arguments can also be added as a children of the element using the `arg` element. In the following example, `block` features an arg named `min` set to a value of 0 and an arg `limit` set to a value of 1. 
 ```lhtml5
@@ -83,5 +84,5 @@ If `div` were a module in the above example, the following would be true:
 * Module with id #4 can access module #1 public properties.
 * Module with id #5 can access modules #4 and #1 public properties.
 
-## Module Hooks
-The config defines method calls to be orchestrated against all the modules instantiated, called "hooks". The hooks can differ project to project but it stands to reason that one of the last hooks called will render an output from the module and its content will replace the original element entirely,
+## Module Methods
+The config defines method calls to be orchestrated against all the modules instantiated. The methods can differ project to project but it stands to reason that one of the last ones will render the output from the module and its content will replace the original element entirely.

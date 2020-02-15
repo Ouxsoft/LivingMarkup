@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-use LivingMarkup\Autoloader;
+use LivingMarkup;
 
 function add_module(array $module): bool
 {
@@ -19,15 +19,15 @@ function add_module(array $module): bool
     return true;
 }
 
-function call_director(string $buffer)
+function call_kernel(string $buffer)
 {
     // return buffer if it's not HTML
     if($buffer==strip_tags($buffer)){
         return $buffer;
     }
 
-    // instantiate Director
-    $director = new LivingMarkup\Director();
+    // instantiate Kernel
+    $kernel = new LivingMarkup\Kernel();
 
     // instantiate Builder
     $builder = new LivingMarkup\Builder\DynamicPageBuilder();
@@ -51,8 +51,8 @@ function call_director(string $buffer)
     $config['markup'] = $buffer . '<!-- '. var_export($config, true).'-->';
     */
 
-    // echo Director build of Builder
-    return $director->build($builder, $config);
+    // echo Kernel build of Builder
+    return $kernel->build($builder, $config);
 }
 
-ob_start('call_director');
+ob_start('call_kernel');

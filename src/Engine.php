@@ -325,7 +325,7 @@ class Engine
         if ($element->hasAttribute('id')) {
             $element_id = $element->getAttribute('id');
 
-            // allow director to specify function to load args from based on id
+            // allow kernel to specify function to load args from based on id
             if (function_exists($this->arg_load_function)) {
                 $args_loaded = call_user_func($this->arg_load_function, $element_id);
 

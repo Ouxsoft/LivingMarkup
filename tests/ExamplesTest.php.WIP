@@ -13,7 +13,7 @@ namespace LivingMarkup\Tests;
 use PHPUnit\Framework\TestCase;
 use LivingMarkup\Builder\DynamicPageBuilder;
 use LivingMarkup\Builder\StaticPageBuilder;
-use LivingMarkup\Director;
+use LivingMarkup\Kernel;
 
 // require examples Module
 // TODO: automate
@@ -56,11 +56,11 @@ final class ExamplesTest extends TestCase
             $page_results = shell_exec($command);
 
             // build static page of the prebuild desired output
-            $director = new Director();
+            $kernel = new Kernel();
             $static_builder = new StaticPageBuilder();
             $config = [];
             $config['filename'] = $example_folder . DIRECTORY_SEPARATOR . 'output.html';
-            $page_check = (string)$director->build($static_builder, $config);
+            $page_check = (string)$kernel->build($static_builder, $config);
 
             // compare the two
             $this->assertEquals($page_check, $page_results);

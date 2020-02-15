@@ -11,10 +11,10 @@
 namespace LivingMarkup;
 
 /**
- * Class PageDirectorTest
+ * Class PageKernelTest
  * @package LivingMarkup\Page
  */
-class Director
+class Kernel
 {
     /**
      * Calls Builder using parameters supplied

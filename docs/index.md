@@ -1,65 +1,19 @@
-![alt text](https://github.com/hxtree/LivingMarkup/raw/master/docs/logo/392x100.jpg "LivingMarkup") 
+# ![alt text](https://github.com/hxtree/LivingMarkup/raw/master/docs/logo/392x100.jpg "LivingMarkup")  Welcome to LivingMarkup documentation
 
-# Welcome to LivingMarkup documentation
+***LivingMarkup is an PHP implementation of a LHTML5 parser.*** It is a powerful and flexible way to build dynamic web pages.
 
-***LivingMarkup is an PHP implementation of a LHTML5 parser.***
+## Quick  start
+Get an instance of LivingMarkup up and running in less than 5 minutes.
 
-It builds dynamic HTML by instantiating DomElements as modules and orchestrating methods.
+Install the LivingMarkup Package
+```shell script
+composer require hxtree/livingmarkup
+```
 
-## LHTML5 Standard 
-Learn more about the [LHTML5 standard](https://github.com/hxtree/LivingMarkup/blob/master/docs/lhtml5.md).
+You're done! 
 
-# How LivingMarkup Parser Works
-![alt text](https://github.com/hxtree/LivingMarkup/raw/master/docs/diagrams/Class%20Diagram.png "Class Diagram")
+Take the rest of the time to read the manual. For information on:
 
-## Overview
-- A `Director` is passed an object using the `Builder` interface. (There are multiple `Builders` depending on the type of page being rendered.)
-
-- Parser Config contains the following:
-3. The `Builder` loads the `filename` as a string and prefixes it with a HTML5 <!doctype> containing HTML5 entities.
-4. That string is then converted into a Document Object Model for manipulation.
-5. The `Builder` using handlers Xpath expressions to find specified elements. 
-6. Each element found is instantiated as a object using the `hooks` defined class and element is temporarily marked with a placeholder attribute.
-7. Defined method calls `hooks` are made against all instantiated `Module` objects with defined methods.
-8. If the hook is marked to render the object is converted to a string and replace the DOM element from which they were
-instantiated from.
-9. A dynamic page is then returned.
-
-# `Director`
-The Director is passed a Builder and parameters (containing a HTML/XML document and a list of elements to make
-dynamic), it then instantiates those elements as objects using their attributes and arguments, orchestrates method calls 
-to those objects (hooks), replaces the element with returned value from a method call, and returns provides the parsed
-document.
-
-## `Builder`
-The Builder receives parameters passed from the Director and uses them to instantiate and return a Page object.
-
-## `Engine`
-The Engine loads a DOM object and uses Handlers and Hooks to instantiate Modules and modify the DOM.
-
-### `Handlers`
-A Handler consists of an XPath expressions and a class name and is used to define the Module. 
-The XPath expression  ("//block") finds the elements inside the Page DOM. 
-The class name defines the class used to instantiate elements found as Modules.
-A Handler's class name may feature variables ("/Blocks/{name}") that are resolved using the Page DOM element's 
-attributes (<block name="Message"/>). 
-
-### `Hooks`
-Hooks are used to orchestrates method calls against all the Modules instantiated.
-
-## `Modules`
-The Module constructor is passed the DOM element's attributes, arguments, and stored parameters.
-Modules are most often used to replace DOM element with dynamic content.
-Modules should be designed for the content management system user with safe gaurds in place.
-Only Page DOM elements with Handlers are instantiated as Modules; the rest are generally static content.
-
-### `Attributes`
-A Handler can feature a Document's element name attribute to specify the object's class name. 
-An Element's id attribute may be numerical to load Arguments.
-The LivingMarkup director is passed a loaded Document, a list Handlers, and Hooks. 
-It finds and instantiate Elements using Handlers. 
-Then, the Director iterates through the Hooks making call to Element's with those methods. 
-Afterwards, the processed Document is returned.
-
-#### `Arguments`
-The Module constructor is passed a Page DOM element's attributes ("id", "name", etc.) and "arg" tag child elements.
+- Customizing LivingMarkup see [configuration](https://github.com/hxtree/LivingMarkup/blob/master/docs/configuration.md) and [module development](https://github.com/hxtree/LivingMarkup/blob/master/docs/module-development.md).
+- The LHTML5 standard see [LHTML5](https://github.com/hxtree/LivingMarkup/blob/master/docs/lhtml5.md) and [LHTML5 FAQ](https://github.com/hxtree/LivingMarkup/blob/master/docs/lhtml5-faw.md).
+- For detail explanation of this package's design see [under the hood](https://github.com/hxtree/LivingMarkup/blob/master/docs/under-the-hood.md).

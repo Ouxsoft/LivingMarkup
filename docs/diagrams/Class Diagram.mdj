@@ -2015,7 +2015,7 @@
 							"top": 184,
 							"width": 249,
 							"height": 38,
-							"text": "Directors responsibilty is to call a builder"
+							"text": "Kernels responsibilty is to call a builder"
 						},
 						{
 							"_type": "UMLNoteView",
@@ -5203,7 +5203,7 @@
 											"top": 255,
 											"width": 327,
 											"height": 13,
-											"text": "Director"
+											"text": "Kernel"
 										},
 										{
 											"_type": "LabelView",
@@ -7657,7 +7657,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFv6Ax0VPW2w/U="
 							},
-							"name": "Director",
+							"name": "Kernel",
 							"ownedElements": [
 								{
 									"_type": "UMLInterface",

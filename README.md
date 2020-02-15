@@ -1,8 +1,6 @@
 # ![alt text](https://github.com/hxtree/LivingMarkup/raw/master/docs/logo/392x100.jpg "LivingMarkup")
 
-***LivingMarkup is an PHP implementation of a LHTML5 parser.***
-
-It builds dynamic HTML by instantiating DomElements as modules with orchestrating methods.
+***LivingMarkup is an PHP implementation of a LHTML5 parser.*** It is a powerful and flexible way to build dynamic web pages.
 
 [![Latest Stable Version](https://img.shields.io/packagist/v/hxtree/livingmarkup.svg?style=flat-square)](https://packagist.org/packages/hxtree/livingmarkup)
 ![Packagist](https://img.shields.io/packagist/dt/hxtree/livingmarkup)
@@ -29,7 +27,7 @@ LHTML5
 HTML5
 ```html
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <body>
         <div class="user-profile simple">
             <p>Welcome Jane!</p>

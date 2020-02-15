@@ -13,9 +13,9 @@ namespace LivingMarkup\Tests;
 use PHPUnit\Framework\TestCase;
 use LivingMarkup\Builder\DynamicPageBuilder;
 use LivingMarkup\Engine;
-use LivingMarkup\Director;
+use LivingMarkup\Kernel;
 
-final class DirectorTest extends TestCase
+final class KernelTest extends TestCase
 {
     public function testCanBuildPage()
     {
@@ -23,7 +23,7 @@ final class DirectorTest extends TestCase
         $config['filename'] = __DIR__ . DIRECTORY_SEPARATOR . 'pages/index.html';
 
         $builder = new DynamicPageBuilder();
-        $new_page = (new Director())->build($builder, $config);
+        $new_page = (new Kernel())->build($builder, $config);
 
         // TODO: assure this is correct class
         $this->assertInstanceOf(Engine::class, $new_page);

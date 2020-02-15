@@ -4,7 +4,6 @@
 version: 1
 modules:
   directory: '/src/Components'
-  # type of components to instantiate
   types:
     - name: 'Block'
       class_name: 'LivingMarkup\Modules\Blocks\{name}'
@@ -31,7 +30,6 @@ modules:
       xpath: '//redact'
       class_name: 'LivingMarkup\Modules\Redact'
 
-  # order determines execution
   methods:
     - name: 'beforeLoad'
       descirption: 'Execute before object data load'

@@ -3,7 +3,7 @@
 #
 version: 1
 modules:
-  directory: '/src/Modules'
+  kernely: '/src/Modules'
   # type of modules to instantiate
   types:
     - name: 'Markup Injection'
