@@ -23,38 +23,12 @@ class Configuration
     public $config;
 
     /**
-     * Parse YAML config file
-     * @param $path
-     * @return bool|mixed
-     */
-    private function parse($path)
-    {
-        $config = yaml_parse_file($path);
-
-        if (empty($config)) {
-            return false;
-        }
-
-        return $config;
-    }
-
-    /**
      * Configuration constructor.
      * @param string $filename
      */
     public function __construct(string $filename = NULL)
     {
         $this->load($filename);
-    }
-
-    /**
-     * @param string $key
-     * @param mixed $value
-     * @return bool
-     */
-    public function add(string $key,  $value) : bool {
-        $this->config[$key] = $value;
-        return true;
     }
 
     /**
@@ -66,7 +40,7 @@ class Configuration
     {
 
         // try to load config using filename if parameter set
-        if (($filename!==NULL) && (file_exists($filename))) {
+        if (($filename !== NULL) && (file_exists($filename))) {
             $this->config = $this->parse($filename);
             return true;
         }
@@ -89,10 +63,52 @@ class Configuration
     }
 
     /**
+     * Parse YAML config file
+     * @param $path
+     * @return bool|mixed
+     */
+    private function parse($path)
+    {
+        $config = yaml_parse_file($path);
+
+        if (empty($config)) {
+            return false;
+        }
+
+        return $config;
+    }
+
+    /**
+     * Adds modules to config
+     * @param array $modules
+     */
+    public function addModules(array $modules)
+    {
+        if (
+            array_key_exists('modules', $this->config) &&
+            array_key_exists('types', $this->config['modules'])
+        ) {
+            $this->config['modules']['types'] = array_merge($modules, $this->config['modules']['types']);
+        }
+    }
+
+    /**
+     * @param string $key
+     * @param mixed $value
+     * @return bool
+     */
+    public function add(string $key, $value): bool
+    {
+        $this->config[$key] = $value;
+        return true;
+    }
+
+    /**
      * Temporarily adds runtime globals to config and returns config
      * @return mixed
      */
-    public function get() : array {
+    public function get(): array
+    {
 
         return $this->config;
     }
@@ -101,9 +117,10 @@ class Configuration
      * Get array of modules if in config
      * @return bool
      */
-    public function getModules(){
+    public function getModules()
+    {
         // check if exists
-         if (!$this->isset('modules', 'types')) {
+        if (!$this->isset('modules', 'types')) {
             return [];
         }
 
@@ -111,10 +128,28 @@ class Configuration
     }
 
     /**
+     * Recursive key check
+     * @param array $keys
+     * @return bool
+     */
+    public function isset(...$keys): bool
+    {
+        $last_checked = $this->config;
+        foreach ($keys as $key) {
+            if (!array_key_exists($key, $last_checked)) {
+                return false;
+            }
+            $last_checked = $last_checked[$key];
+        }
+        return true;
+    }
+
+    /**
      * Get array of modules if in config
      * @return bool
      */
-    public function getMethods(){
+    public function getMethods()
+    {
         // check if exists
         if (!$this->isset('modules', 'methods')) {
             return [];
@@ -127,7 +162,8 @@ class Configuration
      * Get source
      * @return string
      */
-    public function getSource() : string {
+    public function getSource(): string
+    {
         if (array_key_exists('filename', $this->config)) {
             return file_get_contents($this->config['filename']);
         } elseif (array_key_exists('markup', $this->config)) {
@@ -135,22 +171,6 @@ class Configuration
         } else {
             return '';
         }
-    }
-
-    /**
-     * Recursive key check
-     * @param array $keys
-     * @return bool
-     */
-    public function isset(...$keys) : bool {
-        $last_checked = $this->config;
-        foreach($keys as $key){
-            if(!array_key_exists($key, $last_checked)){
-                return false;
-            }
-            $last_checked = $last_checked[$key];
-        }
-        return true;
     }
 
 }

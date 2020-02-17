@@ -8,8 +8,11 @@
  * file that was distributed with this source code.
  */
 
-use LivingMarkup;
-
+/**
+ * Add a module to config
+ * @param array $module
+ * @return bool
+ */
 function add_module(array $module): bool
 {
     global $add_modules;
@@ -21,7 +24,12 @@ function add_module(array $module): bool
     return true;
 }
 
-function call_kernel(string $buffer)
+/**
+ * Callback to run kernel
+ * @param string $buffer
+ * @return string
+ */
+function call_kernel(string $buffer) : string
 {
     global $add_modules;
 
@@ -39,22 +47,12 @@ function call_kernel(string $buffer)
     // load config
     $config = new LivingMarkup\Configuration();
 
-    // TODO : refactor this
-    // add runtime declared modules to config
-    // $GLOBALS['add_modules'] are ordered first so that they are instantiated if same instead of loaded config
-    if (
-        array_key_exists('add_modules', $GLOBALS) &&
-        array_key_exists('modules', $config->config) &&
-        array_key_exists('types', $config->config['modules'])
-    ) {
-        $config->config['modules']['types'] = array_merge($add_modules, $config->config['modules']['types']);
+    // add runtime modules to config
+    if(isset($add_modules)){
+        $config->addModules($add_modules);
     }
 
-    /*
-    // uncomment line to debug runtime config
-    $buffer .= '<!-- ' . var_export($config->getModules(), true) . ' -->';
-    */
-
+    // add buffer to config
     $config->add('markup', $buffer);
 
     // echo Kernel build of Builder
