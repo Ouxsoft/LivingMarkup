@@ -16,8 +16,9 @@ modules:
       xpath: '//block'
 
   methods:
-    - name: 'beforeLoad'
-      descirption: 'Execute before object data load'
+    - name: 'onRender'
+      descirption: 'Execute rendering of module'
+      execute: 'RETURN_CALL'
 ```
 
 #### Parameters
@@ -33,6 +34,6 @@ modules:
 | `module:methods` | An array containing automated method calls that will be made to all Modules during runtime. The order of items in this array determines the order of execution. |
 | `module:methods:*:name` |  The exact name of the method being executed. |
 | `module:methods:*:description` | An explanation of what the method is doing that indicates its order. |
-| `module:methods:*:execute` | Determines whether the method should be ran differently. Currently, the following commands are supported - RETURN_CALL - The output of the method will replace the DOMElement in the DOMDocument. Is optional |
-| `markup:` | String containing the actual LHTML5 that will be parsed by the `Builder`. This field is typically omitted from the actual file and instead is appended to `Configuration` during runtime, often by the `Autoloader`.|
-| `filename:` | String containing the URL or filepath to a XML or HTML document that will be inputted into the `Builder`. This string is typically omitted from the config file and is appended to the `Configuration` during runtime. It specifies the a LHTML5 filename to load. If both `filename` and `markup` are provided, `markup` will be loaded. |
+| `module:methods:*:execute` | Determines whether the method should be ran differently. Currently, the following commands are supported * RETURN_CALL - The output of the method will replace the DOMElement in the DOMDocument. Is optional |
+| `markup:` | String containing the actual LHTML5 that will be parsed by the `Builder`. This field is typically omitted from the config file and is instead appended to `Configuration` during runtime, often by the `Autoloader`.|
+| `filename:` | String containing the URL or filepath to a XML or HTML document that will be inputted into the `Builder`. This string is typically omitted from the config file and instead appended to the `Configuration` during runtime. It specifies the a LHTML5 filename to load. If both `filename` and `markup` are provided, `markup` will be loaded. |
