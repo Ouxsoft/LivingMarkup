@@ -1,8 +1,12 @@
 # Configuration
-The `Configuration` class contains a set of instructions provided to the `Builder` class that 
-determines how the to build the LHTML5 `Document`.
+The `Configuration` class is responsible for the instructions that explain to the `Builder` how to build the LHTML5 `Document`. These instructions can be set by modifying the config file that is loaded.
 
-The `Configuration` is loaded from a either a `config.yml` or `config.dist.yml` file. An example showing the structure of this file is provided below. 
+## Config File 
+The config file is where settings are configured. The `Configuration` class tries to load a `config.yml` if another file has not been specified during construction. If the `config.yml` not present, the `Configuration` will try to load the packaged config `config.dist.yml` file.
+
+### Syntax v1
+
+#### Example 
 ```yaml
 version: 1
 modules:
@@ -16,25 +20,19 @@ modules:
       descirption: 'Execute before object data load'
 ```
 
-## Config Fields
-### `version`
-`version` is a string containing the version information of the config. Only version 1 configs are currently supported.
-### `modules`
-`modules` is an array containing configuration options for modules.
-### `module:types`
-`module:types` is an array containing the types of runtime modules. Each type contains a `name`, a `class_name`, and a `xpath` expression.
-- The `name` field defines what the modules is named. 
-- The `xpath` field specifies how find DOMElements to turn into modules. An xpath expressions is a powerful syntax for searching within a the `Document` for DOMElements. It syntax allows for choosing exactly only the correct DOMElements.
-- The `class_name` field specifies which class to instantiate the DOMElement as. The `class_name` provided must refer to a class that extends the abstract Module class.
+#### Parameters
 
-#### `module:methods` 
-`module:methods` is an array containing automated method calls that will be made to all Modules during runtime. The order of `module:methods` is important as it determines the order of execution. 
-- A `name` should correlate to the method being executed.
-- A `description` should be provided explaining what the method is doing.
-- A `execute` command is optional. It determines whether the method should be ran differently. Currently, the following commands are supported:
-  - RETURN_CALL - The output of the method will replace the DOMElement in the DOMDocument. 
-
-## Source
-The source is the string containing the LHTML5. Unlike other values this is not set in the `config.yml` file but is added to the `Configuration` during runtime, often by the `Autoloader`. The source my either come from a `filename` that will be loaded or directly from a string containing LHTML5 called `markup`. If both are provided `markup` will be used.
-- A `markup` string contains the actual LHTML5 that will be parsed by the `Builder`.
-- A `filename` string containing the URL or filepath to a XML or HTML document that will be inputted into the `Builder`.
+| Parameter | Comments |
+|---    | ---
+| `version:` | Indicates the file structure to the `Configuration` for stability purposes.|
+| `modules:` | An array containing configuration options for modules. |
+| `module:types` | An array containing the types of modules to load at runtime. Each type contains contain an array with a `name`, a `class_name`, and a `xpath` expression. |
+| `module:types:*:name`  | Defines what the modules is named. | 
+| `module:types:*:xpath` | Specifies exactly how find DOMElements to initialize as modules. Xpath expressions are a powerful syntax for searching within a the `Document` for DOMElements. |
+| `module:types:*:class_name` | Specifies which class to instantiate the DOMElement as. The `class_name` provided must refer to a class that extends the abstract `Module` class. The class name may feature a `{name}` variable which is automatically populated by the DOMElement's name attribute during runtime. |
+| `module:methods` | An array containing automated method calls that will be made to all Modules during runtime. The order of items in this array determines the order of execution. |
+| `module:methods:*:name` |  The exact name of the method being executed. |
+| `module:methods:*:description` | An explanation of what the method is doing that indicates its order. |
+| `module:methods:*:execute` | Determines whether the method should be ran differently. Currently, the following commands are supported - RETURN_CALL - The output of the method will replace the DOMElement in the DOMDocument. Is optional |
+| `markup:` | String containing the actual LHTML5 that will be parsed by the `Builder`. This field is typically omitted from the actual file and instead is appended to `Configuration` during runtime, often by the `Autoloader`.|
+| `filename:` | String containing the URL or filepath to a XML or HTML document that will be inputted into the `Builder`. This string is typically omitted from the config file and is appended to the `Configuration` during runtime. It specifies the a LHTML5 filename to load. If both `filename` and `markup` are provided, `markup` will be loaded. |
