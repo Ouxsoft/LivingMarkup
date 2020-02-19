@@ -27,7 +27,7 @@ Automated methods are module methods that are automatically handled during run t
 A naming convention to distinguish automated methods from other methods is recommend. In LivingMarkup, all the packaged method calls are prefixed with the word `on` and structure to explain when they are executed during in runtime.
 
 #### Parameters
-The default automated methods are defined in the default `Configuration`.
+The default automated methods are defined in the default [config.dist.yml](configuration.md).
 
 | Parameter | Comments |
 |---- |---- |
