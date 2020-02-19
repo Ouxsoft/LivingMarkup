@@ -11,10 +11,10 @@ Install the LivingMarkup Package
 composer require hxtree/livingmarkup
 ```
 
-You're done! Take the rest of the time to read the manual. 
+You're done! Take the rest of the time to read our docs. 
 
 For information on:
 
-- Customizing LivingMarkup see [configuration](configuration.md) and [module development](module-development.md).
+- Customizing LivingMarkup see [configuration](configuration.md) and [modules](modules.md).
 - The LHTML5 standard see [LHTML5](lhtml5.md).
 - For detail explanation of this package's design see [classes](classes.md).

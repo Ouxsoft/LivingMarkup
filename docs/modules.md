@@ -1,5 +1,5 @@
 # Modules
-Modules are the working bees of LivingMarkup. They are objects that process DOMElements. How they process the DOMElement is determined by the class. During the objects construction, the module receives from `Engine` arguments that were found in both the DOMElement's attributes and child `arg` DOMElements. 
+Modules are the working bees of LivingMarkup. They are objects that process DOMElements. How they process the DOMElement is determined by their class. During the objects construction, the module receives from `Engine` arguments that were found in both the DOMElement's attributes and child `arg` DOMElements. 
 
 ## Module Development
 Modules are simple to make. Making a new modules involves creating a subclass that extends the abstract class `\LivingMarkup\Module` and adding that module to the `Configuration`. For ease of use the packaged modules are located inside the `/modules` directory and modules defined using the variable `{name}` in their  `modules:types:*:class_name` are isolated a sub folder within that directory. If a different path is used, the path must be added to composer's autoload section. 
