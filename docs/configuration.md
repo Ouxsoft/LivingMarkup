@@ -25,9 +25,9 @@ modules:
 
 | Parameter | Comments |
 |---    | ---
-| `version:` | Indicates the file structure to the `Configuration` for stability purposes.|
-| `modules:` | An array containing configuration options for modules. |
-| `module:types` | An array containing the types of modules to load at runtime. Each type contains contain an array with a `name`, a `class_name`, and a `xpath` expression. |
+| `version` | Indicates the file structure to the `Configuration` for stability purposes.|
+| `modules` | An array containing configuration options for modules. |
+| `modules:types` | An array containing the types of modules to load at runtime. Each type contains contain an array with a `name`, a `class_name`, and a `xpath` expression. |
 | `module:types:*:name`  | Defines what the modules is named. | 
 | `module:types:*:xpath` | Specifies exactly how find DOMElements to initialize as modules. Xpath expressions are a powerful syntax for searching within a the `Document` for DOMElements. |
 | `module:types:*:class_name` | Specifies which class to instantiate the DOMElement as. The `class_name` provided must refer to a class that extends the abstract `Module` class. The class name may feature a `{name}` variable which is automatically populated by the DOMElement's name attribute during runtime. |

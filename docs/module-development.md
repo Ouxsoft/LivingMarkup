@@ -1,11 +1,11 @@
-# Module Development
-In LHTML5, Modules are classes that elements are instantiated as. Fortunately, they're as simple to make as any other class.
+# Modules
+Modules are the working bees of LivingMarkup. They are objects that process DOMElements. How they process the DOMElement is determined by the class. During the objects construction, the module receives from `Engine` arguments that were found in both the DOMElement's attributes and child `arg` DOMElements. 
 
-## PHP Module Class
-To make a new module you must first make a class. New modules can be loaded anywhere within a composer autoload accessible namespace. For ease of use the packaged modules are located inside the `/modules` directory. And modules defined using the `{name}` in their  `modules:types:*:class_name` are isolated to it's own sub folder within that directory. Here's the basic syntax of a module class.
+## Module Development
+Modules are simple to make. Making a new modules involves creating a subclass that extends the abstract class `\LivingMarkup\Module` and adding that module to the `Configuration`. For ease of use the packaged modules are located inside the `/modules` directory and modules defined using the variable `{name}` in their  `modules:types:*:class_name` are isolated a sub folder within that directory. If a different path is used, the path must be added to composer's autoload section. 
 
-***The module is required to extend the abstract class `\LivingMarkup\Module`.***
- 
+### Example
+The basic syntax of a module class is shown below.
 ```php
 <?php
 
@@ -20,11 +20,20 @@ class HelloWorld extends \LivingMarkup\Module
 }
 ```
 
-## Method Names
-Module methods are not required to follow any pattern. But if the name is the same as a `module:method` defined in the `Configuration` than the method will automatically be called during runtime. 
+## Automated Method
+Automated methods are module methods that are automatically handled during run time. When an automated method is called each each instantiated module with that method is called.
 
 #### Prefix
-It is best practice to use a standard for prefixing automated method calls to distinguish them from other methods. In LivingMarkup, the packaged method calls are prefixed with `on` and are structured to explain when during runtime they are executed, such as `onRender` and `onLoad`.
+A naming convention to distinguish automated methods from other methods is recommend. In LivingMarkup, all the packaged method calls are prefixed with the word `on` and structure to explain when they are executed during in runtime.
 
-## Configuring New Module
-To add a new module the module must be added to the runtime configuration. The `Configuration` defines the location of each modules based on namespace. For more information, see [configuration](configuration.md).
+#### Parameters
+The default automated methods are defined in the default `Configuration`.
+
+| Parameter | Comments |
+|---- |---- |
+| `beforeLoad` | Execute before object data load |
+| `onLoad` | Execute during object data load |
+| `afterLoad` | Execute after object data loaded  |
+| `beforeRender` | Execute before object render |
+| `onRender` | Execute during object render |
+| `afterRender` | Execute after object rendered |

@@ -2,7 +2,7 @@
 ![alt text](https://github.com/hxtree/LivingMarkup/raw/master/docs/diagrams/Class%20Diagram.png "Class Diagram")
 
 ## Design Pattern
-Pages are created using a Builder design pattern. This design pattern was chosen to separate the construction of the complex page objects from its representation to build pages for different purposes, e.g.
+Pages are created using a Builder design pattern. This design pattern was chosen to separate the construction of the complex page objects from its representation. This allows pages to be built for different purposes, including:
 + The `DynamicBuilder` renders a dynamic Page for a client's browser.
 + The `StaticBuilder` renders a static Page for a WYSIWYG.
 + The `SearchBuilder` renders a dynamic Page with some Modules excluded for search indexes.
@@ -10,7 +10,7 @@ Pages are created using a Builder design pattern. This design pattern was chosen
 The Director is called the `Kernel` within the context of the Builder design pattern.
 
 ## Overview
-1. A `Kernel` is passed an object using the `Builder` interface. (There are multiple `Builders` depending on the type of page being rendered.)
+1. A `Kernel` is passed an object that uses the `Builder` interface. (There are multiple `Builders` depending on the type of page being rendered.)
 2. Parser Config contains the following:
 3. The `Builder` loads the `filename` as a string and prefixes it with a HTML5 <!doctype> containing HTML5 entities.
 4. That string is then converted into a Document Object Model for manipulation.
