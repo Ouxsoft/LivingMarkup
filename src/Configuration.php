@@ -46,14 +46,14 @@ class Configuration
         }
 
         // try to load local config
-        $path = $_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . self::LOCAL_FILENAME;
+        $path = dirname(__DIR__, 1) . DIRECTORY_SEPARATOR . self::LOCAL_FILENAME;
         if (file_exists($path)) {
             $this->config = $this->parse($path);
             return true;
         }
 
         // try to load dist config
-        $path = $_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . self::DIST_FILENAME;
+        $path =  dirname(__DIR__, 1) . DIRECTORY_SEPARATOR . self::DIST_FILENAME;
         if (file_exists($path)) {
             $this->config = $this->parse($path);
             return true;

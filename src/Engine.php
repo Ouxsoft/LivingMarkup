@@ -29,9 +29,6 @@ class Engine
     // ModulePool
     public $modules;
 
-    // name of function called to load Module Args using element's `id` attribute
-    public $arg_load_function;
-
     // registered includes added during output
     public $includes = [
         'js' => [],
@@ -319,19 +316,6 @@ class Engine
 
             // remove element
             $arg_element->parentNode->removeChild($arg_element);
-        }
-
-        // use element id attribute to load args
-        if ($element->hasAttribute('id')) {
-            $element_id = $element->getAttribute('id');
-
-            // allow kernel to specify function to load args from based on id
-            if (function_exists($this->arg_load_function)) {
-                $args_loaded = call_user_func($this->arg_load_function, $element_id);
-
-                // merge args
-                $args->merge($args_loaded);
-            }
         }
 
         return $args->get();

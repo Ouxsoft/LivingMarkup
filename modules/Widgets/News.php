@@ -15,8 +15,8 @@ use LivingMarkup\Modules\Component;
 /**
  * Class News
  *
- *
  * <widget name="News">
+ * <arg name="id">1</arg>
  * <arg name="heading">Latest News</arg>
  * <arg name="heading_level">3</arg>
  * </widget>
@@ -27,10 +27,23 @@ class News extends \LivingMarkup\Module
 {
     public $heading_level = 3;
 
+    public function onLoad(){
+
+        // use element id attribute to load args
+        if (isset($this->id)) {
+            return false;
+        }
+
+        // load args based on id
+        // TODO: Add function call for modular database api using id arg
+        $args_loaded = [];
+
+        // merge args
+        // $this->args->merge($args_loaded);
+    }
+
     /**
      * Renders news
-     *
-     * TODO: Add function call for modular database api
      *
      * @return mixed|string
      */

@@ -17,7 +17,7 @@ function add_module(array $module): bool
 {
     global $add_modules;
 
-    if (!array_key_exists('add_modules', $GLOBALS)) {
+    if (!isset($add_modules)) {
         $add_modules = [];
     }
     $add_modules[] = $module;

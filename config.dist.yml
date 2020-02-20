@@ -3,11 +3,14 @@
 #
 version: 1
 modules:
-  directory: '/src/Components'
+  directory: '/modules'
   types:
     - name: 'Block'
       class_name: 'LivingMarkup\Modules\Blocks\{name}'
       xpath: '//block'
+      settings:
+        - cache_duration: '1 hour'
+        - search_index: false
     - name: 'Partial'
       class_name: 'LivingMarkup\Modules\Partials\{name}'
       xpath: '//partial'

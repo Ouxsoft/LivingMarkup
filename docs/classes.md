@@ -13,35 +13,31 @@ The Director is called the `Kernel` within the context of the Builder design pat
 1. A `Kernel` is passed an object that uses the `Builder` interface. (There are multiple `Builders` depending on the type of page being rendered.)
 2. Parser Config contains the following:
 3. The `Builder` loads the `filename` as a string and prefixes it with a HTML5 <!doctype> containing HTML5 entities.
-4. That string is then converted into a Document Object Model for manipulation.
+4. That string is then converted into a Document Object Model (DOM) for manipulation.
 5. The `Builder` using handlers Xpath expressions to find specified elements. 
-6. Each element found is instantiated as a object using the `hooks` defined class and element is temporarily marked with a placeholder attribute.
-7. Defined method calls `hooks` are made against all instantiated `Module` objects with defined methods.
-8. If the hook is marked to render the object is converted to a string and replace the DOM element from which they were
-instantiated from.
-9. A dynamic page is then returned.
+6. Each element found is instantiated as a object and DOMElement is temporarily marked with a placeholder attribute.
+7. `Automated Methods` are called against all instantiated `Module` objects with the defined methods.
+8. If the automated method is marked to render, the object is converted to a string and replace the DOMElement from which they were instantiated with.
+9. The `Document`, which is now a dynamic page, is then returned.
 
 # `Kernel`
-The Kernel is passed a Builder and parameters (containing a HTML/XML document and a list of elements to make
-dynamic), it then instantiates those elements as objects using their attributes and arguments, orchestrates method calls 
-to those objects (hooks), replaces the element with returned value from a method call, and returns provides the parsed
-document.
+The `Kernel` is passed a Builder and parameters (containing a HTML/XML document and a list of elements to make dynamic), it then instantiates those elements as objects using their attributes and arguments, orchestrates method calls 
+to those objects, replaces the element with returned value from a method call, and returns provides the parsed `Document`.
 
 ## `Builder`
-The Builder receives parameters passed from the Kernel and uses them to instantiate and return a Page object.
+The `Builder` receives parameters passed from the `Kernel` and uses them to instantiate and return a `Document` object.
 
 ## `Engine`
-The Engine loads a DOM object and uses Handlers and Hooks to instantiate Modules and modify the DOM.
+The `Engine` loads a DOM object and modifies the `Document`.
 
-### `Handlers`
-A Handler consists of an XPath expressions and a class name and is used to define the Module. 
-The XPath expression  ("//block") finds the elements inside the Page DOM. 
-The class name defines the class used to instantiate elements found as Modules.
-A Handler's class name may feature variables ("/Blocks/{name}") that are resolved using the Page DOM element's 
+### `Module Types`
+A Module Type consists of an XPath expressions and a class name. It is used to define the Module. 
+The XPath expression  ("//block") finds the elements inside the `Document`. 
+The class name defines the class used to instantiate elements found as Modules. This class name may feature variables ("/Blocks/{name}") that are resolved using the Page DOM element's 
 attributes (<block name="Message"/>). 
 
-### `Hooks`
-Hooks are used to orchestrates method calls against all the Modules instantiated.
+### `Automated Methods`
+Automated Methods are used to orchestrates method calls against all instantiated Modules.
 
 ## `Modules`
 The Module constructor is passed the DOM element's attributes, arguments, and stored parameters.
