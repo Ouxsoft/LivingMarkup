@@ -10,8 +10,6 @@
 
 namespace LivingMarkup\Modules\Widgets;
 
-use LivingMarkup\Modules\Component;
-
 /**
  * Class News
  *

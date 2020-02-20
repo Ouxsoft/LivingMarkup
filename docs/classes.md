@@ -1,5 +1,5 @@
 # Classes
-![alt text](https://github.com/hxtree/LivingMarkup/raw/master/docs/diagrams/Class%20Diagram.png "Class Diagram")
+![alt text](https://github.com/hxtree/LivingMarkup/raw/master/assets/images/diagrams/Class%20Diagram.png "Class Diagram")
 
 ## Design Pattern
 Pages are created using a Builder design pattern. This design pattern was chosen to separate the construction of the complex page objects from its representation. This allows pages to be built for different purposes, including:
