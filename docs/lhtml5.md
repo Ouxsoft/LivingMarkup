@@ -1,6 +1,11 @@
 # LHTML5 Standards
+The LHTML5 (Living Hypertext Markup Language 5) is a powerful and flexible way to build dynamic web pages.
 
-LHTML5 stands for Living Hypertext Markup Language 5. Prior to parsing LHTML5 looks similar to HTML5 with the possible addition of custom elements. When a page is built for a end user the parsed an LHTML5 document looks like an fully built out HTML5 page.
+## Syntax
+HTML (hypertext markup language) is a standard for marking up pages to display in the browser that defines the order in which markup must or can appear in a web page. The LHTML5 is, in may ways, a simple extension of that standard. Although LHTML5 syntax can appear exactly the same as an HTML5 document, on the surface it more often looks like an oversimplified and somewhat embellished HTML5 document. The over simplicity stems from LHTML5 modules being able to alter the document and automate redundant elements. The embellished looks come from custom elements that are used to instantiate modules. 
+
+### Example Document
+An unparsed LHTML5 document basic syntax of is illustrated below. This example shows the use of four Modules that are instantiated using the `<html>`, `<block>`, `<news>` and `<footer>` elements. The `<html>` element invokes a module that adds a `<head>` tag. The `<block>` tag inserts a navigation bar. The `<h1>` element remains uninitiated. The `<news>` element pulls up to 20 news stories and display them with a thumbnail. The `<footer>` section is automatically populated.   
 
 ```html5
 <html>
@@ -14,29 +19,29 @@ LHTML5 stands for Living Hypertext Markup Language 5. Prior to parsing LHTML5 lo
 </html>
 ```
 
-## Module
-Modules are instantiated as object from DomElements. Not all elements are parsed, only Modules defined in the parser config are turned to objects, the rest remain. A module can either be an existing HTML5 tag or a new tag, which is often referred to as a "LHTML5 tag". 
+### Modules
+As demonstrated in the above example, Modules are instantiated as object from elements. Not all elements are parsed. Only Modules defined in the parser config are turned to objects. The rest remain as is (as is the case with the `<h1>` tag in the above example). A module can either be placed using an existing HTML5 element or a custom element. 
 ```html5
 <block/>
 ```
 
-The parser config is used to determine which class to instantiate the module as. The parser config may state that an element's class is included in decided which class to use. Depending on the config, the following may show an example of a module that is instantiated as the class `Modules/Block/Test` or `Modules/Block`.
+#### Construction
+The parser's config defines the `xpath` expression and `class_name` used to find elements and instantiate them as modules. That `class_name` may use the element's attributes as variables to resolve the class. Depending on the config, the following may show an example of a module that is instantiated as the either the class `Modules/Block/Test` or `Modules/Block`.
 
 ```html5
 <block name="Test"/>
 ```
 
 ## `args`
-During runtime the parser takes specified elements and instantiates them as objects. 
-The element can feature arguments that may be used by the Module. An arguments purpose is to be passed as a parameter, used by a module's method.
+During runtime the parser takes specified elements and instantiates them as objects. The element can feature arguments that are passed to the Module as properties. An argument's purpose is to be passed as a parameter, used by a module's method.
 
-### Attribute Derived Arguments
+### Arguments from Derived Attribute 
 Arguments can be added as attributes within an element. The following is an example of an argument `limit` being set to 1.
 ```lhtml5
 <block name="Test" limit="1"/>
 ```
 
-### Child Arguments
+### Arguments from Child Arguments
 Using arguments in the form of attributes has its limitations. Arguments can also be added as a children of the element using the `arg` element. In the following example, `block` features an arg named `min` set to a value of 0 and an arg `limit` set to a value of 1. 
 ```lhtml5
 <block name="Test">
