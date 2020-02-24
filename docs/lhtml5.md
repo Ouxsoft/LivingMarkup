@@ -1,8 +1,20 @@
 # LHTML5 Standards
-The LHTML5 (Living Hypertext Markup Language 5) is a powerful and flexible way to build dynamic web pages.
+Living Hypertext Markup Language 5 (LHTML5) is a powerful and flexible way to build dynamic web pages. It's not a standard built for a web browser. It the communication standard for marking up pages sent from the web server to web stakeholders, including:
+ + backend developer;
+ + template designers;
+ + Search indexes;
+ + UX/UI designers;
+ + WYSIWYG users; and
+ + Web browser;
 
 ## Syntax
-HTML (hypertext markup language) is a standard for marking up pages to display in the browser that defines the order in which markup must or can appear in a web page. The LHTML5 is, in may ways, a simple extension of that standard. Although LHTML5 syntax can appear exactly the same as an HTML5 document, on the surface it more often looks like an oversimplified and somewhat embellished HTML5 document. The over simplicity stems from LHTML5 modules being able to alter the document and automate redundant elements. The embellished looks come from custom elements that are used to instantiate modules. 
+The LHTML5, in may ways, is a simple extension of HTML5 standard. LHTML5 can on the surface look like an oversimplified and somewhat embellished HTML5 document. 
+
+The over simplicity stems from 
+
+LHTML5 modules being able to alter the document and automate redundant elements. 
+
+The embellished looks come from custom elements that are used to instantiate modules. 
 
 ### Example Document
 An unparsed LHTML5 document basic syntax of is illustrated below. This example shows the use of four Modules that are instantiated using the `<html>`, `<block>`, `<news>` and `<footer>` elements. The `<html>` element invokes a module that adds a `<head>` tag. The `<block>` tag inserts a navigation bar. The `<h1>` element remains uninitiated. The `<news>` element pulls up to 20 news stories and display them with a thumbnail. The `<footer>` section is automatically populated.   
@@ -26,7 +38,7 @@ As demonstrated in the above example, Modules are instantiated as object from el
 ```
 
 #### Construction
-The parser's config defines the `xpath` expression and `class_name` used to find elements and instantiate them as modules. That `class_name` may use the element's attributes as variables to resolve the class. Depending on the config, the following may show an example of a module that is instantiated as the either the class `Modules/Block/Test` or `Modules/Block`.
+The parser's config defines the `xpath` expression and `class_name` used to find elements and instantiate them as modules. That `class_name` may useh the element's attributes as variables to resolve the class. Depending on the config, the following may show an example of a module that is instantiated as the either the class `Modules/Block/Test` or `Modules/Block`.
 
 ```html5
 <block name="Test"/>

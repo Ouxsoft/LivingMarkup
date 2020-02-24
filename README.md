@@ -3,10 +3,11 @@
 ***LivingMarkup is an PHP implementation of a LHTML5 parser.*** It is a powerful and flexible way to build dynamic web pages.
 
 [![Latest Stable Version](https://img.shields.io/packagist/v/hxtree/livingmarkup.svg?style=flat-square)](https://packagist.org/packages/hxtree/livingmarkup)
-![Packagist](https://img.shields.io/packagist/dt/hxtree/livingmarkup)
 [![CI Status](https://github.com/hxtree/livingMarkup/workflows/CI/badge.svg)](https://github.com/hxtree/livingMarkup/actions)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/bfc76aaebde44a7fa239963e54883755)](https://app.codacy.com/manual/hxtree/LivingMarkup?utm_source=github.com&utm_medium=referral&utm_content=hxtree/LivingMarkup&utm_campaign=Badge_Grade_Dashboard)
+[![Coverage Status](https://coveralls.io/repos/github/hxtree/LivingMarkup/badge.svg?branch=master)](https://coveralls.io/github/hxtree/LivingMarkup?branch=master)
 [![Documentation Status](https://readthedocs.org/projects/livingmarkup/badge/?version=latest)](https://livingmarkup.readthedocs.io/en/latest/?badge=latest)
+![Packagist](https://img.shields.io/packagist/dt/hxtree/livingmarkup)
 ![GitHub](https://img.shields.io/github/license/hxtree/livingMarkup)
 [![Help Wanted!](https://img.shields.io/badge/help-wanted-brightgreen.svg?style=flat "Please Help Us")](https://github.com/hxtree/LivingMarkup/blob/master/.github/workflows/CONTRIBUTING.md)
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://paypal.me/hxtree)
