@@ -15,6 +15,6 @@ You're done! Take the rest of the time to read our docs.
 
 For information on:
 
+- The LHTML5 standard see the official spec [LHTML5](https://github.com/hxtree/lhtml5).
 - Customizing LivingMarkup see [configuration](configuration.md) and [modules](modules.md).
-- The LHTML5 standard see [LHTML5](lhtml5.md).
 - For detail explanation of this package's design see [classes](classes.md).
