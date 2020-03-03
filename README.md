@@ -1,15 +1,13 @@
-# ![alt text](https://github.com/hxtree/LivingMarkup/raw/master/assets/images/logo/392x100.jpg "LivingMarkup")
-
-***LivingMarkup is an PHP implementation of a LHTML5 parser.*** It is a powerful and flexible way to build dynamic web pages.
+<p align="center"><img src="https://github.com/hxtree/LivingMarkup/raw/master/assets/images/logo/392x100.jpg" width="400"></p>
 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/bfc76aaebde44a7fa239963e54883755)](https://app.codacy.com/manual/hxtree/LivingMarkup?utm_source=github.com&utm_medium=referral&utm_content=hxtree/LivingMarkup&utm_campaign=Badge_Grade_Dashboard)
 [![CI Status](https://github.com/hxtree/livingMarkup/workflows/CI/badge.svg)](https://github.com/hxtree/livingMarkup/actions)
 [![Documentation Status](https://readthedocs.org/projects/livingmarkup/badge/?version=latest)](https://livingmarkup.readthedocs.io/en/latest/?badge=latest)
-![Packagist](https://img.shields.io/packagist/dt/hxtree/livingmarkup)
-[![Latest Stable Version](https://img.shields.io/packagist/v/hxtree/livingmarkup.svg?style=flat-square)](https://packagist.org/packages/hxtree/livingmarkup)
-![GitHub](https://img.shields.io/github/license/hxtree/livingMarkup)
-[![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://paypal.me/hxtree)
+[![Total Downloads](https://poser.pugx.org/hxtree/livingmarkup/downloads)](https://packagist.org/packages/hxtree/livingmarkup) [![Latest Stable Version](https://poser.pugx.org/hxtree/livingmarkup/v/stable)](https://packagist.org/packages/hxtree/livingmarkup) 
+[![License](https://poser.pugx.org/hxtree/livingmarkup/license)](https://packagist.org/packages/hxtree/livingmarkup)
 
+## About LivingMarkup
+***LivingMarkup is an PHP implementation of a LHTML5 parser.*** It is a powerful and flexible way to build dynamic web pages.
 
 ## Usage
 
