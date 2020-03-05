@@ -13,7 +13,7 @@
 
 ## Usage
 
-LHTML5
+LHTML5 document:
 ```PHP
 <?php require $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php'; ?>
 <body>
@@ -23,7 +23,8 @@ LHTML5
     </block>
 </body>
 ```
-HTML5
+
+Rendered HTML5 output:
 ```html
 <!DOCTYPE html>
 <html lang="en">
