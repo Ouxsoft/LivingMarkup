@@ -12,6 +12,7 @@
 ***LivingMarkup is an PHP implementation of a [LHTML5 processor](https://github.com/hxtree/lhtml5/tree/master/docs).*** It is a powerful and flexible way to build dynamic web pages.
 
 ## Usage
+Simple example::
 
 LHTML5 document:
 ```PHP
@@ -22,6 +23,21 @@ LHTML5 document:
         <p>Welcome <var name="first_name"/>!</p>
     </block>
 </body>
+```
+
+Block Module:
+```php
+<?php
+namespace Modules\Blocks
+
+class UserProfile {
+
+    public $first_name = 'Jane Doe';
+    
+    public onRender() {
+        return '<div class="user-profile ' . $this->args['style'] . '">' . $this->xml . '</div>';
+    }
+}
 ```
 
 Rendered HTML5 output:

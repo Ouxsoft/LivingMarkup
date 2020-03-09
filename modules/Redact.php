@@ -15,7 +15,7 @@ class Redact extends \LivingMarkup\Module
     public $char = '&#9608;';
 
     // TODO: same sort of class would be useful for a search / highlighter function.
-
++
     /**
      * Renders with chars not between tag replaced with $char
      *
