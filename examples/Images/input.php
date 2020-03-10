@@ -1,4 +1,4 @@
-<?php require $_SERVER['DOCUMENT_ROOT'] . '/src/Autoloader.php'; ?>
+<?php require $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php'; ?>
 <!--
   ~ This file is part of the LivingMarkup package.
   ~
@@ -11,6 +11,6 @@
 <html lang="en">
 
 <body>
-<img src="livingMarkup_icon_logo.jpg" height="100" width="300" offset="100,-100" alt="Chicken Finger 12" />
+<img src="logo/original.jpg" width="434" height="100" offset="100,-100" alt="LivingMarkup" />
 </body>
 </html>
