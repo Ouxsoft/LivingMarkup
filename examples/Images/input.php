@@ -1,4 +1,12 @@
 <?php require $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php'; ?>
+<?php
+
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL); //  & E_DEPRECATED
+
+?>
+
 <!--
   ~ This file is part of the LivingMarkup package.
   ~
@@ -11,6 +19,6 @@
 <html lang="en">
 
 <body>
-<img src="logo/original.jpg" width="434" height="100" offset="100,-100" alt="LivingMarkup" />
+<img src="logo/original.jpg" height="100" offset="100,-100" alt="LivingMarkup" />
 </body>
 </html>
