@@ -39,11 +39,21 @@ class Image extends \LivingMarkup\Module
      */
     public function onLoad(){
 
+        // load source file info
         $this->fetchSourceInfo();
 
-        $this->setDimensions($this->args['width'], $this->args['height']);
-        $this->setOffset($this->args['offset']);
-        $this->setCacheURL($this->args['alt']);
+        // set dimensions
+        $width = array_key_exists('width', $this->args) ? $this->args['width'] : NULL;
+        $height = array_key_exists('height', $this->args) ? $this->args['height'] : NULL;
+        $this->setDimensions($width, $height);
+
+        // set offset
+        $offset = array_key_exists('offset', $this->args) ? $this->args['offset'] : NULL;
+        $this->setOffset($offset);
+
+        // set alt
+        $alt = array_key_exists('alt', $this->args) ? $this->args['alt'] : NULL;
+        $this->setCacheURL($alt);
     }
 
     /**
