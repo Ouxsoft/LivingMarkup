@@ -40,19 +40,20 @@ class Image extends \LivingMarkup\Module
     public function onLoad(){
 
         // load source file info
-        $this->fetchSourceInfo();
+        $src = $this->getArgByName('src');
+        $this->fetchSourceInfo($src);
 
         // set dimensions
-        $width = array_key_exists('width', $this->args) ? $this->args['width'] : NULL;
-        $height = array_key_exists('height', $this->args) ? $this->args['height'] : NULL;
+        $width = $this->getArgByName('width');
+        $height = $this->getArgByName('height');
         $this->setDimensions($width, $height);
 
         // set offset
-        $offset = array_key_exists('offset', $this->args) ? $this->args['offset'] : NULL;
+        $offset = $this->getArgByName('offset');
         $this->setOffset($offset);
 
         // set alt
-        $alt = array_key_exists('alt', $this->args) ? $this->args['alt'] : NULL;
+        $alt = $this->getArgByName('alt');
         $this->setCacheURL($alt);
     }
 
@@ -69,15 +70,11 @@ class Image extends \LivingMarkup\Module
 HTML;
     }
 
-    public function fetchSourceInfo()
+    public function fetchSourceInfo($source)
     {
-        // image missing
-        if(!isset($this->args['src'])){
-            return false;
-        }
 
         // TODO: add traversing prevention
-        $filepath = __DIR__ . '/..' . self::IMAGE_SOURCE_DIR . $this->args['src'];
+        $filepath = __DIR__ . '/..' . self::IMAGE_SOURCE_DIR . $source;
 
         // get dimensions from original image file
         [$this->source_width, $this->source_height, $this->source_type, $this->source_attr] = getimagesize($filepath);
@@ -133,6 +130,7 @@ HTML;
             list($this->offset['x'], $this->offset['y']) = explode(',', $offset);
         }
     }
+
     /**
      * Set dimension (width x height) of output
      *

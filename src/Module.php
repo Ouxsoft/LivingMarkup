@@ -92,6 +92,16 @@ abstract class Module implements ModuleDefaultInterface
     }
 
     /**
+     * Get Arg by Name
+     *
+     * @param $name
+     * @return mixed|null
+     */
+    public function getArgByName($name){
+        return array_key_exists($name, $this->args) ? $this->args[$name] : NULL;
+    }
+
+    /**
      * Abstract output method called by magic method
      *
      * The extending class must define this method
