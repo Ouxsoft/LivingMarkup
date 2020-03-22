@@ -9,7 +9,7 @@
 </p>
 
 ## About LivingMarkup
-***LivingMarkup is an PHP implementation of a [LHTML5 processor](https://github.com/hxtree/lhtml5/tree/master/docs).*** It is a powerful and flexible way to build dynamic web pages.
+***LivingMarkup is an PHP implementation of a [LHTML5 processor](https://github.com/hxtree/lhtml5).*** It is a powerful and flexible way to build dynamic web pages.
 
 ## Usage
 Simple example::
