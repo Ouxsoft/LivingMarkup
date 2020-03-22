@@ -11,6 +11,8 @@
 
 namespace LivingMarkup;
 
+use Symfony\Component\Yaml\Yaml;
+
 /**
  * Class Configuration
  * @package LivingMarkup
@@ -69,7 +71,7 @@ class Configuration
      */
     private function parse($path)
     {
-        $config = yaml_parse_file($path);
+        $config = Yaml::parseFile($path);
 
         if (empty($config)) {
             return false;
