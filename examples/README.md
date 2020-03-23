@@ -29,7 +29,7 @@ This example shows how to redact text.
 ## [Variable](Variable/)
 This example demonstrates variable tag, which gets public variables from ancestor elements.
 
-## [Variable](WebView/)
+## [WebView](WebView/)
 This example demonstrates building a WebView in React.
 
 ## [WebsiteSpoofing](WebsiteSpoofing/)
