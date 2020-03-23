@@ -14,11 +14,11 @@ class ReactNativeWebView extends \LivingMarkup\Module
 {
     public function onRender()
     {
-        if($this->args['initiate'] == "true" && !empty($this->args['object'])) {
+        if ($this->args['initiate'] == "true" && !empty($this->args['object'])) {
             $object = $this->args['object']; // escape JSON
-            return "<script>
+            return "<body><script>
                 window.ReactNativeWebView.postMesage({$object}, '*');
-            </script>";
+            </script>" . $this->xml . "</body>";
         }
         
         return '<body>' . $this->xml . '</body>';

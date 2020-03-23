@@ -12,6 +12,7 @@
 namespace LivingMarkup;
 
 use Symfony\Component\Yaml\Yaml;
+use Symfony\Component\Yaml\Parser;
 
 /**
  * Class Configuration
@@ -28,7 +29,7 @@ class Configuration
      * Configuration constructor.
      * @param string $filename
      */
-    public function __construct(string $filename = NULL)
+    public function __construct(string $filename = null)
     {
         $this->load($filename);
     }
@@ -38,11 +39,11 @@ class Configuration
      * @param string $filename
      * @return bool|mixed
      */
-    public function load(string $filename = NULL)
+    public function load(string $filename = null)
     {
 
         // try to load config using filename if parameter set
-        if (($filename !== NULL) && (file_exists($filename))) {
+        if (($filename !== null) && (file_exists($filename))) {
             $this->config = $this->parse($filename);
             return true;
         }
@@ -71,7 +72,9 @@ class Configuration
      */
     private function parse($path)
     {
-        $config = Yaml::parseFile($path);
+        $yaml = new Parser();
+
+        $config = $yaml->parseFile($path);
 
         if (empty($config)) {
             return false;
@@ -111,7 +114,6 @@ class Configuration
      */
     public function get(): array
     {
-
         return $this->config;
     }
 
@@ -174,5 +176,4 @@ class Configuration
             return '';
         }
     }
-
 }
