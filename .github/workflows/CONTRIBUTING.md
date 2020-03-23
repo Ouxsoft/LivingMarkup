@@ -5,7 +5,7 @@
 *  Fork the project.
 *  Make your code edit.
 *  Update or add test for to avoid change breaking in future releases.
-*  Build out any changes using `composer build`. 
+*  Build out any changes using `composer build` and `composer update`. 
 *  Test your changes using `composer test`.
 *  Send a pull request.
 
