@@ -23,7 +23,8 @@
   ],
   "require": {
     "php": ">=7.1",
-    "ext-dom": "*"
+    "ext-dom": "*",
+    "symfony/yaml": "^5.1@dev"
   },
   "minimum-stability": "dev",
   "support": {
