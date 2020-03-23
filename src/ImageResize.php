@@ -2,8 +2,8 @@
 
 namespace LivingMarkup;
 
-class ImageResize {
-
+class ImageResize
+{
     const JPEG = 1;
     const JPG = 1;
     const PNG = 2;
@@ -38,7 +38,8 @@ class ImageResize {
      * @param $focal_point_x
      * @param $focal_point_y
      */
-    public function setFocalPoints($focal_point_x, $focal_point_y){
+    public function setFocalPoints($focal_point_x, $focal_point_y)
+    {
         $this->focal_point_x = $focal_point_x;
         $this->focal_point_y = $focal_point_y;
     }
@@ -47,7 +48,8 @@ class ImageResize {
      * Sets height
      * @param $height
      */
-    public function setHeight($height){
+    public function setHeight($height)
+    {
         $this->height=$height;
     }
 
@@ -55,7 +57,8 @@ class ImageResize {
      * Sets width
      * @param $width
      */
-    public function setWidth($width){
+    public function setWidth($width)
+    {
         $this->width = $width;
     }
 
@@ -64,7 +67,8 @@ class ImageResize {
      * @param $height
      * @param $width
      */
-    public function setDimensions($height, $width){
+    public function setDimensions($height, $width)
+    {
         $this->height = $height;
         $this->width = $width;
     }
@@ -73,16 +77,16 @@ class ImageResize {
      * Saves $this->image to specific path
      * @param $filename
      */
-    public function save($filename){
-
+    public function save($filename)
+    {
     }
 
     /**
      * Loads image for resizing
      * @param $filename
      */
-    public function load($filename){
-
+    public function load($filename)
+    {
     }
 
     /**
@@ -92,21 +96,21 @@ class ImageResize {
      * @param null $focal_point_x
      * @param null $focal_point_y
      */
-    public function crop($height = NULL, $width = NULL, $focal_point_x = NULL, $focal_point_y = NULL){
-
-        if($height!==NULL){
+    public function crop($height = null, $width = null, $focal_point_x = null, $focal_point_y = null)
+    {
+        if ($height!==null) {
             $this->height = $height;
         }
 
-        if($width!==NULL){
+        if ($width!==null) {
             $this->width = $width;
         }
 
-        if($focal_point_x!==NULL){
+        if ($focal_point_x!==null) {
             $this->focal_point_x = $focal_point_x;
         }
 
-        if($focal_point_y!==NULL){
+        if ($focal_point_y!==null) {
             $this->focal_point_x = $focal_point_y;
         }
     }
@@ -115,7 +119,8 @@ class ImageResize {
      * Return image object
      * @return mixed
      */
-    public function get(){
+    public function get()
+    {
         return $this->image;
     }
 }

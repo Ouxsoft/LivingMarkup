@@ -308,10 +308,22 @@ class Engine
             // get argument
             $arg_element = $arg_elements->item($i);
 
-            // add item to args
+            // get name
             $name = $arg_element->getAttribute('name');
+            if ($name === null) {
+                continue;
+            }
+
+            // get value
             $value = $arg_element->nodeValue;
 
+            // get type
+            $type = $arg_element->getAttribute('type');
+
+            // perform type juggling
+            $value = $this->setType($value, $type);
+
+            // add item to args
             $args->add($name, $value);
 
             // remove element
@@ -320,6 +332,46 @@ class Engine
 
         return $args->get();
     }
+
+    /**
+     * Set a value type to avoid Type Juggling issues and extend data types
+     *
+     * @param string $value
+     * @param string $type
+     * @return bool|mixed|string
+     */
+    public function setType($value = '', $type = 'string')
+    {
+        switch ($type) {
+            case 'string':
+            case 'str':
+                $value = settype($value, 'string');
+                break;
+            case 'json':
+                $value = json_decode($value);
+                break;
+            case 'int':
+            case 'integer':
+                $value = settype($value, 'integer');
+                break;
+            case 'float':
+                $value = settype($value, 'float');
+                break;
+            case 'bool':
+            case 'boolean':
+                $value = settype($value, 'boolean');
+                break;
+            case 'null':
+                $value = null;
+                break;
+            case 'list':
+                $value = explode(',', $value);
+                break;
+        }
+
+        return $value;
+    }
+
 
     /**
      * Returns DomDocument property as HTML5

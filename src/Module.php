@@ -97,8 +97,9 @@ abstract class Module implements ModuleDefaultInterface
      * @param $name
      * @return mixed|null
      */
-    public function getArgByName($name){
-        return array_key_exists($name, $this->args) ? $this->args[$name] : NULL;
+    public function getArgByName($name)
+    {
+        return array_key_exists($name, $this->args) ? $this->args[$name] : null;
     }
 
     /**

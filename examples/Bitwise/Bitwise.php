@@ -27,9 +27,9 @@ class Bitwise extends \LivingMarkup\Module
      */
     public function onRender()
     {
-        $x = $this->args['number'];
-        $count = $this->args['count'];
-        $operator = $this->args['operator'];
+        $x = $this->getArgByName('number');
+        $count = $this->getArgByName('count');
+        $operator = $this->getArgByName('operator');
 
         $operators = [
             '>>',

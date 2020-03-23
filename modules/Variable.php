@@ -99,7 +99,7 @@ class Variable extends \LivingMarkup\Module
         $variable = $this->getVariable($name, $tag);
 
         if ($variable===NULL) {
-            return '<!-- Variable "' . $this->args['name'] . '" Not Found -->';
+            return '<!-- Variable "' . $this->getArgByName('name') . '" Not Found -->';
         }
 
         if (isset($this->format)) {

@@ -34,7 +34,7 @@ function call_kernel(string $buffer) : string
     global $add_modules;
 
     // return buffer if it's not HTML
-    if($buffer==strip_tags($buffer)){
+    if ($buffer==strip_tags($buffer)) {
         return $buffer;
     }
 
@@ -48,7 +48,7 @@ function call_kernel(string $buffer) : string
     $config = new LivingMarkup\Configuration();
 
     // add runtime modules to config
-    if(isset($add_modules)){
+    if (isset($add_modules)) {
         $config->addModules($add_modules);
     }
 

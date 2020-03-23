@@ -14,8 +14,14 @@ use LivingMarkup\Path;
 
 class Image extends \LivingMarkup\Module
 {
+    // configurations
     const IMAGE_SOURCE_DIR = '/assets/images/';
     const IMAGE_CACHE_DIR = '/cache/type/images/';
+    const NUMBER_OF_STEPS = 4; // used to determine granularity of image sizes
+    const MAX_WIDTH = 200; // the largest image width supported
+    const MIN_WIDTH = 0; // the smallest image width supported
+    const MAX_HEIGHT = 200; // max largest image height supported
+    const MIN_HEIGHT = 0; // the smallest image height supported
 
     // output defaults
     private $src = 'blank.jpg';
@@ -42,6 +48,7 @@ class Image extends \LivingMarkup\Module
         // load source file info
         $src = $this->getArgByName('src');
         $this->fetchSourceInfo($src);
+        $this->fetchSourceInfo($src);
 
         // set dimensions
         $width = $this->getArgByName('width');
@@ -54,7 +61,56 @@ class Image extends \LivingMarkup\Module
 
         // set alt
         $alt = $this->getArgByName('alt');
-        $this->setCacheURL($alt);
+        $this->setAlt($alt);
+
+        // set src
+        $this->src = $this->getArgByName('src');
+    }
+
+    /**
+     * Get sizes
+     *
+     * @param $width
+     * @param $height
+     * @return array
+     */
+    private function getSizes($width, $height){
+        // set max and min image height
+        $max_width = ($width < self::MAX_WIDTH) ? $width : self::MAX_WIDTH;
+        $max_height = ($height < self::MAX_HEIGHT) ? $height : self::MAX_HEIGHT;
+        $min_width = ($width > self::MIN_WIDTH) ? $width : self::MIN_WIDTH;
+        $min_height = ($height > self::MIN_HEIGHT) ? $height : self::MIN_HEIGHT;
+
+        // determine width increment
+        $width_increment = ($max_width - $min_width) / self::NUMBER_OF_STEPS;
+        $width_increment = round($width_increment);
+
+        // height width increment
+        $height_increment = ($max_height - $min_width) / self::NUMBER_OF_STEPS;
+        $height_increment = round($height_increment);
+
+        // figure out possible sizes
+        $current_width = $min_width;
+        $current_height = $min_height;
+        $sizes = [];
+        do {
+            // add current sizes to array
+            $sizes[] = [
+                'height' => $current_height,
+                'width' => $current_width
+            ];
+
+            // increment width
+            $current_width += $width_increment;
+            $current_width = ($current_width < $max_width) ? $current_width : $max_width;
+
+            // increment height
+            $current_height += $height_increment;
+            $current_height = ($current_height < $max_height) ? $current_height : $max_height;
+
+        } while ( ($current_width < $max_width) && ($current_height < $max_height) );
+
+        return $sizes;
     }
 
     /**
@@ -64,10 +120,38 @@ class Image extends \LivingMarkup\Module
      */
     public function onRender()
     {
-        // TODO: Consider multiple size screen using HTML images
-        return <<<HTML
-<img src="{$this->src}" alt="{$this->alt}" width="{$this->width}" height="{$this->height}"/>
-HTML;
+
+        $width = $this->width;
+        $height = $this->height;
+
+        $out = '<img';
+
+        $sizes = $this->getSizes($width, $height);
+
+        // srcset
+        $last_key = array_key_last($sizes);
+        $out .= ' srcset="';
+        foreach($sizes as $key => $size){
+            $out .= $this->getCacheURL($this->src, $size['width'], $size['height']) .
+                ' ' . $size['width'] . 'w' . (($key!==$last_key) ?  ',' : '');
+        }
+        $out .= '"';
+
+        // sizes
+        $sizes = [
+            '(max-width: 600px) 480px',
+            '800px'
+        ];
+        $out .= ' sizes="';
+        foreach($sizes as $key => $size){
+            $out .= $size . (($key!==$last_key) ?  ',' : '');
+        }
+        $out .= '"';
+
+        // src and alt
+        $out .= ' src="' . $this->getCacheURL($this->src) . '" alt="' . $this->alt . '"/>';
+
+        return $out;
     }
 
     public function fetchSourceInfo($source)
@@ -85,28 +169,29 @@ HTML;
     /**
      * Gets an URL for where image cache is or will stored
      *
-     * @param null $alt
+     * @param null $src
+     * @param null $width
+     * @param null $height
      * @return string
      */
-    public function setCacheURL($alt = NULL)
+    public function getCacheURL($src = NULL, $width = NULL, $height = NULL)
     {
+        // set width and height if not provided
+        $width = ($width === NULL) ? $width : $this->width;
+        $height = ($height === NULL) ? $height : $this->height;
+
+        // start with base filename
+        $filename = basename($src);
 
         // use base cache directory
-        $src = self::IMAGE_CACHE_DIR;
+        $path = self::IMAGE_CACHE_DIR;
 
-        if (empty($alt)) {
-            $this->alt = 'decorative';
-            $filename = 'decorative.jpg';
-        } else {
-            $this->alt = $alt;
-            $filename = $alt . 'jpg';
-        }
-
-        $src .= Path::encode([
+        // add parametrized cache path
+        $path .= Path::encode([
             'id' => $this->id,
             'dimension' => [
-                $this->width,
-                $this->height
+                $width,
+                $height
             ],
             'offset' => [
                 $this->offset['x'],
@@ -115,9 +200,21 @@ HTML;
             'filename' => $filename
         ]);
 
-        $this->src = $src;
+        return $path;
+    }
 
-        return true;
+    /**
+     * Set alt attribute
+     *
+     * @param $alt
+     */
+    public function setAlt($alt){
+        if (empty($alt)) {
+            $this->alt = 'decorative';
+            return;
+        }
+
+        $this->alt = $alt;
     }
 
     /**
