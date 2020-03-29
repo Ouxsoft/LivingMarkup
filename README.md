@@ -35,7 +35,7 @@ class UserProfile {
     public $first_name = 'Jane Doe';
     
     public onRender() {
-        return '<div class="user-profile ' . $this->args['style'] . '">' . $this->xml . '</div>';
+        return '<div class="user-profile ' . $this->getArgByName('style') . '">' . $this->xml . '</div>';
     }
 }
 ```
