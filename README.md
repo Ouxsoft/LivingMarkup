@@ -32,7 +32,7 @@ namespace Modules\Blocks
 
 class UserProfile {
 
-    public $first_name = 'Jane Doe';
+    public $first_name = 'Jane';
     
     public onRender() {
         return '<div class="user-profile ' . $this->getArgByName('style') . '">' . $this->xml . '</div>';
