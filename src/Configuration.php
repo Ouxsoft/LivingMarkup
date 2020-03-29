@@ -11,8 +11,9 @@
 
 namespace LivingMarkup;
 
-use Symfony\Component\Yaml\Yaml;
-use Symfony\Component\Yaml\Parser;
+use Laminas\Config\Reader\Yaml;
+use Laminas\Validator\Exception\RuntimeException;
+use Laminas\Validator\File\Exists;
 
 /**
  * Class Configuration
@@ -24,6 +25,7 @@ class Configuration
     const DIST_FILENAME = 'config.dist.yml';
 
     public $config;
+    private $root_dir;
 
     /**
      * Configuration constructor.
@@ -31,6 +33,9 @@ class Configuration
      */
     public function __construct(string $filename = null)
     {
+        // only allow files that exist within file root directory, one level up
+        $this->root_dir = dirname(__DIR__, 1) . DIRECTORY_SEPARATOR;
+
         $this->load($filename);
     }
 
@@ -41,25 +46,38 @@ class Configuration
      */
     public function load(string $filename = null)
     {
+        $validator = new Exists($this->root_dir);
 
-        // try to load config using filename if parameter set
-        if (($filename !== null) && (file_exists($filename))) {
-            $this->config = $this->parse($filename);
-            return true;
+        // try to load config using filename
+        try {
+            if (($filename !== null) && ($validator->isValid($filename))) {
+                $this->config = $this->parse($filename);
+                return true;
+            }
+        } catch (\Exception $e) {
+            // ignore missing file exception
         }
 
         // try to load local config
-        $path = dirname(__DIR__, 1) . DIRECTORY_SEPARATOR . self::LOCAL_FILENAME;
-        if (file_exists($path)) {
-            $this->config = $this->parse($path);
-            return true;
+        try {
+            $path = self::LOCAL_FILENAME;
+            if ($validator->isValid($path)) {
+                $this->config = $this->parse($path);
+                return true;
+            }
+        } catch (\Exception $e) {
+            // ignore missing file exception
         }
 
         // try to load dist config
-        $path =  dirname(__DIR__, 1) . DIRECTORY_SEPARATOR . self::DIST_FILENAME;
-        if (file_exists($path)) {
-            $this->config = $this->parse($path);
-            return true;
+        try {
+            $path = self::DIST_FILENAME;
+            if ($validator->isValid($path)) {
+                $this->config = $this->parse($path);
+                return true;
+            }
+        } catch (\Exception $e) {
+            // ignore missing file exception
         }
 
         return false;
@@ -72,9 +90,8 @@ class Configuration
      */
     private function parse($path)
     {
-        $yaml = new Parser();
-
-        $config = $yaml->parseFile($path);
+        $reader = new Yaml();
+        $config = $reader->fromFile($this->root_dir . $path);
 
         if (empty($config)) {
             return false;

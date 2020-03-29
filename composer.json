@@ -24,7 +24,8 @@
   "require": {
     "php": ">=7.1",
     "ext-dom": "*",
-    "symfony/yaml": "^5.1@dev"
+    "laminas/laminas-config": "^3.3.0",
+    "laminas/laminas-validator": "^2.13.2"
   },
   "minimum-stability": "dev",
   "support": {
