@@ -35,7 +35,21 @@ class Configuration
         // only allow files that exist within file root directory, one level up
         $this->root_dir = dirname(__DIR__, 1) . DIRECTORY_SEPARATOR;
 
-        $this->load($filename);
+        // load filename, if provided
+        if($this->load($filename)){
+            return true;
+        }
+
+        // load local config, if exists
+        if($this->load(self::LOCAL_FILENAME)){
+            return true;
+        }
+
+        // load dist file, if exists
+        if($this->load(self::DIST_FILENAME)){
+            return true;
+        }
+
     }
 
     /**
@@ -43,40 +57,23 @@ class Configuration
      * @param string $filename
      * @return bool|mixed
      */
-    public function load(string $filename = null)
-    {
+    public function load(string $filename = null) {
+
         $validator = new Exists($this->root_dir);
+
+        // check if filename provided
+        if($filename === null){
+            return false;
+        }
 
         // try to load config using filename
         try {
-            if (($filename !== null) && ($validator->isValid($filename))) {
+            if ($validator->isValid($filename)) {
                 $this->config = $this->parse($filename);
                 return true;
             }
         } catch (\Exception $e) {
-            // ignore missing file exception
-        }
-
-        // try to load local config
-        try {
-            $path = self::LOCAL_FILENAME;
-            if ($validator->isValid($path)) {
-                $this->config = $this->parse($path);
-                return true;
-            }
-        } catch (\Exception $e) {
-            // ignore missing file exception
-        }
-
-        // try to load dist config
-        try {
-            $path = self::DIST_FILENAME;
-            if ($validator->isValid($path)) {
-                $this->config = $this->parse($path);
-                return true;
-            }
-        } catch (\Exception $e) {
-            // ignore missing file exception
+            return false;
         }
 
         return false;
