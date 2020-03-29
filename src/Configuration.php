@@ -12,7 +12,6 @@
 namespace LivingMarkup;
 
 use Laminas\Config\Reader\Yaml;
-use Laminas\Validator\Exception\RuntimeException;
 use Laminas\Validator\File\Exists;
 
 /**
