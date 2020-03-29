@@ -12,7 +12,7 @@
 ***LivingMarkup is an PHP implementation of a [LHTML5 processor](https://github.com/hxtree/lhtml5).*** It is a powerful and flexible way to build dynamic web pages.
 
 ## Usage
-Simple example::
+Below is a simple example.
 
 LHTML5 document:
 ```PHP
