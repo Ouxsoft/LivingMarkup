@@ -11,6 +11,7 @@
 
 namespace LivingMarkup;
 
+use Exception;
 use Laminas\Config\Reader\Yaml;
 use Laminas\Validator\File\Exists;
 
@@ -49,7 +50,7 @@ class Configuration
         if($this->load(self::DIST_FILENAME)){
             return true;
         }
-
+        return false;
     }
 
     /**
@@ -72,7 +73,7 @@ class Configuration
                 $this->config = $this->parse($filename);
                 return true;
             }
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return false;
         }
 
@@ -118,6 +119,7 @@ class Configuration
     public function add(string $key, $value): bool
     {
         $this->config[$key] = $value;
+
         return true;
     }
 
@@ -132,9 +134,9 @@ class Configuration
 
     /**
      * Get array of modules if in config
-     * @return bool
+     * @return array
      */
-    public function getModules()
+    public function getModules() : array
     {
         // check if exists
         if (!$this->isset('modules', 'types')) {
@@ -163,9 +165,9 @@ class Configuration
 
     /**
      * Get array of modules if in config
-     * @return bool
+     * @return array
      */
-    public function getMethods()
+    public function getMethods() : array
     {
         // check if exists
         if (!$this->isset('modules', 'methods')) {

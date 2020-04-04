@@ -47,8 +47,9 @@ class Document extends DomDocument
     /**
      * Loads source, which is in LHTML5 format, as DomDocument
      *
-     * Hyperlink custom load page wrapper is required for server side HTML5 entity support.
+     * A custom load page wrapper is required for server-side HTML5 entity support.
      * Using $this->loadHTMLFile will removes HTML5 entities, such as &copy;
+     * due to the libxml not supporting HTML5
      *
      * @param string $source must be well formatted and feature a root element, e.g. <html>
      * @return bool
@@ -81,5 +82,6 @@ class Document extends DomDocument
             $root_element = $this->createElement('html');
             $this->appendChild($root_element);
         }
+        return true;
     }
 }

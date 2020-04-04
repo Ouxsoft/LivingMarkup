@@ -1,14 +1,17 @@
 {
   "name": "hxtree/livingmarkup",
-  "description": "LivingMarkup is a LHTML parser used for rapidly building dynamic pages.",
+  "description": "LivingMarkup is a LHTML5 processor.",
   "keywords": [
     "livingMarkup",
+    "template",
     "xml",
     "php",
-    "preprocessor",
-    "template",
+    "processor",
+    "dom",
     "engine",
+    "lhtml5",
     "lhtml",
+    "html5",
     "html",
     "markup"
   ],
@@ -24,6 +27,8 @@
   "require": {
     "php": ">=7.1",
     "ext-dom": "*",
+    "ext-json": "*",
+    "ext-libxml": "*",
     "laminas/laminas-config": "^3.3.0",
     "laminas/laminas-validator": "^2.13.2"
   },

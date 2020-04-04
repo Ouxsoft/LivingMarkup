@@ -10,6 +10,9 @@
 
 namespace LivingMarkup;
 
+use DOMElement;
+use DOMXPath;
+
 /**
  * Class Engine
  *
@@ -49,7 +52,7 @@ class Engine
         $this->dom->loadSource($config->getSource());
 
         // create document iterator for this dom
-        $this->xpath = new \DOMXPath($this->dom);
+        $this->xpath = new DOMXPath($this->dom);
 
         // create a module pool
         $this->modules = new ModulePool();
@@ -111,9 +114,9 @@ class Engine
      * Gets DOMElement using module_id provided
      *
      * @param string $module_id
-     * @return \DOMElement|null
+     * @return DOMElement|null
      */
-    public function getDomElementByPlaceholderId(string $module_id): ?\DOMElement
+    public function getDomElementByPlaceholderId(string $module_id): ?DOMElement
     {
         // find and replace element
         $query = '//*[@' . $this->modules::INDEX_ATTRIBUTE . '="' . $module_id . '"]';
@@ -128,10 +131,10 @@ class Engine
      * XPath query for class $this->DOM property
      *
      * @param string $query
-     * @param \DOMElement $node
+     * @param DOMElement $node
      * @return mixed
      */
-    public function query(string $query, \DOMElement $node = null)
+    public function query(string $query, DOMElement $node = null)
     {
         return $this->xpath->query($query, $node);
     }
@@ -192,10 +195,10 @@ class Engine
     /**
      * Replaces DOMElement from property DOM with contents provided
      *
-     * @param \DOMElement $element
+     * @param DOMElement $element
      * @param string $new_xml
      */
-    public function replaceDomElement(\DOMElement &$element, string $new_xml): void
+    public function replaceDomElement(DOMElement &$element, string $new_xml): void
     {
         // create a blank document fragment
         $fragment = $this->dom->createDocumentFragment();
@@ -236,11 +239,11 @@ class Engine
     /**
      * Instantiate a DOMElement as a Module using specified class_name
      *
-     * @param \DOMElement $element
+     * @param DOMElement $element
      * @param string $class_name
      * @return bool
      */
-    public function instantiateModule(\DOMElement &$element, string $class_name): bool
+    public function instantiateModule(DOMElement &$element, string $class_name): bool
     {
         // skip if placeholder already assigned
         if ($element->hasAttribute($this->modules::INDEX_ATTRIBUTE)) {
@@ -286,10 +289,10 @@ class Engine
      * Get DOMElement's attribute and child <args> elements and return as a single list
      * items within the list are called args as they are passed as parameters to module methods
      *
-     * @param \DOMElement $element
+     * @param DOMElement $element
      * @return array
      */
-    public function getElementArgs(\DOMElement &$element): array
+    public function getElementArgs(DOMElement &$element): array
     {
         $args = new PrunedList;
 

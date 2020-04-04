@@ -71,15 +71,15 @@ abstract class Module implements ModuleDefaultInterface
     /**
      * Call onRender if exists on echo / output
      *
-     * @return mixed
+     * @return string
      */
-    public function __toString()
+    public function __toString() : string
     {
         if (method_exists($this, 'onRender')) {
             return $this->onRender();
         }
+        return '';
     }
-
 
     /**
      * Gets the ID of the Module, useful for ModulePool
