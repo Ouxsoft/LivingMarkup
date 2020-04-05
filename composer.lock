@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "8bb49b1140272a7c14b138abd228f51f",
+    "content-hash": "d0649b6c26152da3ad81951744a3ee1d",
     "packages": [
         {
             "name": "container-interop/container-interop",
@@ -44,12 +44,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/laminas/laminas-config.git",
-                "reference": "15cb8882818452488e3d74e2c854c8abc1438671"
+                "reference": "9b08816e063db25cc32f5838bd25720cd88c6a4c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laminas/laminas-config/zipball/15cb8882818452488e3d74e2c854c8abc1438671",
-                "reference": "15cb8882818452488e3d74e2c854c8abc1438671",
+                "url": "https://api.github.com/repos/laminas/laminas-config/zipball/9b08816e063db25cc32f5838bd25720cd88c6a4c",
+                "reference": "9b08816e063db25cc32f5838bd25720cd88c6a4c",
                 "shasum": ""
             },
             "require": {
@@ -63,7 +63,7 @@
                 "container-interop/container-interop": "<1.2.0"
             },
             "replace": {
-                "zendframework/zend-config": "self.version"
+                "zendframework/zend-config": "^3.3.0"
             },
             "require-dev": {
                 "laminas/laminas-coding-standard": "~1.0.0",
@@ -100,7 +100,7 @@
                 "config",
                 "laminas"
             ],
-            "time": "2020-03-28T08:49:07+00:00"
+            "time": "2020-03-29T11:10:32+00:00"
         },
         {
             "name": "laminas/laminas-stdlib",
@@ -108,12 +108,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/laminas/laminas-stdlib.git",
-                "reference": "6d81ad8f1a28a860d797491350cd9d40d3496425"
+                "reference": "89ff99fa2ac9fb20c87ab988ea81e2e81c370df0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laminas/laminas-stdlib/zipball/6d81ad8f1a28a860d797491350cd9d40d3496425",
-                "reference": "6d81ad8f1a28a860d797491350cd9d40d3496425",
+                "url": "https://api.github.com/repos/laminas/laminas-stdlib/zipball/89ff99fa2ac9fb20c87ab988ea81e2e81c370df0",
+                "reference": "89ff99fa2ac9fb20c87ab988ea81e2e81c370df0",
                 "shasum": ""
             },
             "require": {
@@ -121,7 +121,7 @@
                 "php": "^5.6 || ^7.0"
             },
             "replace": {
-                "zendframework/zend-stdlib": "self.version"
+                "zendframework/zend-stdlib": "^3.2.1"
             },
             "require-dev": {
                 "laminas/laminas-coding-standard": "~1.0.0",
@@ -150,7 +150,7 @@
                 "laminas",
                 "stdlib"
             ],
-            "time": "2020-03-28T09:03:32+00:00"
+            "time": "2020-03-29T11:32:45+00:00"
         },
         {
             "name": "laminas/laminas-validator",
@@ -158,12 +158,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/laminas/laminas-validator.git",
-                "reference": "9c7e3ce750394c386d958047382e6c2fe20d2c19"
+                "reference": "e453316e452bb29302631897cd8ac73798bd4377"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laminas/laminas-validator/zipball/9c7e3ce750394c386d958047382e6c2fe20d2c19",
-                "reference": "9c7e3ce750394c386d958047382e6c2fe20d2c19",
+                "url": "https://api.github.com/repos/laminas/laminas-validator/zipball/e453316e452bb29302631897cd8ac73798bd4377",
+                "reference": "e453316e452bb29302631897cd8ac73798bd4377",
                 "shasum": ""
             },
             "require": {
@@ -173,7 +173,7 @@
                 "php": "^7.1"
             },
             "replace": {
-                "zendframework/zend-validator": "self.version"
+                "zendframework/zend-validator": "^2.13.0"
             },
             "require-dev": {
                 "laminas/laminas-cache": "^2.6.1",
@@ -229,7 +229,7 @@
                 "laminas",
                 "validator"
             ],
-            "time": "2020-03-28T09:05:11+00:00"
+            "time": "2020-03-31T18:59:18+00:00"
         },
         {
             "name": "laminas/laminas-zendframework-bridge",
@@ -237,12 +237,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/laminas/laminas-zendframework-bridge.git",
-                "reference": "16c740e8ea30698694262f3fe5e740fb02160120"
+                "reference": "716ec837a1e10dd909989950ac7ccdbd34af4e4b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laminas/laminas-zendframework-bridge/zipball/16c740e8ea30698694262f3fe5e740fb02160120",
-                "reference": "16c740e8ea30698694262f3fe5e740fb02160120",
+                "url": "https://api.github.com/repos/laminas/laminas-zendframework-bridge/zipball/716ec837a1e10dd909989950ac7ccdbd34af4e4b",
+                "reference": "716ec837a1e10dd909989950ac7ccdbd34af4e4b",
                 "shasum": ""
             },
             "require": {
@@ -281,7 +281,7 @@
                 "laminas",
                 "zf"
             ],
-            "time": "2020-03-26T16:09:17+00:00"
+            "time": "2020-04-03T16:03:11+00:00"
         },
         {
             "name": "psr/container",
@@ -441,16 +441,16 @@
         },
         {
             "name": "doctrine/annotations",
-            "version": "1.9.x-dev",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/annotations.git",
-                "reference": "dc73c4659324f87f4eee190ee1db60d3c3b2bb52"
+                "reference": "5ce13d0a7ed32dea4075b9a3d3837602d1eecfbf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/annotations/zipball/dc73c4659324f87f4eee190ee1db60d3c3b2bb52",
-                "reference": "dc73c4659324f87f4eee190ee1db60d3c3b2bb52",
+                "url": "https://api.github.com/repos/doctrine/annotations/zipball/5ce13d0a7ed32dea4075b9a3d3837602d1eecfbf",
+                "reference": "5ce13d0a7ed32dea4075b9a3d3837602d1eecfbf",
                 "shasum": ""
             },
             "require": {
@@ -465,7 +465,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.7.x-dev"
+                    "dev-master": "1.11.x-dev"
                 }
             },
             "autoload": {
@@ -506,7 +506,7 @@
                 "docblock",
                 "parser"
             ],
-            "time": "2020-03-28T10:27:42+00:00"
+            "time": "2020-04-02T18:32:07+00:00"
         },
         {
             "name": "doctrine/cache",
@@ -1825,12 +1825,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "3c03f884f4839f874326de00ab53d38765f8c6a1"
+                "reference": "6f19efdc4bf8113f72e2eaccd12ad758df4ba789"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/3c03f884f4839f874326de00ab53d38765f8c6a1",
-                "reference": "3c03f884f4839f874326de00ab53d38765f8c6a1",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/6f19efdc4bf8113f72e2eaccd12ad758df4ba789",
+                "reference": "6f19efdc4bf8113f72e2eaccd12ad758df4ba789",
                 "shasum": ""
             },
             "require": {
@@ -1900,7 +1900,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2020-03-28T13:16:23+00:00"
+            "time": "2020-04-03T05:57:47+00:00"
         },
         {
             "name": "psr/cache",
@@ -3666,12 +3666,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "8b516c453a7084759d14c254a016a8581c35608a"
+                "reference": "77b423caf31a35f0285be898e3a74fea7d867629"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/8b516c453a7084759d14c254a016a8581c35608a",
-                "reference": "8b516c453a7084759d14c254a016a8581c35608a",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/77b423caf31a35f0285be898e3a74fea7d867629",
+                "reference": "77b423caf31a35f0285be898e3a74fea7d867629",
                 "shasum": ""
             },
             "require": {
@@ -3720,7 +3720,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2020-03-27T16:41:09+00:00"
+            "time": "2020-03-31T06:42:17+00:00"
         },
         {
             "name": "webmozart/assert",
@@ -3780,7 +3780,9 @@
     "prefer-lowest": false,
     "platform": {
         "php": ">=7.1",
-        "ext-dom": "*"
+        "ext-dom": "*",
+        "ext-json": "*",
+        "ext-libxml": "*"
     },
     "platform-dev": []
 }
