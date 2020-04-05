@@ -64,7 +64,8 @@ abstract class Module implements ModuleDefaultInterface
     {
         // store args passed
         $this->args = $args;
-        // assign object id to xml
+
+        // set object id
         $this->module_id = spl_object_hash($this);
     }
 

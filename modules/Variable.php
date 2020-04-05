@@ -89,13 +89,15 @@ class Variable extends \LivingMarkup\Module
 
     /**
      * on render call
+     *
      * @return string
      */
     public function onRender(): string
     {
+        $name = $this->getArgByName('name') ?? '';
+        $tag = $this->getArgByName('tag') ?? '*';
+
         // get variable
-        $name = $this->args['name'] ?? '';
-        $tag = $this->args['tag'] ?? '*';
         $variable = $this->getVariable($name, $tag);
 
         if ($variable===NULL) {
@@ -105,6 +107,8 @@ class Variable extends \LivingMarkup\Module
         if (isset($this->format)) {
             return $this->format($this->name, $this->format);
         }
+
+        $variable = htmlentities($variable, ENT_QUOTES);
 
         return $variable;
     }
