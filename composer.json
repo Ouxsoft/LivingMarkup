@@ -29,6 +29,7 @@
     "ext-dom": "*",
     "ext-json": "*",
     "ext-libxml": "*",
+    "ext-gd": "*",
     "laminas/laminas-config": "^3.3.0",
     "laminas/laminas-validator": "^2.13.2"
   },

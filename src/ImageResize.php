@@ -2,6 +2,8 @@
 
 namespace LivingMarkup;
 
+use Laminas\Validator\File\Exists;
+
 class ImageResize
 {
     const JPEG = 1;

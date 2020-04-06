@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "d0649b6c26152da3ad81951744a3ee1d",
+    "content-hash": "4f5fa0abf9cbf1abcf27781aa3ac4023",
     "packages": [
         {
             "name": "container-interop/container-interop",
@@ -1016,12 +1016,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfPHP/PHP-CS-Fixer.git",
-                "reference": "f71cee9030206ce86340d408f1cc401959b41542"
+                "reference": "98e354fa250a604d120a6c279f95841132b3d5c9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfPHP/PHP-CS-Fixer/zipball/f71cee9030206ce86340d408f1cc401959b41542",
-                "reference": "f71cee9030206ce86340d408f1cc401959b41542",
+                "url": "https://api.github.com/repos/FriendsOfPHP/PHP-CS-Fixer/zipball/98e354fa250a604d120a6c279f95841132b3d5c9",
+                "reference": "98e354fa250a604d120a6c279f95841132b3d5c9",
                 "shasum": ""
             },
             "require": {
@@ -1104,7 +1104,7 @@
                 }
             ],
             "description": "A tool to automatically fix PHP code style",
-            "time": "2020-03-10T14:56:20+00:00"
+            "time": "2020-04-05T10:22:25+00:00"
         },
         {
             "name": "myclabs/deep-copy",
@@ -3782,7 +3782,8 @@
         "php": ">=7.1",
         "ext-dom": "*",
         "ext-json": "*",
-        "ext-libxml": "*"
+        "ext-libxml": "*",
+        "ext-gd": "*"
     },
     "platform-dev": []
 }
