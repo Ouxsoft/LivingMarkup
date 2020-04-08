@@ -1,11 +1,10 @@
 <?php
-
 namespace LivingMarkup;
 
 use Laminas\Validator\File\Exists;
 
 /**
- * Class ImageResize
+ * Class Image
  * checks if the requested image exists in cache using a hash
  * if it is not cached, it checks to see if the image exists as an assets
  * if the image exists, than it generates a resized image and stores it in cache
@@ -13,7 +12,7 @@ use Laminas\Validator\File\Exists;
  *
  * @package LivingMarkup
  */
-class ImageResize
+class Image
 {
     const JPEG = 1;
     const JPG = 1;
@@ -27,37 +26,40 @@ class ImageResize
     private $focal_point_x;
     private $focal_point_y;
     private $image;
-    private $image_original;
     private $cache_dir;
     private $cache_filename;
     private $cache_filepath;
     private $assets_dir;
 
     /**
-     * ImageResize constructor.
+     * Image constructor.
      * @param $relative_path
      */
-    public function __construct(string $relative_path = null){
+    public function __construct(string $relative_path = null)
+    {
         // declare directories
-        $this->root_dir = dirname(__DIR__, 1) . DIRECTORY_SEPARATOR;
-        $this->assets_dir = $this->root_dir . 'assets' . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR;
-        $this->cache_dir = $this->root_dir . 'var' . DIRECTORY_SEPARATOR . 'cache' . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR;
+        $this->root_dir = dirname(__DIR__, 1) . '/';
+        $this->assets_dir = $this->root_dir . 'assets/images/';
+        $this->cache_dir = $this->root_dir . 'var/cache/images/';
 
         $this->setFilename($relative_path);
     }
 
     /**
+     * picks the file in assets to use
      * @param $filename
      * @return bool
      */
-    public function setFilename(string $filename) : bool{
-        if($filename == null){
+    public function setFilename(string $filename): bool
+    {
+        if ($filename == null) {
             return false;
         }
 
+        // set filename
         $this->filename = $filename;
 
-        // set cache hash of file name, seems wiser than hash_file()
+        // set cache hash of file name
         $this->cache_filename = hash('sha256', $filename);
         $this->cache_filepath = $this->cache_dir . $this->cache_filename;
 
@@ -65,37 +67,98 @@ class ImageResize
     }
 
     /**
-     * Get cached file
+     * Outputs file
+     * @return bool
      */
-    public function outputCache(){
+    public function output(): bool
+    {
+        // if cache exist, then output instead
+        if ($this->sendCache()) {
+            return true;
+        }
+
+        // load file
+        if (!$this->load()) {
+            // if cannot load file send empty
+            $this->sendEmpty();
+            return false;
+        }
+
+        // save cache
+        $this->saveCache();
+
+        // send image
+        if ($this->send()) {
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * Send cache of file requested
+     * @return bool
+     */
+    public function sendCache(): bool
+    {
 
         try {
             // check if cache exists
             $cache_validator = new Exists($this->cache_dir);
             if ($cache_validator->isValid($this->cache_filename)) {
-                // return cached image
-                header('Content-Type: image/jpeg');
-                echo file_get_contents($this->cache_filepath, false);
-                die();
+                // send cache file
+                $this->send($this->cache_filepath);
+                return true;
             }
         } catch (Exception $exception) {
-            return false;
+            // do nothing
         }
 
+        return false;
     }
 
-    public function output(){
+    /**
+     * Send empty
+     */
+    private function sendEmpty(){
+        header('HTTP/1.0 404 Not Found');
+    }
 
-        // if cache exist, then output instead
-        $this->outputCache();
+    /**
+     * Send $this->image or file, if provided
+     * @param null $resource
+     * @return bool
+     */
+    private function send($resource = null): bool
+    {
 
+        header('Content-Type: image/jpeg');
+
+        if ($resource == $this->cache_filepath) {
+            echo file_get_contents($resource, false);
+            return true;
+        }
+
+        imagejpeg($this->image, null, 100);
+
+        return true;
+    }
+
+    /**
+     * Loads image for resizing
+     * @return bool
+     */
+    private function load(): bool
+    {
         // assets
         $assets_filename = $this->filename;
         $assets_filepath = $this->assets_dir . $assets_filename;
         $assets_validator = new Exists($this->assets_dir);
 
-// if asset cache and provide
-//if ($assets_validator->isValid($assets_filename)) {
+        if (!$assets_validator->isValid($assets_filename)) {
+            //    return false;
+        }
+
         // get width and height
         list($width_original, $height_original) = getimagesize($assets_filepath);
 
@@ -108,9 +171,9 @@ class ImageResize
             $this->height = $this->width / $ratio_original;
         }
 
-        $image_output = imagecreatetruecolor($this->width, $this->height);
+        $this->image = imagecreatetruecolor($this->width, $this->height);
         $image_original = imagecreatefromjpeg($assets_filepath);
-        imagecopyresampled($image_output,
+        imagecopyresampled($this->image,
             $image_original,
             0,
             0,
@@ -121,12 +184,16 @@ class ImageResize
             $width_original,
             $height_original);
 
-        // write file to cache
-        imagejpeg($image_output, $this->cache_filepath, 100);
+        return true;
+    }
 
-        // output
-        header('Content-Type: image/jpeg');
-        imagejpeg($image_output, null, 100);
+    /**
+     * Saves $this->image to specific path
+     */
+    private function saveCache()
+    {
+        // write $this->image file to $cache_filepath
+        imagejpeg($this->image, $this->cache_filepath, 100);
     }
 
     /**
@@ -164,7 +231,7 @@ class ImageResize
      */
     public function setHeight($height)
     {
-        $this->height=$height;
+        $this->height = $height;
     }
 
     /**
@@ -188,22 +255,6 @@ class ImageResize
     }
 
     /**
-     * Saves $this->image to specific path
-     * @param $filename
-     */
-    public function save($filename)
-    {
-    }
-
-    /**
-     * Loads image for resizing
-     * @param $filename
-     */
-    public function load($filename)
-    {
-    }
-
-    /**
      * Crops image
      * @param null $height
      * @param null $width
@@ -212,19 +263,19 @@ class ImageResize
      */
     public function crop($height = null, $width = null, $focal_point_x = null, $focal_point_y = null)
     {
-        if ($height!==null) {
+        if ($height !== null) {
             $this->height = $height;
         }
 
-        if ($width!==null) {
+        if ($width !== null) {
             $this->width = $width;
         }
 
-        if ($focal_point_x!==null) {
+        if ($focal_point_x !== null) {
             $this->focal_point_x = $focal_point_x;
         }
 
-        if ($focal_point_y!==null) {
+        if ($focal_point_y !== null) {
             $this->focal_point_x = $focal_point_y;
         }
     }

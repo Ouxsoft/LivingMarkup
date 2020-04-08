@@ -16,7 +16,6 @@ class Image extends \LivingMarkup\Module
 {
     // configurations
     const IMAGE_SOURCE_DIR = '/assets/images/';
-    const IMAGE_CACHE_DIR = '/cache/type/images/';
     const NUMBER_OF_STEPS = 4; // used to determine granularity of image sizes
     const MAX_WIDTH = 200; // the largest image width supported
     const MIN_WIDTH = 0; // the smallest image width supported
@@ -43,7 +42,8 @@ class Image extends \LivingMarkup\Module
     /**
      * Executed during load
      */
-    public function onLoad(){
+    public function onLoad()
+    {
 
         // load source file info
         $src = $this->getArgByName('src');
@@ -67,6 +67,129 @@ class Image extends \LivingMarkup\Module
         $this->src = $this->getArgByName('src');
     }
 
+    public function fetchSourceInfo($source)
+    {
+
+        // TODO: add traversing prevention
+        $filepath = __DIR__ . '/..' . self::IMAGE_SOURCE_DIR . $source;
+
+        // get dimensions from original image file
+        [$this->source_width, $this->source_height, $this->source_type, $this->source_attr] = getimagesize($filepath);
+
+        return true;
+    }
+
+    /**
+     * Set dimension (width x height) of output
+     *
+     * @param $width
+     * @param $height
+     * @return bool
+     */
+    public function setDimensions($width, $height)
+    {
+
+        // if width provided as attribute set
+        if (is_numeric($width)) {
+            $this->width = (int)$width;
+        }
+
+        // if height provided as attribute set
+        if (is_numeric($height)) {
+            $this->height = (int)$height;
+        }
+
+        // return as both height and width are set
+        if (($this->width !== NULL) && ($this->height !== NULL)) {
+            return true;
+        }
+
+        // determine height if height provided based on original image ratio
+        if (($this->width !== NULL) && ($this->height === NULL)) {
+            $this->height = round($this->width * ($this->source_height / $this->source_width));
+            return true;
+        }
+
+        // determine width if height provided based on original image ratio
+        if (($this->width === NULL) && ($this->height !== NULL)) {
+            $this->width = round($this->height * ($this->source_width / $this->source_height));
+            return true;
+        }
+
+        // nether width or height provided use original image size
+        $this->width = $this->source_width;
+        $this->height = $this->source_height;
+        return true;
+    }
+
+    /**
+     * Set offset from 10,-10
+     *
+     * @param $offset
+     */
+    public function setOffset($offset)
+    {
+        if (isset($offset)) {
+            list($this->offset['x'], $this->offset['y']) = explode(',', $offset);
+        }
+    }
+
+    /**
+     * Set alt attribute
+     *
+     * @param $alt
+     */
+    public function setAlt($alt)
+    {
+        if (empty($alt)) {
+            $this->alt = 'decorative';
+            return;
+        }
+
+        $this->alt = $alt;
+    }
+
+    /**
+     * Rendered output
+     *
+     * @return mixed|string
+     */
+    public function onRender()
+    {
+
+        $width = $this->width;
+        $height = $this->height;
+
+        $out = '<img';
+
+        $sizes = $this->getSizes($width, $height);
+
+        // srcset
+        $last_key = array_key_last($sizes);
+        $out .= ' srcset="';
+        foreach ($sizes as $key => $size) {
+            $out .= $this->getCacheURL($this->src, $size['width'], $size['height']) .
+                ' ' . $size['width'] . 'w' . (($key !== $last_key) ? ',' : '');
+        }
+        $out .= '"';
+
+        // sizes
+        $sizes = [
+            '(max-width: 600px) 480px',
+            '800px'
+        ];
+        $out .= ' sizes="';
+        foreach ($sizes as $key => $size) {
+            $out .= $size . (($key !== $last_key) ? ',' : '');
+        }
+        $out .= '"';
+
+        // src and alt
+        $out .= ' src="' . $this->src . '" alt="' . $this->alt . '"/>';
+
+        return $out;
+    }
+
     /**
      * Get sizes
      *
@@ -74,7 +197,8 @@ class Image extends \LivingMarkup\Module
      * @param $height
      * @return array
      */
-    private function getSizes($width, $height){
+    private function getSizes($width, $height)
+    {
         // set max and min image height
         $max_width = ($width < self::MAX_WIDTH) ? $width : self::MAX_WIDTH;
         $max_height = ($height < self::MAX_HEIGHT) ? $height : self::MAX_HEIGHT;
@@ -108,67 +232,13 @@ class Image extends \LivingMarkup\Module
             $current_height += $height_increment;
             $current_height = ($current_height < $max_height) ? $current_height : $max_height;
 
-        } while ( ($current_width < $max_width) && ($current_height < $max_height) );
+        } while (($current_width < $max_width) && ($current_height < $max_height));
 
         return $sizes;
     }
 
     /**
-     * Rendered output
-     *
-     * @return mixed|string
-     */
-    public function onRender()
-    {
-
-        $width = $this->width;
-        $height = $this->height;
-
-        $out = '<img';
-
-        $sizes = $this->getSizes($width, $height);
-
-        // srcset
-        $last_key = array_key_last($sizes);
-        $out .= ' srcset="';
-        foreach($sizes as $key => $size){
-            $out .= $this->getCacheURL($this->src, $size['width'], $size['height']) .
-                ' ' . $size['width'] . 'w' . (($key!==$last_key) ?  ',' : '');
-        }
-        $out .= '"';
-
-        // sizes
-        $sizes = [
-            '(max-width: 600px) 480px',
-            '800px'
-        ];
-        $out .= ' sizes="';
-        foreach($sizes as $key => $size){
-            $out .= $size . (($key!==$last_key) ?  ',' : '');
-        }
-        $out .= '"';
-
-        // src and alt
-        $out .= ' src="' . $this->getCacheURL($this->src) . '" alt="' . $this->alt . '"/>';
-
-        return $out;
-    }
-
-    public function fetchSourceInfo($source)
-    {
-
-        // TODO: add traversing prevention
-        $filepath = __DIR__ . '/..' . self::IMAGE_SOURCE_DIR . $source;
-
-        // get dimensions from original image file
-        [$this->source_width, $this->source_height, $this->source_type, $this->source_attr] = getimagesize($filepath);
-
-        return true;
-    }
-
-    /**
      * Gets an URL for where image cache is or will stored
-     *
      * @param null $src
      * @param null $width
      * @param null $height
@@ -176,19 +246,21 @@ class Image extends \LivingMarkup\Module
      */
     public function getCacheURL($src = NULL, $width = NULL, $height = NULL)
     {
+        // if not an asset image then do not change source
+        if (!$this->isAssetImage()) {
+            return $src;
+        }
+
         // set width and height if not provided
         $width = ($width === NULL) ? $width : $this->width;
         $height = ($height === NULL) ? $height : $this->height;
 
-        // start with base filename
-        $filename = basename($src);
-
-        // use base cache directory
-        $path = self::IMAGE_CACHE_DIR;
-
-        // add parametrized cache path
-        $path .= Path::encode([
-            'id' => $this->id,
+        // put parameters after directory and before filename
+        // e.g. "/assets/images/logo/original.jpg" => "/assets/images/logo/dimension/434x100/offset/0,0/original.jpg"
+        $filename = basename($this->src);
+        $filepath = substr($this->src, 0, -strlen($filename));
+        return Path::encode([
+            $filepath,
             'dimension' => [
                 $width,
                 $height
@@ -199,75 +271,18 @@ class Image extends \LivingMarkup\Module
             ],
             'filename' => $filename
         ]);
-
-        return $path;
     }
 
     /**
-     * Set alt attribute
-     *
-     * @param $alt
-     */
-    public function setAlt($alt){
-        if (empty($alt)) {
-            $this->alt = 'decorative';
-            return;
-        }
-
-        $this->alt = $alt;
-    }
-
-    /**
-     * Set offset from 10,-10
-     *
-     * @param $offset
-     */
-    public function setOffset($offset){
-        if (isset($offset)) {
-            list($this->offset['x'], $this->offset['y']) = explode(',', $offset);
-        }
-    }
-
-    /**
-     * Set dimension (width x height) of output
-     *
-     * @param $width
-     * @param $height
+     * Checks if is asset image
      * @return bool
      */
-    public function setDimensions($width, $height){
-
-        // if width provided as attribute set
-        if (is_numeric($width)) {
-            $this->width = (int) $width;
-        }
-
-        // if height provided as attribute set
-        if (is_numeric($height)) {
-            $this->height = (int) $height;
-        }
-
-        // return as both height and width are set
-        if(($this->width!==NULL) && ($this->height!==NULL) ){
+    public function isAssetImage(): bool
+    {
+        if (substr($this->src, 0, strlen(self::IMAGE_SOURCE_DIR)) === self::IMAGE_SOURCE_DIR) {
             return true;
         }
-
-        // determine height if height provided based on original image ratio
-        if(($this->width!==NULL) && ($this->height===NULL)){
-            $this->height = round($this->width * ($this->source_height/$this->source_width));
-            return true;
-        }
-
-        // determine width if height provided based on original image ratio
-        if(($this->width===NULL) && ($this->height!==NULL)){
-            $this->width = round($this->height * ($this->source_width/$this->source_height));
-            return true;
-        }
-
-        // nether width or height provided use original image size
-        $this->width = $this->source_width;
-        $this->height = $this->source_height;
-        return true;
+        return false;
     }
 
     /**

@@ -26,27 +26,51 @@ class Path
      */
     public static function decode(string $string): array
     {
+        $reserved_keys = [
+            'dimension',
+            'offset'
+        ];
+        $filepath = '';
         $parts = explode('/', $string);
         $parameters = [];
+        $previous_key = '';
         foreach ($parts as $key => $value) {
             if ($value == null) {
                 continue;
             }
-            if ($key % 2 == 0) {
-                // if comma then is array
-                if (strpos($value, ',') !== false) {
-                    $value = explode(',', $value);
-                }
-                // if dimensions then is array
-                if (preg_match('/([0-9]+x[0-9]+)/', $value)) {
-                    $value = explode('x', $value);
-                }
+
+            // start by building out filepath
+            if(is_dir(dirname(__DIR__, 1) . $filepath . '/' . $value)){
+                $filepath .= '/' . $value;
+                continue;
             }
-            // set parameter
-            $parameters[$key] = $value;
+
+            switch ($previous_key) {
+                case 'dimension':
+                    // if dimensions then is array
+                    if (preg_match('/([0-9]+x[0-9]+)/', $value)) {
+                        list($width, $height) = explode('x', $value);
+                        $parameters['width'] = $width;
+                        $parameters['height'] = $height;
+                    }
+                    break;
+                case 'offset':
+                    // if comma then is array
+                    if (strpos($value, ',') !== false) {
+                        list($x, $y) = explode(',', $value);
+                        $parameters['offset_x'] = $x;
+                        $parameters['offset_y'] = $y;
+                    }
+                    break;
+                default:
+                    break;
+            }
+
+            $previous_key = $value;
+
         }
 
-        $parameters['name'] = end($parts);
+        $parameters['filename'] = $filepath . '/' . end($parts);
 
         return $parameters;
     }
