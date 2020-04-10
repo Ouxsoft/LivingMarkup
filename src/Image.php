@@ -33,16 +33,57 @@ class Image
 
     /**
      * Image constructor.
-     * @param $relative_path
      */
-    public function __construct(string $relative_path = null)
+    public function __construct()
     {
         // declare directories
         $this->root_dir = dirname(__DIR__, 1) . '/';
         $this->assets_dir = $this->root_dir . 'assets/images/';
         $this->cache_dir = $this->root_dir . 'var/cache/images/';
+    }
 
-        $this->setFilename($relative_path);
+    /**
+     * load by URL
+     * @param string|null $request
+     * @return bool
+     */
+    public function loadByURL(string $request = null) : bool {
+        if($request===null){
+            return false;
+        }
+
+        // set cache url
+        $this->setCacheURL($request);
+
+        $parameters = Path::Decode($request);
+
+        // set filename
+        if(array_key_exists('filename', $parameters)){
+            $filename = substr($parameters['filename'], strlen('/assets/images/'));
+            $this->setFilename($filename);
+        }
+
+        // set height
+        if(array_key_exists('height', $parameters)) {
+            $this->setHeight($parameters['height']);
+        }
+
+        // set width
+        if(array_key_exists('width', $parameters)){
+            $this->setWidth($parameters['width']);
+        }
+
+        // set offset x
+        if(array_key_exists('offset_x', $parameters)){
+            $this->setFocalPointX($parameters['offset_x']);
+        }
+
+        // set offset y
+        if(array_key_exists('offset_y', $parameters)){
+            $this->setFocalPointX($parameters['offset_y']);
+        }
+
+        return true;
     }
 
     /**
@@ -59,10 +100,25 @@ class Image
         // set filename
         $this->filename = $filename;
 
-        // set cache hash of file name
-        $this->cache_filename = hash('sha256', $filename);
-        $this->cache_filepath = $this->cache_dir . $this->cache_filename;
+        return true;
+    }
 
+
+
+    /**
+     * set cache URL
+     * @param string|null $relative_path
+     * @return bool
+     */
+    public function setCacheURL(string $relative_path = null) : bool
+    {
+        if($relative_path===null) {
+            return false;
+        }
+
+        // set cache hash of file name
+        $this->cache_filename = hash('sha256', $relative_path);
+        $this->cache_filepath = $this->cache_dir . $this->cache_filename;
         return true;
     }
 
@@ -161,6 +217,16 @@ class Image
 
         // get width and height
         list($width_original, $height_original) = getimagesize($assets_filepath);
+
+        // if desired width not set, use original
+        if($this->width===null){
+            $this->width = $width_original;
+        }
+
+        // if desired height not set, use original
+        if($this->height===null){
+            $this->height = $height_original;
+        }
 
         // determine original ratio
         $ratio_original = $width_original / $height_original;

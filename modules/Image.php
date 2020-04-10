@@ -178,6 +178,7 @@ class Image extends \LivingMarkup\Module
             '(max-width: 600px) 480px',
             '800px'
         ];
+        $last_key = array_key_last($sizes);
         $out .= ' sizes="';
         foreach ($sizes as $key => $size) {
             $out .= $size . (($key !== $last_key) ? ',' : '');
