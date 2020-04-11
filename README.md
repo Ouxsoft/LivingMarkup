@@ -19,7 +19,7 @@ LHTML5 document:
 <?php require $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php'; ?>
 <body>
     <block name="UserProfile">
-        <arg name="style">simple</arg>
+        <arg name="style" type="string">simple</arg>
         <p>Welcome <var name="first_name"/>!</p>
     </block>
 </body>

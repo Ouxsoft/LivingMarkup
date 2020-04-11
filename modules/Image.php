@@ -157,6 +157,8 @@ class Image extends \LivingMarkup\Module
     public function onRender()
     {
 
+        // TODO: Figure out srcset algorithm
+
         $width = $this->width;
         $height = $this->height;
 
@@ -176,7 +178,7 @@ class Image extends \LivingMarkup\Module
         // sizes
         $sizes = [
             '(max-width: 600px) 480px',
-            '800px'
+            '100vw'
         ];
         $last_key = array_key_last($sizes);
         $out .= ' sizes="';
