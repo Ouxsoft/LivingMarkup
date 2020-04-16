@@ -26,15 +26,11 @@ class Path
      */
     public static function decode(string $string): array
     {
-        $reserved_keys = [
-            'dimension',
-            'offset'
-        ];
         $filepath = '';
         $parts = explode('/', $string);
         $parameters = [];
         $previous_key = '';
-        foreach ($parts as $key => $value) {
+        foreach ($parts as $value) {
             if ($value == null) {
                 continue;
             }

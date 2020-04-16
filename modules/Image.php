@@ -25,7 +25,6 @@ class Image extends \LivingMarkup\Module
     // output defaults
     private $src = 'blank.jpg';
     private $alt = 'decorative';
-    private $author = 'Unknown';
     private $width = NULL;
     private $height = NULL;
     private $offset = [
