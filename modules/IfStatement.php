@@ -270,7 +270,7 @@ class IfStatement extends \LivingMarkup\Module
 
         // check for multiple days of week if provided
         if (is_array($day_of_week)) {
-            foreach ($day_of_week as $key => $value) {
+            foreach ($day_of_week as $value) {
                 if ($now_day_of_week == date('l', strtotime($value))) {
                     return true;
                 }

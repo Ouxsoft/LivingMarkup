@@ -19,7 +19,6 @@ namespace LivingMarkup\Modules;
 class Hyperlink extends \LivingMarkup\Module
 {
     private $href;
-
     private $alt;
 
     /**
@@ -32,6 +31,7 @@ class Hyperlink extends \LivingMarkup\Module
     public function onRender()
     {
         $this->href = isset($this->args['href']) ? $this->args['href'] : '#';
+        $this->alt = isset($this->args['alt']) ? $this->args['alt'] : '';
 
         return "<a href=\"{$this->href}\">{$this->xml}</a>";
     }
