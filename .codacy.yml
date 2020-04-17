@@ -1,5 +1,7 @@
 exclude_paths:
   - 'examples/**/*'
+  - 'public/**'
+  - 'public/**/*'
   - 'tests/**'
   - 'vendor/**'
   - 'build/**'
