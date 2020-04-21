@@ -191,7 +191,11 @@ class Image
         header('Content-Type: image/jpeg');
 
         if ($resource == $this->cache_filepath) {
-            echo file_get_contents($resource, false);
+            $type = 'image/jpeg';
+            header('Content-Type:'.$type);
+            header('Content-Length: ' . filesize($resource));
+            readfile($resource);
+
             return true;
         }
 
