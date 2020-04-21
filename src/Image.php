@@ -1,4 +1,5 @@
 <?php
+
 namespace LivingMarkup;
 
 use Laminas\Validator\File\Exists;
@@ -47,8 +48,9 @@ class Image
      * @param string|null $request
      * @return bool
      */
-    public function loadByURL(string $request = null) : bool {
-        if($request===null){
+    public function loadByURL(string $request = null): bool
+    {
+        if ($request === null) {
             return false;
         }
 
@@ -58,28 +60,28 @@ class Image
         $parameters = Path::Decode($request);
 
         // set filename
-        if(array_key_exists('filename', $parameters)){
+        if (array_key_exists('filename', $parameters)) {
             $filename = substr($parameters['filename'], strlen('/assets/images/'));
             $this->setFilename($filename);
         }
 
         // set height
-        if(array_key_exists('height', $parameters)) {
+        if (array_key_exists('height', $parameters)) {
             $this->setHeight($parameters['height']);
         }
 
         // set width
-        if(array_key_exists('width', $parameters)){
+        if (array_key_exists('width', $parameters)) {
             $this->setWidth($parameters['width']);
         }
 
         // set offset x
-        if(array_key_exists('offset_x', $parameters)){
+        if (array_key_exists('offset_x', $parameters)) {
             $this->setFocalPointX($parameters['offset_x']);
         }
 
         // set offset y
-        if(array_key_exists('offset_y', $parameters)){
+        if (array_key_exists('offset_y', $parameters)) {
             $this->setFocalPointX($parameters['offset_y']);
         }
 
@@ -104,15 +106,14 @@ class Image
     }
 
 
-
     /**
      * set cache URL
      * @param string|null $relative_path
      * @return bool
      */
-    public function setCacheURL(string $relative_path = null) : bool
+    public function setCacheURL(string $relative_path = null): bool
     {
-        if($relative_path===null) {
+        if ($relative_path === null) {
             return false;
         }
 
@@ -176,7 +177,8 @@ class Image
     /**
      * Send empty
      */
-    private function sendEmpty(){
+    private function sendEmpty()
+    {
         header('HTTP/1.0 404 Not Found');
     }
 
@@ -187,12 +189,30 @@ class Image
      */
     private function send($resource = null): bool
     {
-
-        header('Content-Type: image/jpeg');
-
         if ($resource == $this->cache_filepath) {
-            $type = 'image/jpeg';
-            header('Content-Type:'.$type);
+
+            $filename = basename($resource);
+            $file_extension = strtolower(substr(strrchr($filename, '.'), 1));
+
+            $ctype = '';
+            switch ($file_extension) {
+                case "gif":
+                    $ctype = 'image/gif';
+                    break;
+                case "png":
+                    $ctype = 'image/png';
+                    break;
+                case "jpeg":
+                case "jpg":
+                    $ctype = 'image/jpeg';
+                    break;
+                case "svg":
+                    $ctype = 'image/svg+xml';
+                    break;
+                default:
+            }
+
+            header('Content-type: ' . $ctype);
             header('Content-Length: ' . filesize($resource));
             readfile($resource);
 
@@ -223,12 +243,12 @@ class Image
         list($width_original, $height_original) = getimagesize($assets_filepath);
 
         // if desired width not set, use original
-        if($this->width===null){
+        if ($this->width === null) {
             $this->width = $width_original;
         }
 
         // if desired height not set, use original
-        if($this->height===null){
+        if ($this->height === null) {
             $this->height = $height_original;
         }
 
