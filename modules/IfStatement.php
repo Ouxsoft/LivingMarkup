@@ -24,8 +24,6 @@ use Exception;
  */
 class IfStatement extends \LivingMarkup\Module
 {
-    private $days_of_week = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-
     /**
      * Allow NOW to be define by constant for unit testing and debugging purposes
      *

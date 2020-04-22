@@ -39,8 +39,18 @@ class Variable extends \LivingMarkup\Module
         
         $value = $this->getVariable();
 
-        if(method_exists($this,$function)){
-            return $this->$function($value, $parameters);
+        if(! method_exists($this,$function)) {
+            return false;
+        }
+
+        // call specified function
+        switch($function) {
+            case 'substr':
+                return $this->substr($value, $parameters);
+                break;
+            case 'str_replace':
+                return $this->str_replace($value, $parameters);
+                break;
         }
 
         return false;

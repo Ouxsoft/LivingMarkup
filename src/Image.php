@@ -196,20 +196,21 @@ class Image
 
             $ctype = '';
             switch ($file_extension) {
-                case "gif":
+                case 'gif':
                     $ctype = 'image/gif';
                     break;
-                case "png":
+                case 'png':
                     $ctype = 'image/png';
                     break;
-                case "jpeg":
-                case "jpg":
+                case 'jpeg':
+                case 'jpg':
                     $ctype = 'image/jpeg';
                     break;
-                case "svg":
+                case 'svg':
                     $ctype = 'image/svg+xml';
                     break;
                 default:
+                    return false;
             }
 
             header('Content-type: ' . $ctype);
