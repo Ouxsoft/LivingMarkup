@@ -191,29 +191,28 @@ class Image
     {
         if ($resource == $this->cache_filepath) {
 
-            $filename = basename($resource);
+            $filename = basename($this->filename);
             $file_extension = strtolower(substr(strrchr($filename, '.'), 1));
 
-            $ctype = '';
             switch ($file_extension) {
                 case 'gif':
-                    $ctype = 'image/gif';
+                    $content_type = 'image/gif';
                     break;
                 case 'png':
-                    $ctype = 'image/png';
+                    $content_type = 'image/png';
+                    break;
+                case 'svg':
+                    $content_type = 'image/svg+xml';
                     break;
                 case 'jpeg':
                 case 'jpg':
-                    $ctype = 'image/jpeg';
-                    break;
-                case 'svg':
-                    $ctype = 'image/svg+xml';
+                    $content_type = 'image/jpeg';
                     break;
                 default:
                     return false;
             }
 
-            header('Content-type: ' . $ctype);
+            header('Content-type: ' . $content_type);
             header('Content-Length: ' . filesize($resource));
             readfile($resource);
 
