@@ -158,7 +158,6 @@ class Image
      */
     public function sendCache(): bool
     {
-
         try {
             // check if cache exists
             $cache_validator = new Exists($this->cache_dir);
@@ -190,7 +189,6 @@ class Image
     private function send($resource = null): bool
     {
         if ($resource == $this->cache_filepath) {
-
             $filename = basename($this->filename);
             $file_extension = strtolower(substr(strrchr($filename, '.'), 1));
 
@@ -263,7 +261,8 @@ class Image
 
         $this->image = imagecreatetruecolor($this->width, $this->height);
         $image_original = imagecreatefromjpeg($assets_filepath);
-        imagecopyresampled($this->image,
+        imagecopyresampled(
+            $this->image,
             $image_original,
             0,
             0,
@@ -272,7 +271,8 @@ class Image
             $this->width,
             $this->height,
             $width_original,
-            $height_original);
+            $height_original
+        );
 
         return true;
     }

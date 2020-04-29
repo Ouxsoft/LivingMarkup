@@ -1,4 +1,4 @@
-<?php require $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php';
+<?php require dirname(__DIR__,2) . '/vendor/autoload.php';
 
 // define a datetime to allow consistent display results
 // comment out to default to NOW

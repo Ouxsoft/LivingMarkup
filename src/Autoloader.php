@@ -59,6 +59,6 @@ function call_kernel(string $buffer) : string
     return $kernel->build($builder, $config);
 }
 
-if(!defined('LHTML_OFF')){
+if (!defined('LHTML_OFF')) {
     ob_start('call_kernel');
 }

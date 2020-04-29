@@ -20,8 +20,8 @@ final class KernelTest extends TestCase
 {
     public function testCanBuildPage()
     {
-        $config = new Configuration('tests/config.yml');
-        $config->add('filename', __DIR__ . DIRECTORY_SEPARATOR . 'pages/index.html');
+        $config = new Configuration('test/config.yml');
+        $config->add('filename', __DIR__ . DIRECTORY_SEPARATOR);
 
         $builder = new DynamicPageBuilder();
         $new_page = (new Kernel())->build($builder, $config);

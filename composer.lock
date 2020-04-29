@@ -44,12 +44,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/laminas/laminas-config.git",
-                "reference": "9b08816e063db25cc32f5838bd25720cd88c6a4c"
+                "reference": "0e5deaf126de0d72011c3a84b35741a7eced748c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laminas/laminas-config/zipball/9b08816e063db25cc32f5838bd25720cd88c6a4c",
-                "reference": "9b08816e063db25cc32f5838bd25720cd88c6a4c",
+                "url": "https://api.github.com/repos/laminas/laminas-config/zipball/0e5deaf126de0d72011c3a84b35741a7eced748c",
+                "reference": "0e5deaf126de0d72011c3a84b35741a7eced748c",
                 "shasum": ""
             },
             "require": {
@@ -100,7 +100,7 @@
                 "config",
                 "laminas"
             ],
-            "time": "2020-03-29T11:10:32+00:00"
+            "time": "2020-04-18T06:34:45+00:00"
         },
         {
             "name": "laminas/laminas-stdlib",
@@ -108,12 +108,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/laminas/laminas-stdlib.git",
-                "reference": "89ff99fa2ac9fb20c87ab988ea81e2e81c370df0"
+                "reference": "82642c80035ec7d3fe30684e46ecc0e8c92f7e3f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laminas/laminas-stdlib/zipball/89ff99fa2ac9fb20c87ab988ea81e2e81c370df0",
-                "reference": "89ff99fa2ac9fb20c87ab988ea81e2e81c370df0",
+                "url": "https://api.github.com/repos/laminas/laminas-stdlib/zipball/82642c80035ec7d3fe30684e46ecc0e8c92f7e3f",
+                "reference": "82642c80035ec7d3fe30684e46ecc0e8c92f7e3f",
                 "shasum": ""
             },
             "require": {
@@ -150,7 +150,7 @@
                 "laminas",
                 "stdlib"
             ],
-            "time": "2020-03-29T11:32:45+00:00"
+            "time": "2020-04-15T19:33:34+00:00"
         },
         {
             "name": "laminas/laminas-validator",
@@ -158,12 +158,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/laminas/laminas-validator.git",
-                "reference": "e453316e452bb29302631897cd8ac73798bd4377"
+                "reference": "3703e1a7d6446e1ac1d8001f442a8d3e02cc24c6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laminas/laminas-validator/zipball/e453316e452bb29302631897cd8ac73798bd4377",
-                "reference": "e453316e452bb29302631897cd8ac73798bd4377",
+                "url": "https://api.github.com/repos/laminas/laminas-validator/zipball/3703e1a7d6446e1ac1d8001f442a8d3e02cc24c6",
+                "reference": "3703e1a7d6446e1ac1d8001f442a8d3e02cc24c6",
                 "shasum": ""
             },
             "require": {
@@ -229,7 +229,7 @@
                 "laminas",
                 "validator"
             ],
-            "time": "2020-03-31T18:59:18+00:00"
+            "time": "2020-04-28T10:47:27+00:00"
         },
         {
             "name": "laminas/laminas-zendframework-bridge",
@@ -237,12 +237,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/laminas/laminas-zendframework-bridge.git",
-                "reference": "716ec837a1e10dd909989950ac7ccdbd34af4e4b"
+                "reference": "9c9c3bfd86f3d496cc1cc4e4d4bbb72b50ed09c3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laminas/laminas-zendframework-bridge/zipball/716ec837a1e10dd909989950ac7ccdbd34af4e4b",
-                "reference": "716ec837a1e10dd909989950ac7ccdbd34af4e4b",
+                "url": "https://api.github.com/repos/laminas/laminas-zendframework-bridge/zipball/9c9c3bfd86f3d496cc1cc4e4d4bbb72b50ed09c3",
+                "reference": "9c9c3bfd86f3d496cc1cc4e4d4bbb72b50ed09c3",
                 "shasum": ""
             },
             "require": {
@@ -281,7 +281,7 @@
                 "laminas",
                 "zf"
             ],
-            "time": "2020-04-03T16:03:11+00:00"
+            "time": "2020-04-15T19:17:48+00:00"
         },
         {
             "name": "psr/container",
@@ -445,12 +445,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/annotations.git",
-                "reference": "5ce13d0a7ed32dea4075b9a3d3837602d1eecfbf"
+                "reference": "d415728ac32e509d61cb873581e13b1fbba778be"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/annotations/zipball/5ce13d0a7ed32dea4075b9a3d3837602d1eecfbf",
-                "reference": "5ce13d0a7ed32dea4075b9a3d3837602d1eecfbf",
+                "url": "https://api.github.com/repos/doctrine/annotations/zipball/d415728ac32e509d61cb873581e13b1fbba778be",
+                "reference": "d415728ac32e509d61cb873581e13b1fbba778be",
                 "shasum": ""
             },
             "require": {
@@ -506,7 +506,7 @@
                 "docblock",
                 "parser"
             ],
-            "time": "2020-04-02T18:32:07+00:00"
+            "time": "2020-04-10T13:16:27+00:00"
         },
         {
             "name": "doctrine/cache",
@@ -1016,12 +1016,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfPHP/PHP-CS-Fixer.git",
-                "reference": "98e354fa250a604d120a6c279f95841132b3d5c9"
+                "reference": "e1bc8c44c85bdbf35b318e37febb83c1d2890359"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfPHP/PHP-CS-Fixer/zipball/98e354fa250a604d120a6c279f95841132b3d5c9",
-                "reference": "98e354fa250a604d120a6c279f95841132b3d5c9",
+                "url": "https://api.github.com/repos/FriendsOfPHP/PHP-CS-Fixer/zipball/e1bc8c44c85bdbf35b318e37febb83c1d2890359",
+                "reference": "e1bc8c44c85bdbf35b318e37febb83c1d2890359",
                 "shasum": ""
             },
             "require": {
@@ -1104,7 +1104,7 @@
                 }
             ],
             "description": "A tool to automatically fix PHP code style",
-            "time": "2020-04-05T10:22:25+00:00"
+            "time": "2020-04-19T11:16:53+00:00"
         },
         {
             "name": "myclabs/deep-copy",
@@ -1359,19 +1359,16 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/ReflectionCommon.git",
-                "reference": "b0843c8cbcc2dc5eda5158e583c7199a5e44c86d"
+                "reference": "985f414b55eca4296ffc99db960a97b3cc8fbcea"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/ReflectionCommon/zipball/b0843c8cbcc2dc5eda5158e583c7199a5e44c86d",
-                "reference": "b0843c8cbcc2dc5eda5158e583c7199a5e44c86d",
+                "url": "https://api.github.com/repos/phpDocumentor/ReflectionCommon/zipball/985f414b55eca4296ffc99db960a97b3cc8fbcea",
+                "reference": "985f414b55eca4296ffc99db960a97b3cc8fbcea",
                 "shasum": ""
             },
             "require": {
                 "php": ">=7.1"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "~6"
             },
             "type": "library",
             "extra": {
@@ -1403,7 +1400,7 @@
                 "reflection",
                 "static analysis"
             ],
-            "time": "2019-12-20T12:45:35+00:00"
+            "time": "2020-04-27T09:34:19+00:00"
         },
         {
             "name": "phpdocumentor/reflection-docblock",
@@ -1464,12 +1461,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/TypeResolver.git",
-                "reference": "d6b5291650d058fe1162a54fee9d923de19bcda2"
+                "reference": "6be94d5733839a52492da96f57c6a3b062a8f97a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/TypeResolver/zipball/d6b5291650d058fe1162a54fee9d923de19bcda2",
-                "reference": "d6b5291650d058fe1162a54fee9d923de19bcda2",
+                "url": "https://api.github.com/repos/phpDocumentor/TypeResolver/zipball/6be94d5733839a52492da96f57c6a3b062a8f97a",
+                "reference": "6be94d5733839a52492da96f57c6a3b062a8f97a",
                 "shasum": ""
             },
             "require": {
@@ -1502,7 +1499,7 @@
                 }
             ],
             "description": "A PSR-5 based resolver of Class names, Types and Structural Element Names",
-            "time": "2020-03-06T17:11:40+00:00"
+            "time": "2020-04-27T19:13:53+00:00"
         },
         {
             "name": "phpspec/prophecy",
@@ -1825,12 +1822,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "6f19efdc4bf8113f72e2eaccd12ad758df4ba789"
+                "reference": "5a8f1452cb7028e7c7173e430264c07fbc6fe858"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/6f19efdc4bf8113f72e2eaccd12ad758df4ba789",
-                "reference": "6f19efdc4bf8113f72e2eaccd12ad758df4ba789",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/5a8f1452cb7028e7c7173e430264c07fbc6fe858",
+                "reference": "5a8f1452cb7028e7c7173e430264c07fbc6fe858",
                 "shasum": ""
             },
             "require": {
@@ -1900,7 +1897,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2020-04-03T05:57:47+00:00"
+            "time": "2020-04-27T05:03:54+00:00"
         },
         {
             "name": "psr/cache",
@@ -3212,12 +3209,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-php72.git",
-                "reference": "37b0976c78b94856543260ce09b460a7bc852747"
+                "reference": "41d115ace412a5a006a92f29a51c7d863e28482b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-php72/zipball/37b0976c78b94856543260ce09b460a7bc852747",
-                "reference": "37b0976c78b94856543260ce09b460a7bc852747",
+                "url": "https://api.github.com/repos/symfony/polyfill-php72/zipball/41d115ace412a5a006a92f29a51c7d863e28482b",
+                "reference": "41d115ace412a5a006a92f29a51c7d863e28482b",
                 "shasum": ""
             },
             "require": {
@@ -3259,7 +3256,7 @@
                 "portable",
                 "shim"
             ],
-            "time": "2020-02-27T09:26:54+00:00"
+            "time": "2020-04-13T15:22:19+00:00"
         },
         {
             "name": "symfony/polyfill-php73",
@@ -3325,12 +3322,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-php80.git",
-                "reference": "8854dc880784d2ae32908b75824754339b5c0555"
+                "reference": "cb64c503a89a49bcf6334a57639e244e488b0fe9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-php80/zipball/8854dc880784d2ae32908b75824754339b5c0555",
-                "reference": "8854dc880784d2ae32908b75824754339b5c0555",
+                "url": "https://api.github.com/repos/symfony/polyfill-php80/zipball/cb64c503a89a49bcf6334a57639e244e488b0fe9",
+                "reference": "cb64c503a89a49bcf6334a57639e244e488b0fe9",
                 "shasum": ""
             },
             "require": {
@@ -3379,7 +3376,7 @@
                 "portable",
                 "shim"
             ],
-            "time": "2020-03-03T16:59:03+00:00"
+            "time": "2020-04-23T15:16:55+00:00"
         },
         {
             "name": "symfony/polyfill-uuid",
@@ -3666,12 +3663,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "77b423caf31a35f0285be898e3a74fea7d867629"
+                "reference": "d0e2074a04fd2220d46686d2b3c9c92f1d444590"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/77b423caf31a35f0285be898e3a74fea7d867629",
-                "reference": "77b423caf31a35f0285be898e3a74fea7d867629",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/d0e2074a04fd2220d46686d2b3c9c92f1d444590",
+                "reference": "d0e2074a04fd2220d46686d2b3c9c92f1d444590",
                 "shasum": ""
             },
             "require": {
@@ -3720,20 +3717,20 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2020-03-31T06:42:17+00:00"
+            "time": "2020-04-24T08:08:58+00:00"
         },
         {
             "name": "webmozart/assert",
-            "version": "1.7.0",
+            "version": "1.8.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/webmozart/assert.git",
-                "reference": "aed98a490f9a8f78468232db345ab9cf606cf598"
+                "reference": "ab2cb0b3b559010b75981b1bdce728da3ee90ad6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/webmozart/assert/zipball/aed98a490f9a8f78468232db345ab9cf606cf598",
-                "reference": "aed98a490f9a8f78468232db345ab9cf606cf598",
+                "url": "https://api.github.com/repos/webmozart/assert/zipball/ab2cb0b3b559010b75981b1bdce728da3ee90ad6",
+                "reference": "ab2cb0b3b559010b75981b1bdce728da3ee90ad6",
                 "shasum": ""
             },
             "require": {
@@ -3741,7 +3738,7 @@
                 "symfony/polyfill-ctype": "^1.8"
             },
             "conflict": {
-                "vimeo/psalm": "<3.6.0"
+                "vimeo/psalm": "<3.9.1"
             },
             "require-dev": {
                 "phpunit/phpunit": "^4.8.36 || ^7.5.13"
@@ -3768,7 +3765,7 @@
                 "check",
                 "validate"
             ],
-            "time": "2020-02-14T12:15:55+00:00"
+            "time": "2020-04-18T12:12:48+00:00"
         }
     ],
     "aliases": [],

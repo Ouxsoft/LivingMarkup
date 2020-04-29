@@ -65,7 +65,9 @@
       "php-cs-fixer fix --rules=@PSR2 --using-cache=no examples/"
     ],
     "test": [
-      "phpunit -d test=test --bootstrap vendor/autoload.php tests/."
-    ]
+      "phpunit --colors=always"
+    ],
+    "serve": "php -S 0.0.0.0:8080 -t public/",
+    "fix-cs": "php vendor/bin/php-cs-fixer fix --rules=@PSR2 src/"
   }
 }

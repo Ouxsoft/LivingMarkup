@@ -36,7 +36,7 @@ class Path
             }
 
             // start by building out filepath
-            if(is_dir(dirname(__DIR__, 1) . $filepath . '/' . $value)){
+            if (is_dir(dirname(__DIR__, 1) . $filepath . '/' . $value)) {
                 $filepath .= '/' . $value;
                 continue;
             }
@@ -63,7 +63,6 @@ class Path
             }
 
             $previous_key = $value;
-
         }
 
         $parameters['filename'] = $filepath . '/' . end($parts);

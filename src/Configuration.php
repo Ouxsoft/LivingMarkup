@@ -37,17 +37,17 @@ class Configuration
         $this->root_dir = dirname(__DIR__, 1) . DIRECTORY_SEPARATOR;
 
         // load filename, if provided
-        if($this->load($filename)){
+        if ($this->load($filename)) {
             return true;
         }
 
         // load local config, if exists
-        if($this->load(self::LOCAL_FILENAME)){
+        if ($this->load(self::LOCAL_FILENAME)) {
             return true;
         }
 
         // load dist file, if exists
-        if($this->load(self::DIST_FILENAME)){
+        if ($this->load(self::DIST_FILENAME)) {
             return true;
         }
         return false;
@@ -58,12 +58,12 @@ class Configuration
      * @param string $filename
      * @return bool|mixed
      */
-    public function load(string $filename = null) {
-
+    public function load(string $filename = null)
+    {
         $validator = new Exists($this->root_dir);
 
         // check if filename provided
-        if($filename === null){
+        if ($filename === null) {
             return false;
         }
 

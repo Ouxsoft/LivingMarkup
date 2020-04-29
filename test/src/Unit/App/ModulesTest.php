@@ -18,7 +18,7 @@ final class ModulesTest extends TestCase
 {
     public function testCanBuildPage()
     {
-        $config = new Configuration(__DIR__ . DIRECTORY_SEPARATOR . 'config.yml');
+        $config = new Configuration(__DIR__ . DIRECTORY_SEPARATOR);
 
         foreach ($config->getModules() as $module) {
 

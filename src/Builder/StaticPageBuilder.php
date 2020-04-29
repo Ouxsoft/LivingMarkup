@@ -10,7 +10,8 @@
 
 namespace LivingMarkup\Builder;
 
-use LivingMarkup\Engine as Engine;
+use LivingMarkup\Configuration;
+use LivingMarkup\Engine;
 
 /**
  * Class StaticPageBuilder
@@ -18,27 +19,19 @@ use LivingMarkup\Engine as Engine;
  */
 class StaticPageBuilder implements BuilderInterface
 {
-    private $engine;
+    public $engine;
 
     /**
      * Creates Page object using parameters supplied
      *
-     * @param $parameters
+     * @param Configuration $config
      * @return bool|null
      */
-    public function createObject(array $parameters): ?bool
+    public function createObject(Configuration $config): ?bool
     {
-        // set source
-        if (array_key_exists('filename', $parameters)) {
-            $source = file_get_contents($parameters['filename']);
-        } elseif (array_key_exists('markup', $parameters)) {
-            $source = $parameters['markup'];
-        } else {
-            $source = '';
-        }
 
         // create engine pass source
-        $this->engine = new Engine($source);
+        $this->engine = new Engine($config);
 
         return true;
     }
