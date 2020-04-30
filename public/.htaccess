@@ -2,4 +2,7 @@
 RewriteEngine on
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^assets/images/(.*)$ assets/images/index.php?q=$1 [QSA]
+RewriteRule ^assets/images/(.*)$ assets/images/bootstrap.php?q=$1 [QSA]
+
+RewriteCond %{REQUEST_FILENAME} -f
+RewriteRule ^ index.php [L]

@@ -17,7 +17,7 @@ class HelloWorld extends \LivingMarkup\Module
     {
         return 'Hello, World';
     }
-}
+}code
 ```
 ### File Path
 For ease of use the packaged modules are located inside the `/modules` directory. Modules defined using the variable `{name}` in their  `modules:types:*:class_name` are isolated a sub folder within the `/modules` directory. In order to use an alternative path is for modules the path must be added to composer's autoload section. 

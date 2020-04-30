@@ -50,10 +50,10 @@ final class ExamplesTest extends TestCase
     {
 
         // get example folders
-        $example_folder = 'examples/' . $example_name . DIRECTORY_SEPARATOR;
+        $example_folder = 'public/help/examples/' . $example_name . DIRECTORY_SEPARATOR;
 
         // get build
-        $build_command = 'php ' . $example_folder . 'input.php';
+        $build_command = 'php -d include_path=. ' . $example_folder . 'input.php';
         $build_results = (string) shell_exec($build_command);
 
         $this->assertStringMatchesFormatFile($example_folder . 'output.html',  $build_results);
