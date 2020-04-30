@@ -16,7 +16,7 @@ Below is a simple example.
 
 LHTML5 document:
 ```PHP
-<?php require $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php'; ?>
+<?php require 'vendor/autoload.php'; ?>
 <body>
     <block name="UserProfile">
         <arg name="style" type="string">simple</arg>
