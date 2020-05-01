@@ -20,12 +20,8 @@ error_reporting(E_ALL);
 
 if( ! array_key_exists('REDIRECT_URL', $_SERVER) || $_SERVER["REDIRECT_URL"] == '') {
     require 'home.lhtml';
-    die();
-}
-
-$request = PUBLIC_DIR . $_SERVER["REDIRECT_URL"];
-if (file_exists($request)){
-    require $request;
+} else if (file_exists(PUBLIC_DIR . $_SERVER["REDIRECT_URL"])){
+    require PUBLIC_DIR . $_SERVER["REDIRECT_URL"];
 } else {
-    echo 'Page not found.';
+    require PUBLIC_DIR . '404.php';
 }

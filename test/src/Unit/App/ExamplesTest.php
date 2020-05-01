@@ -38,7 +38,6 @@ final class ExamplesTest extends TestCase
     {
         return [
             ['DynamicPage'],
-            //['IfStatement'],
         ];
     }
 
