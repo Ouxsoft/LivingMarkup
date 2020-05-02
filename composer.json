@@ -31,7 +31,9 @@
     "ext-libxml": "*",
     "ext-gd": "*",
     "laminas/laminas-config": "^3.3.0",
-    "laminas/laminas-validator": "^2.13.2"
+    "laminas/laminas-validator": "^2.13.2",
+    "laminas/laminas-router": "^3.3@dev",
+    "laminas/laminas-http": "^2.11@dev"
   },
   "minimum-stability": "dev",
   "support": {
