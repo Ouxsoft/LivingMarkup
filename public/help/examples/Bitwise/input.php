@@ -1,5 +1,4 @@
 <?php require 'vendor/autoload.php';
-
 add_module([
     'name' => 'Bitwise',
     'class_name' => 'LivingMarkup\Modules\Custom\Examples\Bitwise',
