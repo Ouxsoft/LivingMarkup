@@ -62,6 +62,7 @@ class Document extends DomDocument
         // replace DOCTYPE if present
         $count = 1;
         str_ireplace('<!doctype html>', $doctype, $source, $count);
+
         if ($count == 0) {
             // add doctype if not present
             $source = $doctype . $source;
