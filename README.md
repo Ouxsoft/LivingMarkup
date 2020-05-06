@@ -28,7 +28,7 @@ Example Page `/public/example.html`
 Custom Module `/modules/custom/Blocks/UserProfile.php`
 ```php
 <?php
-namespace LivingMarkup\Modules\Custom\Examples;
+namespace LivingMarkup\Modules\Custom\Blocks;
 
 class UserProfile {
 
