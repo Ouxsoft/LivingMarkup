@@ -17,23 +17,5 @@ define('IMAGE_DIR', ASSET_DIR . 'images/');
 // set include path
 set_include_path( ROOT_DIR);
 
-// Router
-$route = (array_key_exists('REDIRECT_URL', $_SERVER))?$_SERVER['REDIRECT_URL']:'';
-$route = (string) ltrim($route, '/');
-
-// send empty request to home
-if($route==''){ $route = 'home';}
-
-// check for file as php file if a extension not provided in request
-$route .= (pathinfo($route)['extension']=='')?'.php':'';
-
-// check for directory traversal or if file does not exist
-$real_base = realpath(PUBLIC_DIR);
-$user_path = PUBLIC_DIR . $route;
-$real_user_path = realpath($user_path);
-if (($real_user_path === false) || (strpos($real_user_path, $real_base) !== 0) || (is_file($route) == false)) {
-    // return 404 page
-    $route = '404.php';
-}
-
-require $route;
+$router = new LivingMarkup\Router();
+$router->response();
