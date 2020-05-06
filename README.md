@@ -9,12 +9,12 @@
 </p>
 
 ## About LivingMarkup
-***LivingMarkup is an PHP implementation of a [LHTML5 processor](https://github.com/hxtree/lhtml5).*** It is a powerful and flexible way to build dynamic web pages.
+***LivingMarkup makes building dynamic web pages easy.*** It is a PHP implementation of a [LHTML5 processor](https://github.com/hxtree/lhtml5).
 
 ## Usage
 Below is a simple example.
 
-LHTML5 document:
+Example Page `/public/example.html`
 ```PHP
 <?php require 'vendor/autoload.php'; ?>
 <body>
@@ -25,10 +25,10 @@ LHTML5 document:
 </body>
 ```
 
-Block Module:
+Custom Module `/modules/custom/Blocks/UserProfile.php`
 ```php
 <?php
-namespace Modules\Blocks
+namespace LivingMarkup\Modules\Custom\Examples;
 
 class UserProfile {
 
