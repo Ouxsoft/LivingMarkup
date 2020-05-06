@@ -14,7 +14,7 @@
 ## Usage
 Below is a simple example.
 
-Example Page `/public/example.html`
+Example Page `/public/example.php`
 ```PHP
 <?php require 'vendor/autoload.php'; ?>
 <body>
@@ -40,7 +40,7 @@ class UserProfile {
 }
 ```
 
-Rendered HTML5 output:
+Output: `localhost/example`
 ```html
 <!DOCTYPE html>
 <html lang="en">
