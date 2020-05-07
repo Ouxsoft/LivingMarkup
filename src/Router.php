@@ -8,13 +8,12 @@ namespace LivingMarkup;
  */
 class Router
 {
-
     private $route;
 
     /**
      * Router constructor.
      */
-    function __construct()
+    public function __construct()
     {
         $route = (array_key_exists('REDIRECT_URL', $_SERVER))?$_SERVER['REDIRECT_URL']:'';
 
@@ -24,14 +23,21 @@ class Router
     /**
      * @param string $route
      */
-    public function request(string $route){
+    public function request(string $route)
+    {
         $route = (string) ltrim($route, '/');
 
         // send empty request to home
-        if($route==''){ $route = 'home';}
+        if ($route == '') {
+            $route = 'home';
+        }
 
         // check for file as php file if a extension not provided in request
-        $route .= (pathinfo($route)['extension']=='')?'.php':'';
+        $path_info = pathinfo($route);
+
+        if (!array_key_exists('extension', $path_info) || ($path_info['extension'] == '')) {
+            $route .= '.php';
+        }
 
         // check for directory traversal or if file does not exist
         $real_base = realpath(PUBLIC_DIR);
@@ -46,7 +52,8 @@ class Router
     }
 
 
-    public function response(){
+    public function response()
+    {
         require $this->route;
     }
 }

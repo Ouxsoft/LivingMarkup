@@ -33,7 +33,9 @@
     "laminas/laminas-config": "^3.3.0",
     "laminas/laminas-validator": "^2.13.2",
     "laminas/laminas-router": "^3.3@dev",
-    "laminas/laminas-http": "^2.11@dev"
+    "laminas/laminas-http": "^2.11@dev",
+    "twbs/bootstrap": "dev-master",
+    "components/jquery": "dev-master"
   },
   "minimum-stability": "dev",
   "support": {
@@ -64,9 +66,13 @@
   },
   "scripts": {
     "build": [
-      "php-cs-fixer fix --rules=@PSR2 --using-cache=no tests/",
+      "php-cs-fixer fix --rules=@PSR2 --using-cache=no modules/",
       "php-cs-fixer fix --rules=@PSR2 --using-cache=no src/",
-      "php-cs-fixer fix --rules=@PSR2 --using-cache=no examples/"
+      "php-cs-fixer fix --rules=@PSR2 --using-cache=no test/",
+      "rm -rf public/assets/bootstrap",
+      "cp -R vendor/twbs/bootstrap/dist/css public/assets/css/bootstrap",
+      "cp -R vendor/twbs/bootstrap/dist/js public/assets/js/bootstrap",
+      "cp vendor/components/jquery/jquery.min.js public/assets/js/jquery/jquery.min.js"
     ],
     "test": [
       "phpunit --colors=always"

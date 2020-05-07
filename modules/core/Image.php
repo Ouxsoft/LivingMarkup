@@ -25,8 +25,8 @@ class Image extends Module
     // output defaults
     private $src = 'blank.jpg';
     private $alt = 'decorative';
-    private $width = NULL;
-    private $height = NULL;
+    private $width = null;
+    private $height = null;
     private $offset = [
         'x' => 0,
         'y' => 0
@@ -43,7 +43,6 @@ class Image extends Module
      */
     public function onLoad()
     {
-
         // load source file info
         $src = $this->getArgByName('src');
         $this->fetchSourceInfo($src);
@@ -64,89 +63,9 @@ class Image extends Module
 
         // set src
         $this->src = $this->getArgByName('src');
+
     }
 
-    public function fetchSourceInfo($source)
-    {
-
-        // TODO: add traversing prevention
-        $filepath = IMAGE_DIR . $source;
-
-        // get dimensions from original image file
-        [$this->source_width, $this->source_height, $this->source_type, $this->source_attr] = getimagesize($filepath);
-
-        return true;
-    }
-
-    /**
-     * Set dimension (width x height) of output
-     *
-     * @param $width
-     * @param $height
-     * @return bool
-     */
-    public function setDimensions($width, $height)
-    {
-
-        // if width provided as attribute set
-        if (is_numeric($width)) {
-            $this->width = (int)$width;
-        }
-
-        // if height provided as attribute set
-        if (is_numeric($height)) {
-            $this->height = (int)$height;
-        }
-
-        // return as both height and width are set
-        if (($this->width !== NULL) && ($this->height !== NULL)) {
-            return true;
-        }
-
-        // determine height if height provided based on original image ratio
-        if (($this->width !== NULL) && ($this->height === NULL)) {
-            $this->height = round($this->width * ($this->source_height / $this->source_width));
-            return true;
-        }
-
-        // determine width if height provided based on original image ratio
-        if (($this->width === NULL) && ($this->height !== NULL)) {
-            $this->width = round($this->height * ($this->source_width / $this->source_height));
-            return true;
-        }
-
-        // nether width or height provided use original image size
-        $this->width = $this->source_width;
-        $this->height = $this->source_height;
-        return true;
-    }
-
-    /**
-     * Set offset from 10,-10
-     *
-     * @param $offset
-     */
-    public function setOffset($offset)
-    {
-        if (isset($offset)) {
-            list($this->offset['x'], $this->offset['y']) = explode(',', $offset);
-        }
-    }
-
-    /**
-     * Set alt attribute
-     *
-     * @param $alt
-     */
-    public function setAlt($alt)
-    {
-        if (empty($alt)) {
-            $this->alt = 'decorative';
-            return;
-        }
-
-        $this->alt = $alt;
-    }
 
     /**
      * Rendered output
@@ -192,6 +111,88 @@ class Image extends Module
         return $out;
     }
 
+    public function fetchSourceInfo($source)
+    {
+
+        // TODO: add traversing prevention
+        $filepath = IMAGE_DIR . $source;
+
+        // get dimensions from original image file
+        [$this->source_width, $this->source_height, $this->source_type, $this->source_attr] = getimagesize($filepath);
+
+        return true;
+    }
+
+    /**
+     * Set dimension (width x height) of output
+     *
+     * @param $width
+     * @param $height
+     * @return bool
+     */
+    public function setDimensions($width, $height)
+    {
+
+        // if width provided as attribute set
+        if (is_numeric($width)) {
+            $this->width = (int)$width;
+        }
+
+        // if height provided as attribute set
+        if (is_numeric($height)) {
+            $this->height = (int)$height;
+        }
+
+        // return as both height and width are set
+        if (($this->width !== null) && ($this->height !== null)) {
+            return true;
+        }
+
+        // determine height if height provided based on original image ratio
+        if (($this->width !== null) && ($this->height === null)) {
+            $this->height = round($this->width * ($this->source_height / $this->source_width));
+            return true;
+        }
+
+        // determine width if height provided based on original image ratio
+        if (($this->width === null) && ($this->height !== null)) {
+            $this->width = round($this->height * ($this->source_width / $this->source_height));
+            return true;
+        }
+
+        // nether width or height provided use original image size
+        $this->width = $this->source_width;
+        $this->height = $this->source_height;
+        return true;
+    }
+
+    /**
+     * Set offset from 10,-10
+     *
+     * @param $offset
+     */
+    public function setOffset($offset)
+    {
+        if (isset($offset)) {
+            list($this->offset['x'], $this->offset['y']) = explode(',', $offset);
+        }
+    }
+
+    /**
+     * Set alt attribute
+     *
+     * @param $alt
+     */
+    public function setAlt($alt)
+    {
+        if (empty($alt)) {
+            $this->alt = 'decorative';
+            return;
+        }
+
+        $this->alt = $alt;
+    }
+
     /**
      * Get sizes
      *
@@ -233,7 +234,6 @@ class Image extends Module
             // increment height
             $current_height += $height_increment;
             $current_height = ($current_height < $max_height) ? $current_height : $max_height;
-
         } while (($current_width < $max_width) && ($current_height < $max_height));
 
         return $sizes;
@@ -246,7 +246,7 @@ class Image extends Module
      * @param null $height
      * @return string
      */
-    public function getCacheURL($src = NULL, $width = NULL, $height = NULL)
+    public function getCacheURL($src = null, $width = null, $height = null)
     {
         // if not an asset image then do not change source
         if (!$this->isAssetImage()) {
@@ -254,8 +254,8 @@ class Image extends Module
         }
 
         // set width and height if not provided
-        $width = ($width === NULL) ? $width : $this->width;
-        $height = ($height === NULL) ? $height : $this->height;
+        $width = ($width === null) ? $width : $this->width;
+        $height = ($height === null) ? $height : $this->height;
 
         // put parameters after directory and before filename
         // e.g. "/assets/images/logo/original.jpg" => "/assets/images/logo/dimension/434x100/offset/0,0/original.jpg"
@@ -315,9 +315,9 @@ class Image extends Module
     public function focalPointForm()
     {
         return <<<HTML
-		<form method="post">
-			<input type="image" name="focal_point" src="/assets/images/livingMarkup/logo/original.jpg"/>
-		</form>
+        <form method="post">
+            <input type="image" name="focal_point" src="/assets/images/livingMarkup/logo/original.jpg"/>
+        </form>
 HTML;
     }
 

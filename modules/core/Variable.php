@@ -41,12 +41,12 @@ class Variable extends Module
         
         $value = $this->getVariable();
 
-        if(! method_exists($this,$function)) {
+        if (! method_exists($this, $function)) {
             return false;
         }
 
         // call specified function
-        switch($function) {
+        switch ($function) {
             case 'substr':
                 return $this->substr($value, $parameters);
                 break;
@@ -112,7 +112,7 @@ class Variable extends Module
         // get variable
         $variable = $this->getVariable($name, $tag);
 
-        if ($variable===NULL) {
+        if ($variable===null) {
             return '<!-- Variable "' . $this->getArgByName('name') . '" Not Found -->';
         }
 

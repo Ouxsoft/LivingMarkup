@@ -11,7 +11,7 @@ define('ASSET_DIR', ROOT_DIR . 'assets/');
 define('IMAGE_DIR', ASSET_DIR . 'images/');
 
 // set include path
-set_include_path( ROOT_DIR);
+set_include_path(ROOT_DIR);
 
 // set time
 date_default_timezone_set('UTC');
