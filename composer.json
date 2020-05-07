@@ -69,9 +69,11 @@
       "php-cs-fixer fix --rules=@PSR2 --using-cache=no modules/",
       "php-cs-fixer fix --rules=@PSR2 --using-cache=no src/",
       "php-cs-fixer fix --rules=@PSR2 --using-cache=no test/",
-      "rm -rf public/assets/bootstrap",
-      "cp -R vendor/twbs/bootstrap/dist/css public/assets/css/bootstrap",
-      "cp -R vendor/twbs/bootstrap/dist/js public/assets/js/bootstrap",
+      "rm -rf public/assets/css/bootstrap",
+      "cp -R vendor/twbs/bootstrap/dist/css/ public/assets/css/bootstrap",
+      "rm -rf public/assets/js/bootstrap",
+      "cp -R vendor/twbs/bootstrap/dist/js/ public/assets/js/bootstrap",
+      "rm -rf public/assets/js/jquery/*",
       "cp vendor/components/jquery/jquery.min.js public/assets/js/jquery/jquery.min.js"
     ],
     "test": [

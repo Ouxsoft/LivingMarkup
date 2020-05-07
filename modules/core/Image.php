@@ -63,7 +63,6 @@ class Image extends Module
 
         // set src
         $this->src = $this->getArgByName('src');
-
     }
 
 
