@@ -9,12 +9,12 @@
 </p>
 
 ## About LivingMarkup
-***LivingMarkup makes building dynamic web pages easy.*** It is a PHP implementation of a [LHTML5 processor](https://github.com/hxtree/lhtml5).
+***LivingMarkup makes building dynamic web sites with a team easy.*** It is a PHP implementation of a [LHTML5 processor](https://github.com/hxtree/lhtml5).
 
 ## Usage
 Below is a simple example.
 
-Example Page `/public/example.php`
+Page `/public/example.php`:
 ```PHP
 <?php require 'vendor/autoload.php'; ?>
 <body>
@@ -25,7 +25,7 @@ Example Page `/public/example.php`
 </body>
 ```
 
-Custom Module `/modules/custom/Blocks/UserProfile.php`
+Module `/modules/custom/Blocks/UserProfile.php`:
 ```php
 <?php
 namespace LivingMarkup\Modules\Custom\Blocks;
@@ -40,7 +40,7 @@ class UserProfile {
 }
 ```
 
-Output: `localhost/example`
+Output `localhost/example`:
 ```html
 <!DOCTYPE html>
 <html lang="en">
@@ -66,7 +66,7 @@ composer require hxtree/livingmarkup
 Learn how LivingMarkup can be used through our [Examples](https://github.com/hxtree/LivingMarkup/blob/master/public/help/examples).
 
 ## Documentation
-Check our docs for more info at [livingmarkup.readthedocs.io](https://livingmarkup.readthedocs.io)
+Check our docs for more info at [livingmarkup.readthedocs.io](https://livingmarkup.readthedocs.io).
 
 ## Contribute
 
