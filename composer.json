@@ -55,8 +55,8 @@
     "files" : ["src/Autoloader.php"],
     "psr-4": {
       "LivingMarkup\\": "src/",
-      "LivingMarkup\\Modules\\Core\\": "modules/core",
-      "LivingMarkup\\Modules\\Custom\\": "modules/custom"
+      "LivingMarkup\\Modules\\Core\\": "app/modules/core",
+      "LivingMarkup\\Modules\\Custom\\": "app/modules/custom"
     }
   },
   "homepage": "https://github.com/hxtree/LivingMarkup",
