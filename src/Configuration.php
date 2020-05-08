@@ -34,7 +34,7 @@ class Configuration
     public function __construct(string $filename = null)
     {
         // only allow files that exist within file root directory, one level up
-        $this->root_dir = dirname(__DIR__, 1) . DIRECTORY_SEPARATOR;
+        $this->root_dir = dirname(__DIR__, 1) . '/app/config/';
 
         // load filename, if provided
         if ($this->load($filename)) {

@@ -1,0 +1,53 @@
+#
+# Module Config
+#
+version: 1
+modules:
+  # type of modules to instantiate
+  types:
+    - name: 'Block'
+      class_name: 'LivingMarkup\Modules\Custom\Blocks\{name}'
+      xpath: '//block'
+    - name: 'Partial'
+      class_name: 'LivingMarkup\Modules\Custom\Partials\{name}'
+      xpath: '//partial'
+    - name: 'Widget'
+      class_name: 'LivingMarkup\Modules\Custom\Widgets\{name}'
+      xpath: '//widget'
+    - name: 'Image'
+      xpath: '//img'
+      class_name: 'LivingMarkup\Modules\Core\Image'
+    - name: 'Hyperlink'
+      xpath: '//a'
+      class_name: 'LivingMarkup\Modules\Core\Hyperlink'
+    - name: 'Variable'
+      xpath: '//var'
+      class_name: 'LivingMarkup\Modules\Core\Variable'
+    - name: 'If Statement'
+      xpath: '//if'
+      class_name: 'LivingMarkup\Modules\Core\IfStatement'
+    - name: 'Redact'
+      xpath: '//redact'
+      class_name: 'LivingMarkup\Modules\Core\Redact'
+    - name: 'Markup Injection'
+      class_name: 'LivingMarkup\Modules\Custom\Examples\MarkupInjection'
+      xpath: '//h1'
+    - name: 'Bitwise'
+      class_name: 'LivingMarkup\Modules\Custom\Examples\Bitwise'
+      xpath: '//bitwise'
+
+  # order determines execution
+  methods:
+    - name: 'beforeLoad'
+      descirption: 'Execute before object data is loaded'
+    - name: 'onLoad'
+      descirption: 'Execute when object data is loading'
+    - name: 'afterLoad'
+      description: 'Execute after object data is loaded'
+    - name: 'beforeRender'
+      description: 'Execute before object is rendered'
+    - name: 'onRender'
+      description: 'Execute while object is rendering'
+      execute: 'RETURN_CALL'
+    - name: 'afterRender'
+      descirption: 'Execute after object is rendered'

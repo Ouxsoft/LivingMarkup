@@ -20,7 +20,7 @@ final class KernelTest extends TestCase
 {
     public function testCanBuildPage()
     {
-        $config = new Configuration('test/config.yml');
+        $config = new Configuration('phpunit.yml');
         $config->add('filename', 'test/pages/index.html');
 
         $builder = new DynamicPageBuilder();
