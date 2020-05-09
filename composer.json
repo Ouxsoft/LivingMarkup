@@ -35,7 +35,8 @@
     "laminas/laminas-router": "^3.3@dev",
     "laminas/laminas-http": "^2.11@dev",
     "twbs/bootstrap": "dev-master",
-    "components/jquery": "dev-master"
+    "components/jquery": "dev-master",
+    "scssphp/scssphp": "dev-master"
   },
   "minimum-stability": "dev",
   "support": {
@@ -66,7 +67,7 @@
   },
   "scripts": {
     "build": [
-      "php-cs-fixer fix --rules=@PSR2 --using-cache=no modules/",
+      "php-cs-fixer fix --rules=@PSR2 --using-cache=no app/",
       "php-cs-fixer fix --rules=@PSR2 --using-cache=no src/",
       "php-cs-fixer fix --rules=@PSR2 --using-cache=no test/",
       "rm -rf public/assets/css/bootstrap",
@@ -74,7 +75,8 @@
       "rm -rf public/assets/js/bootstrap",
       "cp -R vendor/twbs/bootstrap/dist/js/ public/assets/js/bootstrap",
       "rm -rf public/assets/js/jquery/*",
-      "cp vendor/components/jquery/jquery.min.js public/assets/js/jquery/jquery.min.js"
+      "cp vendor/components/jquery/jquery.min.js public/assets/js/jquery/jquery.min.js",
+      "php bin/SassCompiler.php"
     ],
     "test": [
       "phpunit --colors=always"
