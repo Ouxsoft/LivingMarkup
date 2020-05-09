@@ -43,9 +43,12 @@ class Router
         $real_base = realpath(PUBLIC_DIR);
         $user_path = PUBLIC_DIR . $this->route;
         $real_user_path = realpath($user_path);
-        if (($real_user_path === false) || (strpos($real_user_path, $real_base) !== 0) || (is_file($this->route) == false)) {
+        if (($real_user_path === false)
+            || (strpos($real_user_path, $real_base) !== 0)
+            || ( is_file($route) === false)
+        ) {
             // return 404 page
-            $this->route = '404.php';
+            $route = '404.php';
         }
 
         $this->route = $route;

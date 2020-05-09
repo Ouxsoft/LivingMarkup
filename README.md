@@ -61,6 +61,10 @@ Install with Composer:
 ```shell script
 composer require hxtree/livingmarkup
 ```
+Start with Docker:
+```shell script
+sudo ./docker.sh start
+```
 
 ## Examples
 Learn how LivingMarkup can be used through our [Examples](https://github.com/hxtree/LivingMarkup/blob/master/public/help/examples).

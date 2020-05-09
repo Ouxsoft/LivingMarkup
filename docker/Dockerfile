@@ -5,7 +5,8 @@ FROM ubuntu:18.04
 RUN apt-get update
 RUN apt-get -y upgrade
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y install \
-    apache2 php7.2 libapache2-mod-php7.2 php7.2-mysql php7.2-dom php7.2-json php7.2-gd libxml2 curl
+    apache2 php7.2 libapache2-mod-php7.2 php7.2-mysql php7.2-dom php7.2-json php7.2-gd php7.2-yaml libxml2 curl
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 # enable apache2 mods
 RUN a2enmod php7.2
@@ -26,7 +27,8 @@ ENV APACHE_PID_FILE /var/run/apache2.pid
 EXPOSE 80
 
 # copy repo into web directory
-ADD . /var/www/
+# instead we are mounting in docker command -v .:/var/www
+# ADD . /var/www/
 
 # update the default apache site with provided config
 ADD /docker/apache-config.conf /etc/apache2/sites-enabled/000-default.conf

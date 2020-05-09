@@ -6,12 +6,26 @@
         <title>Help</title>
     </head>
     <body>
-        <h1>Editing Guide</h1>
 
-        <h2>LivingMarkup</h2>
-        <p>LivingMarkup is PHP implementation of a LHTML5 processor.</p>
-        <a href="examples">Examples</a>
+        <nav class="navbar navbar-dark bg-dark">
+            <a class="navbar-brand" href="#">
+                localhost
+            </a>
+        </nav>
 
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item active" aria-current="page">Home</li>
+            </ol>
+        </nav>
+
+        <main role="main" class="container">
+            <h1>Editing Guide</h1>
+
+            <h2>LivingMarkup</h2>
+            <p>LivingMarkup is PHP implementation of a LHTML5 processor.</p>
+            <a href="examples">Examples</a>
+        </main>
         <script type="text/javascript" src="/assets/js/bootstrap/bootstrap.min.js"></script>
         <script src="/assets/js/jquery/jquery.min.js"></script>
     </body>
