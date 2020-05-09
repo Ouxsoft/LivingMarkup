@@ -3,7 +3,6 @@
 #
 version: 1
 modules:
-  directory: '/modules'
   types:
     - name: 'Image'
       xpath: '//img'
