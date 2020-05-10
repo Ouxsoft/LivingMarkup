@@ -1,4 +1,4 @@
 RewriteEngine on
-RewriteCond %{REQUEST_URI} !\.(jpeg|jpg|png|css|js)$
+RewriteCond %{REQUEST_URI} !\.(jpeg|jpg|png|svg|css|js)$
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^ index.php [L]

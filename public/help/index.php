@@ -7,19 +7,9 @@
     </head>
     <body>
 
-        <nav class="navbar navbar-dark bg-dark">
-            <a class="navbar-brand" href="#">
-                localhost
-            </a>
-        </nav>
+    <partial name="HeaderDefault"/>
 
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item active" aria-current="page">Home</li>
-            </ol>
-        </nav>
-
-        <main role="main" class="container">
+    <main role="main" class="container">
             <h1>Editing Guide</h1>
 
             <h2>LivingMarkup</h2>

@@ -6,17 +6,7 @@
         <title>Home</title>
     </head>
     <body>
-        <nav class="navbar navbar-dark bg-dark">
-            <a class="navbar-brand" href="#">
-                localhost
-            </a>
-        </nav>
-
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item active" aria-current="page">Home</li>
-            </ol>
-        </nav>
+        <partial name="HeaderDefault"/>
 
         <main role="main" class="container">
             <h1 class="mt-5">Our new website is on its way.</h1>
