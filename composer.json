@@ -34,7 +34,7 @@
     "laminas/laminas-validator": "^2.13.2",
     "laminas/laminas-router": "^3.3@dev",
     "laminas/laminas-http": "^2.11@dev",
-    "twbs/bootstrap": "dev-master",
+    "twbs/bootstrap": "^4.4.1",
     "components/jquery": "dev-master",
     "scssphp/scssphp": "dev-master"
   },

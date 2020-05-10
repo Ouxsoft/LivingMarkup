@@ -45,7 +45,7 @@ class Router
         $real_user_path = realpath($user_path);
         if (($real_user_path === false)
             || (strpos($real_user_path, $real_base) !== 0)
-            || ( is_file($route) === false)
+            || (is_file($route) === false)
         ) {
             // return 404 page
             $route = '404.php';

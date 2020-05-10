@@ -74,7 +74,7 @@ class Configuration
                 return true;
             }
         } catch (Exception $e) {
-            trigger_error('Unable to load config',E_USER_ERROR);
+            trigger_error('Unable to load config', E_USER_ERROR);
             return false;
         }
 
@@ -155,7 +155,7 @@ class Configuration
     public function isset(...$keys): bool
     {
         $last_checked = $this->get();
-        if(is_null($last_checked)){
+        if (is_null($last_checked)) {
             return false;
         }
         foreach ($keys as $key) {
