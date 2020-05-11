@@ -10,12 +10,6 @@
 *  Test your changes using `composer test`.
 *  Send a pull request.
 
-# Releases
-All releases should adhere to [SemVer](https://semver.org/) naming convention.
-*   MAJOR version when you make incompatible API changes,
-*   MINOR version when you add functionality in a backwards compatible manner, and
-*   PATCH version when you make backwards compatible bug fixes.
-
 ## Coding Guidelines
 
 *  LivingMarkup uses Laminas Framework (formally Zend Framework).
