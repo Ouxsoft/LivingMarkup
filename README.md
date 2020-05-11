@@ -57,14 +57,20 @@ Output `localhost/example`:
 ### Via Composer
 LivingMarkup is available on [Packagist](https://packagist.org/packages/hxtree/livingMarkup).
 
-Install with Composer:
+Install with [Composer](https://getcomposer.org/download/):
 ```shell script
 composer require hxtree/livingmarkup
+# or git clone git@github.com:hxtree/LivingMarkup.git
 ```
-Start with Docker:
+
+Start with [Docker](https://docs.docker.com/get-docker/):
 ```shell script
 sudo ./docker.sh start
+# or setup an Apache2 webserver (reference Dockerfile for optimal settings)
 ```
+
+View site with Browser
+http://localhost
 
 ## Examples
 Learn how LivingMarkup can be used through our [Examples](https://github.com/hxtree/LivingMarkup/blob/master/public/help/examples).
