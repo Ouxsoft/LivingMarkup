@@ -29,6 +29,8 @@ EXPOSE 80
 # copy repo into web directory
 # instead we are mounting in docker command -v .:/var/www
 # ADD . /var/www/
+# RUN rm -rf /var/www/docker
+# RUN rm /var/www/docker.sh
 
 # update the default apache site with provided config
 ADD /docker/apache-config.conf /etc/apache2/sites-enabled/000-default.conf

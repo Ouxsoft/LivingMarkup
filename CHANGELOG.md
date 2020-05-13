@@ -9,6 +9,8 @@ All releases must adhere to [SemVer 2](https://semver.org/) naming convention an
 >PATCH version - when you make backwards compatible bug fixes.
 
 ## LivingMarkup [Unreleased]
+* Added: PNG image resize [#2b7b323](https://github.com/hxtree/LivingMarkup/commit/2b7b323bd882ff0ad5ae9a937d0f8a1449b862a1)
+* Fixed: JPG image resize [#2b7b323](https://github.com/hxtree/LivingMarkup/commit/2b7b323bd882ff0ad5ae9a937d0f8a1449b862a1)
 
 ## LivingMarkup 1.5.0
 Released: 2019-05-11. Notable changes:
@@ -16,9 +18,9 @@ Released: 2019-05-11. Notable changes:
 * Added: Docker build option [#173059f](https://github.com/hxtree/LivingMarkup/commit/173059fbff37430cdd805be0ba06f8fbd8b099b6)
 * Added: Bootstrap and Jquery [#3d5104f](https://github.com/hxtree/LivingMarkup/commit/3d5104f395115c9f5d48ec08e87b1474171e8410)
 * Added: Sass Auto Compiler [#06fe0d3](https://github.com/hxtree/LivingMarkup/commit/06fe0d364545dbac2885c6ea53576e4a55cfc07d)
+* Added: Router [#89679f1](https://github.com/hxtree/LivingMarkup/commit/89679f16f8cbffa90a8f0490adb97cb30edd89e3)
 * Moved: Examples into Public Help [#e42fc61](https://github.com/hxtree/LivingMarkup/commit/e42fc61e2773e58e51e2e2da43b29ef2cb2e9b59)
 * Fixed: PHP Unit Test [#e4826dd](https://github.com/hxtree/LivingMarkup/commit/e4826dd3de6ada117dbe3db5089bf9fc2f2bdd9e)
-* Added: Router [#89679f1](https://github.com/hxtree/LivingMarkup/commit/89679f16f8cbffa90a8f0490adb97cb30edd89e3)
 
 ## LivingMarkup 1.4.1
 Released: 2019-03-29. Notable changes:
