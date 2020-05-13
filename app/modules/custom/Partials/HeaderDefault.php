@@ -24,13 +24,13 @@ class HeaderDefault extends Module
 
         <nav class="navbar navbar-dark bg-dark">
             <a class="navbar-brand" href="/">
-                <img src="/assets/images/livingmarkup/icon/light-transparent-bg.jpg" width="24" class="d-inline-block align-top" alt=""/>
+                <img src="/assets/images/livingmarkup/icon/light-transparent-bg.png" width="24" class="d-inline-block align-top" alt=""/>
                 LivingMarkup            
             </a>
         </nav>
 
         <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
+            <ol class="breadcrumb mb-0">
                 <li class="breadcrumb-item active" aria-current="page">Home</li>
             </ol>
         </nav>

@@ -1,4 +1,4 @@
 # write images to image cacher
 RewriteEngine on
-RewriteCond %{REQUEST_URI} \.(jpeg|jpg|png|svg)$
+RewriteCond %{REQUEST_URI} \.(jpeg|jpg|png|gif)$
 RewriteRule ^(.*)$ bootstrap.php?q=assets/images/$1 [L]

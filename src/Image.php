@@ -18,10 +18,12 @@ class Image
     const JPEG = 1;
     const JPG = 1;
     const PNG = 2;
+    const GIF = 3;
 
     private $root_dir;
 
     private $filename;
+    private $file_extension;
     private $width;
     private $height;
     private $focal_point_x;
@@ -82,7 +84,7 @@ class Image
 
         // set offset y
         if (array_key_exists('offset_y', $parameters)) {
-            $this->setFocalPointX($parameters['offset_y']);
+            $this->setFocalPointY($parameters['offset_y']);
         }
 
         return true;
@@ -102,9 +104,11 @@ class Image
         // set filename
         $this->filename = $filename;
 
+        // set file_extension
+        $this->file_extension = strtolower(substr(strrchr($filename, '.'), 1));
+
         return true;
     }
-
 
     /**
      * set cache URL
@@ -120,6 +124,7 @@ class Image
         // set cache hash of file name
         $this->cache_filename = hash('sha256', $relative_path);
         $this->cache_filepath = $this->cache_dir . $this->cache_filename;
+
         return true;
     }
 
@@ -129,11 +134,12 @@ class Image
      */
     public function output(): bool
     {
-        // if cache exist, then output instead
+        /*
+        // if cache exist, then output it
         if ($this->sendCache()) {
             return true;
         }
-
+*/
         // load file
         if (!$this->load()) {
             // if cannot load file send empty
@@ -141,33 +147,15 @@ class Image
             return false;
         }
 
+//        $this->crop();
+/*
         // save cache
         $this->saveCache();
+*/
 
         // send image
-        if ($this->send()) {
+        if ($this->sendImage()) {
             return true;
-        }
-
-        return false;
-    }
-
-    /**
-     * Send cache of file requested
-     * @return bool
-     */
-    public function sendCache(): bool
-    {
-        try {
-            // check if cache exists
-            $cache_validator = new Exists($this->cache_dir);
-            if ($cache_validator->isValid($this->cache_filename)) {
-                // send cache file
-                $this->send($this->cache_filepath);
-                return true;
-            }
-        } catch (Exception $exception) {
-            // do nothing
         }
 
         return false;
@@ -186,40 +174,74 @@ class Image
      * @param null $resource
      * @return bool
      */
-    private function send($resource = null): bool
+    private function sendImage($resource = null): bool
     {
+        // send cached image
         if ($resource == $this->cache_filepath) {
-            $filename = basename($this->filename);
-            $file_extension = strtolower(substr(strrchr($filename, '.'), 1));
-
-            switch ($file_extension) {
-                case 'gif':
-                    $content_type = 'image/gif';
-                    break;
-                case 'png':
-                    $content_type = 'image/png';
-                    break;
-                case 'svg':
-                    $content_type = 'image/svg+xml';
-                    break;
-                case 'jpeg':
-                case 'jpg':
-                    $content_type = 'image/jpeg';
-                    break;
-                default:
-                    return false;
-            }
-
-            header('Content-type: ' . $content_type);
-            header('Content-Length: ' . filesize($resource));
-            readfile($resource);
-
-            return true;
+            $this->sendCached();
         }
 
-        imagejpeg($this->image, null, 100);
+        // send $this->image image
+        switch ($this->file_extension) {
+            case 'gif':
+                header('Content-Type: image/gif');
+                imagegif($this->image, null);
+                break;
+            case 'png':
+                header('Content-Type: image/png');
+                imagepng($this->image, null, 9);
+                break;
+            case 'jpeg':
+            case 'jpg':
+                header('Content-type: image/jpeg');
+                imagejpeg($this->image, null, 100);
+                break;
+            default:
+                return false;
+        }
 
         return true;
+    }
+
+    /**
+     * Send cache of file requested
+     * @return bool
+     */
+    public function sendCache(): bool
+    {
+        try {
+            // check if cache exists
+            $cache_validator = new Exists($this->cache_dir);
+            if ($cache_validator->isValid($this->cache_filename)) {
+                // send cache file
+                switch ($this->file_extension) {
+                    case 'gif':
+                        header('Content-Type: image/gif');
+                        header('Content-Length: ' . filesize($this->cache_filepath));
+                        readfile($this->cache_filepath);
+                        break;
+                    case 'png':
+                        header('Content-Type: image/png');
+                        header('Content-Length: ' . filesize($this->cache_filepath));
+                        readfile($this->cache_filepath);
+                        break;
+                    case 'jpeg':
+                    case 'jpg':
+                        header('Content-type: image/jpeg');
+                        header('Content-Length: ' . filesize($this->cache_filepath));
+                        readfile($this->cache_filepath);
+                        break;
+                    default:
+                        return false;
+                }
+
+                return true;
+            }
+        } catch (Exception $exception) {
+            // do nothing
+        }
+
+        return false;
     }
 
     /**
@@ -260,19 +282,59 @@ class Image
         }
 
         $this->image = imagecreatetruecolor($this->width, $this->height);
-        $image_original = imagecreatefromjpeg($assets_filepath);
-        imagecopyresampled(
-            $this->image,
-            $image_original,
-            0,
-            0,
-            0,
-            0,
-            $this->width,
-            $this->height,
-            $width_original,
-            $height_original
-        );
+
+        // create image from file
+        switch ($this->file_extension) {
+            case 'gif':
+                $image_original = imagecreatefromgif($assets_filepath);
+                imagecopyresampled(
+                    $this->image,
+                    $image_original,
+                    $this->focal_point_x,
+                    $this->focal_point_y,
+                    0,
+                    0,
+                    $this->width,
+                    $this->height,
+                    $width_original,
+                    $height_original
+                );
+                break;
+            case 'png':
+                $image_original = imagecreatefrompng($assets_filepath);
+                imagealphablending($this->image, false);
+                imagesavealpha($this->image, true);
+                imagecopyresampled(
+                    $this->image,
+                    $image_original,
+                    $this->focal_point_x,
+                    $this->focal_point_y,
+                    0,
+                    0,
+                    $this->width,
+                    $this->height,
+                    $width_original,
+                    $height_original);
+                break;
+            case 'jpeg':
+            case 'jpg':
+                $image_original = imagecreatefromjpeg($assets_filepath);
+                imagecopyresampled(
+                    $this->image,
+                    $image_original,
+                    $this->focal_point_x,
+                    $this->focal_point_y,
+                    0,
+                    0,
+                    $this->width,
+                    $this->height,
+                    $width_original,
+                    $height_original
+                );
+                break;
+            default:
+                return false;
+        }
 
         return true;
     }
@@ -282,8 +344,21 @@ class Image
      */
     private function saveCache()
     {
-        // write $this->image file to $cache_filepath
-        imagejpeg($this->image, $this->cache_filepath, 100);
+        // save $this->image to cache
+        switch ($this->file_extension) {
+            case 'gif':
+                imagegif($this->image, $this->cache_filepath);
+                break;
+            case 'png':
+                imagepng($this->image, $this->cache_filepath, 9);
+                break;
+            case 'jpeg':
+            case 'jpg':
+                imagejpeg($this->image, $this->cache_filepath, 100);
+                break;
+            default:
+                return false;
+        }
     }
 
     /**

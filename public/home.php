@@ -8,8 +8,19 @@
     <body>
         <partial name="HeaderDefault"/>
 
+        <header class="masthead" style="background-image:url('assets/images/dimension/1400x400/offset/0,-50/livingmarkup/hero/oscar-fish.jpg'); height: 600px; background-size: cover; no-repeat center center fixed; width: 100%">
+            <div class="container h-100">
+                <div class="row h-100 align-items-center">
+                    <div class="col-12 text-left text-light">
+                        <h1 class="font-weight-light">Our new website </h1>
+                        <p class="lead">is on its way</p>
+                    </div>
+                </div>
+            </div>
+        </header>
+
         <main role="main" class="container">
-            <h1 class="mt-5">Our new website is on its way.</h1>
+
             <p class="lead">Check back soon for updates.</p>
         </main>
 
