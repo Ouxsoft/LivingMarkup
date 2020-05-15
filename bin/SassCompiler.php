@@ -19,14 +19,16 @@ $path = 'public/assets/css/main.min.css';
 
 try {
     $scss = new Compiler();
-    $scss->setImportPaths('vendor/twbs/bootstrap/scss/');
-
     $scss->setFormatter("ScssPhp\ScssPhp\Formatter\Compressed");
 
-    // start out with bootstrap
-    $output = $scss->compile('@import "bootstrap.scss";');
+    // set root import path and add additional paths
+    $scss->setImportPaths('assets/scss/');
+    $scss->addImportPath('vendor/twbs/bootstrap/scss/');
 
-    // save file contents
+    // compile
+    $output = $scss->compile('@import "main.scss";');
+
+    // save
     file_put_contents($path, $output);
 
 } catch (\Exception $e) {

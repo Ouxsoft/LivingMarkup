@@ -9,8 +9,12 @@ All releases must adhere to [SemVer 2](https://semver.org/) naming convention an
 >PATCH version - when you make backwards compatible bug fixes.
 
 ## LivingMarkup [Unreleased]
+
+## LivingMarkup 1.5.1
 * Added: PNG image resize [#2b7b323](https://github.com/hxtree/LivingMarkup/commit/2b7b323bd882ff0ad5ae9a937d0f8a1449b862a1)
 * Fixed: JPG image resize [#2b7b323](https://github.com/hxtree/LivingMarkup/commit/2b7b323bd882ff0ad5ae9a937d0f8a1449b862a1)
+* Added: Image offset / focal point [#56397ca](https://github.com/hxtree/LivingMarkup/commit/56397ca7546b24291f63487ecb930e01398e66c3)
+* Added: Custom SCSS build [#56397ca](https://github.com/hxtree/LivingMarkup/commit/56397ca7546b24291f63487ecb930e01398e66c3)
 
 ## LivingMarkup 1.5.0
 Released: 2019-05-11. Notable changes:

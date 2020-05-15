@@ -29,7 +29,7 @@ class Router
 
         // send empty request to home
         if ($route == '') {
-            $route = 'home';
+            $route = 'frontpage';
         }
 
         // check for file as php file if a extension not provided in request

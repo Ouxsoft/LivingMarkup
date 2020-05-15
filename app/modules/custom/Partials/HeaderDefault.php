@@ -28,12 +28,6 @@ class HeaderDefault extends Module
                 LivingMarkup            
             </a>
         </nav>
-
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb mb-0">
-                <li class="breadcrumb-item active" aria-current="page">Home</li>
-            </ol>
-        </nav>
 HTML;
     }
 }

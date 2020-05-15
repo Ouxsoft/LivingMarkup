@@ -52,18 +52,18 @@ class Breadcrumb extends Module
         ];
 
         $out = '<!-- Breadcrumb -->' . PHP_EOL;
-        $out .= '<div class="breadcrumb">';
-        $out .= '<ul>';
+        $out .= '<nav aria-label="breadcrumb">';
+        $out .= '<ol class="breadcrumb mb-0">';
         foreach ($pages as $page) {
-            $out .= '<li>';
+            $out .= '<li class="breadcrumb-item active" aria-current="page">';
             $out .= '<span class="separator">' . $this->separator . '</span> ';
             $out .= '<a href="' . $page['href'] . '">';
             $out .= $page['title'];
             $out .= '</a>';
             $out .= '</li>';
         }
-        $out .= '</ul>';
-        $out .= '</div>';
+        $out .= '</ol>';
+        $out .= '</nav>';
         return $out;
     }
 }

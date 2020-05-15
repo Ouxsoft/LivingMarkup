@@ -34,6 +34,11 @@ class Image
     private $cache_filepath;
     private $assets_dir;
 
+    private $image_original;
+    private $height_original;
+    private $width_original;
+    private $ratio_original;
+
     /**
      * Image constructor.
      */
@@ -134,24 +139,19 @@ class Image
      */
     public function output(): bool
     {
-        /*
         // if cache exist, then output it
         if ($this->sendCache()) {
             return true;
         }
-*/
-        // load file
-        if (!$this->load()) {
+
+        // load and resize file
+        if (! $this->load() || ! $this->resize()) {
             // if cannot load file send empty
             $this->sendEmpty();
             return false;
         }
-
-//        $this->crop();
-/*
         // save cache
         $this->saveCache();
-*/
 
         // send image
         if ($this->sendImage()) {
@@ -159,6 +159,137 @@ class Image
         }
 
         return false;
+    }
+
+    /**
+     * Loads image for resizing
+     * @return bool
+     */
+    private function load(): bool
+    {
+        // assets
+        $assets_filename = $this->filename;
+        $assets_filepath = $this->assets_dir . $assets_filename;
+        $assets_validator = new Exists($this->assets_dir);
+
+        if (!$assets_validator->isValid($assets_filename)) {
+            //    return false;
+        }
+
+        // get width and height
+        list($this->width_original, $this->height_original) = getimagesize($assets_filepath);
+
+        // determine original ratio
+        $this->ratio_original = $this->width_original / $this->height_original;
+
+        // create image from file
+        switch ($this->file_extension) {
+            case 'gif':
+                $this->image_original = imagecreatefromgif($assets_filepath);
+                break;
+            case 'png':
+                $this->image_original = imagecreatefrompng($assets_filepath);
+                break;
+            case 'jpeg':
+            case 'jpg':
+                $this->image_original = imagecreatefromjpeg($assets_filepath);
+                break;
+            default:
+                return false;
+        }
+
+        return true;
+    }
+
+    /**
+     * @return bool
+     */
+    private function resize()
+    {
+        $this->image = imagecreatetruecolor($this->width, $this->height);
+
+        // if desired width not set, use original
+        if ($this->width === null) {
+            $draw_image_width = $this->width_original;
+        } else {
+            $draw_image_width = $this->width;
+        }
+
+        // if desired height not set, use original
+        if ($this->height === null) {
+            $draw_image_height = $this->height_original;
+        } else {
+            $draw_image_height = $this->height;
+        }
+
+        if ($this->width / $this->height > $this->ratio_original) {
+            $draw_image_width = $this->height * $this->ratio_original;
+        } else {
+            $draw_image_height = $this->width / $this->ratio_original;
+        }
+
+        // rescale
+        if ($draw_image_width < $this->width) {
+            $difference = $this->width - $draw_image_width;
+            $draw_image_width += $difference;
+            $draw_image_height += $difference;
+        } elseif ($draw_image_height < $this->height) {
+            $difference = $this->height - $draw_image_height;
+            $draw_image_width += $difference;
+            $draw_image_height += $difference;
+        }
+
+        // compute offset
+        $max_y = ($draw_image_height - $this->height) / 2;
+        $center_y = ($this->height/2) - ($draw_image_height/2);
+        $percent_y = ($this->focal_point_y * 2) * 0.01;
+        $offset_y = $center_y - ($max_y * $percent_y);
+
+        // compute offset
+        $max_x = ($draw_image_width - $this->width) / 2;
+        $center_x = ($this->width/2) - ($draw_image_width/2);
+        $percent_x = ($this->focal_point_x * 2) * 0.01;
+        $offset_x = $center_x - ($max_x * $percent_x);
+
+        // create image from file
+        switch ($this->file_extension) {
+            case 'jpg':
+            case 'jpeg':
+            case 'gif':
+                imagecopyresampled(
+                    $this->image,
+                    $this->image_original,
+                    $offset_x,
+                    $offset_y,
+                    0,
+                    0,
+                    $draw_image_width,
+                    $draw_image_height,
+                    $this->width_original,
+                    $this->height_original
+                );
+                break;
+            case 'png':
+                imagealphablending($this->image, false);
+                imagesavealpha($this->image, true);
+                imagecopyresampled(
+                    $this->image,
+                    $this->image_original,
+                    $offset_x,
+                    $offset_y,
+                    0,
+                    0,
+                    $this->width,
+                    $this->height,
+                    $this->width_original,
+                    $this->height_original
+                );
+                break;
+            default:
+                return false;
+        }
+
+        return true;
     }
 
     /**
@@ -245,101 +376,6 @@ class Image
     }
 
     /**
-     * Loads image for resizing
-     * @return bool
-     */
-    private function load(): bool
-    {
-        // assets
-        $assets_filename = $this->filename;
-        $assets_filepath = $this->assets_dir . $assets_filename;
-        $assets_validator = new Exists($this->assets_dir);
-
-        if (!$assets_validator->isValid($assets_filename)) {
-            //    return false;
-        }
-
-        // get width and height
-        list($width_original, $height_original) = getimagesize($assets_filepath);
-
-        // if desired width not set, use original
-        if ($this->width === null) {
-            $this->width = $width_original;
-        }
-
-        // if desired height not set, use original
-        if ($this->height === null) {
-            $this->height = $height_original;
-        }
-
-        // determine original ratio
-        $ratio_original = $width_original / $height_original;
-
-        if ($this->width / $this->height > $ratio_original) {
-            $this->width = $this->height * $ratio_original;
-        } else {
-            $this->height = $this->width / $ratio_original;
-        }
-
-        $this->image = imagecreatetruecolor($this->width, $this->height);
-
-        // create image from file
-        switch ($this->file_extension) {
-            case 'gif':
-                $image_original = imagecreatefromgif($assets_filepath);
-                imagecopyresampled(
-                    $this->image,
-                    $image_original,
-                    $this->focal_point_x,
-                    $this->focal_point_y,
-                    0,
-                    0,
-                    $this->width,
-                    $this->height,
-                    $width_original,
-                    $height_original
-                );
-                break;
-            case 'png':
-                $image_original = imagecreatefrompng($assets_filepath);
-                imagealphablending($this->image, false);
-                imagesavealpha($this->image, true);
-                imagecopyresampled(
-                    $this->image,
-                    $image_original,
-                    $this->focal_point_x,
-                    $this->focal_point_y,
-                    0,
-                    0,
-                    $this->width,
-                    $this->height,
-                    $width_original,
-                    $height_original);
-                break;
-            case 'jpeg':
-            case 'jpg':
-                $image_original = imagecreatefromjpeg($assets_filepath);
-                imagecopyresampled(
-                    $this->image,
-                    $image_original,
-                    $this->focal_point_x,
-                    $this->focal_point_y,
-                    0,
-                    0,
-                    $this->width,
-                    $this->height,
-                    $width_original,
-                    $height_original
-                );
-                break;
-            default:
-                return false;
-        }
-
-        return true;
-    }
-
-    /**
      * Saves $this->image to specific path
      */
     private function saveCache()
@@ -367,7 +403,15 @@ class Image
      */
     public function setFocalPointX($focal_point_x): void
     {
-        $this->focal_point_x = $focal_point_x;
+        if (! is_numeric($focal_point_x)) {
+            $this->focal_point_x = 0;
+        } elseif ($focal_point_x > 50) {
+            $this->focal_point_x = 50;
+        } elseif ($focal_point_x <= -50) {
+            $this->focal_point_x = -50;
+        } else {
+            $this->focal_point_x = $focal_point_x;
+        }
     }
 
     /**
@@ -376,7 +420,15 @@ class Image
      */
     public function setFocalPointY($focal_point_y): void
     {
-        $this->focal_point_y = $focal_point_y;
+        if (! is_numeric($focal_point_y)) {
+            $this->focal_point_y = 0;
+        } elseif ($focal_point_y > 50) {
+            $this->focal_point_y = 50;
+        } elseif ($focal_point_y <= -50) {
+            $this->focal_point_y = -50;
+        } else {
+            $this->focal_point_y = $focal_point_y;
+        }
     }
 
     /**
