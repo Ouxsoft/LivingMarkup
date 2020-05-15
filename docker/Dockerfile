@@ -1,3 +1,6 @@
+# set environment variable, e.g. DEV, TEST, PROD
+ARG ENV
+
 # select os
 FROM ubuntu:18.04
 

@@ -6,26 +6,62 @@ arg_3="$3"
 # should add a start prod
 
 if [ "$arg_1" == "start" ] ; then
-  echo "Build webserver container"
-	docker build -t livingmarkup -f docker/Dockerfile .
-  if [ "$arg_2" == "prod" ] ; then
-    echo "Run webserver for production"
-  	docker run -p 80:80 -p 443:443 --name livingmarkup --volume $(pwd):/var/www -d livingmarkup
+
+  # build web server container
+  if [ "$arg_2" == "dev" ] || [ "$arg_2" == "test" ] || [ "$arg_2" == "prod" ] ; then
+    echo "Build web server container"
+    docker build -t livingmarkup -f docker/Dockerfile .
   else
-    # mount local volume for rapid development
-    echo "Run webserver for development"
-  	docker run -p 80:80 -p 443:443 --name livingmarkup --volume $(pwd):/var/www -d livingmarkup
+    echo "Deployment environment required (dev, test, prod):"
+    echo "sudo ./docker.sh start dev"
+    exit
   fi
+
+  # run web server for environment
+  if [ "$arg_2" == "prod" ] ; then
+    echo "Run web server for production environment"
+  	docker run \
+  	--expose 80:80 \
+  	--expose 443:443 \
+  	--name livingmarkup \
+  	--env-file docker/env/prod.conf \
+  	--volume $(pwd):/var/www \
+  	--detach livingmarkup
+  elif [ "$arg_2" == "test" ] ; then
+    echo "Run web server for test environment"
+  	docker run \
+  	--expose 80:80 \
+  	--expose 443:443 \
+  	--name livingmarkup \
+  	--env-file docker/env/test.conf \
+  	--volume $(pwd):/var/www \
+  	--detach livingmarkup
+  elif [ "$arg_2" == "dev" ] ; then
+    # mount local volume for rapid development
+    echo "Run web server for development environment"
+  	docker run \
+  	--expose 80:80 \
+  	--expose 443:443 \
+  	--name livingmarkup \
+  	--env-file docker/env/dev.conf \
+  	--volume $(pwd):/var/www \
+  	--detach livingmarkup
+  fi
+
 elif [ "$arg_1" == "stop" ] ; then
-  echo "Stop webserver container"
+
+  echo "Stop web server container"
   docker stop livingmarkup
-  echo "Remove webserver container"
+  echo "Remove web server container"
   docker rm livingmarkup
+
 elif [ "$arg_1" == "shell" ]; then
-  echo "Exec into webserver"
+
+  echo "Exec into web server"
   docker exec -it livingmarkup bash,
+
 else
+
   echo "Pass argument 'stop' or 'start'"
+
 fi
-
-
