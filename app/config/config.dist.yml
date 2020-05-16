@@ -3,35 +3,40 @@
 #
 version: 1
 modules:
+  # consider not in xpath as to avoid parsing user data by adding [not(ancestor::X)]
+  # parse these modules
   types:
+    - name: 'Code'
+      xpath: '//code'
+      class_name: 'LivingMarkup\Modules\Core\Code'
+    - name: 'If Statement'
+      xpath: '//if[not(ancestor::code)]'
+      class_name: 'LivingMarkup\Modules\Core\IfStatement'
+    - name: 'Variable'
+      xpath: '//var[not(ancestor::code)]'
+      class_name: 'LivingMarkup\Modules\Core\Variable'
     - name: 'Image'
-      xpath: '//img'
+      xpath: '//img[not(ancestor::code)]'
       class_name: 'LivingMarkup\Modules\Core\Image'
     - name: 'Hyperlink'
-      xpath: '//a'
+      xpath: '//a[not(ancestor::code)]'
       class_name: 'LivingMarkup\Modules\Core\Hyperlink'
-    - name: 'Variable'
-      xpath: '//var'
-      class_name: 'LivingMarkup\Modules\Core\Variable'
-    - name: 'If Statement'
-      xpath: '//if'
-      class_name: 'LivingMarkup\Modules\Core\IfStatement'
-    - name: 'Redact'
+    - name: 'Redact[not(ancestor::code)]'
       xpath: '//redact'
       class_name: 'LivingMarkup\Modules\Core\Redact'
-    - name: 'Block'
+    - name: 'Block[not(ancestor::code)]'
       class_name: 'LivingMarkup\Modules\Custom\Blocks\{name}'
-      xpath: '//block'
+      xpath: '//block[not(ancestor::code)]'
       settings:
         - cache_duration: '1 hour'
         - search_index: false
     - name: 'Partial'
       class_name: 'LivingMarkup\Modules\Custom\Partials\{name}'
-      xpath: '//partial'
+      xpath: '//partial[not(ancestor::code)]'
     - name: 'Widget'
       class_name: 'LivingMarkup\Modules\Custom\Widgets\{name}'
-      xpath: '//widget'
-
+      xpath: '//widget[not(ancestor::code)]'
+  # auto call these methods
   methods:
     - name: 'beforeLoad'
       descirption: 'Execute before object data load'

@@ -4,8 +4,19 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "9af903376a9075533a72f93d80dd71e6",
+    "content-hash": "1c05a798c7e4d85ddc53a2fe6758e0a1",
     "packages": [
+        {
+            "name": "codemirror/CodeMirror",
+            "version": "5.53.2",
+            "dist": {
+                "type": "zip",
+                "url": "https://codemirror.net/codemirror.zip",
+                "reference": "5.53.2",
+                "shasum": null
+            },
+            "type": "library"
+        },
         {
             "name": "components/jquery",
             "version": "dev-master",

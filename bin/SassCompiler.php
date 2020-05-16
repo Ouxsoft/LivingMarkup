@@ -19,7 +19,7 @@ $path = 'public/assets/css/main.min.css';
 
 try {
     $scss = new Compiler();
-    $scss->setFormatter("ScssPhp\ScssPhp\Formatter\Compressed");
+    $scss->setFormatter('ScssPhp\ScssPhp\Formatter\Compressed');
 
     // set root import path and add additional paths
     $scss->setImportPaths('assets/scss/');

@@ -32,7 +32,7 @@ class Document extends DomDocument
         $this->formatOutput = true;
 
         // DomDocument object setting to preserve white space
-        $this->preserveWhiteSpace = false;
+        $this->preserveWhiteSpace = true;
 
         // DomDocument strict error checking setting
         $this->strictErrorChecking = false;

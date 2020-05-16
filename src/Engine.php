@@ -189,7 +189,7 @@ class Engine
             $xml .= $dom_element->ownerDocument->saveHTML($child);
         }
 
-        return trim($xml);
+        return $xml;
     }
 
     /**
@@ -305,6 +305,7 @@ class Engine
 
         // get child args
         $arg_elements = $element->getElementsByTagName('arg');
+
         // iterate in reverse threw list of arguments to avoid bug with removing
         for ($i = $arg_elements->length - 1; $i >= 0; $i--) {
 

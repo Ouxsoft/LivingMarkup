@@ -36,8 +36,23 @@
     "laminas/laminas-http": "^2.11@dev",
     "twbs/bootstrap": "^4.4.1",
     "components/jquery": "dev-master",
-    "scssphp/scssphp": "dev-master"
+    "scssphp/scssphp": "dev-master",
+    "codemirror/CodeMirror": "5.53.2"
   },
+  "repositories": [
+    {
+      "type": "package",
+      "package": {
+        "name": "codemirror/CodeMirror",
+        "version": "5.53.2",
+        "dist": {
+          "type": "zip",
+          "url": "https://codemirror.net/codemirror.zip",
+          "reference": "5.53.2"
+        }
+      }
+    }
+  ],
   "minimum-stability": "dev",
   "support": {
     "issues": "https://github.com/hxtree/LivingMarkup/issues"
@@ -73,6 +88,8 @@
       "php bin/SassCompiler.php",
       "rm -rf public/assets/js/bootstrap",
       "cp -R vendor/twbs/bootstrap/dist/js/ public/assets/js/bootstrap",
+      "cp vendor/codemirror/CodeMirror/lib/codemirror.css public/assets/css/codemirror/codemirror.css",
+      "cp vendor/codemirror/CodeMirror/lib/codemirror.js public/assets/js/codemirror/codemirror.js",
       "rm -rf public/assets/js/jquery/*",
       "cp vendor/components/jquery/jquery.min.js public/assets/js/jquery/jquery.min.js"
     ],
