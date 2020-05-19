@@ -11,6 +11,7 @@ All releases must adhere to [SemVer 2](https://semver.org/) naming convention an
 ## LivingMarkup [Unreleased]
 * Added: process=false flag to skip elements [#738565b](https://github.com/hxtree/LivingMarkup/commit/738565b28c8acfcf25b44115b8f9fb003759b01f)
 * Added: Code block module for styling code [#738565b](https://github.com/hxtree/LivingMarkup/commit/738565b28c8acfcf25b44115b8f9fb003759b01f)
+* Fixed: DOMElement Arg removal [85ef96c](https://github.com/ouxsoft/LivingMarkup/commit/85ef96c4aea4c172c04f9e7b5db9ab6c56cdba08)
 
 ## LivingMarkup 1.5.1
 * Added: PNG image resize [#2b7b323](https://github.com/hxtree/LivingMarkup/commit/2b7b323bd882ff0ad5ae9a937d0f8a1449b862a1)

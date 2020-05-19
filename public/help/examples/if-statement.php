@@ -21,21 +21,26 @@ define('LivingMarkup_DATETIME', '2019-12-03 01:30:00');
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
     <link href="/assets/css/main.min.css" rel="stylesheet"/>
     <link rel="stylesheet" type="text/css" href="/assets/css/codemirror/codemirror.css"/>
-    <script  src="/assets/js/codemirror/codemirror.js"/>
+    <script src="/assets/js/codemirror/codemirror.js"/>
+    <script src="/assets/js/codemirror/xml.js"/>
+    <link rel="stylesheet" type="text/css" href="/assets/css/codemirror/dracula.css"/>
 </head>
 <body>
 
     <partial name="HeaderDefault"/>
-    <partial name="Breadcrumbs"/>
+    <partial name="Breadcrumb"/>
 
     <main role="main" class="container">
         <h1>If Statement</h1>
         <p>
             An if statement is a programming conditional statement that, if proved true, displays information
-            contained within. They are provided to empower users but should be used sparingly. It is better for
+            contained within. If statements are provided to empower users but should be used sparingly. It is better for
             complex nested logic to be separated into a module.
         </p>
-        <h2>Time</h2>
+        <h2>Conditions</h2>
+        <p>An if statement toggle is based on one more more conditional checks. These checks are supplied as arguments.</p>
+        <h3>Time</h3>
+        <p>A condition based on the time of day.</p>
         <code process="false">
             <if time_start="0:00" time_end="23:59">
                 <p>Good morning.</p>
@@ -50,7 +55,8 @@ define('LivingMarkup_DATETIME', '2019-12-03 01:30:00');
             </if>
         </code>
 
-        <h2>Day of Week</h2>
+        <h3>Day of Week</h3>
+        <p>A condition based on the day of the week.</p>
         <code process="false">
             <if>
                 <arg name="day_of_week">Tuesday</arg>
@@ -64,7 +70,8 @@ define('LivingMarkup_DATETIME', '2019-12-03 01:30:00');
             </if>
         </code>
 
-        <h2>Date</h2>
+        <h3>Date</h3>
+        <p>A condition based on dates.</p>
         <code process="false">
             <if>
                 <arg name="date_start">December 3. 2019</arg>
@@ -76,7 +83,8 @@ define('LivingMarkup_DATETIME', '2019-12-03 01:30:00');
             </if>
         </code>
 
-        <h2>Datetime</h2>
+        <h3>Datetime</h3>
+        <p>A condition based on datetimes.</p>
         <code process="false">
             <if>
                 <arg name="datetime_start">December 4. 2019 1:00 am</arg>
@@ -101,7 +109,9 @@ define('LivingMarkup_DATETIME', '2019-12-03 01:30:00');
                 lineNumbers: true,
                 styleActiveLine: true,
                 matchBrackets: true,
-                theme: 'xq-light',
+                mode : "xml",
+                htmlMode: true,
+                theme: "dracula"
             });
         });
     </script>

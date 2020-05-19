@@ -22,7 +22,8 @@ class Code extends Module
 {
     private $code;
 
-    public function onLoad(){
+    public function onLoad()
+    {
         /*
         $DOM->addStyle('/assets/css/codemirror/codemirror.css');
         $DOM->addScript('/assets/js/codemirror/codemirror.js');
@@ -47,8 +48,8 @@ class Code extends Module
             // count
             $indent_count = count(str_split($matches[0])) - 1;
             $new_code = '';
-            foreach(preg_split("/((\r?\n)|(\r\n?))/", $this->code) as $line){
-                $new_code .= substr_replace($line, '',0, $indent_count) . PHP_EOL;
+            foreach (preg_split("/((\r?\n)|(\r\n?))/", $this->code) as $line) {
+                $new_code .= substr_replace($line, '', 0, $indent_count) . PHP_EOL;
             }
             $this->code = $new_code;
         }
@@ -57,7 +58,7 @@ class Code extends Module
         $this->code = htmlspecialchars($this->code, ENT_QUOTES);
 
         return <<<HTML
-<textarea class="codemirror-textarea">
+<textarea class="codemirror-textarea mb-3">
 {$this->code}
 </textarea>
 HTML;

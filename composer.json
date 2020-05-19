@@ -89,7 +89,9 @@
       "rm -rf public/assets/js/bootstrap",
       "cp -R vendor/twbs/bootstrap/dist/js/ public/assets/js/bootstrap",
       "cp vendor/codemirror/CodeMirror/lib/codemirror.css public/assets/css/codemirror/codemirror.css",
+      "cp -R vendor/codemirror/CodeMirror/theme/* public/assets/css/codemirror/",
       "cp vendor/codemirror/CodeMirror/lib/codemirror.js public/assets/js/codemirror/codemirror.js",
+      "cp vendor/codemirror/CodeMirror/mode/xml/xml.js public/assets/js/codemirror/xml.js",
       "rm -rf public/assets/js/jquery/*",
       "cp vendor/components/jquery/jquery.min.js public/assets/js/jquery/jquery.min.js"
     ],

@@ -307,8 +307,7 @@ class Engine
         $arg_elements = $this->xpath->query('arg', $element);
 
         // set arg DOMElements as args
-        foreach($arg_elements as $child_node) {
-
+        foreach ($arg_elements as $child_node) {
             $name = $child_node->getAttribute('name');
 
             // an arg must have a name

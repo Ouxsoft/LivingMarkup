@@ -36,18 +36,6 @@ class Breadcrumb extends Module
             [
                 'title' => 'Home',
                 'href' => '/'
-            ],
-            [
-                'title' => 'Groups',
-                'href' => '/groups'
-            ],
-            [
-                'title' => 'User',
-                'href' => '/groups/user'
-            ],
-            [
-                'title' => 'Settings',
-                'href' => '/groups/user/settings'
             ]
         ];
 
