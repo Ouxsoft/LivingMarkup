@@ -296,33 +296,31 @@ class Engine
     {
         $args = new PrunedList;
 
-        // get attributes
+        // set attributes belonging to DOMElement as args
         if ($element->hasAttributes()) {
             foreach ($element->attributes as $name => $attribute) {
                 $args->add($name, $attribute->value);
             }
         }
 
-        // get child args
-        $arg_elements = $element->getElementsByTagName('arg');
+        // get direct arg child elements
+        $arg_elements = $this->xpath->query('arg', $element);
 
-        // iterate in reverse threw list of arguments to avoid bug with removing
-        for ($i = $arg_elements->length - 1; $i >= 0; $i--) {
+        // set arg DOMElements as args
+        foreach($arg_elements as $child_node) {
 
-            // get argument
-            $arg_element = $arg_elements->item($i);
+            $name = $child_node->getAttribute('name');
 
-            // get name
-            $name = $arg_element->getAttribute('name');
+            // an arg must have a name
             if ($name === null) {
                 continue;
             }
 
             // get value
-            $value = $arg_element->nodeValue;
+            $value = $child_node->nodeValue;
 
             // get type
-            $type = $arg_element->getAttribute('type');
+            $type = $child_node->getAttribute('type') ?? 'string';
 
             // perform type juggling
             $value = $this->setType($value, $type);
@@ -331,7 +329,7 @@ class Engine
             $args->add($name, $value);
 
             // remove element
-            $arg_element->parentNode->removeChild($arg_element);
+            $child_node->parentNode->removeChild($child_node);
         }
 
         return $args->get();

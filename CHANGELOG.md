@@ -9,6 +9,8 @@ All releases must adhere to [SemVer 2](https://semver.org/) naming convention an
 >PATCH version - when you make backwards compatible bug fixes.
 
 ## LivingMarkup [Unreleased]
+* Added: process=false flag to skip elements [#738565b](https://github.com/hxtree/LivingMarkup/commit/738565b28c8acfcf25b44115b8f9fb003759b01f)
+* Added: Code block module for styling code [#738565b](https://github.com/hxtree/LivingMarkup/commit/738565b28c8acfcf25b44115b8f9fb003759b01f)
 
 ## LivingMarkup 1.5.1
 * Added: PNG image resize [#2b7b323](https://github.com/hxtree/LivingMarkup/commit/2b7b323bd882ff0ad5ae9a937d0f8a1449b862a1)

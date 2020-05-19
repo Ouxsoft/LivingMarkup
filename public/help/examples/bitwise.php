@@ -21,6 +21,9 @@ add_module([
             <arg name="number">2</arg>
             <arg name="count">6</arg>
             <arg name="operator">^</arg>
+            <p>
+                <arg></arg>
+            </p>
         </bitwise>
     </body>
 </html>

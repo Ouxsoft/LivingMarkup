@@ -11,6 +11,9 @@
 
         <main role="main" class="container">
             <h2>Examples</h2>
+            <p>
+                These code snippets are not processed due to an ancestor with attribute process="false".
+            </p>
 
             <h3>Core Modules</h3>
 

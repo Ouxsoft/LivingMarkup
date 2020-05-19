@@ -93,7 +93,7 @@ abstract class Module implements ModuleDefaultInterface
     }
 
     /**
-     * Get Arg by Name
+     * Get arg by name
      *
      * @param $name
      * @return mixed|null
@@ -101,6 +101,16 @@ abstract class Module implements ModuleDefaultInterface
     public function getArgByName($name)
     {
         return array_key_exists($name, $this->args) ? $this->args[$name] : null;
+    }
+
+    /**
+     * Get all args
+     *
+     * @return array
+     */
+    public function getArgs()
+    {
+        return $this->args;
     }
 
     /**

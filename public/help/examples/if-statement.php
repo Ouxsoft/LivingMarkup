@@ -31,12 +31,9 @@ define('LivingMarkup_DATETIME', '2019-12-03 01:30:00');
     <main role="main" class="container">
         <h1>If Statement</h1>
         <p>
-            An if statement is a programming conditional statement that, if proved true, performs displays information
-            contained within. They should be used sparingly. It is better to use a module to store nested complicated
-            logic.
-        </p>
-        <p>
-            What keeps these code snippets from running is having an attribute ancestor attribute `process` set to false.
+            An if statement is a programming conditional statement that, if proved true, displays information
+            contained within. They are provided to empower users but should be used sparingly. It is better for
+            complex nested logic to be separated into a module.
         </p>
         <h2>Time</h2>
         <code process="false">
