@@ -3,39 +3,39 @@
 #
 version: 1
 modules:
-  # consider not in xpath as to avoid parsing user data by adding [not(ancestor::X)]
-  # parse these modules
+  # skip processing element with ancestor set to false by using:
+  # xpath: "//element[not(ancestor::*[@process='false'])]"
   types:
     - name: 'Code'
-      xpath: '//code'
+      xpath: "//code[not(ancestor::*[@process='false'])]"
       class_name: 'LivingMarkup\Modules\Core\Code'
     - name: 'If Statement'
-      xpath: '//if[not(ancestor::code)]'
+      xpath: "//if[not(ancestor::*[@process='false'])]"
       class_name: 'LivingMarkup\Modules\Core\IfStatement'
     - name: 'Variable'
-      xpath: '//var[not(ancestor::code)]'
+      xpath: "//var[not(ancestor::*[@process='false'])]"
       class_name: 'LivingMarkup\Modules\Core\Variable'
     - name: 'Image'
-      xpath: '//img[not(ancestor::code)]'
+      xpath: "//img[not(ancestor::*[@process='false'])]"
       class_name: 'LivingMarkup\Modules\Core\Image'
     - name: 'Hyperlink'
-      xpath: '//a[not(ancestor::code)]'
+      xpath: "//a[not(ancestor::*[@process='false'])]"
       class_name: 'LivingMarkup\Modules\Core\Hyperlink'
-    - name: 'Redact[not(ancestor::code)]'
-      xpath: '//redact'
+    - name: 'Redact'
+      xpath: "//redact[not(ancestor::*[@process='false'])]"
       class_name: 'LivingMarkup\Modules\Core\Redact'
-    - name: 'Block[not(ancestor::code)]'
+    - name: "Block[not(ancestor::*[@process='false'])]"
       class_name: 'LivingMarkup\Modules\Custom\Blocks\{name}'
-      xpath: '//block[not(ancestor::code)]'
+      xpath: "//block[not(ancestor::*[@process='false'])]"
       settings:
         - cache_duration: '1 hour'
         - search_index: false
     - name: 'Partial'
       class_name: 'LivingMarkup\Modules\Custom\Partials\{name}'
-      xpath: '//partial[not(ancestor::code)]'
+      xpath: "//partial[not(ancestor::*[@process='false'])]"
     - name: 'Widget'
       class_name: 'LivingMarkup\Modules\Custom\Widgets\{name}'
-      xpath: '//widget[not(ancestor::code)]'
+      xpath: "//widget[not(ancestor::*[@process='false'])]"
   # auto call these methods
   methods:
     - name: 'beforeLoad'

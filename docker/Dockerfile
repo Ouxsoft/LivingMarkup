@@ -36,7 +36,7 @@ EXPOSE 80
 # RUN rm /var/www/docker.sh
 
 # update the default apache site with provided config
-ADD /docker/apache2/apache-config.conf /etc/apache2/sites-enabled/000-default.conf
+ADD /docker/apache2/000-default.conf /etc/apache2/sites-enabled/000-default.conf
 
 # by default start up apache in the foreground, override with /bin/bash for interative.
 CMD /usr/sbin/apache2ctl -D FOREGROUND

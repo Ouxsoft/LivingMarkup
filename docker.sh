@@ -21,8 +21,8 @@ if [ "$arg_1" == "start" ] ; then
   if [ "$arg_2" == "prod" ] ; then
     echo "Run web server for production environment"
   	docker run \
-  	--expose 80:80 \
-  	--expose 443:443 \
+  	-p 80:80 \
+  	-p 443:443 \
   	--name livingmarkup \
   	--env-file docker/env/prod.conf \
   	--volume $(pwd):/var/www \
@@ -30,8 +30,8 @@ if [ "$arg_1" == "start" ] ; then
   elif [ "$arg_2" == "test" ] ; then
     echo "Run web server for test environment"
   	docker run \
-  	--expose 80:80 \
-  	--expose 443:443 \
+  	-p 80:80 \
+  	-p 443:443 \
   	--name livingmarkup \
   	--env-file docker/env/test.conf \
   	--volume $(pwd):/var/www \
@@ -40,8 +40,8 @@ if [ "$arg_1" == "start" ] ; then
     # mount local volume for rapid development
     echo "Run web server for development environment"
   	docker run \
-  	--expose 80:80 \
-  	--expose 443:443 \
+  	-p 80:80 \
+  	-p 443:443 \
   	--name livingmarkup \
   	--env-file docker/env/dev.conf \
   	--volume $(pwd):/var/www \

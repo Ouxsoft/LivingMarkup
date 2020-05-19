@@ -25,10 +25,8 @@ define('LivingMarkup_DATETIME', '2019-12-03 01:30:00');
 </head>
 <body>
 
-
     <partial name="HeaderDefault"/>
     <partial name="Breadcrumbs"/>
-
 
     <main role="main" class="container">
         <h1>If Statement</h1>
@@ -37,8 +35,11 @@ define('LivingMarkup_DATETIME', '2019-12-03 01:30:00');
             contained within. They should be used sparingly. It is better to use a module to store nested complicated
             logic.
         </p>
+        <p>
+            What keeps these code snippets from running is having an attribute ancestor attribute `process` set to false.
+        </p>
         <h2>Time</h2>
-        <code>
+        <code process="false">
             <if time_start="0:00" time_end="23:59">
                 <p>Good morning.</p>
             </if>
@@ -53,7 +54,7 @@ define('LivingMarkup_DATETIME', '2019-12-03 01:30:00');
         </code>
 
         <h2>Day of Week</h2>
-        <code>
+        <code process="false">
             <if>
                 <arg name="day_of_week">Tuesday</arg>
                 <arg name="day_of_week">Friday</arg>
@@ -67,7 +68,7 @@ define('LivingMarkup_DATETIME', '2019-12-03 01:30:00');
         </code>
 
         <h2>Date</h2>
-        <code>
+        <code process="false">
             <if>
                 <arg name="date_start">December 3. 2019</arg>
                 <arg name="date_end">December 3, 2019</arg>
@@ -79,7 +80,7 @@ define('LivingMarkup_DATETIME', '2019-12-03 01:30:00');
         </code>
 
         <h2>Datetime</h2>
-        <code>
+        <code process="false">
             <if>
                 <arg name="datetime_start">December 4. 2019 1:00 am</arg>
                 <arg name="datetime_end">December 4, 2019 2:00 am</arg>
