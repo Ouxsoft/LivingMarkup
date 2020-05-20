@@ -65,7 +65,6 @@ class Image extends Module
         $this->src = $this->getArgByName('src');
     }
 
-
     /**
      * Rendered output
      *
@@ -73,17 +72,21 @@ class Image extends Module
      */
     public function onRender()
     {
-
-        // TODO: Figure out srcset algorithm
-
-        $width = $this->width;
-        $height = $this->height;
-
         $out = '<img';
 
+        // src
+        $out .= ' src="' . $this->src . '"';
+
+        // alt
+        $out .= ' alt="' . $this->alt . '"';
+
+        // sizes
+        $width = $this->width;
+        $height = $this->height;
         $sizes = $this->getSizes($width, $height);
 
         // srcset
+        // TODO: Figure out srcset algorithm
         $last_key = array_key_last($sizes);
         $out .= ' srcset="';
         foreach ($sizes as $key => $size) {
@@ -104,8 +107,7 @@ class Image extends Module
         }
         $out .= '"';
 
-        // src and alt
-        $out .= ' src="' . $this->src . '" alt="' . $this->alt . '"/>';
+        $out .= '/>';
 
         return $out;
     }

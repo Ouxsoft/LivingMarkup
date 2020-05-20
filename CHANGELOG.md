@@ -9,6 +9,8 @@ All releases must adhere to [SemVer 2](https://semver.org/) naming convention an
 >PATCH version - when you make backwards compatible bug fixes.
 
 ## LivingMarkup [Unreleased]
+* Added: Individual width and height parametrized image requests
+* Fixed: Image resize algorithm
 
 ## LivingMarkup 1.5.2
 * Added: process=false flag to skip elements [#738565b](https://github.com/hxtree/LivingMarkup/commit/738565b28c8acfcf25b44115b8f9fb003759b01f)

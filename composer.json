@@ -99,6 +99,13 @@
       "phpunit --colors=always"
     ],
     "serve": "php -S 0.0.0.0:8080 -t public/",
-    "fix-cs": "php vendor/bin/php-cs-fixer fix --rules=@PSR2 src/"
+    "rm-cache" : [
+      "find var/cache/images/ -type f -not -name '.gitignore' -delete"
+    ],
+    "fix-code": [
+      "php-cs-fixer fix --rules=@PSR2 --using-cache=no app/",
+      "php-cs-fixer fix --rules=@PSR2 --using-cache=no src/",
+      "php-cs-fixer fix --rules=@PSR2 --using-cache=no test/"
+    ]
   }
 }

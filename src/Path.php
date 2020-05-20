@@ -42,6 +42,12 @@ class Path
             }
 
             switch ($previous_key) {
+                case 'height':
+                    $parameters['height'] = $value;
+                    break;
+                case 'width':
+                    $parameters['width'] = $value;
+                    break;
                 case 'dimension':
                     // if dimensions then is array
                     if (preg_match('/([0-9]+x[0-9]+)/', $value)) {

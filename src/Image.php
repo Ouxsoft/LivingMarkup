@@ -150,6 +150,7 @@ class Image
             $this->sendEmpty();
             return false;
         }
+
         // save cache
         $this->saveCache();
 
@@ -169,18 +170,12 @@ class Image
     {
         // assets
         $assets_filename = $this->filename;
-        $assets_filepath = $this->assets_dir . $assets_filename;
+        $assets_filepath = $this->assets_dir . $this->filename;
         $assets_validator = new Exists($this->assets_dir);
 
         if (!$assets_validator->isValid($assets_filename)) {
             //    return false;
         }
-
-        // get width and height
-        list($this->width_original, $this->height_original) = getimagesize($assets_filepath);
-
-        // determine original ratio
-        $this->ratio_original = $this->width_original / $this->height_original;
 
         // create image from file
         switch ($this->file_extension) {
@@ -206,52 +201,84 @@ class Image
      */
     private function resize()
     {
-        $this->image = imagecreatetruecolor($this->width, $this->height);
+        // get original width and height
+        list($this->width_original, $this->height_original) = getimagesize($this->assets_dir . $this->filename);
 
-        // if desired width not set, use original
-        if ($this->width === null) {
+        // determine original ratio and desired draw image size
+        $this->ratio_original = $this->width_original / $this->height_original;
+
+        // TODO: Algorithum not perfect
+        if ( is_numeric($this->width) || is_numeric($this->height) ) {
+            // if desired width and height set
+            if ( is_numeric($this->width) && is_numeric($this->height) ) {
+                if($this->width < $this->height){
+                    $draw_image_height = $this->height;
+                    $draw_image_width = $this->height * $this->ratio_original;
+                } else {
+                    $draw_image_height = $this->width / $this->ratio_original;
+                    $draw_image_width = $this->width;
+                }
+            // if width is not set but height is
+            } else if ( ! is_numeric($this->width) && is_numeric($this->height) ) {
+                $this->width = $this->height * $this->ratio_original;
+                $draw_image_width = $this->height * $this->ratio_original;
+            // if width is set but height is not set
+            } else if ( is_numeric($this->width) && ! is_numeric($this->height) ) {
+                $this->height = $this->width * $this->ratio_original;
+                $draw_image_height = $this->height * $this->ratio_original;
+            }
+
+            // rescale
+            if ($draw_image_width < $this->width) {
+                $difference = $this->width - $draw_image_width;
+                $draw_image_width += $difference;
+                $draw_image_height += $difference;
+            } elseif ($draw_image_height < $this->height) {
+                $difference = $this->height - $draw_image_height;
+                $draw_image_width += $difference;
+                $draw_image_height += $difference;
+            }
+
+            // compute offset
+            $max_y = ($draw_image_height - $this->height) / 2;
+            $center_y = ($this->height/2) - ($draw_image_height/2);
+            $percent_y = ($this->focal_point_y * 2) * 0.01;
+            $offset_y = $center_y - ($max_y * $percent_y);
+
+            // compute offset
+            $max_x = ($draw_image_width - $this->width) / 2;
+            $center_x = ($this->width/2) - ($draw_image_width/2);
+            $percent_x = ($this->focal_point_x * 2) * 0.01;
+            $offset_x = $center_x - ($max_x * $percent_x);
+
+        } else {
+            // no width or height specified, use original file heights
+            $this->width = $this->width_original;
+            $this->height = $this->height_original;
+            $draw_image_height = $this->width_height;
             $draw_image_width = $this->width_original;
-        } else {
-            $draw_image_width = $this->width;
+            $offset_x = 0;
+            $offset_y = 0;
         }
 
-        // if desired height not set, use original
-        if ($this->height === null) {
-            $draw_image_height = $this->height_original;
-        } else {
-            $draw_image_height = $this->height;
-        }
-
-        if ($this->width / $this->height > $this->ratio_original) {
-            $draw_image_width = $this->height * $this->ratio_original;
-        } else {
-            $draw_image_height = $this->width / $this->ratio_original;
-        }
-
-        // rescale
-        if ($draw_image_width < $this->width) {
-            $difference = $this->width - $draw_image_width;
-            $draw_image_width += $difference;
-            $draw_image_height += $difference;
-        } elseif ($draw_image_height < $this->height) {
-            $difference = $this->height - $draw_image_height;
-            $draw_image_width += $difference;
-            $draw_image_height += $difference;
-        }
-
-        // compute offset
-        $max_y = ($draw_image_height - $this->height) / 2;
-        $center_y = ($this->height/2) - ($draw_image_height/2);
-        $percent_y = ($this->focal_point_y * 2) * 0.01;
-        $offset_y = $center_y - ($max_y * $percent_y);
-
-        // compute offset
-        $max_x = ($draw_image_width - $this->width) / 2;
-        $center_x = ($this->width/2) - ($draw_image_width/2);
-        $percent_x = ($this->focal_point_x * 2) * 0.01;
-        $offset_x = $center_x - ($max_x * $percent_x);
+        /*
+         * debug
+        echo "
+        img $this->image,
+        img $this->image_original,
+        dst_x $offset_x,
+        dst_y $offset_y,
+        src y 0,
+        src x 0,
+        dst w $draw_image_width,
+        dst h $draw_image_height,
+        src w $this->width_original,
+        src h $this->height_original";
+        die();
+        */
 
         // create image from file
+        $this->image = imagecreatetruecolor($this->width, $this->height);
         switch ($this->file_extension) {
             case 'jpg':
             case 'jpeg':
