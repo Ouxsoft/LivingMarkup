@@ -20,32 +20,29 @@ if [ "$arg_1" == "start" ] ; then
   # run web server for environment
   if [ "$arg_2" == "prod" ] ; then
     echo "Run web server for production environment"
-  	docker run \
-  	-p 80:80 \
-  	-p 443:443 \
-  	--name livingmarkup \
-  	--env-file docker/env/prod.conf \
-  	--volume $(pwd):/var/www \
-  	--detach livingmarkup
+  	docker-compose down && \
+		docker-compose build --pull --no-cache && \
+ 		docker-compose \
+			-f docker-compose.yml \
+			-f docker-compose.prod.yml \
+		up -d --remove-orphans
   elif [ "$arg_2" == "test" ] ; then
     echo "Run web server for test environment"
-  	docker run \
-  	-p 80:80 \
-  	-p 443:443 \
-  	--name livingmarkup \
-  	--env-file docker/env/test.conf \
-  	--volume $(pwd):/var/www \
-  	--detach livingmarkup
+  	docker-compose down && \
+		docker-compose build --pull --no-cache && \
+ 		docker-compose \
+			-f docker-compose.yml \
+			-f docker-compose.test.yml \
+		up -d --remove-orphans
   elif [ "$arg_2" == "dev" ] ; then
     # mount local volume for rapid development
     echo "Run web server for development environment"
-  	docker run \
-  	-p 80:80 \
-  	-p 443:443 \
-  	--name livingmarkup \
-  	--env-file docker/env/dev.conf \
-  	--volume $(pwd):/var/www \
-  	--detach livingmarkup
+  	docker-compose down && \
+		docker-compose build --pull --no-cache && \
+ 		docker-compose \
+			-f docker-compose.yml \
+			-f docker-compose.dev.yml \
+		up -d --remove-orphans
   fi
 
 elif [ "$arg_1" == "stop" ] ; then
@@ -53,7 +50,7 @@ elif [ "$arg_1" == "stop" ] ; then
   echo "Stop web server container"
   docker stop livingmarkup
   echo "Remove web server container"
-  docker rm livingmarkup
+  docker-compose -f docker-compose.yml down
 
 elif [ "$arg_1" == "shell" ]; then
 
