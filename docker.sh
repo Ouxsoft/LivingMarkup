@@ -53,7 +53,7 @@ elif [ "$arg_1" == "stop" ] ; then
 elif [ "$arg_1" == "shell" ]; then
 
   echo "Exec into web server"
-  docker exec -it livingmarkup bash,
+  docker-compose exec webapp bash
 
 else
 
