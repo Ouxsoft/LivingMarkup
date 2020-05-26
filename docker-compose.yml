@@ -15,8 +15,5 @@ services:
       - "443:443"
     container_name: livingmarkup
     env_file: docker/env/dev.conf
-    networks:
-    - "backend"
+    network_mode: "host"
 
-networks:
-  backend:
