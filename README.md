@@ -27,9 +27,6 @@ Install with [Git](https://git-scm.com/):
 git clone git@github.com:ouxsoft/LivingMarkup.git
 ```
 
-## Examples
-Learn how LivingMarkup can be used through our [Examples](https://github.com/hxtree/LivingMarkup/blob/master/public/help/examples).
-
 ## Documentation
 Check our docs for more info at [livingmarkup.readthedocs.io](https://livingmarkup.readthedocs.io).
 
