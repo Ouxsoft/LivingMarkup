@@ -9,7 +9,7 @@
 </p>
 
 ## About LivingMarkup
-***LivingMarkup is a [LHTML processor](https://github.com/hxtree/lhtml) library written in PHP. It enables applications to 
+***LivingMarkup is a [LHTML processor](https://github.com/ouxsoft/LHTML) library written in PHP. It enables applications to 
 process LHTML and build dynamic markup.***
 
 ## Installation
