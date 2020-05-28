@@ -10,7 +10,7 @@
 
 ## About LivingMarkup
 ***LivingMarkup is a [LHTML processor](https://github.com/hxtree/lhtml) library written in PHP. It enables applications to 
-use LHTML to build dynamic markup.***
+process LHTML and build dynamic markup.***
 
 ## Installation
 
@@ -20,7 +20,11 @@ LivingMarkup is available on [Packagist](https://packagist.org/packages/hxtree/l
 Install with [Composer](https://getcomposer.org/download/):
 ```shell script
 composer require ouxsoft/livingmarkup
-# or git clone git@github.com:hxtree/LivingMarkup.git
+```
+
+Install with [Git](https://git-scm.com/):
+```shell script
+git clone git@github.com:ouxsoft/LivingMarkup.git
 ```
 
 ## Examples
