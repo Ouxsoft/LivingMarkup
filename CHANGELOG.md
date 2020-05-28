@@ -8,11 +8,10 @@ All releases must adhere to [SemVer 2](https://semver.org/) naming convention an
 >
 >PATCH version - when you make backwards compatible bug fixes.
 
-
 ## LivingMarkup [Unreleased]
 Features hindering reuse as a LHTML processor library were moved to [Hoopless](https://github.com/ouxsoft/hoopless).
-* Removed: Web server (/docker, /bin, /public, /var, etc.).
-* Removed: Dynamic image generation.
+* Removed: Web server (/docker, /bin, /public, /var, etc.). [#b672884](https://github.com/ouxsoft/LivingMarkup/commit/b67288498b72c94e574ae47e0f095e5ead29ded9)
+* Removed: Dynamic image generation. [#b672884](https://github.com/ouxsoft/LivingMarkup/commit/b67288498b72c94e574ae47e0f095e5ead29ded9)
 
 ## LivingMarkup 1.5.3
 * Fixed: Docker environment [#401112e](https://github.com/ouxsoft/LivingMarkup/commit/401112e169c2a585df77e04e633258fdef1ae272)

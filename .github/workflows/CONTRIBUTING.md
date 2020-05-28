@@ -1,5 +1,8 @@
 # Contributing to LivingMarkup
 
+* LivingMarkup is designed to be used in other applications; it is not a monolithic solution but rather follow the
+Unix philosophy. Please bare that in mind when contributing. 
+
 ## Workflow
 
 *  Fork the project.
@@ -23,7 +26,7 @@
 The following commands can be used to perform the initial checkout of LivingMarkup:
 
 ```bash
-git clone git://github.com/hxtree/livingMarkup.git
+git clone git://github.com/ouxsoft/livingMarkup.git
 
 cd livingMarkup
 ```
@@ -32,4 +35,4 @@ cd livingMarkup
 
 Please report issue and open new tickets:
 
-*  [Report Issues](https://github.com/hxtree/livingMarkup/issues)
+*  [Report Issues](https://github.com/ouxsoft/livingMarkup/issues)
