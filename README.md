@@ -1,4 +1,4 @@
-<p align="center"><img src="https://github.com/hxtree/LivingMarkup/raw/master/assets/images/livingmarkup/logo/434x100.jpg" width="400"></p>
+<p align="center"><img src="https://github.com/hxtree/LivingMarkup/raw/master/assets/images/logo/434x100.jpg" width="400"></p>
 
 <p align="center">
 <a href="https://app.codacy.com/manual/hxtree/LivingMarkup?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=hxtree/LivingMarkup&amp;utm_campaign=Badge_Grade_Dashboard"><img src="https://api.codacy.com/project/badge/Grade/bfc76aaebde44a7fa239963e54883755" alt="Codacy Badge"></a>

@@ -1,5 +1,5 @@
 # Configuration
-The `Configuration` class is responsible for the instructions that explain to the `Builder` how to build the LHTML5 `Document`. These instructions can be set by modifying the config file that is loaded.
+The `Configuration` class is responsible for the instructions that explain to the `Builder` how to build the LHTML `Document`. These instructions can be set by modifying the config file that is loaded.
 
 ## Config File 
 The config file is where settings are configured. The `Configuration` class tries to load a `config.yml` if another file has not been specified during construction. If the `config.yml` not present, the `Configuration` will try to load the packaged config `config.dist.yml` file.
@@ -35,5 +35,5 @@ modules:
 | `module:methods:*:name` |  The exact name of the method being executed. |
 | `module:methods:*:description` | An explanation of what the method is doing that indicates its order. |
 | `module:methods:*:execute` | Determines whether the method should be ran differently. Currently, the following commands are supported * RETURN_CALL - The output of the method will replace the DOMElement in the DOMDocument. Is optional |
-| `markup:` | String containing the actual LHTML5 that will be parsed by the `Builder`. This field is typically omitted from the config file and is instead appended to `Configuration` during runtime, often by the `Autoloader`.|
-| `filename:` | String containing the URL or filepath to a XML or HTML document that will be inputted into the `Builder`. This string is typically omitted from the config file and instead appended to the `Configuration` during runtime. It specifies the a LHTML5 filename to load. If both `filename` and `markup` are provided, `markup` will be loaded. |
+| `markup:` | String containing the actual LHTML that will be parsed by the `Builder`. This field is typically omitted from the config file and is instead appended to `Configuration` during runtime, often by the `Autoloader`.|
+| `filename:` | String containing the URL or filepath to a XML or HTML document that will be inputted into the `Builder`. This string is typically omitted from the config file and instead appended to the `Configuration` during runtime. It specifies the a LHTML filename to load. If both `filename` and `markup` are provided, `markup` will be loaded. |
