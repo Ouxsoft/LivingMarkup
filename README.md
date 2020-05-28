@@ -9,48 +9,8 @@
 </p>
 
 ## About LivingMarkup
-***LivingMarkup is a [LHTML processor](https://github.com/hxtree/lhtml) written in PHP library. It aims to empowers teams building dynamic web sites.***
-
-## Usage
-Below is a simple example.
-
-Page `/public/example.php`:
-```PHP
-<?php require 'vendor/autoload.php'; ?>
-<body>
-    <block name="UserProfile">
-        <arg name="style" type="string">simple</arg>
-        <p>Welcome <var name="first_name"/>!</p>
-    </block>
-</body>
-```
-
-Module `/modules/custom/Blocks/UserProfile.php`:
-```php
-<?php
-namespace LivingMarkup\Modules\Custom\Blocks;
-
-class UserProfile {
-
-    public $first_name = 'Jane';
-    
-    public onRender() {
-        return '<div class="user-profile ' . $this->getArgByName('style') . '">' . $this->xml . '</div>';
-    }
-}
-```
-
-Output `localhost/example`:
-```html
-<!DOCTYPE html>
-<html lang="en">
-    <body>
-        <div class="user-profile simple">
-            <p>Welcome Jane!</p>
-        </div>
-    </body>
-</html>
-```
+***LivingMarkup is a [LHTML processor](https://github.com/hxtree/lhtml) library written in PHP. It enables applications to 
+use LHTML to build dynamic markup.***
 
 ## Installation
 
@@ -59,7 +19,7 @@ LivingMarkup is available on [Packagist](https://packagist.org/packages/hxtree/l
 
 Install with [Composer](https://getcomposer.org/download/):
 ```shell script
-composer require hxtree/livingmarkup
+composer require ouxsoft/livingmarkup
 # or git clone git@github.com:hxtree/LivingMarkup.git
 ```
 
