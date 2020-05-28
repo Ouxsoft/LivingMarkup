@@ -25,19 +25,22 @@ class Configuration
     const DIST_FILENAME = 'config.dist.yml';
 
     public $config;
-    private $root_dir;
+    private $path; // full path to config file
+    private $directory; // directory config file is in
+    private $filename; // base name of file
 
     /**
      * Configuration constructor.
-     * @param string $filename
+     * @param string|null $path
      */
-    public function __construct(string $filename = null)
+    public function __construct(string $path = null)
     {
-        // only allow files that exist within file root directory, one level up
-        $this->root_dir = dirname(__DIR__, 1) . '/app/config/';
+        $this->setPath($path);
+        $this->setDirectory($path);
+        $this->setFilename($path);
 
         // load filename, if provided
-        if ($this->load($filename)) {
+        if ($this->load($path)) {
             return true;
         }
 
@@ -55,26 +58,28 @@ class Configuration
 
     /**
      * Load YAML Config file
-     * @param string $filename
      * @return bool|mixed
      */
-    public function load(string $filename = null)
+    public function load()
     {
-        $validator = new Exists($this->root_dir);
 
         // check if filename provided
-        if ($filename === null) {
+        if ($this->filename === null) {
             return false;
         }
 
         // try to load config using filename
         try {
-            if ($validator->isValid($filename)) {
-                $this->config = $this->parse($filename);
-                return true;
+            // check if path is valid
+            $validator = new Exists($this->directory);
+            if (! $validator->isValid($this->filename)) {
+                return false;
             }
+
+            $this->config = $this->parse();
+            return true;
         } catch (Exception $e) {
-            trigger_error('Unable to load config', E_USER_ERROR);
+            trigger_error('Unable to load config' . $e, E_USER_ERROR);
             return false;
         }
 
@@ -83,13 +88,12 @@ class Configuration
 
     /**
      * Parse YAML config file
-     * @param $path
      * @return bool|mixed
      */
-    private function parse($path)
+    private function parse()
     {
         $reader = new Yaml();
-        $config = $reader->fromFile($this->root_dir . $path);
+        $config = $reader->fromFile($this->path);
 
         if (empty($config)) {
             return false;
@@ -98,6 +102,32 @@ class Configuration
         return $config;
     }
 
+    /**
+     * Set filename of config file
+     * @param $path
+     */
+    public function setFilename($path)
+    {
+        $this->filename = basename($path);
+    }
+
+    /**
+     * Set directory where configs are stored
+     * @param $path
+     */
+    public function setDirectory($path)
+    {
+        $this->directory = dirname($path);
+    }
+
+    /**
+     * Set path to config file
+     * @param $path
+     */
+    public function setPath($path)
+    {
+        $this->path = $path;
+    }
     /**
      * Adds modules to config
      * @param array $modules
@@ -125,19 +155,10 @@ class Configuration
     }
 
     /**
-     * Temporarily adds runtime globals to config and returns config
-     * @return mixed
-     */
-    public function get(): array
-    {
-        return $this->config;
-    }
-
-    /**
      * Get array of modules if in config
      * @return array
      */
-    public function getModules() : array
+    public function getModules(): array
     {
         // check if exists
         if (!$this->isset('modules', 'types')) {
@@ -168,10 +189,19 @@ class Configuration
     }
 
     /**
+     * Temporarily adds runtime globals to config and returns config
+     * @return mixed
+     */
+    public function get(): array
+    {
+        return $this->config;
+    }
+
+    /**
      * Get array of modules if in config
      * @return array
      */
-    public function getMethods() : array
+    public function getMethods(): array
     {
         // check if exists
         if (!$this->isset('modules', 'methods')) {

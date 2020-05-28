@@ -8,9 +8,16 @@ All releases must adhere to [SemVer 2](https://semver.org/) naming convention an
 >
 >PATCH version - when you make backwards compatible bug fixes.
 
+
 ## LivingMarkup [Unreleased]
-* Added: Individual width and height parametrized image requests
-* Fixed: Image resize algorithm
+Features hindering reuse as a LHTML processor library were moved to [Hoopless](https://github.com/ouxsoft/hoopless).
+* Removed: Web server (/docker, /bin, /public, /var, etc.).
+* Removed: Dynamic image generation.
+
+## LivingMarkup 1.5.3
+* Fixed: Docker environment [#401112e](https://github.com/ouxsoft/LivingMarkup/commit/401112e169c2a585df77e04e633258fdef1ae272)
+* Added: Individual width and height parametrized image requests [#dd86ea7](https://github.com/ouxsoft/LivingMarkup/commit/dd86ea7439be126c0c96ddc3facb935dbd6ad577)
+* Fixed: Image resize algorithm [#dd86ea7](https://github.com/ouxsoft/LivingMarkup/commit/dd86ea7439be126c0c96ddc3facb935dbd6ad577)
 
 ## LivingMarkup 1.5.2
 * Added: process=false flag to skip elements [#738565b](https://github.com/hxtree/LivingMarkup/commit/738565b28c8acfcf25b44115b8f9fb003759b01f)

@@ -1,2 +1,0 @@
-This kernely contains UML diagrams of the current build. The purpose of these diagrams is to visually represent
-the system in order to better understand, alter, maintain, and document information about the system.

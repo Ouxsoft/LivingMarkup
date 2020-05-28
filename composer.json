@@ -1,6 +1,6 @@
 {
-  "name": "hxtree/livingmarkup",
-  "description": "LivingMarkup is a LHTML5 processor.",
+  "name": "ouxsoft/livingmarkup",
+  "description": "LivingMarkup is a LHTML processor.",
   "keywords": [
     "livingMarkup",
     "template",
@@ -9,7 +9,6 @@
     "processor",
     "dom",
     "engine",
-    "lhtml5",
     "lhtml",
     "html5",
     "html",
@@ -19,9 +18,14 @@
   "license": "MIT",
   "authors": [
     {
-      "name": "hxtree",
+      "name": "Ouxsoft",
+      "homepage": "https://github.com/ouxsoft",
+      "role": "Organization"
+    },
+    {
+      "name": "Matthew Heroux",
       "homepage": "https://github.com/hxtree",
-      "role": "Developer"
+      "role": "Senior Developer"
     }
   ],
   "require": {
@@ -29,81 +33,47 @@
     "ext-dom": "*",
     "ext-json": "*",
     "ext-libxml": "*",
-    "ext-gd": "*",
     "laminas/laminas-config": "^3.3.0",
     "laminas/laminas-validator": "^2.13.2",
     "laminas/laminas-router": "^3.3@dev",
-    "laminas/laminas-http": "^2.11@dev",
-    "twbs/bootstrap": "^4.4.1",
-    "components/jquery": "dev-master",
-    "scssphp/scssphp": "dev-master",
-    "codemirror/CodeMirror": "5.53.2"
+    "laminas/laminas-http": "^2.11@dev"
   },
-  "repositories": [
-    {
-      "type": "package",
-      "package": {
-        "name": "codemirror/CodeMirror",
-        "version": "5.53.2",
-        "dist": {
-          "type": "zip",
-          "url": "https://codemirror.net/codemirror.zip",
-          "reference": "5.53.2"
-        }
-      }
-    }
-  ],
   "minimum-stability": "dev",
   "support": {
-    "issues": "https://github.com/hxtree/LivingMarkup/issues"
+    "issues": "https://github.com/ouxsoft/LivingMarkup/issues"
   },
   "autoload": {
     "files" : [
       "src/Autoloader.php"
     ],
     "psr-4": {
-      "LivingMarkup\\": "src/",
-      "LivingMarkup\\Modules\\Core\\": "modules/core/",
-      "LivingMarkup\\Modules\\Custom\\": "modules/custom/"
+      "LivingMarkup\\": "src/"
     }
   },
   "autoload-dev": {
     "files" : ["src/Autoloader.php"],
     "psr-4": {
       "LivingMarkup\\": "src/",
-      "LivingMarkup\\Modules\\Core\\": "app/modules/core",
-      "LivingMarkup\\Modules\\Custom\\": "app/modules/custom"
+      "LivingMarkup\\Test\\": "test/src/Unit/inputs/"
     }
   },
-  "homepage": "https://github.com/hxtree/LivingMarkup",
+  "homepage": "https://github.com/ouxsoft/LivingMarkup",
   "require-dev": {
     "phpunit/phpunit": "^8",
     "friendsofphp/php-cs-fixer": "^2.17@dev"
   },
   "scripts": {
     "build": [
-      "php-cs-fixer fix --rules=@PSR2 --using-cache=no app/",
       "php-cs-fixer fix --rules=@PSR2 --using-cache=no src/",
-      "php-cs-fixer fix --rules=@PSR2 --using-cache=no test/",
-      "php bin/SassCompiler.php",
-      "rm -rf public/assets/js/bootstrap",
-      "cp -R vendor/twbs/bootstrap/dist/js/ public/assets/js/bootstrap",
-      "cp vendor/codemirror/CodeMirror/lib/codemirror.css public/assets/css/codemirror/codemirror.css",
-      "cp -R vendor/codemirror/CodeMirror/theme/* public/assets/css/codemirror/",
-      "cp vendor/codemirror/CodeMirror/lib/codemirror.js public/assets/js/codemirror/codemirror.js",
-      "cp vendor/codemirror/CodeMirror/mode/xml/xml.js public/assets/js/codemirror/xml.js",
-      "rm -rf public/assets/js/jquery/*",
-      "cp vendor/components/jquery/jquery.min.js public/assets/js/jquery/jquery.min.js"
+      "php-cs-fixer fix --rules=@PSR2 --using-cache=no test/"
     ],
     "test": [
       "phpunit --colors=always"
     ],
-    "serve": "php -S 0.0.0.0:8080 -t public/",
     "rm-cache" : [
       "find var/cache/images/ -type f -not -name '.gitignore' -delete"
     ],
     "fix-code": [
-      "php-cs-fixer fix --rules=@PSR2 --using-cache=no app/",
       "php-cs-fixer fix --rules=@PSR2 --using-cache=no src/",
       "php-cs-fixer fix --rules=@PSR2 --using-cache=no test/"
     ]

@@ -1,8 +1,5 @@
 exclude_paths:
-  - 'public/**'
-  - 'public/**/*'
   - 'test/**'
   - 'vendor/**'
-  - 'build/**'
   - 'docs/**'
   - '**/*.md'

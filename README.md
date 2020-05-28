@@ -9,7 +9,7 @@
 </p>
 
 ## About LivingMarkup
-***LivingMarkup empowers teams building dynamic web sites.*** It is a PHP implementation of a [LHTML5 processor](https://github.com/hxtree/lhtml5).
+***LivingMarkup is a [LHTML processor](https://github.com/hxtree/lhtml) written in PHP library. It aims to empowers teams building dynamic web sites.***
 
 ## Usage
 Below is a simple example.
@@ -62,15 +62,6 @@ Install with [Composer](https://getcomposer.org/download/):
 composer require hxtree/livingmarkup
 # or git clone git@github.com:hxtree/LivingMarkup.git
 ```
-
-Start with [Docker](https://docs.docker.com/get-docker/):
-```shell script
-sudo ./docker.sh start
-# or setup an Apache2 webserver (reference Dockerfile for optimal settings)
-```
-
-View site with Browser
-http://localhost
 
 ## Examples
 Learn how LivingMarkup can be used through our [Examples](https://github.com/hxtree/LivingMarkup/blob/master/public/help/examples).
