@@ -48,7 +48,6 @@
     }
   },
   "autoload-dev": {
-    "files" : ["src/Autoloader.php"],
     "psr-4": {
       "LivingMarkup\\": "src/",
       "LivingMarkup\\Test\\": "test/src/Unit/inputs/"
