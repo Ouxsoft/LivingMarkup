@@ -1,7 +1,7 @@
 <p align="center"><img src="https://github.com/hxtree/LivingMarkup/raw/master/assets/images/logo/434x100.jpg" width="400"></p>
  
 <p align="center">
-A <a href="https://github.com/ouxsoft/LHTML">"LHTML processor</a> implementation in PHP.
+A <a href="https://github.com/ouxsoft/LHTML">LHTML processor</a> implementation in PHP.
 </p>
 
 <p align="center">
