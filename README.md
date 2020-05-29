@@ -24,7 +24,7 @@ $builder = new LivingMarkup\Builder\DynamicPageBuilder();
 $config = new LivingMarkup\Configuration();
 
 // add LHTML to config
-$config->add('markup', '<html><widget name="Messages"><arg name="amount" type="string">2</></widget></html>');
+$config->add('markup', '<html><block name="Messages"><arg name="amount" type="string">2</></block></html>');
 
 // output Kernel build of Builder
 echo $kernel->build($builder, $config);
