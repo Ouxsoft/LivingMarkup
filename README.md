@@ -12,6 +12,24 @@
 ***LivingMarkup is a [LHTML processor](https://github.com/ouxsoft/LHTML) library written in PHP. It enables applications to 
 process LHTML and build dynamic markup.***
 
+## Use
+```php
+// instantiate Kernel
+$kernel = new LivingMarkup\Kernel();
+
+// instantiate Builder
+$builder = new LivingMarkup\Builder\DynamicPageBuilder();
+
+// load config
+$config = new LivingMarkup\Configuration();
+
+// add LHTML to config
+$config->add('markup', '<html><widget name="HelloWorld"><arg name="repeat" type="string">2</></widget></html>');
+
+// echo Kernel build of Builder
+echo $kernel->build($builder, $config);
+```
+
 ## Installation
 
 ### Via Composer
