@@ -57,13 +57,13 @@ class Autoloader {
         }
 
         // instantiate Kernel
-        $kernel = new LivingMarkup\Kernel();
+        $kernel = new Kernel();
 
         // instantiate Builder
-        $builder = new LivingMarkup\Builder\DynamicPageBuilder();
+        $builder = new Builder\DynamicPageBuilder();
 
         // load config
-        $config = new LivingMarkup\Configuration();
+        $config = new Configuration();
 
         // add runtime modules to config
         if (isset($add_modules)) {
