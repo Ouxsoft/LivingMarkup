@@ -1,4 +1,6 @@
 <p align="center"><img src="https://github.com/hxtree/LivingMarkup/raw/master/assets/images/logo/434x100.jpg" width="400"></p>
+ 
+A [LHTML processor](https://github.com/ouxsoft/LHTML) implementation in PHP.
 
 <p align="center">
 <a href="https://app.codacy.com/manual/hxtree/LivingMarkup?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=hxtree/LivingMarkup&amp;utm_campaign=Badge_Grade_Dashboard"><img src="https://api.codacy.com/project/badge/Grade/bfc76aaebde44a7fa239963e54883755" alt="Codacy Badge"></a>
@@ -8,11 +10,11 @@
 <a href="https://packagist.org/packages/hxtree/livingmarkup"><img src="https://poser.pugx.org/hxtree/livingmarkup/license" alt="License"></a>
 </p>
 
-## About LivingMarkup
-***Think of LivingMarkup as a highly customizable HTML templating engine used to build dynamic markup***. Good, now that 
-we have your attention, it technically an [LHTML processor](https://github.com/ouxsoft/LHTML) library written in PHP.
+## About
+LivingMarkup is a customizable HTML templating engine that processes markup into objects and orchestrates them to build
+dynamic markup. 
 
-## Use
+## Usage
 ```php
 // instantiate Kernel
 $kernel = new LivingMarkup\Kernel();

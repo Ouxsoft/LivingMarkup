@@ -1,11 +1,10 @@
 {
   "name": "ouxsoft/livingmarkup",
-  "description": "LivingMarkup is a LHTML processor.",
+  "description": "A LHTML implementation written in PHP.",
   "keywords": [
-    "livingMarkup",
-    "template",
+    "LivingMarkup",
+    "templating engine",
     "xml",
-    "php",
     "processor",
     "dom",
     "engine",
@@ -44,12 +43,12 @@
   },
   "autoload": {
     "psr-4": {
-      "LivingMarkup\\": "src/"
+      "LivingMarkup\\": "src/LivingMarkup/"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "LivingMarkup\\": "src/",
+      "LivingMarkup\\": "src/LivingMarkup/",
       "LivingMarkup\\Test\\": "test/src/Unit/inputs/"
     }
   },
