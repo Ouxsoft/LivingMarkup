@@ -10,14 +10,62 @@
 
 namespace LivingMarkup;
 
-class Autoloader {
+/**
+ * Class Processor
+ * @package LivingMarkup
+ */
+class Processor
+{
 
     const PROCESS_TOGGLE = 'LHTML_OFF';
+    const DEBUG = true;
+
+    private $kernel;
+    private $builder;
+    private $config;
 
     /**
      * Autoloader constructor.
      */
-    public function __construct(){
+    public function __construct()
+    {
+
+        // instantiate Kernel
+        $this->kernel = new Kernel();
+
+    }
+
+    /**
+     * Set builder
+     * @param $builder
+     */
+    public function setBuilder($builder = null)
+    {
+        if ($builder == null) {
+            $this->builder = new Builder\DynamicPageBuilder();
+            return;
+        }
+
+        $this->builder = $builder;
+    }
+
+    /**
+     * Set config
+     * @param $path
+     */
+    public function setConfig($path){
+
+        global $add_modules;
+
+        // load config
+        $this->config = new Configuration($path);
+
+    }
+
+    /**
+     * Process output buffer
+     */
+    public function runBuffer(){
         if (defined(self::PROCESS_TOGGLE )) {
             return;
         }
@@ -49,6 +97,7 @@ class Autoloader {
      */
     function process(string $buffer) : string
     {
+
         global $add_modules;
 
         // return buffer if it's not HTML
@@ -56,25 +105,16 @@ class Autoloader {
             return $buffer;
         }
 
-        // instantiate Kernel
-        $kernel = new Kernel();
-
-        // instantiate Builder
-        $builder = new Builder\DynamicPageBuilder();
-
-        // load config
-        $config = new Configuration();
+        // add buffer to config
+        $this->config->add('markup', $buffer);
 
         // add runtime modules to config
         if (isset($add_modules)) {
-            $config->addModules($add_modules);
+            $this->config->addModules($add_modules);
         }
 
-        // add buffer to config
-        $config->add('markup', $buffer);
-
         // echo Kernel build of Builder
-        return $kernel->build($builder, $config);
+        return $this->kernel->build($this->builder, $this->config) . '<!-- LHTML Processor: Success -->';
     }
 
 }
