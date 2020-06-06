@@ -29,7 +29,6 @@ final class KernelTest extends TestCase
         $builder = new DynamicPageBuilder();
         $new_page = (new Kernel())->build($builder, $config);
 
-        // TODO: assure this is correct class
         $this->assertInstanceOf(Engine::class, $new_page);
     }
 }

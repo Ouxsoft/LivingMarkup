@@ -142,6 +142,16 @@ class Configuration
         return true;
     }
 
+
+    /**
+     * Adds modules to config
+     * @param array $module
+     */
+    public function addModule(array $module)
+    {
+        $this->config['modules']['types'][] = $module;
+    }
+
     /**
      * Adds modules to config
      * @param array $modules

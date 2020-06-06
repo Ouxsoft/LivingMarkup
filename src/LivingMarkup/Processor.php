@@ -36,6 +36,9 @@ class Processor
         // instantiate a empty config
         $this->config = new Configuration();
 
+        // instantiate a default builder
+        $this->builder = new Builder\DynamicPageBuilder();
+
     }
 
     /**
@@ -44,10 +47,6 @@ class Processor
      */
     public function setBuilder($builder = null)
     {
-        if ($builder == null) {
-            $this->builder = new Builder\DynamicPageBuilder();
-            return;
-        }
 
         $this->builder = $builder;
     }
@@ -70,7 +69,9 @@ class Processor
      * @param string $class_name
      * @param array $properties
      */
-    public function addObject(string $xpath_expression, string $class_name, array $properties){
+    public function addObject(string $xpath_expression,
+                              string $class_name,
+                              array $properties = []){
         $this->config->addModule([
             $xpath_expression,
             $class_name,
@@ -145,9 +146,17 @@ class Processor
      */
     public function parseFile($filepath) : string {
 
-        $this->config->loadFile($filepath);
+        $markup = file_get_contents($filepath);
+
+        // return buffer if it's not HTML
+        if ($markup==strip_tags($markup)) {
+            return $markup;
+        }
+
+        $this->config->setMarkup($markup);
 
         return $this->parse();
+
     }
 
     /**
@@ -178,7 +187,7 @@ class Processor
         }
 
         // echo Kernel build of Builder
-        return $this->kernel->build($this->builder, $this->config) . '<!-- LHTML Processor: Success -->';
+        return $this->kernel->build($this->builder, $this->config);
 
 
     }
