@@ -32,8 +32,9 @@ class Configuration
     /**
      * Configuration constructor.
      * @param string|null $path
+     * @return bool
      */
-    public function __construct(string $path = null)
+    public function loadFile(string $path = null)
     {
         $this->setPath($path);
         $this->setDirectory($path);
@@ -128,6 +129,19 @@ class Configuration
     {
         $this->path = $path;
     }
+
+    /**
+     * @param string $key
+     * @param mixed $value
+     * @return bool
+     */
+    public function add(string $key, $value): bool
+    {
+        $this->config[$key] = $value;
+
+        return true;
+    }
+
     /**
      * Adds modules to config
      * @param array $modules
@@ -140,18 +154,6 @@ class Configuration
         ) {
             $this->config['modules']['types'] = array_merge($modules, $this->config['modules']['types']);
         }
-    }
-
-    /**
-     * @param string $key
-     * @param mixed $value
-     * @return bool
-     */
-    public function add(string $key, $value): bool
-    {
-        $this->config[$key] = $value;
-
-        return true;
     }
 
     /**
@@ -198,6 +200,17 @@ class Configuration
     }
 
     /**
+     * Add method
+     *
+     * @param string $method_name
+     * @param int|null $order
+     */
+    public function addMethod(string $method_name, int $order = null){
+        // TODO: add support for order
+        $this->config['modules']['methods'][] = $method_name;
+    }
+
+    /**
      * Get array of modules if in config
      * @return array
      */
@@ -224,5 +237,9 @@ class Configuration
         } else {
             return '';
         }
+    }
+
+    public function setMarkup(string $markup){
+        $this->config['markup'] = $markup;
     }
 }

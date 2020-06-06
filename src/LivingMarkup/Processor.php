@@ -33,6 +33,9 @@ class Processor
         // instantiate Kernel
         $this->kernel = new Kernel();
 
+        // instantiate a empty config
+        $this->config = new Configuration();
+
     }
 
     /**
@@ -51,27 +54,38 @@ class Processor
 
     /**
      * Set config
-     * @param $path
+     * @param $filepath
      */
-    public function setConfig($path){
-
-        global $add_modules;
+    public function loadConfig($filepath){
 
         // load config
-        $this->config = new Configuration($path);
+        $this->config->loadFile($filepath);
 
     }
 
     /**
-     * Process output buffer
+     * Add definition for processor LHTML object
+     *
+     * @param string $xpath_expression
+     * @param string $class_name
+     * @param array $properties
      */
-    public function runBuffer(){
-        if (defined(self::PROCESS_TOGGLE )) {
-            return;
-        }
+    public function addObject(string $xpath_expression, string $class_name, array $properties){
+        $this->config->addModule([
+            $xpath_expression,
+            $class_name,
+            $properties
+        ]);
+    }
 
-        // process buffer once completed
-        ob_start([$this, 'process']);
+    /**
+     * Add definition for processor LHTML object method
+     *
+     * @param string $method_name
+     * @param int|null $order
+     */
+    public function addMethod(string $method_name, int $order = null){
+
     }
 
     /**
@@ -79,7 +93,7 @@ class Processor
      * @param array $module
      * @return bool
      */
-    function addModule(array $module): bool
+    public function addModule(array $module): bool
     {
         global $add_modules;
 
@@ -90,23 +104,73 @@ class Processor
         return true;
     }
 
+
+    /**
+     * Process output buffer
+     */
+    public function parseBuffer(){
+        if (defined(self::PROCESS_TOGGLE )) {
+            return;
+        }
+
+        // process buffer once completed
+        ob_start([$this, 'parseBufferCallback']);
+    }
+
+
     /**
      * Callback to run kernel
-     * @param string $buffer
+     * @param string $markup
      * @return string
      */
-    function process(string $buffer) : string
+    private function parseBufferCallback(string $markup) : string
     {
 
-        global $add_modules;
-
         // return buffer if it's not HTML
-        if ($buffer==strip_tags($buffer)) {
-            return $buffer;
+        if ($markup==strip_tags($markup)) {
+            return $markup;
         }
 
         // add buffer to config
-        $this->config->add('markup', $buffer);
+        $this->config->add('markup', $markup);
+
+        return $this->parse();
+    }
+
+    /**
+     * Process a file
+     *
+     * @param $filepath
+     * @return string
+     */
+    public function parseFile($filepath) : string {
+
+        $this->config->loadFile($filepath);
+
+        return $this->parse();
+    }
+
+    /**
+     * Process string
+     *
+     * @param string $markup
+     * @return string
+     */
+    public function parseString(string $markup) : string {
+
+        // return buffer if it's not HTML
+        if ($markup==strip_tags($markup)) {
+            return $markup;
+        }
+
+        $this->config->setMarkup($markup);
+
+        return $this->parse();
+
+    }
+
+
+    private function parse(){
 
         // add runtime modules to config
         if (isset($add_modules)) {
@@ -115,6 +179,7 @@ class Processor
 
         // echo Kernel build of Builder
         return $this->kernel->build($this->builder, $this->config) . '<!-- LHTML Processor: Success -->';
-    }
 
+
+    }
 }

@@ -18,20 +18,25 @@ dynamic markup.
 
 ## Usage
 ```php
-// instantiate Kernel
-$kernel = new LivingMarkup\Kernel();
+class HelloWorld extends LivingMarkup\Module {
+    public function onRender(){
+        return 'Hello, World';
+    }
+}
+```
 
-// instantiate Builder
-$builder = new LivingMarkup\Builder\DynamicPageBuilder();
+```php
+// instantiate processor
+$proc = new LivingMarkup\Processor();
 
-// load config
-$config = new LivingMarkup\Configuration();
+// add object to processor
+$proc->adObject('//partial', 'HelloWorld');
 
-// add LHTML to config
-$config->add('markup', '<html><block name="Messages"><arg name="amount" type="string">2</></block></html>');
+// add automatic method call to processor
+$proc->addMethod('onRender');
 
-// output Kernel build of Builder
-echo $kernel->build($builder, $config);
+echo $proc->parseString('<html><partial name="HelloWorld"/></html>');
+
 ```
 
 ## Installation
