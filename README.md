@@ -62,6 +62,6 @@ Check our docs for more info at [livingmarkup.readthedocs.io](https://livingmark
 Please refer to [CONTRIBUTING.md](https://github.com/hxtree/LivingMarkup/blob/master/.github/workflows/CONTRIBUTING.md) for 
 information on how to contribute to LivingMarkup.
 
-## Acknowledgments
+## Acknowledgement
 
 Thanks to Aswin Vijayakumar for their useful comments that have led to changes to this implementation.
