@@ -18,7 +18,7 @@ namespace LivingMarkup;
  */
 interface ModuleDefaultInterface
 {
-    public function __construct(array $args);
+    public function __construct(ArgumentArray $args);
 
     public function onRender();
 
@@ -62,7 +62,7 @@ abstract class Module implements ModuleDefaultInterface
      *
      * @param $args
      */
-    final public function __construct(array $args = [])
+    final public function __construct(ArgumentArray $args = null)
     {
         // store args passed
         $this->args = $args;
@@ -102,17 +102,16 @@ abstract class Module implements ModuleDefaultInterface
      */
     public function getArgByName($name) : ? string
     {
-        return array_key_exists($name, $this->args) ? $this->args[$name] : null;
+        return $this->args[$name];
     }
 
     /**
      * Get all args
-     *
+     * 
      * @return array
      */
-    public function getArgs()  : array
+    public function getArgs() : ArgumentArray
     {
-        // TODO: Should return a PrunedList
         return $this->args;
     }
 

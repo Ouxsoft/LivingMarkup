@@ -35,12 +35,13 @@ class ArgumentArray implements ArrayAccess
      * @param mixed $offset
      * @return mixed
      */
-    public function offsetGet($offset): mixed
+    public function offsetGet($offset)
     {
         return isset($this->container[$offset]) ? $this->container[$offset] : null;
     }
 
     /**
+     * Adds new item to array, if only one item in array then it will be a string
      * @param mixed $offset
      * @param mixed $value
      */
@@ -64,7 +65,6 @@ class ArgumentArray implements ArrayAccess
             // add to array
             array_push($this->container[$offset], $value);
         }
-
     }
 
     /**

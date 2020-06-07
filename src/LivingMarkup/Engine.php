@@ -12,6 +12,7 @@ declare(strict_types=1);
 
 namespace LivingMarkup;
 
+use LivingMarkup\Module\Pool;
 use DOMElement;
 use DOMNodeList;
 use DOMXPath;
@@ -57,7 +58,7 @@ class Engine
         $this->xpath = new DOMXPath($this->dom);
 
         // create a module pool
-        $this->modules = new ModulePool();
+        $this->modules = new Pool();
     }
 
     /**
@@ -301,7 +302,7 @@ class Engine
      * @param DOMElement $element
      * @return array
      */
-    public function getElementArgs(DOMElement &$element): array
+    public function getElementArgs(DOMElement &$element): ArgumentArray
     {
         $args = new ArgumentArray;
 
@@ -340,7 +341,7 @@ class Engine
             $child_node->parentNode->removeChild($child_node);
         }
 
-        return $args->get();
+        return $args;
     }
 
     /**

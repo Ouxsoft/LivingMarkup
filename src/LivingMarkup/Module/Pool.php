@@ -10,16 +10,16 @@
 
 declare(strict_types=1);
 
-namespace LivingMarkup;
+namespace LivingMarkup\Module;
 
 /**
- * Class ModulePool
+ * Class Pool
  *
  * Initializes and retrieves individual modules
  *
  * @package LivingMarkup
  */
-class ModulePool
+class Pool
 {
     const INDEX_ATTRIBUTE = '_MODULE_ID';
 
