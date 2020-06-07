@@ -17,7 +17,7 @@ LivingMarkup is a customizable HTML templating engine that processes markup into
 dynamic markup. 
 
 ## Usage
-Create a module:
+Create a LHTML Module
 ```php
 namespace Partial;
 
@@ -27,7 +27,8 @@ class HelloWorld extends LivingMarkup\Module {
     }
 }
 ```
-Run through processor
+
+Handle custom module using LHTML processor: 
 ```php
 // instantiate processor
 $proc = new LivingMarkup\Processor();
