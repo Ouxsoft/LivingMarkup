@@ -21,8 +21,6 @@ namespace LivingMarkup\Module;
  */
 class Pool
 {
-    const INDEX_ATTRIBUTE = '_MODULE_ID';
-
     public $module = [];
 
     // TODO: implement pool design pattern

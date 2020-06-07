@@ -27,6 +27,8 @@ use DOMXPath;
 class Engine
 {
 
+    const INDEX_ATTRIBUTE = '_MODULE_ID';
+
     // Document Object Model (DOM)
     public $dom;
 
@@ -96,11 +98,11 @@ class Engine
         // get ancestor ids
         $ancestor_properties = [];
 
-        $query = '//ancestor::*[@' . $this->modules::INDEX_ATTRIBUTE . ']';
+        $query = '//ancestor::*[@' . self::INDEX_ATTRIBUTE . ']';
         $node = $this->getDomElementByPlaceholderId($module_id);
 
         foreach ($this->queryFetchAll($query, $node) as $dom_element) {
-            $ancestor_id = $dom_element->getAttribute($this->modules::INDEX_ATTRIBUTE);
+            $ancestor_id = $dom_element->getAttribute(self::INDEX_ATTRIBUTE);
             $ancestor_properties[] = [
                 'id' => $ancestor_id,
                 'tag' => $dom_element->nodeName,
@@ -119,7 +121,7 @@ class Engine
     public function getDomElementByPlaceholderId(string $module_id): ?DOMElement
     {
         // find an element by id
-        $query = '//*[@' . $this->modules::INDEX_ATTRIBUTE . '="' . $module_id . '"]';
+        $query = '//*[@' . self::INDEX_ATTRIBUTE . '="' . $module_id . '"]';
 
         // get object found
         return $this->queryFetch($query);
@@ -256,21 +258,24 @@ class Engine
     public function instantiateModule(DOMElement &$element, string $class_name): bool
     {
         // skip if placeholder already assigned
-        if ($element->hasAttribute($this->modules::INDEX_ATTRIBUTE)) {
+        if ($element->hasAttribute(self::INDEX_ATTRIBUTE)) {
             return false;
         }
 
-        // resolve class name
-        $element_class_name = $class_name;
-
-        if ($element->hasAttribute('name')) {
-            $element_name = $element->getAttribute('name');
-            $element_class_name = str_replace('{name}', $element_name, $class_name);
+        // resolve $class_name {name} variable if present using $element
+        if(strpos($class_name, '{name}') !== false) {
+           if ($element->hasAttribute('name')) {
+                $element_name = $element->getAttribute('name');
+                $class_name = str_replace('{name}', $element_name, $class_name);
+            } else {
+                $this->replaceDomElement($element, '<!-- Module "' . $class_name . '" Missing Name Attribute -->');
+                return false;    
+            }
         }
 
         // if class does not exist add debug comment
-        if (!class_exists($element_class_name)) {
-            $this->replaceDomElement($element, '<!-- Handler "' . $element_class_name . '" Not Found -->');
+        if (!class_exists($class_name)) {
+            $this->replaceDomElement($element, '<!-- Module "' . $class_name . '" Not Found -->');
             return false;
         }
 
@@ -278,16 +283,16 @@ class Engine
         $args = $this->getElementArgs($element);
 
         // instantiate element
-        $element_object = new $element_class_name($args);
+        $element_object = new $class_name($args);
 
         // if object cannot be instantiated add debug comment
         if (!is_object($element_object)) {
-            $this->replaceDomElement($element, '<!-- Handler "' . $element_class_name . '" Error -->');
+            $this->replaceDomElement($element, '<!-- Module "' . $class_name . '" Error -->');
             return false;
         }
 
         // set element object placeholder
-        $element->setAttribute($this->modules::INDEX_ATTRIBUTE, $element_object->module_id);
+        $element->setAttribute(self::INDEX_ATTRIBUTE, $element_object->module_id);
 
         // add module to pool
         $this->modules->add($element_object);
