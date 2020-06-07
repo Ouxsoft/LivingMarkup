@@ -15,7 +15,7 @@ use LivingMarkup\Processor;
 
 final class ProcessorTest extends TestCase
 {
-    public function testParseString()
+    public function testParseStringWithLoadConfig()
     {
         $proc = new Processor();
 
@@ -30,11 +30,24 @@ final class ProcessorTest extends TestCase
         $this->assertStringMatchesFormatFile(dirname(__DIR__, 1) . '/outputs/index.html',  $test_results);
     }
 
-    public function testParseFile()
+    public function testParseFileWithLoadConfig()
     {
         $proc = new Processor();
 
         $proc->loadConfig(dirname(__DIR__, 1) . '/inputs/phpunit.yml');
+
+        $test_results = $proc->parseFile(dirname(__DIR__, 1) . '/inputs/index.html');
+
+        $this->assertStringMatchesFormatFile(dirname(__DIR__, 1) . '/outputs/index.html',  $test_results);
+    }
+
+    public function testParseWithDefinitions()
+    {
+        $proc = new Processor();
+
+        $proc->addObject('Bitwise', '//bitwise','LivingMarkup\Test\Bitwise');
+
+        $proc->addMethod('onRender','Execute for render', 'RETURN_CALL');
 
         $test_results = $proc->parseFile(dirname(__DIR__, 1) . '/inputs/index.html');
 

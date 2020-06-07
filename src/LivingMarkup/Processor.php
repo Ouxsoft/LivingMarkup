@@ -63,30 +63,11 @@ class Processor
     }
 
     /**
-     * Add definition for processor LHTML object
-     *
-     * @param string $xpath_expression
-     * @param string $class_name
-     * @param array $properties
+     * Get config
+     * @return Configuration
      */
-    public function addObject(string $xpath_expression,
-                              string $class_name,
-                              array $properties = []){
-        $this->config->addModule([
-            $xpath_expression,
-            $class_name,
-            $properties
-        ]);
-    }
-
-    /**
-     * Add definition for processor LHTML object method
-     *
-     * @param string $method_name
-     * @param int|null $order
-     */
-    public function addMethod(string $method_name, int $order = null){
-
+    public function getConfig(){
+        return $this->config;
     }
 
     /**
@@ -103,6 +84,35 @@ class Processor
         }
         $add_modules[] = $module;
         return true;
+    }
+
+    /**
+     * Add definition for processor LHTML object
+     *
+     * @param string $name
+     * @param string $xpath_expression
+     * @param string $class_name
+     */
+    public function addObject(string $name,
+                              string $xpath_expression,
+                              string $class_name
+                             ){
+        $this->config->addModule([
+            'name' => $name,
+            'class_name' => $class_name,
+            'xpath' => $xpath_expression
+        ]);
+    }
+
+    /**
+     * Add definition for processor LHTML object method
+     *
+     * @param string $method_name
+     * @param string $description
+     * @param string|null $execute
+     */
+    public function addMethod(string $method_name, string $description = '', $execute = null){
+        $this->config->addMethod($method_name, $description, $execute);
     }
 
 

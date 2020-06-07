@@ -17,23 +17,25 @@ LivingMarkup is a customizable HTML templating engine that processes markup into
 dynamic markup. 
 
 ## Usage
+Create a module:
 ```php
+namespace Partial;
+
 class HelloWorld extends LivingMarkup\Module {
     public function onRender(){
-        return 'Hello, World';
+        return 'Hello, World!';
     }
 }
 ```
-
+Run through processor
 ```php
 // instantiate processor
 $proc = new LivingMarkup\Processor();
 
 // add object to processor
-$proc->adObject('//partial', 'HelloWorld');
+$proc->adObject('Partial', '//partial', 'Partial\{name}');
 
-// add automatic method call to processor
-$proc->addMethod('onRender');
+$proc->addMethod('onRender','Execute for render', 'RETURN_CALL');
 
 echo $proc->parseString('<html><partial name="HelloWorld"/></html>');
 

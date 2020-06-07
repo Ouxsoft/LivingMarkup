@@ -24,7 +24,13 @@ class Configuration
     const LOCAL_FILENAME = 'config.yml';
     const DIST_FILENAME = 'config.dist.yml';
 
-    public $config;
+    public $config = [
+        'version' => 1,
+        'modules' => [
+            'types' => [],
+            'methods' => []
+        ]
+    ];
     private $path; // full path to config file
     private $directory; // directory config file is in
     private $filename; // base name of file
@@ -111,6 +117,7 @@ class Configuration
     {
         $this->filename = basename($path);
     }
+
 
     /**
      * Set directory where configs are stored
@@ -213,11 +220,24 @@ class Configuration
      * Add method
      *
      * @param string $method_name
-     * @param int|null $order
+     * @param string $description
+     * @param string $execute
      */
-    public function addMethod(string $method_name, int $order = null){
-        // TODO: add support for order
-        $this->config['modules']['methods'][] = $method_name;
+    public function addMethod(string $method_name, string $description = '', $execute = null){
+
+        if(is_string($execute)){
+            $this->config['modules']['methods'][] = [
+                'name' => $method_name,
+                'description' => $description,
+                'execute' => $execute
+            ];
+            return;
+        }
+
+        $this->config['modules']['methods'][] = [
+            'name' => $method_name,
+            'description' => $description,
+        ];
     }
 
     /**
