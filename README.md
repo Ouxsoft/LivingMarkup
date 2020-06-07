@@ -35,8 +35,10 @@ $proc = new LivingMarkup\Processor();
 // add object to processor
 $proc->adObject('Partial', '//partial', 'Partial\{name}');
 
+// automate method call
 $proc->addMethod('onRender','Execute for render', 'RETURN_CALL');
 
+// process LHTML string
 echo $proc->parseString('<html><partial name="HelloWorld"/></html>');
 
 ```
