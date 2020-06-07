@@ -37,104 +37,44 @@ class Configuration
 
     /**
      * Configuration constructor.
-     * @param string|null $path
+     * @param string|null $filepath
      * @return bool
      */
-    public function loadFile(string $path = null)
+    public function loadFile(string $filepath = null)
     {
-        $this->setPath($path);
-        $this->setDirectory($path);
-        $this->setFilename($path);
+        // fail overs for distributed configs
+        $fail_overs = [$filepath, self::LOCAL_FILENAME, self::DIST_FILENAME];
 
-        // load filename, if provided
-        if ($this->load($path)) {
-            return true;
-        }
+        foreach ($fail_overs as $filepath) {
+            $this->path = $filepath;
+            $this->directory = dirname($filepath);
+            $this->filename = basename($filepath);
 
-        // load local config, if exists
-        if ($this->load(self::LOCAL_FILENAME)) {
-            return true;
-        }
+            // try to load config using filename
+            try {
+                // check if path is valid
+                $validator = new Exists($this->directory);
+                if (!$validator->isValid($this->filename)) {
+                    return false;
+                }
 
-        // load dist file, if exists
-        if ($this->load(self::DIST_FILENAME)) {
-            return true;
-        }
-        return false;
-    }
+                // load yaml file
+                $reader = new Yaml();
+                $this->config = $reader->fromFile($this->path);
 
-    /**
-     * Load YAML Config file
-     * @return bool|mixed
-     */
-    public function load()
-    {
+                if (empty($this->config)) {
+                    return false;
+                }
 
-        // check if filename provided
-        if ($this->filename === null) {
-            return false;
-        }
-
-        // try to load config using filename
-        try {
-            // check if path is valid
-            $validator = new Exists($this->directory);
-            if (! $validator->isValid($this->filename)) {
+                return true;
+            } catch (Exception $e) {
+                trigger_error('Unable to load config' . $e, E_USER_ERROR);
                 return false;
             }
 
-            $this->config = $this->parse();
-            return true;
-        } catch (Exception $e) {
-            trigger_error('Unable to load config' . $e, E_USER_ERROR);
-            return false;
         }
 
         return false;
-    }
-
-    /**
-     * Parse YAML config file
-     * @return bool|mixed
-     */
-    private function parse()
-    {
-        $reader = new Yaml();
-        $config = $reader->fromFile($this->path);
-
-        if (empty($config)) {
-            return false;
-        }
-
-        return $config;
-    }
-
-    /**
-     * Set filename of config file
-     * @param $path
-     */
-    public function setFilename($path)
-    {
-        $this->filename = basename($path);
-    }
-
-
-    /**
-     * Set directory where configs are stored
-     * @param $path
-     */
-    public function setDirectory($path)
-    {
-        $this->directory = dirname($path);
-    }
-
-    /**
-     * Set path to config file
-     * @param $path
-     */
-    public function setPath($path)
-    {
-        $this->path = $path;
     }
 
     /**
@@ -223,9 +163,10 @@ class Configuration
      * @param string $description
      * @param string $execute
      */
-    public function addMethod(string $method_name, string $description = '', $execute = null){
+    public function addMethod(string $method_name, string $description = '', $execute = null)
+    {
 
-        if(is_string($execute)){
+        if (is_string($execute)) {
             $this->config['modules']['methods'][] = [
                 'name' => $method_name,
                 'description' => $description,
@@ -260,16 +201,18 @@ class Configuration
      */
     public function getSource(): string
     {
-        if (array_key_exists('filename', $this->config)) {
-            return file_get_contents($this->config['filename']);
-        } elseif (array_key_exists('markup', $this->config)) {
+        if (array_key_exists('markup', $this->config)) {
             return $this->config['markup'];
-        } else {
-            return '';
         }
+
+        return '';
     }
 
-    public function setMarkup(string $markup){
+    /**
+     * @param string $markup
+     */
+    public function setSource(string $markup)
+    {
         $this->config['markup'] = $markup;
     }
 }

@@ -55,7 +55,8 @@ class Processor
      * Set config
      * @param $filepath
      */
-    public function loadConfig($filepath){
+    public function loadConfig($filepath)
+    {
 
         // load config
         $this->config->loadFile($filepath);
@@ -66,7 +67,8 @@ class Processor
      * Get config
      * @return Configuration
      */
-    public function getConfig(){
+    public function getConfig()
+    {
         return $this->config;
     }
 
@@ -96,7 +98,8 @@ class Processor
     public function addObject(string $name,
                               string $xpath_expression,
                               string $class_name
-                             ){
+    )
+    {
         $this->config->addModule([
             'name' => $name,
             'class_name' => $class_name,
@@ -111,7 +114,8 @@ class Processor
      * @param string $description
      * @param string|null $execute
      */
-    public function addMethod(string $method_name, string $description = '', $execute = null){
+    public function addMethod(string $method_name, string $description = '', $execute = null)
+    {
         $this->config->addMethod($method_name, $description, $execute);
     }
 
@@ -119,33 +123,14 @@ class Processor
     /**
      * Process output buffer
      */
-    public function parseBuffer(){
-        if (defined(self::PROCESS_TOGGLE )) {
+    public function parseBuffer()
+    {
+        if (defined(self::PROCESS_TOGGLE)) {
             return;
         }
 
         // process buffer once completed
-        ob_start([$this, 'parseBufferCallback']);
-    }
-
-
-    /**
-     * Callback to run kernel
-     * @param string $markup
-     * @return string
-     */
-    private function parseBufferCallback(string $markup) : string
-    {
-
-        // return buffer if it's not HTML
-        if ($markup==strip_tags($markup)) {
-            return $markup;
-        }
-
-        // add buffer to config
-        $this->config->add('markup', $markup);
-
-        return $this->parse();
+        ob_start([$this, 'parseString']);
     }
 
     /**
@@ -154,16 +139,17 @@ class Processor
      * @param $filepath
      * @return string
      */
-    public function parseFile($filepath) : string {
+    public function parseFile($filepath): string
+    {
 
-        $markup = file_get_contents($filepath);
+        $source = file_get_contents($filepath);
 
         // return buffer if it's not HTML
-        if ($markup==strip_tags($markup)) {
-            return $markup;
+        if ($source == strip_tags($source)) {
+            return $source;
         }
 
-        $this->config->setMarkup($markup);
+        $this->config->setSource($source);
 
         return $this->parse();
 
@@ -172,24 +158,25 @@ class Processor
     /**
      * Process string
      *
-     * @param string $markup
+     * @param string $source
      * @return string
      */
-    public function parseString(string $markup) : string {
+    public function parseString(string $source): string
+    {
 
         // return buffer if it's not HTML
-        if ($markup==strip_tags($markup)) {
-            return $markup;
+        if ($source == strip_tags($source)) {
+            return $source;
         }
 
-        $this->config->setMarkup($markup);
+        $this->config->setSource($source);
 
         return $this->parse();
 
     }
 
-
-    private function parse(){
+    private function parse()
+    {
 
         // add runtime modules to config
         if (isset($add_modules)) {
@@ -198,7 +185,6 @@ class Processor
 
         // echo Kernel build of Builder
         return $this->kernel->build($this->builder, $this->config);
-
 
     }
 }
