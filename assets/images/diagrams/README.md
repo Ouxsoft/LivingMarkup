@@ -1,1 +1,0 @@
-These UML diagrams visually represent the system to aid in system maintenance.
