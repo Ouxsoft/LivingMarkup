@@ -43,12 +43,15 @@ class Processor
 
     /**
      * Set builder
-     * @param $builder
+     * @param null $builder_class
      */
-    public function setBuilder($builder = null)
+    public function setBuilder($builder_class = null)
     {
+        $this->builder =  new $builder_class();
 
-        $this->builder = $builder;
+        if(! $this->builder instanceof Builder){
+            trigger_error('Invalid builder supplied', E_USER_ERROR);
+        }
     }
 
     /**
