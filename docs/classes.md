@@ -10,15 +10,7 @@ Pages are created using a Builder design pattern. This design pattern was chosen
 The Director is called the `Kernel` within the context of the Builder design pattern.
 
 ## Overview
-1. A `Kernel` is passed an object that uses the `Builder` interface. (There are multiple `Builders` depending on the type of page being rendered.)
-2. Parser Config contains the following:
-3. The `Builder` loads the `filename` as a string and prefixes it with a HTML5 <!doctype> containing HTML5 entities.
-4. That string is then converted into a Document Object Model (DOM) for manipulation.
-5. The `Builder` using handlers Xpath expressions to find specified elements. 
-6. Each element found is instantiated as a object and DOMElement is temporarily marked with a placeholder attribute.
-7. `Automated Methods` are called against all instantiated `Module` objects with the defined methods.
-8. If the automated method is marked to render, the object is converted to a string and replace the DOMElement from which they were instantiated with.
-9. The `Document`, which is now a dynamic page, is then returned.
+`Processor` class provides a user API interface for setting the `Kernel`, `Configration`, and `Builders` setting.
 
 # `Kernel`
 The `Kernel` is passed a Builder and parameters (containing a HTML/XML document and a list of elements to make dynamic), it then instantiates those elements as objects using their attributes and arguments, orchestrates method calls 
