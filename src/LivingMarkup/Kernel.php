@@ -8,7 +8,11 @@
  * file that was distributed with this source code.
  */
 
+declare(strict_types=1);
+
 namespace LivingMarkup;
+
+use LivingMarkup\Builder\BuilderInterface;
 
 /**
  * Class PageKernelTest
@@ -18,12 +22,11 @@ class Kernel
 {
     /**
      * Calls Builder using parameters supplied
-     *
-     * @param Builder\BuilderInterface $builder
+     * @param BuilderInterface $builder
      * @param $config
-     * @return object
+     * @return Engine
      */
-    public function build(Builder\BuilderInterface &$builder, $config): object
+    public function build(BuilderInterface &$builder, Configuration $config): Engine
     {
         $builder->createObject($config);
 

@@ -8,7 +8,11 @@
  * file that was distributed with this source code.
  */
 
+declare(strict_types=1);
+
 namespace LivingMarkup;
+
+use LivingMarkup\Builder\BuilderInterface;
 
 /**
  * Class Processor
@@ -26,9 +30,9 @@ class Processor
 
     /**
      * Autoloader constructor.
-     * @param null $config_filepath
+     * @param string $config_filepath
      */
-    public function __construct($config_filepath = null)
+    public function __construct(string $config_filepath = null)
     {
 
         // instantiate Kernel
@@ -49,22 +53,19 @@ class Processor
 
     /**
      * Set builder
-     * @param null $builder_class
+     * @param BuilderInterface $builder_class
      */
-    public function setBuilder($builder_class = null)
+    public function setBuilder(BuilderInterface $builder_class) : void
     {
         $this->builder =  new $builder_class();
 
-        if(! $this->builder instanceof Builder){
-            trigger_error('Invalid builder supplied', E_USER_ERROR);
-        }
     }
 
     /**
      * Set config
      * @param $filepath
      */
-    public function loadConfig($filepath)
+    public function loadConfig(string $filepath) : void
     {
 
         // load config
@@ -76,7 +77,7 @@ class Processor
      * Get config
      * @return Configuration
      */
-    public function getConfig()
+    public function getConfig() : Configuration
     {
         return $this->config;
     }
@@ -94,6 +95,7 @@ class Processor
             $add_modules = [];
         }
         $add_modules[] = $module;
+
         return true;
     }
 
@@ -104,10 +106,7 @@ class Processor
      * @param string $xpath_expression
      * @param string $class_name
      */
-    public function addObject(string $name,
-                              string $xpath_expression,
-                              string $class_name
-    )
+    public function addObject(string $name, string $xpath_expression, string $class_name) : void
     {
         $this->config->addModule([
             'name' => $name,
@@ -123,7 +122,7 @@ class Processor
      * @param string $description
      * @param string|null $execute
      */
-    public function addMethod(string $method_name, string $description = '', $execute = null)
+    public function addMethod(string $method_name, string $description = '', string $execute = null) : void
     {
         $this->config->addMethod($method_name, $description, $execute);
     }
@@ -132,7 +131,7 @@ class Processor
     /**
      * Process output buffer
      */
-    public function parseBuffer()
+    public function parseBuffer() : void
     {
         if (defined(self::PROCESS_TOGGLE)) {
             return;
@@ -148,7 +147,7 @@ class Processor
      * @param $filepath
      * @return string
      */
-    public function parseFile($filepath): string
+    public function parseFile(string $filepath): string
     {
 
         $source = file_get_contents($filepath);
@@ -184,7 +183,7 @@ class Processor
 
     }
 
-    private function parse()
+    private function parse() : string
     {
 
         // add runtime modules to config
@@ -193,7 +192,7 @@ class Processor
         }
 
         // echo Kernel build of Builder
-        return $this->kernel->build($this->builder, $this->config);
+        return (string) $this->kernel->build($this->builder, $this->config);
 
     }
 }
