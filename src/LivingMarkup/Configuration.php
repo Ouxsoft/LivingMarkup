@@ -9,8 +9,11 @@
  * file that was distributed with this source code.
  */
 
+declare(strict_types=1);
+
 namespace LivingMarkup;
 
+use LivingMarkup\Exception\Exception;
 use Laminas\Config\Reader\Yaml;
 use Laminas\Validator\File\Exists;
 
@@ -40,7 +43,7 @@ class Configuration
      * @return bool
      * @throws Exception
      */
-    public function loadFile(string $filepath = null)
+    public function loadFile(string $filepath = null) : bool
     {
         // fail overs for distributed configs
         $fail_overs = [$filepath, self::LOCAL_FILENAME, self::DIST_FILENAME];
@@ -79,6 +82,7 @@ class Configuration
     }
 
     /**
+     * Add item to config
      * @param string $key
      * @param mixed $value
      * @return bool
@@ -90,12 +94,11 @@ class Configuration
         return true;
     }
 
-
     /**
      * Adds modules to config
      * @param array $module
      */
-    public function addModule(array $module)
+    public function addModule(array $module) : void
     {
         $this->config['modules']['types'][] = $module;
     }
@@ -104,7 +107,7 @@ class Configuration
      * Adds modules to config
      * @param array $modules
      */
-    public function addModules(array $modules)
+    public function addModules(array $modules) : void
     {
         if (
             array_key_exists('modules', $this->config) &&
@@ -159,12 +162,11 @@ class Configuration
 
     /**
      * Add method
-     *
      * @param string $method_name
      * @param string $description
      * @param string $execute
      */
-    public function addMethod(string $method_name, string $description = '', $execute = null)
+    public function addMethod(string $method_name, string $description = '', $execute = null) : void
     {
 
         if (is_string($execute)) {
@@ -210,9 +212,10 @@ class Configuration
     }
 
     /**
+     * Set LHTML source/markup
      * @param string $markup
      */
-    public function setSource(string $markup)
+    public function setSource(string $markup) : void
     {
         $this->config['markup'] = $markup;
     }

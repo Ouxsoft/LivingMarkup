@@ -10,7 +10,7 @@
 
 declare(strict_types=1);
 
-namespace LivingMarkup;
+namespace LivingMarkup\Exception;
 
 use RuntimeException;
 
