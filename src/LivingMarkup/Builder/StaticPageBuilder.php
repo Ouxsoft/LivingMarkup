@@ -8,6 +8,8 @@
  * file that was distributed with this source code.
  */
 
+declare(strict_types=1);
+
 namespace LivingMarkup\Builder;
 
 use LivingMarkup\Configuration;
@@ -23,25 +25,21 @@ class StaticPageBuilder implements BuilderInterface
 
     /**
      * Creates Page object using parameters supplied
-     *
      * @param Configuration $config
-     * @return bool|null
+     * @return void
      */
-    public function createObject(Configuration $config): ?bool
+    public function createObject(Configuration $config): void
     {
 
         // create engine pass source
         $this->engine = new Engine($config);
-
-        return true;
     }
 
     /**
      * Gets Page object
-     *
-     * @return object|null
+     * @return Engine
      */
-    public function getObject(): ?object
+    public function getObject(): Engine
     {
         return $this->engine;
     }

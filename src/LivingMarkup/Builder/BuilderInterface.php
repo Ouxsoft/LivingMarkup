@@ -8,9 +8,12 @@
  * file that was distributed with this source code.
  */
 
+declare(strict_types=1);
+
 namespace LivingMarkup\Builder;
 
 use LivingMarkup\Configuration;
+use LivingMarkup\Engine;
 
 /**
  * Class Builder
@@ -19,6 +22,6 @@ use LivingMarkup\Configuration;
 
 interface BuilderInterface
 {
-    public function createObject(Configuration $config) : ?bool;
-    public function getObject() : ?object;
+    public function createObject(Configuration $config) : void;
+    public function getObject() : Engine;
 }
