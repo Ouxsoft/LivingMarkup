@@ -101,7 +101,6 @@ class Processor
 
     /**
      * Add definition for processor LHTML object
-     *
      * @param string $name
      * @param string $xpath_expression
      * @param string $class_name
@@ -117,7 +116,6 @@ class Processor
 
     /**
      * Add definition for processor LHTML object method
-     *
      * @param string $method_name
      * @param string $description
      * @param string|null $execute
@@ -143,7 +141,6 @@ class Processor
 
     /**
      * Process a file
-     *
      * @param $filepath
      * @return string
      */
@@ -165,7 +162,6 @@ class Processor
 
     /**
      * Process string
-     *
      * @param string $source
      * @return string
      */
@@ -183,6 +179,10 @@ class Processor
 
     }
 
+    /**
+     * Parse defined kernel using currently builder and config
+     * @return string
+     */
     private function parse() : string
     {
 
