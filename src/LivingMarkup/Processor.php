@@ -26,8 +26,9 @@ class Processor
 
     /**
      * Autoloader constructor.
+     * @param null $config_filepath
      */
-    public function __construct()
+    public function __construct($config_filepath = null)
     {
 
         // instantiate Kernel
@@ -35,6 +36,11 @@ class Processor
 
         // instantiate a empty config
         $this->config = new Configuration();
+
+        // check if config filepath supplied during construction
+        if($config_filepath!==null){
+            $this->loadConfig($config_filepath);
+        }
 
         // instantiate a default builder
         $this->builder = new Builder\DynamicPageBuilder();
