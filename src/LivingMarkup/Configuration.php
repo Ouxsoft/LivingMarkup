@@ -11,7 +11,6 @@
 
 namespace LivingMarkup;
 
-use Exception;
 use Laminas\Config\Reader\Yaml;
 use Laminas\Validator\File\Exists;
 
@@ -39,6 +38,7 @@ class Configuration
      * Configuration constructor.
      * @param string|null $filepath
      * @return bool
+     * @throws Exception
      */
     public function loadFile(string $filepath = null)
     {
@@ -68,7 +68,8 @@ class Configuration
 
                 return true;
             } catch (Exception $e) {
-                trigger_error('Unable to load config' . $e, E_USER_ERROR);
+                throw new Exception('Unable to load config' . $e);
+
                 return false;
             }
 

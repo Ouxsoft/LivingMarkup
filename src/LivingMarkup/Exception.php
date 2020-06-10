@@ -1,0 +1,31 @@
+<?php
+/**
+ * This file is part of the LivingMarkup package.
+ *
+ * (c) 2017-2020 Ouxsoft  <contact@ouxsoft.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+namespace LivingMarkup;
+
+use RuntimeException;
+
+/**
+ * Class Exception
+ * @package LivingMarkup
+ */
+class Exception extends RuntimeException
+{
+
+    private $log = null;
+
+    /**
+     * Exception constructor.
+     * @param $log
+     */
+    public function __construct($log){
+        $this->log = $log;
+    }
+}
