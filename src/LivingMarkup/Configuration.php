@@ -148,7 +148,7 @@ class Configuration
     }
 
     /**
-     * Temporarily adds runtime globals to config and returns config
+     * Get the config array
      * @return mixed
      */
     public function get(): array

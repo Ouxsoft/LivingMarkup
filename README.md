@@ -34,7 +34,7 @@ Handle custom module using LHTML processor:
 $proc = new LivingMarkup\Processor();
 
 // add object to processor
-$proc->adObject('Partial', '//partial', 'Partial\{name}');
+$proc->addObject('Partial', '//partial', 'Partial\{name}');
 
 // automate method call
 $proc->addMethod('onRender','Execute for render', 'RETURN_CALL');
