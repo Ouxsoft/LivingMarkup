@@ -22,7 +22,6 @@ class Processor
 {
 
     const PROCESS_TOGGLE = 'LHTML_OFF';
-    const DEBUG = true;
 
     private $kernel;
     private $builder;
@@ -83,7 +82,7 @@ class Processor
     }
 
     /**
-     * Add a module to config
+     * Add a LHTML module to config
      * @param array $module
      * @return bool
      */
