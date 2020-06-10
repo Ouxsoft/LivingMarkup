@@ -8,19 +8,23 @@
  * file that was distributed with this source code.
  */
 
+declare(strict_types=1);
+
 namespace LivingMarkup;
 
 use DomDocument;
+use LivingMarkup\Exception\Exception;
 
 /**
  * Class Document
- *
  * Hyperlink DomDocument that is loaded from a well formatted LHTML document and returns a HTML5
- *
  * @package LivingMarkup
  */
 class Document extends DomDocument
 {
+    /**
+     * Document constructor.
+     */
     public function __construct()
     {
         parent::__construct();
@@ -54,7 +58,7 @@ class Document extends DomDocument
      * @param string $source must be well formatted and feature a root element, e.g. <html>
      * @return bool
      */
-    public function loadSource(string $source)
+    public function loadSource(string $source) : bool
     {
         // add DOCTYPE declaration
         $doctype = '<!DOCTYPE html [' . Entities::HTML5 . ']>'. PHP_EOL;
@@ -76,13 +80,17 @@ class Document extends DomDocument
         // adds HTML root element if one is not present
         if (!is_object($this->documentElement)) {
             return false;
+            // TODO: figure out whether to throw
+            // throw new Exception('Invalid LHTML document provided');
         }
 
+        // add html root element if missing
         $root_tag = $this->documentElement->tagName;
         if (strcasecmp($root_tag, 'html') !== 0) {
             $root_element = $this->createElement('html');
             $this->appendChild($root_element);
         }
+
         return true;
     }
 }

@@ -8,6 +8,8 @@
  * file that was distributed with this source code.
  */
 
+declare(strict_types=1);
+
 namespace LivingMarkup;
 
 use DOMElement;
@@ -40,7 +42,6 @@ class Engine
 
     /**
      * Page constructor
-     *
      * @param Configuration $config
      */
     public function __construct(Configuration $config)
@@ -60,7 +61,6 @@ class Engine
 
     /**
      * Call Hooks
-     *
      * @param array $method
      * @return bool-
      */
@@ -86,7 +86,6 @@ class Engine
 
     /**
      * Get a Module ancestors' properties based on provided module_id DOMElement's ancestors
-     *
      * @param $module_id
      * @return array
      */
@@ -112,7 +111,6 @@ class Engine
 
     /**
      * Gets DOMElement using module_id provided
-     *
      * @param string $module_id
      * @return DOMElement|null
      */
@@ -127,24 +125,22 @@ class Engine
 
     /**
      * XPath query for class $this->DOM property that fetches all results as array
-     *
      * @param string $query
      * @param DOMElement $node
      * @return mixed
      */
-    public function queryFetchAll(string $query, DOMElement $node = null)
+    public function queryFetchAll(string $query, DOMElement $node = null): void
     {
         return $this->xpath->query($query, $node);
     }
 
     /**
      * XPath query for class $this->DOM property that fetches only first result
-     *
      * @param string $query
      * @param DOMElement $node
      * @return mixed
      */
-    public function queryFetch(string $query, DOMElement $node = null)
+    public function queryFetch(string $query, DOMElement $node = null): void
     {
         $results = $this->xpath->query($query, $node);
 
@@ -156,9 +152,8 @@ class Engine
     }
 
 
-/**
+    /**
      * Within DOMDocument replace DOMElement with Module->__toString() output
-     *
      * @param $module_id
      * @return bool
      */
@@ -191,7 +186,6 @@ class Engine
 
     /**
      * Get Module inner XML
-     *
      * @param $module_id
      * @return string
      */
@@ -211,7 +205,6 @@ class Engine
 
     /**
      * Replaces DOMElement from property DOM with contents provided
-     *
      * @param DOMElement $element
      * @param string $new_xml
      */
@@ -227,7 +220,6 @@ class Engine
 
     /**
      * Instantiates modules from DOMElement's found during Xpath query against DOM property
-     *
      * @param array $module
      * @return bool
      */
@@ -255,7 +247,6 @@ class Engine
 
     /**
      * Instantiate a DOMElement as a Module using specified class_name
-     *
      * @param DOMElement $element
      * @param string $class_name
      * @return bool
@@ -353,7 +344,6 @@ class Engine
 
     /**
      * Set a value type to avoid Type Juggling issues and extend data types
-     *
      * @param string $value
      * @param string $type
      * @return bool|mixed|string
@@ -393,7 +383,6 @@ class Engine
 
     /**
      * Returns DomDocument property as HTML5
-     *
      * @return string
      */
     public function __toString(): string
