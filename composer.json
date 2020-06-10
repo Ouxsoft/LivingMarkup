@@ -49,7 +49,7 @@
   "autoload-dev": {
     "psr-4": {
       "LivingMarkup\\": "src/LivingMarkup/",
-      "LivingMarkup\\Test\\": "test/src/Unit/inputs/"
+      "LivingMarkup\\Test\\": "test/src/Resources/Modules/"
     }
   },
   "homepage": "https://github.com/ouxsoft/LivingMarkup",

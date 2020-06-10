@@ -20,7 +20,7 @@ final class ModulesTest extends TestCase
     public function testCanBuildPage()
     {
         $config = new Configuration();
-        $config->loadFile('test/src/Unit/inputs/phpunit.yml');
+        $config->loadFile('test/src/Resources/config/phpunit.yml');
 
         foreach ($config->getModules() as $module) {
 

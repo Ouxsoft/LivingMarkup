@@ -19,7 +19,7 @@ final class ProcessorTest extends TestCase
     {
         $proc = new Processor();
 
-        $proc->loadConfig(dirname(__DIR__, 1) . '/inputs/phpunit.yml');
+        $proc->loadConfig(dirname(__DIR__, 1) . '/Resources/config/phpunit.yml');
 
         $test_results =  $proc->parseString('<html><bitwise>
     <arg name="number">2</arg>
@@ -27,18 +27,18 @@ final class ProcessorTest extends TestCase
     <arg name="operator">^</arg>
 </bitwise></html>');
 
-        $this->assertStringMatchesFormatFile(dirname(__DIR__, 1) . '/outputs/index.html',  $test_results);
+        $this->assertStringMatchesFormatFile(dirname(__DIR__, 1) . '/Resources/outputs/index.html',  $test_results);
     }
 
     public function testParseFileWithLoadConfig()
     {
         $proc = new Processor();
 
-        $proc->loadConfig(dirname(__DIR__, 1) . '/inputs/phpunit.yml');
+        $proc->loadConfig(dirname(__DIR__, 1) . '/Resources/config/phpunit.yml');
 
-        $test_results = $proc->parseFile(dirname(__DIR__, 1) . '/inputs/index.html');
+        $test_results = $proc->parseFile(dirname(__DIR__, 1) . '/Resources/inputs/index.html');
 
-        $this->assertStringMatchesFormatFile(dirname(__DIR__, 1) . '/outputs/index.html',  $test_results);
+        $this->assertStringMatchesFormatFile(dirname(__DIR__, 1) . '/Resources/outputs/index.html',  $test_results);
     }
 
     public function testParseWithDefinitions()
@@ -49,8 +49,8 @@ final class ProcessorTest extends TestCase
 
         $proc->addMethod('onRender','Execute for render', 'RETURN_CALL');
 
-        $test_results = $proc->parseFile(dirname(__DIR__, 1) . '/inputs/index.html');
+        $test_results = $proc->parseFile(dirname(__DIR__, 1) . '/Resources/inputs/index.html');
 
-        $this->assertStringMatchesFormatFile(dirname(__DIR__, 1) . '/outputs/index.html',  $test_results);
+        $this->assertStringMatchesFormatFile(dirname(__DIR__, 1) . '/Resources/outputs/index.html',  $test_results);
     }
 }
