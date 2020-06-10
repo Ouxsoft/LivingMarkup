@@ -98,7 +98,7 @@ class Engine
         $query = '//ancestor::*[@' . $this->modules::INDEX_ATTRIBUTE . ']';
         $node = $this->getDomElementByPlaceholderId($module_id);
 
-        foreach ($this->query($query, $node) as $dom_element) {
+        foreach ($this->queryFetchAll($query, $node) as $dom_element) {
             $ancestor_id = $dom_element->getAttribute($this->modules::INDEX_ATTRIBUTE);
             $ancestor_properties[] = [
                 'id' => $ancestor_id,
@@ -118,28 +118,45 @@ class Engine
      */
     public function getDomElementByPlaceholderId(string $module_id): ?DOMElement
     {
-        // find and replace element
+        // find an element by id
         $query = '//*[@' . $this->modules::INDEX_ATTRIBUTE . '="' . $module_id . '"]';
 
-        foreach ($this->query($query) as $element) {
-            return $element;
-        }
-        return null;
+        // get object found
+        return $this->queryFetch($query);
     }
 
     /**
-     * XPath query for class $this->DOM property
+     * XPath query for class $this->DOM property that fetches all results as array
      *
      * @param string $query
      * @param DOMElement $node
      * @return mixed
      */
-    public function query(string $query, DOMElement $node = null)
+    public function queryFetchAll(string $query, DOMElement $node = null)
     {
         return $this->xpath->query($query, $node);
     }
 
     /**
+     * XPath query for class $this->DOM property that fetches only first result
+     *
+     * @param string $query
+     * @param DOMElement $node
+     * @return mixed
+     */
+    public function queryFetch(string $query, DOMElement $node = null)
+    {
+        $results = $this->xpath->query($query, $node);
+
+        if(isset($results[0])){
+            return $results[0];
+        }
+
+        return null;
+    }
+
+
+/**
      * Within DOMDocument replace DOMElement with Module->__toString() output
      *
      * @param $module_id
@@ -227,7 +244,7 @@ class Engine
         }
 
         // iterate through handler's expression searching for applicable elements
-        foreach ($this->query($module['xpath']) as $element) {
+        foreach ($this->queryFetchAll($module['xpath']) as $element) {
 
             // if class does not exist replace element with informative comment
             $this->instantiateModule($element, $module['class_name']);
@@ -304,7 +321,7 @@ class Engine
         }
 
         // get direct arg child elements
-        $arg_elements = $this->xpath->query('arg', $element);
+        $arg_elements = $this->queryFetchAll('arg', $element);
 
         // set arg DOMElements as args
         foreach ($arg_elements as $child_node) {
