@@ -13,6 +13,7 @@ declare(strict_types=1);
 namespace LivingMarkup;
 
 use DOMElement;
+use DOMNodeList;
 use DOMXPath;
 
 /**
@@ -129,7 +130,7 @@ class Engine
      * @param DOMElement $node
      * @return mixed
      */
-    public function queryFetchAll(string $query, DOMElement $node = null): void
+    public function queryFetchAll(string $query, DOMElement $node = null): ?DOMNodeList
     {
         return $this->xpath->query($query, $node);
     }
@@ -140,7 +141,7 @@ class Engine
      * @param DOMElement $node
      * @return mixed
      */
-    public function queryFetch(string $query, DOMElement $node = null): void
+    public function queryFetch(string $query, DOMElement $node = null): ?DOMElement
     {
         $results = $this->xpath->query($query, $node);
 

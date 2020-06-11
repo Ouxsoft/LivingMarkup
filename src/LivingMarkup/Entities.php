@@ -8,6 +8,8 @@
  * file that was distributed with this source code.
  */
 
+declare(strict_types=1);
+
 namespace LivingMarkup;
 
 /**
@@ -1749,20 +1751,18 @@ ENTITY;
 
     /**
      * Get list of entities to pass to DOM. These will prevent the character from causing parse errors.
-     *
      * @return string
      */
-    public static function get()
+    public static function get() : string
     {
         return HTML5;
     }
 
     /**
      * Download and encode entities from url
-     *
      * @return array
      */
-    public function fetchArray()
+    public function fetchArray() : array
     {
         $entities_json = file_get_contents($this->url);
         $entities_array = json_decode($entities_json);
@@ -1789,7 +1789,7 @@ ENTITY;
      *
      * @return string
      */
-    public function fetchString()
+    public function fetchString() : string
     {
         $entities_list = $this->fetchArray();
 

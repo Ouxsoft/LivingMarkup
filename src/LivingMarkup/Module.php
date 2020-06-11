@@ -8,6 +8,8 @@
  * file that was distributed with this source code.
  */
 
+declare(strict_types=1);
+
 namespace LivingMarkup;
 
 /**
@@ -87,7 +89,7 @@ abstract class Module implements ModuleDefaultInterface
      *
      * @return int|string
      */
-    public function getId()
+    public function getId() : int
     {
         return $this->module_id;
     }
@@ -98,7 +100,7 @@ abstract class Module implements ModuleDefaultInterface
      * @param $name
      * @return mixed|null
      */
-    public function getArgByName($name)
+    public function getArgByName($name) : ? string
     {
         return array_key_exists($name, $this->args) ? $this->args[$name] : null;
     }
@@ -108,8 +110,9 @@ abstract class Module implements ModuleDefaultInterface
      *
      * @return array
      */
-    public function getArgs()
+    public function getArgs()  : array
     {
+        // TODO: Should return a PrunedList
         return $this->args;
     }
 
