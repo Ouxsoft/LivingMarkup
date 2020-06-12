@@ -303,12 +303,12 @@ class Engine
      */
     public function getElementArgs(DOMElement &$element): array
     {
-        $args = new PrunedList;
+        $args = new ArgumentArray;
 
         // set attributes belonging to DOMElement as args
         if ($element->hasAttributes()) {
             foreach ($element->attributes as $name => $attribute) {
-                $args->add($name, $attribute->value);
+                $args[$name] = $attribute->value;
             }
         }
 
@@ -334,7 +334,7 @@ class Engine
             $value = $this->setType($value, $type);
 
             // add item to args
-            $args->add($name, $value);
+            $args[$name] = $value;
 
             // remove element
             $child_node->parentNode->removeChild($child_node);
