@@ -1,13 +1,12 @@
 # Contributing to LivingMarkup
 
-* LivingMarkup is designed to be used in other applications; it is not a monolithic solution but rather follow the
-Unix philosophy. Please bare that in mind when contributing. 
+* Please bare that in mind when contributing LivingMarkup is built to adhere to the Unix philosophy. It is designed to be used in other applications; not to be a monolithic solution.
 
 ## Workflow
 
 *  Fork the project.
 *  Make your code edit.
-*  Update or add test for to avoid change breaking in future releases.
+*  Update or add tests to avoid the change breaking in future releases.
 *  Run `composer update` to update composer packages and commit new composer.lock.
 *  Run `composer build` and ensure PSR Standards are adhered to.
 *  Test your changes using `composer test`.
