@@ -13,13 +13,13 @@ declare(strict_types=1);
 namespace LivingMarkup\Module;
 
 /**
- * Class Pool
+ * Class ModulePool
  *
  * Initializes and retrieves individual modules
  *
  * @package LivingMarkup
  */
-class Pool
+class ModulePool
 {
     public $module = [];
 

@@ -12,7 +12,7 @@ declare(strict_types=1);
 
 namespace LivingMarkup;
 
-use LivingMarkup\Module\Pool;
+use LivingMarkup\Module\ModulePool;
 use DOMElement;
 use DOMNodeList;
 use DOMXPath;
@@ -61,7 +61,7 @@ class Engine
         $this->xpath = new DOMXPath($this->dom);
 
         // create a module pool
-        $this->module_pool = new Pool();
+        $this->module_pool = new ModulePool();
     }
 
     /**
