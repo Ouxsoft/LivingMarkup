@@ -43,6 +43,11 @@ class Pool
         return null;
     }
 
+
+    public function getPropertiesByID(string $module_id){
+        return get_object_vars($this->module[$module_id]);
+    }
+
     public function add(&$module)
     {
         $this->module[$module->module_id] = $module;

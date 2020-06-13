@@ -100,7 +100,7 @@ abstract class Module implements ModuleDefaultInterface
      * @param $name
      * @return mixed|null
      */
-    public function getArgByName($name) : ? string
+    public function getArgByName(string $name)
     {
         return $this->args[$name];
     }

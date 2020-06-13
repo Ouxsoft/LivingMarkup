@@ -37,7 +37,7 @@ class Engine
     public $xpath;
 
     // ModulePool
-    public $modules;
+    public $module_pool;
 
     // registered includes added during output
     public $includes = [
@@ -61,7 +61,7 @@ class Engine
         $this->xpath = new DOMXPath($this->dom);
 
         // create a module pool
-        $this->modules = new Pool();
+        $this->module_pool = new Pool();
     }
 
     /**
@@ -72,19 +72,25 @@ class Engine
     public function callHook(array $method): bool
     {
         // set ancestors
-        foreach ($this->modules->module as $module) {
+        foreach ($this->module_pool->module as $module) {
             $module->ancestors = $this->getModuleAncestorProperties($module->module_id);
         }
 
-        if (array_key_exists('execute', $method) && ($method['execute'] == 'RETURN_CALL')) {
-            foreach ($this->modules->module as $module) {
-                $this->renderModule($module->module_id);
-            }
-
+        // call method to all modules
+        if (!array_key_exists('execute', $method)){
+            $this->module_pool->callMethod($method['name']);
             return true;
         }
 
-        $this->modules->callMethod($method['name']);
+        switch($method['execute'])
+        {
+            case 'RETURN_CALL':
+                foreach ($this->module_pool->module as $module) {
+                    $this->renderModule($module->module_id);
+                }
+                break;
+            // placeholder for other executes
+        }
 
         return true;
     }
@@ -107,7 +113,7 @@ class Engine
             $ancestor_properties[] = [
                 'id' => $ancestor_id,
                 'tag' => $dom_element->nodeName,
-                'properties' => get_object_vars($this->modules->module[$ancestor_id])
+                'properties' => $this->module_pool->getPropertiesById($ancestor_id)
             ];
         }
 
@@ -173,7 +179,7 @@ class Engine
         }
 
         // get module using id
-        $module = $this->modules->getById($module_id);
+        $module = $this->module_pool->getById($module_id);
 
         // set inner xml
         $module->xml = $this->getModuleInnerXML($module->module_id);
@@ -296,7 +302,7 @@ class Engine
         $element->setAttribute(self::INDEX_ATTRIBUTE, $element_object->module_id);
 
         // add module to pool
-        $this->modules->add($element_object);
+        $this->module_pool->add($element_object);
 
         return true;
     }
