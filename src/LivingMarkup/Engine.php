@@ -27,6 +27,7 @@ use DOMXPath;
 class Engine
 {
 
+    // marker attribute used by Engine to identify DOMElement during processing
     const INDEX_ATTRIBUTE = '_MODULE_ID';
 
     // Document Object Model (DOM)
