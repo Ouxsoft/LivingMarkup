@@ -12,6 +12,7 @@ declare(strict_types=1);
 
 namespace LivingMarkup;
 
+use LivingMarkup\Exception\Exception;
 use LivingMarkup\Module\ModulePool;
 use DOMElement;
 use DOMNodeList;
@@ -47,6 +48,7 @@ class Engine
 
     /**
      * Page constructor
+     *
      * @param Configuration $config
      */
     public function __construct(Configuration $config)
@@ -66,30 +68,31 @@ class Engine
 
     /**
      * Call Hooks
+     *
      * @param array $method
      * @return bool-
      */
     public function callHook(array $method): bool
     {
-        // set ancestors
+        // set and/or update ancestors
         foreach ($this->module_pool as $module) {
             $module->ancestors = $this->getModuleAncestorProperties($module->module_id);
         }
 
         // call method to all modules
-        if (!array_key_exists('execute', $method)){
+        if (!array_key_exists('execute', $method)) {
             $this->module_pool->callMethod($method['name']);
             return true;
         }
 
-        switch($method['execute'])
-        {
+        switch ($method['execute']) {
             case 'RETURN_CALL':
                 foreach ($this->module_pool as $module) {
                     $this->renderModule($module->module_id);
                 }
                 break;
-            // placeholder for other executes
+            default:
+                throw new Exception('Invalid module execute command provided.');
         }
 
         return true;
@@ -97,6 +100,7 @@ class Engine
 
     /**
      * Get a Module ancestors' properties based on provided module_id DOMElement's ancestors
+     *
      * @param $module_id
      * @return array
      */
@@ -122,6 +126,7 @@ class Engine
 
     /**
      * Gets DOMElement using module_id provided
+     *
      * @param string $module_id
      * @return DOMElement|null
      */
@@ -136,6 +141,7 @@ class Engine
 
     /**
      * XPath query for class $this->DOM property that fetches all results as array
+     *
      * @param string $query
      * @param DOMElement $node
      * @return mixed
@@ -147,6 +153,7 @@ class Engine
 
     /**
      * XPath query for class $this->DOM property that fetches only first result
+     *
      * @param string $query
      * @param DOMElement $node
      * @return mixed
@@ -155,7 +162,7 @@ class Engine
     {
         $results = $this->xpath->query($query, $node);
 
-        if(isset($results[0])){
+        if (isset($results[0])) {
             return $results[0];
         }
 
@@ -165,6 +172,7 @@ class Engine
 
     /**
      * Within DOMDocument replace DOMElement with Module->__toString() output
+     *
      * @param $module_id
      * @return bool
      */
@@ -197,6 +205,7 @@ class Engine
 
     /**
      * Get Module inner XML
+     *
      * @param $module_id
      * @return string
      */
@@ -216,6 +225,7 @@ class Engine
 
     /**
      * Replaces DOMElement from property DOM with contents provided
+     *
      * @param DOMElement $element
      * @param string $new_xml
      */
@@ -231,6 +241,7 @@ class Engine
 
     /**
      * Instantiates modules from DOMElement's found during Xpath query against DOM property
+     *
      * @param array $module
      * @return bool
      */
@@ -258,6 +269,7 @@ class Engine
 
     /**
      * Instantiate a DOMElement as a Module using specified class_name
+     *
      * @param DOMElement $element
      * @param string $class_name
      * @return bool
@@ -270,13 +282,13 @@ class Engine
         }
 
         // resolve $class_name {name} variable if present using $element
-        if(strpos($class_name, '{name}') !== false) {
-           if ($element->hasAttribute('name')) {
+        if (strpos($class_name, '{name}') !== false) {
+            if ($element->hasAttribute('name')) {
                 $element_name = $element->getAttribute('name');
                 $class_name = str_replace('{name}', $element_name, $class_name);
             } else {
                 $this->replaceDomElement($element, '<!-- Module "' . $class_name . '" Missing Name Attribute -->');
-                return false;    
+                return false;
             }
         }
 
@@ -325,7 +337,7 @@ class Engine
             }
         }
 
-        // get direct arg child elements
+        // get all direct child arg DOMElements
         $arg_elements = $this->queryFetchAll('arg', $element);
 
         // set arg DOMElements as args
@@ -358,6 +370,7 @@ class Engine
 
     /**
      * Set a value type to avoid Type Juggling issues and extend data types
+     *
      * @param string $value
      * @param string $type
      * @return bool|mixed|string
@@ -397,6 +410,7 @@ class Engine
 
     /**
      * Returns DomDocument property as HTML5
+     *
      * @return string
      */
     public function __toString(): string

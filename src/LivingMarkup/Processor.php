@@ -16,11 +16,11 @@ use LivingMarkup\Builder\BuilderInterface;
 
 /**
  * Class Processor
+ *
  * @package LivingMarkup
  */
 class Processor
 {
-
     const PROCESS_TOGGLE = 'LHTML_OFF';
 
     private $kernel;
@@ -29,6 +29,7 @@ class Processor
 
     /**
      * Autoloader constructor.
+     *
      * @param string $config_filepath
      */
     public function __construct(string $config_filepath = null)
@@ -41,27 +42,27 @@ class Processor
         $this->config = new Configuration();
 
         // check if config filepath supplied during construction
-        if($config_filepath!==null){
+        if ($config_filepath!==null) {
             $this->loadConfig($config_filepath);
         }
 
         // instantiate a default builder
         $this->builder = new Builder\DynamicPageBuilder();
-
     }
 
     /**
      * Set builder
+     *
      * @param BuilderInterface $builder_class
      */
     public function setBuilder(BuilderInterface $builder_class) : void
     {
         $this->builder =  new $builder_class();
-
     }
 
     /**
      * Set config
+     *
      * @param $filepath
      */
     public function loadConfig(string $filepath) : void
@@ -69,11 +70,11 @@ class Processor
 
         // load config
         $this->config->loadFile($filepath);
-
     }
 
     /**
      * Get config
+     *
      * @return Configuration
      */
     public function getConfig() : Configuration
@@ -83,6 +84,7 @@ class Processor
 
     /**
      * Add a LHTML module to config
+     *
      * @param array $module
      * @return bool
      */
@@ -100,6 +102,7 @@ class Processor
 
     /**
      * Add definition for processor LHTML object
+     *
      * @param string $name
      * @param string $xpath_expression
      * @param string $class_name
@@ -115,6 +118,7 @@ class Processor
 
     /**
      * Add definition for processor LHTML object method
+     *
      * @param string $method_name
      * @param string $description
      * @param string|null $execute
@@ -140,12 +144,12 @@ class Processor
 
     /**
      * Process a file
+     *
      * @param $filepath
      * @return string
      */
     public function parseFile(string $filepath): string
     {
-
         $source = file_get_contents($filepath);
 
         // return buffer if it's not HTML
@@ -156,11 +160,11 @@ class Processor
         $this->config->setSource($source);
 
         return $this->parse();
-
     }
 
     /**
      * Process string
+     *
      * @param string $source
      * @return string
      */
@@ -175,11 +179,11 @@ class Processor
         $this->config->setSource($source);
 
         return $this->parse();
-
     }
 
     /**
      * Parse defined kernel using currently builder and config
+     *
      * @return string
      */
     private function parse() : string
@@ -192,6 +196,5 @@ class Processor
 
         // echo Kernel build of Builder
         return (string) $this->kernel->build($this->builder, $this->config);
-
     }
 }

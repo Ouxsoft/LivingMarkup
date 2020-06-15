@@ -19,6 +19,7 @@ use Laminas\Validator\File\Exists;
 
 /**
  * Class Configuration
+ *
  * @package LivingMarkup
  */
 class Configuration
@@ -39,6 +40,7 @@ class Configuration
 
     /**
      * Configuration constructor.
+     *
      * @param string|null $filepath
      * @return bool
      * @throws Exception
@@ -75,7 +77,6 @@ class Configuration
 
                 return false;
             }
-
         }
 
         return false;
@@ -83,6 +84,7 @@ class Configuration
 
     /**
      * Add item to config
+     *
      * @param string $key
      * @param mixed $value
      * @return bool
@@ -96,6 +98,7 @@ class Configuration
 
     /**
      * Adds modules to config
+     *
      * @param array $module
      */
     public function addModule(array $module) : void
@@ -105,6 +108,7 @@ class Configuration
 
     /**
      * Adds modules to config
+     *
      * @param array $modules
      */
     public function addModules(array $modules) : void
@@ -119,6 +123,7 @@ class Configuration
 
     /**
      * Get array of modules if in config
+     *
      * @return array
      */
     public function getModules(): array
@@ -133,6 +138,7 @@ class Configuration
 
     /**
      * Recursive key check
+     *
      * @param array $keys
      * @return bool
      */
@@ -153,6 +159,7 @@ class Configuration
 
     /**
      * Get the config array
+     *
      * @return mixed
      */
     public function get(): array
@@ -162,13 +169,13 @@ class Configuration
 
     /**
      * Add method
+     *
      * @param string $method_name
      * @param string $description
      * @param string $execute
      */
     public function addMethod(string $method_name, string $description = '', $execute = null) : void
     {
-
         if (is_string($execute)) {
             $this->config['modules']['methods'][] = [
                 'name' => $method_name,
@@ -186,6 +193,7 @@ class Configuration
 
     /**
      * Get array of modules if in config
+     *
      * @return array
      */
     public function getMethods(): array
@@ -200,6 +208,7 @@ class Configuration
 
     /**
      * Get source
+     *
      * @return string
      */
     public function getSource(): string
@@ -213,6 +222,7 @@ class Configuration
 
     /**
      * Set LHTML source/markup
+     *
      * @param string $markup
      */
     public function setSource(string $markup) : void

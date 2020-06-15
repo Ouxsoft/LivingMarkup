@@ -27,7 +27,7 @@ final class ProcessorTest extends TestCase
     <arg name="operator">^</arg>
 </bitwise></html>');
 
-        $this->assertStringMatchesFormatFile(dirname(__DIR__, 1) . '/Resources/outputs/index.html',  $test_results);
+        $this->assertStringMatchesFormatFile(dirname(__DIR__, 1) . '/Resources/outputs/index.html', $test_results);
     }
 
     public function testParseFileWithLoadConfig()
@@ -38,19 +38,19 @@ final class ProcessorTest extends TestCase
 
         $test_results = $proc->parseFile(dirname(__DIR__, 1) . '/Resources/inputs/index.html');
 
-        $this->assertStringMatchesFormatFile(dirname(__DIR__, 1) . '/Resources/outputs/index.html',  $test_results);
+        $this->assertStringMatchesFormatFile(dirname(__DIR__, 1) . '/Resources/outputs/index.html', $test_results);
     }
 
     public function testParseWithDefinitions()
     {
         $proc = new Processor();
 
-        $proc->addObject('Bitwise', '//bitwise','LivingMarkup\Test\Bitwise');
+        $proc->addObject('Bitwise', '//bitwise', 'LivingMarkup\Test\Bitwise');
 
-        $proc->addMethod('onRender','Execute for render', 'RETURN_CALL');
+        $proc->addMethod('onRender', 'Execute for render', 'RETURN_CALL');
 
         $test_results = $proc->parseFile(dirname(__DIR__, 1) . '/Resources/inputs/index.html');
 
-        $this->assertStringMatchesFormatFile(dirname(__DIR__, 1) . '/Resources/outputs/index.html',  $test_results);
+        $this->assertStringMatchesFormatFile(dirname(__DIR__, 1) . '/Resources/outputs/index.html', $test_results);
     }
 }

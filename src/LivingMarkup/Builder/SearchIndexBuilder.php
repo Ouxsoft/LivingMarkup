@@ -16,11 +16,11 @@ use LivingMarkup\Configuration;
 use LivingMarkup\Engine;
 
 /**
- * Class DynamicPageBuilder
+ * Class SearchIndexBuilder
  *
- * @package LivingMarkup\Page\Builder
+ * @package LivingMarkup\Builder
  */
-class DynamicPageBuilder implements BuilderInterface
+class SearchIndexBuilder implements BuilderInterface
 {
     public $engine;
 

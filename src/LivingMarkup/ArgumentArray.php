@@ -16,6 +16,7 @@ use ArrayAccess;
 
 /**
  * Class ArgumentArray
+ *
  * @package LivingMarkup
  */
 class ArgumentArray implements ArrayAccess
@@ -23,6 +24,8 @@ class ArgumentArray implements ArrayAccess
     private $container = [];
 
     /**
+     * Check if item exists inside container
+     *
      * @param mixed $offset
      * @return bool
      */
@@ -32,6 +35,8 @@ class ArgumentArray implements ArrayAccess
     }
 
     /**
+     * Get item from container
+     *
      * @param mixed $offset
      * @return mixed
      */
@@ -42,6 +47,7 @@ class ArgumentArray implements ArrayAccess
 
     /**
      * Adds new item to array, if only one item in array then it will be a string
+     *
      * @param mixed $offset
      * @param mixed $value
      */
@@ -68,6 +74,8 @@ class ArgumentArray implements ArrayAccess
     }
 
     /**
+     * Remove item from container
+     *
      * @param mixed $offset
      */
     public function offsetUnset($offset): void
@@ -77,6 +85,7 @@ class ArgumentArray implements ArrayAccess
 
     /**
      * Return container property
+     *
      * @return array
      */
     public function get(): array
@@ -86,6 +95,7 @@ class ArgumentArray implements ArrayAccess
 
     /**
      * Merge array passed with container property
+     *
      * @param $array
      */
     public function merge($array)

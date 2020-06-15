@@ -1750,7 +1750,8 @@ class Entities
 ENTITY;
 
     /**
-     * Get list of entities to pass to DOM. These will prevent the character from causing parse errors.
+     * Get list of entities to pass to DOM. These will prevent the character from causing parse errors
+     *
      * @return string
      */
     public static function get() : string
@@ -1760,6 +1761,7 @@ ENTITY;
 
     /**
      * Download and encode entities from url
+     *
      * @return array
      */
     public function fetchArray() : array

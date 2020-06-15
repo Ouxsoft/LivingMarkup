@@ -20,7 +20,6 @@ final class KernelTest extends TestCase
 {
     public function testCanBuildPage()
     {
-
         $config_dir = dirname(__DIR__, 1) . '/inputs/phpunit.yml';
 
         $config = new Configuration($config_dir);

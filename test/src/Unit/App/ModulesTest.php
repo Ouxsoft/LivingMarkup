@@ -14,7 +14,6 @@ use PHPUnit\Framework\TestCase;
 use LivingMarkup\Configuration;
 use LivingMarkup\Module;
 
-
 final class ModulesTest extends TestCase
 {
     public function testCanBuildPage()

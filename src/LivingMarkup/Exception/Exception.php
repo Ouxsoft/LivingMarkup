@@ -16,18 +16,20 @@ use RuntimeException;
 
 /**
  * Class Exception
+ *
  * @package LivingMarkup
  */
 class Exception extends RuntimeException
 {
-
     private $log = null;
 
     /**
      * Exception constructor.
+     *
      * @param $log
      */
-    public function __construct($log){
+    public function __construct($log)
+    {
         $this->log = $log;
     }
 }

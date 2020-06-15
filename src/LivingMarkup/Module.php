@@ -14,6 +14,7 @@ namespace LivingMarkup;
 
 /**
  * Interface ElementDefaultInterface
+ *
  * @package LivingMarkup\Module
  */
 interface ModuleDefaultInterface
@@ -107,8 +108,8 @@ abstract class Module implements ModuleDefaultInterface
 
     /**
      * Get all args
-     * 
-     * @return array
+     *
+     * @return ArgumentArray
      */
     public function getArgs() : ArgumentArray
     {
@@ -117,7 +118,6 @@ abstract class Module implements ModuleDefaultInterface
 
     /**
      * Abstract output method called by magic method
-     *
      * The extending class must define this method
      *
      * @return mixed

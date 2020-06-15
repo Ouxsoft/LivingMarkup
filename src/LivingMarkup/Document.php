@@ -18,6 +18,7 @@ use LivingMarkup\Exception\Exception;
 /**
  * Class Document
  * Hyperlink DomDocument that is loaded from a well formatted LHTML document and returns a HTML5
+ *
  * @package LivingMarkup
  */
 class Document extends DomDocument

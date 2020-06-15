@@ -12,13 +12,13 @@ declare(strict_types=1);
 
 namespace LivingMarkup\Module;
 
-use \IteratorAggregate;
 use \ArrayIterator;
+use LivingMarkup\Module;
 
 /**
  * Class ModulePool
  *
- * Initializes and retrieves individual modules
+ * Stores and retrieves individual modules
  *
  * @package LivingMarkup
  */
@@ -26,11 +26,13 @@ class ModulePool implements \IteratorAggregate
 {
     public $collection = [];
 
-    // TODO: implement pool design pattern
-    private $occupied_modules = [];
-    private $free_modules = [];
-
-    public function getIterator() {
+    /**
+     * Iterator to go through module pool
+     *
+     * @return ArrayIterator|\Traversable
+     */
+    public function getIterator()
+    {
         return new \ArrayIterator($this->collection);
     }
 
@@ -38,11 +40,10 @@ class ModulePool implements \IteratorAggregate
      * Get Module by placeholder id
      *
      * @param string|null $module_id
-     * @return object
+     * @return Module|null
      */
-    public function getById(?string $module_id = null)
+    public function getById(?string $module_id = null) : ?Module
     {
-        // TODO: Mark as occupied
         if (array_key_exists($module_id, $this->collection)) {
             return $this->collection[$module_id];
         }
@@ -51,62 +52,34 @@ class ModulePool implements \IteratorAggregate
     }
 
 
-    public function getPropertiesByID(string $module_id){
+    /**
+     * Get the public properties of a module using the modules ID
+     *
+     * @param string $module_id
+     * @return array
+     */
+    public function getPropertiesByID(string $module_id) : array
+    {
         return get_object_vars($this->collection[$module_id]);
     }
 
-    public function add(&$module)
+    /**
+     * Add new module to pool
+     *
+     * @param $module
+     */
+    public function add(Module &$module) : void
     {
         $this->collection[$module->module_id] = $module;
     }
 
-    // TODO in order for worker concept to work the state and data of the object must be separated from the module
-
     /**
-     * Gets a module or initializes a module if one is not present and free
+     * Invoke a method if present in each module
      *
-     * @return Module|mixed
-     */
-    public function getModule()
-    {
-        /*
-        if (count($this->free_collection) == 0) {
-            $id = count($this->occupied_collection) + count($this->free_collection) + 1;
-            $randomName = array_rand($this->names, 1);
-
-            $worker = new Module($id, $this->names[$randomName]);
-        } else {
-            $worker = array_pop($this->free_collection);
-        }
-
-        $this->occupied_collection[$worker->getId()] = $worker;
-
-        return $worker;
-        */
-    }
-
-    /**
-     * Release a occupied module into free listing
-     *
-     * @param Module $worker
-     */
-    public function release(Module $worker)
-    {
-        $id = $worker->getId();
-
-        if (isset($this->occupied_collection[$id])) {
-            unset($this->occupied_collection[$id]);
-
-            $this->free_collection[$id] = $worker;
-        }
-    }
-
-    /**
-     * Invoke a specific method in Module if the method exists
      *
      * @param $method
      */
-    public function callMethod($method)
+    public function callMethod(string $method) : void
     {
         // iterate through elements
         foreach ($this->collection as $module) {

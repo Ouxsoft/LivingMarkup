@@ -17,6 +17,7 @@ use LivingMarkup\Engine;
 
 /**
  * Class StaticPageBuilder
+ *
  * @package LivingMarkup\Page\Builder
  */
 class StaticPageBuilder implements BuilderInterface
@@ -25,6 +26,7 @@ class StaticPageBuilder implements BuilderInterface
 
     /**
      * Creates Page object using parameters supplied
+     *
      * @param Configuration $config
      * @return void
      */
@@ -37,6 +39,7 @@ class StaticPageBuilder implements BuilderInterface
 
     /**
      * Gets Page object
+     *
      * @return Engine
      */
     public function getObject(): Engine
