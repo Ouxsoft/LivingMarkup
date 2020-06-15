@@ -144,7 +144,7 @@ class Configuration
      */
     public function isset(...$keys): bool
     {
-        $last_checked = $this->get();
+        $last_checked = $this->config;;
         if (is_null($last_checked)) {
             return false;
         }
@@ -155,16 +155,6 @@ class Configuration
             $last_checked = $last_checked[$key];
         }
         return true;
-    }
-
-    /**
-     * Get the config array
-     *
-     * @return mixed
-     */
-    public function get(): array
-    {
-        return $this->config;
     }
 
     /**
