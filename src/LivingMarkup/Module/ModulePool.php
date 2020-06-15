@@ -12,6 +12,9 @@ declare(strict_types=1);
 
 namespace LivingMarkup\Module;
 
+use \IteratorAggregate;
+use \ArrayIterator;
+
 /**
  * Class ModulePool
  *
@@ -19,13 +22,17 @@ namespace LivingMarkup\Module;
  *
  * @package LivingMarkup
  */
-class ModulePool
+class ModulePool implements \IteratorAggregate
 {
-    public $module = [];
+    public $collection = [];
 
     // TODO: implement pool design pattern
     private $occupied_modules = [];
     private $free_modules = [];
+
+    public function getIterator() {
+        return new \ArrayIterator($this->collection);
+    }
 
     /**
      * Get Module by placeholder id
@@ -36,8 +43,8 @@ class ModulePool
     public function getById(?string $module_id = null)
     {
         // TODO: Mark as occupied
-        if (array_key_exists($module_id, $this->module)) {
-            return $this->module[$module_id];
+        if (array_key_exists($module_id, $this->collection)) {
+            return $this->collection[$module_id];
         }
 
         return null;
@@ -45,12 +52,12 @@ class ModulePool
 
 
     public function getPropertiesByID(string $module_id){
-        return get_object_vars($this->module[$module_id]);
+        return get_object_vars($this->collection[$module_id]);
     }
 
     public function add(&$module)
     {
-        $this->module[$module->module_id] = $module;
+        $this->collection[$module->module_id] = $module;
     }
 
     // TODO in order for worker concept to work the state and data of the object must be separated from the module
@@ -63,16 +70,16 @@ class ModulePool
     public function getModule()
     {
         /*
-        if (count($this->free_modules) == 0) {
-            $id = count($this->occupied_modules) + count($this->free_modules) + 1;
+        if (count($this->free_collection) == 0) {
+            $id = count($this->occupied_collection) + count($this->free_collection) + 1;
             $randomName = array_rand($this->names, 1);
 
             $worker = new Module($id, $this->names[$randomName]);
         } else {
-            $worker = array_pop($this->free_modules);
+            $worker = array_pop($this->free_collection);
         }
 
-        $this->occupied_modules[$worker->getId()] = $worker;
+        $this->occupied_collection[$worker->getId()] = $worker;
 
         return $worker;
         */
@@ -87,10 +94,10 @@ class ModulePool
     {
         $id = $worker->getId();
 
-        if (isset($this->occupied_modules[$id])) {
-            unset($this->occupied_modules[$id]);
+        if (isset($this->occupied_collection[$id])) {
+            unset($this->occupied_collection[$id]);
 
-            $this->free_modules[$id] = $worker;
+            $this->free_collection[$id] = $worker;
         }
     }
 
@@ -102,7 +109,7 @@ class ModulePool
     public function callMethod($method)
     {
         // iterate through elements
-        foreach ($this->module as $module) {
+        foreach ($this->collection as $module) {
             $module($method);
         }
     }

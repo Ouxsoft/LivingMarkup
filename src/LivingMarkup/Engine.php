@@ -72,7 +72,7 @@ class Engine
     public function callHook(array $method): bool
     {
         // set ancestors
-        foreach ($this->module_pool->module as $module) {
+        foreach ($this->module_pool as $module) {
             $module->ancestors = $this->getModuleAncestorProperties($module->module_id);
         }
 
@@ -85,7 +85,7 @@ class Engine
         switch($method['execute'])
         {
             case 'RETURN_CALL':
-                foreach ($this->module_pool->module as $module) {
+                foreach ($this->module_pool as $module) {
                     $this->renderModule($module->module_id);
                 }
                 break;
