@@ -3,3 +3,4 @@ exclude_paths:
   - 'vendor/**'
   - 'docs/**'
   - '**/*.md'
+  - '*.md'
