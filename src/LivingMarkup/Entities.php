@@ -1756,7 +1756,7 @@ ENTITY;
      */
     public static function get() : string
     {
-        return HTML5;
+        return self::HTML5;
     }
 
     /**
@@ -1784,6 +1784,15 @@ ENTITY;
         }
 
         return $entities_list;
+    }
+
+    /**
+     * Get url of fetch point
+     * @return string
+     */
+    public function getURL() : string
+    {
+        return $this->url;
     }
 
     /**
