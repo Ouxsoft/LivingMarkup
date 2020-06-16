@@ -21,8 +21,6 @@ class KernelTest extends TestCase
     public function testBuild()
     {
         $config_dir = dirname(__DIR__, 1) . '/inputs/phpunit.yml';
-        var_dump($config_dir);
-
         $config = new Configuration($config_dir);
         $config->add('markup', '<html><p>Hello, World!</p></html>');
 
