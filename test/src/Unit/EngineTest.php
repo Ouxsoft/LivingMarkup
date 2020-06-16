@@ -122,13 +122,27 @@ class EngineTest extends TestCase
         $this->assertCount(1, $engine->module_pool);
     }
 
-    /*
-     * // TODO: add following
     public function testCallHook()
     {
-
+        $config = new Configuration();
+        $config->setSource('<html><b>Hello, World!</b></html>');
+        $engine = new Engine($config);
+        $engine->instantiateModules(
+            [
+                'xpath' => '//b',
+                'class_name' => 'LivingMarkup\Test\HelloWorld'
+            ]
+        );
+        $bool = $engine->callHook([
+            'name' => 'onRender',
+            'execute' => 'RETURN_CALL'
+        ]);
+        $this->assertTrue($bool);
     }
 
+
+    /*
+     * // TODO: add following
 
     public function testReplaceDomElement()
     {
@@ -149,10 +163,13 @@ class EngineTest extends TestCase
     {
 
     }
+    */
 
     public function test__construct()
     {
-
+        $config = new Configuration();
+        $engine = new Engine($config);
+        $bool = ($engine->module_pool instanceof \LivingMarkup\Module\ModulePool) ? true : false;
+        $this->assertTrue($bool);
     }
-    */
 }
