@@ -324,7 +324,7 @@ class Engine
      * items within the list are called args as they are passed as parameters to module methods
      *
      * @param DOMElement $element
-     * @return array
+     * @return ArgumentArray
      */
     public function getElementArgs(DOMElement &$element): ArgumentArray
     {
@@ -373,34 +373,39 @@ class Engine
      *
      * @param string $value
      * @param string $type
-     * @return bool|mixed|string
+     * @return bool|mixed|string|null
      */
-    public function setType($value = '', $type = 'string')
+    public function setType($value = null, $type = 'string')
     {
+        $type = strtolower($type);
+
         switch ($type) {
             case 'string':
             case 'str':
-                $value = settype($value, 'string');
+                $value = (string) $value;;
                 break;
             case 'json':
                 $value = json_decode($value);
                 break;
             case 'int':
             case 'integer':
-                $value = settype($value, 'integer');
+                $value = (int) $value;
                 break;
             case 'float':
-                $value = settype($value, 'float');
+                $value = (float) $value;
                 break;
             case 'bool':
             case 'boolean':
-                $value = settype($value, 'boolean');
+                $value = (boolean) $value;
                 break;
             case 'null':
                 $value = null;
                 break;
             case 'list':
                 $value = explode(',', $value);
+                break;
+            default:
+                // no transform
                 break;
         }
 
