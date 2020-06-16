@@ -63,11 +63,8 @@
       "php-cs-fixer fix --rules=@PSR2 --using-cache=no test/"
     ],
     "test": [
-      "phpunit --colors=always"
-    ],
-    "rm-cache" : [
-      "find var/cache/images/ -type f -not -name '.gitignore' -delete"
-    ],
+      "phpunit"
+    ]
     "fix-code": [
       "php-cs-fixer fix --rules=@PSR2 --using-cache=no src/",
       "php-cs-fixer fix --rules=@PSR2 --using-cache=no test/"

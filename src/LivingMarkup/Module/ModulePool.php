@@ -22,9 +22,18 @@ use LivingMarkup\Module;
  *
  * @package LivingMarkup
  */
-class ModulePool implements \IteratorAggregate
+class ModulePool implements \Countable,
+    \IteratorAggregate
 {
     public $collection = [];
+
+    /**
+     * Returns a count of number of modules in collection
+     * @return int
+     */
+    public function count() : int {
+        return count($this->collection);
+    }
 
     /**
      * Iterator to go through module pool
@@ -58,7 +67,7 @@ class ModulePool implements \IteratorAggregate
      * @param string $module_id
      * @return array
      */
-    public function getPropertiesByID(string $module_id) : array
+    public function getPropertiesById(string $module_id) : array
     {
         return get_object_vars($this->collection[$module_id]);
     }

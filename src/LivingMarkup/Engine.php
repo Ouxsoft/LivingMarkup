@@ -274,7 +274,7 @@ class Engine
      * @param string $class_name
      * @return bool
      */
-    public function instantiateModule(DOMElement &$element, string $class_name): bool
+    private function instantiateModule(DOMElement &$element, string $class_name): bool
     {
         // skip if placeholder already assigned
         if ($element->hasAttribute(self::INDEX_ATTRIBUTE)) {

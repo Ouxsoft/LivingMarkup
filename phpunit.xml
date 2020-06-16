@@ -1,13 +1,5 @@
-<!--
-  ~ This file is part of the LivingMarkup package.
-  ~
-  ~ (c) Matthew Heroux <matthewheroux@gmail.com>
-  ~
-  ~ For the full copyright and license information, please view the LICENSE
-  ~ file that was distributed with this source code.
-  -->
-
-<phpunit bootstrap="test/bootstrap.php">
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit bootstrap="test/bootstrap.php" colors="true">
     <testsuites>
         <testsuite name="Unit Tests">
             <directory>test/src/Unit</directory>
@@ -16,4 +8,13 @@
             <directory>test/src/Feature</directory>
         </testsuite>
     </testsuites>
+    <logging>
+        <log lowUpperBound="35" highLowerBound="70" showUncoveredFiles="true" />
+        <log type="coverage-text" target="php://stdout" showUncoveredFiles="true"/>
+    </logging>
+    <filter>
+        <whitelist processUncoveredFilesFromWhitelist="true">
+            <directory suffix=".php">src</directory>
+        </whitelist>
+    </filter>
 </phpunit>
