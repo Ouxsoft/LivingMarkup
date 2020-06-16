@@ -64,7 +64,7 @@
     ],
     "test": [
       "phpunit"
-    ]
+    ],
     "fix-code": [
       "php-cs-fixer fix --rules=@PSR2 --using-cache=no src/",
       "php-cs-fixer fix --rules=@PSR2 --using-cache=no test/"
