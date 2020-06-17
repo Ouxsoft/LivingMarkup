@@ -15,6 +15,9 @@ use PHPUnit\Framework\TestCase;
 
 class EntitiesTest extends TestCase
 {
+    /**
+     * @covers \LivingMarkup\Entities::fetchString
+     */
     public function testFetchString()
     {
         $entities = new Entities();
@@ -22,6 +25,9 @@ class EntitiesTest extends TestCase
         $this->assertStringContainsString('<!ENTITY', $entity_cache);
     }
 
+    /**
+     * @covers \LivingMarkup\Entities::get
+     */
     public function testGet()
     {
         $entities = new Entities();
@@ -29,6 +35,9 @@ class EntitiesTest extends TestCase
         $this->assertStringContainsString('<!ENTITY', $cache_results);
     }
 
+    /**
+     * @covers \LivingMarkup\Entities::fetchArray
+     */
     public function testFetchArray()
     {
         $entities = new Entities();
@@ -36,6 +45,9 @@ class EntitiesTest extends TestCase
         $this->assertIsArray($cache_results);
     }
 
+    /**
+     * @covers \LivingMarkup\Entities::getURL
+     */
     public function testGetURL()
     {
         $entities = new Entities();
