@@ -18,6 +18,9 @@ use PHPUnit\Framework\TestCase;
 
 class KernelTest extends TestCase
 {
+    /**
+     * @covers \LivingMarkup\Kernel::build
+     */
     public function testBuild()
     {
         $config_dir = dirname(__DIR__, 1) . '/inputs/phpunit.yml';
