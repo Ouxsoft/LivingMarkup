@@ -144,7 +144,8 @@ class Configuration
      */
     public function isset(...$keys): bool
     {
-        $last_checked = $this->config;;
+        $last_checked = $this->config;
+        ;
         if (is_null($last_checked)) {
             return false;
         }

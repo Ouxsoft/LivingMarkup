@@ -15,20 +15,18 @@ use PHPUnit\Framework\TestCase;
 
 class EntitiesTest extends TestCase
 {
-
     public function testFetchString()
     {
         $entities = new Entities();
         $entity_cache = $entities->fetchString();
-        $this->assertStringContainsString( '<!ENTITY', $entity_cache);
+        $this->assertStringContainsString('<!ENTITY', $entity_cache);
     }
 
     public function testGet()
     {
         $entities = new Entities();
         $cache_results = $entities->get();
-        $this->assertStringContainsString( '<!ENTITY',  $cache_results);
-
+        $this->assertStringContainsString('<!ENTITY', $cache_results);
     }
 
     public function testFetchArray()
@@ -42,7 +40,7 @@ class EntitiesTest extends TestCase
     {
         $entities = new Entities();
         $url = $entities->getURL();
-        $is_url = (filter_var($url, FILTER_VALIDATE_URL) === FALSE) ? false : true;
+        $is_url = (filter_var($url, FILTER_VALIDATE_URL) === false) ? false : true;
         $this->assertTrue($is_url);
     }
 }

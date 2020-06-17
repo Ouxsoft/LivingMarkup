@@ -22,7 +22,8 @@ use LivingMarkup\Module;
  *
  * @package LivingMarkup
  */
-class ModulePool implements \Countable,
+class ModulePool implements
+    \Countable,
     \IteratorAggregate
 {
     public $collection = [];
@@ -31,7 +32,8 @@ class ModulePool implements \Countable,
      * Returns a count of number of modules in collection
      * @return int
      */
-    public function count() : int {
+    public function count() : int
+    {
         return count($this->collection);
     }
 

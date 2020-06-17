@@ -15,7 +15,6 @@ use PHPUnit\Framework\TestCase;
 
 class ConfigurationTest extends TestCase
 {
-
     public function testAddModule()
     {
         $config = new Configuration();
@@ -38,7 +37,7 @@ class ConfigurationTest extends TestCase
         $config->addModule($module);
         $results = $config->getModules();
 
-        $this->assertCount(0, array_diff_assoc($results[0],$module));
+        $this->assertCount(0, array_diff_assoc($results[0], $module));
     }
 
     public function testIsset()
@@ -60,7 +59,7 @@ class ConfigurationTest extends TestCase
             ]
         ];
 
-        $this->assertCount(0, array_diff_assoc($methods[0],$test_compare[0]));
+        $this->assertCount(0, array_diff_assoc($methods[0], $test_compare[0]));
     }
 
     public function testGetMethods()
@@ -72,7 +71,7 @@ class ConfigurationTest extends TestCase
         $config = new Configuration();
         $config->config['modules']['methods'] = $test_method;
         $methods = $config->getMethods();
-        $this->assertCount(0,array_diff_assoc($methods,$test_method));
+        $this->assertCount(0, array_diff_assoc($methods, $test_method));
     }
 
     public function testGetSource()

@@ -16,7 +16,6 @@ use PHPUnit\Framework\TestCase;
 
 class EngineTest extends TestCase
 {
-
     public function testSetType()
     {
         $config = new Configuration();
@@ -158,7 +157,6 @@ class EngineTest extends TestCase
     // private class cannot test directly, instead we're using InstantiateModules
     public function testInstantiateModule()
     {
-
         $config = new Configuration();
         $config->setSource('<html><div type="page"><arg name="section">help</arg><div>Hello, World!</div></div></html>');
         $engine = new Engine($config);
@@ -169,7 +167,6 @@ class EngineTest extends TestCase
             ]
         );
         $this->assertCount(2, $engine->module_pool);
-
     }
 
     public function testGetModuleAncestorProperties()
@@ -183,7 +180,7 @@ class EngineTest extends TestCase
                 'class_name' => 'LivingMarkup\Test\HelloWorld'
             ]
         );
-        foreach($engine->module_pool as $module){
+        foreach ($engine->module_pool as $module) {
             $properties = $engine->getModuleAncestorProperties($module->module_id);
             $this->assertIsArray($properties);
         }
