@@ -28,8 +28,17 @@ class Exception extends RuntimeException
      *
      * @param $log
      */
-    public function __construct($log)
+    public function __construct($log = null)
     {
         $this->log = $log;
+    }
+
+    /**
+     * Returns log
+     * @return string|null
+     */
+    public function getLog() : ? string
+    {
+        return $this->log;
     }
 }
