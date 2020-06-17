@@ -117,6 +117,15 @@ abstract class Module implements ModuleDefaultInterface
     }
 
     /**
+     * Get innerText
+     * @return string|null
+     */
+    public function innerText() : ? string
+    {
+        return $this->xml;
+    }
+
+    /**
      * Abstract output method called by magic method
      * The extending class must define this method
      *

@@ -19,18 +19,34 @@ LivingMarkup is a customizable HTML templating engine that processes markup into
 dynamic markup. 
 
 ## Usage
-Create a LHTML Module
+This example introduces an abstraction layer to make future not backwards compatible Bootstrap upgrades easy.
+ 
+Create an LHTML Module:
 ```php
 namespace Partial;
 
-class HelloWorld extends LivingMarkup\Module {
+class Alert extends LivingMarkup\Module {
     public function onRender(){
-        return 'Hello, World!';
+        $type = $this->getArgByName('type');
+        switch($type){
+            case 'success':
+                $class = 'alert-success;
+'               break;
+            case 'warning':
+                $class = 'alert-warning';
+                break;
+            default:
+                $class = 'alert-info';
+                break;
+        }
+        return '<div class="alert ' . $class . '" role="alert">' . 
+            $this->innerText() .
+        '</div>';
     }
 }
 ```
 
-Handle custom module using LHTML processor: 
+Add custom module to LHTML processor: 
 ```php
 // instantiate processor
 $proc = new LivingMarkup\Processor();
@@ -42,7 +58,9 @@ $proc->addObject('Partial', '//partial', 'Partial\{name}');
 $proc->addMethod('onRender','Execute for render', 'RETURN_CALL');
 
 // process LHTML string
-echo $proc->parseString('<html><partial name="HelloWorld"/></html>');
+echo $proc->parseString('<html>
+    <partial name="Alert" type="success">This is a success alert.</partial>
+</html>');
 
 ```
 
