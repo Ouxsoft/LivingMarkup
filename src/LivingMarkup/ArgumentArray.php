@@ -19,9 +19,19 @@ use ArrayAccess;
  *
  * @package LivingMarkup
  */
-class ArgumentArray implements ArrayAccess
+class ArgumentArray implements ArrayAccess,
+    \Countable
 {
     private $container = [];
+
+    /**
+     * Returns count of containers
+     * @return int
+     */
+    public function count() : int
+    {
+        return count($this->container);
+    }
 
     /**
      * Check if item exists inside container
