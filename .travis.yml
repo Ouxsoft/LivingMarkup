@@ -6,7 +6,7 @@ php:
   - 7.4
 
 before_script:
-  - apt install php-yaml
+  - printf "\n" | pecl install yaml-beta
   - echo "extension=yaml.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
   - composer install
 
