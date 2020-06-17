@@ -16,6 +16,10 @@ use PHPUnit\Framework\TestCase;
 class ExceptionTest extends TestCase
 {
 
+    /**
+     * @covers \LivingMarkup\Exception\Exception::__construct
+     * @covers \LivingMarkup\Exception\Exception::getLog
+     */
     public function test__construct()
     {
         $exception = new Exception('test');
