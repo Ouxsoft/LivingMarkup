@@ -14,7 +14,7 @@ declare(strict_types=1);
 namespace LivingMarkup;
 
 use LivingMarkup\Exception\Exception;
-use Laminas\Config\Reader\Yaml;
+use Symfony\Component\Yaml\Yaml;
 use Laminas\Validator\File\Exists;
 
 /**
@@ -64,8 +64,8 @@ class Configuration
                 }
 
                 // load yaml file
-                $reader = new Yaml();
-                $this->config = $reader->fromFile($this->path);
+
+                $this->config =  Yaml::parseFile($this->path);
 
                 if (empty($this->config)) {
                     return false;
