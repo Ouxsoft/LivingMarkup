@@ -15,6 +15,9 @@ use PHPUnit\Framework\TestCase;
 
 class ConfigurationTest extends TestCase
 {
+    /**
+     * @covers \LivingMarkup\Configuration::addModule
+     */
     public function testAddModule()
     {
         $config = new Configuration();
@@ -26,6 +29,9 @@ class ConfigurationTest extends TestCase
         $this->assertCount(1, $config->config['modules']['types']);
     }
 
+    /**
+     * @covers \LivingMarkup\Configuration::getModules
+     */
     public function testGetModules()
     {
         $module = [
@@ -40,6 +46,9 @@ class ConfigurationTest extends TestCase
         $this->assertCount(0, array_diff_assoc($results[0], $module));
     }
 
+    /**
+     * @covers \LivingMarkup\Configuration::isset
+     */
     public function testIsset()
     {
         $config = new Configuration();
@@ -47,6 +56,9 @@ class ConfigurationTest extends TestCase
         $this->assertTrue($results);
     }
 
+    /**
+     * @covers \LivingMarkup\Configuration::addMethod
+     */
     public function testAddMethod()
     {
         $config = new Configuration();
@@ -62,6 +74,9 @@ class ConfigurationTest extends TestCase
         $this->assertCount(0, array_diff_assoc($methods[0], $test_compare[0]));
     }
 
+    /**
+     * @covers \LivingMarkup\Configuration::getMethods
+     */
     public function testGetMethods()
     {
         $test_method = [
@@ -74,6 +89,9 @@ class ConfigurationTest extends TestCase
         $this->assertCount(0, array_diff_assoc($methods, $test_method));
     }
 
+    /**
+     * @covers \LivingMarkup\Configuration::getSource
+     */
     public function testGetSource()
     {
         $test_string = '<html><p>Hello, World!</p></html>';
@@ -83,6 +101,9 @@ class ConfigurationTest extends TestCase
         $this->assertEquals($test_string, $source);
     }
 
+    /**
+     * @covers \LivingMarkup\Configuration::add
+     */
     public function testAdd()
     {
         $config = new Configuration();
@@ -90,6 +111,9 @@ class ConfigurationTest extends TestCase
         $this->assertStringContainsString('yes', $config->config['test']);
     }
 
+    /**
+     * @covers \LivingMarkup\Configuration::setSource
+     */
     public function testSetSource()
     {
         $markup = '<html><p>Hello, World!</p></html>';
@@ -98,6 +122,9 @@ class ConfigurationTest extends TestCase
         $this->assertStringContainsString($markup, $config->config['markup']);
     }
 
+    /**
+     * @covers \LivingMarkup\Configuration::addModules
+     */
     public function testAddModules()
     {
         $config = new Configuration();
@@ -116,6 +143,9 @@ class ConfigurationTest extends TestCase
         $this->assertCount(2, $config->config['modules']['types']);
     }
 
+    /**
+     * @covers \LivingMarkup\Configuration::loadFile
+     */
     public function testLoadFile()
     {
         $config_dir = dirname(__DIR__, 1) . '/inputs/phpunit.yml';
