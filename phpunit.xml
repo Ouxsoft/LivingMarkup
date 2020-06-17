@@ -11,6 +11,7 @@
     <logging>
         <log lowUpperBound="35" highLowerBound="70" showUncoveredFiles="true" />
         <log type="coverage-text" target="php://stdout" showUncoveredFiles="true"/>
+        <log type="coverage-html" target="build/phpunit" showUncoveredFiles="true"/>
     </logging>
     <filter>
         <whitelist processUncoveredFilesFromWhitelist="true">
