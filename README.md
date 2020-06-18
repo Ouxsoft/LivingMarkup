@@ -22,7 +22,9 @@ LivingMarkup comes packaged with only LHTML test Modules. For core Modules, see:
  * [Hoopless](https://github.com/ouxsoft/hoopless)
 
 ## Usage
-Perhaps we want to introduce an abstraction layer to make future not backwards compatible Bootstrap upgrades easier. We could create an LHTML Module:
+Let's pretend we want add an abstraction layer to make not backwards compatible Bootstrap future upgrades easy.
+ 
+We could create an LHTML Module:
 ```php
 namespace Partial;
 
