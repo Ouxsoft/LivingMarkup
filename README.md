@@ -19,7 +19,7 @@ LivingMarkup is a customizable HTML templating engine that processes markup into
 dynamic markup. 
 
 ## Usage
-This example introduces an abstraction layer to make future not backwards compatible Bootstrap upgrades easy.
+Let's say we want to add an abstraction layer to make not backwards compatible Bootstrap future upgrades easy.
  
 Create an LHTML Module:
 ```php
