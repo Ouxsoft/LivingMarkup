@@ -21,8 +21,8 @@ use LivingMarkup\Builder\BuilderInterface;
  */
 class Processor
 {
-    const PROCESS_TOGGLE = 'LHTML_OFF';
-
+    // determines if process is active
+    private $active = true;
     private $kernel;
     private $builder;
     private $config;
@@ -48,6 +48,25 @@ class Processor
 
         // instantiate a default builder
         $this->builder = new Builder\DynamicPageBuilder();
+    }
+
+
+    /**
+     * Set whether process runs or does not run
+     * @param bool $status
+     */
+    public function setStatus(bool $status) : void
+    {
+        $this->active = $status;
+    }
+
+    /**
+     * Gets whether process runs or does not run
+     * @return bool
+     */
+    public function getStatus() : bool
+    {
+        return $this->active;
     }
 
     /**
@@ -126,12 +145,10 @@ class Processor
      */
     public function parseBuffer() : void
     {
-        if (defined(self::PROCESS_TOGGLE)) {
-            return;
+        if ($this->getStatus()) {
+            // process buffer once completed
+            ob_start([$this, 'parseString']);
         }
-
-        // process buffer once completed
-        ob_start([$this, 'parseString']);
     }
 
     /**
@@ -180,11 +197,6 @@ class Processor
      */
     private function parse() : string
     {
-
-        // add runtime modules to config
-        if (isset($add_modules)) {
-            $this->config->addModules($add_modules);
-        }
 
         // echo Kernel build of Builder
         return (string) $this->kernel->build($this->builder, $this->config);
