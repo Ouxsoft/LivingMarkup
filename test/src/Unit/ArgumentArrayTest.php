@@ -15,6 +15,15 @@ use PHPUnit\Framework\TestCase;
 
 class ArgumentArrayTest extends TestCase
 {
+    /**
+     * @covers \LivingMarkup\ArgumentArray::count
+     */
+    public function testCount()
+    {
+        $args = new ArgumentArray();
+        $args->offsetSet('1', 'test');
+        $this->assertCount(1, $args);
+    }
 
     /**
      * @covers \LivingMarkup\ArgumentArray::offsetSet
@@ -24,7 +33,28 @@ class ArgumentArrayTest extends TestCase
         $args = new ArgumentArray();
         $args->offsetSet('1', 'test');
         $this->assertCount(1, $args);
+
+        // check to make sure only one item exists
+        $args->offsetSet('1', 'test');
+        $this->assertCount(1, $args);
+
+
+        // check to see if it turns key into an array
+        $args->offsetSet('1', 'test_2');
+        $this->assertCount(1, $args);
+        $this->assertIsArray($args['1']);
+
+        // check to make sure duplicated item isn't added to array
+        $args->offsetSet('1', 'test_2');
+        $this->assertCount(1, $args);
+
+
+        // check if item added to array
+        $args->offsetSet('1', 'test3');
+        $this->assertCount(1, $args);
     }
+
+
 
     /**
      * @covers \LivingMarkup\ArgumentArray::offsetExists
@@ -40,34 +70,42 @@ class ArgumentArrayTest extends TestCase
     /**
      * @covers \LivingMarkup\ArgumentArray::get
      */
-/*    public function testGet()
+    public function testGet()
     {
-
+        $args = new ArgumentArray();
+        $args['test'] = 'pass';
+        $this->assertArrayHasKey('test', $args->get());
     }
-*/
+
     /**
      * @covers \LivingMarkup\ArgumentArray::offsetGet
      */
-  /*  public function testOffsetGet()
+    public function testOffsetGet()
     {
-
+        $args = new ArgumentArray();
+        $args['test'] = 'pass';
+        $this->assertStringContainsString($args->offsetGet('test'), 'pass');
     }
-*/
+
     /**
      * @covers \LivingMarkup\ArgumentArray::offsetUnset
      */
-    /*
     public function testOffsetUnset()
     {
-
+        $args = new ArgumentArray();
+        $args['test'] = 'pass';
+        $args->offsetUnset('test');
+        $this->assertArrayNotHasKey('test', $args->get());
     }
-*/
+
     /**
      * @covers \LivingMarkup\ArgumentArray::merge
      */
-  /*  public function testMerge()
+    public function testMerge()
     {
+        $args = new ArgumentArray();
+        $args->merge(['test' => 'pass']);
+        $this->assertArrayHasKey('test', $args->get());
 
     }
-  */
 }
