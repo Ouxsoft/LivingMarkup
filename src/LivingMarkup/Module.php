@@ -65,11 +65,17 @@ abstract class Module implements ModuleDefaultInterface
      */
     final public function __construct(ArgumentArray $args = null)
     {
-        // store args passed
-        $this->args = $args;
 
         // set object id
         $this->module_id = spl_object_hash($this);
+
+        // store args passed
+        if($args === null) {
+            $args = new ArgumentArray();
+        }
+
+        $this->args = $args;
+
     }
 
     /**
@@ -79,10 +85,7 @@ abstract class Module implements ModuleDefaultInterface
      */
     public function __toString() : string
     {
-        if (method_exists($this, 'onRender')) {
-            return $this->onRender();
-        }
-        return '';
+        return $this->onRender();
     }
 
     /**
@@ -90,7 +93,7 @@ abstract class Module implements ModuleDefaultInterface
      *
      * @return int|string
      */
-    public function getId() : int
+    public function getId() : string
     {
         return $this->module_id;
     }

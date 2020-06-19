@@ -22,7 +22,8 @@ class ModuleTest extends TestCase
     public function testGetArgByName()
     {
         $module = new \LivingMarkup\Test\HelloWorld();
-
+        $module->args['test'] = 'pass';
+        $this->assertEquals('pass', $module->getArgByName('test'));
     }
 
     /**
@@ -30,7 +31,8 @@ class ModuleTest extends TestCase
      */
     public function test__construct()
     {
-
+        $module = new \LivingMarkup\Test\HelloWorld();
+        $this->assertTrue(isset($module->module_id));
     }
 
     /**
@@ -38,7 +40,8 @@ class ModuleTest extends TestCase
      */
     public function testOnRender()
     {
-
+        $module = new \LivingMarkup\Test\HelloWorld();
+        $this->assertTrue($module('onRender'));
     }
 
     /**
@@ -46,7 +49,8 @@ class ModuleTest extends TestCase
      */
     public function test__invoke()
     {
-
+        $module = new \LivingMarkup\Test\HelloWorld();
+        $this->assertTrue($module('onRender'));
     }
 
     /**
@@ -54,7 +58,9 @@ class ModuleTest extends TestCase
      */
     public function testInnerText()
     {
-
+        $module = new \LivingMarkup\Test\HelloWorld();
+        $module->xml = 'pass';
+        $this->assertStringContainsString($module->innerText(),'pass');
     }
 
     /**
@@ -62,6 +68,10 @@ class ModuleTest extends TestCase
      */
     public function test__toString()
     {
+        $module = new \LivingMarkup\Test\HelloWorld();
+        $this->assertStringContainsString('Hello, World', $module);
+
+
 
     }
 
@@ -70,6 +80,9 @@ class ModuleTest extends TestCase
      */
     public function testGetArgs()
     {
+        $module = new \LivingMarkup\Test\HelloWorld();
+        $module->args['test'] = 'pass';
+        $this->assertArrayHasKey('test', $module->getArgs());
 
     }
 
@@ -78,6 +91,8 @@ class ModuleTest extends TestCase
      */
     public function testGetId()
     {
+        $module = new \LivingMarkup\Test\HelloWorld();
+        $this->assertIsString($module->getId());
 
     }
 }
