@@ -91,12 +91,14 @@ class EngineTest extends TestCase
     public function testGetElementArgs()
     {
         $config = new Configuration();
-        $config->setSource('<html><b '.Engine::INDEX_ATTRIBUTE.'="test"><arg name="toggle">no</arg></b></html>');
+        $config->setSource('<html><b '.Engine::INDEX_ATTRIBUTE.'="test"><arg name="toggle">no</arg><arg name="">empty</arg></b></html>');
         $engine = new Engine($config);
         $dom_element = $engine->getDomElementByPlaceholderId('test');
         $args = $engine->getElementArgs($dom_element);
         $bool = ($args['toggle'] == 'no') ? true : false;
         $this->assertTrue($bool);
+
+
     }
 
     /**

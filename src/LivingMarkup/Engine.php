@@ -341,7 +341,7 @@ class Engine
             $name = $child_node->getAttribute('name');
 
             // an arg must have a name
-            if ($name === null) {
+            if (($name === null) || ($name == '')) {
                 continue;
             }
 
