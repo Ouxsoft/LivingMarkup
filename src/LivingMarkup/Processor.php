@@ -61,6 +61,16 @@ class Processor
     }
 
     /**
+     * Get builder
+     *
+     * @return BuilderInterface
+     */
+    public function getBuilder() : BuilderInterface
+    {
+        return $this->builder;
+    }
+
+    /**
      * Set config
      *
      * @param $filepath
@@ -80,24 +90,6 @@ class Processor
     public function getConfig() : Configuration
     {
         return $this->config;
-    }
-
-    /**
-     * Add a LHTML module to config
-     *
-     * @param array $module
-     * @return bool
-     */
-    public function addModule(array $module): bool
-    {
-        global $add_modules;
-
-        if (!isset($add_modules)) {
-            $add_modules = [];
-        }
-        $add_modules[] = $module;
-
-        return true;
     }
 
     /**
