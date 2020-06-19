@@ -37,6 +37,7 @@ class EntitiesTest extends TestCase
 
     /**
      * @covers \LivingMarkup\Entities::fetchArray
+     * @codeCoverageIgnore
      */
     public function testFetchArray()
     {
