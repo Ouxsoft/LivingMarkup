@@ -7,18 +7,20 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
+/*
 namespace LivingMarkup\Test\Module;
 
 use LivingMarkup\Module\ModulePool;
 use PHPUnit\Framework\TestCase;
 
+/*
 class ModulePoolTest extends TestCase
 {
 
     /**
      * @covers \LivingMarkup\Module\ModulePool::getIterator
      */
+    /*
     public function testGetIterator()
     {
 
@@ -27,7 +29,7 @@ class ModulePoolTest extends TestCase
     /**
      * @covers \LivingMarkup\Module\ModulePool::getPropertiesById
      */
-    public function testGetPropertiesById()
+  /*  public function testGetPropertiesById()
     {
 
     }
@@ -35,7 +37,7 @@ class ModulePoolTest extends TestCase
     /**
      * @covers \LivingMarkup\Module\ModulePool::getById
      */
-    public function testGetById()
+    /*public function testGetById()
     {
 
     }
@@ -43,7 +45,7 @@ class ModulePoolTest extends TestCase
     /**
      * @covers \LivingMarkup\Module\ModulePool::add
      */
-    public function testAdd()
+    /*public function testAdd()
     {
 
     }
@@ -51,7 +53,7 @@ class ModulePoolTest extends TestCase
     /**
      * @covers \LivingMarkup\Module\ModulePool::callMethod
      */
-    public function testCallMethod()
+    /*public function testCallMethod()
     {
 
     }
@@ -59,8 +61,9 @@ class ModulePoolTest extends TestCase
     /**
      * @covers \LivingMarkup\Module\ModulePool::count
      */
-    public function testCount()
+    /*public function testCount()
     {
 
     }
 }
+*/

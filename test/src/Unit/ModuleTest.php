@@ -70,9 +70,6 @@ class ModuleTest extends TestCase
     {
         $module = new \LivingMarkup\Test\HelloWorld();
         $this->assertStringContainsString('Hello, World', $module);
-
-
-
     }
 
     /**

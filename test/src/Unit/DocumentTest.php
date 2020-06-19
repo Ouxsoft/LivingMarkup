@@ -8,6 +8,7 @@
  * file that was distributed with this source code.
  */
 
+/*
 namespace LivingMarkup\Test;
 
 use LivingMarkup\Document;
@@ -15,6 +16,7 @@ use PHPUnit\Framework\TestCase;
 
 class DocumentTest extends TestCase
 {
+
 
     public function testLoadSource()
     {
@@ -26,3 +28,4 @@ class DocumentTest extends TestCase
 
     }
 }
+*/
