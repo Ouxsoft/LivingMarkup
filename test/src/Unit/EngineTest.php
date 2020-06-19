@@ -12,6 +12,7 @@ namespace LivingMarkup\Tests;
 
 use LivingMarkup\Configuration;
 use LivingMarkup\Engine;
+use LivingMarkup\Exception\Exception;
 use PHPUnit\Framework\TestCase;
 
 class EngineTest extends TestCase
@@ -162,6 +163,18 @@ class EngineTest extends TestCase
             'execute' => 'RETURN_CALL'
         ]);
         $this->assertTrue($bool);
+
+        $throw_occurred = false;
+        try {
+            // test throw
+            $engine->callHook([
+                'name' => 'onRender',
+                'execute' => 'THROW_ERROR'
+            ]);
+        } catch (Exception $e) {
+            $throw_occurred = true;
+        }
+        $this->assertTrue($throw_occurred);
     }
 
 
@@ -203,6 +216,11 @@ class EngineTest extends TestCase
         $this->assertStringContainsString($engine, '<!DOCTYPE html>
 <html>Hello, World</html>
 ');
+
+        // try tendering invalid module
+        $bool = $engine->renderModule('2');
+        $this->assertFalse($bool);
+
     }
 
     /**

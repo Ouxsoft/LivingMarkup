@@ -192,10 +192,6 @@ class Engine
         // set inner xml
         $module->xml = $this->getModuleInnerXML($module->module_id);
 
-        if (!method_exists($module, '__toString')) {
-            return false;
-        }
-
         $new_xml = $module->__toString() ?? '';
 
         $this->replaceDomElement($dom_element, $new_xml);
