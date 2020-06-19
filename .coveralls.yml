@@ -1,5 +1,6 @@
 #.coveralls.yml
 service_name: travis-pro
+repo_token: jGU5aGzLkZdxRtv71PsXcz55V1tbHCYNh
 
 # for php-coveralls
 coverage_clover: build/logs/clover.xml
