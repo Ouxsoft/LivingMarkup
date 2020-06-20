@@ -10,6 +10,10 @@ A <a href="https://github.com/ouxsoft/LHTML">LHTML processor</a> implementation 
 <a href="https://github.com/ouxsoft/livingMarkup/actions"><img src="https://github.com/ouxsoft/livingMarkup/workflows/CI/badge.svg" alt="CI Status"></a>
 <a href="https://livingmarkup.readthedocs.io/en/latest/?badge=latest"><img src="https://readthedocs.org/projects/livingmarkup/badge/?version=latest" alt="Documentation Status"></a>
 <a href="https://app.codacy.com/manual/ouxsoft/LivingMarkup?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=ouxsoft/LivingMarkup&amp;utm_campaign=Badge_Grade_Dashboard"><img src="https://api.codacy.com/project/badge/Grade/bfc76aaebde44a7fa239963e54883755" alt="Codacy Badge"></a>
+<a href="https://codecov.io/gh/ouxsoft/LivingMarkup">
+  <img src="https://codecov.io/gh/ouxsoft/LivingMarkup/branch/master/graph/badge.svg" />
+</a>
+
 <a href='https://coveralls.io/github/ouxsoft/LivingMarkup?branch=%28HEAD+detached+at+ee85e96%29'><img src='https://coveralls.io/repos/github/ouxsoft/LivingMarkup/badge.svg?branch=%28HEAD+detached+at+ee85e96%29' alt='Coverage Status' /></a>
 <a href="https://packagist.org/packages/ouxsoft/livingmarkup"><img src="https://poser.pugx.org/ouxsoft/livingmarkup/downloads" alt="Total Downloads"></a> 
 </p>
