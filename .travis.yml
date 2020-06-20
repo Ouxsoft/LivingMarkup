@@ -1,5 +1,9 @@
 language: php
 
+branches:
+  only:
+    - master
+
 php:
   - 7.2
   - 7.3
@@ -15,4 +19,4 @@ script:
   - phpunit --coverage-clover build/logs/clover.xml
 
 after_script:
-  - travis_retry php vendor/bin/php-coveralls -v
+  - php vendor/bin/php-coveralls -v
