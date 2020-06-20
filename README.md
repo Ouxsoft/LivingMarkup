@@ -18,9 +18,6 @@ A <a href="https://github.com/ouxsoft/LHTML">LHTML processor</a> implementation 
 LivingMarkup is a customizable HTML templating engine that processes markup into objects and orchestrates them to build
 dynamic markup. 
 
-LivingMarkup comes packaged with only LHTML test Modules. For core Modules, see:
- * [Hoopless](https://github.com/ouxsoft/hoopless)
-
 ## Usage
 Let's pretend we want add an abstraction layer to make not backwards compatible Bootstrap future upgrades easy.
  
@@ -65,6 +62,9 @@ echo $proc->parseString('<html>
 
 ```
 
+LivingMarkup comes packaged with only LHTML test Modules. For core Modules, see:
+ * [Hoopless](https://github.com/ouxsoft/hoopless)
+ 
 ## Installation
 
 ### Via Composer
