@@ -26,10 +26,11 @@ Start by creating an LHTML Element:
 ```php
 namespace Partial;
 
-class Alert extends LivingMarkup\Element {
-    public function onRender(){
-        $type = $this->getArgByName('type');
-        switch($type){
+class Alert extends LivingMarkup\Element 
+{
+    public function onRender()
+    {
+        switch($this->getArgByName('type')){
             case 'success':
                 $class = 'alert-success;
 '               break;
