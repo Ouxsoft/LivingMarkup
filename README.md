@@ -85,8 +85,8 @@ Check our docs for more info at [livingmarkup.readthedocs.io](https://livingmark
 
 ## Contribute
 
-Please refer to [CONTRIBUTING.md](https://github.com/ouxsoft/LivingMarkup/blob/master/.github/workflows/CONTRIBUTING.md) for 
-information on how to contribute to LivingMarkup.
+Refer to [CONTRIBUTING.md](https://github.com/ouxsoft/LivingMarkup/blob/master/.github/workflows/CONTRIBUTING.md) for 
+information on how to contribute.
 
 
 ## Creators
