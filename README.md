@@ -62,9 +62,7 @@ echo $proc->parseString('<html>
 
 ```
 
-LivingMarkup comes packaged with only LHTML test Modules. For core Modules, see:
- * [Hoopless](https://github.com/ouxsoft/hoopless)
- 
+
 ## Installation
 
 ### Via Composer
@@ -79,6 +77,9 @@ Install with [Git](https://git-scm.com/):
 ```shell script
 git clone git@github.com:ouxsoft/LivingMarkup.git
 ```
+
+LivingMarkup comes packaged with only LHTML test Modules. For core Modules, see:
+ * [Hoopless](https://github.com/ouxsoft/hoopless)
 
 ## Documentation
 Check our docs for more info at [livingmarkup.readthedocs.io](https://livingmarkup.readthedocs.io).
