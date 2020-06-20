@@ -16,7 +16,9 @@ use PHPUnit\Framework\TestCase;
 class DocumentTest extends TestCase
 {
 
-
+    /**
+     * @covers \LivingMarkup\Document::loadSource
+     */
     public function testLoadSource()
     {
         // load without doctype
@@ -54,8 +56,13 @@ class DocumentTest extends TestCase
 
     }
 
+    /**
+     * @covers \LivingMarkup\Document::__construct
+     */
     public function test__construct()
     {
 
+        $doc = new Document();
+        $this->assertIsObject($doc);
     }
 }
