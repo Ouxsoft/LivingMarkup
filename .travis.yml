@@ -19,5 +19,4 @@ script:
   - phpunit --coverage-clover build/logs/clover.xml
 
 after_script:
-  - php vendor/bin/php-coveralls -v
   - bash <(curl -s https://codecov.io/bash)

@@ -13,8 +13,6 @@ A <a href="https://github.com/ouxsoft/LHTML">LHTML processor</a> implementation 
 <a href="https://codecov.io/gh/ouxsoft/LivingMarkup">
   <img src="https://codecov.io/gh/ouxsoft/LivingMarkup/branch/master/graph/badge.svg" />
 </a>
-
-<a href='https://coveralls.io/github/ouxsoft/LivingMarkup?branch=%28HEAD+detached+at+ee85e96%29'><img src='https://coveralls.io/repos/github/ouxsoft/LivingMarkup/badge.svg?branch=%28HEAD+detached+at+ee85e96%29' alt='Coverage Status' /></a>
 <a href="https://packagist.org/packages/ouxsoft/livingmarkup"><img src="https://poser.pugx.org/ouxsoft/livingmarkup/downloads" alt="Total Downloads"></a> 
 </p>
 
