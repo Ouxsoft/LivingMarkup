@@ -10,7 +10,9 @@
 
 declare(strict_types=1);
 
-namespace LivingMarkup;
+namespace LivingMarkup\Element;
+
+use LivingMarkup\ArgumentArray;
 
 /**
  * Interface ElementDefaultInterface
@@ -36,7 +38,7 @@ interface ElementDefaultInterface
  *
  * @package LivingMarkup\Element
  */
-abstract class Element implements ElementDefaultInterface
+abstract class AbstractElement implements ElementDefaultInterface
 {
 
     // id used to reference object

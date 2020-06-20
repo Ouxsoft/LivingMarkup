@@ -14,6 +14,7 @@ namespace LivingMarkup\Element;
 
 use \ArrayIterator;
 use LivingMarkup\Element;
+use Traversable;
 
 /**
  * Class ElementPool
@@ -40,7 +41,7 @@ class ElementPool implements
     /**
      * Iterator to go through element pool
      *
-     * @return ArrayIterator|\Traversable
+     * @return ArrayIterator|Traversable
      */
     public function getIterator()
     {
@@ -53,7 +54,7 @@ class ElementPool implements
      * @param string|null $element_id
      * @return Element|null
      */
-    public function getById(?string $element_id = null) : ?Element
+    public function getById(?string $element_id = null) : ?AbstractElement
     {
         if (array_key_exists($element_id, $this->collection)) {
             return $this->collection[$element_id];
@@ -79,7 +80,7 @@ class ElementPool implements
      *
      * @param $element
      */
-    public function add(Element &$element) : void
+    public function add(AbstractElement &$element) : void
     {
         $this->collection[$element->element_id] = $element;
     }

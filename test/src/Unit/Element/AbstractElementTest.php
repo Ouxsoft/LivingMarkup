@@ -13,11 +13,11 @@ namespace LivingMarkup;
 use LivingMarkup\Test\HelloWorld;
 use PHPUnit\Framework\TestCase;
 
-class ElementTest extends TestCase
+class AbstractElementTest extends TestCase
 {
 
     /**
-     * @covers \LivingMarkup\Element::getArgByName
+     * @covers \LivingMarkup\Element\AbstractElement::getArgByName
      */
     public function testGetArgByName()
     {
@@ -27,7 +27,7 @@ class ElementTest extends TestCase
     }
 
     /**
-     * @covers \LivingMarkup\Element::__construct
+     * @covers \LivingMarkup\Element\AbstractElement::__construct
      */
     public function test__construct()
     {
@@ -36,7 +36,7 @@ class ElementTest extends TestCase
     }
 
     /**
-     * @covers \LivingMarkup\Element::onRender
+     * @covers \LivingMarkup\Element\AbstractElement::onRender
      */
     public function testOnRender()
     {
@@ -45,7 +45,7 @@ class ElementTest extends TestCase
     }
 
     /**
-     * @covers \LivingMarkup\Element::__invoke
+     * @covers \LivingMarkup\Element\AbstractElement::__invoke
      */
     public function test__invoke()
     {
@@ -54,7 +54,7 @@ class ElementTest extends TestCase
     }
 
     /**
-     * @covers \LivingMarkup\Element::innerText
+     * @covers \LivingMarkup\Element\AbstractElement::innerText
      */
     public function testInnerText()
     {
@@ -64,7 +64,7 @@ class ElementTest extends TestCase
     }
 
     /**
-     * @covers \LivingMarkup\Element::__toString
+     * @covers \LivingMarkup\Element\AbstractElement::__toString
      */
     public function test__toString()
     {
@@ -73,7 +73,7 @@ class ElementTest extends TestCase
     }
 
     /**
-     * @covers \LivingMarkup\Element::getArgs
+     * @covers \LivingMarkup\Element\AbstractElement::getArgs
      */
     public function testGetArgs()
     {
@@ -84,7 +84,7 @@ class ElementTest extends TestCase
     }
 
     /**
-     * @covers \LivingMarkup\Element::getId
+     * @covers \LivingMarkup\Element\AbstractElement::getId
      */
     public function testGetId()
     {

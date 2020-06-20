@@ -10,7 +10,7 @@
 
 namespace LivingMarkup\Test;
 
-use LivingMarkup\Element;
+use LivingMarkup\Element\AbstractElement as AbstractElement;
 
 /**
  * Class HelloWorld
@@ -21,7 +21,7 @@ use LivingMarkup\Element;
  *
  * @package LivingMarkup\Elements\Widgets
  */
-class HelloWorld extends Element
+class HelloWorld extends AbstractElement
 {
     /**
      * Prints Hello, World
