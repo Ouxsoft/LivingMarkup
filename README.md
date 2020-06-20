@@ -15,13 +15,13 @@ A <a href="https://github.com/ouxsoft/LHTML">LHTML processor</a> implementation 
 </p>
 
 ## About
-LivingMarkup is a customizable HTML templating engine that processes markup into objects and orchestrates them to build
-dynamic markup. 
+LivingMarkup is the HTML templating engine that processes markup into customizable objects that orchestrates to build
+dynamic markup.
 
 ## Usage
-Let's pretend we want add an abstraction layer to make not backwards compatible Bootstrap future upgrades easy.
+Here we'll add an abstraction layer to make major Bootstrap upgrades easy.
  
-We could create an LHTML Module:
+Start by creating an LHTML Module:
 ```php
 namespace Partial;
 
@@ -44,7 +44,7 @@ class Alert extends LivingMarkup\Module {
 }
 ```
 
-Then add the custom module to LHTML processor: 
+Then add the LHTML Module to LHTML processor: 
 ```php
 // instantiate processor
 $proc = new LivingMarkup\Processor();
@@ -59,7 +59,6 @@ $proc->addMethod('onRender','Execute for render', 'RETURN_CALL');
 echo $proc->parseString('<html>
     <partial name="Alert" type="success">This is a success alert.</partial>
 </html>');
-
 ```
 
 
