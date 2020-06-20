@@ -26,7 +26,7 @@ Start by creating an LHTML Element:
 ```php
 namespace Partial;
 
-class Alert extends LivingMarkup\Element 
+class Alert extends LivingMarkup\Element\AbstractElement 
 {
     public function onRender()
     {
