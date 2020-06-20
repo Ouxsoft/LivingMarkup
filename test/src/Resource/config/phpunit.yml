@@ -1,9 +1,9 @@
 #
-# Module Config
+# Element Config
 #
 version: 1
-modules:
-  # type of modules to instantiate
+elements:
+  # type of elements to instantiate
   types:
     - name: 'Bitwise'
       class_name: 'LivingMarkup\Test\Bitwise'

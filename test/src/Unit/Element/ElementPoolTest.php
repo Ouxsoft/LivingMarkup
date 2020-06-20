@@ -8,17 +8,17 @@
  * file that was distributed with this source code.
  */
 /*
-namespace LivingMarkup\Test\Module;
+namespace LivingMarkup\Test\Element;
 
-use LivingMarkup\Module\ModulePool;
+use LivingMarkup\Element\ElementPool;
 use PHPUnit\Framework\TestCase;
 
 /*
-class ModulePoolTest extends TestCase
+class ElementPoolTest extends TestCase
 {
 
     /**
-     * @covers \LivingMarkup\Module\ModulePool::getIterator
+     * @covers \LivingMarkup\Element\ElementPool::getIterator
      */
     /*
     public function testGetIterator()
@@ -27,7 +27,7 @@ class ModulePoolTest extends TestCase
     }
 
     /**
-     * @covers \LivingMarkup\Module\ModulePool::getPropertiesById
+     * @covers \LivingMarkup\Element\ElementPool::getPropertiesById
      */
   /*  public function testGetPropertiesById()
     {
@@ -35,7 +35,7 @@ class ModulePoolTest extends TestCase
     }
 
     /**
-     * @covers \LivingMarkup\Module\ModulePool::getById
+     * @covers \LivingMarkup\Element\ElementPool::getById
      */
     /*public function testGetById()
     {
@@ -43,7 +43,7 @@ class ModulePoolTest extends TestCase
     }
 
     /**
-     * @covers \LivingMarkup\Module\ModulePool::add
+     * @covers \LivingMarkup\Element\ElementPool::add
      */
     /*public function testAdd()
     {
@@ -51,7 +51,7 @@ class ModulePoolTest extends TestCase
     }
 
     /**
-     * @covers \LivingMarkup\Module\ModulePool::callMethod
+     * @covers \LivingMarkup\Element\ElementPool::callMethod
      */
     /*public function testCallMethod()
     {
@@ -59,7 +59,7 @@ class ModulePoolTest extends TestCase
     }
 
     /**
-     * @covers \LivingMarkup\Module\ModulePool::count
+     * @covers \LivingMarkup\Element\ElementPool::count
      */
     /*public function testCount()
     {

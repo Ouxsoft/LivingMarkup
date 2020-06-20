@@ -5,7 +5,7 @@
 Pages are created using a Builder design pattern. This design pattern was chosen to separate the construction of the complex page objects from its representation. This allows pages to be built for different purposes, including:
 + The `DynamicBuilder` renders a dynamic Page for a client's browser.
 + The `StaticBuilder` renders a static Page for a WYSIWYG.
-+ The `SearchBuilder` renders a dynamic Page with some Modules excluded for search indexes.
++ The `SearchBuilder` renders a dynamic Page with some Elements excluded for search indexes.
 
 The Director is called the `Kernel` within the context of the Builder design pattern.
 
@@ -22,20 +22,20 @@ The `Builder` receives parameters passed from the `Kernel` and uses them to inst
 ## `Engine`
 The `Engine` loads a DOM object and modifies the `Document`.
 
-### `Module Types`
-A Module Type consists of an XPath expressions and a class name. It is used to define the Module. 
+### `Element Types`
+A Element Type consists of an XPath expressions and a class name. It is used to define the Element. 
 The XPath expression  ("//block") finds the elements inside the `Document`. 
-The class name defines the class used to instantiate elements found as Modules. This class name may feature variables ("/Blocks/{name}") that are resolved using the Page DOM element's 
+The class name defines the class used to instantiate elements found as Elements. This class name may feature variables ("/Blocks/{name}") that are resolved using the Page DOM element's 
 attributes (<block name="Message"/>). 
 
 ### `Automated Methods`
-Automated Methods are used to orchestrates method calls against all instantiated Modules.
+Automated Methods are used to orchestrates method calls against all instantiated Elements.
 
-## `Modules`
-The Module constructor is passed the DOM element's attributes, arguments, and stored parameters.
-Modules are most often used to replace DOM element with dynamic content.
-Modules should be designed for the content management system user with safe gaurds in place.
-Only Page DOM elements with Handlers are instantiated as Modules; the rest are generally static content.
+## `Elements`
+The Element constructor is passed the DOM element's attributes, arguments, and stored parameters.
+Elements are most often used to replace DOM element with dynamic content.
+Elements should be designed for the content management system user with safe gaurds in place.
+Only Page DOM elements with Handlers are instantiated as Elements; the rest are generally static content.
 
 ### `Attributes`
 A Handler can feature a Document's element name attribute to specify the object's class name. 
@@ -46,4 +46,4 @@ Then, the Kernel iterates through the Hooks making call to Element's with those 
 Afterwards, the processed Document is returned.
 
 #### `Arguments`
-The Module constructor is passed a Page DOM element's attributes ("id", "name", etc.) and "arg" tag child elements.
+The Element constructor is passed a Page DOM element's attributes ("id", "name", etc.) and "arg" tag child elements.

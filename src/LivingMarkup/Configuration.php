@@ -30,7 +30,7 @@ class Configuration
 
     public $container = [
         'version' => 1,
-        'modules' => [
+        'elements' => [
             'types' => [],
             'methods' => []
         ]
@@ -92,47 +92,47 @@ class Configuration
     }
 
     /**
-     * Adds modules to config
+     * Adds elements to config
      *
-     * @param array $module
+     * @param array $element
      */
-    public function addModule(array $module) : void
+    public function addElement(array $element) : void
     {
-        $this->container['modules']['types'][] = $module;
+        $this->container['elements']['types'][] = $element;
     }
 
     /**
-     * Adds modules to config
+     * Adds elements to config
      *
-     * @param array $modules
+     * @param array $elements
      */
-    public function addModules(array $modules) : void
+    public function addElements(array $elements) : void
     {
         if (
-            array_key_exists('modules', $this->container) &&
-            array_key_exists('types', $this->container['modules'])
+            array_key_exists('elements', $this->container) &&
+            array_key_exists('types', $this->container['elements'])
         ) {
-            $this->container['modules']['types'] = array_merge($modules, $this->container['modules']['types']);
+            $this->container['elements']['types'] = array_merge($elements, $this->container['elements']['types']);
         }
     }
 
     /**
-     * Get array of modules if in config
+     * Get array of elements if in config
      *
      * @return array
      */
-    public function getModules(): array
+    public function getElements(): array
     {
         // check if exists
         if ( !isset($this->container)
-            || !isset($this->container['modules'])
-            || !is_array($this->container['modules'])
-            || !array_key_exists('types', $this->container['modules'])
+            || !isset($this->container['elements'])
+            || !is_array($this->container['elements'])
+            || !array_key_exists('types', $this->container['elements'])
         ) {
             return [];
         }
 
-        return $this->container['modules']['types'];
+        return $this->container['elements']['types'];
     }
 
     /**
@@ -168,7 +168,7 @@ class Configuration
     public function addMethod(string $method_name, string $description = '', $execute = null) : void
     {
         if (is_string($execute)) {
-            $this->container['modules']['methods'][] = [
+            $this->container['elements']['methods'][] = [
                 'name' => $method_name,
                 'description' => $description,
                 'execute' => $execute
@@ -176,14 +176,14 @@ class Configuration
             return;
         }
 
-        $this->container['modules']['methods'][] = [
+        $this->container['elements']['methods'][] = [
             'name' => $method_name,
             'description' => $description,
         ];
     }
 
     /**
-     * Get array of modules if in config
+     * Get array of elements if in config
      *
      * @return array
      */
@@ -191,15 +191,15 @@ class Configuration
     {
         // check if exists
         if ( !isset($this->container)
-            || !isset($this->container['modules'])
-            || !is_array($this->container['modules'])
-            || !array_key_exists('methods', $this->container['modules'])
+            || !isset($this->container['elements'])
+            || !is_array($this->container['elements'])
+            || !array_key_exists('methods', $this->container['elements'])
         ) {
             return [];
         }
 
 
-        return $this->container['modules']['methods'];
+        return $this->container['elements']['methods'];
     }
 
     /**

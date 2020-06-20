@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-namespace LivingMarkup\Test;
+namespace LivingMarkup\Element;
 
 use LivingMarkup\Document;
 use PHPUnit\Framework\TestCase;

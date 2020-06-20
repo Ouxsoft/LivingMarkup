@@ -10,18 +10,18 @@
 
 namespace LivingMarkup\Test;
 
-use LivingMarkup\Module;
+use LivingMarkup\Element;
 
 /**
  * Class HelloWorld
  *
- * Hyperlink simple HelloWorld Module example
+ * Hyperlink simple HelloWorld Element example
  *
  * <widget name="HelloWorld"/>
  *
- * @package LivingMarkup\Modules\Widgets
+ * @package LivingMarkup\Elements\Widgets
  */
-class HelloWorld extends Module
+class HelloWorld extends Element
 {
     /**
      * Prints Hello, World

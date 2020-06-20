@@ -10,13 +10,13 @@
 
 namespace LivingMarkup\Test;
 
-use LivingMarkup\Module as Module;
+use LivingMarkup\Element as Element;
 
 /**
  * Class Bitwise
- * @package LivingMarkup\Modules\Custom\Examples\Bitwise
+ * @package LivingMarkup\Elements\Custom\Examples\Bitwise
  */
-class Bitwise extends Module
+class Bitwise extends Element
 {
 
     /**

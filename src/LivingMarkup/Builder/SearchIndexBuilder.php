@@ -36,12 +36,12 @@ class SearchIndexBuilder implements BuilderInterface
         // create engine pass source
         $this->engine = new Engine($config);
 
-        // instantiate modules
-        foreach ($config->getModules() as $module) {
-            $this->engine->instantiateModules($module);
+        // instantiate elements
+        foreach ($config->getElements() as $element) {
+            $this->engine->instantiateElements($element);
         }
 
-        // call module method
+        // call element method
         foreach ($config->getMethods() as $method) {
             $this->engine->callHook($method);
         }

@@ -16,5 +16,5 @@ You're done! Take the rest of the time to read our docs.
 For information on:
 
 - The LHTML standard see the official spec [LHTML](https://github.com/ouxsoft/LHTML).
-- Customizing LivingMarkup see [configuration](configuration.md) and [modules](modules.md).
+- Customizing LivingMarkup see [configuration](configuration.md) and [elements](elements.md).
 - For detail explanation of this package's design see [classes](classes.md).

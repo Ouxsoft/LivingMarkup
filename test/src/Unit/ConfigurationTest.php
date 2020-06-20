@@ -17,40 +17,40 @@ use PHPUnit\Framework\TestCase;
 class ConfigurationTest extends TestCase
 {
     /**
-     * @covers \LivingMarkup\Configuration::addModule
+     * @covers \LivingMarkup\Configuration::addElement
      */
-    public function testAddModule()
+    public function testAddElement()
     {
         $config = new Configuration();
-        $config->addModule([
+        $config->addElement([
             'name' => 'Bitwise',
             'class_name' => 'LivingMarkup\Test\Bitwise',
             'xpath' => 'bitwise'
         ]);
-        $this->assertCount(1, $config->container['modules']['types']);
+        $this->assertCount(1, $config->container['elements']['types']);
     }
 
     /**
-     * @covers \LivingMarkup\Configuration::getModules
+     * @covers \LivingMarkup\Configuration::getElements
      */
-    public function testGetModules()
+    public function testGetElements()
     {
-        $module = [
+        $element = [
             'name' => 'Bitwise',
             'class_name' => 'LivingMarkup\Test\Bitwise',
             'xpath' => 'bitwise'
         ];
         $config = new Configuration();
-        $config->addModule($module);
-        $results = $config->getModules();
-        $this->assertCount(0, array_diff_assoc($results[0], $module));
+        $config->addElement($element);
+        $results = $config->getElements();
+        $this->assertCount(0, array_diff_assoc($results[0], $element));
 
 
         // check for empty array
         $config = new Configuration();
         unset($config->container);
-        $modules = $config->getModules();
-        $this->assertCount(0, $modules);
+        $elements = $config->getElements();
+        $this->assertCount(0, $elements);
     }
 
     /**
@@ -101,7 +101,7 @@ class ConfigurationTest extends TestCase
             'descirption' => 'Execute when object data is loading'
         ];
         $config = new Configuration();
-        $config->container['modules']['methods'] = $test_method;
+        $config->container['elements']['methods'] = $test_method;
         $methods = $config->getMethods();
         $this->assertCount(0, array_diff_assoc($methods, $test_method));
 
@@ -148,12 +148,12 @@ class ConfigurationTest extends TestCase
     }
 
     /**
-     * @covers \LivingMarkup\Configuration::addModules
+     * @covers \LivingMarkup\Configuration::addElements
      */
-    public function testAddModules()
+    public function testAddElements()
     {
         $config = new Configuration();
-        $config->addModules([
+        $config->addElements([
             [
                 'name' => 'Bitwise',
                 'class_name' => 'LivingMarkup\Test\Bitwise',
@@ -165,7 +165,7 @@ class ConfigurationTest extends TestCase
                 'xpath' => 'bitwise'
             ]
         ]);
-        $this->assertCount(2, $config->container['modules']['types']);
+        $this->assertCount(2, $config->container['elements']['types']);
     }
 
     /**
@@ -175,7 +175,7 @@ class ConfigurationTest extends TestCase
     {
         $config_dir = dirname(__DIR__, 1) . '/inputs/phpunit.yml';
         $config = new Configuration($config_dir);
-        $this->assertArrayHasKey('modules', $config->container);
+        $this->assertArrayHasKey('elements', $config->container);
 
         $error = false;
         $config = new Configuration();

@@ -23,11 +23,11 @@ dynamic markup.
 ## Usage
 Here we'll add an abstraction layer to make major Bootstrap upgrades easy.
  
-Start by creating an LHTML Module:
+Start by creating an LHTML Element:
 ```php
 namespace Partial;
 
-class Alert extends LivingMarkup\Module {
+class Alert extends LivingMarkup\Element {
     public function onRender(){
         $type = $this->getArgByName('type');
         switch($type){
@@ -46,13 +46,13 @@ class Alert extends LivingMarkup\Module {
 }
 ```
 
-Then add the LHTML Module to LHTML processor: 
+Then add the LHTML Element to LHTML processor: 
 ```php
 // instantiate processor
 $proc = new LivingMarkup\Processor();
 
 // add object to processor
-$proc->addObject('Partial', '//partial', 'Partial\{name}');
+$proc->addElement('Partial', '//partial', 'Partial\{name}');
 
 // automate method call
 $proc->addMethod('onRender','Execute for render', 'RETURN_CALL');
@@ -79,7 +79,7 @@ Install with [Git](https://git-scm.com/):
 git clone git@github.com:ouxsoft/LivingMarkup.git
 ```
 
-LivingMarkup comes packaged with only LHTML test Modules. For core Modules, see:
+LivingMarkup comes packaged with only LHTML test Elements. For core Elements, see:
  * [Hoopless](https://github.com/ouxsoft/hoopless)
 
 ## Documentation

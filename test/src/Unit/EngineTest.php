@@ -73,14 +73,14 @@ class EngineTest extends TestCase
     }
 
     /**
-     * @covers \LivingMarkup\Engine::getModuleInnerXML
+     * @covers \LivingMarkup\Engine::getElementInnerXML
      */
-    public function testGetModuleInnerXML()
+    public function testGetElementInnerXML()
     {
         $config = new Configuration();
         $config->setSource('<html><b '.Engine::INDEX_ATTRIBUTE.'="test">Hello, World!</b></html>');
         $engine = new Engine($config);
-        $results = $engine->getModuleInnerXML('test');
+        $results = $engine->getElementInnerXML('test');
         $bool = ($results == 'Hello, World!') ? true : false;
         $this->assertTrue($bool);
     }
@@ -130,20 +130,20 @@ class EngineTest extends TestCase
     }
 
     /**
-     * @covers \LivingMarkup\Engine::instantiateModules
+     * @covers \LivingMarkup\Engine::instantiateElements
      */
-    public function testInstantiateModules()
+    public function testInstantiateElements()
     {
         $config = new Configuration();
         $config->setSource('<html><b>Hello, World!</b></html>');
         $engine = new Engine($config);
-        $engine->instantiateModules(
+        $engine->instantiateElements(
             [
                 'xpath' => '//b',
                 'class_name' => 'LivingMarkup\Test\HelloWorld'
             ]
         );
-        $this->assertCount(1, $engine->module_pool);
+        $this->assertCount(1, $engine->element_pool);
     }
 
     /**
@@ -154,7 +154,7 @@ class EngineTest extends TestCase
         $config = new Configuration();
         $config->setSource('<html><b>Hello, World!</b></html>');
         $engine = new Engine($config);
-        $engine->instantiateModules(
+        $engine->instantiateElements(
             [
                 'xpath' => '//b',
                 'class_name' => 'LivingMarkup\Test\HelloWorld'
@@ -196,22 +196,22 @@ class EngineTest extends TestCase
     }
 
     /**
-     * @covers \LivingMarkup\Engine::renderModule
+     * @covers \LivingMarkup\Engine::renderElement
      */
-    public function testRenderModule()
+    public function testRenderElement()
     {
         $config = new Configuration();
         $config->setSource('<html><div>Foo Bar</div></html>');
         $engine = new Engine($config);
-        $engine->instantiateModules(
+        $engine->instantiateElements(
             [
                 'xpath' => '//div',
                 'class_name' => 'LivingMarkup\Test\HelloWorld'
             ]
         );
-        foreach($engine->module_pool as $module){
+        foreach($engine->element_pool as $element){
 
-            $engine->renderModule($module->module_id);
+            $engine->renderElement($element->element_id);
 
         }
 
@@ -219,46 +219,46 @@ class EngineTest extends TestCase
 <html>Hello, World</html>
 ');
 
-        // try tendering invalid module
-        $bool = $engine->renderModule('2');
+        // try tendering invalid element
+        $bool = $engine->renderElement('2');
         $this->assertFalse($bool);
 
     }
 
     /**
-     * private class cannot test directly, instead we're using InstantiateModules
-     * @covers \LivingMarkup\Engine::instantiateModule
+     * private class cannot test directly, instead we're using InstantiateElements
+     * @covers \LivingMarkup\Engine::instantiateElement
      */
-    public function testInstantiateModule()
+    public function testInstantiateElement()
     {
         $config = new Configuration();
         $config->setSource('<html><div type="page"><arg name="section">help</arg><div>Hello, World!</div></div></html>');
         $engine = new Engine($config);
-        $engine->instantiateModules(
+        $engine->instantiateElements(
             [
                 'xpath' => '//div',
                 'class_name' => 'LivingMarkup\Test\HelloWorld'
             ]
         );
-        $this->assertCount(2, $engine->module_pool);
+        $this->assertCount(2, $engine->element_pool);
     }
 
     /**
-     * @covers \LivingMarkup\Engine::getModuleAncestorProperties
+     * @covers \LivingMarkup\Engine::getElementAncestorProperties
      */
-    public function testGetModuleAncestorProperties()
+    public function testGetElementAncestorProperties()
     {
         $config = new Configuration();
         $config->setSource('<html><div type="page"><arg name="section">help</arg><div>Hello, World!</div></div></html>');
         $engine = new Engine($config);
-        $engine->instantiateModules(
+        $engine->instantiateElements(
             [
                 'xpath' => '//div',
                 'class_name' => 'LivingMarkup\Test\HelloWorld'
             ]
         );
-        foreach ($engine->module_pool as $module) {
-            $properties = $engine->getModuleAncestorProperties($module->module_id);
+        foreach ($engine->element_pool as $element) {
+            $properties = $engine->getElementAncestorProperties($element->element_id);
             $this->assertIsArray($properties);
         }
     }
@@ -270,7 +270,7 @@ class EngineTest extends TestCase
     {
         $config = new Configuration();
         $engine = new Engine($config);
-        $bool = ($engine->module_pool instanceof \LivingMarkup\Module\ModulePool) ? true : false;
+        $bool = ($engine->element_pool instanceof \LivingMarkup\Element\ElementPool) ? true : false;
         $this->assertTrue($bool);
     }
 }

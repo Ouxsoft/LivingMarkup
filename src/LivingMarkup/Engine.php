@@ -13,7 +13,7 @@ declare(strict_types=1);
 namespace LivingMarkup;
 
 use LivingMarkup\Exception\Exception;
-use LivingMarkup\Module\ModulePool;
+use LivingMarkup\Element\ElementPool;
 use DOMElement;
 use DOMNodeList;
 use DOMXPath;
@@ -21,7 +21,7 @@ use DOMXPath;
 /**
  * Class Engine
  *
- * Runs Modules to manipulate Document
+ * Runs Elements to manipulate Document
  *
  * @package LivingMarkup\Engine
  */
@@ -29,7 +29,7 @@ class Engine
 {
 
     // marker attribute used by Engine to identify DOMElement during processing
-    const INDEX_ATTRIBUTE = '_MODULE_ID';
+    const INDEX_ATTRIBUTE = '_ELEMENT_ID';
 
     // Document Object Model (DOM)
     public $dom;
@@ -37,8 +37,8 @@ class Engine
     // DOMXPath Query object
     public $xpath;
 
-    // ModulePool
-    public $module_pool;
+    // ElementPool
+    public $element_pool;
 
     // registered includes added during output
     public $includes = [
@@ -62,8 +62,8 @@ class Engine
         // create document iterator for this dom
         $this->xpath = new DOMXPath($this->dom);
 
-        // create a module pool
-        $this->module_pool = new ModulePool();
+        // create a element pool
+        $this->element_pool = new ElementPool();
     }
 
     /**
@@ -75,49 +75,49 @@ class Engine
     public function callHook(array $method): bool
     {
         // set and/or update ancestors
-        foreach ($this->module_pool as $module) {
-            $module->ancestors = $this->getModuleAncestorProperties($module->module_id);
+        foreach ($this->element_pool as $element) {
+            $element->ancestors = $this->getElementAncestorProperties($element->element_id);
         }
 
-        // call method to all modules
+        // call method to all elements
         if (!array_key_exists('execute', $method)) {
-            $this->module_pool->callMethod($method['name']);
+            $this->element_pool->callMethod($method['name']);
             return true;
         }
 
         switch ($method['execute']) {
             case 'RETURN_CALL':
-                foreach ($this->module_pool as $module) {
-                    $this->renderModule($module->module_id);
+                foreach ($this->element_pool as $element) {
+                    $this->renderElement($element->element_id);
                 }
                 break;
             default:
-                throw new Exception('Invalid module execute command provided.');
+                throw new Exception('Invalid element execute command provided.');
         }
 
         return true;
     }
 
     /**
-     * Get a Module ancestors' properties based on provided module_id DOMElement's ancestors
+     * Get a Element ancestors' properties based on provided element_id DOMElement's ancestors
      *
-     * @param $module_id
+     * @param $element_id
      * @return array
      */
-    public function getModuleAncestorProperties(string $module_id): array
+    public function getElementAncestorProperties(string $element_id): array
     {
         // get ancestor ids
         $ancestor_properties = [];
 
         $query = '//ancestor::*[@' . self::INDEX_ATTRIBUTE . ']';
-        $node = $this->getDomElementByPlaceholderId($module_id);
+        $node = $this->getDomElementByPlaceholderId($element_id);
 
         foreach ($this->queryFetchAll($query, $node) as $dom_element) {
             $ancestor_id = $dom_element->getAttribute(self::INDEX_ATTRIBUTE);
             $ancestor_properties[] = [
                 'id' => $ancestor_id,
                 'tag' => $dom_element->nodeName,
-                'properties' => $this->module_pool->getPropertiesById($ancestor_id)
+                'properties' => $this->element_pool->getPropertiesById($ancestor_id)
             ];
         }
 
@@ -125,15 +125,15 @@ class Engine
     }
 
     /**
-     * Gets DOMElement using module_id provided
+     * Gets DOMElement using element_id provided
      *
-     * @param string $module_id
+     * @param string $element_id
      * @return DOMElement|null
      */
-    public function getDomElementByPlaceholderId(string $module_id): ?DOMElement
+    public function getDomElementByPlaceholderId(string $element_id): ?DOMElement
     {
         // find an element by id
-        $query = '//*[@' . self::INDEX_ATTRIBUTE . '="' . $module_id . '"]';
+        $query = '//*[@' . self::INDEX_ATTRIBUTE . '="' . $element_id . '"]';
 
         // get object found
         return $this->queryFetch($query);
@@ -171,28 +171,28 @@ class Engine
 
 
     /**
-     * Within DOMDocument replace DOMElement with Module->__toString() output
+     * Within DOMDocument replace DOMElement with Element->__toString() output
      *
-     * @param $module_id
+     * @param $element_id
      * @return bool
      */
-    public function renderModule(string $module_id): bool
+    public function renderElement(string $element_id): bool
     {
 
         // get DOMElement from placeholder id
-        $dom_element = $this->getDomElementByPlaceholderId($module_id);
+        $dom_element = $this->getDomElementByPlaceholderId($element_id);
 
         if ($dom_element===null) {
             return false;
         }
 
-        // get module using id
-        $module = $this->module_pool->getById($module_id);
+        // get element using id
+        $element = $this->element_pool->getById($element_id);
 
         // set inner xml
-        $module->xml = $this->getModuleInnerXML($module->module_id);
+        $element->xml = $this->getElementInnerXML($element->element_id);
 
-        $new_xml = $module->__toString() ?? '';
+        $new_xml = $element->__toString() ?? '';
 
         $this->replaceDomElement($dom_element, $new_xml);
 
@@ -200,16 +200,16 @@ class Engine
     }
 
     /**
-     * Get Module inner XML
+     * Get Element inner XML
      *
-     * @param $module_id
+     * @param $element_id
      * @return string
      */
-    public function getModuleInnerXML(string $module_id): string
+    public function getElementInnerXML(string $element_id): string
     {
         $xml = '';
 
-        $dom_element = $this->getDomElementByPlaceholderId($module_id);
+        $dom_element = $this->getDomElementByPlaceholderId($element_id);
 
         $children = $dom_element->childNodes;
         foreach ($children as $child) {
@@ -236,41 +236,41 @@ class Engine
     }
 
     /**
-     * Instantiates modules from DOMElement's found during Xpath query against DOM property
+     * Instantiates elements from DOMElement's found during Xpath query against DOM property
      *
-     * @param array $module
+     * @param array $element
      * @return bool
      */
-    public function instantiateModules(array $module): bool
+    public function instantiateElements(array $lhtml_element): bool
     {
         // check for xpath
-        if (!array_key_exists('xpath', $module)) {
+        if (!array_key_exists('xpath', $lhtml_element)) {
             return false;
         }
 
         // check for class name
-        if (!array_key_exists('class_name', $module)) {
+        if (!array_key_exists('class_name', $lhtml_element)) {
             return false;
         }
 
         // iterate through handler's expression searching for applicable elements
-        foreach ($this->queryFetchAll($module['xpath']) as $element) {
+        foreach ($this->queryFetchAll($lhtml_element['xpath']) as $dom_element) {
 
             // if class does not exist replace element with informative comment
-            $this->instantiateModule($element, $module['class_name']);
+            $this->instantiateElement($dom_element, $lhtml_element['class_name']);
         }
 
         return true;
     }
 
     /**
-     * Instantiate a DOMElement as a Module using specified class_name
+     * Instantiate a DOMElement as a Element using specified class_name
      *
      * @param DOMElement $element
      * @param string $class_name
      * @return bool
      */
-    private function instantiateModule(DOMElement &$element, string $class_name): bool
+    private function instantiateElement(DOMElement &$element, string $class_name): bool
     {
         // skip if placeholder already assigned
         if ($element->hasAttribute(self::INDEX_ATTRIBUTE)) {
@@ -283,14 +283,14 @@ class Engine
                 $element_name = $element->getAttribute('name');
                 $class_name = str_replace('{name}', $element_name, $class_name);
             } else {
-                $this->replaceDomElement($element, '<!-- Module "' . $class_name . '" Missing Name Attribute -->');
+                $this->replaceDomElement($element, '<!-- Element "' . $class_name . '" Missing Name Attribute -->');
                 return false;
             }
         }
 
         // if class does not exist add debug comment
         if (!class_exists($class_name)) {
-            $this->replaceDomElement($element, '<!-- Module "' . $class_name . '" Not Found -->');
+            $this->replaceDomElement($element, '<!-- Element "' . $class_name . '" Not Found -->');
             return false;
         }
 
@@ -302,22 +302,22 @@ class Engine
 
         // if object cannot be instantiated add debug comment
         if (!is_object($element_object)) {
-            $this->replaceDomElement($element, '<!-- Module "' . $class_name . '" Error -->');
+            $this->replaceDomElement($element, '<!-- Element "' . $class_name . '" Error -->');
             return false;
         }
 
         // set element object placeholder
-        $element->setAttribute(self::INDEX_ATTRIBUTE, $element_object->module_id);
+        $element->setAttribute(self::INDEX_ATTRIBUTE, $element_object->element_id);
 
-        // add module to pool
-        $this->module_pool->add($element_object);
+        // add element to pool
+        $this->element_pool->add($element_object);
 
         return true;
     }
 
     /**
      * Get DOMElement's attribute and child <args> elements and return as a single list
-     * items within the list are called args as they are passed as parameters to module methods
+     * items within the list are called args as they are passed as parameters to element methods
      *
      * @param DOMElement $element
      * @return ArgumentArray

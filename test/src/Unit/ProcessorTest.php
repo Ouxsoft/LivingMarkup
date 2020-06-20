@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-namespace LivingMarkup\Test;
+namespace LivingMarkup\Element;
 
 use LivingMarkup\Builder\DynamicPageBuilder;
 use LivingMarkup\Builder\StaticPageBuilder;
@@ -46,15 +46,15 @@ class ProcessorTest extends TestCase
     public function testParseFile()
     {
         $proc = new Processor();
-        $proc->loadConfig(dirname(__DIR__, 1) . '/Resources/config/phpunit.yml');
-        $test_results = $proc->parseFile(dirname(__DIR__, 1) . '/Resources/inputs/index.html');
-        $this->assertStringMatchesFormatFile(dirname(__DIR__, 1) . '/Resources/outputs/index.html', $test_results);
+        $proc->loadConfig(dirname(__DIR__, 1) . '/Resource/config/phpunit.yml');
+        $test_results = $proc->parseFile(dirname(__DIR__, 1) . '/Resource/inputs/index.html');
+        $this->assertStringMatchesFormatFile(dirname(__DIR__, 1) . '/Resource/outputs/index.html', $test_results);
 
         // test non html
         $proc = new Processor();
-        $proc->loadConfig(dirname(__DIR__, 1) . '/Resources/config/phpunit.yml');
-        $test_results = $proc->parseFile(dirname(__DIR__, 1) . '/Resources/inputs/text.txt');
-        $this->assertStringMatchesFormatFile(dirname(__DIR__, 1) . '/Resources/outputs/text.txt', $test_results);
+        $proc->loadConfig(dirname(__DIR__, 1) . '/Resource/config/phpunit.yml');
+        $test_results = $proc->parseFile(dirname(__DIR__, 1) . '/Resource/inputs/text.txt');
+        $this->assertStringMatchesFormatFile(dirname(__DIR__, 1) . '/Resource/outputs/text.txt', $test_results);
     }
 
     /**
@@ -63,9 +63,9 @@ class ProcessorTest extends TestCase
     public function testLoadConfig()
     {
         $proc = new Processor();
-        $proc->loadConfig(dirname(__DIR__, 1) . '/Resources/config/phpunit.yml');
+        $proc->loadConfig(dirname(__DIR__, 1) . '/Resource/config/phpunit.yml');
         $config = $proc->getConfig();
-        $this->assertIsArray($config->container['modules']);
+        $this->assertIsArray($config->container['elements']);
     }
 
     /**
@@ -75,7 +75,7 @@ class ProcessorTest extends TestCase
     {
         $proc = new Processor();
         $config = $proc->getConfig();
-        $this->assertIsArray($config->container['modules']);
+        $this->assertIsArray($config->container['elements']);
     }
 
 
@@ -87,8 +87,8 @@ class ProcessorTest extends TestCase
         $proc = new Processor();
         $proc->addObject('Path', '//*', '\LivingMarkup\Test\HelloWorld');
         $config = $proc->getConfig();
-        $modules = $config->getModules();
-        $this->assertCount(1, $modules);
+        $elements = $config->getElements();
+        $this->assertCount(1, $elements);
     }
 
     /**
@@ -97,13 +97,13 @@ class ProcessorTest extends TestCase
     public function testParseString()
     {
         $proc = new Processor();
-        $proc->loadConfig(dirname(__DIR__, 1) . '/Resources/config/phpunit.yml');
+        $proc->loadConfig(dirname(__DIR__, 1) . '/Resource/config/phpunit.yml');
         $test_results = $proc->parseString('<html><bitwise>
     <arg name="number">2</arg>
     <arg name="count">6</arg>
     <arg name="operator">^</arg>
 </bitwise></html>');
-        $this->assertStringMatchesFormatFile(dirname(__DIR__, 1) . '/Resources/outputs/index.html', $test_results);
+        $this->assertStringMatchesFormatFile(dirname(__DIR__, 1) . '/Resource/outputs/index.html', $test_results);
 
         // test non html
         $test_results = $proc->parseString('???');
@@ -115,7 +115,7 @@ class ProcessorTest extends TestCase
      */
     public function test__construct()
     {
-        $proc = new Processor(dirname(__DIR__, 1) . '/Resources/config/phpunit.yml');
+        $proc = new Processor(dirname(__DIR__, 1) . '/Resource/config/phpunit.yml');
         $this->assertIsObject($proc);
     }
 

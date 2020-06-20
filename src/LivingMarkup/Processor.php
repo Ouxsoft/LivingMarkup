@@ -120,7 +120,7 @@ class Processor
      */
     public function addObject(string $name, string $xpath_expression, string $class_name) : void
     {
-        $this->config->addModule([
+        $this->config->addElement([
             'name' => $name,
             'class_name' => $class_name,
             'xpath' => $xpath_expression

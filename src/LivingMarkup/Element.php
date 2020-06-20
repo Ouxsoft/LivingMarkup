@@ -15,9 +15,9 @@ namespace LivingMarkup;
 /**
  * Interface ElementDefaultInterface
  *
- * @package LivingMarkup\Module
+ * @package LivingMarkup\Element
  */
-interface ModuleDefaultInterface
+interface ElementDefaultInterface
 {
     public function __construct(ArgumentArray $args);
 
@@ -29,18 +29,18 @@ interface ModuleDefaultInterface
 }
 
 /**
- * Class Module
+ * Class Element
  *
- * An abstract class extended to instantiate Modules. During construction arguments and xml contained within
+ * An abstract class extended to instantiate Elements. During construction arguments and xml contained within
  * the Page's DomElement are passed to constructor.
  *
- * @package LivingMarkup\Module
+ * @package LivingMarkup\Element
  */
-abstract class Module implements ModuleDefaultInterface
+abstract class Element implements ElementDefaultInterface
 {
 
     // id used to reference object
-    public $module_id = 0;
+    public $element_id = 0;
     // id used to load args
     public $id = 0;
     // name of element
@@ -59,7 +59,7 @@ abstract class Module implements ModuleDefaultInterface
     public $xml = '';
 
     /**
-     * Module constructor
+     * Element constructor
      *
      * @param $args
      */
@@ -67,7 +67,7 @@ abstract class Module implements ModuleDefaultInterface
     {
 
         // set object id
-        $this->module_id = spl_object_hash($this);
+        $this->element_id = spl_object_hash($this);
 
         // store args passed
         if($args === null) {
@@ -89,13 +89,13 @@ abstract class Module implements ModuleDefaultInterface
     }
 
     /**
-     * Gets the ID of the Module, useful for ModulePool
+     * Gets the ID of the Element, useful for ElementPool
      *
      * @return int|string
      */
     public function getId() : string
     {
-        return $this->module_id;
+        return $this->element_id;
     }
 
     /**
