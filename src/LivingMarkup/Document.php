@@ -88,8 +88,13 @@ class Document extends DomDocument
         // add html root element if missing
         $root_tag = $this->documentElement->tagName;
         if (strcasecmp($root_tag, 'html') !== 0) {
-            $root_element = $this->createElement('html');
-            $this->appendChild($root_element);
+            // create a new DomDocument, add source to it, and append to root document with html root
+            $source_dom = new DOMDocument();
+            $source_dom->loadXML($source);
+            $this->loadSource('<html></html>');
+            $this->documentElement->appendChild(
+                $this->importNode($source_dom->documentElement, true)
+            );
         }
 
         return true;

@@ -49,7 +49,7 @@ class DocumentTest extends TestCase
         $doc->loadSource('<p>Test</p>');
         $output = $doc->saveHTML();
         $this->assertStringContainsString($output, '<!DOCTYPE html>
-<html><body><p>Test</p></body></html>
+<html><p>Test</p></html>
 ');
 
     }
