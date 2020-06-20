@@ -11,6 +11,7 @@
 namespace LivingMarkup\Tests;
 
 use LivingMarkup\Configuration;
+use LivingMarkup\Exception\Exception;
 use PHPUnit\Framework\TestCase;
 
 class ConfigurationTest extends TestCase
@@ -26,7 +27,7 @@ class ConfigurationTest extends TestCase
             'class_name' => 'LivingMarkup\Test\Bitwise',
             'xpath' => 'bitwise'
         ]);
-        $this->assertCount(1, $config->config['modules']['types']);
+        $this->assertCount(1, $config->container['modules']['types']);
     }
 
     /**
@@ -42,8 +43,14 @@ class ConfigurationTest extends TestCase
         $config = new Configuration();
         $config->addModule($module);
         $results = $config->getModules();
-
         $this->assertCount(0, array_diff_assoc($results[0], $module));
+
+
+        // check for empty array
+        $config = new Configuration();
+        unset($config->container);
+        $modules = $config->getModules();
+        $this->assertCount(0, $modules);
     }
 
     /**
@@ -51,9 +58,19 @@ class ConfigurationTest extends TestCase
      */
     public function testIsset()
     {
+        // does exists
         $config = new Configuration();
         $results = $config->isset('version');
         $this->assertTrue($results);
+
+        // does not exists
+        $results = $config->isset('does not exist');
+        $this->assertFalse($results);
+
+        // no config
+        unset($config->container);
+        $results = $config->isset('a', 'b');
+        $this->assertFalse($results);
     }
 
     /**
@@ -84,9 +101,13 @@ class ConfigurationTest extends TestCase
             'descirption' => 'Execute when object data is loading'
         ];
         $config = new Configuration();
-        $config->config['modules']['methods'] = $test_method;
+        $config->container['modules']['methods'] = $test_method;
         $methods = $config->getMethods();
         $this->assertCount(0, array_diff_assoc($methods, $test_method));
+
+        // test if not exists
+        unset($config->container);
+        $this->assertCount(0,$config->getMethods());
     }
 
     /**
@@ -99,6 +120,10 @@ class ConfigurationTest extends TestCase
         $config->setSource($test_string);
         $source = $config->getSource();
         $this->assertEquals($test_string, $source);
+
+        // test if not exists
+        unset($config->container);
+        $this->assertTrue(($config->getSource() == '') );
     }
 
     /**
@@ -108,7 +133,7 @@ class ConfigurationTest extends TestCase
     {
         $config = new Configuration();
         $config->add('test', 'yes');
-        $this->assertStringContainsString('yes', $config->config['test']);
+        $this->assertStringContainsString('yes', $config->container['test']);
     }
 
     /**
@@ -119,7 +144,7 @@ class ConfigurationTest extends TestCase
         $markup = '<html><p>Hello, World!</p></html>';
         $config = new Configuration();
         $config->setSource($markup);
-        $this->assertStringContainsString($markup, $config->config['markup']);
+        $this->assertStringContainsString($markup, $config->container['markup']);
     }
 
     /**
@@ -140,7 +165,7 @@ class ConfigurationTest extends TestCase
                 'xpath' => 'bitwise'
             ]
         ]);
-        $this->assertCount(2, $config->config['modules']['types']);
+        $this->assertCount(2, $config->container['modules']['types']);
     }
 
     /**
@@ -150,6 +175,15 @@ class ConfigurationTest extends TestCase
     {
         $config_dir = dirname(__DIR__, 1) . '/inputs/phpunit.yml';
         $config = new Configuration($config_dir);
-        $this->assertArrayHasKey('modules', $config->config);
+        $this->assertArrayHasKey('modules', $config->container);
+
+        $error = false;
+        $config = new Configuration();
+        try {
+            $config->loadFile('invalid');
+        } catch (Exception $e) {
+            $error = true;
+        }
+        $this->assertTrue($error);
     }
 }

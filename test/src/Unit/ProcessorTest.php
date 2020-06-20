@@ -65,7 +65,7 @@ class ProcessorTest extends TestCase
         $proc = new Processor();
         $proc->loadConfig(dirname(__DIR__, 1) . '/Resources/config/phpunit.yml');
         $config = $proc->getConfig();
-        $this->assertIsArray($config->config['modules']);
+        $this->assertIsArray($config->container['modules']);
     }
 
     /**
@@ -75,7 +75,7 @@ class ProcessorTest extends TestCase
     {
         $proc = new Processor();
         $config = $proc->getConfig();
-        $this->assertIsArray($config->config['modules']);
+        $this->assertIsArray($config->container['modules']);
     }
 
 

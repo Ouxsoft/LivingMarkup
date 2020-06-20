@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace LivingMarkup;
 
+use Laminas\Exception\RuntimeException;
 use LivingMarkup\Exception\Exception;
 use Laminas\Config\Reader\Yaml;
 use Laminas\Validator\File\Exists;
@@ -27,7 +28,7 @@ class Configuration
     const LOCAL_FILENAME = 'config.yml';
     const DIST_FILENAME = 'config.dist.yml';
 
-    public $config = [
+    public $container = [
         'version' => 1,
         'modules' => [
             'types' => [],
@@ -45,41 +46,35 @@ class Configuration
      * @return bool
      * @throws Exception
      */
-    public function loadFile(string $filepath = null) : bool
+    public function loadFile(string $filepath = null) : void
     {
         // fail overs for distributed configs
         $fail_overs = [$filepath, self::LOCAL_FILENAME, self::DIST_FILENAME];
 
         foreach ($fail_overs as $filepath) {
-            $this->path = $filepath;
-            $this->directory = dirname($filepath);
-            $this->filename = basename($filepath);
 
-            // try to load config using filename
             try {
+                $this->path = $filepath;
+                $this->directory = dirname($filepath);
+                $this->filename = basename($filepath);
+
                 // check if path is valid
                 $validator = new Exists($this->directory);
-                if (!$validator->isValid($this->filename)) {
-                    return false;
-                }
+                $validator->isValid($this->filename);
 
                 // load yaml file
                 $reader = new Yaml();
-                $this->config = $reader->fromFile($this->path);
+                $loaded_config = $reader->fromFile($this->path);
 
-                if (empty($this->config)) {
-                    return false;
-                }
 
-                return true;
-            } catch (Exception $e) {
-                throw new Exception('Unable to load config' . $e);
+                $this->container = $loaded_config;
 
-                return false;
+                break;
+
+            } catch (\Throwable $e){
+                throw new Exception('Unable to load config');
             }
         }
-
-        return false;
     }
 
     /**
@@ -91,7 +86,7 @@ class Configuration
      */
     public function add(string $key, $value): bool
     {
-        $this->config[$key] = $value;
+        $this->container[$key] = $value;
 
         return true;
     }
@@ -103,7 +98,7 @@ class Configuration
      */
     public function addModule(array $module) : void
     {
-        $this->config['modules']['types'][] = $module;
+        $this->container['modules']['types'][] = $module;
     }
 
     /**
@@ -114,10 +109,10 @@ class Configuration
     public function addModules(array $modules) : void
     {
         if (
-            array_key_exists('modules', $this->config) &&
-            array_key_exists('types', $this->config['modules'])
+            array_key_exists('modules', $this->container) &&
+            array_key_exists('types', $this->container['modules'])
         ) {
-            $this->config['modules']['types'] = array_merge($modules, $this->config['modules']['types']);
+            $this->container['modules']['types'] = array_merge($modules, $this->container['modules']['types']);
         }
     }
 
@@ -129,11 +124,15 @@ class Configuration
     public function getModules(): array
     {
         // check if exists
-        if (!$this->isset('modules', 'types')) {
+        if ( !isset($this->container)
+            || !isset($this->container['modules'])
+            || !is_array($this->container['modules'])
+            || !array_key_exists('types', $this->container['modules'])
+        ) {
             return [];
         }
 
-        return $this->config['modules']['types'];
+        return $this->container['modules']['types'];
     }
 
     /**
@@ -144,11 +143,12 @@ class Configuration
      */
     public function isset(...$keys): bool
     {
-        $last_checked = $this->config;
-        ;
-        if (is_null($last_checked)) {
+        if (!isset($this->container)) {
             return false;
         }
+
+        $last_checked = $this->container;
+
         foreach ($keys as $key) {
             if (!array_key_exists($key, $last_checked)) {
                 return false;
@@ -168,7 +168,7 @@ class Configuration
     public function addMethod(string $method_name, string $description = '', $execute = null) : void
     {
         if (is_string($execute)) {
-            $this->config['modules']['methods'][] = [
+            $this->container['modules']['methods'][] = [
                 'name' => $method_name,
                 'description' => $description,
                 'execute' => $execute
@@ -176,7 +176,7 @@ class Configuration
             return;
         }
 
-        $this->config['modules']['methods'][] = [
+        $this->container['modules']['methods'][] = [
             'name' => $method_name,
             'description' => $description,
         ];
@@ -190,11 +190,16 @@ class Configuration
     public function getMethods(): array
     {
         // check if exists
-        if (!$this->isset('modules', 'methods')) {
+        if ( !isset($this->container)
+            || !isset($this->container['modules'])
+            || !is_array($this->container['modules'])
+            || !array_key_exists('methods', $this->container['modules'])
+        ) {
             return [];
         }
 
-        return $this->config['modules']['methods'];
+
+        return $this->container['modules']['methods'];
     }
 
     /**
@@ -204,11 +209,14 @@ class Configuration
      */
     public function getSource(): string
     {
-        if (array_key_exists('markup', $this->config)) {
-            return $this->config['markup'];
+        // check if exists
+        if ( !isset($this->container)
+            || !array_key_exists('markup', $this->container)
+        ) {
+            return '';
         }
 
-        return '';
+        return $this->container['markup'];
     }
 
     /**
@@ -218,6 +226,6 @@ class Configuration
      */
     public function setSource(string $markup) : void
     {
-        $this->config['markup'] = $markup;
+        $this->container['markup'] = $markup;
     }
 }
