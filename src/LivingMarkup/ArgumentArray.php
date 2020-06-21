@@ -108,7 +108,7 @@ class ArgumentArray implements ArrayAccess,
      *
      * @param $array
      */
-    public function merge($array)
+    public function merge($array) : void
     {
         $this->container = array_merge($array, $this->container);
     }
