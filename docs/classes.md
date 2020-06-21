@@ -1,5 +1,4 @@
 # Classes
-![alt text](https://github.com/hxtree/LivingMarkup/raw/master/assets/images/diagrams/Class%20Diagram.png "Class Diagram")
 
 ## Design Pattern
 Pages are created using a Builder design pattern. This design pattern was chosen to separate the construction of the complex page objects from its representation. This allows pages to be built for different purposes, including:
@@ -12,7 +11,7 @@ The Director is called the `Kernel` within the context of the Builder design pat
 ## Overview
 `Processor` class provides a user API interface for setting the `Kernel`, `Configration`, and `Builders` setting.
 
-# `Kernel`
+## `Kernel`
 The `Kernel` is passed a Builder and parameters (containing a HTML/XML document and a list of elements to make dynamic), it then instantiates those elements as objects using their attributes and arguments, orchestrates method calls 
 to those objects, replaces the element with returned value from a method call, and returns provides the parsed `Document`.
 
