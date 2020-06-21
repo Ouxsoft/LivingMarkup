@@ -72,7 +72,7 @@ class Engine
      * @param array $method
      * @return bool-
      */
-    public function callHook(array $method): bool
+    public function callMethod(array $method): bool
     {
         // set and/or update ancestors
         foreach ($this->element_pool as $element) {
@@ -238,18 +238,13 @@ class Engine
     /**
      * Instantiates elements from DOMElement's found during Xpath query against DOM property
      *
-     * @param array $element
+     * @param array $lhtml_element
      * @return bool
      */
     public function instantiateElements(array $lhtml_element): bool
     {
-        // check for xpath
-        if (!array_key_exists('xpath', $lhtml_element)) {
-            return false;
-        }
-
-        // check for class name
-        if (!array_key_exists('class_name', $lhtml_element)) {
+        // check for xpath and class
+        if (!array_key_exists('xpath', $lhtml_element) || !array_key_exists('class_name', $lhtml_element)) {
             return false;
         }
 
@@ -299,12 +294,6 @@ class Engine
 
         // instantiate element
         $element_object = new $class_name($args);
-
-        // if object cannot be instantiated add debug comment
-        if (!is_object($element_object)) {
-            $this->replaceDomElement($element, '<!-- Element "' . $class_name . '" Error -->');
-            return false;
-        }
 
         // set element object placeholder
         $element->setAttribute(self::INDEX_ATTRIBUTE, $element_object->element_id);

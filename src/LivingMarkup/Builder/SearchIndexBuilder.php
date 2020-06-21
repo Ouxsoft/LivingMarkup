@@ -43,7 +43,7 @@ class SearchIndexBuilder implements BuilderInterface
 
         // call element method
         foreach ($config->getMethods() as $method) {
-            $this->engine->callHook($method);
+            $this->engine->callMethod($method);
         }
     }
 

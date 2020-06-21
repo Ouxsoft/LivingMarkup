@@ -17,7 +17,7 @@ A <a href="https://github.com/ouxsoft/LHTML">LHTML processor</a> implementation 
 </p>
 
 ## About
-LivingMarkup is a customizable HTML templating engine. It processes DOM using customizable Elements with orchestrating with method calls to build dynamic markup.
+LivingMarkup is a HTML templating engine that orchestrates customizable Elements to build dynamic markup.
 
 ## Usage
 Here we'll add an abstraction layer to make major Bootstrap upgrades easy.

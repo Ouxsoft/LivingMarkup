@@ -13,6 +13,7 @@ namespace LivingMarkup\Tests;
 use LivingMarkup\Configuration;
 use LivingMarkup\Engine;
 use LivingMarkup\Exception\Exception;
+use LivingMarkup\Processor;
 use PHPUnit\Framework\TestCase;
 
 class EngineTest extends TestCase
@@ -144,12 +145,23 @@ class EngineTest extends TestCase
             ]
         );
         $this->assertCount(1, $engine->element_pool);
+
+        $engine->instantiateElements(
+            [
+                'class_name' => 'LivingMarkup\Test\HelloWorld'
+            ]
+        );
+
+        $bool = $engine->instantiateElements([]);
+
+        $this->assertFalse($bool);
+
     }
 
     /**
-     * @covers \LivingMarkup\Engine::callHook
+     * @covers \LivingMarkup\Engine::callMethod
      */
-    public function testCallHook()
+    public function testCallMethod()
     {
         $config = new Configuration();
         $config->setSource('<html><b>Hello, World!</b></html>');
@@ -160,7 +172,7 @@ class EngineTest extends TestCase
                 'class_name' => 'LivingMarkup\Test\HelloWorld'
             ]
         );
-        $bool = $engine->callHook([
+        $bool = $engine->callMethod([
             'name' => 'onRender',
             'execute' => 'RETURN_CALL'
         ]);
@@ -169,7 +181,7 @@ class EngineTest extends TestCase
         $throw_occurred = false;
         try {
             // test throw
-            $engine->callHook([
+            $engine->callMethod([
                 'name' => 'onRender',
                 'execute' => 'THROW_ERROR'
             ]);
@@ -232,15 +244,30 @@ class EngineTest extends TestCase
     public function testInstantiateElement()
     {
         $config = new Configuration();
-        $config->setSource('<html><div type="page"><arg name="section">help</arg><div>Hello, World!</div></div></html>');
+        $config->setSource('
+<html>
+    <div ' . Engine::INDEX_ATTRIBUTE . '="skip">
+        Skip
+    </div>
+    <div name="HelloWorld" type="page">
+        <arg name="section">help</arg>
+        <div>Hello, World!</div>
+    </div>
+    <em name="test">Foo Bar</em>
+</html>');
         $engine = new Engine($config);
         $engine->instantiateElements(
             [
                 'xpath' => '//div',
-                'class_name' => 'LivingMarkup\Test\HelloWorld'
+                'class_name' => 'LivingMarkup\Test\{name}'
             ]
         );
-        $this->assertCount(2, $engine->element_pool);
+        $engine->instantiateElements([
+            'xpath' => '//em',
+            'class_name' => 'Missing'
+        ]);
+
+        $this->assertCount(1, $engine->element_pool);
     }
 
     /**
@@ -261,6 +288,7 @@ class EngineTest extends TestCase
             $properties = $engine->getElementAncestorProperties($element->element_id);
             $this->assertIsArray($properties);
         }
+
     }
 
     /**
