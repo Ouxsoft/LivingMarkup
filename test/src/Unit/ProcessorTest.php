@@ -80,12 +80,12 @@ class ProcessorTest extends TestCase
 
 
     /**
-     * @covers \LivingMarkup\Processor::addObject
+     * @covers \LivingMarkup\Processor::addElement
      */
-    public function testAddObject()
+    public function testAddElement()
     {
         $proc = new Processor();
-        $proc->addObject('Path', '//*', '\LivingMarkup\Test\HelloWorld');
+        $proc->addElement('Path', '//*', '\LivingMarkup\Test\HelloWorld');
         $config = $proc->getConfig();
         $elements = $config->getElements();
         $this->assertCount(1, $elements);

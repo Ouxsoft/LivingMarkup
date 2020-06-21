@@ -45,7 +45,7 @@ final class ProcessorTest extends TestCase
     {
         $proc = new Processor();
 
-        $proc->addObject('Bitwise', '//bitwise', 'LivingMarkup\Test\Bitwise');
+        $proc->addElement('Bitwise', '//bitwise', 'LivingMarkup\Test\Bitwise');
 
         $proc->addMethod('onRender', 'Execute for render', 'RETURN_CALL');
 

@@ -118,7 +118,7 @@ class Processor
      * @param string $xpath_expression
      * @param string $class_name
      */
-    public function addObject(string $name, string $xpath_expression, string $class_name) : void
+    public function addElement(string $name, string $xpath_expression, string $class_name) : void
     {
         $this->config->addElement([
             'name' => $name,
