@@ -46,12 +46,12 @@ class Alert extends LivingMarkup\Element\AbstractElement
 }
 ```
 
-Then add the LHTML Element to LHTML processor: 
+Then add the LHTML Element to a LHTML processor: 
 ```php
 // instantiate processor
 $proc = new LivingMarkup\Processor();
 
-// add object to processor
+// add LHTML Element to processor
 $proc->addElement('Partial', '//partial', 'Partial\{name}');
 
 // automate method call
