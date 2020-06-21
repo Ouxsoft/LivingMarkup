@@ -9,7 +9,7 @@ A <a href="https://github.com/ouxsoft/LHTML">LHTML processor</a> implementation 
 <a href="https://travis-ci.com/github/ouxsoft/LivingMarkup"><img src="https://api.travis-ci.com/ouxsoft/LivingMarkup.svg?branch=master&status=passed" alt="Build Status"></a>
 <a href="https://github.com/ouxsoft/livingMarkup/actions"><img src="https://github.com/ouxsoft/livingMarkup/workflows/CI/badge.svg" alt="CI Status"></a>
 <a href="https://livingmarkup.readthedocs.io/en/latest/?badge=latest"><img src="https://readthedocs.org/projects/livingmarkup/badge/?version=latest" alt="Documentation Status"></a>
-<a href="https://app.codacy.com/manual/ouxsoft/LivingMarkup?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=ouxsoft/LivingMarkup&amp;utm_campaign=Badge_Grade_Dashboard"><img src="https://api.codacy.com/project/badge/Grade/bfc76aaebde44a7fa239963e54883755" alt="Codacy Badge"></a>
+<a href="https://app.codacy.com/gh/ouxsoft/LivingMarkup?utm_source=github.com&utm_medium=referral&utm_content=ouxsoft/LivingMarkup&utm_campaign=Badge_Grade_Dashboard"><img src="https://api.codacy.com/project/badge/Grade/86210d48e2ca45e497be865ace8a4029" alt="Codacy Badge"></a>
 <a href="https://codecov.io/gh/ouxsoft/LivingMarkup">
   <img src="https://codecov.io/gh/ouxsoft/LivingMarkup/branch/master/graph/badge.svg" />
 </a>
@@ -17,8 +17,6 @@ A <a href="https://github.com/ouxsoft/LHTML">LHTML processor</a> implementation 
 </p>
 
 ## About
-
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/86210d48e2ca45e497be865ace8a4029)](https://app.codacy.com/gh/ouxsoft/LivingMarkup?utm_source=github.com&utm_medium=referral&utm_content=ouxsoft/LivingMarkup&utm_campaign=Badge_Grade_Dashboard)
 
 LivingMarkup is a HTML templating engine that orchestrates customizable Elements to build dynamic markup.
 
