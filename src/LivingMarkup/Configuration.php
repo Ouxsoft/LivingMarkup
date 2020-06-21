@@ -43,8 +43,7 @@ class Configuration
      * Configuration constructor.
      *
      * @param string|null $filepath
-     * @return bool
-     * @throws Exception
+     * @return void
      */
     public function loadFile(string $filepath = null) : void
     {
@@ -64,12 +63,11 @@ class Configuration
 
                 // load yaml file
                 $reader = new Yaml();
-                $loaded_config = $reader->fromFile($this->path);
+                $this->container = $reader->fromFile($this->path);
 
-
-                $this->container = $loaded_config;
-
-                break;
+                if(is_array($this->container)){
+                    break;
+                }
 
             } catch (\Throwable $e){
                 throw new Exception('Unable to load config');
