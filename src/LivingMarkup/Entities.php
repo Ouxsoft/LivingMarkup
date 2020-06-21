@@ -1778,9 +1778,7 @@ ENTITY;
             }
             if (is_array($value->codepoints)) {
                 $entities_list[$key] = '&#' . $value->codepoints[0];
-                continue;
             }
-            $entities_list[$key] = '&#' . $value->codepoints;
         }
 
         return $entities_list;
