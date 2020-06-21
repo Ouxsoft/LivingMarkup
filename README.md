@@ -17,6 +17,9 @@ A <a href="https://github.com/ouxsoft/LHTML">LHTML processor</a> implementation 
 </p>
 
 ## About
+
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/86210d48e2ca45e497be865ace8a4029)](https://app.codacy.com/gh/ouxsoft/LivingMarkup?utm_source=github.com&utm_medium=referral&utm_content=ouxsoft/LivingMarkup&utm_campaign=Badge_Grade_Dashboard)
+
 LivingMarkup is a HTML templating engine that orchestrates customizable Elements to build dynamic markup.
 
 ## Usage
