@@ -10,6 +10,11 @@ All releases must adhere to [SemVer 2](https://semver.org/) naming convention an
 
 ## LivingMarkup [Unreleased]
 
+## LivingMarkup 1.6.9
+* Added: Increased test coverage 100% [#f4299f9](https://github.com/ouxsoft/LivingMarkup/commit/f4299f94767713db802b98ea4475f632af4756d9).
+* Moved: Renamed modules to elements [#ab93040](https://github.com/ouxsoft/LivingMarkup/commit/ab930407cad85415365cf8eb6a6c731eef4acddd)
+* Added: Travis-CI [#ff66691](https://github.com/ouxsoft/LivingMarkup/commit/ff666915f50db6b5a1064ecf2a75d7143f65c704)
+
 ## LivingMarkup 1.5.3
 Features hindering reuse as a LHTML processor library were moved to [Hoopless](https://github.com/ouxsoft/hoopless).
 
