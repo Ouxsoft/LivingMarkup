@@ -33,7 +33,7 @@ class Alert extends LivingMarkup\Element\AbstractElement
         switch($this->getArgByName('type')){
             case 'success':
                 $class = 'alert-success;
-'               break;
+                break;
             case 'warning':
                 $class = 'alert-warning';
                 break;
