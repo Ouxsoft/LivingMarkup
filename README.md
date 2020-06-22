@@ -8,7 +8,7 @@
 ## About
 
  
-A [LHTML processor](https://github.com/ouxsoft/LHTML) implementation in PHP.
+A [LHTML processor](https://github.com/ouxsoft/LHTML) implementation programmed in PHP.
 
 ## Usage
 Here we'll add an abstraction layer to make major Bootstrap upgrades easy.
@@ -23,7 +23,7 @@ class Alert extends LivingMarkup\Element\AbstractElement
     {
         switch($this->getArgByName('type')){
             case 'success':
-                $class = 'alert-success;
+                $class = 'alert-success';
                 break;
             case 'warning':
                 $class = 'alert-warning';
