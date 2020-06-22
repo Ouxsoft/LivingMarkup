@@ -11,7 +11,7 @@
 A [LHTML processor](https://github.com/ouxsoft/LHTML) implementation programmed in PHP.
 
 ## Usage
-Here we'll add an abstraction layer to make major Bootstrap upgrades easy.
+Here we'll add an CSS abstraction layer to make major upgrades of the CSS framework, in this example Bootstrap, easy.
  
 Start by creating an LHTML Element:
 ```php
