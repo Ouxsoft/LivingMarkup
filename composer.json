@@ -33,7 +33,7 @@
     "ext-json": "*",
     "ext-libxml": "*",
     "ext-yaml" :  "*",
-    "laminas/laminas-config": "^3.3.0",
+    "laminas/laminas-config": "^3.3.0",apt
     "laminas/laminas-validator": "^2.13.2",
     "laminas/laminas-router": "^3.3@dev",
     "laminas/laminas-http": "^2.11@dev"
@@ -56,7 +56,7 @@
   "homepage": "https://github.com/ouxsoft/LivingMarkup",
   "require-dev": {
     "ext-xdebug" : "*",
-    "phpunit/phpunit": "^8",
+    "phpunit/phpunit": "^7",
     "friendsofphp/php-cs-fixer": "^2.17@dev",
     "php-coveralls/php-coveralls": "2.2.x-dev"
   },
