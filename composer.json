@@ -28,7 +28,7 @@
     }
   ],
   "require": {
-    "php": ">=7.0",
+    "php": ">=7.2",
     "ext-dom": "*",
     "ext-json": "*",
     "ext-libxml": "*",
@@ -56,7 +56,7 @@
   "homepage": "https://github.com/ouxsoft/LivingMarkup",
   "require-dev": {
     "ext-xdebug" : "*",
-    "phpunit/phpunit": "^7",
+    "phpunit/phpunit": "^8",
     "friendsofphp/php-cs-fixer": "^2.17@dev",
     "php-coveralls/php-coveralls": "2.2.x-dev"
   },
