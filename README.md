@@ -90,4 +90,4 @@ information on how to contribute.
 
 ## Acknowledgement
 
-Thanks to Andy Beak for providing code review. Thanks to Bob Crowley for providing Project Management advising. Thanks to Aswin Vijayakumar for their useful comments that have led to changes to this implementation.
+Thanks to Andy Beak for providing code review. Thanks to Bob Crowley for providing Project Management advising. Thanks to Aswin Vijayakumar for their useful comments. All of have led to changes to this implementation.
