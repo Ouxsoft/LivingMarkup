@@ -60,7 +60,7 @@ class AbstractElementTest extends TestCase
     {
         $element = new HelloWorld();
         $element->xml = 'pass';
-        $this->assertStringContainsString($element->innerText(),'pass');
+        $this->assertStringContainsString($element->innerText(), 'pass');
     }
 
     /**
@@ -80,7 +80,6 @@ class AbstractElementTest extends TestCase
         $element = new HelloWorld();
         $element->args['test'] = 'pass';
         $this->assertArrayHasKey('test', $element->getArgs());
-
     }
 
     /**
@@ -90,6 +89,5 @@ class AbstractElementTest extends TestCase
     {
         $element = new HelloWorld();
         $this->assertIsString($element->getId());
-
     }
 }

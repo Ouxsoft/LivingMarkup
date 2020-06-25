@@ -53,7 +53,6 @@ class DocumentTest extends TestCase
         $this->assertStringContainsString($output, '<!DOCTYPE html>
 <html><p>Test</p></html>
 ');
-
     }
 
     /**
@@ -61,7 +60,6 @@ class DocumentTest extends TestCase
      */
     public function test__construct()
     {
-
         $doc = new Document();
         $this->assertIsObject($doc);
     }

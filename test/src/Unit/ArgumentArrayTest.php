@@ -106,6 +106,5 @@ class ArgumentArrayTest extends TestCase
         $args = new ArgumentArray();
         $args->merge(['test' => 'pass']);
         $this->assertArrayHasKey('test', $args->get());
-
     }
 }

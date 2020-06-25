@@ -44,6 +44,5 @@ class SearchIndexBuilderTest extends TestCase
         $builder->createObject($config);
         $engine = $builder->getObject();
         $this->assertTrue(($engine instanceof Engine));
-
     }
 }

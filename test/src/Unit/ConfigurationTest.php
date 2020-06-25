@@ -107,7 +107,7 @@ class ConfigurationTest extends TestCase
 
         // test if not exists
         unset($config->container);
-        $this->assertCount(0,$config->getMethods());
+        $this->assertCount(0, $config->getMethods());
     }
 
     /**
@@ -123,7 +123,7 @@ class ConfigurationTest extends TestCase
 
         // test if not exists
         unset($config->container);
-        $this->assertTrue(($config->getSource() == '') );
+        $this->assertTrue(($config->getSource() == ''));
     }
 
     /**

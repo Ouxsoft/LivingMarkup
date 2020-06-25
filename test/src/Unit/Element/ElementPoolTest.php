@@ -80,6 +80,6 @@ class ElementPoolTest extends TestCase
         $pool = new ElementPool;
         $lhtml_element = new HelloWorld();
         $pool->add($lhtml_element);
-        $this->assertCount(1,$pool);
+        $this->assertCount(1, $pool);
     }
 }

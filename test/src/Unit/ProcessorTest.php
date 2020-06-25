@@ -137,7 +137,8 @@ class ProcessorTest extends TestCase
     /**
      * @covers \LivingMarkup\Processor::parseBuffer
      */
-    public function testParseBufferWithProcessorOff(){
+    public function testParseBufferWithProcessorOff()
+    {
 
         // try with processor turned off
         $proc = new Processor();
@@ -154,7 +155,8 @@ class ProcessorTest extends TestCase
     /**
      * @covers \LivingMarkup\Processor::setStatus
      */
-    public function testSetStatus(){
+    public function testSetStatus()
+    {
         $proc = new Processor();
         $proc->setStatus(false);
         $status = $proc->getStatus();
@@ -165,7 +167,8 @@ class ProcessorTest extends TestCase
     /**
      * @covers \LivingMarkup\Processor::getStatus
      */
-    public function testGetStatus(){
+    public function testGetStatus()
+    {
         $proc = new Processor();
         $proc->setStatus(false);
         $status = $proc->getStatus();

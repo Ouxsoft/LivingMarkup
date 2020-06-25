@@ -98,8 +98,6 @@ class EngineTest extends TestCase
         $args = $engine->getElementArgs($dom_element);
         $bool = ($args['toggle'] == 'no') ? true : false;
         $this->assertTrue($bool);
-
-
     }
 
     /**
@@ -155,7 +153,6 @@ class EngineTest extends TestCase
         $bool = $engine->instantiateElements([]);
 
         $this->assertFalse($bool);
-
     }
 
     /**
@@ -221,10 +218,8 @@ class EngineTest extends TestCase
                 'class_name' => 'LivingMarkup\Test\HelloWorld'
             ]
         );
-        foreach($engine->element_pool as $element){
-
+        foreach ($engine->element_pool as $element) {
             $engine->renderElement($element->element_id);
-
         }
 
         $this->assertStringContainsString($engine, '<!DOCTYPE html>
@@ -234,7 +229,6 @@ class EngineTest extends TestCase
         // try tendering invalid element
         $bool = $engine->renderElement('2');
         $this->assertFalse($bool);
-
     }
 
     /**
@@ -288,7 +282,6 @@ class EngineTest extends TestCase
             $properties = $engine->getElementAncestorProperties($element->element_id);
             $this->assertIsArray($properties);
         }
-
     }
 
     /**

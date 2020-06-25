@@ -14,21 +14,6 @@ namespace LivingMarkup\Element;
 
 use LivingMarkup\ArgumentArray;
 
-/**
- * Interface ElementDefaultInterface
- *
- * @package LivingMarkup\Element
- */
-interface ElementDefaultInterface
-{
-    public function __construct(ArgumentArray $args);
-
-    public function onRender();
-
-    public function __toString();
-
-    public function __invoke(string $method): bool;
-}
 
 /**
  * Class Element
@@ -38,7 +23,7 @@ interface ElementDefaultInterface
  *
  * @package LivingMarkup\Element
  */
-abstract class AbstractElement implements ElementDefaultInterface
+abstract class AbstractElement
 {
 
     // id used to reference object
@@ -72,12 +57,11 @@ abstract class AbstractElement implements ElementDefaultInterface
         $this->element_id = spl_object_hash($this);
 
         // store args passed
-        if($args === null) {
+        if ($args === null) {
             $args = new ArgumentArray();
         }
 
         $this->args = $args;
-
     }
 
     /**

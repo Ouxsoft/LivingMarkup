@@ -51,7 +51,6 @@ class Configuration
         $fail_overs = [$filepath, self::LOCAL_FILENAME, self::DIST_FILENAME];
 
         foreach ($fail_overs as $filepath) {
-
             try {
                 $this->path = $filepath;
                 $this->directory = dirname($filepath);
@@ -65,11 +64,10 @@ class Configuration
                 $reader = new Yaml();
                 $this->container = $reader->fromFile($this->path);
 
-                if(is_array($this->container)){
+                if (is_array($this->container)) {
                     break;
                 }
-
-            } catch (\Throwable $e){
+            } catch (\Throwable $e) {
                 throw new Exception('Unable to load config');
             }
         }
@@ -122,7 +120,7 @@ class Configuration
     public function getElements(): array
     {
         // check if exists
-        if ( !isset($this->container)
+        if (!isset($this->container)
             || !isset($this->container['elements'])
             || !is_array($this->container['elements'])
             || !array_key_exists('types', $this->container['elements'])
@@ -188,7 +186,7 @@ class Configuration
     public function getMethods(): array
     {
         // check if exists
-        if ( !isset($this->container)
+        if (!isset($this->container)
             || !isset($this->container['elements'])
             || !is_array($this->container['elements'])
             || !array_key_exists('methods', $this->container['elements'])
@@ -208,7 +206,7 @@ class Configuration
     public function getSource(): string
     {
         // check if exists
-        if ( !isset($this->container)
+        if (!isset($this->container)
             || !array_key_exists('markup', $this->container)
         ) {
             return '';
