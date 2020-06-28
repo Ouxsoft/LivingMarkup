@@ -54,7 +54,6 @@ echo $proc->parseString('<html>
 </html>');
 ```
 
-
 ## Installation
 
 ### Via Composer
@@ -65,11 +64,13 @@ Install with [Composer](https://getcomposer.org/download/):
 composer require ouxsoft/livingmarkup
 ```
 
+### Via Git
 Install with [Git](https://git-scm.com/):
 ```shell script
 git clone git@github.com:ouxsoft/LivingMarkup.git
 ```
 
+### LHTML Elements
 LivingMarkup comes packaged with only LHTML test Elements. For core Elements, see:
  * [Hoopless](https://github.com/ouxsoft/hoopless)
 
