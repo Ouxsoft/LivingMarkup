@@ -11,7 +11,7 @@
 A [LHTML processor](https://github.com/ouxsoft/LHTML) implementation programmed in PHP.
 
 ## Usage
-Start by creating an LHTML Element:
+Start by creating an LHTML Element.
 ```php
 namespace Partial;
 
@@ -35,7 +35,7 @@ class Alert extends LivingMarkup\Element\AbstractElement
 }
 ```
 
-Add that LHTML Element to a LHTML processor: 
+Add that LHTML Element to a LHTML processor.
 ```php
 // instantiate processor
 $proc = new LivingMarkup\Processor();
