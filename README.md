@@ -35,7 +35,7 @@ class Alert extends LivingMarkup\Element\AbstractElement
 }
 ```
 
-Then add the LHTML Element to a LHTML processor: 
+Add that LHTML Element to a LHTML processor: 
 ```php
 // instantiate processor
 $proc = new LivingMarkup\Processor();
@@ -52,7 +52,7 @@ echo $proc->parseString('<html>
 </html>');
 ```
 
-The result is a HTML5 page with a CSS abstraction layer. This layer will make major changes of the CSS framework, in this example Bootstrap, easy.
+Outputs a HTML5 page with a CSS abstraction layer. 
 
 ```html5
 <!doctype html>
@@ -62,6 +62,7 @@ The result is a HTML5 page with a CSS abstraction layer. This layer will make ma
     </div>
 </html>
 ```
+This layer will make major changes of the CSS framework, in this example Bootstrap, easy.
 
 ## Installation
 
