@@ -11,8 +11,6 @@
 A [LHTML processor](https://github.com/ouxsoft/LHTML) implementation programmed in PHP.
 
 ## Usage
-Here we'll add an CSS abstraction layer to make major upgrades of the CSS framework, in this example Bootstrap, easy.
- 
 Start by creating an LHTML Element:
 ```php
 namespace Partial;
@@ -54,6 +52,16 @@ echo $proc->parseString('<html>
 </html>');
 ```
 
+The result is a HTML5 page with a CSS abstraction layer. This layer will make major changes of the CSS framework, in this example Bootstrap, easy.
+
+```html5
+<!doctype html>
+<html>
+    <div class="alert success" role="alert">
+        This is a success alert
+    </div>
+</html>
+```
 
 ## Installation
 
