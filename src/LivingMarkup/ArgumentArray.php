@@ -13,6 +13,8 @@ declare(strict_types=1);
 namespace LivingMarkup;
 
 use ArrayAccess;
+use Iterator;
+use Countable;
 
 /**
  * Class ArgumentArray
@@ -21,9 +23,12 @@ use ArrayAccess;
  */
 class ArgumentArray implements
     ArrayAccess,
-    \Countable
+    Iterator,
+    Countable
 {
     private $container = [];
+
+    private $index = 0;
 
     /**
      * Returns count of containers
@@ -112,5 +117,53 @@ class ArgumentArray implements
     public function merge($array) : void
     {
         $this->container = array_merge($array, $this->container);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function current()
+    {
+        $k = array_keys($this->list);
+        return $this->container[$k[$this->index]];
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function next()
+    {
+        $k = array_keys($this->container);
+        if (isset($k[++$this->index])) {
+            return $this->container[$k[$this->index]];
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function key()
+    {
+        $k = array_keys($this->container);
+        return $k[$this->index];
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function valid()
+    {
+        $k = array_keys($this->container);
+        return isset($k[$this->index]);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function rewind()
+    {
+        $this->index = 0;
     }
 }

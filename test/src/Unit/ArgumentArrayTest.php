@@ -54,8 +54,6 @@ class ArgumentArrayTest extends TestCase
         $this->assertCount(1, $args);
     }
 
-
-
     /**
      * @covers \LivingMarkup\ArgumentArray::offsetExists
      */
@@ -107,4 +105,58 @@ class ArgumentArrayTest extends TestCase
         $args->merge(['test' => 'pass']);
         $this->assertArrayHasKey('test', $args->get());
     }
+
+    /**
+     * @covers \LivingMarkup\ArgumentArray::current
+     */
+    public function current()
+    {
+        $args = new ArgumentArray();
+        $this->assertEquals(0, $args->current());
+    }
+
+    /**
+     * @covers \LivingMarkup\ArgumentArray::next
+     */
+    public function next()
+    {
+        $args = new ArgumentArray();
+        $args[] = 'test 1';
+        $args[] = 'test 2';
+        $args->next();
+        $this->assertEquals(1, $args->current());
+    }
+
+    /**
+     * @covers \LivingMarkup\ArgumentArray::key
+     */
+    public function key()
+    {
+        $args = new ArgumentArray();
+        $args[] = 'test';
+        $this->assertEquals(0, $args->key());
+    }
+
+    /**
+     * @covers \LivingMarkup\ArgumentArray::valid
+     */
+    public function valid()
+    {
+        $args = new ArgumentArray();
+        $args[] = 'test';
+        $this->assertEquals(true, $this->valid());
+    }
+
+    /**
+     * @covers \LivingMarkup\ArgumentArray::rewind
+     */
+    public function rewind(){
+        $args = new ArgumentArray();
+        $args[] = 'test 1';
+        $args[] = 'test 2';
+        $args->next();
+        $args->rewind();
+        $this->assertEquals(0, $args->current());
+    }
+
 }
