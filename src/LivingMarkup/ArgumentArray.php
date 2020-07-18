@@ -124,7 +124,7 @@ class ArgumentArray implements
      */
     public function current()
     {
-        $k = array_keys($this->list);
+        $k = array_keys($this->container);
         return $this->container[$k[$this->index]];
     }
 

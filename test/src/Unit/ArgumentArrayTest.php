@@ -109,38 +109,41 @@ class ArgumentArrayTest extends TestCase
     /**
      * @covers \LivingMarkup\ArgumentArray::current
      */
-    public function current()
+    public function testCurrent()
     {
         $args = new ArgumentArray();
-        $this->assertEquals(0, $args->current());
+        $args[] = 'test 1';
+        $this->assertEquals('test 1', $args->current());
     }
 
     /**
      * @covers \LivingMarkup\ArgumentArray::next
      */
-    public function next()
+    public function testNext()
     {
         $args = new ArgumentArray();
-        $args[] = 'test 1';
-        $args[] = 'test 2';
-        $args->next();
-        $this->assertEquals(1, $args->current());
+        $args['a'] = 'a';
+        $args['b'] = 'b';
+        $args['c'] = 'c';
+        foreach ($args as $key => $arg) {
+            $this->assertEquals($key, $arg);
+        }
     }
 
     /**
      * @covers \LivingMarkup\ArgumentArray::key
      */
-    public function key()
+    public function testKey()
     {
         $args = new ArgumentArray();
-        $args[] = 'test';
-        $this->assertEquals(0, $args->key());
+        $args['a'] = 'test';
+        $this->assertEquals('a', $args->key());
     }
 
     /**
      * @covers \LivingMarkup\ArgumentArray::valid
      */
-    public function valid()
+    public function testValid()
     {
         $args = new ArgumentArray();
         $args[] = 'test';
@@ -150,13 +153,12 @@ class ArgumentArrayTest extends TestCase
     /**
      * @covers \LivingMarkup\ArgumentArray::rewind
      */
-    public function rewind(){
+    public function testRewind(){
         $args = new ArgumentArray();
         $args[] = 'test 1';
         $args[] = 'test 2';
         $args->next();
-        $args->rewind();
-        $this->assertEquals(0, $args->current());
+        $this->assertEquals(0, $args->rewind());
     }
 
 }
