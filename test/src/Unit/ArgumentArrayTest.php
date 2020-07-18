@@ -144,7 +144,7 @@ class ArgumentArrayTest extends TestCase
     {
         $args = new ArgumentArray();
         $args[] = 'test';
-        $this->assertEquals(true, $this->valid());
+        $this->assertEquals(true, $args->valid());
     }
 
     /**

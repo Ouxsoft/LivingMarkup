@@ -120,7 +120,7 @@ class ArgumentArray implements
     }
 
     /**
-     * @inheritDoc
+     * @return mixed
      */
     public function current()
     {
@@ -129,7 +129,7 @@ class ArgumentArray implements
     }
 
     /**
-     * @inheritDoc
+     * @return bool|mixed|void
      */
     public function next()
     {
@@ -142,7 +142,7 @@ class ArgumentArray implements
     }
 
     /**
-     * @inheritDoc
+     * @return bool|float|int|mixed|string|null
      */
     public function key()
     {
@@ -151,7 +151,7 @@ class ArgumentArray implements
     }
 
     /**
-     * @inheritDoc
+     * @return bool
      */
     public function valid()
     {
@@ -160,7 +160,7 @@ class ArgumentArray implements
     }
 
     /**
-     * @inheritDoc
+     *
      */
     public function rewind()
     {
