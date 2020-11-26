@@ -52,7 +52,7 @@ echo $proc->parseString('<html>
 </html>');
 ```
 
-Outputs a HTML5 page with a CSS abstraction layer. 
+Outputs a HTML5 page with a markup abstraction layer. 
 
 ```html5
 <!doctype html>
