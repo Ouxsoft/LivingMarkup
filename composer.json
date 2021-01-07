@@ -57,7 +57,7 @@
     "ext-xdebug" : "*",
     "phpunit/phpunit": "^8",
     "friendsofphp/php-cs-fixer": "^2.17@dev",
-    "php-coveralls/php-coveralls": "2.2.x-dev"
+    "php-coveralls/php-coveralls": "dev-master"
   },
   "scripts": {
     "build": [
