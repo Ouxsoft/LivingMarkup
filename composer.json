@@ -55,9 +55,9 @@
   "homepage": "https://github.com/ouxsoft/LivingMarkup",
   "require-dev": {
     "ext-xdebug" : "*",
-    "phpunit/phpunit": "^8",
     "friendsofphp/php-cs-fixer": "^2.17@dev",
-    "php-coveralls/php-coveralls": "dev-master"
+    "php-coveralls/php-coveralls": "dev-master",
+    "phpunit/phpunit": "^9"
   },
   "scripts": {
     "build": [
