@@ -173,7 +173,7 @@ class ConfigurationTest extends TestCase
      */
     public function testLoadFile()
     {
-        $config_dir = dirname(__DIR__, 1) . '/inputs/phpunit.yml';
+        $config_dir = dirname(__DIR__, 1) . '/inputs/phpunit.json';
         $config = new Configuration($config_dir);
         $this->assertArrayHasKey('elements', $config->container);
 

@@ -17,6 +17,16 @@ class DocumentTest extends TestCase
 {
 
     /**
+     * Removes whitespace to allow testing from multiple OS
+     * @param string $string
+     * @return string
+     */
+    public function removeWhitespace(string $string) : string
+    {
+        return preg_replace('~\R~u', '', $string);
+    }
+
+    /**
      * @covers \LivingMarkup\Document::loadSource
      */
     public function testLoadSource()
@@ -25,34 +35,30 @@ class DocumentTest extends TestCase
         $doc = new Document();
         $doc->loadSource('<html>Test</html>');
         $output = $doc->saveHTML();
-        $this->assertStringContainsString($output, '<!DOCTYPE html>
-<html>Test</html>
-');
+        $output = $this->removeWhitespace($output);
+        $this->assertStringContainsString($output, '<!DOCTYPE html><html>Test</html>');
 
         // load with doctype
         $doc = new Document();
         $doc->loadSource('<!DOCTYPE html>
 <html>Test</html>');
         $output = $doc->saveHTML();
-        $this->assertStringContainsString($output, '<!DOCTYPE html>
-<html><body><p>Test</p></body></html>
-');
+        $output = $this->removeWhitespace($output);
+        $this->assertStringContainsString($output, '<!DOCTYPE html><html><body><p>Test</p></body></html>');
 
         // add html root
         $doc = new Document();
         $doc->loadSource('Test');
         $output = $doc->saveHTML();
-        $this->assertStringContainsString($output, '<!DOCTYPE html>
-<html><body><p>Test</p></body></html>
-');
+        $output = $this->removeWhitespace($output);
+        $this->assertStringContainsString($output, '<!DOCTYPE html><html><body><p>Test</p></body></html>');
 
         // test add html root element
         $doc = new Document();
         $doc->loadSource('<p>Test</p>');
         $output = $doc->saveHTML();
-        $this->assertStringContainsString($output, '<!DOCTYPE html>
-<html><p>Test</p></html>
-');
+        $output = $this->removeWhitespace($output);
+        $this->assertStringContainsString($output, '<!DOCTYPE html><html><p>Test</p></html>');
     }
 
     /**

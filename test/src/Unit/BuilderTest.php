@@ -28,7 +28,7 @@ final class BuilderTest extends TestCase
 
     public function testDynamicPageBuilder()
     {
-        $config_dir = dirname(__DIR__, 1) . '/inputs/phpunit.yml';
+        $config_dir = dirname(__DIR__, 1) . '/inputs/phpunit.json';
 
         $config = new Configuration($config_dir);
         $config->add('markup', $this->markup);
@@ -40,7 +40,7 @@ final class BuilderTest extends TestCase
     }
     public function testSearchIndexBuilder()
     {
-        $config_dir = dirname(__DIR__, 1) . '/inputs/phpunit.yml';
+        $config_dir = dirname(__DIR__, 1) . '/inputs/phpunit.json';
 
         $config = new Configuration($config_dir);
         $config->add('markup', $this->markup);
@@ -52,7 +52,7 @@ final class BuilderTest extends TestCase
     }
     public function testStaticPageBuilder()
     {
-        $config_dir = dirname(__DIR__, 1) . '/inputs/phpunit.yml';
+        $config_dir = dirname(__DIR__, 1) . '/inputs/phpunit.json';
 
         $config = new Configuration($config_dir);
         $config->add('markup', $this->markup);

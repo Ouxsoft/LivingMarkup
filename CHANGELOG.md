@@ -10,30 +10,37 @@ All releases must adhere to [SemVer 2](https://semver.org/) naming convention an
 
 ## LivingMarkup [Unreleased]
 
+## LivingMarkup 2.0.0
+Released: 2021-07-01. Notable changes:
+* Added: Integration with dedicated docker development [LivingMarkup-Dev](https://github.com/ouxsoft/livingmarkup-dev). 
+* Added: Json config support.
+* Removed: Yaml config support (as requirement often caused build test and environments to fail).
+
 ## LivingMarkup 1.6.0
+Released: 2020-06-21. Notable changes:
 * Added: Increased test coverage 100% [#f4299f9](https://github.com/ouxsoft/LivingMarkup/commit/f4299f94767713db802b98ea4475f632af4756d9).
 * Moved: Renamed modules to elements [#ab93040](https://github.com/ouxsoft/LivingMarkup/commit/ab930407cad85415365cf8eb6a6c731eef4acddd)
 * Added: Travis-CI [#ff66691](https://github.com/ouxsoft/LivingMarkup/commit/ff666915f50db6b5a1064ecf2a75d7143f65c704)
 
 ## LivingMarkup 1.5.3
-Features hindering reuse as a LHTML processor library were moved to [Hoopless](https://github.com/ouxsoft/hoopless).
-
+Released: 2020-06-06. Notable changes:
+*  Moved: Features hindering reuse as a LHTML processor as a library to [Hoopless](https://github.com/ouxsoft/hoopless).
 *  Added: Processor API [#1660e1e](https://github.com/ouxsoft/LivingMarkup/commit/1660e1ee3500fcd2664d15ba2098ffa3e83e3206)
 *  Removed: Web server (/docker, /bin, /public, /var, etc.). [#b672884](https://github.com/ouxsoft/LivingMarkup/commit/b67288498b72c94e574ae47e0f095e5ead29ded9)
 *  Removed: Dynamic image generation. [#b672884](https://github.com/ouxsoft/LivingMarkup/commit/b67288498b72c94e574ae47e0f095e5ead29ded9)
-
-## LivingMarkup 1.5.3
 *  Fixed: Docker environment [#401112e](https://github.com/ouxsoft/LivingMarkup/commit/401112e169c2a585df77e04e633258fdef1ae272)
 *  Added: Individual width and height parametrized image requests [#dd86ea7](https://github.com/ouxsoft/LivingMarkup/commit/dd86ea7439be126c0c96ddc3facb935dbd6ad577)
 *  Fixed: Image resize algorithm [#dd86ea7](https://github.com/ouxsoft/LivingMarkup/commit/dd86ea7439be126c0c96ddc3facb935dbd6ad577)
 
 ## LivingMarkup 1.5.2
+Released: 2020-04-19. Notable changes:
 *  Added: process=false flag to skip elements [#738565b](https://github.com/hxtree/LivingMarkup/commit/738565b28c8acfcf25b44115b8f9fb003759b01f)
 *  Added: Code block module for styling code [#738565b](https://github.com/hxtree/LivingMarkup/commit/738565b28c8acfcf25b44115b8f9fb003759b01f)
 *  Fixed: DOMElement Arg removal [85ef96c](https://github.com/ouxsoft/LivingMarkup/commit/85ef96c4aea4c172c04f9e7b5db9ab6c56cdba08)
 *  Added: Code styles [#4026dab](https://github.com/ouxsoft/LivingMarkup/commit/84026dab3ee8c3cdfd9d34cf3dcbfa5fc0f94b7de)
 
 ## LivingMarkup 1.5.1
+Released: 2020-05-15. Notable changes:
 *  Added: PNG image resize [#2b7b323](https://github.com/hxtree/LivingMarkup/commit/2b7b323bd882ff0ad5ae9a937d0f8a1449b862a1)
 *  Fixed: JPG image resize [#2b7b323](https://github.com/hxtree/LivingMarkup/commit/2b7b323bd882ff0ad5ae9a937d0f8a1449b862a1)
 *  Added: Image offset / focal point [#56397ca](https://github.com/hxtree/LivingMarkup/commit/56397ca7546b24291f63487ecb930e01398e66c3)

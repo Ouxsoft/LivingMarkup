@@ -22,7 +22,7 @@ class SearchIndexBuilderTest extends TestCase
      */
     public function testGetObject()
     {
-        $filepath = dirname(__DIR__, 2) . '/Resource/config/phpunit.yml';
+        $filepath = dirname(__DIR__, 2) . '/Resource/config/phpunit.json';
         $config = new Configuration();
         $config->loadFile($filepath);
         $builder = new SearchIndexBuilder();
@@ -36,7 +36,7 @@ class SearchIndexBuilderTest extends TestCase
      */
     public function testCreateObject()
     {
-        $filepath = dirname(__DIR__, 2) . '/Resource/config/phpunit.yml';
+        $filepath = dirname(__DIR__, 2) . '/Resource/config/phpunit.json';
         $config = new Configuration();
         $config->loadFile($filepath);
 

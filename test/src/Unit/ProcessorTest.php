@@ -46,13 +46,13 @@ class ProcessorTest extends TestCase
     public function testParseFile()
     {
         $proc = new Processor();
-        $proc->loadConfig(dirname(__DIR__, 1) . '/Resource/config/phpunit.yml');
+        $proc->loadConfig(dirname(__DIR__, 1) . '/Resource/config/phpunit.json');
         $test_results = $proc->parseFile(dirname(__DIR__, 1) . '/Resource/inputs/index.html');
         $this->assertStringMatchesFormatFile(dirname(__DIR__, 1) . '/Resource/outputs/index.html', $test_results);
 
         // test non html
         $proc = new Processor();
-        $proc->loadConfig(dirname(__DIR__, 1) . '/Resource/config/phpunit.yml');
+        $proc->loadConfig(dirname(__DIR__, 1) . '/Resource/config/phpunit.json');
         $test_results = $proc->parseFile(dirname(__DIR__, 1) . '/Resource/inputs/text.txt');
         $this->assertStringMatchesFormatFile(dirname(__DIR__, 1) . '/Resource/outputs/text.txt', $test_results);
     }
@@ -63,7 +63,7 @@ class ProcessorTest extends TestCase
     public function testLoadConfig()
     {
         $proc = new Processor();
-        $proc->loadConfig(dirname(__DIR__, 1) . '/Resource/config/phpunit.yml');
+        $proc->loadConfig(dirname(__DIR__, 1) . '/Resource/config/phpunit.json');
         $config = $proc->getConfig();
         $this->assertIsArray($config->container['elements']);
     }
@@ -97,7 +97,7 @@ class ProcessorTest extends TestCase
     public function testParseString()
     {
         $proc = new Processor();
-        $proc->loadConfig(dirname(__DIR__, 1) . '/Resource/config/phpunit.yml');
+        $proc->loadConfig(dirname(__DIR__, 1) . '/Resource/config/phpunit.json');
         $test_results = $proc->parseString('<html><bitwise>
     <arg name="number">2</arg>
     <arg name="count">6</arg>
@@ -115,7 +115,7 @@ class ProcessorTest extends TestCase
      */
     public function test__construct()
     {
-        $proc = new Processor(dirname(__DIR__, 1) . '/Resource/config/phpunit.yml');
+        $proc = new Processor(dirname(__DIR__, 1) . '/Resource/config/phpunit.json');
         $this->assertIsObject($proc);
     }
 

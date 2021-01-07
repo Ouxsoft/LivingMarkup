@@ -15,7 +15,7 @@ namespace LivingMarkup;
 
 use Laminas\Exception\RuntimeException;
 use LivingMarkup\Exception\Exception;
-use Laminas\Config\Reader\Yaml;
+use Laminas\Config\Reader\Json;
 use Laminas\Validator\File\Exists;
 
 /**
@@ -25,8 +25,8 @@ use Laminas\Validator\File\Exists;
  */
 class Configuration
 {
-    const LOCAL_FILENAME = 'config.yml';
-    const DIST_FILENAME = 'config.dist.yml';
+    const LOCAL_FILENAME = 'config.json';
+    const DIST_FILENAME = 'config.dist.json';
 
     public $container = [
         'version' => 1,
@@ -60,8 +60,8 @@ class Configuration
                 $validator = new Exists($this->directory);
                 $validator->isValid($this->filename);
 
-                // load yaml file
-                $reader = new Yaml();
+                // load json file
+                $reader = new Json();
                 $this->container = $reader->fromFile($this->path);
 
                 if (is_array($this->container)) {

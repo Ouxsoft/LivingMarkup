@@ -19,7 +19,7 @@ final class ProcessorTest extends TestCase
     {
         $proc = new Processor();
 
-        $proc->loadConfig(dirname(__DIR__, 1) . '/Resource/config/phpunit.yml');
+        $proc->loadConfig(dirname(__DIR__, 1) . '/Resource/config/phpunit.json');
 
         $test_results =  $proc->parseString('<html><bitwise>
     <arg name="number">2</arg>
@@ -34,7 +34,7 @@ final class ProcessorTest extends TestCase
     {
         $proc = new Processor();
 
-        $proc->loadConfig(dirname(__DIR__, 1) . '/Resource/config/phpunit.yml');
+        $proc->loadConfig(dirname(__DIR__, 1) . '/Resource/config/phpunit.json');
 
         $test_results = $proc->parseFile(dirname(__DIR__, 1) . '/Resource/inputs/index.html');
 

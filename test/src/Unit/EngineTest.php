@@ -19,6 +19,16 @@ use PHPUnit\Framework\TestCase;
 class EngineTest extends TestCase
 {
     /**
+     * Removes whitespace to allow testing from multiple OS
+     * @param string $string
+     * @return string
+     */
+    public function removeWhitespace(string $string) : string
+    {
+        return preg_replace('~\R~u', '', $string);
+    }
+
+    /**
      * @covers \LivingMarkup\Engine::setType
      */
     public function testSetType()
@@ -69,7 +79,7 @@ class EngineTest extends TestCase
         $config->setSource('<html><b '.Engine::INDEX_ATTRIBUTE.'="test">Hello, World!</b></html>');
         $engine = new Engine($config);
         $results = $engine->getDomElementByPlaceholderId('test');
-        $bool = ($results->getAttribute(Engine::INDEX_ATTRIBUTE) == 'test') ? true : false;
+        $bool = $results->getAttribute(Engine::INDEX_ATTRIBUTE) == 'test';
         $this->assertTrue($bool);
     }
 
@@ -82,7 +92,7 @@ class EngineTest extends TestCase
         $config->setSource('<html><b '.Engine::INDEX_ATTRIBUTE.'="test">Hello, World!</b></html>');
         $engine = new Engine($config);
         $results = $engine->getElementInnerXML('test');
-        $bool = ($results == 'Hello, World!') ? true : false;
+        $bool = $results == 'Hello, World!';
         $this->assertTrue($bool);
     }
 
@@ -96,7 +106,7 @@ class EngineTest extends TestCase
         $engine = new Engine($config);
         $dom_element = $engine->getDomElementByPlaceholderId('test');
         $args = $engine->getElementArgs($dom_element);
-        $bool = ($args['toggle'] == 'no') ? true : false;
+        $bool = $args['toggle'] == 'no';
         $this->assertTrue($bool);
     }
 
@@ -105,14 +115,12 @@ class EngineTest extends TestCase
      */
     public function test__toString()
     {
-        $test_results = '<!DOCTYPE html>
-<html><b><arg name="toggle">no</arg></b></html>
-';
         $config = new Configuration();
         $config->setSource('<html><b><arg name="toggle">no</arg></b></html>');
         $engine = (string) new Engine($config);
-        $bool = ($engine == $test_results ? true : false);
-        $this->assertTrue($bool);
+        $engine = $this->removeWhitespace($engine);
+        $test_results = '<!DOCTYPE html><html><b><arg name="toggle">no</arg></b></html>';
+        $this->assertEquals($engine, $test_results);
     }
 
     /**
@@ -124,8 +132,7 @@ class EngineTest extends TestCase
         $config->setSource('<html><b>Hello, World!</b></html>');
         $engine = new Engine($config);
         $results = $engine->queryFetch('//*');
-        $bool = ($results->nodeValue == 'Hello, World!') ? true : false;
-        $this->assertTrue($bool);
+        $this->assertEquals($results->nodeValue, 'Hello, World!');
     }
 
     /**
@@ -199,9 +206,11 @@ class EngineTest extends TestCase
         $engine = new Engine($config);
         $dom_element = $engine->getDomElementByPlaceholderId('test');
         $engine->replaceDomElement($dom_element, '<b>Foo Bar</b>');
-        $this->assertStringContainsString($engine, '<!DOCTYPE html>
-<html><b>Foo Bar</b></html>
-');
+        $engine_output = $this->removeWhitespace($engine);
+        $this->assertStringContainsString(
+            $engine_output,
+            '<!DOCTYPE html><html><b>Foo Bar</b></html>'
+        );
     }
 
     /**
@@ -222,9 +231,12 @@ class EngineTest extends TestCase
             $engine->renderElement($element->element_id);
         }
 
-        $this->assertStringContainsString($engine, '<!DOCTYPE html>
-<html>Hello, World</html>
-');
+        $engine_output = $this->removeWhitespace($engine);
+
+        $this->assertStringContainsString(
+            $engine_output,
+            '<!DOCTYPE html><html>Hello, World</html>'
+        );
 
         // try tendering invalid element
         $bool = $engine->renderElement('2');
