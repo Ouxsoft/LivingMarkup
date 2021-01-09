@@ -37,10 +37,10 @@
     "ext-dom": "*",
     "ext-json": "*",
     "ext-libxml": "*",
-    "laminas/laminas-config": "^3.3.0",
-    "laminas/laminas-validator": "^2.13.2",
-    "laminas/laminas-router": "^3.3@dev",
-    "laminas/laminas-http": "^2.11@dev"
+    "laminas/laminas-config": "3.5.x-dev",
+    "laminas/laminas-validator": "2.15.x-dev",
+    "laminas/laminas-router": "3.5.x-dev",
+    "laminas/laminas-http": "2.15.x-dev"
   },
   "require-dev": {
     "friendsofphp/php-cs-fixer": "^2.17@dev",

@@ -9,7 +9,7 @@
 
 <p align="center">
     <a href="https://packagist.org/packages/ouxsoft/livingmarkup"><img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/ouxsoft/livingmarkup"></a> 
-    <a href="#tada-php-support" title="PHP Versions Supported"><img alt="PHP Versions Supported" src="https://img.shields.io/badge/php-7.3%20to%208.1-777bb3.svg?logo=php&logoColor=white&labelColor=555555"></a>  
+    <a href="#tada-php-support" title="PHP Versions Supported"><img alt="PHP Versions Supported" src="https://img.shields.io/badge/php-7.3%20to%207.4-777bb3.svg?logo=php&logoColor=white&labelColor=555555"></a>  
     <a href="https://packagist.org/packages/ouxsoft/livingmarkup"><img src="https://poser.pugx.org/ouxsoft/livingmarkup/downloads" alt="Total Downloads"></a>
     <a href="https://github.com/ouxsoft/livingmarkup/blob/master/LICENSE" title="license"><img alt="LICENSE" src="https://img.shields.io/badge/license-MIT-428f7e.svg?logo=open%20source%20initiative&logoColor=white&labelColor=555555"></a>
 </p>

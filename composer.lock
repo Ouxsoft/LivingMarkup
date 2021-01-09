@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6dcded2266c5f21f342a65d29f323958",
+    "content-hash": "27ede305d66cee95cb97f4440cc0e891",
     "packages": [
         {
             "name": "container-interop/container-interop",
@@ -4859,6 +4859,8 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
+        "laminas/laminas-config": 20,
+        "laminas/laminas-validator": 20,
         "laminas/laminas-router": 20,
         "laminas/laminas-http": 20,
         "friendsofphp/php-cs-fixer": 20
