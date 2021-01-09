@@ -10,7 +10,7 @@
 *  Run `composer update` to update composer packages and commit new composer.lock.
 *  Run `composer build` and ensure PSR Standards are adhered to.
 *  Test your changes using `composer test`.
-*  Send a pull request.
+*  Submit a [pull request](https://github.com/ouxsoft/livingmarkup-dev/pulls).
 
 ## Coding Guidelines
 
@@ -20,15 +20,9 @@
 *  Classes use S.O.L.I.D. Design Principle.
 *  Work to improve Code Score on [Codacy](https://app.codacy.com/manual/hxtree/LivingMarkup).
 
-## Using LivingMarkup from a Git checkout
+## Setting up Development Environment
 
-The following commands can be used to perform the initial checkout of LivingMarkup:
-
-```bash
-git clone git://github.com/ouxsoft/livingMarkup.git
-
-cd livingMarkup
-```
+For the development environment, see [LivingMarkup-Dev](https://github.com/ouxsoft/livingmarkup-dev)
 
 ## Reporting issues
 
