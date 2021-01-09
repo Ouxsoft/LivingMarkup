@@ -8,7 +8,6 @@
  * file that was distributed with this source code.
  */
 
-
 // define common directories
 define('ROOT_DIR', dirname(__DIR__, 1) . '/');
 define('PUBLIC_DIR', ROOT_DIR . 'public/');

@@ -13,10 +13,6 @@ notifications:
     on_success: never
     on_failure: change
 
-cache:
-  directories:
-    - $HOME/.composer/cache
-
 jobs:
   include:
     - stage: Test
