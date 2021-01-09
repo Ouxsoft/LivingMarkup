@@ -21,6 +21,7 @@ jobs:
   include:
     - stage: Test
       install:
+        - export PATH="$HOME/.composer/vendor/bin:$PATH"
         - composer install
         - composer update --no-scripts
       script:

@@ -8,15 +8,15 @@
  * file that was distributed with this source code.
  */
 
-chdir(dirname(__DIR__));
-
-require 'vendor/autoload.php';
 
 // define common directories
 define('ROOT_DIR', dirname(__DIR__, 1) . '/');
 define('PUBLIC_DIR', ROOT_DIR . 'public/');
 define('ASSET_DIR', ROOT_DIR . 'assets/');
 define('IMAGE_DIR', ASSET_DIR . 'images/');
+
+//chdir(dirname(__DIR__));
+require ROOT_DIR . 'vendor/autoload.php';
 
 // set include path
 set_include_path(ROOT_DIR);
