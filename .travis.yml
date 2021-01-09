@@ -8,6 +8,11 @@ php:
   - 7.3
   - 7.4
 
+notifications:
+  email:
+    on_success: never
+    on_failure: change
+
 cache:
   directories:
     - $HOME/.composer/cache
@@ -17,8 +22,9 @@ jobs:
     - stage: Test
       install:
         - composer install
+        - composer update --no-scripts
       script:
-        - $TRAVIS_BUILD_DIR/vendor/bin/phpunit
+        - ./vendor/bin/phpunit
         - mkdir -p build/logs
         - phpunit --coverage-clover build/logs/clover.xml
       after_script:
