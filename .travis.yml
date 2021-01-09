@@ -18,7 +18,7 @@ jobs:
       install:
         - composer install
       script:
-        - vendor/bin/phpunit
+        - $TRAVIS_BUILD_DIR/vendor/bin/phpunit
         - mkdir -p build/logs
         - phpunit --coverage-clover build/logs/clover.xml
       after_script:
