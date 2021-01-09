@@ -21,9 +21,7 @@ notifications:
 
 before_script:
   - composer clear
-  - composer self-update
-  - composer install
-  - composer update --no-scripts
+  - composer install --no-scripts -vvv
 
 jobs:
   include:
