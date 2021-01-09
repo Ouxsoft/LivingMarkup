@@ -8,13 +8,18 @@ php:
   - 7.3
   - 7.4
 
-before_script:
-  - composer update
-  - composer install
+cache:
+  directories:
+    - $HOME/.composer/cache
 
-script:
-  - mkdir -p build/logs
-  - phpunit --coverage-clover build/logs/clover.xml
-
-after_script:
-  - bash <(curl -s https://codecov.io/bash)
+jobs:
+  include:
+    - stage: Test
+      install:
+        - composer install
+      script:
+        - vendor/bin/phpunit
+        - mkdir -p build/logs
+        - phpunit --coverage-clover build/logs/clover.xml
+      after_script:
+        - bash <(curl -s https://codecov.io/bash)
