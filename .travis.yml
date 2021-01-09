@@ -8,14 +8,22 @@ php:
   - 7.3
   - 7.4
 
+env:
+  global:
+    - LOG_DIR=build/logs
+
+before_install:
+
 notifications:
   email:
     on_success: never
     on_failure: change
 
 before_script:
+  - composer clear
+  - composer self-update
   - composer install
-  - composer self-update --no-scripts
+  - composer update --no-scripts
 
 jobs:
   include:
