@@ -153,12 +153,12 @@ class ArgumentArrayTest extends TestCase
     /**
      * @covers \LivingMarkup\ArgumentArray::rewind
      */
-    public function testRewind(){
+    public function testRewind()
+    {
         $args = new ArgumentArray();
         $args[] = 'test 1';
         $args[] = 'test 2';
         $args->next();
         $this->assertEquals(0, $args->rewind());
     }
-
 }

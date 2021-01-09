@@ -14,7 +14,6 @@ namespace LivingMarkup\Element;
 
 use LivingMarkup\ArgumentArray;
 
-
 /**
  * Class Element
  *
