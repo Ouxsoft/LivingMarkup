@@ -15,7 +15,7 @@ notifications:
 
 before_script:
   - composer install
-  - composer self-update
+  - composer self-update --no-scripts
 
 jobs:
   include:
