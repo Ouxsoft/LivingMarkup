@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "aa8d10a301c460c3d00f3a3b06be0e0f",
+    "content-hash": "35f37369c53e21d5d148f1ece005fd33",
     "packages": [
         {
             "name": "container-interop/container-interop",
@@ -1176,12 +1176,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfPHP/PHP-CS-Fixer.git",
-                "reference": "048779e83ad662b5ffb8c1c412f5cb945a85e2c2"
+                "reference": "4d52f82976bcfca749434dae21b9df665d307ac2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfPHP/PHP-CS-Fixer/zipball/048779e83ad662b5ffb8c1c412f5cb945a85e2c2",
-                "reference": "048779e83ad662b5ffb8c1c412f5cb945a85e2c2",
+                "url": "https://api.github.com/repos/FriendsOfPHP/PHP-CS-Fixer/zipball/4d52f82976bcfca749434dae21b9df665d307ac2",
+                "reference": "4d52f82976bcfca749434dae21b9df665d307ac2",
                 "shasum": ""
             },
             "require": {
@@ -1212,11 +1212,11 @@
                 "php-cs-fixer/phpunit-constraint-isidenticalstring": "^1.2",
                 "php-cs-fixer/phpunit-constraint-xmlmatchesxsd": "^1.2.1",
                 "phpspec/prophecy-phpunit": "^1.1 || ^2.0",
-                "phpunit/phpunit": "^5.7.27 || ^6.5.14 || ^7.5.20 || ^8.5.13 || ^9.4.4 <9.5",
+                "phpunit/phpunit": "^5.7.27 || ^6.5.14 || ^7.5.20 || ^8.5.13 || ^9.5",
                 "phpunitgoodpractices/polyfill": "^1.5",
                 "phpunitgoodpractices/traits": "^1.9.1",
                 "sanmai/phpunit-legacy-adapter": "^6.4 || ^8.2.1",
-                "symfony/phpunit-bridge": "^5.1",
+                "symfony/phpunit-bridge": "^5.2.1",
                 "symfony/yaml": "^3.0 || ^4.0 || ^5.0"
             },
             "suggest": {
@@ -1277,7 +1277,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2021-01-08T23:04:10+00:00"
+            "time": "2021-01-09T13:59:27+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
@@ -5490,7 +5490,7 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": ">=7.2",
+        "php": ">=7.3",
         "ext-dom": "*",
         "ext-json": "*",
         "ext-libxml": "*"
