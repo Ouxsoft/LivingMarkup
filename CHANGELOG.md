@@ -11,10 +11,11 @@ All releases must adhere to [SemVer 2](https://semver.org/) naming convention an
 ## LivingMarkup [Unreleased]
 
 ## LivingMarkup 2.0.0
-Released: 2021-07-01. Notable changes:
-* Added: Integration with dedicated docker development [LivingMarkup-Dev](https://github.com/ouxsoft/livingmarkup-dev). 
-* Added: Json config support.
-* Removed: Yaml config support (as requirement often caused build test and environments to fail).
+Released: 2021-09-01. Notable changes:
+* Fixed: TravisCI build. [de63d57](https://github.com/ouxsoft/LivingMarkup/commit/de63d574c6aa6470d19641a71adabd2e318ec9a0)
+* Added: Integration with dedicated docker development [LivingMarkup-Dev](https://github.com/ouxsoft/livingmarkup-dev). [#e1912d8](https://github.com/ouxsoft/LivingMarkup/commit/e1912d87ad13e10732410527a63dbc8b33c1f7af)
+* Added: Json config support. [#188c92c](https://github.com/ouxsoft/LivingMarkup/commit/188c92c44c255e1b3f9560bf1052503c48e07b69)
+* Removed: Yaml config support (as requirement often caused build test and environments to fail). [#188c92c](https://github.com/ouxsoft/LivingMarkup/commit/188c92c44c255e1b3f9560bf1052503c48e07b69)
 
 ## LivingMarkup 1.6.0
 Released: 2020-06-21. Notable changes:

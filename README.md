@@ -7,8 +7,7 @@
 
 ## About
 
- 
-A [LHTML processor](https://github.com/ouxsoft/LHTML) implementation programmed in PHP. Provides a markup abstraction layer.
+A server-side markup abstraction layer based on the [LHTML](https://github.com/ouxsoft/LHTML) standard programmed in PHP. 
 
 ## Usage
 Start by creating an LHTML Element.
