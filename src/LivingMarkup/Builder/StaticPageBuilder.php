@@ -12,7 +12,8 @@ declare(strict_types=1);
 
 namespace LivingMarkup\Builder;
 
-use LivingMarkup\Configuration;
+use LivingMarkup\Contract\ConfigurationInterface;
+use LivingMarkup\Contract\EngineInterface;
 use LivingMarkup\Engine;
 
 /**
@@ -22,19 +23,20 @@ use LivingMarkup\Engine;
  */
 class StaticPageBuilder implements BuilderInterface
 {
-    public $engine;
+    private $engine;
+
+    public function __construct(EngineInterface $engine, ConfigurationInterface $config){
+        $this->engine = $engine;
+        $this->config = $config;
+    }
 
     /**
      * Creates Page object using parameters supplied
      *
-     * @param Configuration $config
      * @return void
      */
-    public function createObject(Configuration $config): void
+    public function createObject(): void
     {
-
-        // create engine pass source
-        $this->engine = new Engine($config);
     }
 
     /**

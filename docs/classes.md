@@ -6,7 +6,7 @@ Pages are created using a Builder design pattern. This design pattern was chosen
 + The `StaticBuilder` renders a static Page for a WYSIWYG.
 + The `SearchBuilder` renders a dynamic Page with some Elements excluded for search indexes.
 
-The Director is called the `Kernel` within the context of the Builder design pattern.
+The name of the Director is `Kernel` within the context of the Builder design pattern.
 
 ## Overview
 `Processor` class provides a user API interface for setting the `Kernel`, `Configration`, and `Builders` setting.
@@ -42,7 +42,7 @@ An Element's id attribute may be numerical to load Arguments.
 The LivingMarkup kernel is passed a loaded Document, a list Handlers, and Hooks. 
 It finds and instantiate Elements using Handlers. 
 Then, the Kernel iterates through the Hooks making call to Element's with those methods. 
-Afterwards, the processed Document is returned.
+Afterwards, the return value is the processed Document.
 
 #### `Arguments`
 The Element constructor is passed a Page DOM element's attributes ("id", "name", etc.) and "arg" tag child elements.

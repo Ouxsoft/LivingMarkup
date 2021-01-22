@@ -11,46 +11,54 @@
 namespace LivingMarkup\Tests;
 
 use PHPUnit\Framework\TestCase;
-use LivingMarkup\Processor;
+use LivingMarkup\Factory\ProcessorFactory;
 
 final class ProcessorTest extends TestCase
 {
+
+    public function setUp() : void
+    {
+        $this->processor = ProcessorFactory::getInstance();
+    }
+
+    public function tearDown() : void
+    {
+        unset($this->processor);
+    }
+
     public function testParseStringWithLoadConfig()
     {
-        $proc = new Processor();
 
-        $proc->loadConfig(dirname(__DIR__, 1) . '/Resource/config/phpunit.json');
+        $this->processor->loadConfig(TEST_DIR . 'Resource/config/phpunit.json');
 
-        $test_results =  $proc->parseString('<html><bitwise>
+        $test_results =  $this->processor->parseString('<html><bitwise>
     <arg name="number">2</arg>
     <arg name="count">6</arg>
     <arg name="operator">^</arg>
 </bitwise></html>');
 
-        $this->assertStringMatchesFormatFile(dirname(__DIR__, 1) . '/Resource/outputs/index.html', $test_results);
+        $this->assertStringMatchesFormatFile(TEST_DIR . 'Resource/outputs/index.html', $test_results);
     }
 
     public function testParseFileWithLoadConfig()
     {
-        $proc = new Processor();
 
-        $proc->loadConfig(dirname(__DIR__, 1) . '/Resource/config/phpunit.json');
+        $this->processor->loadConfig(TEST_DIR .  'Resource/config/phpunit.json');
 
-        $test_results = $proc->parseFile(dirname(__DIR__, 1) . '/Resource/inputs/index.html');
+        $test_results = $this->processor->parseFile(TEST_DIR . 'Resource/inputs/index.html');
 
-        $this->assertStringMatchesFormatFile(dirname(__DIR__, 1) . '/Resource/outputs/index.html', $test_results);
+        $this->assertStringMatchesFormatFile(TEST_DIR . 'Resource/outputs/index.html', $test_results);
     }
 
     public function testParseWithDefinitions()
     {
-        $proc = new Processor();
 
-        $proc->addElement('Bitwise', '//bitwise', 'LivingMarkup\Test\Bitwise');
+        $this->processor->addElement('Bitwise', '//bitwise', 'LivingMarkup\Test\Bitwise');
 
-        $proc->addMethod('onRender', 'Execute for render', 'RETURN_CALL');
+        $this->processor->addMethod('onRender', 'Execute for render', 'RETURN_CALL');
 
-        $test_results = $proc->parseFile(dirname(__DIR__, 1) . '/Resource/inputs/index.html');
+        $test_results = $this->processor->parseFile(TEST_DIR . 'Resource/inputs/index.html');
 
-        $this->assertStringMatchesFormatFile(dirname(__DIR__, 1) . '/Resource/outputs/index.html', $test_results);
+        $this->assertStringMatchesFormatFile(TEST_DIR . 'Resource/outputs/index.html', $test_results);
     }
 }

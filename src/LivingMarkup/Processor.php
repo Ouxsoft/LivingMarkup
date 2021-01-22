@@ -12,6 +12,8 @@ declare(strict_types=1);
 
 namespace LivingMarkup;
 
+use LivingMarkup\Contract\KernelInterface;
+use LivingMarkup\Contract\ConfigurationInterface;
 use LivingMarkup\Builder\BuilderInterface;
 
 /**
@@ -23,36 +25,25 @@ class Processor
 {
     // determines if process is active
     private $active = true;
-    private $kernel;
-    private $builder;
     private $config;
+    private $kernel;
 
     /**
-     * Autoloader constructor.
-     *
-     * @param string $config_filepath
+     * Processor constructor.
+     * @param KernelInterface $kernel
+     * @param ConfigurationInterface $config
      */
-    public function __construct(string $config_filepath = null)
-    {
-
-        // instantiate Kernel
-        $this->kernel = new Kernel();
-
-        // instantiate a empty config
-        $this->config = new Configuration();
-
-        // check if config filepath supplied during construction
-        if ($config_filepath!==null) {
-            $this->loadConfig($config_filepath);
-        }
-
-        // instantiate a default builder
-        $this->builder = new Builder\DynamicPageBuilder();
+    public function __construct(
+        KernelInterface &$kernel,
+        ConfigurationInterface &$config
+    ) {
+        $this->kernel = &$kernel;
+        $this->config = &$config;
     }
-
 
     /**
      * Set whether process runs or does not run
+     *
      * @param bool $status
      */
     public function setStatus(bool $status) : void
@@ -62,6 +53,7 @@ class Processor
 
     /**
      * Gets whether process runs or does not run
+     *
      * @return bool
      */
     public function getStatus() : bool
@@ -70,35 +62,25 @@ class Processor
     }
 
     /**
-     * Set builder
-     *
-     * @param BuilderInterface $builder_class
-     */
-    public function setBuilder(BuilderInterface $builder_class) : void
-    {
-        $this->builder =  new $builder_class();
-    }
-
-    /**
-     * Get builder
-     *
-     * @return BuilderInterface
-     */
-    public function getBuilder() : BuilderInterface
-    {
-        return $this->builder;
-    }
-
-    /**
-     * Set config
+     * Load config
      *
      * @param $filepath
      */
     public function loadConfig(string $filepath) : void
     {
-
-        // load config
         $this->config->loadFile($filepath);
+    }
+
+
+    /**
+     * Set config
+     *
+     * @param Configuration $config
+     * @return void
+     */
+    public function setConfig(Configuration $config) : void
+    {
+        $this->config = $config;
     }
 
     /**
@@ -109,6 +91,26 @@ class Processor
     public function getConfig() : Configuration
     {
         return $this->config;
+    }
+
+    /**
+     * Set builder
+     *
+     * @param string $builder_class
+     */
+    public function setBuilder(string $builder_class) : void
+    {
+        $this->kernel->setBuilder($builder_class);
+    }
+
+    /**
+     * Get builder
+     *
+     * @return BuilderInterface
+     */
+    public function getBuilder() : BuilderInterface
+    {
+        return $this->kernel->getBuilder();
     }
 
     /**
@@ -179,7 +181,6 @@ class Processor
      */
     public function parseString(string $source): string
     {
-
         // return buffer if it's not HTML
         if ($source == strip_tags($source)) {
             return $source;
@@ -191,14 +192,12 @@ class Processor
     }
 
     /**
-     * Parse defined kernel using currently builder and config
+     * Parse using a Kernel to build an Engine
      *
      * @return string
      */
     private function parse() : string
     {
-
-        // echo Kernel build of Builder
-        return (string) $this->kernel->build($this->builder, $this->config);
+        return (string) $this->kernel->build();
     }
 }

@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace LivingMarkup;
 
 use Laminas\Exception\RuntimeException;
+use LivingMarkup\Contract\ConfigurationInterface;
 use LivingMarkup\Exception\Exception;
 use Laminas\Config\Reader\Json;
 use Laminas\Validator\File\Exists;
@@ -23,11 +24,14 @@ use Laminas\Validator\File\Exists;
  *
  * @package LivingMarkup
  */
-class Configuration
+class Configuration implements ConfigurationInterface
 {
     const LOCAL_FILENAME = 'config.json';
     const DIST_FILENAME = 'config.dist.json';
 
+    /**
+     * @var array
+     */
     public $container = [
         'version' => 1,
         'elements' => [
@@ -35,6 +39,7 @@ class Configuration
             'methods' => []
         ]
     ];
+
     private $path; // full path to config file
     private $directory; // directory config file is in
     private $filename; // base name of file
@@ -48,7 +53,11 @@ class Configuration
     public function loadFile(string $filepath = null) : void
     {
         // fail overs for distributed configs
-        $fail_overs = [$filepath, self::LOCAL_FILENAME, self::DIST_FILENAME];
+        $fail_overs = [
+            $filepath,
+            self::LOCAL_FILENAME,
+            self::DIST_FILENAME
+        ];
 
         foreach ($fail_overs as $filepath) {
             try {
@@ -131,13 +140,15 @@ class Configuration
         return $this->container['elements']['types'];
     }
 
+
     /**
-     * Recursive key check
+     * Checks if keys are set
      *
-     * @param array $keys
+     *
+     * @param string ...$keys
      * @return bool
      */
-    public function isset(...$keys): bool
+    public function isset(string ...$keys): bool
     {
         if (!isset($this->container)) {
             return false;
@@ -159,7 +170,7 @@ class Configuration
      *
      * @param string $method_name
      * @param string $description
-     * @param string $execute
+     * @param string|null $execute
      */
     public function addMethod(string $method_name, string $description = '', $execute = null) : void
     {

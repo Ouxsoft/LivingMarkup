@@ -12,7 +12,8 @@ declare(strict_types=1);
 
 namespace LivingMarkup\Builder;
 
-use LivingMarkup\Configuration;
+use LivingMarkup\Contract\ConfigurationInterface;
+use LivingMarkup\Contract\EngineInterface;
 use LivingMarkup\Engine;
 
 /**
@@ -23,6 +24,9 @@ use LivingMarkup\Engine;
 
 interface BuilderInterface
 {
-    public function createObject(Configuration $config) : void;
-    public function getObject() : Engine;
+    /*
+    public function __construct(EngineInterface $engine, ConfigurationInterface $config);
+    public function createObject(): void;
+    public function getObject(): Engine;
+    */
 }

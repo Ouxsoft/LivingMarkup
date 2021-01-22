@@ -1,25 +1,41 @@
 # Configuration
 The `Configuration` class is responsible for the instructions that explain to the `Builder` how to build the LHTML `Document`. These instructions can be set by modifying the config file that is loaded.
 
-## Config File 
-The config file is where settings are configured. The `Configuration` class tries to load a `config.yml` if another file has not been specified during construction. If the `config.yml` not present, the `Configuration` will try to load the packaged config `config.dist.yml` file.
+## Config File
+Set configurations in the config file. 
 
 ### Syntax v1
 
 #### Example 
-```yaml
-version: 1
-elements:
-  types:
-    - name: 'Block'
-      class_name: 'LivingMarkup\Elements\Blocks\{name}'
-      xpath: '//block'
-
-  methods:
-    - name: 'onRender'
-      descirption: 'Execute rendering of element'
-      execute: 'RETURN_CALL'
+```json
+{
+   "version": 1,
+   "elements": {
+      "types": [
+         {
+            "name": "Block",
+            "class_name": "LivingMarkup\\Elements\\Blocks\\{name}",
+            "xpath": "//block"
+         }
+      ],
+      "methods": [
+         {
+            "name": "onRender",
+            "description": "Execute rendering of element",
+            "execute": "RETURN_CALL"
+         }
+      ]
+   }
+}
 ```
+
+### Autoloading
+If a file has been specified during construction, it will be loaded.
+If a file has not been specified the `Configuration` class tries to 
+load a `config.json` file if present.
+
+If the `config.json` is not present, the `Configuration` will try to load the 
+packaged config `config.dist.json` file.
 
 #### Parameters
 

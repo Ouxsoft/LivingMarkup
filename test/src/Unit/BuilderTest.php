@@ -20,45 +20,46 @@ use LivingMarkup\Kernel;
 
 final class BuilderTest extends TestCase
 {
+
+    private $config;
     private $markup = '<html><bitwise>
     <arg name="number">2</arg>
     <arg name="count">6</arg>
     <arg name="operator">^</arg>
 </bitwise></html>';
 
+    public function setUp() : void
+    {
+        $config_dir = TEST_DIR . 'Resource/inputs/phpunit.json';
+        $this->config = new Configuration($config_dir);
+        $this->config->add('markup', $this->markup);
+    }
+
+    public function tearDown() : void
+    {
+        unset($this->config);
+    }
+
     public function testDynamicPageBuilder()
     {
-        $config_dir = dirname(__DIR__, 1) . '/inputs/phpunit.json';
-
-        $config = new Configuration($config_dir);
-        $config->add('markup', $this->markup);
-
         $builder = new DynamicPageBuilder();
-        $new_page = (new Kernel())->build($builder, $config);
+        $new_page = (new Kernel())->build($builder, $this->config);
 
         $this->assertInstanceOf(Engine::class, $new_page);
     }
+
     public function testSearchIndexBuilder()
     {
-        $config_dir = dirname(__DIR__, 1) . '/inputs/phpunit.json';
-
-        $config = new Configuration($config_dir);
-        $config->add('markup', $this->markup);
-
         $builder = new SearchIndexBuilder();
-        $new_page = (new Kernel())->build($builder, $config);
+        $new_page = (new Kernel())->build($builder, $this->config);
 
         $this->assertInstanceOf(Engine::class, $new_page);
     }
+
     public function testStaticPageBuilder()
     {
-        $config_dir = dirname(__DIR__, 1) . '/inputs/phpunit.json';
-
-        $config = new Configuration($config_dir);
-        $config->add('markup', $this->markup);
-
         $builder = new StaticPageBuilder();
-        $new_page = (new Kernel())->build($builder, $config);
+        $new_page = (new Kernel())->build($builder, $this->config);
 
         $this->assertInstanceOf(Engine::class, $new_page);
     }

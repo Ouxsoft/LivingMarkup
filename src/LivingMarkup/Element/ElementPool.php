@@ -13,7 +13,10 @@ declare(strict_types=1);
 namespace LivingMarkup\Element;
 
 use \ArrayIterator;
-use LivingMarkup\Element;
+use Countable;
+use IteratorAggregate;
+use LivingMarkup\Contract\ElementPoolInterface;
+use phpDocumentor\Reflection\Element;
 use Traversable;
 
 /**
@@ -24,8 +27,9 @@ use Traversable;
  * @package LivingMarkup
  */
 class ElementPool implements
-    \Countable,
-    \IteratorAggregate
+    Countable,
+    IteratorAggregate,
+    ElementPoolInterface
 {
     public $collection = [];
 
@@ -43,9 +47,9 @@ class ElementPool implements
      *
      * @return ArrayIterator|Traversable
      */
-    public function getIterator() : \ArrayIterator
+    public function getIterator() : ArrayIterator
     {
-        return new \ArrayIterator($this->collection);
+        return new ArrayIterator($this->collection);
     }
 
     /**
@@ -82,7 +86,7 @@ class ElementPool implements
      */
     public function add(AbstractElement &$element) : void
     {
-        $this->collection[$element->element_id] = $element;
+        $this->collection[$element->element_id] = &$element;
     }
 
     /**

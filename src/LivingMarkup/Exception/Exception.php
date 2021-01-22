@@ -30,6 +30,8 @@ class Exception extends RuntimeException
      */
     public function __construct($log = null)
     {
+        parent::__construct();
+
         $this->log = $log;
     }
 

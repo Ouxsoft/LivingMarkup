@@ -13,6 +13,7 @@ declare(strict_types=1);
 namespace LivingMarkup;
 
 use DomDocument;
+use LivingMarkup\Contract\DocumentInterface;
 use LivingMarkup\Exception\Exception;
 
 /**
@@ -21,7 +22,7 @@ use LivingMarkup\Exception\Exception;
  *
  * @package LivingMarkup
  */
-class Document extends DomDocument
+class Document extends DomDocument implements DocumentInterface
 {
     /**
      * Document constructor.
@@ -81,8 +82,7 @@ class Document extends DomDocument
         // adds HTML root element if one is not present
         if (!is_object($this->documentElement)) {
             return false;
-            // TODO: figure out whether to throw
-            // throw new Exception('Invalid LHTML document provided');
+            // TODO throw new Exception('Invalid LHTML document provided');
         }
 
         // add html root element if missing

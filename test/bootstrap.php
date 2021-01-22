@@ -10,9 +10,11 @@
 
 // define common directories
 define('ROOT_DIR', dirname(__DIR__, 1) . '/');
+define('TEST_DIR', ROOT_DIR . 'test/src/');
 define('PUBLIC_DIR', ROOT_DIR . 'public/');
 define('ASSET_DIR', ROOT_DIR . 'assets/');
 define('IMAGE_DIR', ASSET_DIR . 'images/');
+
 
 //chdir(dirname(__DIR__));
 require ROOT_DIR . 'vendor/autoload.php';

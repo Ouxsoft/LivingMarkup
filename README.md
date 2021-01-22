@@ -10,8 +10,8 @@
 <p align="center">
     <a href="https://packagist.org/packages/ouxsoft/livingmarkup"><img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/ouxsoft/livingmarkup"></a> 
     <a href="#tada-php-support" title="PHP Versions Supported"><img alt="PHP Versions Supported" src="https://img.shields.io/badge/php-7.3%20to%207.4-777bb3.svg?logo=php&logoColor=white&labelColor=555555"></a>  
-    <a href="https://packagist.org/packages/ouxsoft/livingmarkup"><img src="https://poser.pugx.org/ouxsoft/livingmarkup/downloads" alt="Total Downloads"></a>
     <a href="https://github.com/ouxsoft/livingmarkup/blob/master/LICENSE" title="license"><img alt="LICENSE" src="https://img.shields.io/badge/license-MIT-428f7e.svg?logo=open%20source%20initiative&logoColor=white&labelColor=555555"></a>
+    <a href="https://packagist.org/packages/ouxsoft/livingmarkup"><img src="https://poser.pugx.org/ouxsoft/livingmarkup/downloads" alt="Total Downloads"></a>
 </p>
 
 ## About
@@ -94,12 +94,6 @@ LivingMarkup comes packaged with only LHTML test Elements. For core Elements, se
 
 ## Documentation
 Check our docs for more info at [livingmarkup.readthedocs.io](https://livingmarkup.readthedocs.io).
-
-## Contribute
-
-Refer to [CONTRIBUTING.md](https://github.com/ouxsoft/LivingMarkup/blob/master/.github/workflows/CONTRIBUTING.md) for 
-information on how to contribute.
-
 
 ## Creators
 

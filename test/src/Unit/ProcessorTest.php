@@ -10,23 +10,36 @@
 
 namespace LivingMarkup\Element;
 
+use LivingMarkup\Builder\BuilderInterface;
 use LivingMarkup\Builder\DynamicPageBuilder;
 use LivingMarkup\Builder\StaticPageBuilder;
-use LivingMarkup\Processor;
+use LivingMarkup\Configuration;
+use LivingMarkup\Contract\ConfigurationInterface;
 use PHPUnit\Framework\TestCase;
+use LivingMarkup\Factory\ProcessorFactory;
 
 class ProcessorTest extends TestCase
 {
+    private $processor;
+
+    public function setUp() : void
+    {
+        $this->processor = ProcessorFactory::getInstance();
+    }
+
+    public function tearDown() : void
+    {
+        unset($this->processor);
+    }
 
     /**
      * @covers \LivingMarkup\Processor::setBuilder
      */
     public function testSetBuilder()
     {
-        $builder = new StaticPageBuilder();
-        $proc = new Processor();
-        $proc->setBuilder($builder);
-        $this->assertInstanceOf('\LivingMarkup\Builder\BuilderInterface', $proc->getBuilder());
+        $this->processor->setBuilder('StaticPageBuilder');
+        $processor_builder = $this->processor->getBuilder();
+        $this->assertInstanceOf(StaticPageBuilder::class, $processor_builder);
     }
 
     /**
@@ -34,10 +47,8 @@ class ProcessorTest extends TestCase
      */
     public function testGetBuilder()
     {
-        $builder = new StaticPageBuilder();
-        $proc = new Processor();
-        $proc->setBuilder($builder);
-        $this->assertInstanceOf('\LivingMarkup\Builder\BuilderInterface', $proc->getBuilder());
+        $processor_builder = $this->processor->getBuilder();
+        $this->assertInstanceOf(BuilderInterface::class, $processor_builder);
     }
 
     /**
@@ -45,16 +56,14 @@ class ProcessorTest extends TestCase
      */
     public function testParseFile()
     {
-        $proc = new Processor();
-        $proc->loadConfig(dirname(__DIR__, 1) . '/Resource/config/phpunit.json');
-        $test_results = $proc->parseFile(dirname(__DIR__, 1) . '/Resource/inputs/index.html');
-        $this->assertStringMatchesFormatFile(dirname(__DIR__, 1) . '/Resource/outputs/index.html', $test_results);
+        $this->processor->loadConfig(TEST_DIR . '/Resource/config/phpunit.json');
+        $test_results = $this->processor->parseFile(TEST_DIR . '/Resource/inputs/index.html');
+        $this->assertStringMatchesFormatFile(TEST_DIR . '/Resource/outputs/index.html', $test_results);
 
         // test non html
-        $proc = new Processor();
-        $proc->loadConfig(dirname(__DIR__, 1) . '/Resource/config/phpunit.json');
-        $test_results = $proc->parseFile(dirname(__DIR__, 1) . '/Resource/inputs/text.txt');
-        $this->assertStringMatchesFormatFile(dirname(__DIR__, 1) . '/Resource/outputs/text.txt', $test_results);
+        $this->processor->loadConfig(TEST_DIR . '/Resource/config/phpunit.json');
+        $test_results = $this->processor->parseFile(TEST_DIR . '/Resource/inputs/text.txt');
+        $this->assertStringMatchesFormatFile(TEST_DIR . '/Resource/outputs/text.txt', $test_results);
     }
 
     /**
@@ -62,10 +71,21 @@ class ProcessorTest extends TestCase
      */
     public function testLoadConfig()
     {
-        $proc = new Processor();
-        $proc->loadConfig(dirname(__DIR__, 1) . '/Resource/config/phpunit.json');
-        $config = $proc->getConfig();
-        $this->assertIsArray($config->container['elements']);
+        $this->processor->loadConfig(TEST_DIR . '/Resource/config/phpunit.json');
+        $processor_config = $this->processor->getConfig();
+        $this->assertIsArray($processor_config->container['elements']);
+    }
+
+
+    /**
+     * @covers \LivingMarkup\Processor::setConfig
+     */
+    public function testSetConfig()
+    {
+        $config = new Configuration();
+        $this->processor->setConfig($config);
+        $processor_config = $this->processor->getConfig();
+        $this->assertInstanceOf(ConfigurationInterface::class, $processor_config);
     }
 
     /**
@@ -73,9 +93,8 @@ class ProcessorTest extends TestCase
      */
     public function testGetConfig()
     {
-        $proc = new Processor();
-        $config = $proc->getConfig();
-        $this->assertIsArray($config->container['elements']);
+        $processor_config = $this->processor->getConfig();
+        $this->assertInstanceOf(ConfigurationInterface::class, $processor_config);
     }
 
 
@@ -84,29 +103,40 @@ class ProcessorTest extends TestCase
      */
     public function testAddElement()
     {
-        $proc = new Processor();
-        $proc->addElement('Path', '//*', '\LivingMarkup\Test\HelloWorld');
-        $config = $proc->getConfig();
+        $this->processor->addElement('Path', '//*', '\LivingMarkup\Test\HelloWorld');
+        $config = $this->processor->getConfig();
         $elements = $config->getElements();
         $this->assertCount(1, $elements);
     }
+
+    /**
+     * @covers \LivingMarkup\Processor::addMethod
+     */
+    public function testAddMethod()
+    {
+        $this->processor->addMethod('TestMethod','A test method');
+        $config = $this->processor->getConfig();
+        $elements = $config->getElements();
+        $this->assertCount(1, $elements);
+    }
+
+    /**
 
     /**
      * @covers \LivingMarkup\Processor::parseString
      */
     public function testParseString()
     {
-        $proc = new Processor();
-        $proc->loadConfig(dirname(__DIR__, 1) . '/Resource/config/phpunit.json');
-        $test_results = $proc->parseString('<html><bitwise>
+        $this->processor->loadConfig(TEST_DIR . '/Resource/config/phpunit.json');
+        $test_results = $this->processor->parseString('<html><bitwise>
     <arg name="number">2</arg>
     <arg name="count">6</arg>
     <arg name="operator">^</arg>
 </bitwise></html>');
-        $this->assertStringMatchesFormatFile(dirname(__DIR__, 1) . '/Resource/outputs/index.html', $test_results);
+        $this->assertStringMatchesFormatFile(TEST_DIR . '/Resource/outputs/index.html', $test_results);
 
         // test non html
-        $test_results = $proc->parseString('???');
+        $test_results = $this->processor->parseString('???');
         $this->assertStringContainsString('???', $test_results);
     }
 
@@ -115,8 +145,13 @@ class ProcessorTest extends TestCase
      */
     public function test__construct()
     {
-        $proc = new Processor(dirname(__DIR__, 1) . '/Resource/config/phpunit.json');
-        $this->assertIsObject($proc);
+        $this->assertIsObject($this->processor);
+
+        $config = $this->processor->getConfig();
+        $this->assertInstanceOf(ConfigurationInterface::class, $config);
+
+        $builder = $this->processor->getBuilder();
+        $this->assertInstanceOf(BuilderInterface::class, $builder);
     }
 
     /**
@@ -124,9 +159,8 @@ class ProcessorTest extends TestCase
      */
     public function testParseBuffer()
     {
-        // process
-        $proc = new Processor();
-        $proc->parseBuffer();
+
+        $this->processor->parseBuffer();
         $input = '<html><b>Test</b></html>';
         echo $input;
         $output = ob_get_contents();
@@ -136,14 +170,13 @@ class ProcessorTest extends TestCase
 
     /**
      * @covers \LivingMarkup\Processor::parseBuffer
+     * @covers \LivingMarkup\Processor::parse
      */
     public function testParseBufferWithProcessorOff()
     {
-
         // try with processor turned off
-        $proc = new Processor();
-        $proc->setStatus(true);
-        $proc->parseBuffer();
+        $this->processor->setStatus(true);
+        $this->processor->parseBuffer();
         $input = '<html><b>Test</b></html>';
         echo $input;
         $output = ob_get_contents();
@@ -151,27 +184,28 @@ class ProcessorTest extends TestCase
         $this->assertStringContainsString($output, $input);
     }
 
-
     /**
      * @covers \LivingMarkup\Processor::setStatus
      */
     public function testSetStatus()
     {
-        $proc = new Processor();
-        $proc->setStatus(false);
-        $status = $proc->getStatus();
-        $this->assertFalse($status);
-    }
 
+        $this->processor->setStatus(false);
+        $status = $this->processor->getStatus();
+        $this->assertFalse($status);
+
+        $this->processor->setStatus(true);
+        $status = $this->processor->getStatus();
+        $this->assertTrue($status);
+    }
 
     /**
      * @covers \LivingMarkup\Processor::getStatus
      */
     public function testGetStatus()
     {
-        $proc = new Processor();
-        $proc->setStatus(false);
-        $status = $proc->getStatus();
+        $this->processor->setStatus(false);
+        $status = $this->processor->getStatus();
         $this->assertFalse($status);
     }
 }

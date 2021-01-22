@@ -12,11 +12,13 @@ declare(strict_types=1);
 
 namespace LivingMarkup;
 
-use LivingMarkup\Exception\Exception;
-use LivingMarkup\Element\ElementPool;
 use DOMElement;
 use DOMNodeList;
 use DOMXPath;
+use LivingMarkup\Contract\DocumentInterface;
+use LivingMarkup\Contract\ElementPoolInterface;
+use LivingMarkup\Contract\EngineInterface;
+use LivingMarkup\Exception\Exception;
 
 /**
  * Class Engine
@@ -25,7 +27,7 @@ use DOMXPath;
  *
  * @package LivingMarkup\Engine
  */
-class Engine
+class Engine implements EngineInterface
 {
 
     // marker attribute used by Engine to identify DOMElement during processing
@@ -46,24 +48,24 @@ class Engine
         'css' => []
     ];
 
+
     /**
-     * Page constructor
+     * Engine constructor.
      *
-     * @param Configuration $config
+     * @param DocumentInterface $document
+     * @param DOMXPath $xpath
+     * @param ElementPoolInterface $element_pool
      */
-    public function __construct(Configuration $config)
-    {
-        // create a document object model
-        $this->dom = new Document();
+    public function __construct(
+        DocumentInterface &$document,
+        DOMXPath &$xpath,
+        ElementPoolInterface &$element_pool
+    ) {
+        $this->dom = &$document;
 
-        // load source to DOM
-        $this->dom->loadSource($config->getSource());
+        $this->xpath = &$xpath;
 
-        // create document iterator for this dom
-        $this->xpath = new DOMXPath($this->dom);
-
-        // create a element pool
-        $this->element_pool = new ElementPool();
+        $this->element_pool = &$element_pool;
     }
 
     /**
@@ -178,11 +180,10 @@ class Engine
      */
     public function renderElement(string $element_id): bool
     {
-
         // get DOMElement from placeholder id
         $dom_element = $this->getDomElementByPlaceholderId($element_id);
 
-        if ($dom_element===null) {
+        if ($dom_element === null) {
             return false;
         }
 
@@ -213,7 +214,7 @@ class Engine
 
         $children = $dom_element->childNodes;
         foreach ($children as $child) {
-            $xml .= $dom_element->ownerDocument->saveXML($child);
+            $xml .= $dom_element->ownerDocument->saveHTML($child);
         }
 
         return $xml;
@@ -250,7 +251,6 @@ class Engine
 
         // iterate through handler's expression searching for applicable elements
         foreach ($this->queryFetchAll($lhtml_element['xpath']) as $dom_element) {
-
             // if class does not exist replace element with informative comment
             $this->instantiateElement($dom_element, $lhtml_element['class_name']);
         }
@@ -367,21 +367,21 @@ class Engine
         switch ($type) {
             case 'string':
             case 'str':
-                $value = (string) $value;;
+                $value = (string)$value;;
                 break;
             case 'json':
                 $value = json_decode($value);
                 break;
             case 'int':
             case 'integer':
-                $value = (int) $value;
+                $value = (int)$value;
                 break;
             case 'float':
-                $value = (float) $value;
+                $value = (float)$value;
                 break;
             case 'bool':
             case 'boolean':
-                $value = (boolean) $value;
+                $value = (boolean)$value;
                 break;
             case 'null':
                 $value = null;
