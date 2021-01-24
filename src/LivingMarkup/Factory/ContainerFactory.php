@@ -22,9 +22,7 @@ class ContainerFactory
 
         $container['config'] = $abstractFactory->makeConfig($configFilePath);
 
-        $container['document'] = $abstractFactory->makeDocument();
-
-        $container['dom'] = $abstractFactory->makeDom($container);
+        $container['document'] = $abstractFactory->makeDocument($container);
 
         $container['dom_xpath'] = $abstractFactory->makeDomXpath($container);
 

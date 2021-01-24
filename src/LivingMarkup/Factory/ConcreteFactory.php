@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace LivingMarkup\Factory;
 
+use DOMDocument;
+use DOMXPath;
 use LivingMarkup\Builder\BuilderInterface;
 use LivingMarkup\Builder\DynamicPageBuilder;
 use LivingMarkup\Configuration;
@@ -25,6 +27,8 @@ class ConcreteFactory implements AbstractFactoryInterface
 
         if($config_file_path !== null){
             $config->loadFile($config_file_path);
+        } else {
+            $config->setSource('<html></html>');
         }
 
         return $config;
@@ -41,7 +45,7 @@ class ConcreteFactory implements AbstractFactoryInterface
     /**
      * @inheritDoc
      */
-    public function makeDocument(): Document
+    public function makeDocument(Container &$container): Document
     {
         return new Document();
     }
@@ -49,23 +53,9 @@ class ConcreteFactory implements AbstractFactoryInterface
     /**
      * @inheritDoc
      */
-    public function makeDom(Container &$container): \DOMDocument
+    public function makeDomXpath(Container &$container): DOMXPath
     {
-        $config = $container['config'];
-
-        $document = $container['document'];
-
-        $document->loadSource($config->getSource());
-
-        return $document;
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function makeDomXpath(Container &$container): \DOMXPath
-    {
-        return new \DOMXPath($container['dom']);
+        return new DOMXPath($container['document']);
     }
 
     /**

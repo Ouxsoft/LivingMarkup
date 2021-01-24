@@ -25,9 +25,9 @@ class StaticPageBuilder implements BuilderInterface
 {
     private $engine;
 
-    public function __construct(EngineInterface $engine, ConfigurationInterface $config){
-        $this->engine = $engine;
-        $this->config = $config;
+    public function __construct(EngineInterface &$engine, ConfigurationInterface &$config){
+        $this->engine = &$engine;
+        $this->config = &$config;
     }
 
     /**

@@ -10,14 +10,32 @@
 
 namespace LivingMarkup\Tests;
 
-use LivingMarkup\Configuration;
+use LivingMarkup\Element\ElementPool;
 use LivingMarkup\Engine;
 use LivingMarkup\Exception\Exception;
-use LivingMarkup\Processor;
+use LivingMarkup\Factory\ConcreteFactory;
+use LivingMarkup\Factory\ContainerFactory;
 use PHPUnit\Framework\TestCase;
 
 class EngineTest extends TestCase
 {
+
+    private $engine;
+    private $config;
+
+    public function setUp() : void
+    {
+        $abstractFactory = new ConcreteFactory();
+        $container = ContainerFactory::buildContainer($abstractFactory);
+        $this->engine = &$container['engine'];
+        $this->config = &$container['config'];
+    }
+
+    public function tearDown() : void
+    {
+        unset($this->engine);
+    }
+
     /**
      * Removes whitespace to allow testing from multiple OS
      * @param string $string
@@ -33,28 +51,25 @@ class EngineTest extends TestCase
      */
     public function testSetType()
     {
-        $config = new Configuration();
-        $engine = new Engine($config);
-
-        $results = $engine->setType('0', 'string');
+        $results = $this->engine->setType('0', 'string');
         $this->assertIsString($results);
 
-        $results = $engine->setType('2', 'int');
+        $results = $this->engine->setType('2', 'int');
         $this->assertIsInt($results);
 
-        $results = $engine->setType('1', 'bool');
+        $results = $this->engine->setType('1', 'bool');
         $this->assertIsBool($results);
 
-        $results = $engine->setType('1.1', 'float');
+        $results = $this->engine->setType('1.1', 'float');
         $this->assertIsFloat($results);
 
-        $results = $engine->setType('', 'null');
+        $results = $this->engine->setType('', 'null');
         $this->assertNull($results);
 
-        $results = $engine->setType('Cat,Dog,Pig', 'list');
+        $results = $this->engine->setType('Cat,Dog,Pig', 'list');
         $this->assertIsArray($results);
 
-        $results = $engine->setType('["Cat","Dog","Pig"]', 'json');
+        $results = $this->engine->setType('["Cat","Dog","Pig"]', 'json');
         $this->assertIsArray($results);
     }
 
@@ -63,10 +78,8 @@ class EngineTest extends TestCase
      */
     public function testQueryFetchAll()
     {
-        $config = new Configuration();
-        $config->setSource('<html><b>Hello, World!</b></html>');
-        $engine = new Engine($config);
-        $results = $engine->queryFetchAll('//*');
+        $this->config->setSource('<html lang="en"><b>Hello, World!</b></html>');
+        $results = $this->engine->queryFetchAll('//*');
         $this->assertCount(2, $results);
     }
 
@@ -75,10 +88,8 @@ class EngineTest extends TestCase
      */
     public function testGetDomElementByPlaceholderId()
     {
-        $config = new Configuration();
-        $config->setSource('<html><b '.Engine::INDEX_ATTRIBUTE.'="test">Hello, World!</b></html>');
-        $engine = new Engine($config);
-        $results = $engine->getDomElementByPlaceholderId('test');
+        $this->config->setSource('<html lang="en"><b '.Engine::INDEX_ATTRIBUTE.'="test">Hello, World!</b></html>');
+        $results = $this->engine->getDomElementByPlaceholderId('test');
         $bool = $results->getAttribute(Engine::INDEX_ATTRIBUTE) == 'test';
         $this->assertTrue($bool);
     }
@@ -88,10 +99,8 @@ class EngineTest extends TestCase
      */
     public function testGetElementInnerXML()
     {
-        $config = new Configuration();
-        $config->setSource('<html><b '.Engine::INDEX_ATTRIBUTE.'="test">Hello, World!</b></html>');
-        $engine = new Engine($config);
-        $results = $engine->getElementInnerXML('test');
+        $this->config->setSource('<html lang="en"><b '.Engine::INDEX_ATTRIBUTE.'="test">Hello, World!</b></html>');
+        $results = $this->engine->getElementInnerXML('test');
         $bool = $results == 'Hello, World!';
         $this->assertTrue($bool);
     }
@@ -101,11 +110,9 @@ class EngineTest extends TestCase
      */
     public function testGetElementArgs()
     {
-        $config = new Configuration();
-        $config->setSource('<html><b '.Engine::INDEX_ATTRIBUTE.'="test"><arg name="toggle">no</arg><arg name="">empty</arg></b></html>');
-        $engine = new Engine($config);
-        $dom_element = $engine->getDomElementByPlaceholderId('test');
-        $args = $engine->getElementArgs($dom_element);
+        $this->config->setSource('<html lang="en"><b '.Engine::INDEX_ATTRIBUTE.'="test"><arg name="toggle">no</arg><arg name="">empty</arg></b></html>');
+        $dom_element = $this->engine->getDomElementByPlaceholderId('test');
+        $args = $this->engine->getElementArgs($dom_element);
         $bool = $args['toggle'] == 'no';
         $this->assertTrue($bool);
     }
@@ -115,11 +122,10 @@ class EngineTest extends TestCase
      */
     public function test__toString()
     {
-        $config = new Configuration();
-        $config->setSource('<html><b><arg name="toggle">no</arg></b></html>');
-        $engine = (string) new Engine($config);
+        $this->config->setSource('<html lang="en"><b><arg name="toggle">no</arg></b></html>');
+        $engine = (string) $this->engine;
         $engine = $this->removeWhitespace($engine);
-        $test_results = '<!DOCTYPE html><html><b><arg name="toggle">no</arg></b></html>';
+        $test_results = '<!DOCTYPE html><html lang="en"><b><arg name="toggle">no</arg></b></html>';
         $this->assertEquals($engine, $test_results);
     }
 
@@ -128,11 +134,9 @@ class EngineTest extends TestCase
      */
     public function testQueryFetch()
     {
-        $config = new Configuration();
-        $config->setSource('<html><b>Hello, World!</b></html>');
-        $engine = new Engine($config);
-        $results = $engine->queryFetch('//*');
-        $this->assertEquals($results->nodeValue, 'Hello, World!');
+        $this->config->setSource('<html lang="en"><b>Hello, World!</b></html>');
+        $results = $this->engine->queryFetch('//*');
+        $this->assertEquals('Hello, World!', $results->nodeValue);
     }
 
     /**
@@ -140,24 +144,22 @@ class EngineTest extends TestCase
      */
     public function testInstantiateElements()
     {
-        $config = new Configuration();
-        $config->setSource('<html><b>Hello, World!</b></html>');
-        $engine = new Engine($config);
-        $engine->instantiateElements(
+        $this->config->setSource('<html lang="en"><b>Hello, World!</b></html>');
+        $this->engine->instantiateElements(
             [
                 'xpath' => '//b',
                 'class_name' => 'LivingMarkup\Test\HelloWorld'
             ]
         );
-        $this->assertCount(1, $engine->element_pool);
+        $this->assertCount(1, $this->engine->element_pool);
 
-        $engine->instantiateElements(
+        $this->engine->instantiateElements(
             [
                 'class_name' => 'LivingMarkup\Test\HelloWorld'
             ]
         );
 
-        $bool = $engine->instantiateElements([]);
+        $bool = $this->engine->instantiateElements([]);
 
         $this->assertFalse($bool);
     }
@@ -167,16 +169,14 @@ class EngineTest extends TestCase
      */
     public function testCallMethod()
     {
-        $config = new Configuration();
-        $config->setSource('<html><b>Hello, World!</b></html>');
-        $engine = new Engine($config);
-        $engine->instantiateElements(
+        $this->config->setSource('<html lang="en"><b>Hello, World!</b></html>');
+        $this->engine->instantiateElements(
             [
                 'xpath' => '//b',
                 'class_name' => 'LivingMarkup\Test\HelloWorld'
             ]
         );
-        $bool = $engine->callMethod([
+        $bool = $this->engine->callMethod([
             'name' => 'onRender',
             'execute' => 'RETURN_CALL'
         ]);
@@ -185,7 +185,7 @@ class EngineTest extends TestCase
         $throw_occurred = false;
         try {
             // test throw
-            $engine->callMethod([
+            $this->engine->callMethod([
                 'name' => 'onRender',
                 'execute' => 'THROW_ERROR'
             ]);
@@ -201,15 +201,13 @@ class EngineTest extends TestCase
      */
     public function testReplaceDomElement()
     {
-        $config = new Configuration();
-        $config->setSource('<html><b '.Engine::INDEX_ATTRIBUTE.'="test"><arg name="toggle">no</arg></b></html>');
-        $engine = new Engine($config);
-        $dom_element = $engine->getDomElementByPlaceholderId('test');
-        $engine->replaceDomElement($dom_element, '<b>Foo Bar</b>');
-        $engine_output = $this->removeWhitespace($engine);
+        $this->config->setSource('<html lang="en"><b '.Engine::INDEX_ATTRIBUTE.'="test"><arg name="toggle">no</arg></b></html>');
+        $dom_element = $this->engine->getDomElementByPlaceholderId('test');
+        $this->engine->replaceDomElement($dom_element, '<b>Foo Bar</b>');
+        $engine_output = $this->removeWhitespace($this->engine);
         $this->assertStringContainsString(
             $engine_output,
-            '<!DOCTYPE html><html><b>Foo Bar</b></html>'
+            '<!DOCTYPE html><html lang="en"><b>Foo Bar</b></html>'
         );
     }
 
@@ -218,28 +216,26 @@ class EngineTest extends TestCase
      */
     public function testRenderElement()
     {
-        $config = new Configuration();
-        $config->setSource('<html><div>Foo Bar</div></html>');
-        $engine = new Engine($config);
-        $engine->instantiateElements(
+        $this->config->setSource('<html lang="en"><div>Foo Bar</div></html>');
+        $this->engine->instantiateElements(
             [
                 'xpath' => '//div',
                 'class_name' => 'LivingMarkup\Test\HelloWorld'
             ]
         );
-        foreach ($engine->element_pool as $element) {
-            $engine->renderElement($element->element_id);
+        foreach ($this->engine->element_pool as $element) {
+            $this->engine->renderElement($element->element_id);
         }
 
-        $engine_output = $this->removeWhitespace($engine);
+        $engine_output = $this->removeWhitespace($this->engine);
 
         $this->assertStringContainsString(
             $engine_output,
-            '<!DOCTYPE html><html>Hello, World</html>'
+            '<!DOCTYPE html><html lang="en">Hello, World</html>'
         );
 
         // try tendering invalid element
-        $bool = $engine->renderElement('2');
+        $bool = $this->engine->renderElement('2');
         $this->assertFalse($bool);
     }
 
@@ -249,9 +245,8 @@ class EngineTest extends TestCase
      */
     public function testInstantiateElement()
     {
-        $config = new Configuration();
-        $config->setSource('
-<html>
+        $this->config->setSource('
+<html lang="en">
     <div ' . Engine::INDEX_ATTRIBUTE . '="skip">
         Skip
     </div>
@@ -261,19 +256,18 @@ class EngineTest extends TestCase
     </div>
     <em name="test">Foo Bar</em>
 </html>');
-        $engine = new Engine($config);
-        $engine->instantiateElements(
+        $this->engine->instantiateElements(
             [
                 'xpath' => '//div',
                 'class_name' => 'LivingMarkup\Test\{name}'
             ]
         );
-        $engine->instantiateElements([
+        $this->engine->instantiateElements([
             'xpath' => '//em',
             'class_name' => 'Missing'
         ]);
 
-        $this->assertCount(1, $engine->element_pool);
+        $this->assertCount(1, $this->engine->element_pool);
     }
 
     /**
@@ -281,17 +275,15 @@ class EngineTest extends TestCase
      */
     public function testGetElementAncestorProperties()
     {
-        $config = new Configuration();
-        $config->setSource('<html><div type="page"><arg name="section">help</arg><div>Hello, World!</div></div></html>');
-        $engine = new Engine($config);
-        $engine->instantiateElements(
+        $this->config->setSource('<html lang="en"><div type="page"><arg name="section">help</arg><div>Hello, World!</div></div></html>');
+        $this->engine->instantiateElements(
             [
                 'xpath' => '//div',
                 'class_name' => 'LivingMarkup\Test\HelloWorld'
             ]
         );
-        foreach ($engine->element_pool as $element) {
-            $properties = $engine->getElementAncestorProperties($element->element_id);
+        foreach ($this->engine->element_pool as $element) {
+            $properties = $this->engine->getElementAncestorProperties($element->element_id);
             $this->assertIsArray($properties);
         }
     }
@@ -301,9 +293,7 @@ class EngineTest extends TestCase
      */
     public function test__construct()
     {
-        $config = new Configuration();
-        $engine = new Engine($config);
-        $bool = ($engine->element_pool instanceof \LivingMarkup\Element\ElementPool) ? true : false;
+        $bool = $this->engine->element_pool instanceof ElementPool;
         $this->assertTrue($bool);
     }
 }

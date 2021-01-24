@@ -14,7 +14,6 @@ namespace LivingMarkup;
 
 use DomDocument;
 use LivingMarkup\Contract\DocumentInterface;
-use LivingMarkup\Exception\Exception;
 
 /**
  * Class Document
@@ -24,6 +23,8 @@ use LivingMarkup\Exception\Exception;
  */
 class Document extends DomDocument implements DocumentInterface
 {
+    const DEFAULT_LANG = "en";
+
     /**
      * Document constructor.
      */
@@ -91,7 +92,7 @@ class Document extends DomDocument implements DocumentInterface
             // create a new DomDocument, add source to it, and append to root document with html root
             $source_dom = new DOMDocument();
             $source_dom->loadXML($source);
-            $this->loadSource('<html></html>');
+            $this->loadSource('<html lang="' . self::DEFAULT_LANG . '"></html>');
             $this->documentElement->appendChild(
                 $this->importNode($source_dom->documentElement, true)
             );

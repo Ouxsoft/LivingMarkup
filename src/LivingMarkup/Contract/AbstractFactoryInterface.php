@@ -26,15 +26,10 @@ interface AbstractFactoryInterface
     public function makeElementPool(): ElementPool;
 
     /**
+     * @param Container $container
      * @return Document
      */
-    public function makeDocument(): Document;
-
-    /**
-     * @param Container $container
-     * @return DOMDocument
-     */
-    public function makeDom(Container &$container): DOMDocument;
+    public function makeDocument(Container &$container): Document;
 
     /**
      * @param Container $container

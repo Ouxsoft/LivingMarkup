@@ -157,7 +157,7 @@ class Engine implements EngineInterface
      * XPath query for class $this->DOM property that fetches only first result
      *
      * @param string $query
-     * @param DOMElement $node
+     * @param DOMElement|null $node
      * @return mixed
      */
     public function queryFetch(string $query, DOMElement $node = null): ?DOMElement

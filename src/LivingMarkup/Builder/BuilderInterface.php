@@ -24,9 +24,7 @@ use LivingMarkup\Engine;
 
 interface BuilderInterface
 {
-    /*
-    public function __construct(EngineInterface $engine, ConfigurationInterface $config);
+    public function __construct(EngineInterface &$engine, ConfigurationInterface &$config);
     public function createObject(): void;
     public function getObject(): Engine;
-    */
 }
