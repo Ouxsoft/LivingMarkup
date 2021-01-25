@@ -13,11 +13,11 @@ declare(strict_types=1);
 
 namespace LivingMarkup;
 
-use Laminas\Exception\RuntimeException;
 use LivingMarkup\Contract\ConfigurationInterface;
 use LivingMarkup\Exception\Exception;
 use Laminas\Config\Reader\Json;
 use Laminas\Validator\File\Exists;
+use Throwable;
 
 /**
  * Class Configuration
@@ -40,10 +40,6 @@ class Configuration implements ConfigurationInterface
         ]
     ];
 
-    private $path; // full path to config file
-    private $directory; // directory config file is in
-    private $filename; // base name of file
-
     /**
      * Configuration constructor.
      *
@@ -61,23 +57,23 @@ class Configuration implements ConfigurationInterface
 
         foreach ($fail_overs as $filepath) {
             try {
-                $this->path = $filepath;
-                $this->directory = dirname($filepath);
-                $this->filename = basename($filepath);
+                $path = $filepath;
+                $directory = dirname($filepath);
+                $filename = basename($filepath);
 
                 // check if path is valid
-                $validator = new Exists($this->directory);
-                $validator->isValid($this->filename);
+                $validator = new Exists($directory);
+                $validator->isValid($filename);
 
                 // load json file
                 $reader = new Json();
-                $this->container = $reader->fromFile($this->path);
+                $this->container = $reader->fromFile($path);
 
                 if (is_array($this->container)) {
                     break;
                 }
-            } catch (\Throwable $e) {
-                throw new Exception('Unable to load config');
+            } catch (Throwable $e) {
+                throw new Exception('Unable to load config' .  $e);
             }
         }
     }

@@ -13,22 +13,33 @@ namespace LivingMarkup\Test\Builder;
 use LivingMarkup\Builder\SearchIndexBuilder;
 use LivingMarkup\Configuration;
 use LivingMarkup\Engine;
+use LivingMarkup\Factory\ProcessorFactory;
 use PHPUnit\Framework\TestCase;
 
 class SearchIndexBuilderTest extends TestCase
 {
+
+    private $processor;
+
+    public function setUp() : void
+    {
+        $this->processor = ProcessorFactory::getInstance();
+    }
+
+    public function tearDown() : void
+    {
+        unset($this->processor);
+    }
+
     /**
      * @covers \LivingMarkup\Builder\SearchIndexBuilder::getObject
      */
     public function testGetObject()
     {
-        $filepath = dirname(__DIR__, 2) . '/Resource/config/phpunit.json';
-        $config = new Configuration();
-        $config->loadFile($filepath);
-        $builder = new SearchIndexBuilder();
-        $builder->createObject($config);
-        $engine = $builder->getObject();
-        $this->assertTrue(($engine instanceof Engine));
+        $this->processor->loadConfig(TEST_DIR .  '/Resource/config/phpunit.json');
+        $this->processor->setBuilder('SearchIndexBuilder');
+        $results = $this->processor->parseString('<html lang="en">Test</html>');
+        $this->assertIsString($results);
     }
 
     /**
@@ -36,13 +47,9 @@ class SearchIndexBuilderTest extends TestCase
      */
     public function testCreateObject()
     {
-        $filepath = dirname(__DIR__, 2) . '/Resource/config/phpunit.json';
-        $config = new Configuration();
-        $config->loadFile($filepath);
-
-        $builder = new SearchIndexBuilder();
-        $builder->createObject($config);
-        $engine = $builder->getObject();
-        $this->assertTrue(($engine instanceof Engine));
+        $this->processor->loadConfig(TEST_DIR .  '/Resource/config/phpunit.json');
+        $this->processor->setBuilder('SearchIndexBuilder');
+        $results = $this->processor->parseString('<html lang="en">Test</html>');
+        $this->assertIsString($results);
     }
 }
