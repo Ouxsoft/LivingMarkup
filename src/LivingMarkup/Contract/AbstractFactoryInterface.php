@@ -2,10 +2,10 @@
 
 namespace LivingMarkup\Contract;
 
-use LivingMarkup\Configuration;
-use LivingMarkup\Element\ElementPool;
-use LivingMarkup\Document;
 use LivingMarkup\Builder\BuilderInterface;
+use LivingMarkup\Configuration;
+use LivingMarkup\Document;
+use LivingMarkup\Element\ElementPool;
 use LivingMarkup\Engine;
 use LivingMarkup\Kernel;
 use Pimple\Container;
@@ -33,7 +33,7 @@ interface AbstractFactoryInterface
      * @param Container $container
      * @return BuilderInterface
      */
-    public function makeBuilder(Container &$container) : BuilderInterface;
+    public function makeBuilder(Container &$container): BuilderInterface;
 
     /**
      * @param Container $container

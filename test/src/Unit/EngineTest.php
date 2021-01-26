@@ -23,7 +23,7 @@ class EngineTest extends TestCase
     private $engine;
     private $config;
 
-    public function setUp() : void
+    public function setUp(): void
     {
         $abstractFactory = new ConcreteFactory();
         $container = ContainerFactory::buildContainer($abstractFactory);
@@ -31,19 +31,9 @@ class EngineTest extends TestCase
         $this->config = &$container['config'];
     }
 
-    public function tearDown() : void
+    public function tearDown(): void
     {
         unset($this->engine);
-    }
-
-    /**
-     * Removes whitespace to allow testing from multiple OS
-     * @param string $string
-     * @return string
-     */
-    public function removeWhitespace(string $string) : string
-    {
-        return preg_replace('~\R~u', '', $string);
     }
 
     /**
@@ -88,7 +78,7 @@ class EngineTest extends TestCase
      */
     public function testGetDomElementByPlaceholderId()
     {
-        $this->config->setSource('<html lang="en"><b '.Engine::INDEX_ATTRIBUTE.'="test">Hello, World!</b></html>');
+        $this->config->setSource('<html lang="en"><b ' . Engine::INDEX_ATTRIBUTE . '="test">Hello, World!</b></html>');
         $results = $this->engine->getDomElementByPlaceholderId('test');
         $bool = $results->getAttribute(Engine::INDEX_ATTRIBUTE) == 'test';
         $this->assertTrue($bool);
@@ -99,7 +89,7 @@ class EngineTest extends TestCase
      */
     public function testGetElementInnerXML()
     {
-        $this->config->setSource('<html lang="en"><b '.Engine::INDEX_ATTRIBUTE.'="test">Hello, World!</b></html>');
+        $this->config->setSource('<html lang="en"><b ' . Engine::INDEX_ATTRIBUTE . '="test">Hello, World!</b></html>');
         $results = $this->engine->getElementInnerXML('test');
         $bool = $results == 'Hello, World!';
         $this->assertTrue($bool);
@@ -110,7 +100,7 @@ class EngineTest extends TestCase
      */
     public function testGetElementArgs()
     {
-        $this->config->setSource('<html lang="en"><b '.Engine::INDEX_ATTRIBUTE.'="test"><arg name="toggle">no</arg><arg name="">empty</arg></b></html>');
+        $this->config->setSource('<html lang="en"><b ' . Engine::INDEX_ATTRIBUTE . '="test"><arg name="toggle">no</arg><arg name="">empty</arg></b></html>');
         $dom_element = $this->engine->getDomElementByPlaceholderId('test');
         $args = $this->engine->getElementArgs($dom_element);
         $bool = $args['toggle'] == 'no';
@@ -123,10 +113,20 @@ class EngineTest extends TestCase
     public function test__toString()
     {
         $this->config->setSource('<html lang="en"><b><arg name="toggle">no</arg></b></html>');
-        $engine = (string) $this->engine;
+        $engine = (string)$this->engine;
         $engine = $this->removeWhitespace($engine);
         $test_results = '<!DOCTYPE html><html lang="en"><b><arg name="toggle">no</arg></b></html>';
         $this->assertEquals($engine, $test_results);
+    }
+
+    /**
+     * Removes whitespace to allow testing from multiple OS
+     * @param string $string
+     * @return string
+     */
+    public function removeWhitespace(string $string): string
+    {
+        return preg_replace('~\R~u', '', $string);
     }
 
     /**
@@ -201,7 +201,7 @@ class EngineTest extends TestCase
      */
     public function testReplaceDomElement()
     {
-        $this->config->setSource('<html lang="en"><b '.Engine::INDEX_ATTRIBUTE.'="test"><arg name="toggle">no</arg></b></html>');
+        $this->config->setSource('<html lang="en"><b ' . Engine::INDEX_ATTRIBUTE . '="test"><arg name="toggle">no</arg></b></html>');
         $dom_element = $this->engine->getDomElementByPlaceholderId('test');
         $this->engine->replaceDomElement($dom_element, '<b>Foo Bar</b>');
         $engine_output = $this->removeWhitespace($this->engine);

@@ -39,7 +39,7 @@ class Exception extends RuntimeException
      * Returns log
      * @return string|null
      */
-    public function getLog() : ? string
+    public function getLog(): ?string
     {
         return $this->log;
     }

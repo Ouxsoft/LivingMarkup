@@ -10,7 +10,7 @@ interface KernelInterface
     /**
      * @param ConfigurationInterface $config
      */
-    public function setConfig(ConfigurationInterface $config) : void;
+    public function setConfig(ConfigurationInterface $config): void;
 
     /**
      * @param string $builder_class
@@ -21,5 +21,5 @@ interface KernelInterface
     /**
      * @return Engine
      */
-    public function build() : Engine;
+    public function build(): Engine;
 }

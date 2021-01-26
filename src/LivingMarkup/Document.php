@@ -61,10 +61,10 @@ class Document extends DomDocument implements DocumentInterface
      * @param string $source must be well formatted and feature a root element, e.g. <html>
      * @return bool
      */
-    public function loadSource(string $source) : bool
+    public function loadSource(string $source): bool
     {
         // add DOCTYPE declaration
-        $doctype = '<!DOCTYPE html [' . Entities::HTML5 . ']>'. PHP_EOL;
+        $doctype = '<!DOCTYPE html [' . Entities::HTML5 . ']>' . PHP_EOL;
 
         // replace DOCTYPE if present
         $count = 1;

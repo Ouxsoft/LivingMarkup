@@ -30,7 +30,7 @@ class ArgumentArray implements
      * Returns count of containers
      * @return int
      */
-    public function count() : int
+    public function count(): int
     {
         return count($this->container);
     }
@@ -111,7 +111,7 @@ class ArgumentArray implements
      *
      * @param $array
      */
-    public function merge($array) : void
+    public function merge($array): void
     {
         $this->container = array_merge($array, $this->container);
     }

@@ -27,7 +27,8 @@ class SearchIndexBuilder implements BuilderInterface
     private $engine;
     private $config;
 
-    public function __construct(EngineInterface &$engine, ConfigurationInterface &$config){
+    public function __construct(EngineInterface &$engine, ConfigurationInterface &$config)
+    {
         $this->engine = &$engine;
         $this->config = &$config;
     }

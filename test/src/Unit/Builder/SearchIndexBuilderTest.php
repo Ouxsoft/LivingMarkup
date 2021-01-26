@@ -10,9 +10,6 @@
 
 namespace LivingMarkup\Test\Builder;
 
-use LivingMarkup\Builder\SearchIndexBuilder;
-use LivingMarkup\Configuration;
-use LivingMarkup\Engine;
 use LivingMarkup\Factory\ProcessorFactory;
 use PHPUnit\Framework\TestCase;
 
@@ -21,12 +18,12 @@ class SearchIndexBuilderTest extends TestCase
 
     private $processor;
 
-    public function setUp() : void
+    public function setUp(): void
     {
         $this->processor = ProcessorFactory::getInstance();
     }
 
-    public function tearDown() : void
+    public function tearDown(): void
     {
         unset($this->processor);
     }
@@ -36,7 +33,7 @@ class SearchIndexBuilderTest extends TestCase
      */
     public function testGetObject()
     {
-        $this->processor->loadConfig(TEST_DIR .  '/Resource/config/phpunit.json');
+        $this->processor->loadConfig(TEST_DIR . '/Resource/config/phpunit.json');
         $this->processor->setBuilder('SearchIndexBuilder');
         $results = $this->processor->parseString('<html lang="en">Test</html>');
         $this->assertIsString($results);
@@ -47,7 +44,7 @@ class SearchIndexBuilderTest extends TestCase
      */
     public function testCreateObject()
     {
-        $this->processor->loadConfig(TEST_DIR .  '/Resource/config/phpunit.json');
+        $this->processor->loadConfig(TEST_DIR . '/Resource/config/phpunit.json');
         $this->processor->setBuilder('SearchIndexBuilder');
         $results = $this->processor->parseString('<html lang="en">Test</html>');
         $this->assertIsString($results);

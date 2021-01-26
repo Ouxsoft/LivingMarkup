@@ -10,6 +10,7 @@
 
 namespace LivingMarkup\Test\Element;
 
+use ArrayIterator;
 use LivingMarkup\Element\AbstractElement;
 use LivingMarkup\Element\ElementPool;
 use LivingMarkup\Test\HelloWorld;
@@ -24,7 +25,7 @@ class ElementPoolTest extends TestCase
     public function testGetIterator()
     {
         $pool = new ElementPool;
-        $this->assertTrue(($pool->getIterator() instanceof \ArrayIterator));
+        $this->assertTrue(($pool->getIterator() instanceof ArrayIterator));
     }
 
     /**

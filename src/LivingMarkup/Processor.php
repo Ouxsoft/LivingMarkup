@@ -12,9 +12,9 @@ declare(strict_types=1);
 
 namespace LivingMarkup;
 
-use LivingMarkup\Contract\KernelInterface;
-use LivingMarkup\Contract\ConfigurationInterface;
 use LivingMarkup\Builder\BuilderInterface;
+use LivingMarkup\Contract\ConfigurationInterface;
+use LivingMarkup\Contract\KernelInterface;
 
 /**
  * Class Processor
@@ -36,7 +36,8 @@ class Processor
     public function __construct(
         KernelInterface &$kernel,
         ConfigurationInterface &$config
-    ) {
+    )
+    {
         $this->kernel = &$kernel;
         $this->config = &$config;
     }
@@ -46,19 +47,9 @@ class Processor
      *
      * @param bool $status
      */
-    public function setStatus(bool $status) : void
+    public function setStatus(bool $status): void
     {
         $this->active = $status;
-    }
-
-    /**
-     * Gets whether process runs or does not run
-     *
-     * @return bool
-     */
-    public function getStatus() : bool
-    {
-        return $this->active;
     }
 
     /**
@@ -66,21 +57,9 @@ class Processor
      *
      * @param $filepath
      */
-    public function loadConfig(string $filepath) : void
+    public function loadConfig(string $filepath): void
     {
         $this->config->loadFile($filepath);
-    }
-
-
-    /**
-     * Set config
-     *
-     * @param ConfigurationInterface $config
-     * @return void
-     */
-    public function setConfig(ConfigurationInterface $config) : void
-    {
-        $this->config = $config;
     }
 
     /**
@@ -88,9 +67,20 @@ class Processor
      *
      * @return Configuration
      */
-    public function getConfig() : Configuration
+    public function getConfig(): Configuration
     {
         return $this->config;
+    }
+
+    /**
+     * Set config
+     *
+     * @param ConfigurationInterface $config
+     * @return void
+     */
+    public function setConfig(ConfigurationInterface $config): void
+    {
+        $this->config = $config;
     }
 
     /**
@@ -98,7 +88,7 @@ class Processor
      *
      * @param string $builder_class
      */
-    public function setBuilder(string $builder_class) : void
+    public function setBuilder(string $builder_class): void
     {
         $this->kernel->setBuilder($builder_class);
     }
@@ -108,7 +98,7 @@ class Processor
      *
      * @return BuilderInterface
      */
-    public function getBuilder() : BuilderInterface
+    public function getBuilder(): BuilderInterface
     {
         return $this->kernel->getBuilder();
     }
@@ -120,7 +110,7 @@ class Processor
      * @param string $xpath_expression
      * @param string $class_name
      */
-    public function addElement(string $name, string $xpath_expression, string $class_name) : void
+    public function addElement(string $name, string $xpath_expression, string $class_name): void
     {
         $this->config->addElement([
             'name' => $name,
@@ -136,21 +126,30 @@ class Processor
      * @param string $description
      * @param string|null $execute
      */
-    public function addMethod(string $method_name, string $description = '', string $execute = null) : void
+    public function addMethod(string $method_name, string $description = '', string $execute = null): void
     {
         $this->config->addMethod($method_name, $description, $execute);
     }
 
-
     /**
      * Process output buffer
      */
-    public function parseBuffer() : void
+    public function parseBuffer(): void
     {
         if ($this->getStatus()) {
             // process buffer once completed
             ob_start([$this, 'parseString']);
         }
+    }
+
+    /**
+     * Gets whether process runs or does not run
+     *
+     * @return bool
+     */
+    public function getStatus(): bool
+    {
+        return $this->active;
     }
 
     /**
@@ -174,6 +173,16 @@ class Processor
     }
 
     /**
+     * Parse using a Kernel to build an Engine
+     *
+     * @return string
+     */
+    private function parse(): string
+    {
+        return (string)$this->kernel->build();
+    }
+
+    /**
      * Process string
      *
      * @param string $source
@@ -189,15 +198,5 @@ class Processor
         $this->config->setSource($source);
 
         return $this->parse();
-    }
-
-    /**
-     * Parse using a Kernel to build an Engine
-     *
-     * @return string
-     */
-    private function parse() : string
-    {
-        return (string) $this->kernel->build();
     }
 }

@@ -15,7 +15,6 @@
 </p>
 
 ## About
-
 A server-side markup abstraction layer based on the [LHTML](https://github.com/ouxsoft/LHTML) standard programmed in PHP. 
 
 ## Usage
@@ -43,34 +42,32 @@ class Alert extends LivingMarkup\Element\AbstractElement
 }
 ```
 
-Add that LHTML Element to a LHTML processor.
+Add `Partial` namespace to a LHTML processor and invoke `onRendor`.
 ```php
-// instantiate processor
-$proc = new LivingMarkup\Processor();
+use LivingMarkup\Factory\ProcessorFactory;
 
-// add LHTML Element to processor
-$proc->addElement('Partial', '//partial', 'Partial\{name}');
+$processor = ProcessorFactory::getInstance();
 
-// automate method call
-$proc->addMethod('onRender','Execute for render', 'RETURN_CALL');
+$processor->addElement('Partial', '//partial', 'Partial\{name}');
 
-// process LHTML string
-echo $proc->parseString('<html>
+$processor->addMethod('onRender','Execute for render', 'RETURN_CALL');
+
+echo $processor->parseString('<html lang="en">
     <partial name="Alert" type="success">This is a success alert.</partial>
 </html>');
 ```
 
-Outputs a HTML5 page with a markup abstraction layer. 
+Outputs processed HTML5 page. 
 
 ```html5
 <!doctype html>
-<html>
+<html lang="en">
     <div class="alert success" role="alert">
         This is a success alert
     </div>
 </html>
 ```
-This layer will make major changes of the CSS framework, in this example Bootstrap, easy.
+This markup abstraction layer make CSS framework changes, in this example Bootstrap, easy.
 
 ## Installation
 

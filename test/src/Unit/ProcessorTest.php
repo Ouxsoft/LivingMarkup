@@ -15,19 +15,19 @@ use LivingMarkup\Builder\StaticPageBuilder;
 use LivingMarkup\Configuration;
 use LivingMarkup\Contract\ConfigurationInterface;
 use LivingMarkup\Document;
-use PHPUnit\Framework\TestCase;
 use LivingMarkup\Factory\ProcessorFactory;
+use PHPUnit\Framework\TestCase;
 
 class ProcessorTest extends TestCase
 {
     private $processor;
 
-    public function setUp() : void
+    public function setUp(): void
     {
         $this->processor = ProcessorFactory::getInstance();
     }
 
-    public function tearDown() : void
+    public function tearDown(): void
     {
         unset($this->processor);
     }
@@ -117,13 +117,11 @@ class ProcessorTest extends TestCase
      */
     public function testAddMethod()
     {
-        $this->processor->addMethod('TestMethod','A test method');
+        $this->processor->addMethod('TestMethod', 'A test method');
         $config = $this->processor->getConfig();
         $elements = $config->getElements();
         $this->assertCount(1, $elements);
     }
-
-    /**
 
     /**
      * @covers \LivingMarkup\Processor::parseString
@@ -131,7 +129,7 @@ class ProcessorTest extends TestCase
     public function testParseString()
     {
         $this->processor->loadConfig(TEST_DIR . '/Resource/config/phpunit.json');
-        $test_results = $this->processor->parseString('<html><bitwise>
+        $test_results = $this->processor->parseString('<html lang="en"><bitwise>
     <arg name="number">2</arg>
     <arg name="count">6</arg>
     <arg name="operator">^</arg>
@@ -164,7 +162,7 @@ class ProcessorTest extends TestCase
     {
 
         $this->processor->parseBuffer();
-        $input = '<html><b>Test</b></html>';
+        $input = '<html lang="en"><b>Test</b></html>';
         echo $input;
         $output = ob_get_contents();
         ob_end_clean();
@@ -180,7 +178,7 @@ class ProcessorTest extends TestCase
         // try with processor turned off
         $this->processor->setStatus(true);
         $this->processor->parseBuffer();
-        $input = '<html><b>Test</b></html>';
+        $input = '<html lang="en"><b>Test</b></html>';
         echo $input;
         $output = ob_get_contents();
         ob_end_clean();

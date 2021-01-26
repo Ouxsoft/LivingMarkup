@@ -17,48 +17,48 @@ class DocumentTest extends TestCase
 {
 
     /**
-     * Removes whitespace to allow testing from multiple OS
-     * @param string $string
-     * @return string
-     */
-    public function removeWhitespace(string $string) : string
-    {
-        return preg_replace('~\R~u', '', $string);
-    }
-
-    /**
      * @covers \LivingMarkup\Document::loadSource
      */
     public function testLoadSource()
     {
         // load without doctype
         $doc = new Document();
-        $doc->loadSource('<html>Test</html>');
+        $doc->loadSource('<html lang="en">Test</html>');
         $output = $doc->saveHTML();
         $output = $this->removeWhitespace($output);
-        $this->assertStringContainsString($output, '<!DOCTYPE html><html>Test</html>');
+        $this->assertStringContainsString($output, '<!DOCTYPE html><html lang="en">Test</html>');
 
         // load with doctype
         $doc = new Document();
         $doc->loadSource('<!DOCTYPE html>
-<html>Test</html>');
+<html lang="en">Test</html>');
         $output = $doc->saveHTML();
         $output = $this->removeWhitespace($output);
-        $this->assertStringContainsString($output, '<!DOCTYPE html><html><body><p>Test</p></body></html>');
+        $this->assertStringContainsString($output, '<!DOCTYPE html><html lang="en"><body><p>Test</p></body></html>');
 
         // add html root
         $doc = new Document();
         $doc->loadSource('Test');
         $output = $doc->saveHTML();
         $output = $this->removeWhitespace($output);
-        $this->assertStringContainsString($output, '<!DOCTYPE html><html><body><p>Test</p></body></html>');
+        $this->assertStringContainsString($output, '<!DOCTYPE html><html lang="en"><body><p>Test</p></body></html>');
 
         // test add html root element
         $doc = new Document();
         $doc->loadSource('<p>Test</p>');
         $output = $doc->saveHTML();
         $output = $this->removeWhitespace($output);
-        $this->assertStringContainsString($output, '<!DOCTYPE html><html><p>Test</p></html>');
+        $this->assertStringContainsString($output, '<!DOCTYPE html><html lang="en"><p>Test</p></html>');
+    }
+
+    /**
+     * Removes whitespace to allow testing from multiple OS
+     * @param string $string
+     * @return string
+     */
+    public function removeWhitespace(string $string): string
+    {
+        return preg_replace('~\R~u', '', $string);
     }
 
     /**

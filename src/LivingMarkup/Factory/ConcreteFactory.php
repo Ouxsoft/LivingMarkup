@@ -28,7 +28,8 @@ class ConcreteFactory implements AbstractFactoryInterface
     /**
      * @inheritDoc
      */
-    public function makeConfig(Container &$container): Configuration {
+    public function makeConfig(Container &$container): Configuration
+    {
         return new Configuration(
             $container['document']
         );
@@ -46,7 +47,7 @@ class ConcreteFactory implements AbstractFactoryInterface
     /**
      * @inheritDoc
      */
-    public function makeBuilder(Container &$container) : BuilderInterface
+    public function makeBuilder(Container &$container): BuilderInterface
     {
         return new DynamicPageBuilder(
             $container['engine'],

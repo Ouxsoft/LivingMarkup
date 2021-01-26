@@ -10,18 +10,23 @@
 
 namespace LivingMarkup\Tests;
 
-use PHPUnit\Framework\TestCase;
 use LivingMarkup\Factory\ProcessorFactory;
+use LivingMarkup\Processor;
+use PHPUnit\Framework\TestCase;
 
 final class ProcessorTest extends TestCase
 {
+    /**
+     * @var Processor
+     */
+    private $processor;
 
-    public function setUp() : void
+    public function setUp(): void
     {
         $this->processor = ProcessorFactory::getInstance();
     }
 
-    public function tearDown() : void
+    public function tearDown(): void
     {
         unset($this->processor);
     }
@@ -31,7 +36,7 @@ final class ProcessorTest extends TestCase
 
         $this->processor->loadConfig(TEST_DIR . 'Resource/config/phpunit.json');
 
-        $test_results =  $this->processor->parseString('<html><bitwise>
+        $test_results = $this->processor->parseString('<html lang="en"><bitwise>
     <arg name="number">2</arg>
     <arg name="count">6</arg>
     <arg name="operator">^</arg>
@@ -43,7 +48,7 @@ final class ProcessorTest extends TestCase
     public function testParseFileWithLoadConfig()
     {
 
-        $this->processor->loadConfig(TEST_DIR .  'Resource/config/phpunit.json');
+        $this->processor->loadConfig(TEST_DIR . 'Resource/config/phpunit.json');
 
         $test_results = $this->processor->parseFile(TEST_DIR . 'Resource/inputs/index.html');
 

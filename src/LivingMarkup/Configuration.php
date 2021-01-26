@@ -13,11 +13,11 @@ declare(strict_types=1);
 
 namespace LivingMarkup;
 
+use Laminas\Config\Reader\Json;
+use Laminas\Validator\File\Exists;
 use LivingMarkup\Contract\ConfigurationInterface;
 use LivingMarkup\Contract\DocumentInterface;
 use LivingMarkup\Exception\Exception;
-use Laminas\Config\Reader\Json;
-use Laminas\Validator\File\Exists;
 use Throwable;
 
 /**
@@ -47,10 +47,11 @@ class Configuration implements ConfigurationInterface
     public function __construct(
         DocumentInterface &$document,
         ?string $config_file_path = null
-    ) {
+    )
+    {
         $this->document = &$document;
 
-        if($config_file_path !== null){
+        if ($config_file_path !== null) {
             $this->loadFile($config_file_path);
         }
     }
@@ -61,7 +62,7 @@ class Configuration implements ConfigurationInterface
      * @param string|null $filepath
      * @return void
      */
-    public function loadFile(string $filepath = null) : void
+    public function loadFile(string $filepath = null): void
     {
         // fail overs for distributed configs
         $fail_overs = [
@@ -88,7 +89,7 @@ class Configuration implements ConfigurationInterface
                     break;
                 }
             } catch (Throwable $e) {
-                throw new Exception('Unable to load config' .  $e);
+                throw new Exception('Unable to load config' . $e);
             }
         }
     }
@@ -102,9 +103,38 @@ class Configuration implements ConfigurationInterface
      */
     public function add(string $key, $value): bool
     {
-        $this->configuration[$key] = $value;
-
+        switch($key){
+            case 'markup':
+                $this->setSource($value);
+                break;
+            case 'version':
+                $this->configuration['version'] = $value;
+                break;
+            case 'elements':
+                $this->configuration['elements'][] = $value;
+                break;
+            case 'types':
+                $this->configuration['elements']['types'][] = $value;
+                break;
+            case 'methods':
+                $this->configuration['elements']['methods'][] = $value;
+                break;
+            default:
+                $this->configuration[$key] = $value;
+                break;
+        }
         return true;
+    }
+
+    /**
+     * Set LHTML source/markup
+     *
+     * @param string $markup
+     */
+    public function setSource(string $markup): void
+    {
+        $this->configuration['markup'] = $markup;
+        $this->document->loadSource($markup);
     }
 
     /**
@@ -112,7 +142,7 @@ class Configuration implements ConfigurationInterface
      *
      * @param array $element
      */
-    public function addElement(array $element) : void
+    public function addElement(array $element): void
     {
         $this->configuration['elements']['types'][] = $element;
     }
@@ -122,7 +152,7 @@ class Configuration implements ConfigurationInterface
      *
      * @param array $elements
      */
-    public function addElements(array $elements) : void
+    public function addElements(array $elements): void
     {
         if (
             array_key_exists('elements', $this->configuration) &&
@@ -150,7 +180,6 @@ class Configuration implements ConfigurationInterface
 
         return $this->configuration['elements']['types'];
     }
-
 
     /**
      * Checks if keys are set
@@ -183,7 +212,7 @@ class Configuration implements ConfigurationInterface
      * @param string $description
      * @param string|null $execute
      */
-    public function addMethod(string $method_name, string $description = '', $execute = null) : void
+    public function addMethod(string $method_name, string $description = '', $execute = null): void
     {
         if (is_string($execute)) {
             $this->configuration['elements']['methods'][] = [
@@ -235,16 +264,5 @@ class Configuration implements ConfigurationInterface
         }
 
         return $this->configuration['markup'];
-    }
-
-    /**
-     * Set LHTML source/markup
-     *
-     * @param string $markup
-     */
-    public function setSource(string $markup) : void
-    {
-        $this->configuration['markup'] = $markup;
-        $this->document->loadSource($markup);
     }
 }

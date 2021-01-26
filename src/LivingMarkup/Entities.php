@@ -21,9 +21,6 @@ namespace LivingMarkup;
  */
 class Entities
 {
-    private $url = 'https://www.w3.org/TR/2012/CR-html5-20121217/entities.json';
-
-    // hardcoded cache of fetch
     const HTML5 = <<<'ENTITY'
 <!ENTITY aacute "&amp;#193">
 <!ENTITY abreve "&amp;#258">
@@ -1749,14 +1746,43 @@ class Entities
 <!ENTITY zwnj "&amp;#8204">
 ENTITY;
 
+    // hardcoded cache of fetch
+    private $url = 'https://www.w3.org/TR/2012/CR-html5-20121217/entities.json';
+
     /**
      * Get list of entities to pass to DOM. These will prevent the character from causing parse errors
      *
      * @return string
      */
-    public static function get() : string
+    public static function get(): string
     {
         return self::HTML5;
+    }
+
+    /**
+     * Get url of fetch point
+     * @return string
+     */
+    public function getURL(): string
+    {
+        return $this->url;
+    }
+
+    /**
+     * Fetches entity string for use in DomDocument Doctype declaration
+     *
+     * @return string
+     */
+    public function fetchString(): string
+    {
+        $entities_list = $this->fetchArray();
+
+        $out = '';
+        foreach ($entities_list as $key => $value) {
+            $out .= '<!ENTITY ' . $key . ' "' . htmlentities($value) . '">' . PHP_EOL;
+        }
+
+        return $out;
     }
 
     /**
@@ -1764,7 +1790,7 @@ ENTITY;
      *
      * @return array
      */
-    public function fetchArray() : array
+    public function fetchArray(): array
     {
         $entities_json = file_get_contents($this->url);
         $entities_array = json_decode($entities_json);
@@ -1782,31 +1808,5 @@ ENTITY;
         }
 
         return $entities_list;
-    }
-
-    /**
-     * Get url of fetch point
-     * @return string
-     */
-    public function getURL() : string
-    {
-        return $this->url;
-    }
-
-    /**
-     * Fetches entity string for use in DomDocument Doctype declaration
-     *
-     * @return string
-     */
-    public function fetchString() : string
-    {
-        $entities_list = $this->fetchArray();
-
-        $out = '';
-        foreach ($entities_list as $key => $value) {
-            $out .= '<!ENTITY ' . $key . ' "' . htmlentities($value) . '">' . PHP_EOL;
-        }
-
-        return $out;
     }
 }

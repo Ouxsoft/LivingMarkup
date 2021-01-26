@@ -10,13 +10,13 @@
 
 namespace LivingMarkup\Tests;
 
-use LivingMarkup\Configuration;
-use PHPUnit\Framework\TestCase;
 use LivingMarkup\Builder\DynamicPageBuilder;
 use LivingMarkup\Builder\SearchIndexBuilder;
 use LivingMarkup\Builder\StaticPageBuilder;
+use LivingMarkup\Configuration;
 use LivingMarkup\Engine;
 use LivingMarkup\Kernel;
+use PHPUnit\Framework\TestCase;
 
 final class BuilderTest extends TestCase
 {
@@ -28,14 +28,14 @@ final class BuilderTest extends TestCase
     <arg name="operator">^</arg>
 </bitwise></html>';
 
-    public function setUp() : void
+    public function setUp(): void
     {
         $config_dir = TEST_DIR . 'Resource/inputs/phpunit.json';
         $this->config = new Configuration($config_dir);
         $this->config->add('markup', $this->markup);
     }
 
-    public function tearDown() : void
+    public function tearDown(): void
     {
         unset($this->config);
     }

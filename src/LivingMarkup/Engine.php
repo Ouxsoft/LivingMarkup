@@ -57,7 +57,8 @@ class Engine implements EngineInterface
     public function __construct(
         DocumentInterface &$document,
         ElementPoolInterface &$element_pool
-    ) {
+    )
+    {
         $this->dom = &$document;
 
         $this->element_pool = &$element_pool;
@@ -137,20 +138,6 @@ class Engine implements EngineInterface
     }
 
     /**
-     * XPath query for class $this->DOM property that fetches all results as array
-     *
-     * @param string $query
-     * @param DOMElement|null $node
-     * @return mixed
-     */
-    public function queryFetchAll(string $query, DOMElement $node = null): ?DOMNodeList
-    {
-        $xpath = new DOMXPath($this->dom);
-
-        return $xpath->query($query, $node);
-    }
-
-    /**
      * XPath query for class $this->DOM property that fetches only first result
      *
      * @param string $query
@@ -168,6 +155,20 @@ class Engine implements EngineInterface
         }
 
         return null;
+    }
+
+    /**
+     * XPath query for class $this->DOM property that fetches all results as array
+     *
+     * @param string $query
+     * @param DOMElement|null $node
+     * @return mixed
+     */
+    public function queryFetchAll(string $query, DOMElement $node = null): ?DOMNodeList
+    {
+        $xpath = new DOMXPath($this->dom);
+
+        return $xpath->query($query, $node);
     }
 
     /**
@@ -379,7 +380,7 @@ class Engine implements EngineInterface
         switch ($type) {
             case 'string':
             case 'str':
-                $value = (string) $value;
+                $value = (string)$value;
                 break;
             case 'json':
                 $value = json_decode($value);

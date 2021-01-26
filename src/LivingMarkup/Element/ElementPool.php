@@ -12,7 +12,7 @@ declare(strict_types=1);
 
 namespace LivingMarkup\Element;
 
-use \ArrayIterator;
+use ArrayIterator;
 use Countable;
 use IteratorAggregate;
 use LivingMarkup\Contract\ElementPoolInterface;
@@ -36,7 +36,7 @@ class ElementPool implements
      * Returns a count of number of elements in collection
      * @return int
      */
-    public function count() : int
+    public function count(): int
     {
         return count($this->collection);
     }
@@ -46,7 +46,7 @@ class ElementPool implements
      *
      * @return ArrayIterator|Traversable
      */
-    public function getIterator() : ArrayIterator
+    public function getIterator(): ArrayIterator
     {
         return new ArrayIterator($this->collection);
     }
@@ -56,7 +56,7 @@ class ElementPool implements
      * @param string|null $element_id
      * @return AbstractElement|null
      */
-    public function getById(?string $element_id = null) : ?AbstractElement
+    public function getById(?string $element_id = null): ?AbstractElement
     {
         if (array_key_exists($element_id, $this->collection)) {
             return $this->collection[$element_id];
@@ -71,7 +71,7 @@ class ElementPool implements
      * @param string $element_id
      * @return array
      */
-    public function getPropertiesById(string $element_id) : array
+    public function getPropertiesById(string $element_id): array
     {
         return get_object_vars($this->collection[$element_id]);
     }
@@ -81,7 +81,7 @@ class ElementPool implements
      *
      * @param $element
      */
-    public function add(AbstractElement &$element) : void
+    public function add(AbstractElement &$element): void
     {
         $this->collection[$element->element_id] = &$element;
     }
@@ -91,7 +91,7 @@ class ElementPool implements
      *
      * @param $method
      */
-    public function callMethod(string $method) : void
+    public function callMethod(string $method): void
     {
         // iterate through elements
         foreach ($this->collection as $element) {
