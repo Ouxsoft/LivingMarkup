@@ -21,30 +21,56 @@ use PHPUnit\Framework\TestCase;
 class KernelTest extends TestCase
 {
 
+    private $kernel;
+
+    public function setUp() : void
+    {
+        $abstractFactory = new ConcreteFactory();
+
+        $container = ContainerFactory::buildContainer($abstractFactory);
+        $container['config']->loadSource(TEST_DIR . 'Resources/config/phpunit.json');
+        $container['config']->add('markup', '<html><p>Hello, World!</p></html>');
+
+        $this->kernel = new Kernel(
+            $container['engine'],
+            $container['builder']
+        );
+    }
+
+    public function tearDown() : void
+    {
+        unset($this->processor);
+    }
+
+
+    /**
+     * @covers \LivingMarkup\Kernel::setConfig
+     */
+    public function testSetConfig()
+    {
+        $document = new Document;
+        $config = new Configuration($document);
+        $this->kernel->setConfig($config);
+        $kernel_config = $this->kernel->getConfig($config);
+        $this->assertInstanceOf(Configuration::class, $kernel_config);
+    }
+
+    /**
+     * @covers \LivingMarkup\Kernel::setBuilder
+     */
+    public function testSetBuilder()
+    {
+        $this->kernel->setBuilder('SearchIndexBuilder');
+        $engine = $this->kernel->build();
+        $this->assertInstanceOf(Engine::class, $engine);
+    }
+
     /**
      * @covers \LivingMarkup\Kernel::build
      */
     public function testBuild()
     {
-
-        $abstractFactory = new ConcreteFactory();
-
-        $container = ContainerFactory::buildContainer($abstractFactory);
-        $container['config'] = new Configuration(TEST_DIR . 'Resources/config/phpunit.json');
-        $container['config']->add('markup', '<html><p>Hello, World!</p></html>');
-
-        $kernel = new Kernel(
-            $container['engine'],
-            $container['builder']
-        );
-
-        $builder = new DynamicPageBuilder(
-            $container['engine'],
-            $container['config']
-        );
-
-        $engine = $kernel->build();
-
+        $engine = $this->kernel->build();
         $this->assertInstanceOf(Engine::class, $engine);
     }
 }

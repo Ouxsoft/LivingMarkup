@@ -14,7 +14,7 @@ use LivingMarkup\Element\AbstractElement as AbstractElement;
 
 /**
  * Class Bitwise
- * @package LivingMarkup\Elements\Custom\Examples\Bitwise
+ * @package LivingMarkup\Test
  */
 class Bitwise extends AbstractElement
 {

@@ -75,10 +75,10 @@ class Processor
     /**
      * Set config
      *
-     * @param Configuration $config
+     * @param ConfigurationInterface $config
      * @return void
      */
-    public function setConfig(Configuration $config) : void
+    public function setConfig(ConfigurationInterface $config) : void
     {
         $this->config = $config;
     }

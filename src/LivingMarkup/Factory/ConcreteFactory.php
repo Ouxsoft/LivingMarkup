@@ -4,12 +4,11 @@ declare(strict_types=1);
 
 namespace LivingMarkup\Factory;
 
-use DOMDocument;
-use DOMXPath;
 use LivingMarkup\Builder\BuilderInterface;
 use LivingMarkup\Builder\DynamicPageBuilder;
 use LivingMarkup\Configuration;
 use LivingMarkup\Contract\AbstractFactoryInterface;
+use LivingMarkup\Contract\DocumentInterface;
 use LivingMarkup\Document;
 use LivingMarkup\Element\ElementPool;
 use LivingMarkup\Engine;
@@ -21,17 +20,18 @@ class ConcreteFactory implements AbstractFactoryInterface
     /**
      * @inheritDoc
      */
-    public function makeConfig(?string $config_file_path = null): Configuration
+    public function makeDocument(Container &$container): DocumentInterface
     {
-        $config = new Configuration();
+        return new Document();
+    }
 
-        if($config_file_path !== null){
-            $config->loadFile($config_file_path);
-        } else {
-            $config->setSource('<html></html>');
-        }
-
-        return $config;
+    /**
+     * @inheritDoc
+     */
+    public function makeConfig(Container &$container): Configuration {
+        return new Configuration(
+            $container['document']
+        );
     }
 
     /**
@@ -42,21 +42,6 @@ class ConcreteFactory implements AbstractFactoryInterface
         return new ElementPool();
     }
 
-    /**
-     * @inheritDoc
-     */
-    public function makeDocument(Container &$container): Document
-    {
-        return new Document();
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function makeDomXpath(Container &$container): DOMXPath
-    {
-        return new DOMXPath($container['document']);
-    }
 
     /**
      * @inheritDoc
@@ -76,7 +61,6 @@ class ConcreteFactory implements AbstractFactoryInterface
     {
         return new Engine(
             $container['document'],
-            $container['dom_xpath'],
             $container['element_pool']
         );
     }

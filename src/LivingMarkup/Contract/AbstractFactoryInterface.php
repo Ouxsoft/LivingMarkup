@@ -2,8 +2,6 @@
 
 namespace LivingMarkup\Contract;
 
-use DOMDocument;
-use DOMXPath;
 use LivingMarkup\Configuration;
 use LivingMarkup\Element\ElementPool;
 use LivingMarkup\Document;
@@ -15,27 +13,21 @@ use Pimple\Container;
 interface AbstractFactoryInterface
 {
     /**
-     * @param string|null $config_file_path
+     * @param Container $container
+     * @return Document
+     */
+    public function makeDocument(Container &$container): DocumentInterface;
+
+    /**
+     * @param Container $container
      * @return Configuration
      */
-    public function makeConfig(?string $config_file_path = null): Configuration;
+    public function makeConfig(Container &$container): Configuration;
 
     /**
      * @return ElementPool
      */
     public function makeElementPool(): ElementPool;
-
-    /**
-     * @param Container $container
-     * @return Document
-     */
-    public function makeDocument(Container &$container): Document;
-
-    /**
-     * @param Container $container
-     * @return DOMXPath
-     */
-    public function makeDomXpath(Container &$container): DOMXPath;
 
     /**
      * @param Container $container

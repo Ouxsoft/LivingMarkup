@@ -29,15 +29,14 @@ use LivingMarkup\Exception\Exception;
  */
 class Engine implements EngineInterface
 {
+    // TODO: implement LivingMarkup const
+    const RETURN_CALL = 1;
 
     // marker attribute used by Engine to identify DOMElement during processing
     const INDEX_ATTRIBUTE = '_ELEMENT_ID';
 
     // Document Object Model (DOM)
     public $dom;
-
-    // DOMXPath Query object
-    public $xpath;
 
     // ElementPool
     public $element_pool;
@@ -53,17 +52,13 @@ class Engine implements EngineInterface
      * Engine constructor.
      *
      * @param DocumentInterface $document
-     * @param DOMXPath $xpath
      * @param ElementPoolInterface $element_pool
      */
     public function __construct(
         DocumentInterface &$document,
-        DOMXPath &$xpath,
         ElementPoolInterface &$element_pool
     ) {
         $this->dom = &$document;
-
-        $this->xpath = &$xpath;
 
         $this->element_pool = &$element_pool;
     }
@@ -108,7 +103,7 @@ class Engine implements EngineInterface
      */
     public function getElementAncestorProperties(string $element_id): array
     {
-        // get ancestor ids
+        // make list of ancestor ids
         $ancestor_properties = [];
 
         $query = '//ancestor::*[@' . self::INDEX_ATTRIBUTE . ']';
@@ -134,7 +129,7 @@ class Engine implements EngineInterface
      */
     public function getDomElementByPlaceholderId(string $element_id): ?DOMElement
     {
-        // find an element by id
+        // find an element by INDEX_ATTRIBUTE
         $query = '//*[@' . self::INDEX_ATTRIBUTE . '="' . $element_id . '"]';
 
         // get object found
@@ -145,12 +140,14 @@ class Engine implements EngineInterface
      * XPath query for class $this->DOM property that fetches all results as array
      *
      * @param string $query
-     * @param DOMElement $node
+     * @param DOMElement|null $node
      * @return mixed
      */
     public function queryFetchAll(string $query, DOMElement $node = null): ?DOMNodeList
     {
-        return $this->xpath->query($query, $node);
+        $xpath = new DOMXPath($this->dom);
+
+        return $xpath->query($query, $node);
     }
 
     /**
@@ -162,7 +159,9 @@ class Engine implements EngineInterface
      */
     public function queryFetch(string $query, DOMElement $node = null): ?DOMElement
     {
-        $results = $this->xpath->query($query, $node);
+        $xpath = new DOMXPath($this->dom);
+
+        $results = $xpath->query($query, $node);
 
         if (isset($results[0])) {
             return $results[0];
@@ -170,7 +169,6 @@ class Engine implements EngineInterface
 
         return null;
     }
-
 
     /**
      * Within DOMDocument replace DOMElement with Element->__toString() output
@@ -196,6 +194,7 @@ class Engine implements EngineInterface
         $new_xml = $element->__toString() ?? '';
 
         $this->replaceDomElement($dom_element, $new_xml);
+
 
         return true;
     }
@@ -226,7 +225,7 @@ class Engine implements EngineInterface
      * @param DOMElement $element
      * @param string $new_xml
      */
-    public function replaceDomElement(DOMElement &$element, string $new_xml): void
+    public function replaceDomElement(DOMElement $element, string $new_xml): void
     {
         // create a blank document fragment
         $fragment = $this->dom->createDocumentFragment();
@@ -244,15 +243,22 @@ class Engine implements EngineInterface
      */
     public function instantiateElements(array $lhtml_element): bool
     {
+
         // check for xpath and class
-        if (!array_key_exists('xpath', $lhtml_element) || !array_key_exists('class_name', $lhtml_element)) {
+        if (
+            !array_key_exists('xpath', $lhtml_element)
+            || !array_key_exists('class_name', $lhtml_element)
+        ) {
             return false;
         }
 
         // iterate through handler's expression searching for applicable elements
         foreach ($this->queryFetchAll($lhtml_element['xpath']) as $dom_element) {
             // if class does not exist replace element with informative comment
-            $this->instantiateElement($dom_element, $lhtml_element['class_name']);
+            $this->instantiateElement(
+                $dom_element,
+                $lhtml_element['class_name']
+            );
         }
 
         return true;
@@ -265,7 +271,7 @@ class Engine implements EngineInterface
      * @param string $class_name
      * @return bool
      */
-    private function instantiateElement(DOMElement &$element, string $class_name): bool
+    private function instantiateElement(DOMElement $element, string $class_name): bool
     {
         // skip if placeholder already assigned
         if ($element->hasAttribute(self::INDEX_ATTRIBUTE)) {
@@ -278,14 +284,20 @@ class Engine implements EngineInterface
                 $element_name = $element->getAttribute('name');
                 $class_name = str_replace('{name}', $element_name, $class_name);
             } else {
-                $this->replaceDomElement($element, '<!-- Element "' . $class_name . '" Missing Name Attribute -->');
+                $this->replaceDomElement(
+                    $element,
+                    '<!-- Element "' . $class_name . '" Missing Name Attribute -->'
+                );
                 return false;
             }
         }
 
         // if class does not exist add debug comment
         if (!class_exists($class_name)) {
-            $this->replaceDomElement($element, '<!-- Element "' . $class_name . '" Not Found -->');
+            $this->replaceDomElement(
+                $element,
+                '<!-- Element "' . $class_name . '" Not Found -->'
+            );
             return false;
         }
 
@@ -311,7 +323,7 @@ class Engine implements EngineInterface
      * @param DOMElement $element
      * @return ArgumentArray
      */
-    public function getElementArgs(DOMElement &$element): ArgumentArray
+    public function getElementArgs(DOMElement $element): ArgumentArray
     {
         $args = new ArgumentArray;
 
@@ -356,7 +368,7 @@ class Engine implements EngineInterface
     /**
      * Set a value type to avoid Type Juggling issues and extend data types
      *
-     * @param string $value
+     * @param null $value
      * @param string $type
      * @return bool|mixed|string|null
      */
@@ -367,7 +379,7 @@ class Engine implements EngineInterface
         switch ($type) {
             case 'string':
             case 'str':
-                $value = (string)$value;;
+                $value = (string) $value;
                 break;
             case 'json':
                 $value = json_decode($value);

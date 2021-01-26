@@ -91,7 +91,7 @@ class Kernel implements KernelInterface
      */
     public function build() : Engine
     {
-        $this->builder->createObject($this->config);
+        $this->builder->createObject();
 
         return $this->builder->getObject();
     }

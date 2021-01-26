@@ -24,6 +24,9 @@ use LivingMarkup\Engine;
 class DynamicPageBuilder implements BuilderInterface
 {
     private $engine;
+    /**
+     * @var ConfigurationInterface
+     */
     private $config;
 
     public function __construct(EngineInterface &$engine, ConfigurationInterface &$config){
@@ -32,7 +35,7 @@ class DynamicPageBuilder implements BuilderInterface
     }
 
     /**
-     * Creates Page object using parameters supplied
+     * Instantiate elements and call methods inside engine
      *
      * @return void
      */

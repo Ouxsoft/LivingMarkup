@@ -8,13 +8,13 @@
  * file that was distributed with this source code.
  */
 
-namespace LivingMarkup\Element;
+namespace LivingMarkup\Test\Unit;
 
 use LivingMarkup\Builder\BuilderInterface;
-use LivingMarkup\Builder\DynamicPageBuilder;
 use LivingMarkup\Builder\StaticPageBuilder;
 use LivingMarkup\Configuration;
 use LivingMarkup\Contract\ConfigurationInterface;
+use LivingMarkup\Document;
 use PHPUnit\Framework\TestCase;
 use LivingMarkup\Factory\ProcessorFactory;
 
@@ -73,7 +73,7 @@ class ProcessorTest extends TestCase
     {
         $this->processor->loadConfig(TEST_DIR . '/Resource/config/phpunit.json');
         $processor_config = $this->processor->getConfig();
-        $this->assertIsArray($processor_config->container['elements']);
+        $this->assertInstanceOf(ConfigurationInterface::class, $processor_config);
     }
 
 
@@ -82,7 +82,10 @@ class ProcessorTest extends TestCase
      */
     public function testSetConfig()
     {
-        $config = new Configuration();
+        $document = new Document();
+        $config = new Configuration(
+            $document
+        );
         $this->processor->setConfig($config);
         $processor_config = $this->processor->getConfig();
         $this->assertInstanceOf(ConfigurationInterface::class, $processor_config);

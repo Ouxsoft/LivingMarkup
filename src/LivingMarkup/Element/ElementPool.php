@@ -16,7 +16,6 @@ use \ArrayIterator;
 use Countable;
 use IteratorAggregate;
 use LivingMarkup\Contract\ElementPoolInterface;
-use phpDocumentor\Reflection\Element;
 use Traversable;
 
 /**
@@ -54,9 +53,8 @@ class ElementPool implements
 
     /**
      * Get Element by placeholder id
-     *
      * @param string|null $element_id
-     * @return Element|null
+     * @return AbstractElement|null
      */
     public function getById(?string $element_id = null) : ?AbstractElement
     {
@@ -66,7 +64,6 @@ class ElementPool implements
 
         return null;
     }
-
 
     /**
      * Get the public properties of a element using the elements ID
@@ -91,7 +88,6 @@ class ElementPool implements
 
     /**
      * Invoke a method if present in each element
-     *
      *
      * @param $method
      */

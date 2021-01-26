@@ -9,10 +9,9 @@ use LivingMarkup\Processor;
 class ProcessorFactory
 {
     /**
-     * @param string|null $configPath
      * @return Processor
      */
-    public static function getInstance(?string $configPath = null): Processor
+    public static function getInstance(): Processor
     {
         $abstractFactory = new ConcreteFactory();
 
