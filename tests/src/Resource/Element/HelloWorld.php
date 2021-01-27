@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-namespace LivingMarkup\Test;
+namespace LivingMarkup\Tests\Resource\Element;
 
 use LivingMarkup\Element\AbstractElement as AbstractElement;
 

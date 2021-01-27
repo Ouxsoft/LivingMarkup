@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-namespace LivingMarkup\Tests;
+namespace LivingMarkup\Tests\Unit;
 
 use LivingMarkup\Configuration;
 use LivingMarkup\Exception\Exception;
@@ -39,7 +39,7 @@ class ConfigurationTest extends TestCase
     {
         $this->config->addElement([
             'name' => 'Bitwise',
-            'class_name' => 'LivingMarkup\Test\Bitwise',
+            'class_name' => 'LivingMarkup\Tests\Resource\Element\Bitwise',
             'xpath' => 'bitwise'
         ]);
         $this->assertCount(1, $this->config->getElements());
@@ -52,7 +52,7 @@ class ConfigurationTest extends TestCase
     {
         $element = [
             'name' => 'Bitwise',
-            'class_name' => 'LivingMarkup\Test\Bitwise',
+            'class_name' => 'LivingMarkup\Tests\Resource\Element\Bitwise',
             'xpath' => 'bitwise'
         ];
         $this->config->addElement($element);
@@ -158,7 +158,7 @@ class ConfigurationTest extends TestCase
 
         $this->config->routines[] = [
             'name' => 'Bitwise',
-            'class_name' => 'LivingMarkup\Test\Bitwise',
+            'class_name' => 'LivingMarkup\Tests\Resource\Element\Bitwise',
             'xpath' => 'bitwise'
         ];
         $this->asserArrayHasKey(0, $this->config->routines);
@@ -183,12 +183,12 @@ class ConfigurationTest extends TestCase
         $this->config->addElements([
             [
                 'name' => 'Bitwise',
-                'class_name' => 'LivingMarkup\Test\Bitwise',
+                'class_name' => 'LivingMarkup\Tests\Resource\Element\Bitwise',
                 'xpath' => 'bitwise'
             ],
             [
                 'name' => 'Bitwise',
-                'class_name' => 'LivingMarkup\Test\Bitwise',
+                'class_name' => 'LivingMarkup\Tests\Resource\Element\Bitwise',
                 'xpath' => 'bitwise'
             ]
         ]);

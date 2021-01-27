@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-namespace LivingMarkup\Test\Unit;
+namespace LivingMarkup\Tests\Unit;
 
 use LivingMarkup\Builder\BuilderInterface;
 use LivingMarkup\Builder\StaticPageBuilder;
@@ -106,7 +106,11 @@ class ProcessorTest extends TestCase
      */
     public function testAddElement()
     {
-        $this->processor->addElement('Path', '//*', '\LivingMarkup\Test\HelloWorld');
+        $this->processor->addElement(
+            'Path',
+            '//*',
+            '\LivingMarkup\Tests\Resource\Element\HelloWorld'
+        );
         $config = $this->processor->getConfig();
         $elements = $config->getElements();
         $this->assertCount(1, $elements);

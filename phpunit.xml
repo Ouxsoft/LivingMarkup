@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:noNamespaceSchemaLocation="./vendor/phpunit/phpunit/phpunit.xsd"
-         bootstrap="test/bootstrap.php"
+         bootstrap="tests/bootstrap.php"
          colors="true">
 
     <testsuites>
         <testsuite name="unit">
-            <directory>test/src/Unit</directory>
+            <directory>tests/src/Unit</directory>
         </testsuite>
 
         <testsuite name="feature">
-            <directory>test/src/Feature</directory>
+            <directory>tests/src/Feature</directory>
         </testsuite>
     </testsuites>
 
@@ -21,7 +21,9 @@
         <include>
             <directory suffix=".php">src</directory>
         </include>
-
+        <exclude>
+            <directory suffix="Interface.php">.</directory>
+        </exclude>
         <report>
             <clover outputFile="build/logs/clover.xml"/>
             <crap4j outputFile="build/logs/crap4j.xml" threshold="50"/>

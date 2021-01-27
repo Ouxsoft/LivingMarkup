@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-namespace LivingMarkup\Tests;
+namespace LivingMarkup\Tests\Unit;
 
 use LivingMarkup\Builder\DynamicPageBuilder;
 use LivingMarkup\Builder\SearchIndexBuilder;

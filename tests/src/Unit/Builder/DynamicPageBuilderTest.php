@@ -8,12 +8,12 @@
  * file that was distributed with this source code.
  */
 
-namespace LivingMarkup\Test\Builder;
+namespace LivingMarkup\Tests\Unit\Builder;
 
 use LivingMarkup\Factory\ProcessorFactory;
 use PHPUnit\Framework\TestCase;
 
-class SearchIndexBuilderTest extends TestCase
+class DynamicPageBuilderTest extends TestCase
 {
 
     private $processor;
@@ -21,6 +21,8 @@ class SearchIndexBuilderTest extends TestCase
     public function setUp(): void
     {
         $this->processor = ProcessorFactory::getInstance();
+        $this->processor->loadConfig(TEST_DIR . '/Resource/config/phpunit.json');
+        $this->processor->setBuilder('DynamicPageBuilder');
     }
 
     public function tearDown(): void
@@ -29,23 +31,19 @@ class SearchIndexBuilderTest extends TestCase
     }
 
     /**
-     * @covers \LivingMarkup\Builder\SearchIndexBuilder::getObject
+     * @covers \LivingMarkup\Builder\DynamicPageBuilder::getObject
      */
     public function testGetObject()
     {
-        $this->processor->loadConfig(TEST_DIR . '/Resource/config/phpunit.json');
-        $this->processor->setBuilder('SearchIndexBuilder');
         $results = $this->processor->parseString('<html lang="en">Test</html>');
         $this->assertIsString($results);
     }
 
     /**
-     * @covers \LivingMarkup\Builder\SearchIndexBuilder::createObject
+     * @covers \LivingMarkup\Builder\DynamicPageBuilder::createObject
      */
     public function testCreateObject()
     {
-        $this->processor->loadConfig(TEST_DIR . '/Resource/config/phpunit.json');
-        $this->processor->setBuilder('SearchIndexBuilder');
         $results = $this->processor->parseString('<html lang="en">Test</html>');
         $this->assertIsString($results);
     }

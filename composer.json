@@ -50,13 +50,13 @@
   "autoload": {
     "psr-4": {
       "LivingMarkup\\": "src/LivingMarkup/",
-      "LivingMarkup\\Test\\": "test/src/Resource/Element/"
+      "LivingMarkup\\Tests\\": "tests/src/"
     }
   },
   "autoload-dev": {
     "psr-4": {
       "LivingMarkup\\": "src/LivingMarkup/",
-      "LivingMarkup\\Test\\": "test/src/Resource/Element/"
+      "LivingMarkup\\Tests\\": "tests/src/"
     }
   },
   "scripts": {

@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-namespace LivingMarkup\Tests;
+namespace LivingMarkup\Tests\Unit;
 
 use LivingMarkup\Element\ElementPool;
 use LivingMarkup\Engine;
@@ -148,14 +148,14 @@ class EngineTest extends TestCase
         $this->engine->instantiateElements(
             [
                 'xpath' => '//b',
-                'class_name' => 'LivingMarkup\Test\HelloWorld'
+                'class_name' => 'LivingMarkup\Tests\Resource\Element\HelloWorld'
             ]
         );
         $this->assertCount(1, $this->engine->element_pool);
 
         $this->engine->instantiateElements(
             [
-                'class_name' => 'LivingMarkup\Test\HelloWorld'
+                'class_name' => 'LivingMarkup\Tests\Resource\Element\HelloWorld'
             ]
         );
 
@@ -173,7 +173,7 @@ class EngineTest extends TestCase
         $this->engine->instantiateElements(
             [
                 'xpath' => '//b',
-                'class_name' => 'LivingMarkup\Test\HelloWorld'
+                'class_name' => 'LivingMarkup\Tests\Resource\Element\HelloWorld'
             ]
         );
         $bool = $this->engine->callRoutine([
@@ -220,7 +220,7 @@ class EngineTest extends TestCase
         $this->engine->instantiateElements(
             [
                 'xpath' => '//div',
-                'class_name' => 'LivingMarkup\Test\HelloWorld'
+                'class_name' => 'LivingMarkup\Tests\Resource\Element\HelloWorld'
             ]
         );
         foreach ($this->engine->element_pool as $element) {
@@ -259,7 +259,7 @@ class EngineTest extends TestCase
         $this->engine->instantiateElements(
             [
                 'xpath' => '//div',
-                'class_name' => 'LivingMarkup\Test\{name}'
+                'class_name' => 'LivingMarkup\Tests\Resource\Element\{name}'
             ]
         );
         $this->engine->instantiateElements([
@@ -279,7 +279,7 @@ class EngineTest extends TestCase
         $this->engine->instantiateElements(
             [
                 'xpath' => '//div',
-                'class_name' => 'LivingMarkup\Test\HelloWorld'
+                'class_name' => 'LivingMarkup\Tests\Resource\Element\HelloWorld'
             ]
         );
         foreach ($this->engine->element_pool as $element) {

@@ -8,12 +8,12 @@
  * file that was distributed with this source code.
  */
 
-namespace LivingMarkup\Test\Element;
+namespace LivingMarkup\Tests\Unit\Element;
 
 use ArrayIterator;
 use LivingMarkup\Element\AbstractElement;
 use LivingMarkup\Element\ElementPool;
-use LivingMarkup\Test\HelloWorld;
+use LivingMarkup\Tests\Resource\Element\HelloWorld;
 use PHPUnit\Framework\TestCase;
 
 class ElementPoolTest extends TestCase

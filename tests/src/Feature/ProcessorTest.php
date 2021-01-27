@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-namespace LivingMarkup\Tests;
+namespace LivingMarkup\Tests\Feature;
 
 use LivingMarkup\Factory\ProcessorFactory;
 use LivingMarkup\Processor;
@@ -36,11 +36,9 @@ final class ProcessorTest extends TestCase
 
         $this->processor->loadConfig(TEST_DIR . 'Resource/config/phpunit.json');
 
-        $test_results = $this->processor->parseString('<html lang="en"><bitwise>
-    <arg name="number">2</arg>
-    <arg name="count">6</arg>
-    <arg name="operator">^</arg>
-</bitwise></html>');
+        $html = file_get_contents(TEST_DIR . 'Resource/inputs/index.html');
+
+        $test_results = $this->processor->parseString($html);
 
         $this->assertStringMatchesFormatFile(TEST_DIR . 'Resource/outputs/index.html', $test_results);
     }
@@ -58,7 +56,11 @@ final class ProcessorTest extends TestCase
     public function testParseWithDefinitions()
     {
 
-        $this->processor->addElement('Bitwise', '//bitwise', 'LivingMarkup\Test\Bitwise');
+        $this->processor->addElement(
+            'Bitwise',
+            '//bitwise',
+            'LivingMarkup\Tests\Resource\Element\Bitwise'
+        );
 
         $this->processor->addRoutine('onRender', 'Execute for render', 'RETURN_CALL');
 

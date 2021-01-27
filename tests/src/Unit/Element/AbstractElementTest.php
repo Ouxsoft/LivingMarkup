@@ -8,9 +8,9 @@
  * file that was distributed with this source code.
  */
 
-namespace LivingMarkup;
+namespace LivingMarkup\Tests\Unit\Element;
 
-use LivingMarkup\Test\HelloWorld;
+use LivingMarkup\Tests\Resource\Element\HelloWorld;
 use PHPUnit\Framework\TestCase;
 
 class AbstractElementTest extends TestCase

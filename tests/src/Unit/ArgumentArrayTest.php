@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-namespace LivingMarkup\Element;
+namespace LivingMarkup\Tests\Unit;
 
 use LivingMarkup\ArgumentArray;
 use PHPUnit\Framework\TestCase;

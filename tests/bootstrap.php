@@ -10,13 +10,9 @@
 
 // define common directories
 define('ROOT_DIR', dirname(__DIR__, 1) . '/');
-define('TEST_DIR', ROOT_DIR . 'test/src/');
-define('PUBLIC_DIR', ROOT_DIR . 'public/');
+define('TEST_DIR', ROOT_DIR . 'tests/src/');
 define('ASSET_DIR', ROOT_DIR . 'assets/');
-define('IMAGE_DIR', ASSET_DIR . 'images/');
 
-
-//chdir(dirname(__DIR__));
 require ROOT_DIR . 'vendor/autoload.php';
 
 // set include path
@@ -25,7 +21,7 @@ set_include_path(ROOT_DIR);
 // set time
 date_default_timezone_set('UTC');
 
-// ensures that notices can be caught by tests
+// ensure notices are caught by tests
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);

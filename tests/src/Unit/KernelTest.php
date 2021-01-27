@@ -8,7 +8,7 @@
 * file that was distributed with this source code.
 */
 
-namespace LivingMarkup\Test\LivingMarkup\Tests;
+namespace LivingMarkup\Tests\Unit;
 
 use LivingMarkup\Builder\BuilderInterface;
 use LivingMarkup\Configuration;
@@ -44,6 +44,7 @@ class KernelTest extends TestCase
 
     /**
      * @covers \LivingMarkup\Kernel::__construct
+     * @covers \LivingMarkup\Kernel
      */
     public function test__construct()
     {

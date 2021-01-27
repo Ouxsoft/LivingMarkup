@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-namespace LivingMarkup\Test\Exception;
+namespace LivingMarkup\Test\Unit\Exception;
 
 use LivingMarkup\Exception\Exception;
 use PHPUnit\Framework\TestCase;

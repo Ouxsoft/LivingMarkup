@@ -13,6 +13,7 @@ declare(strict_types=1);
 namespace LivingMarkup;
 
 use ArrayAccess;
+use Iterator;
 use Countable;
 
 /**
@@ -22,15 +23,18 @@ use Countable;
  */
 class ArgumentArray implements
     ArrayAccess,
+    Iterator,
     Countable
 {
     private $container = [];
+
+    private $index = 0;
 
     /**
      * Returns count of containers
      * @return int
      */
-    public function count(): int
+    public function count() : int
     {
         return count($this->container);
     }
@@ -70,7 +74,6 @@ class ArgumentArray implements
             $this->container[$offset] = $value;
         } elseif ($this->container[$offset] == $value) {
             // if item value exists as string skip
-            return;
         } elseif (is_string($this->container[$offset])) {
             // change string value to array
             $present_value = $this->container[$offset];
@@ -111,8 +114,56 @@ class ArgumentArray implements
      *
      * @param $array
      */
-    public function merge($array): void
+    public function merge($array) : void
     {
         $this->container = array_merge($array, $this->container);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function current()
+    {
+        $k = array_keys($this->container);
+        return $this->container[$k[$this->index]];
+    }
+
+    /**
+     * @return bool|mixed|void
+     */
+    public function next()
+    {
+        $k = array_keys($this->container);
+        if (isset($k[++$this->index])) {
+            return $this->container[$k[$this->index]];
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * @return bool|float|int|mixed|string|null
+     */
+    public function key()
+    {
+        $k = array_keys($this->container);
+        return $k[$this->index];
+    }
+
+    /**
+     * @return bool
+     */
+    public function valid()
+    {
+        $k = array_keys($this->container);
+        return isset($k[$this->index]);
+    }
+
+    /**
+     *
+     */
+    public function rewind()
+    {
+        $this->index = 0;
     }
 }
