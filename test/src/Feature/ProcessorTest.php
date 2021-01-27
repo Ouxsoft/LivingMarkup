@@ -60,7 +60,7 @@ final class ProcessorTest extends TestCase
 
         $this->processor->addElement('Bitwise', '//bitwise', 'LivingMarkup\Test\Bitwise');
 
-        $this->processor->addMethod('onRender', 'Execute for render', 'RETURN_CALL');
+        $this->processor->addRoutine('onRender', 'Execute for render', 'RETURN_CALL');
 
         $test_results = $this->processor->parseFile(TEST_DIR . 'Resource/inputs/index.html');
 

@@ -36,7 +36,7 @@ class DynamicPageBuilder implements BuilderInterface
     }
 
     /**
-     * Instantiate elements and call methods inside engine
+     * Instantiate elements and call routines inside engine
      *
      * @return void
      */
@@ -47,9 +47,9 @@ class DynamicPageBuilder implements BuilderInterface
             $this->engine->instantiateElements($element);
         }
 
-        // call element method
-        foreach ($this->config->getMethods() as $method) {
-            $this->engine->callMethod($method);
+        // call element routine
+        foreach ($this->config->getRoutines() as $routine) {
+            $this->engine->callRoutine($routine);
         }
     }
 

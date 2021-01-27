@@ -20,7 +20,9 @@ use LivingMarkup\Exception\Exception;
 
 /**
  * Class Kernel
+ *
  * The Kernel passes a Configuration through a Builder to build a Engine
+ *
  * @package LivingMarkup
  */
 class Kernel implements KernelInterface

@@ -45,9 +45,9 @@ class SearchIndexBuilder implements BuilderInterface
             $this->engine->instantiateElements($element);
         }
 
-        // call element method
-        foreach ($this->config->getMethods() as $method) {
-            $this->engine->callMethod($method);
+        // call element routine
+        foreach ($this->config->getRoutines() as $routine) {
+            $this->engine->callRoutine($routine);
         }
     }
 

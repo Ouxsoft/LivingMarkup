@@ -1,39 +1,37 @@
 {
-  "version": 1,
-  "elements": {
-    "types": [
-      {
-        "name": "Bitwise",
-        "class_name": "LivingMarkup\\Test\\Bitwise",
-        "xpath": "//bitwise"
-      }
-    ],
-    "methods": [
-      {
-        "name": "beforeLoad",
-        "description": "Execute before object data is loaded"
-      },
-      {
-        "name": "onLoad",
-        "description": "Execute when object data is loading"
-      },
-      {
-        "name": "afterLoad",
-        "description": "Execute after object data is loaded"
-      },
-      {
-        "name": "beforeRender",
-        "description": "Execute before object is rendered"
-      },
-      {
-        "name": "onRender",
-        "description": "Execute while object is rendering",
-        "execute": "RETURN_CALL"
-      },
-      {
-        "name": "afterRender",
-        "description": "Execute after object is rendered"
-      }
-    ]
-  }
+  "version": 3,
+  "elements": [
+    {
+      "name": "Bitwise",
+      "xpath": "//bitwise",
+      "class_name": "LivingMarkup\\Test\\Bitwise"
+    }
+  ],
+  "routines": [
+    {
+      "method": "beforeLoad",
+      "description": "Execute before object data is loaded"
+    },
+    {
+      "method": "onLoad",
+      "description": "Execute when object data is loading"
+    },
+    {
+      "method": "afterLoad",
+      "description": "Execute after object data is loaded"
+    },
+    {
+      "method": "beforeRender",
+      "description": "Execute before object is rendered"
+    },
+    {
+      "method": "onRender",
+      "description": "Execute while object is rendering",
+      "execute": "RETURN_CALL"
+    },
+    {
+      "method": "afterRender",
+      "description": "Execute after object is rendered"
+    }
+  ]
 }

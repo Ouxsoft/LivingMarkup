@@ -23,7 +23,7 @@ use LivingMarkup\Exception\Exception;
 /**
  * Class Engine
  *
- * Runs Elements to manipulate Document
+ * The Engine loads a DOM object and modifies the Document.
  *
  * @package LivingMarkup\Engine
  */
@@ -67,23 +67,23 @@ class Engine implements EngineInterface
     /**
      * Call Hooks
      *
-     * @param array $method
+     * @param array $routine
      * @return bool-
      */
-    public function callMethod(array $method): bool
+    public function callRoutine(array $routine): bool
     {
         // set and/or update ancestors
         foreach ($this->element_pool as $element) {
             $element->ancestors = $this->getElementAncestorProperties($element->element_id);
         }
 
-        // call method to all elements
-        if (!array_key_exists('execute', $method)) {
-            $this->element_pool->callMethod($method['name']);
+        // call routine to all elements
+        if (!array_key_exists('execute', $routine)) {
+            $this->element_pool->callRoutine($routine['name']);
             return true;
         }
 
-        switch ($method['execute']) {
+        switch ($routine['execute']) {
             case 'RETURN_CALL':
                 foreach ($this->element_pool as $element) {
                     $this->renderElement($element->element_id);

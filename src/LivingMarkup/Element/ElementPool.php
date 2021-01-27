@@ -89,13 +89,13 @@ class ElementPool implements
     /**
      * Invoke a method if present in each element
      *
-     * @param $method
+     * @param $routine
      */
-    public function callMethod(string $method): void
+    public function callRoutine(string $routine): void
     {
         // iterate through elements
         foreach ($this->collection as $element) {
-            $element($method);
+            $element($routine);
         }
     }
 }

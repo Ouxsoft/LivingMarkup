@@ -68,7 +68,7 @@ class EngineTest extends TestCase
      */
     public function testQueryFetchAll()
     {
-        $this->config->setSource('<html lang="en"><b>Hello, World!</b></html>');
+        $this->config->setMarkup('<html lang="en"><b>Hello, World!</b></html>');
         $results = $this->engine->queryFetchAll('//*');
         $this->assertCount(2, $results);
     }
@@ -78,7 +78,7 @@ class EngineTest extends TestCase
      */
     public function testGetDomElementByPlaceholderId()
     {
-        $this->config->setSource('<html lang="en"><b ' . Engine::INDEX_ATTRIBUTE . '="test">Hello, World!</b></html>');
+        $this->config->setMarkup('<html lang="en"><b ' . Engine::INDEX_ATTRIBUTE . '="test">Hello, World!</b></html>');
         $results = $this->engine->getDomElementByPlaceholderId('test');
         $bool = $results->getAttribute(Engine::INDEX_ATTRIBUTE) == 'test';
         $this->assertTrue($bool);
@@ -89,7 +89,7 @@ class EngineTest extends TestCase
      */
     public function testGetElementInnerXML()
     {
-        $this->config->setSource('<html lang="en"><b ' . Engine::INDEX_ATTRIBUTE . '="test">Hello, World!</b></html>');
+        $this->config->setMarkup('<html lang="en"><b ' . Engine::INDEX_ATTRIBUTE . '="test">Hello, World!</b></html>');
         $results = $this->engine->getElementInnerXML('test');
         $bool = $results == 'Hello, World!';
         $this->assertTrue($bool);
@@ -100,7 +100,7 @@ class EngineTest extends TestCase
      */
     public function testGetElementArgs()
     {
-        $this->config->setSource('<html lang="en"><b ' . Engine::INDEX_ATTRIBUTE . '="test"><arg name="toggle">no</arg><arg name="">empty</arg></b></html>');
+        $this->config->setMarkup('<html lang="en"><b ' . Engine::INDEX_ATTRIBUTE . '="test"><arg name="toggle">no</arg><arg name="">empty</arg></b></html>');
         $dom_element = $this->engine->getDomElementByPlaceholderId('test');
         $args = $this->engine->getElementArgs($dom_element);
         $bool = $args['toggle'] == 'no';
@@ -112,7 +112,7 @@ class EngineTest extends TestCase
      */
     public function test__toString()
     {
-        $this->config->setSource('<html lang="en"><b><arg name="toggle">no</arg></b></html>');
+        $this->config->setMarkup('<html lang="en"><b><arg name="toggle">no</arg></b></html>');
         $engine = (string)$this->engine;
         $engine = $this->removeWhitespace($engine);
         $test_results = '<!DOCTYPE html><html lang="en"><b><arg name="toggle">no</arg></b></html>';
@@ -134,7 +134,7 @@ class EngineTest extends TestCase
      */
     public function testQueryFetch()
     {
-        $this->config->setSource('<html lang="en"><b>Hello, World!</b></html>');
+        $this->config->setMarkup('<html lang="en"><b>Hello, World!</b></html>');
         $results = $this->engine->queryFetch('//*');
         $this->assertEquals('Hello, World!', $results->nodeValue);
     }
@@ -144,7 +144,7 @@ class EngineTest extends TestCase
      */
     public function testInstantiateElements()
     {
-        $this->config->setSource('<html lang="en"><b>Hello, World!</b></html>');
+        $this->config->setMarkup('<html lang="en"><b>Hello, World!</b></html>');
         $this->engine->instantiateElements(
             [
                 'xpath' => '//b',
@@ -165,18 +165,18 @@ class EngineTest extends TestCase
     }
 
     /**
-     * @covers \LivingMarkup\Engine::callMethod
+     * @covers \LivingMarkup\Engine::callRoutine
      */
-    public function testCallMethod()
+    public function testCallRoutine()
     {
-        $this->config->setSource('<html lang="en"><b>Hello, World!</b></html>');
+        $this->config->setMarkup('<html lang="en"><b>Hello, World!</b></html>');
         $this->engine->instantiateElements(
             [
                 'xpath' => '//b',
                 'class_name' => 'LivingMarkup\Test\HelloWorld'
             ]
         );
-        $bool = $this->engine->callMethod([
+        $bool = $this->engine->callRoutine([
             'name' => 'onRender',
             'execute' => 'RETURN_CALL'
         ]);
@@ -185,7 +185,7 @@ class EngineTest extends TestCase
         $throw_occurred = false;
         try {
             // test throw
-            $this->engine->callMethod([
+            $this->engine->callRoutine([
                 'name' => 'onRender',
                 'execute' => 'THROW_ERROR'
             ]);
@@ -201,7 +201,7 @@ class EngineTest extends TestCase
      */
     public function testReplaceDomElement()
     {
-        $this->config->setSource('<html lang="en"><b ' . Engine::INDEX_ATTRIBUTE . '="test"><arg name="toggle">no</arg></b></html>');
+        $this->config->setMarkup('<html lang="en"><b ' . Engine::INDEX_ATTRIBUTE . '="test"><arg name="toggle">no</arg></b></html>');
         $dom_element = $this->engine->getDomElementByPlaceholderId('test');
         $this->engine->replaceDomElement($dom_element, '<b>Foo Bar</b>');
         $engine_output = $this->removeWhitespace($this->engine);
@@ -216,7 +216,7 @@ class EngineTest extends TestCase
      */
     public function testRenderElement()
     {
-        $this->config->setSource('<html lang="en"><div>Foo Bar</div></html>');
+        $this->config->setMarkup('<html lang="en"><div>Foo Bar</div></html>');
         $this->engine->instantiateElements(
             [
                 'xpath' => '//div',
@@ -245,7 +245,7 @@ class EngineTest extends TestCase
      */
     public function testInstantiateElement()
     {
-        $this->config->setSource('
+        $this->config->setMarkup('
 <html lang="en">
     <div ' . Engine::INDEX_ATTRIBUTE . '="skip">
         Skip
@@ -275,7 +275,7 @@ class EngineTest extends TestCase
      */
     public function testGetElementAncestorProperties()
     {
-        $this->config->setSource('<html lang="en"><div type="page"><arg name="section">help</arg><div>Hello, World!</div></div></html>');
+        $this->config->setMarkup('<html lang="en"><div type="page"><arg name="section">help</arg><div>Hello, World!</div></div></html>');
         $this->engine->instantiateElements(
             [
                 'xpath' => '//div',

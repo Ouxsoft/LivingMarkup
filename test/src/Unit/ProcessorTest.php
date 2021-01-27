@@ -113,11 +113,11 @@ class ProcessorTest extends TestCase
     }
 
     /**
-     * @covers \LivingMarkup\Processor::addMethod
+     * @covers \LivingMarkup\Processor::addRoutine
      */
-    public function testAddMethod()
+    public function testAddRoutine()
     {
-        $this->processor->addMethod('TestMethod', 'A test method');
+        $this->processor->addRoutine('TestRoutine', 'A test Routine');
         $config = $this->processor->getConfig();
         $elements = $config->getElements();
         $this->assertCount(1, $elements);

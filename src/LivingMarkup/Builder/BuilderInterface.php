@@ -19,6 +19,9 @@ use LivingMarkup\Engine;
 /**
  * Class Builder
  *
+ * The Builder receives parameters passed from the Kernel and uses them to instantiate and return a
+ * Document object.
+ *
  * @package LivingMarkup\Page\Builder
  */
 interface BuilderInterface

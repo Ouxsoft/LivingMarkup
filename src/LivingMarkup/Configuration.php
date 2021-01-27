@@ -23,21 +23,18 @@ use Throwable;
 /**
  * Class Configuration
  *
+ * Contains a list of Elements, Routines, and the raw HTML/XML document source
+ *
  * @package LivingMarkup
  */
 class Configuration implements ConfigurationInterface
 {
     const LOCAL_FILENAME = 'config.json';
     const DIST_FILENAME = 'config.dist.json';
+    const VERSION = 3;
 
     private $document;
-    private $configuration = [
-        'version' => 1,
-        'elements' => [
-            'types' => [],
-            'methods' => []
-        ]
-    ];
+    private $properties;
 
     /**
      * Configuration constructor.
@@ -50,6 +47,13 @@ class Configuration implements ConfigurationInterface
     )
     {
         $this->document = &$document;
+
+        $this->properties = [
+            'version' => self::VERSION,
+            'elements' => [],
+            'routines' => [],
+            'markup' => ''
+        ];
 
         if ($config_file_path !== null) {
             $this->loadFile($config_file_path);
@@ -83,9 +87,9 @@ class Configuration implements ConfigurationInterface
 
                 // load json file
                 $reader = new Json();
-                $this->configuration = $reader->fromFile($path);
+                $this->properties = $reader->fromFile($path);
 
-                if (is_array($this->configuration)) {
+                if (is_array($this->properties)) {
                     break;
                 }
             } catch (Throwable $e) {
@@ -95,35 +99,47 @@ class Configuration implements ConfigurationInterface
     }
 
     /**
-     * Add item to config
-     *
-     * @param string $key
-     * @param mixed $value
-     * @return bool
+     * @param $property
+     * @return mixed
      */
-    public function add(string $key, $value): bool
-    {
-        switch($key){
-            case 'markup':
-                $this->setSource($value);
-                break;
+    public function __get($property){
+
+        switch ($property) {
             case 'version':
-                $this->configuration['version'] = $value;
+                return $this->properties['version'];
+            case 'elements':
+                return $this->properties['elements'];
+            case 'routines':
+                return $this->properties['routines'];
+            case 'markup':
+                return $this->getMarkup();
+            default:
+                return $this->properties[$property];
+        }
+    }
+
+    /**
+     * @param $property
+     * @param $value
+     */
+    function __set($property, $value) : void {
+        switch ($property) {
+            case 'version':
+                $this->properties['version'] = $value;
                 break;
             case 'elements':
-                $this->configuration['elements'][] = $value;
+                $this->properties['elements'] = $value;
                 break;
-            case 'types':
-                $this->configuration['elements']['types'][] = $value;
+            case 'routines':
+                $this->properties['routines'] = $value;
                 break;
-            case 'methods':
-                $this->configuration['elements']['methods'][] = $value;
+            case 'markup':
+                $this->setMarkup($value);
                 break;
             default:
-                $this->configuration[$key] = $value;
+                $this->properties[$property] = $value;
                 break;
         }
-        return true;
     }
 
     /**
@@ -131,9 +147,9 @@ class Configuration implements ConfigurationInterface
      *
      * @param string $markup
      */
-    public function setSource(string $markup): void
+    public function setMarkup(string $markup): void
     {
-        $this->configuration['markup'] = $markup;
+        $this->properties['markup'] = $markup;
         $this->document->loadSource($markup);
     }
 
@@ -144,7 +160,7 @@ class Configuration implements ConfigurationInterface
      */
     public function addElement(array $element): void
     {
-        $this->configuration['elements']['types'][] = $element;
+        $this->properties['elements'][] = $element;
     }
 
     /**
@@ -154,11 +170,13 @@ class Configuration implements ConfigurationInterface
      */
     public function addElements(array $elements): void
     {
-        if (
-            array_key_exists('elements', $this->configuration) &&
-            array_key_exists('types', $this->configuration['elements'])
+        if (!isset($this->properties)
+            || array_key_exists('elements', $this->properties)
         ) {
-            $this->configuration['elements']['types'] = array_merge($elements, $this->configuration['elements']['types']);
+            $this->properties['elements'] = array_merge(
+                $elements,
+                $this->properties['elements']
+            );
         }
     }
 
@@ -170,15 +188,13 @@ class Configuration implements ConfigurationInterface
     public function getElements(): array
     {
         // check if exists
-        if (!isset($this->configuration)
-            || !isset($this->configuration['elements'])
-            || !is_array($this->configuration['elements'])
-            || !array_key_exists('types', $this->configuration['elements'])
+        if (!isset($this->properties)
+            || !array_key_exists('elements', $this->properties)
         ) {
             return [];
         }
 
-        return $this->configuration['elements']['types'];
+        return $this->properties['elements'];
     }
 
     /**
@@ -190,11 +206,7 @@ class Configuration implements ConfigurationInterface
      */
     public function isset(string ...$keys): bool
     {
-        if (!isset($this->configuration)) {
-            return false;
-        }
-
-        $last_checked = $this->configuration;
+        $last_checked = $this->properties;
 
         foreach ($keys as $key) {
             if (!array_key_exists($key, $last_checked)) {
@@ -206,25 +218,25 @@ class Configuration implements ConfigurationInterface
     }
 
     /**
-     * Add method
+     * Add routine
      *
-     * @param string $method_name
+     * @param string $routine_name
      * @param string $description
      * @param string|null $execute
      */
-    public function addMethod(string $method_name, string $description = '', $execute = null): void
+    public function addRoutine(string $routine_name, string $description = '', $execute = null): void
     {
         if (is_string($execute)) {
-            $this->configuration['elements']['methods'][] = [
-                'name' => $method_name,
+            $this->properties['routines'][] = [
+                'name' => $routine_name,
                 'description' => $description,
                 'execute' => $execute
             ];
             return;
         }
 
-        $this->configuration['elements']['methods'][] = [
-            'name' => $method_name,
+        $this->properties['routines'][] = [
+            'name' => $routine_name,
             'description' => $description,
         ];
     }
@@ -234,19 +246,15 @@ class Configuration implements ConfigurationInterface
      *
      * @return array
      */
-    public function getMethods(): array
+    public function getRoutines(): array
     {
-        // check if exists
-        if (!isset($this->configuration)
-            || !isset($this->configuration['elements'])
-            || !is_array($this->configuration['elements'])
-            || !array_key_exists('methods', $this->configuration['elements'])
+        if (!isset($this->properties)
+            || !array_key_exists('routines', $this->properties)
         ) {
             return [];
         }
 
-
-        return $this->configuration['elements']['methods'];
+        return $this->properties['routines'];
     }
 
     /**
@@ -254,15 +262,15 @@ class Configuration implements ConfigurationInterface
      *
      * @return string
      */
-    public function getSource(): string
+    public function getMarkup(): string
     {
         // check if exists
-        if (!isset($this->configuration)
-            || !array_key_exists('markup', $this->configuration)
+        if (!isset($this->properties)
+            || !array_key_exists('markup', $this->properties)
         ) {
             return '';
         }
 
-        return $this->configuration['markup'];
+        return $this->properties['markup'];
     }
 }

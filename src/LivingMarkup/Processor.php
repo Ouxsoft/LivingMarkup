@@ -19,6 +19,8 @@ use LivingMarkup\Contract\KernelInterface;
 /**
  * Class Processor
  *
+ * Provides a user API interface for setting the Kernel, Configration, and Builders settings
+ *
  * @package LivingMarkup
  */
 class Processor
@@ -106,29 +108,29 @@ class Processor
     /**
      * Add definition for processor LHTML object
      *
-     * @param string $name
+     * @param string $element_name
      * @param string $xpath_expression
      * @param string $class_name
      */
-    public function addElement(string $name, string $xpath_expression, string $class_name): void
+    public function addElement(string $element_name, string $xpath_expression, string $class_name): void
     {
         $this->config->addElement([
-            'name' => $name,
+            'name' => $element_name,
             'class_name' => $class_name,
             'xpath' => $xpath_expression
         ]);
     }
 
     /**
-     * Add definition for processor LHTML object method
+     * Add definition for processor LHTML object routine
      *
-     * @param string $method_name
+     * @param string $routine_name
      * @param string $description
      * @param string|null $execute
      */
-    public function addMethod(string $method_name, string $description = '', string $execute = null): void
+    public function addRoutine(string $routine_name, string $description = '', string $execute = null): void
     {
-        $this->config->addMethod($method_name, $description, $execute);
+        $this->config->addRoutine($routine_name, $description, $execute);
     }
 
     /**
@@ -167,7 +169,7 @@ class Processor
             return $source;
         }
 
-        $this->config->setSource($source);
+        $this->config->setMarkup($source);
 
         return $this->parse();
     }
@@ -195,7 +197,7 @@ class Processor
             return $source;
         }
 
-        $this->config->setSource($source);
+        $this->config->setMarkup($source);
 
         return $this->parse();
     }

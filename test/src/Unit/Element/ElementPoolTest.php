@@ -64,12 +64,12 @@ class ElementPoolTest extends TestCase
     }
 
     /**
-     * @covers \LivingMarkup\Element\ElementPool::callMethod
+     * @covers \LivingMarkup\Element\ElementPool::callRoutine
      */
-    public function testCallMethod()
+    public function testCallRoutine()
     {
         $pool = new ElementPool();
-        $results = $pool->callMethod('onRender');
+        $results = $pool->callRoutine('onRender');
         $this->assertNull($results);
     }
 
