@@ -32,7 +32,7 @@ class KernelTest extends TestCase
 
         $container = ContainerFactory::buildContainer($abstractFactory);
 
-        $container['config']->loadFile(TEST_DIR . 'Resource/config/phpunit.json');
+        //$container['config']->loadFile(TEST_DIR . 'Resource/config/phpunit.json');
         $container['config']->setMarkup('<html><p>Hello, World!</p></html>');
         $this->kernel = &$container['kernel'];
     }

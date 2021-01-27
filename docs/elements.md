@@ -1,4 +1,4 @@
-ss# Elements
+# Elements
 Elements are the working bees of LivingMarkup. They are objects that process DOMElements. How they process the DOMElement is determined by their class. During the object's construction, the element receives arguments that were found in both the DOMElement's attributes and child `arg` DOMElements from `Engine`. 
 
 ## Element Development
@@ -17,12 +17,12 @@ class HelloWorld extends \LivingMarkup\Element
     {
         return 'Hello, World';
     }
-}code
+}
 ```
 ### File Path
 For ease of use the packaged elements are located inside the `/elements` directory. Elements defined using the variable `{name}` in their  `elements:types:*:class_name` are isolated a sub folder within the `/elements` directory. In order to use an alternative path is for elements the path must be added to composer's autoload section. 
 
-## Automated Method
+# Routines
 Automated methods are element methods that are automatically called by some `Builders`. When a automated method is called all instantiated elements with method are called. 
 
 #### Prefix

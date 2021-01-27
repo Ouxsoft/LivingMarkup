@@ -20,6 +20,5 @@ Further readings:
 - [LHTML standard](https://github.com/ouxsoft/LHTML).
 - [Configuring LivingMarkup](configuration.md)
 - [Making elements](elements.md).
-- [classes](classes.md).
 - [CONTRIBUTING.md](https://github.com/ouxsoft/LivingMarkup/blob/master/.github/workflows/CONTRIBUTING.md) for 
 information on how to contribute.

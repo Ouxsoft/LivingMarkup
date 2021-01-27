@@ -220,15 +220,15 @@ class Configuration implements ConfigurationInterface
     /**
      * Add routine
      *
-     * @param string $routine_name
+     * @param string $method
      * @param string $description
      * @param string|null $execute
      */
-    public function addRoutine(string $routine_name, string $description = '', $execute = null): void
+    public function addRoutine(string $method, string $description = '', $execute = null): void
     {
         if (is_string($execute)) {
             $this->properties['routines'][] = [
-                'name' => $routine_name,
+                'method' => $method,
                 'description' => $description,
                 'execute' => $execute
             ];
@@ -236,7 +236,7 @@ class Configuration implements ConfigurationInterface
         }
 
         $this->properties['routines'][] = [
-            'name' => $routine_name,
+            'method' => $method,
             'description' => $description,
         ];
     }

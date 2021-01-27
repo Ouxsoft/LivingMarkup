@@ -79,7 +79,7 @@ class Engine implements EngineInterface
 
         // call routine to all elements
         if (!array_key_exists('execute', $routine)) {
-            $this->element_pool->callRoutine($routine['name']);
+            $this->element_pool->callRoutine($routine['method']);
             return true;
         }
 
