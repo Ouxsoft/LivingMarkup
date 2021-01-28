@@ -11,6 +11,7 @@
 namespace LivingMarkup\Tests\Unit\Builder;
 
 use LivingMarkup\Factory\ProcessorFactory;
+use LivingMarkup\Builder\BuilderInterface;
 use PHPUnit\Framework\TestCase;
 
 class DynamicPageBuilderTest extends TestCase
@@ -31,6 +32,15 @@ class DynamicPageBuilderTest extends TestCase
     }
 
     /**
+     * @covers \LivingMarkup\Builder\DynamicPageBuilder::__construct
+     */
+    public function test__construct()
+    {
+        $builder = $this->processor->getBuilder();
+        $this->assertInstanceOf(BuilderInterface::class,$builder);
+    }
+
+     /**
      * @covers \LivingMarkup\Builder\DynamicPageBuilder::getObject
      */
     public function testGetObject()

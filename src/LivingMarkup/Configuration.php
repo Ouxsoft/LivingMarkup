@@ -34,7 +34,10 @@ class Configuration implements ConfigurationInterface
     const VERSION = 3;
 
     private $document;
-    private $properties;
+
+    public $routines = [];
+    public $elements = [];
+    public $markup = '';
 
     /**
      * Configuration constructor.
@@ -47,13 +50,6 @@ class Configuration implements ConfigurationInterface
     )
     {
         $this->document = &$document;
-
-        $this->properties = [
-            'version' => self::VERSION,
-            'elements' => [],
-            'routines' => [],
-            'markup' => ''
-        ];
 
         if ($config_file_path !== null) {
             $this->loadFile($config_file_path);
@@ -87,59 +83,33 @@ class Configuration implements ConfigurationInterface
 
                 // load json file
                 $reader = new Json();
-                $this->properties = $reader->fromFile($path);
+                $json = $reader->fromFile($path);
 
-                if (is_array($this->properties)) {
+                if (is_array($json)) {
                     break;
                 }
             } catch (Throwable $e) {
                 throw new Exception('Unable to load config' . $e);
             }
         }
-    }
 
-    /**
-     * @param $property
-     * @return mixed
-     */
-    public function __get($property){
-
-        switch ($property) {
-            case 'version':
-                return $this->properties['version'];
-            case 'elements':
-                return $this->properties['elements'];
-            case 'routines':
-                return $this->properties['routines'];
-            case 'markup':
-                return $this->getMarkup();
-            default:
-                return $this->properties[$property];
+        // set and check config file values
+        foreach($json as $key => $value){
+            switch($key){
+                case 'routines':
+                    $this->routines = $value;
+                    break;
+                case 'elements':
+                    $this->elements = $value;
+                    break;
+                case 'version':
+                    if($value != self::VERSION){
+                        throw new Exception('Unsupported config version');
+                    }
+                    break;
+            }
         }
-    }
 
-    /**
-     * @param $property
-     * @param $value
-     */
-    function __set($property, $value) : void {
-        switch ($property) {
-            case 'version':
-                $this->properties['version'] = $value;
-                break;
-            case 'elements':
-                $this->properties['elements'] = $value;
-                break;
-            case 'routines':
-                $this->properties['routines'] = $value;
-                break;
-            case 'markup':
-                $this->setMarkup($value);
-                break;
-            default:
-                $this->properties[$property] = $value;
-                break;
-        }
     }
 
     /**
@@ -149,7 +119,7 @@ class Configuration implements ConfigurationInterface
      */
     public function setMarkup(string $markup): void
     {
-        $this->properties['markup'] = $markup;
+        $this->markup = $markup;
         $this->document->loadSource($markup);
     }
 
@@ -160,7 +130,7 @@ class Configuration implements ConfigurationInterface
      */
     public function addElement(array $element): void
     {
-        $this->properties['elements'][] = $element;
+        $this->elements[] = $element;
     }
 
     /**
@@ -170,14 +140,10 @@ class Configuration implements ConfigurationInterface
      */
     public function addElements(array $elements): void
     {
-        if (!isset($this->properties)
-            || array_key_exists('elements', $this->properties)
-        ) {
-            $this->properties['elements'] = array_merge(
-                $elements,
-                $this->properties['elements']
-            );
-        }
+        $this->elements = array_merge(
+            $elements,
+            $this->elements
+        );
     }
 
     /**
@@ -187,34 +153,7 @@ class Configuration implements ConfigurationInterface
      */
     public function getElements(): array
     {
-        // check if exists
-        if (!isset($this->properties)
-            || !array_key_exists('elements', $this->properties)
-        ) {
-            return [];
-        }
-
-        return $this->properties['elements'];
-    }
-
-    /**
-     * Checks if keys are set
-     *
-     *
-     * @param string ...$keys
-     * @return bool
-     */
-    public function isset(string ...$keys): bool
-    {
-        $last_checked = $this->properties;
-
-        foreach ($keys as $key) {
-            if (!array_key_exists($key, $last_checked)) {
-                return false;
-            }
-            $last_checked = $last_checked[$key];
-        }
-        return true;
+        return $this->elements;
     }
 
     /**
@@ -227,7 +166,7 @@ class Configuration implements ConfigurationInterface
     public function addRoutine(string $method, string $description = '', $execute = null): void
     {
         if (is_string($execute)) {
-            $this->properties['routines'][] = [
+            $this->routines[] = [
                 'method' => $method,
                 'description' => $description,
                 'execute' => $execute
@@ -235,7 +174,7 @@ class Configuration implements ConfigurationInterface
             return;
         }
 
-        $this->properties['routines'][] = [
+        $this->routines[] = [
             'method' => $method,
             'description' => $description,
         ];
@@ -248,13 +187,7 @@ class Configuration implements ConfigurationInterface
      */
     public function getRoutines(): array
     {
-        if (!isset($this->properties)
-            || !array_key_exists('routines', $this->properties)
-        ) {
-            return [];
-        }
-
-        return $this->properties['routines'];
+        return $this->routines;
     }
 
     /**
@@ -264,13 +197,6 @@ class Configuration implements ConfigurationInterface
      */
     public function getMarkup(): string
     {
-        // check if exists
-        if (!isset($this->properties)
-            || !array_key_exists('markup', $this->properties)
-        ) {
-            return '';
-        }
-
-        return $this->properties['markup'];
+        return $this->markup;
     }
 }

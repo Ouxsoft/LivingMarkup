@@ -123,8 +123,8 @@ class ProcessorTest extends TestCase
     {
         $this->processor->addRoutine('TestRoutine', 'A test Routine');
         $config = $this->processor->getConfig();
-        $elements = $config->getElements();
-        $this->assertCount(1, $elements);
+        $routines = $config->getRoutines();
+        $this->assertCount(1, $routines);
     }
 
     /**

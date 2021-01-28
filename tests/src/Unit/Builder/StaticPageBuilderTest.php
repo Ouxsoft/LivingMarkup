@@ -11,6 +11,7 @@
 namespace LivingMarkup\Tests\Unit\Builder;
 
 use LivingMarkup\Factory\ProcessorFactory;
+use LivingMarkup\Builder\BuilderInterface;
 use PHPUnit\Framework\TestCase;
 
 class StaticPageBuilderTest extends TestCase
@@ -21,12 +22,21 @@ class StaticPageBuilderTest extends TestCase
     {
         $this->processor = ProcessorFactory::getInstance();
         $this->processor->loadConfig(TEST_DIR . '/Resource/config/phpunit.json');
-        $this->processor->setBuilder('SearchIndexBuilder');
+        $this->processor->setBuilder('StaticPageBuilder');
     }
 
     public function tearDown(): void
     {
         unset($this->processor);
+    }
+
+    /**
+     * @covers \LivingMarkup\Builder\StaticPageBuilder::__construct
+     */
+    public function test__construct()
+    {
+        $builder = $this->processor->getBuilder();
+        $this->assertInstanceOf(BuilderInterface::class,$builder);
     }
 
     /**
@@ -43,8 +53,6 @@ class StaticPageBuilderTest extends TestCase
      */
     public function testCreateObject()
     {
-        $this->processor->loadConfig(TEST_DIR . '/Resource/config/phpunit.json');
-        $this->processor->setBuilder('SearchIndexBuilder');
         $results = $this->processor->parseString('<html lang="en">Test</html>');
         $this->assertIsString($results);
     }

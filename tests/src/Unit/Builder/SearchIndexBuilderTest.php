@@ -11,6 +11,7 @@
 namespace LivingMarkup\Tests\Unit\Builder;
 
 use LivingMarkup\Factory\ProcessorFactory;
+use LivingMarkup\Builder\BuilderInterface;
 use PHPUnit\Framework\TestCase;
 
 class SearchIndexBuilderTest extends TestCase
@@ -28,6 +29,15 @@ class SearchIndexBuilderTest extends TestCase
     public function tearDown(): void
     {
         unset($this->processor);
+    }
+
+    /**
+     * @covers \LivingMarkup\Builder\SearchIndexBuilder::__construct
+     */
+    public function test__construct()
+    {
+        $builder = $this->processor->getBuilder();
+        $this->assertInstanceOf(BuilderInterface::class,$builder);
     }
 
     /**

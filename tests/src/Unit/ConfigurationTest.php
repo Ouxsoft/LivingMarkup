@@ -10,7 +10,6 @@
 
 namespace LivingMarkup\Tests\Unit;
 
-use LivingMarkup\Configuration;
 use LivingMarkup\Exception\Exception;
 use LivingMarkup\Factory\ContainerFactory;
 use LivingMarkup\Factory\ConcreteFactory;
@@ -59,26 +58,6 @@ class ConfigurationTest extends TestCase
         $results = $this->config->getElements();
         $this->assertCount(0, array_diff_assoc($results[0], $element));
 
-/*
-        // check for empty array
-        unset($config->container);
-        $elements = $config->getElements();
-        $this->assertCount(0, $elements);
-*/
-    }
-
-    /**
-     * @covers \LivingMarkup\Configuration::isset
-     */
-    public function testIsset()
-    {
-        // does exists
-        $results = $this->config->isset('version');
-        $this->assertTrue($results);
-
-        // does not exists
-        $results = $this->config->isset('does not exist');
-        $this->assertFalse($results);
     }
 
     /**
@@ -88,14 +67,7 @@ class ConfigurationTest extends TestCase
     {
         $this->config->addRoutine('onLoad', 'Execute when object data is loading');
         $routines = $this->config->getRoutines();
-        $test_compare = [
-            0 => [
-                'name' => 'onLoad',
-                'description' => 'Execute when object data is loading'
-            ]
-        ];
-
-        $this->assertCount(0, array_diff_assoc($routines[0], $test_compare[0]));
+        $this->assertCount(1, $routines);
     }
 
     /**
@@ -104,17 +76,12 @@ class ConfigurationTest extends TestCase
     public function testGetRoutines()
     {
         $test_routine = [
-            'name' => 'onLoad',
+            'method' => 'onLoad',
             'description' => 'Execute when object data is loading'
         ];
-        $this->config->addRoutine($test_routine['name'],$test_routine['description']);
+        $this->config->addRoutine($test_routine['method'],$test_routine['description']);
         $routines = $this->config->getRoutines();
-        $this->assertCount(0, array_diff_assoc($routines, $test_routine));
-
-        unset($this->config->routines);
-        $routines = $this->config->getRoutines();
-        $this->assertCount(0, $routines);
-
+        $this->assertCount(1, $routines);
     }
 
     /**
@@ -122,47 +89,10 @@ class ConfigurationTest extends TestCase
      */
     public function testGetMarkup()
     {
-        $test_string = '<html><p>Hello, World!</p></html>';
+        $test_string = '<html lang="en"><p>Hello, World!</p></html>';
         $this->config->setMarkup($test_string);
         $source = $this->config->getMarkup();
         $this->assertEquals($test_string, $source);
-
-        // test if not exists
-        unset($this->config->markup);
-        $this->assertTrue($this->config->getMarkup() == '');
-    }
-
-    /**
-     * @covers \LivingMarkup\Configuration::__set
-     */
-    public function test__set()
-    {
-        $source = '<html lang="en">Test</html>';
-        $this->config->markup = $source;
-        $this->assertStringContainsString($source, $this->config->getMarkup());
-
-        $source = '<html lang="en">Test</html>';
-        $this->config->markup = $source;
-        $this->assertStringContainsString($source, $this->config->getMarkup());
-
-    }
-
-    /**
-     * @covers \LivingMarkup\Configuration::__get
-     */
-    public function test__get()
-    {
-        $source = '<html lang="en">Test</html>';
-        $this->config->markup = $source;
-        $this->assertStringContainsString($source, $this->config->markup);
-
-        $this->config->routines[] = [
-            'name' => 'Bitwise',
-            'class_name' => 'LivingMarkup\Tests\Resource\Element\Bitwise',
-            'xpath' => 'bitwise'
-        ];
-        $this->asserArrayHasKey(0, $this->config->routines);
-
     }
 
     /**
@@ -170,7 +100,7 @@ class ConfigurationTest extends TestCase
      */
     public function testSetMarkup()
     {
-        $markup = '<html><p>Hello, World!</p></html>';
+        $markup = '<html lang="en"><p>Hello, World!</p></html>';
         $this->config->setMarkup($markup);
         $this->assertStringContainsString($markup, $this->config->getMarkup());
     }
@@ -192,7 +122,7 @@ class ConfigurationTest extends TestCase
                 'xpath' => 'bitwise'
             ]
         ]);
-        $this->assertCount(2, $this->config->container['elements']['types']);
+        $this->assertCount(2, $this->config->elements);
     }
 
     /**
@@ -201,10 +131,6 @@ class ConfigurationTest extends TestCase
     public function testLoadFile()
     {
         $this->config->loadFile(TEST_DIR . 'Resource/inputs/phpunit.json');
-        $this->assertArrayHasKey('elements', $this->config->getElements());
-
-        $this->expectException(Exception::class);
-        $this->config->loadFile('DoesNot.Exists');
-
+        $this->assertNotEmpty($this->config->getElements());
     }
 }
