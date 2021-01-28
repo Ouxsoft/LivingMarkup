@@ -106,11 +106,11 @@ class ProcessorTest extends TestCase
      */
     public function testAddElement()
     {
-        $this->processor->addElement(
-            'Path',
-            '//*',
-            '\LivingMarkup\Tests\Resource\Element\HelloWorld'
-        );
+        $this->processor->addElement([
+            'name' => 'HelloMyEverything',
+            'xpath' => '//*',
+            'class_name' => '\LivingMarkup\Tests\Resource\Element\HelloWorld'
+        ]);
         $config = $this->processor->getConfig();
         $elements = $config->getElements();
         $this->assertCount(1, $elements);
@@ -121,7 +121,9 @@ class ProcessorTest extends TestCase
      */
     public function testAddRoutine()
     {
-        $this->processor->addRoutine('TestRoutine', 'A test Routine');
+        $this->processor->addRoutine([
+            'method' => 'TestRoutine'
+        ]);
         $config = $this->processor->getConfig();
         $routines = $config->getRoutines();
         $this->assertCount(1, $routines);

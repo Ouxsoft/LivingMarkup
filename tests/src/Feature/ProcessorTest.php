@@ -55,14 +55,17 @@ final class ProcessorTest extends TestCase
 
     public function testParseWithDefinitions()
     {
+        $this->processor->addElement([
+            'name' => 'Bitwise',
+            'xpath' => '//bitwise',
+            'class_name' => 'LivingMarkup\Tests\Resource\Element\Bitwise'
+        ]);
 
-        $this->processor->addElement(
-            'Bitwise',
-            '//bitwise',
-            'LivingMarkup\Tests\Resource\Element\Bitwise'
-        );
-
-        $this->processor->addRoutine('onRender', 'Execute for render', 'RETURN_CALL');
+        $this->processor->addRoutine([
+            'method' => 'onRender',
+            'description' => 'Execute for render',
+            'execute' => 'RETURN_CALL'
+        ]);
 
         $test_results = $this->processor->parseFile(TEST_DIR . 'Resource/inputs/index.html');
 

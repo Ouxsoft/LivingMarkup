@@ -44,17 +44,28 @@ class Alert extends LivingMarkup\Element\AbstractElement
 
 Add `Partial` namespace to a LHTML processor and `onRendor` to routine method calls.
 ```php
+<?php
 use LivingMarkup\Factory\ProcessorFactory;
 
 $processor = ProcessorFactory::getInstance();
 
-$processor->addElement('Partial', '//partial', 'Partial\{name}');
+$processor->addElement([
+    'xpath' => '//partial', 
+    'class_name' => 'Partial\{name}'
+]);
 
-$processor->addRoutine('onRender','Execute for render', 'RETURN_CALL');
+$processor->addRoutine([
+    'method' => 'onRender',
+    'execute' => 'RETURN_CALL'
+]);
 
-echo $processor->parseString('<html lang="en">
-    <partial name="Alert" type="success">This is a success alert.</partial>
-</html>');
+$processor->parseBuffer();
+?>
+<html lang="en">
+    <partial name="Alert" type="success">
+        This is a success alert.
+    </partial>
+</html>
 ```
 
 Outputs processed HTML5 page. 

@@ -10,10 +10,10 @@
 
 namespace LivingMarkup\Tests\Unit;
 
-use LivingMarkup\Exception\Exception;
 use LivingMarkup\Factory\ContainerFactory;
 use LivingMarkup\Factory\ConcreteFactory;
 use PHPUnit\Framework\TestCase;
+use LivingMarkup\Exception\Exception;
 
 class ConfigurationTest extends TestCase
 {
@@ -65,7 +65,10 @@ class ConfigurationTest extends TestCase
      */
     public function testAddRoutine()
     {
-        $this->config->addRoutine('onLoad', 'Execute when object data is loading');
+        $this->config->addRoutine([
+            'method' => 'onLoad',
+            'description' => 'Execute when object data is loading'
+        ]);
         $routines = $this->config->getRoutines();
         $this->assertCount(1, $routines);
     }
@@ -79,7 +82,9 @@ class ConfigurationTest extends TestCase
             'method' => 'onLoad',
             'description' => 'Execute when object data is loading'
         ];
-        $this->config->addRoutine($test_routine['method'],$test_routine['description']);
+        $this->config->addRoutine(
+            $test_routine
+        );
         $routines = $this->config->getRoutines();
         $this->assertCount(1, $routines);
     }
@@ -117,9 +122,9 @@ class ConfigurationTest extends TestCase
                 'xpath' => 'bitwise'
             ],
             [
-                'name' => 'Bitwise',
-                'class_name' => 'LivingMarkup\Tests\Resource\Element\Bitwise',
-                'xpath' => 'bitwise'
+                'name' => 'HelloWorld',
+                'class_name' => 'LivingMarkup\Tests\Resource\Element\HelloWorld',
+                'xpath' => 'helloworld'
             ]
         ]);
         $this->assertCount(2, $this->config->elements);
@@ -132,5 +137,10 @@ class ConfigurationTest extends TestCase
     {
         $this->config->loadFile(TEST_DIR . 'Resource/inputs/phpunit.json');
         $this->assertNotEmpty($this->config->getElements());
+
+
+        $this->expectException(Exception::class);
+        $this->config->loadFile(TEST_DIR . 'Resource/inputs/invalid.json');
+
     }
 }

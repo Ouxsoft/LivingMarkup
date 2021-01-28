@@ -40,6 +40,8 @@ class SearchIndexBuilder implements BuilderInterface
      */
     public function createObject(): void
     {
+        // TODO: Remove elements with search_index = false;
+
         // instantiate elements
         foreach ($this->config->getElements() as $element) {
             $this->engine->instantiateElements($element);

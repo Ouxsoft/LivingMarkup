@@ -124,7 +124,7 @@ class Configuration implements ConfigurationInterface
     }
 
     /**
-     * Adds elements to config
+     * Adds elements
      *
      * @param array $element
      */
@@ -134,12 +134,20 @@ class Configuration implements ConfigurationInterface
     }
 
     /**
-     * Adds elements to config
+     * Adds multiple elements at once
      *
      * @param array $elements
      */
     public function addElements(array $elements): void
     {
+        if(!array_key_exists('xpath', $elements)){
+            throw new Exception('Xpath required for addElements');
+        }
+
+        if(!array_key_exists('class_name', $elements)){
+            throw new Exception('class_name required for addElements');
+        }
+
         $this->elements = array_merge(
             $elements,
             $this->elements
@@ -147,7 +155,7 @@ class Configuration implements ConfigurationInterface
     }
 
     /**
-     * Get array of elements if in config
+     * Get elements
      *
      * @return array
      */
@@ -157,31 +165,39 @@ class Configuration implements ConfigurationInterface
     }
 
     /**
-     * Add routine
+     * Adds a routine
      *
-     * @param string $method
-     * @param string $description
-     * @param string|null $execute
+     * @param array $routine
      */
-    public function addRoutine(string $method, string $description = '', $execute = null): void
+    public function addRoutine(array $routine): void
     {
-        if (is_string($execute)) {
-            $this->routines[] = [
-                'method' => $method,
-                'description' => $description,
-                'execute' => $execute
-            ];
-            return;
+        if(!array_key_exists('method', $routine)){
+            throw new Exception('Method required for addRoutines');
         }
 
-        $this->routines[] = [
-            'method' => $method,
-            'description' => $description,
-        ];
+        $this->elements[] = $routine;
     }
 
     /**
-     * Get array of elements if in config
+     * Adds multiple routines at once
+     *
+     * @param array $routines
+     */
+    public function addRoutines(array $routines): void
+    {
+        if(!array_key_exists('method', $routines)){
+            throw new Exception('Method required for addRoutines');
+        }
+
+        $this->routines = array_merge(
+            $routines,
+            $this->routines
+        );
+    }
+
+
+    /**
+     * Get routines
      *
      * @return array
      */

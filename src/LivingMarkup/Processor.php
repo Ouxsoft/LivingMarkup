@@ -108,29 +108,21 @@ class Processor
     /**
      * Add definition for processor LHTML object
      *
-     * @param string $element_name
-     * @param string $xpath_expression
-     * @param string $class_name
+     * @param array $element
      */
-    public function addElement(string $element_name, string $xpath_expression, string $class_name): void
+    public function addElement(array $element): void
     {
-        $this->config->addElement([
-            'name' => $element_name,
-            'class_name' => $class_name,
-            'xpath' => $xpath_expression
-        ]);
+        $this->config->addElement($element);
     }
 
     /**
      * Add definition for processor LHTML object routine
      *
-     * @param string $routine_name
-     * @param string $description
-     * @param string|null $execute
+     * @param array $routine
      */
-    public function addRoutine(string $routine_name, string $description = '', string $execute = null): void
+    public function addRoutine(array $routine): void
     {
-        $this->config->addRoutine($routine_name, $description, $execute);
+        $this->config->addRoutine($routine);
     }
 
     /**
