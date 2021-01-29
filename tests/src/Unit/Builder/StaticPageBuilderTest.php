@@ -10,8 +10,8 @@
 
 namespace LivingMarkup\Tests\Unit\Builder;
 
+use LivingMarkup\Builder\StaticPageBuilder;
 use LivingMarkup\Factory\ProcessorFactory;
-use LivingMarkup\Builder\BuilderInterface;
 use PHPUnit\Framework\TestCase;
 
 class StaticPageBuilderTest extends TestCase
@@ -36,7 +36,7 @@ class StaticPageBuilderTest extends TestCase
     public function test__construct()
     {
         $builder = $this->processor->getBuilder();
-        $this->assertInstanceOf(BuilderInterface::class,$builder);
+        $this->assertInstanceOf(StaticPageBuilder::class,$builder);
     }
 
     /**
@@ -44,8 +44,12 @@ class StaticPageBuilderTest extends TestCase
      */
     public function testGetObject()
     {
-        $results = $this->processor->parseString('<html lang="en">Test</html>');
-        $this->assertIsString($results);
+        $test_results = $this->processor->parseFile(TEST_DIR . 'Resource/inputs/index.html');
+
+        $this->assertStringMatchesFormatFile(
+            TEST_DIR . 'Resource/outputs/static-page.html',
+            $test_results
+        );
     }
 
     /**
@@ -53,7 +57,11 @@ class StaticPageBuilderTest extends TestCase
      */
     public function testCreateObject()
     {
-        $results = $this->processor->parseString('<html lang="en">Test</html>');
-        $this->assertIsString($results);
+        $test_results = $this->processor->parseFile(TEST_DIR . 'Resource/inputs/index.html');
+
+        $this->assertStringMatchesFormatFile(
+            TEST_DIR . 'Resource/outputs/static-page.html',
+            $test_results
+        );
     }
 }

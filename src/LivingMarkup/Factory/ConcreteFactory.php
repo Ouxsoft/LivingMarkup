@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace LivingMarkup\Factory;
 
-use LivingMarkup\Builder\BuilderInterface;
+use LivingMarkup\Contract\AbstractFactoryInterface;
+use LivingMarkup\Contract\BuilderInterface;
+use LivingMarkup\Contract\DocumentInterface;
 use LivingMarkup\Builder\DynamicPageBuilder;
 use LivingMarkup\Configuration;
-use LivingMarkup\Contract\AbstractFactoryInterface;
-use LivingMarkup\Contract\DocumentInterface;
 use LivingMarkup\Document;
 use LivingMarkup\Element\ElementPool;
 use LivingMarkup\Engine;

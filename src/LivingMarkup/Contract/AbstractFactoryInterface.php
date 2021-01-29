@@ -2,7 +2,7 @@
 
 namespace LivingMarkup\Contract;
 
-use LivingMarkup\Builder\BuilderInterface;
+use LivingMarkup\Contract\BuilderInterface;
 use LivingMarkup\Configuration;
 use LivingMarkup\Document;
 use LivingMarkup\Element\ElementPool;

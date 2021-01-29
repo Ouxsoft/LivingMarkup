@@ -10,11 +10,11 @@
 
 namespace LivingMarkup\Tests\Unit;
 
-use LivingMarkup\Builder\BuilderInterface;
-use LivingMarkup\Configuration;
+use LivingMarkup\Contract\BuilderInterface;
 use LivingMarkup\Contract\ConfigurationInterface;
 use LivingMarkup\Contract\KernelInterface;
 use LivingMarkup\Engine;
+use LivingMarkup\Configuration;
 use LivingMarkup\Factory\ConcreteFactory;
 use LivingMarkup\Factory\ContainerFactory;
 use LivingMarkup\Document;

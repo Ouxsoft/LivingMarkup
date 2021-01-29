@@ -114,4 +114,4 @@ Check our docs for more info at [livingmarkup.readthedocs.io](https://livingmark
 
 ## Acknowledgement
 
-Thanks to Andy Beak for providing code review. Thanks to Bob Crowley for providing Project Management advising. Thanks to Aswin Vijayakumar for their useful comments. All of have led to changes to this implementation.
+Thanks to Andy Beak for providing code reviews. Thanks to Bob Crowley for providing Project Management advising. Thanks to Aswin Vijayakumar for their useful comments. All of have led to changes to this implementation.

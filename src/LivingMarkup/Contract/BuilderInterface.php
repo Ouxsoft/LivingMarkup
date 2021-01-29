@@ -8,12 +8,8 @@
  * file that was distributed with this source code.
  */
 
-declare(strict_types=1);
+namespace LivingMarkup\Contract;
 
-namespace LivingMarkup\Builder;
-
-use LivingMarkup\Contract\ConfigurationInterface;
-use LivingMarkup\Contract\EngineInterface;
 use LivingMarkup\Engine;
 
 /**

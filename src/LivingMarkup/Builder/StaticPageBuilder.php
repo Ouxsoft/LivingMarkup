@@ -12,12 +12,14 @@ declare(strict_types=1);
 
 namespace LivingMarkup\Builder;
 
+use LivingMarkup\Contract\BuilderInterface;
 use LivingMarkup\Contract\ConfigurationInterface;
 use LivingMarkup\Contract\EngineInterface;
 use LivingMarkup\Engine;
 
 /**
  * Class StaticPageBuilder
+ * Builds static pages without any elements being set
  *
  * @package LivingMarkup\Page\Builder
  */

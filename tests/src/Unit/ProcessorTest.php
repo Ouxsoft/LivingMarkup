@@ -10,10 +10,10 @@
 
 namespace LivingMarkup\Tests\Unit;
 
-use LivingMarkup\Builder\BuilderInterface;
+use LivingMarkup\Contract\BuilderInterface;
+use LivingMarkup\Contract\ConfigurationInterface;
 use LivingMarkup\Builder\StaticPageBuilder;
 use LivingMarkup\Configuration;
-use LivingMarkup\Contract\ConfigurationInterface;
 use LivingMarkup\Document;
 use LivingMarkup\Factory\ProcessorFactory;
 use PHPUnit\Framework\TestCase;

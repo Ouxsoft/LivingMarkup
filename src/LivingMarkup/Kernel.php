@@ -12,7 +12,7 @@ declare(strict_types=1);
 
 namespace LivingMarkup;
 
-use LivingMarkup\Builder\BuilderInterface;
+use LivingMarkup\Contract\BuilderInterface;
 use LivingMarkup\Contract\ConfigurationInterface;
 use LivingMarkup\Contract\EngineInterface;
 use LivingMarkup\Contract\KernelInterface;

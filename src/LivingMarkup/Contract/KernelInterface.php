@@ -4,22 +4,22 @@ namespace LivingMarkup\Contract;
 
 use LivingMarkup\Engine;
 
-
 interface KernelInterface
 {
-    /**
-     * @param ConfigurationInterface $config
-     */
+    public function __construct(
+        EngineInterface &$engine,
+        BuilderInterface &$builder,
+        ConfigurationInterface &$config
+    );
+
+    public function getConfig(): ConfigurationInterface;
+
     public function setConfig(ConfigurationInterface $config): void;
 
-    /**
-     * @param string $builder_class
-     * @return mixed
-     */
-    public function setBuilder(string $builder_class);
+    public function getBuilder(): BuilderInterface;
 
-    /**
-     * @return Engine
-     */
+    public function setBuilder(string $builder_class): void;
+
     public function build(): Engine;
+
 }

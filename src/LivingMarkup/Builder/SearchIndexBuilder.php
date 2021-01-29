@@ -12,12 +12,14 @@ declare(strict_types=1);
 
 namespace LivingMarkup\Builder;
 
+use LivingMarkup\Contract\BuilderInterface;
 use LivingMarkup\Contract\ConfigurationInterface;
 use LivingMarkup\Contract\EngineInterface;
 use LivingMarkup\Engine;
 
 /**
  * Class SearchIndexBuilder
+ * Builds dynamic pages while removing elements set not to be included in search indexes
  *
  * @package LivingMarkup\Builder
  */
@@ -35,15 +37,21 @@ class SearchIndexBuilder implements BuilderInterface
 
     /**
      * Creates Page object using parameters supplied
+     * omits elements with search_engine = false
      *
      * @return void
      */
     public function createObject(): void
     {
-        // TODO: Remove elements with search_index = false;
-
         // instantiate elements
         foreach ($this->config->getElements() as $element) {
+            if(
+                array_key_exists('search_index', $element)
+                && ($element['search_index'] == false)
+            ) {
+                $this->engine->removeElements($element);
+                continue;
+            }
             $this->engine->instantiateElements($element);
         }
 

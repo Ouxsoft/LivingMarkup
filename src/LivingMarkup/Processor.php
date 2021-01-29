@@ -12,14 +12,14 @@ declare(strict_types=1);
 
 namespace LivingMarkup;
 
-use LivingMarkup\Builder\BuilderInterface;
+use LivingMarkup\Contract\BuilderInterface;
 use LivingMarkup\Contract\ConfigurationInterface;
 use LivingMarkup\Contract\KernelInterface;
 
 /**
  * Class Processor
  *
- * Provides a user API interface for setting the Kernel, Configration, and Builders settings
+ * Provides a user API interface for setting the Kernel, Configuration, and Builders settings
  *
  * @package LivingMarkup
  */

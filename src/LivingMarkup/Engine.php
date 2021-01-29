@@ -237,6 +237,20 @@ class Engine implements EngineInterface
     }
 
     /**
+     * Removes elements from the DOM
+     *
+     * @param array $lhtml_element
+     * @return void
+     */
+    public function removeElements(array $lhtml_element): void
+    {
+        // iterate through handler's expression searching for applicable elements
+        foreach ($this->queryFetchAll($lhtml_element['xpath']) as $dom_element) {
+            $this->replaceDomElement($dom_element, '');
+        }
+    }
+
+    /**
      * Instantiates elements from DOMElement's found during Xpath query against DOM property
      *
      * @param array $lhtml_element
