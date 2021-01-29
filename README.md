@@ -18,7 +18,10 @@
 A server-side markup abstraction layer based on the [LHTML](https://github.com/ouxsoft/LHTML) standard programmed in PHP. 
 
 ## Usage
-Start by creating an LHTML Element.
+Check out how we can future proof a CSS framework, in this case Bootstrap, using LivingMarkup. 
+
+First, make a reusable custom Element. 
+
 ```php
 namespace Partial;
 
@@ -42,7 +45,7 @@ class Alert extends LivingMarkup\Element\AbstractElement
 }
 ```
 
-Add `Partial` namespace to a LHTML processor and `onRendor` to routine method calls.
+Second, setup a processor and pass in markup with our custom Element.
 ```php
 <?php
 use LivingMarkup\Factory\ProcessorFactory;
@@ -68,7 +71,7 @@ $processor->parseBuffer();
 </html>
 ```
 
-Outputs processed HTML5 page. 
+All done. Outputs a processed markup abstraction layer as valid HTML5.
 
 ```html5
 <!doctype html>
@@ -78,7 +81,6 @@ Outputs processed HTML5 page.
     </div>
 </html>
 ```
-This markup abstraction layer make CSS framework changes, in this example Bootstrap, easy.
 
 ## Installation
 
