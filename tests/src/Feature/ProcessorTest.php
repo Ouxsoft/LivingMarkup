@@ -40,7 +40,10 @@ final class ProcessorTest extends TestCase
 
         $test_results = $this->processor->parseString($html);
 
-        $this->assertStringMatchesFormatFile(TEST_DIR . 'Resource/outputs/index.html', $test_results);
+        $this->assertStringMatchesFormatFile(
+            TEST_DIR . 'Resource/outputs/index.html',
+            $test_results
+        );
     }
 
     public function testParseFileWithLoadConfig()
@@ -50,7 +53,10 @@ final class ProcessorTest extends TestCase
 
         $test_results = $this->processor->parseFile(TEST_DIR . 'Resource/inputs/index.html');
 
-        $this->assertStringMatchesFormatFile(TEST_DIR . 'Resource/outputs/index.html', $test_results);
+        $this->assertStringMatchesFormatFile(
+            TEST_DIR . 'Resource/outputs/index.html',
+            $test_results
+        );
     }
 
     public function testParseWithDefinitions()
@@ -63,12 +69,15 @@ final class ProcessorTest extends TestCase
 
         $this->processor->addRoutine([
             'method' => 'onRender',
-            'description' => 'Execute for render',
+            'description' => 'Execute while object is rendering',
             'execute' => 'RETURN_CALL'
         ]);
 
         $test_results = $this->processor->parseFile(TEST_DIR . 'Resource/inputs/index.html');
 
-        $this->assertStringMatchesFormatFile(TEST_DIR . 'Resource/outputs/index.html', $test_results);
+        $this->assertStringMatchesFormatFile(
+            TEST_DIR . 'Resource/outputs/index.html',
+            $test_results
+        );
     }
 }

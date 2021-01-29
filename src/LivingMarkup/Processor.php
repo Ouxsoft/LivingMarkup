@@ -106,7 +106,7 @@ class Processor
     }
 
     /**
-     * Add definition for processor LHTML object
+     * Add definition for processor LHTML element
      *
      * @param array $element
      */
@@ -116,13 +116,33 @@ class Processor
     }
 
     /**
-     * Add definition for processor LHTML object routine
+     * Add definition for processor LHTML element
+     *
+     * @param array $elements
+     */
+    public function addElements(array $elements): void
+    {
+        $this->config->addElements($elements);
+    }
+
+    /**
+     * Add definition for processor LHTML routine
      *
      * @param array $routine
      */
     public function addRoutine(array $routine): void
     {
         $this->config->addRoutine($routine);
+    }
+
+    /**
+     * Add definition for processor LHTML routine
+     *
+     * @param array $routines
+     */
+    public function addRoutines(array $routines): void
+    {
+        $this->config->addRoutines($routines);
     }
 
     /**

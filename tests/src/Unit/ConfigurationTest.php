@@ -135,12 +135,15 @@ class ConfigurationTest extends TestCase
      */
     public function testLoadFile()
     {
-        $this->config->loadFile(TEST_DIR . 'Resource/inputs/phpunit.json');
-        $this->assertNotEmpty($this->config->getElements());
+        // load file containing elements, this should work
+        $this->config->loadFile(TEST_DIR . 'Resource/config/phpunit.json');
+        $elements = $this->config->getElements();
+        $this->assertNotEmpty($elements);
 
 
+        // load a file that is invalid, this should not work
         $this->expectException(Exception::class);
-        $this->config->loadFile(TEST_DIR . 'Resource/inputs/invalid.json');
+        $this->config->loadFile(TEST_DIR . 'Resource/config/invalid.json');
 
     }
 }

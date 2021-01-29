@@ -29,18 +29,20 @@ use Throwable;
  */
 class Configuration implements ConfigurationInterface
 {
+    const VERSION = 3;
     const LOCAL_FILENAME = 'config.json';
     const DIST_FILENAME = 'config.dist.json';
-    const VERSION = 3;
 
     private $document;
 
-    public $routines = [];
+    public $version;
     public $elements = [];
+    public $routines = [];
     public $markup = '';
 
     /**
-     * Configuration constructor.
+     * Configuration constructor
+     *
      * @param DocumentInterface $document
      * @param string|null $config_file_path
      */
@@ -57,7 +59,7 @@ class Configuration implements ConfigurationInterface
     }
 
     /**
-     * Configuration constructor.
+     * load a configuration file
      *
      * @param string|null $filepath
      * @return void
@@ -85,31 +87,58 @@ class Configuration implements ConfigurationInterface
                 $reader = new Json();
                 $json = $reader->fromFile($path);
 
-                if (is_array($json)) {
-                    break;
+                if (
+                    is_array($json)
+                    && (count($json) > 0)
+                ) {
+                    $this->setConfig($json);
+                    return;
                 }
             } catch (Throwable $e) {
-                throw new Exception('Unable to load config' . $e);
+                // do nothing
+                throw new Exception('Invalid config file provided');
             }
         }
+    }
 
-        // set and check config file values
-        foreach($json as $key => $value){
+    /**
+     * Clear config
+     */
+    public function clearConfig(): void
+    {
+        $this->version = self::VERSION;
+        $this->elements = [];
+        $this->routines = [];
+        $this->markup = '';
+    }
+
+    /**
+     * Set entire config at once
+     *
+     * @param array $config
+     */
+    public function setConfig(array $config): void
+    {
+        $this->clearConfig();
+
+        foreach($config as $key => $value){
             switch($key){
-                case 'routines':
-                    $this->routines = $value;
-                    break;
-                case 'elements':
-                    $this->elements = $value;
-                    break;
                 case 'version':
                     if($value != self::VERSION){
                         throw new Exception('Unsupported config version');
                     }
                     break;
+                case 'elements':
+                    $this->addElements($value);
+                    break;
+                case 'routines':
+                    $this->addRoutines($value);
+                    break;
+                case 'markup':
+                    $this->setMarkup();
+                    break;
             }
         }
-
     }
 
     /**
@@ -124,13 +153,24 @@ class Configuration implements ConfigurationInterface
     }
 
     /**
-     * Adds elements
+     * Adds a element
      *
      * @param array $element
      */
     public function addElement(array $element): void
     {
-        $this->elements[] = $element;
+        if(!array_key_exists('xpath', $element)){
+            throw new Exception('Xpath required for addElements');
+        }
+
+        if(!array_key_exists('class_name', $element)){
+            throw new Exception('class_name required for addElements');
+        }
+
+        if (!in_array($element, $this->elements))
+        {
+            $this->elements[] = $element;
+        }
     }
 
     /**
@@ -140,18 +180,9 @@ class Configuration implements ConfigurationInterface
      */
     public function addElements(array $elements): void
     {
-        if(!array_key_exists('xpath', $elements)){
-            throw new Exception('Xpath required for addElements');
+        foreach($elements as $element){
+            $this->addElement($element);
         }
-
-        if(!array_key_exists('class_name', $elements)){
-            throw new Exception('class_name required for addElements');
-        }
-
-        $this->elements = array_merge(
-            $elements,
-            $this->elements
-        );
     }
 
     /**
@@ -175,7 +206,10 @@ class Configuration implements ConfigurationInterface
             throw new Exception('Method required for addRoutines');
         }
 
-        $this->elements[] = $routine;
+        if (!in_array($routine, $this->routines))
+        {
+            $this->routines[] = $routine;
+        }
     }
 
     /**
@@ -185,16 +219,10 @@ class Configuration implements ConfigurationInterface
      */
     public function addRoutines(array $routines): void
     {
-        if(!array_key_exists('method', $routines)){
-            throw new Exception('Method required for addRoutines');
+        foreach($routines as $routine){
+            $this->addRoutine($routine);
         }
-
-        $this->routines = array_merge(
-            $routines,
-            $this->routines
-        );
     }
-
 
     /**
      * Get routines
