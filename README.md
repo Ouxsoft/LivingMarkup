@@ -23,6 +23,7 @@ Check out how we can future proof a CSS framework, in this case Bootstrap, using
 First, make a reusable custom Element. 
 
 ```php
+<?php
 namespace Partial;
 
 class Alert extends LivingMarkup\Element\AbstractElement 
