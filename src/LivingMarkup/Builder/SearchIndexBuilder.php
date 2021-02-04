@@ -12,38 +12,52 @@ declare(strict_types=1);
 
 namespace LivingMarkup\Builder;
 
-use LivingMarkup\Configuration;
+use LivingMarkup\Contract\BuilderInterface;
+use LivingMarkup\Contract\ConfigurationInterface;
+use LivingMarkup\Contract\EngineInterface;
 use LivingMarkup\Engine;
 
 /**
  * Class SearchIndexBuilder
+ * Builds dynamic pages while removing elements set not to be included in search indexes
  *
  * @package LivingMarkup\Builder
  */
 class SearchIndexBuilder implements BuilderInterface
 {
-    public $engine;
+
+    private $engine;
+    private $config;
+
+    public function __construct(EngineInterface &$engine, ConfigurationInterface &$config)
+    {
+        $this->engine = &$engine;
+        $this->config = &$config;
+    }
 
     /**
      * Creates Page object using parameters supplied
+     * omits elements with search_engine = false
      *
-     * @param Configuration $config
      * @return void
      */
-    public function createObject(Configuration $config): void
+    public function createObject(): void
     {
-
-        // create engine pass source
-        $this->engine = new Engine($config);
-
         // instantiate elements
-        foreach ($config->getElements() as $element) {
+        foreach ($this->config->getElements() as $element) {
+            if(
+                array_key_exists('search_index', $element)
+                && ($element['search_index'] == false)
+            ) {
+                $this->engine->removeElements($element);
+                continue;
+            }
             $this->engine->instantiateElements($element);
         }
 
-        // call element method
-        foreach ($config->getMethods() as $method) {
-            $this->engine->callMethod($method);
+        // call element routine
+        foreach ($this->config->getRoutines() as $routine) {
+            $this->engine->callRoutine($routine);
         }
     }
 

@@ -12,30 +12,31 @@ declare(strict_types=1);
 
 namespace LivingMarkup;
 
-use LivingMarkup\Exception\Exception;
-use LivingMarkup\Element\ElementPool;
 use DOMElement;
 use DOMNodeList;
 use DOMXPath;
+use LivingMarkup\Contract\DocumentInterface;
+use LivingMarkup\Contract\ElementPoolInterface;
+use LivingMarkup\Contract\EngineInterface;
+use LivingMarkup\Exception\Exception;
 
 /**
  * Class Engine
  *
- * Runs Elements to manipulate Document
+ * The Engine loads a DOM object and modifies the Document.
  *
  * @package LivingMarkup\Engine
  */
-class Engine
+class Engine implements EngineInterface
 {
+    // TODO: implement LivingMarkup const
+    const RETURN_CALL = 1;
 
     // marker attribute used by Engine to identify DOMElement during processing
     const INDEX_ATTRIBUTE = '_ELEMENT_ID';
 
     // Document Object Model (DOM)
     public $dom;
-
-    // DOMXPath Query object
-    public $xpath;
 
     // ElementPool
     public $element_pool;
@@ -46,46 +47,43 @@ class Engine
         'css' => []
     ];
 
+
     /**
-     * Page constructor
+     * Engine constructor.
      *
-     * @param Configuration $config
+     * @param DocumentInterface $document
+     * @param ElementPoolInterface $element_pool
      */
-    public function __construct(Configuration $config)
+    public function __construct(
+        DocumentInterface &$document,
+        ElementPoolInterface &$element_pool
+    )
     {
-        // create a document object model
-        $this->dom = new Document();
+        $this->dom = &$document;
 
-        // load source to DOM
-        $this->dom->loadSource($config->getSource());
-
-        // create document iterator for this dom
-        $this->xpath = new DOMXPath($this->dom);
-
-        // create a element pool
-        $this->element_pool = new ElementPool();
+        $this->element_pool = &$element_pool;
     }
 
     /**
      * Call Hooks
      *
-     * @param array $method
+     * @param array $routine
      * @return bool-
      */
-    public function callMethod(array $method): bool
+    public function callRoutine(array $routine): bool
     {
         // set and/or update ancestors
         foreach ($this->element_pool as $element) {
             $element->ancestors = $this->getElementAncestorProperties($element->element_id);
         }
 
-        // call method to all elements
-        if (!array_key_exists('execute', $method)) {
-            $this->element_pool->callMethod($method['name']);
+        // call routine to all elements
+        if (!array_key_exists('execute', $routine)) {
+            $this->element_pool->callRoutine($routine['method']);
             return true;
         }
 
-        switch ($method['execute']) {
+        switch ($routine['execute']) {
             case 'RETURN_CALL':
                 foreach ($this->element_pool as $element) {
                     $this->renderElement($element->element_id);
@@ -106,7 +104,7 @@ class Engine
      */
     public function getElementAncestorProperties(string $element_id): array
     {
-        // get ancestor ids
+        // make list of ancestor ids
         $ancestor_properties = [];
 
         $query = '//ancestor::*[@' . self::INDEX_ATTRIBUTE . ']';
@@ -132,7 +130,7 @@ class Engine
      */
     public function getDomElementByPlaceholderId(string $element_id): ?DOMElement
     {
-        // find an element by id
+        // find an element by INDEX_ATTRIBUTE
         $query = '//*[@' . self::INDEX_ATTRIBUTE . '="' . $element_id . '"]';
 
         // get object found
@@ -140,27 +138,17 @@ class Engine
     }
 
     /**
-     * XPath query for class $this->DOM property that fetches all results as array
-     *
-     * @param string $query
-     * @param DOMElement $node
-     * @return mixed
-     */
-    public function queryFetchAll(string $query, DOMElement $node = null): ?DOMNodeList
-    {
-        return $this->xpath->query($query, $node);
-    }
-
-    /**
      * XPath query for class $this->DOM property that fetches only first result
      *
      * @param string $query
-     * @param DOMElement $node
+     * @param DOMElement|null $node
      * @return mixed
      */
     public function queryFetch(string $query, DOMElement $node = null): ?DOMElement
     {
-        $results = $this->xpath->query($query, $node);
+        $xpath = new DOMXPath($this->dom);
+
+        $results = $xpath->query($query, $node);
 
         if (isset($results[0])) {
             return $results[0];
@@ -169,6 +157,19 @@ class Engine
         return null;
     }
 
+    /**
+     * XPath query for class $this->DOM property that fetches all results as array
+     *
+     * @param string $query
+     * @param DOMElement|null $node
+     * @return mixed
+     */
+    public function queryFetchAll(string $query, DOMElement $node = null): ?DOMNodeList
+    {
+        $xpath = new DOMXPath($this->dom);
+
+        return $xpath->query($query, $node);
+    }
 
     /**
      * Within DOMDocument replace DOMElement with Element->__toString() output
@@ -178,11 +179,10 @@ class Engine
      */
     public function renderElement(string $element_id): bool
     {
-
         // get DOMElement from placeholder id
         $dom_element = $this->getDomElementByPlaceholderId($element_id);
 
-        if ($dom_element===null) {
+        if ($dom_element === null) {
             return false;
         }
 
@@ -195,6 +195,7 @@ class Engine
         $new_xml = $element->__toString() ?? '';
 
         $this->replaceDomElement($dom_element, $new_xml);
+
 
         return true;
     }
@@ -213,7 +214,7 @@ class Engine
 
         $children = $dom_element->childNodes;
         foreach ($children as $child) {
-            $xml .= $dom_element->ownerDocument->saveXML($child);
+            $xml .= $dom_element->ownerDocument->saveHTML($child);
         }
 
         return $xml;
@@ -225,7 +226,7 @@ class Engine
      * @param DOMElement $element
      * @param string $new_xml
      */
-    public function replaceDomElement(DOMElement &$element, string $new_xml): void
+    public function replaceDomElement(DOMElement $element, string $new_xml): void
     {
         // create a blank document fragment
         $fragment = $this->dom->createDocumentFragment();
@@ -236,6 +237,20 @@ class Engine
     }
 
     /**
+     * Removes elements from the DOM
+     *
+     * @param array $lhtml_element
+     * @return void
+     */
+    public function removeElements(array $lhtml_element): void
+    {
+        // iterate through handler's expression searching for applicable elements
+        foreach ($this->queryFetchAll($lhtml_element['xpath']) as $dom_element) {
+            $this->replaceDomElement($dom_element, '');
+        }
+    }
+
+    /**
      * Instantiates elements from DOMElement's found during Xpath query against DOM property
      *
      * @param array $lhtml_element
@@ -243,16 +258,22 @@ class Engine
      */
     public function instantiateElements(array $lhtml_element): bool
     {
+
         // check for xpath and class
-        if (!array_key_exists('xpath', $lhtml_element) || !array_key_exists('class_name', $lhtml_element)) {
+        if (
+            !array_key_exists('xpath', $lhtml_element)
+            || !array_key_exists('class_name', $lhtml_element)
+        ) {
             return false;
         }
 
         // iterate through handler's expression searching for applicable elements
         foreach ($this->queryFetchAll($lhtml_element['xpath']) as $dom_element) {
-
             // if class does not exist replace element with informative comment
-            $this->instantiateElement($dom_element, $lhtml_element['class_name']);
+            $this->instantiateElement(
+                $dom_element,
+                $lhtml_element['class_name']
+            );
         }
 
         return true;
@@ -265,7 +286,7 @@ class Engine
      * @param string $class_name
      * @return bool
      */
-    private function instantiateElement(DOMElement &$element, string $class_name): bool
+    private function instantiateElement(DOMElement $element, string $class_name): bool
     {
         // skip if placeholder already assigned
         if ($element->hasAttribute(self::INDEX_ATTRIBUTE)) {
@@ -278,14 +299,20 @@ class Engine
                 $element_name = $element->getAttribute('name');
                 $class_name = str_replace('{name}', $element_name, $class_name);
             } else {
-                $this->replaceDomElement($element, '<!-- Element "' . $class_name . '" Missing Name Attribute -->');
+                $this->replaceDomElement(
+                    $element,
+                    '<!-- Element "' . $class_name . '" Missing Name Attribute -->'
+                );
                 return false;
             }
         }
 
         // if class does not exist add debug comment
         if (!class_exists($class_name)) {
-            $this->replaceDomElement($element, '<!-- Element "' . $class_name . '" Not Found -->');
+            $this->replaceDomElement(
+                $element,
+                '<!-- Element "' . $class_name . '" Not Found -->'
+            );
             return false;
         }
 
@@ -311,7 +338,7 @@ class Engine
      * @param DOMElement $element
      * @return ArgumentArray
      */
-    public function getElementArgs(DOMElement &$element): ArgumentArray
+    public function getElementArgs(DOMElement $element): ArgumentArray
     {
         $args = new ArgumentArray;
 
@@ -356,7 +383,7 @@ class Engine
     /**
      * Set a value type to avoid Type Juggling issues and extend data types
      *
-     * @param string $value
+     * @param null $value
      * @param string $type
      * @return bool|mixed|string|null
      */
@@ -367,21 +394,21 @@ class Engine
         switch ($type) {
             case 'string':
             case 'str':
-                $value = (string) $value;;
+                $value = (string)$value;
                 break;
             case 'json':
                 $value = json_decode($value);
                 break;
             case 'int':
             case 'integer':
-                $value = (int) $value;
+                $value = (int)$value;
                 break;
             case 'float':
-                $value = (float) $value;
+                $value = (float)$value;
                 break;
             case 'bool':
             case 'boolean':
-                $value = (boolean) $value;
+                $value = (boolean)$value;
                 break;
             case 'null':
                 $value = null;

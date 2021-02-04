@@ -24,6 +24,11 @@
 
 For the development environment, see [LivingMarkup-Dev](https://github.com/ouxsoft/livingmarkup-dev)
 
+Don't push to master.
+```
+git config branch.master.pushRemote no_push
+```
+
 ## Reporting issues
 
 Please report issue and open new tickets:

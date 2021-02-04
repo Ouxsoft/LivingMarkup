@@ -14,6 +14,7 @@ namespace LivingMarkup\Element;
 
 use LivingMarkup\ArgumentArray;
 
+
 /**
  * Class Element
  *
@@ -68,17 +69,25 @@ abstract class AbstractElement
      *
      * @return string
      */
-    public function __toString() : string
+    public function __toString(): string
     {
         return $this->onRender();
     }
+
+    /**
+     * Abstract output method called by magic method
+     * The extending class must define this method
+     *
+     * @return mixed
+     */
+    abstract public function onRender();
 
     /**
      * Gets the ID of the Element, useful for ElementPool
      *
      * @return int|string
      */
-    public function getId() : string
+    public function getId(): string
     {
         return $this->element_id;
     }
@@ -99,7 +108,7 @@ abstract class AbstractElement
      *
      * @return ArgumentArray
      */
-    public function getArgs() : ArgumentArray
+    public function getArgs(): ArgumentArray
     {
         return $this->args;
     }
@@ -108,18 +117,10 @@ abstract class AbstractElement
      * Get innerText
      * @return string|null
      */
-    public function innerText() : ? string
+    public function innerText(): ?string
     {
         return $this->xml;
     }
-
-    /**
-     * Abstract output method called by magic method
-     * The extending class must define this method
-     *
-     * @return mixed
-     */
-    abstract public function onRender();
 
     /**
      * Invoke wrapper call to method if exists

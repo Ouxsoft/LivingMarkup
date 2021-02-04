@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<phpdoc>
+    <title>LivingMarkup</title>
+    <parser>
+        <target>src</target>
+        <extensions>
+            <extension>module</extension>
+            <extension>inc</extension>
+            <extension>php</extension>
+        </extensions>
+    </parser>
+    <transformer>
+        <target>docs/phpdocs</target>
+    </transformer>
+    <files>
+        <ignore>Tests/*</ignore>
+    </files>
+</phpdoc>

@@ -13,7 +13,7 @@ declare(strict_types=1);
 namespace LivingMarkup;
 
 use DomDocument;
-use LivingMarkup\Exception\Exception;
+use LivingMarkup\Contract\DocumentInterface;
 
 /**
  * Class Document
@@ -21,8 +21,10 @@ use LivingMarkup\Exception\Exception;
  *
  * @package LivingMarkup
  */
-class Document extends DomDocument
+class Document extends DomDocument implements DocumentInterface
 {
+    const DEFAULT_LANG = "en";
+
     /**
      * Document constructor.
      */
@@ -59,10 +61,10 @@ class Document extends DomDocument
      * @param string $source must be well formatted and feature a root element, e.g. <html>
      * @return bool
      */
-    public function loadSource(string $source) : bool
+    public function loadSource(string $source): bool
     {
         // add DOCTYPE declaration
-        $doctype = '<!DOCTYPE html [' . Entities::HTML5 . ']>'. PHP_EOL;
+        $doctype = '<!DOCTYPE html [' . Entities::HTML5 . ']>' . PHP_EOL;
 
         // replace DOCTYPE if present
         $count = 1;
@@ -81,8 +83,7 @@ class Document extends DomDocument
         // adds HTML root element if one is not present
         if (!is_object($this->documentElement)) {
             return false;
-            // TODO: figure out whether to throw
-            // throw new Exception('Invalid LHTML document provided');
+            // TODO throw new Exception('Invalid LHTML document provided');
         }
 
         // add html root element if missing
@@ -91,7 +92,7 @@ class Document extends DomDocument
             // create a new DomDocument, add source to it, and append to root document with html root
             $source_dom = new DOMDocument();
             $source_dom->loadXML($source);
-            $this->loadSource('<html></html>');
+            $this->loadSource('<html lang="' . self::DEFAULT_LANG . '"></html>');
             $this->documentElement->appendChild(
                 $this->importNode($source_dom->documentElement, true)
             );

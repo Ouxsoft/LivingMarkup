@@ -13,206 +13,132 @@ declare(strict_types=1);
 
 namespace LivingMarkup;
 
-use Laminas\Exception\RuntimeException;
-use LivingMarkup\Exception\Exception;
 use Laminas\Config\Reader\Json;
 use Laminas\Validator\File\Exists;
+use LivingMarkup\Contract\ConfigurationInterface;
+use LivingMarkup\Contract\DocumentInterface;
+use LivingMarkup\Exception\Exception;
+use Throwable;
 
 /**
  * Class Configuration
  *
+ * Contains a list of Elements, Routines, and the raw HTML/XML document source
+ *
  * @package LivingMarkup
  */
-class Configuration
+class Configuration implements ConfigurationInterface
 {
+    const VERSION = 3;
     const LOCAL_FILENAME = 'config.json';
     const DIST_FILENAME = 'config.dist.json';
 
-    public $container = [
-        'version' => 1,
-        'elements' => [
-            'types' => [],
-            'methods' => []
-        ]
-    ];
-    private $path; // full path to config file
-    private $directory; // directory config file is in
-    private $filename; // base name of file
+    private $document;
+
+    public $version;
+    public $elements = [];
+    public $routines = [];
+    public $markup = '';
 
     /**
-     * Configuration constructor.
+     * Configuration constructor
+     *
+     * @param DocumentInterface $document
+     * @param string|null $config_file_path
+     */
+    public function __construct(
+        DocumentInterface &$document,
+        ?string $config_file_path = null
+    )
+    {
+        $this->document = &$document;
+
+        if ($config_file_path !== null) {
+            $this->loadFile($config_file_path);
+        }
+    }
+
+    /**
+     * load a configuration file
      *
      * @param string|null $filepath
      * @return void
      */
-    public function loadFile(string $filepath = null) : void
+    public function loadFile(string $filepath = null): void
     {
         // fail overs for distributed configs
-        $fail_overs = [$filepath, self::LOCAL_FILENAME, self::DIST_FILENAME];
+        $fail_overs = [
+            $filepath,
+            self::LOCAL_FILENAME,
+            self::DIST_FILENAME
+        ];
 
         foreach ($fail_overs as $filepath) {
             try {
-                $this->path = $filepath;
-                $this->directory = dirname($filepath);
-                $this->filename = basename($filepath);
+                $path = $filepath;
+                $directory = dirname($filepath);
+                $filename = basename($filepath);
 
                 // check if path is valid
-                $validator = new Exists($this->directory);
-                $validator->isValid($this->filename);
+                $validator = new Exists($directory);
+                $validator->isValid($filename);
 
                 // load json file
                 $reader = new Json();
-                $this->container = $reader->fromFile($this->path);
+                $json = $reader->fromFile($path);
 
-                if (is_array($this->container)) {
-                    break;
+                if (
+                    is_array($json)
+                    && (count($json) > 0)
+                ) {
+                    $this->setConfig($json);
+                    return;
                 }
-            } catch (\Throwable $e) {
-                throw new Exception('Unable to load config');
+            } catch (Throwable $e) {
+                // do nothing
+                throw new Exception('Invalid config file provided');
             }
         }
     }
 
     /**
-     * Add item to config
-     *
-     * @param string $key
-     * @param mixed $value
-     * @return bool
+     * Clear config
      */
-    public function add(string $key, $value): bool
+    public function clearConfig(): void
     {
-        $this->container[$key] = $value;
-
-        return true;
+        $this->version = self::VERSION;
+        $this->elements = [];
+        $this->routines = [];
+        $this->markup = '';
     }
 
     /**
-     * Adds elements to config
+     * Set entire config at once
      *
-     * @param array $element
+     * @param array $config
      */
-    public function addElement(array $element) : void
+    public function setConfig(array $config): void
     {
-        $this->container['elements']['types'][] = $element;
-    }
+        $this->clearConfig();
 
-    /**
-     * Adds elements to config
-     *
-     * @param array $elements
-     */
-    public function addElements(array $elements) : void
-    {
-        if (
-            array_key_exists('elements', $this->container) &&
-            array_key_exists('types', $this->container['elements'])
-        ) {
-            $this->container['elements']['types'] = array_merge($elements, $this->container['elements']['types']);
-        }
-    }
-
-    /**
-     * Get array of elements if in config
-     *
-     * @return array
-     */
-    public function getElements(): array
-    {
-        // check if exists
-        if (!isset($this->container)
-            || !isset($this->container['elements'])
-            || !is_array($this->container['elements'])
-            || !array_key_exists('types', $this->container['elements'])
-        ) {
-            return [];
-        }
-
-        return $this->container['elements']['types'];
-    }
-
-    /**
-     * Recursive key check
-     *
-     * @param array $keys
-     * @return bool
-     */
-    public function isset(...$keys): bool
-    {
-        if (!isset($this->container)) {
-            return false;
-        }
-
-        $last_checked = $this->container;
-
-        foreach ($keys as $key) {
-            if (!array_key_exists($key, $last_checked)) {
-                return false;
+        foreach($config as $key => $value){
+            switch($key){
+                case 'version':
+                    if($value != self::VERSION){
+                        throw new Exception('Unsupported config version');
+                    }
+                    break;
+                case 'elements':
+                    $this->addElements($value);
+                    break;
+                case 'routines':
+                    $this->addRoutines($value);
+                    break;
+                case 'markup':
+                    $this->setMarkup();
+                    break;
             }
-            $last_checked = $last_checked[$key];
         }
-        return true;
-    }
-
-    /**
-     * Add method
-     *
-     * @param string $method_name
-     * @param string $description
-     * @param string $execute
-     */
-    public function addMethod(string $method_name, string $description = '', $execute = null) : void
-    {
-        if (is_string($execute)) {
-            $this->container['elements']['methods'][] = [
-                'name' => $method_name,
-                'description' => $description,
-                'execute' => $execute
-            ];
-            return;
-        }
-
-        $this->container['elements']['methods'][] = [
-            'name' => $method_name,
-            'description' => $description,
-        ];
-    }
-
-    /**
-     * Get array of elements if in config
-     *
-     * @return array
-     */
-    public function getMethods(): array
-    {
-        // check if exists
-        if (!isset($this->container)
-            || !isset($this->container['elements'])
-            || !is_array($this->container['elements'])
-            || !array_key_exists('methods', $this->container['elements'])
-        ) {
-            return [];
-        }
-
-
-        return $this->container['elements']['methods'];
-    }
-
-    /**
-     * Get source
-     *
-     * @return string
-     */
-    public function getSource(): string
-    {
-        // check if exists
-        if (!isset($this->container)
-            || !array_key_exists('markup', $this->container)
-        ) {
-            return '';
-        }
-
-        return $this->container['markup'];
     }
 
     /**
@@ -220,8 +146,101 @@ class Configuration
      *
      * @param string $markup
      */
-    public function setSource(string $markup) : void
+    public function setMarkup(string $markup): void
     {
-        $this->container['markup'] = $markup;
+        $this->markup = $markup;
+        $this->document->loadSource($markup);
+    }
+
+    /**
+     * Adds a element
+     *
+     * @param array $element
+     */
+    public function addElement(array $element): void
+    {
+        if(!array_key_exists('xpath', $element)){
+            throw new Exception('Xpath required for addElements');
+        }
+
+        if(!array_key_exists('class_name', $element)){
+            throw new Exception('class_name required for addElements');
+        }
+
+        if (!in_array($element, $this->elements))
+        {
+            $this->elements[] = $element;
+        }
+    }
+
+    /**
+     * Adds multiple elements at once
+     *
+     * @param array $elements
+     */
+    public function addElements(array $elements): void
+    {
+        foreach($elements as $element){
+            $this->addElement($element);
+        }
+    }
+
+    /**
+     * Get elements
+     *
+     * @return array
+     */
+    public function getElements(): array
+    {
+        return $this->elements;
+    }
+
+    /**
+     * Adds a routine
+     *
+     * @param array $routine
+     */
+    public function addRoutine(array $routine): void
+    {
+        if(!array_key_exists('method', $routine)){
+            throw new Exception('Method required for addRoutines');
+        }
+
+        if (!in_array($routine, $this->routines))
+        {
+            $this->routines[] = $routine;
+        }
+    }
+
+    /**
+     * Adds multiple routines at once
+     *
+     * @param array $routines
+     */
+    public function addRoutines(array $routines): void
+    {
+        foreach($routines as $routine){
+            $this->addRoutine($routine);
+        }
+    }
+
+    /**
+     * Get routines
+     *
+     * @return array
+     */
+    public function getRoutines(): array
+    {
+        return $this->routines;
+    }
+
+    /**
+     * Get source
+     *
+     * @return string
+     */
+    public function getMarkup(): string
+    {
+        return $this->markup;
     }
 }

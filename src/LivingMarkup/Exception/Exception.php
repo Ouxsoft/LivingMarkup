@@ -30,6 +30,8 @@ class Exception extends RuntimeException
      */
     public function __construct($log = null)
     {
+        parent::__construct();
+
         $this->log = $log;
     }
 
@@ -37,7 +39,7 @@ class Exception extends RuntimeException
      * Returns log
      * @return string|null
      */
-    public function getLog() : ? string
+    public function getLog(): ?string
     {
         return $this->log;
     }

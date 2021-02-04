@@ -1,0 +1,38 @@
+{
+  "version": 3,
+  "elements": [
+    {
+      "name": "Bitwise",
+      "xpath": "//bitwise",
+      "class_name": "LivingMarkup\\Tests\\Resource\\Element\\Bitwise",
+      "search_index" : false
+    }
+  ],
+  "routines": [
+    {
+      "method": "beforeLoad",
+      "description": "Execute before object data is loaded"
+    },
+    {
+      "method": "onLoad",
+      "description": "Execute when object data is loading"
+    },
+    {
+      "method": "afterLoad",
+      "description": "Execute after object data is loaded"
+    },
+    {
+      "method": "beforeRender",
+      "description": "Execute before object is rendered"
+    },
+    {
+      "method": "onRender",
+      "description": "Execute while object is rendering",
+      "execute": "RETURN_CALL"
+    },
+    {
+      "method": "afterRender",
+      "description": "Execute after object is rendered"
+    }
+  ]
+}

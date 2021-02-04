@@ -10,17 +10,20 @@
 <p align="center">
     <a href="https://packagist.org/packages/ouxsoft/livingmarkup"><img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/ouxsoft/livingmarkup"></a> 
     <a href="#tada-php-support" title="PHP Versions Supported"><img alt="PHP Versions Supported" src="https://img.shields.io/badge/php-7.3%20to%207.4-777bb3.svg?logo=php&logoColor=white&labelColor=555555"></a>  
-    <a href="https://packagist.org/packages/ouxsoft/livingmarkup"><img src="https://poser.pugx.org/ouxsoft/livingmarkup/downloads" alt="Total Downloads"></a>
     <a href="https://github.com/ouxsoft/livingmarkup/blob/master/LICENSE" title="license"><img alt="LICENSE" src="https://img.shields.io/badge/license-MIT-428f7e.svg?logo=open%20source%20initiative&logoColor=white&labelColor=555555"></a>
+    <a href="https://packagist.org/packages/ouxsoft/livingmarkup"><img src="https://poser.pugx.org/ouxsoft/livingmarkup/downloads" alt="Total Downloads"></a>
 </p>
 
 ## About
-
 A server-side markup abstraction layer based on the [LHTML](https://github.com/ouxsoft/LHTML) standard programmed in PHP. 
 
 ## Usage
-Start by creating an LHTML Element.
+Check out how we can future proof a CSS framework, in this case Bootstrap, using LivingMarkup. 
+
+First, make a reusable custom Element. 
+
 ```php
+<?php
 namespace Partial;
 
 class Alert extends LivingMarkup\Element\AbstractElement 
@@ -43,34 +46,42 @@ class Alert extends LivingMarkup\Element\AbstractElement
 }
 ```
 
-Add that LHTML Element to a LHTML processor.
+Second, setup a processor and pass in markup with our custom Element.
 ```php
-// instantiate processor
-$proc = new LivingMarkup\Processor();
+<?php
+use LivingMarkup\Factory\ProcessorFactory;
 
-// add LHTML Element to processor
-$proc->addElement('Partial', '//partial', 'Partial\{name}');
+$processor = ProcessorFactory::getInstance();
 
-// automate method call
-$proc->addMethod('onRender','Execute for render', 'RETURN_CALL');
+$processor->addElement([
+    'xpath' => '//partial', 
+    'class_name' => 'Partial\{name}'
+]);
 
-// process LHTML string
-echo $proc->parseString('<html>
-    <partial name="Alert" type="success">This is a success alert.</partial>
-</html>');
+$processor->addRoutine([
+    'method' => 'onRender',
+    'execute' => 'RETURN_CALL'
+]);
+
+$processor->parseBuffer();
+?>
+<html lang="en">
+    <partial name="Alert" type="success">
+        This is a success alert.
+    </partial>
+</html>
 ```
 
-Outputs a HTML5 page with a markup abstraction layer. 
+All done. Outputs a processed markup abstraction layer as valid HTML5.
 
 ```html5
 <!doctype html>
-<html>
+<html lang="en">
     <div class="alert success" role="alert">
         This is a success alert
     </div>
 </html>
 ```
-This layer will make major changes of the CSS framework, in this example Bootstrap, easy.
 
 ## Installation
 
@@ -95,12 +106,6 @@ LivingMarkup comes packaged with only LHTML test Elements. For core Elements, se
 ## Documentation
 Check our docs for more info at [livingmarkup.readthedocs.io](https://livingmarkup.readthedocs.io).
 
-## Contribute
-
-Refer to [CONTRIBUTING.md](https://github.com/ouxsoft/LivingMarkup/blob/master/.github/workflows/CONTRIBUTING.md) for 
-information on how to contribute.
-
-
 ## Creators
 
 ***Matthew Heroux***
@@ -109,4 +114,4 @@ information on how to contribute.
 
 ## Acknowledgement
 
-Thanks to Andy Beak for providing code review. Thanks to Bob Crowley for providing Project Management advising. Thanks to Aswin Vijayakumar for their useful comments. All of have led to changes to this implementation.
+Thanks to Andy Beak for providing code reviews. Thanks to Bob Crowley for providing Project Management advising. Thanks to Aswin Vijayakumar for their useful comments. All of have led to changes to this implementation.

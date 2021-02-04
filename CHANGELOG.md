@@ -9,6 +9,14 @@ All releases must adhere to [SemVer 2](https://semver.org/) naming convention an
 >PATCH version - when you make backwards compatible bug fixes.
 
 ## LivingMarkup [Unreleased]
+Released: TBD. Notable changes:
+* Added: ProcessorFactory.
+* Added: Config version 3 support with Element and Routines.
+* Added: Routines to accept orchestrated array method calls and limitless settings.
+* Changed: Elements to accept an array of limitless settings.
+* Removed: Method call concept which was replaced with Routines.
+* Added: Setups and tear downs for PHPUnit tests.
+* Added: Sphinx Documentation and RST.
 
 ## LivingMarkup 2.0.0
 Released: 2021-09-01. Notable changes:

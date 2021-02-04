@@ -12,10 +12,14 @@ declare(strict_types=1);
 
 namespace LivingMarkup;
 
-use LivingMarkup\Builder\BuilderInterface;
+use LivingMarkup\Contract\BuilderInterface;
+use LivingMarkup\Contract\ConfigurationInterface;
+use LivingMarkup\Contract\KernelInterface;
 
 /**
  * Class Processor
+ *
+ * Provides a user API interface for setting the Kernel, Configuration, and Builders settings
  *
  * @package LivingMarkup
  */
@@ -23,81 +27,40 @@ class Processor
 {
     // determines if process is active
     private $active = true;
-    private $kernel;
-    private $builder;
     private $config;
+    private $kernel;
 
     /**
-     * Autoloader constructor.
-     *
-     * @param string $config_filepath
+     * Processor constructor.
+     * @param KernelInterface $kernel
+     * @param ConfigurationInterface $config
      */
-    public function __construct(string $config_filepath = null)
+    public function __construct(
+        KernelInterface &$kernel,
+        ConfigurationInterface &$config
+    )
     {
-
-        // instantiate Kernel
-        $this->kernel = new Kernel();
-
-        // instantiate a empty config
-        $this->config = new Configuration();
-
-        // check if config filepath supplied during construction
-        if ($config_filepath!==null) {
-            $this->loadConfig($config_filepath);
-        }
-
-        // instantiate a default builder
-        $this->builder = new Builder\DynamicPageBuilder();
+        $this->kernel = &$kernel;
+        $this->config = &$config;
     }
-
 
     /**
      * Set whether process runs or does not run
+     *
      * @param bool $status
      */
-    public function setStatus(bool $status) : void
+    public function setStatus(bool $status): void
     {
         $this->active = $status;
     }
 
     /**
-     * Gets whether process runs or does not run
-     * @return bool
-     */
-    public function getStatus() : bool
-    {
-        return $this->active;
-    }
-
-    /**
-     * Set builder
-     *
-     * @param BuilderInterface $builder_class
-     */
-    public function setBuilder(BuilderInterface $builder_class) : void
-    {
-        $this->builder =  new $builder_class();
-    }
-
-    /**
-     * Get builder
-     *
-     * @return BuilderInterface
-     */
-    public function getBuilder() : BuilderInterface
-    {
-        return $this->builder;
-    }
-
-    /**
-     * Set config
+     * Load config
      *
      * @param $filepath
      */
-    public function loadConfig(string $filepath) : void
+    public function loadConfig(string $filepath): void
     {
-
-        // load config
         $this->config->loadFile($filepath);
     }
 
@@ -106,49 +69,101 @@ class Processor
      *
      * @return Configuration
      */
-    public function getConfig() : Configuration
+    public function getConfig(): Configuration
     {
         return $this->config;
     }
 
     /**
-     * Add definition for processor LHTML object
+     * Set config
      *
-     * @param string $name
-     * @param string $xpath_expression
-     * @param string $class_name
+     * @param ConfigurationInterface $config
+     * @return void
      */
-    public function addElement(string $name, string $xpath_expression, string $class_name) : void
+    public function setConfig(ConfigurationInterface $config): void
     {
-        $this->config->addElement([
-            'name' => $name,
-            'class_name' => $class_name,
-            'xpath' => $xpath_expression
-        ]);
+        $this->config = $config;
     }
 
     /**
-     * Add definition for processor LHTML object method
+     * Set builder
      *
-     * @param string $method_name
-     * @param string $description
-     * @param string|null $execute
+     * @param string $builder_class
      */
-    public function addMethod(string $method_name, string $description = '', string $execute = null) : void
+    public function setBuilder(string $builder_class): void
     {
-        $this->config->addMethod($method_name, $description, $execute);
+        $this->kernel->setBuilder($builder_class);
     }
 
+    /**
+     * Get builder
+     *
+     * @return BuilderInterface
+     */
+    public function getBuilder(): BuilderInterface
+    {
+        return $this->kernel->getBuilder();
+    }
+
+    /**
+     * Add definition for processor LHTML element
+     *
+     * @param array $element
+     */
+    public function addElement(array $element): void
+    {
+        $this->config->addElement($element);
+    }
+
+    /**
+     * Add definition for processor LHTML element
+     *
+     * @param array $elements
+     */
+    public function addElements(array $elements): void
+    {
+        $this->config->addElements($elements);
+    }
+
+    /**
+     * Add definition for processor LHTML routine
+     *
+     * @param array $routine
+     */
+    public function addRoutine(array $routine): void
+    {
+        $this->config->addRoutine($routine);
+    }
+
+    /**
+     * Add definition for processor LHTML routine
+     *
+     * @param array $routines
+     */
+    public function addRoutines(array $routines): void
+    {
+        $this->config->addRoutines($routines);
+    }
 
     /**
      * Process output buffer
      */
-    public function parseBuffer() : void
+    public function parseBuffer(): void
     {
         if ($this->getStatus()) {
             // process buffer once completed
             ob_start([$this, 'parseString']);
         }
+    }
+
+    /**
+     * Gets whether process runs or does not run
+     *
+     * @return bool
+     */
+    public function getStatus(): bool
+    {
+        return $this->active;
     }
 
     /**
@@ -166,9 +181,19 @@ class Processor
             return $source;
         }
 
-        $this->config->setSource($source);
+        $this->config->setMarkup($source);
 
         return $this->parse();
+    }
+
+    /**
+     * Parse using a Kernel to build an Engine
+     *
+     * @return string
+     */
+    private function parse(): string
+    {
+        return (string)$this->kernel->build();
     }
 
     /**
@@ -179,26 +204,13 @@ class Processor
      */
     public function parseString(string $source): string
     {
-
         // return buffer if it's not HTML
         if ($source == strip_tags($source)) {
             return $source;
         }
 
-        $this->config->setSource($source);
+        $this->config->setMarkup($source);
 
         return $this->parse();
-    }
-
-    /**
-     * Parse defined kernel using currently builder and config
-     *
-     * @return string
-     */
-    private function parse() : string
-    {
-
-        // echo Kernel build of Builder
-        return (string) $this->kernel->build($this->builder, $this->config);
     }
 }

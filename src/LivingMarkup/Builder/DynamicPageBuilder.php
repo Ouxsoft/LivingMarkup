@@ -12,38 +12,46 @@ declare(strict_types=1);
 
 namespace LivingMarkup\Builder;
 
-use LivingMarkup\Configuration;
+use LivingMarkup\Contract\BuilderInterface;
+use LivingMarkup\Contract\ConfigurationInterface;
+use LivingMarkup\Contract\EngineInterface;
 use LivingMarkup\Engine;
 
 /**
  * Class DynamicPageBuilder
+ * Builds dynamic pages
  *
  * @package LivingMarkup\Page\Builder
  */
 class DynamicPageBuilder implements BuilderInterface
 {
-    public $engine;
+    private $engine;
+    /**
+     * @var ConfigurationInterface
+     */
+    private $config;
+
+    public function __construct(EngineInterface &$engine, ConfigurationInterface &$config)
+    {
+        $this->engine = &$engine;
+        $this->config = &$config;
+    }
 
     /**
-     * Creates Page object using parameters supplied
+     * Instantiate elements and call routines inside engine
      *
-     * @param Configuration $config
      * @return void
      */
-    public function createObject(Configuration $config): void
+    public function createObject(): void
     {
-
-        // create engine pass source
-        $this->engine = new Engine($config);
-
         // instantiate elements
-        foreach ($config->getElements() as $element) {
+        foreach ($this->config->getElements() as $element) {
             $this->engine->instantiateElements($element);
         }
 
-        // call element method
-        foreach ($config->getMethods() as $method) {
-            $this->engine->callMethod($method);
+        // call element routine
+        foreach ($this->config->getRoutines() as $routine) {
+            $this->engine->callRoutine($routine);
         }
     }
 
