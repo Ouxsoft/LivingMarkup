@@ -23,12 +23,13 @@ notifications:
 before_script:
   - composer clear
   - composer install --no-scripts --no-dev -vvv
+  - curl --data-binary @codecov.yml https://codecov.io/validate
 
 jobs:
   include:
     - stage: Test
       script:
         - mkdir -p build/logs
-        - XDEBUG_MODE=coverage phpunit --configuration phpunit.xml --coverage-clover clover.xml
+        - XDEBUG_MODE=coverage vendor/phpunit/phpunit/phpunit --configuration phpunit.xml
       after_success:
-        - bash <(curl -s https://codecov.io/bash) -t <token> -f build/logs/clover.xml
+        - bash <(curl -s https://codecov.io/bash) -t $CODECOV_TOKEN -f build/logs/clover.xml
