@@ -16,6 +16,7 @@ Released: TBD. Notable changes:
 * Changed: Elements to accept an array of limitless settings.
 * Removed: Method call concept which was replaced with Routines.
 * Added: Setups and tear downs for PHPUnit tests.
+* Added: Sphinx Documentation and RST.
 
 ## LivingMarkup 2.0.0
 Released: 2021-09-01. Notable changes:
