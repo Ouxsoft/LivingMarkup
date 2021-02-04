@@ -11,9 +11,6 @@ Config File
 Configurations can be loaded from a file or created using an object. Below is an example of a
 config file.
 
-Syntax v1
-~~~~~~~~~
-
 Example
 ^^^^^^^
 

@@ -4,14 +4,13 @@ Security
 Escaping HTML and XSS
 ---------------------
 
-| Escaping the HTML to avoid XSS is the responsibility of the library
-client.
-| This library itself will not alter its input.
+It is the responsibility of the library client to escape HTML to avoid XSS.
+This library itself will not alter its input.
 
 Disable Entity Loader
-=====================
+---------------------
 
-You may want to disable external entities.
+You may want to choose to disable external entities.
 
 .. code:: php
 
