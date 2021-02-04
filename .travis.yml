@@ -11,6 +11,7 @@ php:
 env:
   global:
     - LOG_DIR=build/logs
+    - CODECOV_TOKEN=457b2ab8-8d1c-4dc7-8487-5910853fbbe1
 
 before_install:
 
@@ -28,6 +29,7 @@ jobs:
     - stage: Test
       script:
         - mkdir -p build/logs
-        - phpunit --configuration phpunit.xml --coverage-clover build/logs/clover.xml
-      after_script:
-        - bash <(curl -s https://codecov.io/bash)
+        - phpunit --configuration phpunit.xml --coverage-clover coverage.xml
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
