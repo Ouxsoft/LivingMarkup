@@ -32,4 +32,4 @@ jobs:
         - mkdir -p build/tests
         - XDEBUG_MODE=coverage phpunit --configuration phpunit.xml
       after_success:
-        - bash <(curl -s https://codecov.io/bash) -t $CODECOV_TOKEN -f build/logs/clover.xml
+        - bash <(curl -s https://codecov.io/bash) -t $CODECOV_TOKEN -f build/tests/clover.xml
