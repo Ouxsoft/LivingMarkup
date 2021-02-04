@@ -18,5 +18,5 @@ comment:
 flags:
   src:
     paths:
-      - build/logs/clover.xml
+      - build/tests/clover.xml
     carryforward: false
