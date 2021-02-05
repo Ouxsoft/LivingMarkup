@@ -214,7 +214,7 @@ class Engine implements EngineInterface
 
         $children = $dom_element->childNodes;
         foreach ($children as $child) {
-            $xml .= $dom_element->ownerDocument->saveHTML($child);
+            $xml .= $dom_element->ownerDocument->saveXML($child);
         }
 
         return $xml;
