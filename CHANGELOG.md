@@ -11,6 +11,10 @@ All releases must adhere to [SemVer 2](https://semver.org/) naming convention an
 ## LivingMarkup [Unreleased]
 Released: TBD. Notable changes:
 
+## LivingMarkup 3.0.1
+Released: 2021-02-05. Notable changes:
+* Fixed: Bug with recursive DOM element processing [dc574dc](https://github.com/ouxsoft/LivingMarkup/commit/dc574dcd708ad7627ffbbd16e8667e4e480dfc03).
+
 ## LivingMarkup 3.0.0
 Released: 2021-02-03. Notable changes:
 * Added: ProcessorFactory [925e122](https://github.com/ouxsoft/LivingMarkup/commit/925e122ba8850c2d043de3eb9334c13f9d0632c6).
