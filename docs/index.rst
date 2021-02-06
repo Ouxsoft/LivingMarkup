@@ -66,4 +66,4 @@ Navigation
    project/configuration.rst
    project/security.rst
 
-.. |alt text| image:: https://github.com/hxtree/LivingMarkup/raw/master/assets/images/logo/434x174.jpg
+.. |alt text| image:: https://github.com/hxtree/LivingMarkup/raw/master/assets/images/logo/readme.jpg
