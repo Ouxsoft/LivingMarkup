@@ -10,6 +10,7 @@ Shows a ``Processor`` with ``Elements`` and ``Routines`` defined during runtime 
 buffer of the file.
 
 .. code:: php
+
     <?php
     use Ouxsoft\LivingMarkup\Factory\ProcessorFactory;
 
@@ -36,6 +37,7 @@ buffer of the file.
 Outputs:
 
 .. code:: html5
+
     <!doctype html>
     <html lang="en">
         <div class="alert success" role="alert">
@@ -51,6 +53,7 @@ A server-side markup abstraction layer example. Shows using ParseBuffer inside a
 router to prevent the need to declare the ``Processor`` within each file.
 
 .. code:: php
+
     <?php
 
     use Ouxsoft\LivingMarkup\Factory\ProcessorFactory;
@@ -88,6 +91,7 @@ Shows a ``Processor`` defined with ``Elements`` and ``Routines`` defined in a lo
 and a parse file containing markup.
 
 .. code:: php
+
     <?php
     use Ouxsoft\LivingMarkup\Factory\ProcessorFactory;
 
@@ -99,6 +103,7 @@ and a parse file containing markup.
 Outputs:
 
 .. code:: html5
+
     <!doctype html>
     <html lang="en">
         <div class="alert success" role="alert">
@@ -114,6 +119,7 @@ Shows a ``Processor`` with ``Configuration`` ``Elements`` and ``Routines`` manua
 parsing a string.
 
 .. code:: php
+
     <?php
     use Ouxsoft\LivingMarkup\Factory\ProcessorFactory;
 
@@ -138,6 +144,7 @@ parsing a string.
 Outputs:
 
 .. code:: html5
+
     <!doctype html>
     <html lang="en">
         <div class="alert success" role="alert">

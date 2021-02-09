@@ -53,8 +53,8 @@ Example
       ]
     }
 
-Autoloading
-~~~~~~~~~~~
+Autoload
+~~~~~~~~
 
 | If a config file has been specified during construction, it will be loaded.
 | If a config file has not been specified the ``Configuration`` class tries to
