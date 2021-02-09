@@ -16,7 +16,7 @@
 
 ## About
 
-A Processor for Markup based on the [LHTML](https://github.com/ouxsoft/LHTML) standard programmed written in PHP. 
+A Processor for Markup based on the [LHTML](https://github.com/ouxsoft/LHTML) standard written in PHP. 
 Allows extraction of Markup into a data structure, orchestrated manipulation of said structure, and output as 
 (optimized) Markup. 
 
