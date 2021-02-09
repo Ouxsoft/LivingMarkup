@@ -8,15 +8,15 @@
  * file that was distributed with this source code.
  */
 
-namespace LivingMarkup\Tests\Unit;
+namespace Ouxsoft\LivingMarkup\Tests\Unit;
 
-use LivingMarkup\Entities;
+use Ouxsoft\LivingMarkup\Entities;
 use PHPUnit\Framework\TestCase;
 
 class EntitiesTest extends TestCase
 {
     /**
-     * @covers \LivingMarkup\Entities::fetchString
+     * @covers \Ouxsoft\LivingMarkup\Entities::fetchString
      */
     public function testFetchString()
     {
@@ -26,7 +26,7 @@ class EntitiesTest extends TestCase
     }
 
     /**
-     * @covers \LivingMarkup\Entities::get
+     * @covers \Ouxsoft\LivingMarkup\Entities::get
      */
     public function testGet()
     {
@@ -36,7 +36,7 @@ class EntitiesTest extends TestCase
     }
 
     /**
-     * @covers \LivingMarkup\Entities::fetchArray
+     * @covers \Ouxsoft\LivingMarkup\Entities::fetchArray
      * @codeCoverageIgnore
      */
     public function testFetchArray()
@@ -47,7 +47,7 @@ class EntitiesTest extends TestCase
     }
 
     /**
-     * @covers \LivingMarkup\Entities::getURL
+     * @covers \Ouxsoft\LivingMarkup\Entities::getURL
      */
     public function testGetURL()
     {

@@ -8,9 +8,9 @@
  * file that was distributed with this source code.
  */
 
-namespace LivingMarkup\Tests\Resource\Element;
+namespace Ouxsoft\LivingMarkup\Tests\Resource\Element;
 
-use LivingMarkup\Element\AbstractElement as AbstractElement;
+use Ouxsoft\LivingMarkup\Element\AbstractElement as AbstractElement;
 
 /**
  * Class HelloWorld
@@ -19,7 +19,7 @@ use LivingMarkup\Element\AbstractElement as AbstractElement;
  *
  * <widget name="HelloWorld"/>
  *
- * @package LivingMarkup\Elements\Widgets
+ * @package Ouxsoft\LivingMarkup\Elements\Widgets
  */
 class HelloWorld extends AbstractElement
 {

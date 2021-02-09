@@ -8,19 +8,19 @@
  * file that was distributed with this source code.
  */
 
-namespace LivingMarkup\Tests\Unit\Element;
+namespace Ouxsoft\LivingMarkup\Tests\Unit\Element;
 
 use ArrayIterator;
-use LivingMarkup\Element\AbstractElement;
-use LivingMarkup\Element\ElementPool;
-use LivingMarkup\Tests\Resource\Element\HelloWorld;
+use Ouxsoft\LivingMarkup\Element\AbstractElement;
+use Ouxsoft\LivingMarkup\Element\ElementPool;
+use Ouxsoft\LivingMarkup\Tests\Resource\Element\HelloWorld;
 use PHPUnit\Framework\TestCase;
 
 class ElementPoolTest extends TestCase
 {
 
     /**
-     * @covers \LivingMarkup\Element\ElementPool::getIterator
+     * @covers \Ouxsoft\LivingMarkup\Element\ElementPool::getIterator
      */
     public function testGetIterator()
     {
@@ -29,7 +29,7 @@ class ElementPoolTest extends TestCase
     }
 
     /**
-     * @covers \LivingMarkup\Element\ElementPool::getPropertiesById
+     * @covers \Ouxsoft\LivingMarkup\Element\ElementPool::getPropertiesById
      */
     public function testGetPropertiesById()
     {
@@ -40,7 +40,7 @@ class ElementPoolTest extends TestCase
     }
 
     /**
-     * @covers \LivingMarkup\Element\ElementPool::getById
+     * @covers \Ouxsoft\LivingMarkup\Element\ElementPool::getById
      */
     public function testGetById()
     {
@@ -53,7 +53,7 @@ class ElementPoolTest extends TestCase
     }
 
     /**
-     * @covers \LivingMarkup\Element\ElementPool::add
+     * @covers \Ouxsoft\LivingMarkup\Element\ElementPool::add
      */
     public function testAdd()
     {
@@ -64,7 +64,7 @@ class ElementPoolTest extends TestCase
     }
 
     /**
-     * @covers \LivingMarkup\Element\ElementPool::callRoutine
+     * @covers \Ouxsoft\LivingMarkup\Element\ElementPool::callRoutine
      */
     public function testCallRoutine()
     {
@@ -74,7 +74,7 @@ class ElementPoolTest extends TestCase
     }
 
     /**
-     * @covers \LivingMarkup\Element\ElementPool::count
+     * @covers \Ouxsoft\LivingMarkup\Element\ElementPool::count
      */
     public function testCount()
     {

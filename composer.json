@@ -49,14 +49,14 @@
   },
   "autoload": {
     "psr-4": {
-      "LivingMarkup\\": "src/LivingMarkup/",
-      "LivingMarkup\\Tests\\": "tests/src/"
+      "Ouxsoft\\LivingMarkup\\": "src/Ouxsoft/LivingMarkup/",
+      "Ouxsoft\\LivingMarkup\\Tests\\": "tests/src/"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "LivingMarkup\\": "src/LivingMarkup/",
-      "LivingMarkup\\Tests\\": "tests/src/"
+      "Ouxsoft\\LivingMarkup\\": "src/Ouxsoft/LivingMarkup/",
+      "Ouxsoft\\LivingMarkup\\Tests\\": "tests/src/"
     }
   },
   "scripts": {

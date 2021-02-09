@@ -8,15 +8,15 @@
  * file that was distributed with this source code.
  */
 
-namespace LivingMarkup\Tests\Unit;
+namespace Ouxsoft\LivingMarkup\Tests\Unit;
 
-use LivingMarkup\ArgumentArray;
+use Ouxsoft\LivingMarkup\ArgumentArray;
 use PHPUnit\Framework\TestCase;
 
 class ArgumentArrayTest extends TestCase
 {
     /**
-     * @covers \LivingMarkup\ArgumentArray::count
+     * @covers \Ouxsoft\LivingMarkup\ArgumentArray::count
      */
     public function testCount()
     {
@@ -26,7 +26,7 @@ class ArgumentArrayTest extends TestCase
     }
 
     /**
-     * @covers \LivingMarkup\ArgumentArray::offsetSet
+     * @covers \Ouxsoft\LivingMarkup\ArgumentArray::offsetSet
      */
     public function testOffsetSet()
     {
@@ -55,7 +55,7 @@ class ArgumentArrayTest extends TestCase
     }
 
     /**
-     * @covers \LivingMarkup\ArgumentArray::offsetExists
+     * @covers \Ouxsoft\LivingMarkup\ArgumentArray::offsetExists
      */
     public function testOffsetExists()
     {
@@ -66,7 +66,7 @@ class ArgumentArrayTest extends TestCase
     }
 
     /**
-     * @covers \LivingMarkup\ArgumentArray::get
+     * @covers \Ouxsoft\LivingMarkup\ArgumentArray::get
      */
     public function testGet()
     {
@@ -76,7 +76,7 @@ class ArgumentArrayTest extends TestCase
     }
 
     /**
-     * @covers \LivingMarkup\ArgumentArray::offsetGet
+     * @covers \Ouxsoft\LivingMarkup\ArgumentArray::offsetGet
      */
     public function testOffsetGet()
     {
@@ -86,7 +86,7 @@ class ArgumentArrayTest extends TestCase
     }
 
     /**
-     * @covers \LivingMarkup\ArgumentArray::offsetUnset
+     * @covers \Ouxsoft\LivingMarkup\ArgumentArray::offsetUnset
      */
     public function testOffsetUnset()
     {
@@ -97,7 +97,7 @@ class ArgumentArrayTest extends TestCase
     }
 
     /**
-     * @covers \LivingMarkup\ArgumentArray::merge
+     * @covers \Ouxsoft\LivingMarkup\ArgumentArray::merge
      */
     public function testMerge()
     {
@@ -107,7 +107,7 @@ class ArgumentArrayTest extends TestCase
     }
 
     /**
-     * @covers \LivingMarkup\ArgumentArray::current
+     * @covers \Ouxsoft\LivingMarkup\ArgumentArray::current
      */
     public function testCurrent()
     {
@@ -117,7 +117,7 @@ class ArgumentArrayTest extends TestCase
     }
 
     /**
-     * @covers \LivingMarkup\ArgumentArray::next
+     * @covers \Ouxsoft\LivingMarkup\ArgumentArray::next
      */
     public function testNext()
     {
@@ -131,7 +131,7 @@ class ArgumentArrayTest extends TestCase
     }
 
     /**
-     * @covers \LivingMarkup\ArgumentArray::key
+     * @covers \Ouxsoft\LivingMarkup\ArgumentArray::key
      */
     public function testKey()
     {
@@ -141,7 +141,7 @@ class ArgumentArrayTest extends TestCase
     }
 
     /**
-     * @covers \LivingMarkup\ArgumentArray::valid
+     * @covers \Ouxsoft\LivingMarkup\ArgumentArray::valid
      */
     public function testValid()
     {
@@ -151,7 +151,7 @@ class ArgumentArrayTest extends TestCase
     }
 
     /**
-     * @covers \LivingMarkup\ArgumentArray::rewind
+     * @covers \Ouxsoft\LivingMarkup\ArgumentArray::rewind
      */
     public function testRewind()
     {

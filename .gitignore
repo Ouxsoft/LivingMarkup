@@ -5,3 +5,7 @@
 .php_cs.cache
 vendor
 config.yml
+docs/_build/
+docs/warnings.log
+docs/xml/
+docs/html/

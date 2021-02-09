@@ -19,7 +19,7 @@
 
 # -- Project information -----------------------------------------------------
 
-project = 'livingmarkup'
+project = 'LivingMarkup'
 copyright = '2021, Ouxsoft'
 author = 'Ouxsoft'
 
@@ -102,7 +102,7 @@ html_static_path = ['_static']
 # -- Options for HTMLHelp output ---------------------------------------------
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'livingmarkup'
+htmlhelp_basename = 'LivingMarkup'
 
 
 # -- Options for LaTeX output ------------------------------------------------
@@ -131,7 +131,7 @@ latex_elements = {
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'livingmarkup', 'LivingMarkup Documentation',
+    (master_doc, 'LivingMarkup', 'LivingMarkup Documentation',
      [author], 1)
 ]
 
@@ -142,8 +142,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, 'livingmarkup', 'LivingMarkup Documentation',
-     author, 'livingmarkup', 'A markup processor.',
+    (master_doc, 'LivingMarkup', 'LivingMarkup Documentation',
+     author, 'LivingMarkup', 'A markup processor.',
      'Miscellaneous'),
 ]
 

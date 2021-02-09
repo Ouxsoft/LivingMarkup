@@ -8,13 +8,13 @@
  * file that was distributed with this source code.
  */
 
-namespace LivingMarkup\Tests\Resource\Element;
+namespace Ouxsoft\LivingMarkup\Tests\Resource\Element;
 
-use LivingMarkup\Element\AbstractElement as AbstractElement;
+use Ouxsoft\LivingMarkup\Element\AbstractElement as AbstractElement;
 
 /**
  * Class Bitwise
- * @package LivingMarkup\Test
+ * @package Ouxsoft\LivingMarkup\Test
  */
 class Bitwise extends AbstractElement
 {

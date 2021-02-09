@@ -8,10 +8,10 @@
  * file that was distributed with this source code.
  */
 
-namespace LivingMarkup\Tests\Unit\Builder;
+namespace Ouxsoft\LivingMarkup\Tests\Unit\Builder;
 
-use LivingMarkup\Builder\DynamicPageBuilder;
-use LivingMarkup\Factory\ProcessorFactory;
+use Ouxsoft\LivingMarkup\Builder\DynamicPageBuilder;
+use Ouxsoft\LivingMarkup\Factory\ProcessorFactory;
 use PHPUnit\Framework\TestCase;
 
 class DynamicPageBuilderTest extends TestCase
@@ -32,7 +32,7 @@ class DynamicPageBuilderTest extends TestCase
     }
 
     /**
-     * @covers \LivingMarkup\Builder\DynamicPageBuilder::__construct
+     * @covers \Ouxsoft\LivingMarkup\Builder\DynamicPageBuilder::__construct
      */
     public function test__construct()
     {
@@ -41,7 +41,7 @@ class DynamicPageBuilderTest extends TestCase
     }
 
      /**
-     * @covers \LivingMarkup\Builder\DynamicPageBuilder::getObject
+     * @covers \Ouxsoft\LivingMarkup\Builder\DynamicPageBuilder::getObject
      */
     public function testGetObject()
     {
@@ -54,7 +54,7 @@ class DynamicPageBuilderTest extends TestCase
     }
 
     /**
-     * @covers \LivingMarkup\Builder\DynamicPageBuilder::createObject
+     * @covers \Ouxsoft\LivingMarkup\Builder\DynamicPageBuilder::createObject
      */
     public function testCreateObject()
     {

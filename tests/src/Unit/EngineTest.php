@@ -8,13 +8,13 @@
  * file that was distributed with this source code.
  */
 
-namespace LivingMarkup\Tests\Unit;
+namespace Ouxsoft\LivingMarkup\Tests\Unit;
 
-use LivingMarkup\Element\ElementPool;
-use LivingMarkup\Engine;
-use LivingMarkup\Exception\Exception;
-use LivingMarkup\Factory\ConcreteFactory;
-use LivingMarkup\Factory\ContainerFactory;
+use Ouxsoft\LivingMarkup\Element\ElementPool;
+use Ouxsoft\LivingMarkup\Engine;
+use Ouxsoft\LivingMarkup\Exception\Exception;
+use Ouxsoft\LivingMarkup\Factory\ConcreteFactory;
+use Ouxsoft\LivingMarkup\Factory\ContainerFactory;
 use PHPUnit\Framework\TestCase;
 
 class EngineTest extends TestCase
@@ -37,7 +37,7 @@ class EngineTest extends TestCase
     }
 
     /**
-     * @covers \LivingMarkup\Engine::setType
+     * @covers \Ouxsoft\LivingMarkup\Engine::setType
      */
     public function testSetType()
     {
@@ -64,7 +64,7 @@ class EngineTest extends TestCase
     }
 
     /**
-     * @covers \LivingMarkup\Engine::queryFetchAll
+     * @covers \Ouxsoft\LivingMarkup\Engine::queryFetchAll
      */
     public function testQueryFetchAll()
     {
@@ -74,7 +74,7 @@ class EngineTest extends TestCase
     }
 
     /**
-     * @covers \LivingMarkup\Engine::getDomElementByPlaceholderId
+     * @covers \Ouxsoft\LivingMarkup\Engine::getDomElementByPlaceholderId
      */
     public function testGetDomElementByPlaceholderId()
     {
@@ -85,7 +85,7 @@ class EngineTest extends TestCase
     }
 
     /**
-     * @covers \LivingMarkup\Engine::getElementInnerXML
+     * @covers \Ouxsoft\LivingMarkup\Engine::getElementInnerXML
      */
     public function testGetElementInnerXML()
     {
@@ -96,7 +96,7 @@ class EngineTest extends TestCase
     }
 
     /**
-     * @covers \LivingMarkup\Engine::getElementArgs
+     * @covers \Ouxsoft\LivingMarkup\Engine::getElementArgs
      */
     public function testGetElementArgs()
     {
@@ -108,7 +108,7 @@ class EngineTest extends TestCase
     }
 
     /**
-     * @covers \LivingMarkup\Engine::__toString
+     * @covers \Ouxsoft\LivingMarkup\Engine::__toString
      */
     public function test__toString()
     {
@@ -130,7 +130,7 @@ class EngineTest extends TestCase
     }
 
     /**
-     * @covers \LivingMarkup\Engine::queryFetch
+     * @covers \Ouxsoft\LivingMarkup\Engine::queryFetch
      */
     public function testQueryFetch()
     {
@@ -140,7 +140,7 @@ class EngineTest extends TestCase
     }
 
     /**
-     * @covers \LivingMarkup\Engine::instantiateElements
+     * @covers \Ouxsoft\LivingMarkup\Engine::instantiateElements
      */
     public function testInstantiateElements()
     {
@@ -148,14 +148,14 @@ class EngineTest extends TestCase
         $this->engine->instantiateElements(
             [
                 'xpath' => '//b',
-                'class_name' => 'LivingMarkup\Tests\Resource\Element\HelloWorld'
+                'class_name' => 'Ouxsoft\LivingMarkup\Tests\Resource\Element\HelloWorld'
             ]
         );
         $this->assertCount(1, $this->engine->element_pool);
 
         $this->engine->instantiateElements(
             [
-                'class_name' => 'LivingMarkup\Tests\Resource\Element\HelloWorld'
+                'class_name' => 'Ouxsoft\LivingMarkup\Tests\Resource\Element\HelloWorld'
             ]
         );
 
@@ -165,7 +165,7 @@ class EngineTest extends TestCase
     }
 
     /**
-     * @covers \LivingMarkup\Engine::callRoutine
+     * @covers \Ouxsoft\LivingMarkup\Engine::callRoutine
      */
     public function testCallRoutine()
     {
@@ -173,7 +173,7 @@ class EngineTest extends TestCase
         $this->engine->instantiateElements(
             [
                 'xpath' => '//b',
-                'class_name' => 'LivingMarkup\Tests\Resource\Element\HelloWorld'
+                'class_name' => 'Ouxsoft\LivingMarkup\Tests\Resource\Element\HelloWorld'
             ]
         );
         $bool = $this->engine->callRoutine([
@@ -197,7 +197,7 @@ class EngineTest extends TestCase
 
 
     /**
-     * @covers \LivingMarkup\Engine::replaceDomElement
+     * @covers \Ouxsoft\LivingMarkup\Engine::replaceDomElement
      */
     public function testReplaceDomElement()
     {
@@ -212,7 +212,7 @@ class EngineTest extends TestCase
     }
 
     /**
-     * @covers \LivingMarkup\Engine::renderElement
+     * @covers \Ouxsoft\LivingMarkup\Engine::renderElement
      */
     public function testRenderElement()
     {
@@ -220,7 +220,7 @@ class EngineTest extends TestCase
         $this->engine->instantiateElements(
             [
                 'xpath' => '//div',
-                'class_name' => 'LivingMarkup\Tests\Resource\Element\HelloWorld'
+                'class_name' => 'Ouxsoft\LivingMarkup\Tests\Resource\Element\HelloWorld'
             ]
         );
         foreach ($this->engine->element_pool as $element) {
@@ -241,7 +241,7 @@ class EngineTest extends TestCase
 
     /**
      * private class cannot test directly, instead we're using InstantiateElements
-     * @covers \LivingMarkup\Engine::instantiateElement
+     * @covers \Ouxsoft\LivingMarkup\Engine::instantiateElement
      */
     public function testInstantiateElement()
     {
@@ -259,7 +259,7 @@ class EngineTest extends TestCase
         $this->engine->instantiateElements(
             [
                 'xpath' => '//div',
-                'class_name' => 'LivingMarkup\Tests\Resource\Element\{name}'
+                'class_name' => 'Ouxsoft\LivingMarkup\Tests\Resource\Element\{name}'
             ]
         );
         $this->engine->instantiateElements([
@@ -271,7 +271,7 @@ class EngineTest extends TestCase
     }
 
     /**
-     * @covers \LivingMarkup\Engine::getElementAncestorProperties
+     * @covers \Ouxsoft\LivingMarkup\Engine::getElementAncestorProperties
      */
     public function testGetElementAncestorProperties()
     {
@@ -279,7 +279,7 @@ class EngineTest extends TestCase
         $this->engine->instantiateElements(
             [
                 'xpath' => '//div',
-                'class_name' => 'LivingMarkup\Tests\Resource\Element\HelloWorld'
+                'class_name' => 'Ouxsoft\LivingMarkup\Tests\Resource\Element\HelloWorld'
             ]
         );
         foreach ($this->engine->element_pool as $element) {
@@ -289,7 +289,7 @@ class EngineTest extends TestCase
     }
 
     /**
-     * @covers \LivingMarkup\Engine::__construct
+     * @covers \Ouxsoft\LivingMarkup\Engine::__construct
      */
     public function test__construct()
     {

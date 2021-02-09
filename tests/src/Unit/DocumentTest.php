@@ -8,16 +8,16 @@
  * file that was distributed with this source code.
  */
 
-namespace LivingMarkup\Tests\Unit;
+namespace Ouxsoft\LivingMarkup\Tests\Unit;
 
-use LivingMarkup\Document;
+use Ouxsoft\LivingMarkup\Document;
 use PHPUnit\Framework\TestCase;
 
 class DocumentTest extends TestCase
 {
 
     /**
-     * @covers \LivingMarkup\Document::loadSource
+     * @covers \Ouxsoft\LivingMarkup\Document::loadSource
      */
     public function testLoadSource()
     {
@@ -62,7 +62,7 @@ class DocumentTest extends TestCase
     }
 
     /**
-     * @covers \LivingMarkup\Document::__construct
+     * @covers \Ouxsoft\LivingMarkup\Document::__construct
      */
     public function test__construct()
     {

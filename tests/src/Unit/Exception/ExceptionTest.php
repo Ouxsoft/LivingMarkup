@@ -8,17 +8,17 @@
  * file that was distributed with this source code.
  */
 
-namespace LivingMarkup\Test\Unit\Exception;
+namespace Ouxsoft\LivingMarkup\Test\Unit\Exception;
 
-use LivingMarkup\Exception\Exception;
+use Ouxsoft\LivingMarkup\Exception\Exception;
 use PHPUnit\Framework\TestCase;
 
 class ExceptionTest extends TestCase
 {
 
     /**
-     * @covers \LivingMarkup\Exception\Exception::__construct
-     * @covers \LivingMarkup\Exception\Exception::getLog
+     * @covers \Ouxsoft\LivingMarkup\Exception\Exception::__construct
+     * @covers \Ouxsoft\LivingMarkup\Exception\Exception::getLog
      */
     public function test__construct()
     {

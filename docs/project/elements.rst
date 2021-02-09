@@ -5,7 +5,7 @@ Elements are the working bees of LivingMarkup.
 
 Elements are objects that process DOMElements.
 
-Much of how an DOMElement is processed is deteremined by
+Much of how an DOMElement is processed is determined by
 their class.
 
 During the object's construction, the element receives

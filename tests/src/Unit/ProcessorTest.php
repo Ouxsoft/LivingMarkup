@@ -8,14 +8,14 @@
  * file that was distributed with this source code.
  */
 
-namespace LivingMarkup\Tests\Unit;
+namespace Ouxsoft\LivingMarkup\Tests\Unit;
 
-use LivingMarkup\Contract\BuilderInterface;
-use LivingMarkup\Contract\ConfigurationInterface;
-use LivingMarkup\Builder\StaticPageBuilder;
-use LivingMarkup\Configuration;
-use LivingMarkup\Document;
-use LivingMarkup\Factory\ProcessorFactory;
+use Ouxsoft\LivingMarkup\Contract\BuilderInterface;
+use Ouxsoft\LivingMarkup\Contract\ConfigurationInterface;
+use Ouxsoft\LivingMarkup\Builder\StaticPageBuilder;
+use Ouxsoft\LivingMarkup\Configuration;
+use Ouxsoft\LivingMarkup\Document;
+use Ouxsoft\LivingMarkup\Factory\ProcessorFactory;
 use PHPUnit\Framework\TestCase;
 
 class ProcessorTest extends TestCase
@@ -33,7 +33,7 @@ class ProcessorTest extends TestCase
     }
 
     /**
-     * @covers \LivingMarkup\Processor::setBuilder
+     * @covers \Ouxsoft\LivingMarkup\Processor::setBuilder
      */
     public function testSetBuilder()
     {
@@ -43,7 +43,7 @@ class ProcessorTest extends TestCase
     }
 
     /**
-     * @covers \LivingMarkup\Processor::getBuilder
+     * @covers \Ouxsoft\LivingMarkup\Processor::getBuilder
      */
     public function testGetBuilder()
     {
@@ -52,7 +52,7 @@ class ProcessorTest extends TestCase
     }
 
     /**
-     * @covers \LivingMarkup\Processor::parseFile
+     * @covers \Ouxsoft\LivingMarkup\Processor::parseFile
      */
     public function testParseFile()
     {
@@ -67,7 +67,7 @@ class ProcessorTest extends TestCase
     }
 
     /**
-     * @covers \LivingMarkup\Processor::loadConfig
+     * @covers \Ouxsoft\LivingMarkup\Processor::loadConfig
      */
     public function testLoadConfig()
     {
@@ -78,7 +78,7 @@ class ProcessorTest extends TestCase
 
 
     /**
-     * @covers \LivingMarkup\Processor::setConfig
+     * @covers \Ouxsoft\LivingMarkup\Processor::setConfig
      */
     public function testSetConfig()
     {
@@ -92,7 +92,7 @@ class ProcessorTest extends TestCase
     }
 
     /**
-     * @covers \LivingMarkup\Processor::getConfig
+     * @covers \Ouxsoft\LivingMarkup\Processor::getConfig
      */
     public function testGetConfig()
     {
@@ -102,7 +102,7 @@ class ProcessorTest extends TestCase
 
 
     /**
-     * @covers \LivingMarkup\Processor::addElement
+     * @covers \Ouxsoft\LivingMarkup\Processor::addElement
      */
     public function testAddElement()
     {
@@ -117,7 +117,7 @@ class ProcessorTest extends TestCase
     }
 
     /**
-     * @covers \LivingMarkup\Processor::addRoutine
+     * @covers \Ouxsoft\LivingMarkup\Processor::addRoutine
      */
     public function testAddRoutine()
     {
@@ -130,7 +130,7 @@ class ProcessorTest extends TestCase
     }
 
     /**
-     * @covers \LivingMarkup\Processor::parseString
+     * @covers \Ouxsoft\LivingMarkup\Processor::parseString
      */
     public function testParseString()
     {
@@ -148,7 +148,7 @@ class ProcessorTest extends TestCase
     }
 
     /**
-     * @covers \LivingMarkup\Processor::__construct
+     * @covers \Ouxsoft\LivingMarkup\Processor::__construct
      */
     public function test__construct()
     {
@@ -162,7 +162,7 @@ class ProcessorTest extends TestCase
     }
 
     /**
-     * @covers \LivingMarkup\Processor::parseBuffer
+     * @covers \Ouxsoft\LivingMarkup\Processor::parseBuffer
      */
     public function testParseBuffer()
     {
@@ -176,8 +176,8 @@ class ProcessorTest extends TestCase
     }
 
     /**
-     * @covers \LivingMarkup\Processor::parseBuffer
-     * @covers \LivingMarkup\Processor::parse
+     * @covers \Ouxsoft\LivingMarkup\Processor::parseBuffer
+     * @covers \Ouxsoft\LivingMarkup\Processor::parse
      */
     public function testParseBufferWithProcessorOff()
     {
@@ -192,7 +192,7 @@ class ProcessorTest extends TestCase
     }
 
     /**
-     * @covers \LivingMarkup\Processor::setStatus
+     * @covers \Ouxsoft\LivingMarkup\Processor::setStatus
      */
     public function testSetStatus()
     {
@@ -207,7 +207,7 @@ class ProcessorTest extends TestCase
     }
 
     /**
-     * @covers \LivingMarkup\Processor::getStatus
+     * @covers \Ouxsoft\LivingMarkup\Processor::getStatus
      */
     public function testGetStatus()
     {

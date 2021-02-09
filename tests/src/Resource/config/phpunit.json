@@ -4,7 +4,7 @@
     {
       "name": "Bitwise",
       "xpath": "//bitwise",
-      "class_name": "LivingMarkup\\Tests\\Resource\\Element\\Bitwise",
+      "class_name": "Ouxsoft\\LivingMarkup\\Tests\\Resource\\Element\\Bitwise",
       "search_index" : false
     }
   ],

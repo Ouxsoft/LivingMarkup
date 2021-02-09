@@ -26,7 +26,7 @@ First, make a reusable custom Element.
 <?php
 namespace Partial;
 
-class Alert extends LivingMarkup\Element\AbstractElement 
+class Alert extends Ouxsoft\LivingMarkup\Element\AbstractElement 
 {
     public function onRender()
     {
@@ -49,7 +49,7 @@ class Alert extends LivingMarkup\Element\AbstractElement
 Second, setup a processor and pass in markup with our custom Element.
 ```php
 <?php
-use LivingMarkup\Factory\ProcessorFactory;
+use Ouxsoft\LivingMarkup\Factory\ProcessorFactory;
 
 $processor = ProcessorFactory::getInstance();
 

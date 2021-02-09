@@ -32,7 +32,7 @@ DOXYFILE_ENCODING      = UTF-8
 # title of most generated pages and in a few other places.
 # The default value is: My Project.
 
-PROJECT_NAME           = "livingmarkup"
+PROJECT_NAME           = "LivingMarkup"
 
 # The PROJECT_NUMBER tag can be used to enter a project or revision number. This
 # could be handy for archiving the generated documentation or if some version
@@ -900,7 +900,29 @@ EXCLUDE_PATTERNS       =
 # Note that the wildcards are matched against the file with absolute path, so to
 # exclude all test directories use the pattern */test/*
 
-EXCLUDE_SYMBOLS        =
+EXCLUDE_SYMBOLS        = Document \
+                         ArrayAccess \
+                         Iterator \
+                         Countable \
+                         ArgumentArray \
+                        AbstractFactoryInterface \
+                        BuilderInterface \
+                        ConfigurationInterface \
+                        DocumentInterface \
+                        ElementPoolInterface \
+                        EngineInterface \
+                        KernelInterface \
+                        Configuration \
+                        Engine \
+                        Kernel \
+                        Processor \
+                        DynamicPageBuilder \
+                        SearchIndexBuilder \
+                        StaticPageBuilder \
+                        AbstractElement \
+                        ElementPool \
+                        Exception \
+                        ConcreteFactory
 
 # The EXAMPLE_PATH tag can be used to specify one or more files or directories
 # that contain example code fragments that are included (see the \include

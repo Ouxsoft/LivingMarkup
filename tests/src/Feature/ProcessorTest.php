@@ -8,10 +8,10 @@
  * file that was distributed with this source code.
  */
 
-namespace LivingMarkup\Tests\Feature;
+namespace Ouxsoft\LivingMarkup\Tests\Feature;
 
-use LivingMarkup\Factory\ProcessorFactory;
-use LivingMarkup\Processor;
+use Ouxsoft\LivingMarkup\Factory\ProcessorFactory;
+use Ouxsoft\LivingMarkup\Processor;
 use PHPUnit\Framework\TestCase;
 
 final class ProcessorTest extends TestCase
@@ -64,7 +64,7 @@ final class ProcessorTest extends TestCase
         $this->processor->addElement([
             'name' => 'Bitwise',
             'xpath' => '//bitwise',
-            'class_name' => 'LivingMarkup\Tests\Resource\Element\Bitwise'
+            'class_name' => 'Ouxsoft\LivingMarkup\Tests\Resource\Element\Bitwise'
         ]);
 
         $this->processor->addRoutine([

@@ -8,18 +8,18 @@
 * file that was distributed with this source code.
 */
 
-namespace LivingMarkup\Tests\Unit;
+namespace Ouxsoft\LivingMarkup\Tests\Unit;
 
-use LivingMarkup\Contract\BuilderInterface;
-use LivingMarkup\Contract\ConfigurationInterface;
-use LivingMarkup\Contract\KernelInterface;
-use LivingMarkup\Engine;
-use LivingMarkup\Configuration;
-use LivingMarkup\Factory\ConcreteFactory;
-use LivingMarkup\Factory\ContainerFactory;
-use LivingMarkup\Document;
+use Ouxsoft\LivingMarkup\Contract\BuilderInterface;
+use Ouxsoft\LivingMarkup\Contract\ConfigurationInterface;
+use Ouxsoft\LivingMarkup\Contract\KernelInterface;
+use Ouxsoft\LivingMarkup\Engine;
+use Ouxsoft\LivingMarkup\Configuration;
+use Ouxsoft\LivingMarkup\Factory\ConcreteFactory;
+use Ouxsoft\LivingMarkup\Factory\ContainerFactory;
+use Ouxsoft\LivingMarkup\Document;
 use PHPUnit\Framework\TestCase;
-use LivingMarkup\Exception\Exception;
+use Ouxsoft\LivingMarkup\Exception\Exception;
 
 class KernelTest extends TestCase
 {
@@ -43,8 +43,8 @@ class KernelTest extends TestCase
     }
 
     /**
-     * @covers \LivingMarkup\Kernel::__construct
-     * @covers \LivingMarkup\Kernel
+     * @covers \Ouxsoft\LivingMarkup\Kernel::__construct
+     * @covers \Ouxsoft\LivingMarkup\Kernel
      */
     public function test__construct()
     {
@@ -52,7 +52,7 @@ class KernelTest extends TestCase
     }
 
     /**
-     * @covers \LivingMarkup\Kernel::getConfig
+     * @covers \Ouxsoft\LivingMarkup\Kernel::getConfig
      */
     public function testGetConfig()
     {
@@ -61,7 +61,7 @@ class KernelTest extends TestCase
     }
 
     /**
-     * @covers \LivingMarkup\Kernel::setConfig
+     * @covers \Ouxsoft\LivingMarkup\Kernel::setConfig
      */
     public function testSetConfig()
     {
@@ -73,7 +73,7 @@ class KernelTest extends TestCase
     }
 
     /**
-     * @covers \LivingMarkup\Kernel::setBuilder
+     * @covers \Ouxsoft\LivingMarkup\Kernel::setBuilder
      */
     public function testSetBuilder()
     {
@@ -91,7 +91,7 @@ class KernelTest extends TestCase
     }
 
     /**
-     * @covers \LivingMarkup\Kernel::getBuilder
+     * @covers \Ouxsoft\LivingMarkup\Kernel::getBuilder
      */
     public function testGetBuilder()
     {
@@ -101,7 +101,7 @@ class KernelTest extends TestCase
 
 
     /**
-     * @covers \LivingMarkup\Kernel::build
+     * @covers \Ouxsoft\LivingMarkup\Kernel::build
      */
     public function testBuild()
     {
