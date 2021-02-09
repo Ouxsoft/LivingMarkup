@@ -10,7 +10,7 @@ Welcome to LivingMarkup Documentation
 .. code-block:: php
    
     <?php
-    use LivingMarkup\Factory\ProcessorFactory;
+    use Ouxsoft\LivingMarkup\Factory\ProcessorFactory;
 
     $processor = ProcessorFactory::getInstance();
 
@@ -61,13 +61,13 @@ Navigation
    :maxdepth: 1
    :caption: Project Information
    
+   project/processor.rst
    project/routines.rst
    project/elements.rst
    project/configuration.rst
    project/security.rst
 
    Classes <api.rst>
-
 
 Indices and tables
 ==================

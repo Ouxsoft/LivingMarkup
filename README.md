@@ -15,73 +15,10 @@
 </p>
 
 ## About
-A server-side markup abstraction layer based on the [LHTML](https://github.com/ouxsoft/LHTML) standard programmed in PHP. 
 
-## Usage
-Check out how we can future proof a CSS framework, in this case Bootstrap, using LivingMarkup. 
-
-First, make a reusable custom Element. 
-
-```php
-<?php
-namespace Partial;
-
-class Alert extends Ouxsoft\LivingMarkup\Element\AbstractElement 
-{
-    public function onRender()
-    {
-        switch($this->getArgByName('type')){
-            case 'success':
-                $class = 'alert-success';
-                break;
-            case 'warning':
-                $class = 'alert-warning';
-                break;
-            default:
-                $class = 'alert-info';
-                break;
-        }
-        return "<div class=\"alert {$class}\" role=\"alert\">{$this->innerText()}</div>";
-    }
-}
-```
-
-Second, setup a processor and pass in markup with our custom Element.
-```php
-<?php
-use Ouxsoft\LivingMarkup\Factory\ProcessorFactory;
-
-$processor = ProcessorFactory::getInstance();
-
-$processor->addElement([
-    'xpath' => '//partial', 
-    'class_name' => 'Partial\{name}'
-]);
-
-$processor->addRoutine([
-    'method' => 'onRender',
-    'execute' => 'RETURN_CALL'
-]);
-
-$processor->parseBuffer();
-?>
-<html lang="en">
-    <partial name="Alert" type="success">
-        This is a success alert.
-    </partial>
-</html>
-```
-
-All done. Outputs a processed markup abstraction layer as valid HTML5.
-
-```html5
-<!doctype html>
-<html lang="en">
-    <div class="alert success" role="alert">
-        This is a success alert
-    </div>
-</html>
-```
+A Processor for Markup based on the [LHTML](https://github.com/ouxsoft/LHTML) standard programmed written in PHP. 
+Allows extraction of Markup into a data structure, orchestrated manipulation of said structure, and output as 
+(optimized) Markup. 
 
 ## Installation
 
@@ -99,12 +36,8 @@ Install with [Git](https://git-scm.com/):
 git clone git@github.com:ouxsoft/LivingMarkup.git
 ```
 
-### LHTML Elements
-LivingMarkup comes packaged with only LHTML test Elements. For core Elements, see:
- * [Hoopless](https://github.com/ouxsoft/hoopless)
-
 ## Documentation
-Check our docs for more info at [livingmarkup.readthedocs.io](https://livingmarkup.readthedocs.io).
+Read our docs for usage [livingmarkup.readthedocs.io](https://livingmarkup.readthedocs.io).
 
 ## Creators
 
@@ -114,4 +47,5 @@ Check our docs for more info at [livingmarkup.readthedocs.io](https://livingmark
 
 ## Acknowledgement
 
-Thanks to Andy Beak for providing code reviews. Thanks to Bob Crowley for providing Project Management advising. Thanks to Aswin Vijayakumar for their useful comments. All of have led to changes to this implementation.
+Thanks to Andy Beak for providing code reviews. Thanks to Bob Crowley for providing Project Management advising. Thanks
+ to Aswin Vijayakumar for their useful comments. All of have led to changes to this implementation.
