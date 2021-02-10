@@ -21,7 +21,7 @@ use RuntimeException;
  */
 class Exception extends RuntimeException
 {
-    private $log = null;
+    private $log;
 
     /**
      * Exception constructor.
@@ -37,6 +37,7 @@ class Exception extends RuntimeException
 
     /**
      * Returns log
+     *
      * @return string|null
      */
     public function getLog(): ?string

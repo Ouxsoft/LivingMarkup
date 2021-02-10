@@ -905,13 +905,6 @@ EXCLUDE_SYMBOLS        = Document \
                          Iterator \
                          Countable \
                          ArgumentArray \
-                        AbstractFactoryInterface \
-                        BuilderInterface \
-                        ConfigurationInterface \
-                        DocumentInterface \
-                        ElementPoolInterface \
-                        EngineInterface \
-                        KernelInterface \
                         Configuration \
                         Engine \
                         Kernel \
@@ -921,8 +914,7 @@ EXCLUDE_SYMBOLS        = Document \
                         StaticPageBuilder \
                         AbstractElement \
                         ElementPool \
-                        Exception \
-                        ConcreteFactory
+                        Exception
 
 # The EXAMPLE_PATH tag can be used to specify one or more files or directories
 # that contain example code fragments that are included (see the \include
