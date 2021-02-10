@@ -5,7 +5,7 @@ ProcessorFactory
 
 .. php:class:: ProcessorFactory
 
-  .. php:staticmethod:: getInstance ()
+  .. php:staticmethod:: static getInstance () -> Processor
 
-    :returns: Processor
+    :returns: :class:`Processor` -- 
 

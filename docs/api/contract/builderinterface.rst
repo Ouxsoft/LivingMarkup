@@ -5,14 +5,14 @@ BuilderInterface
 
 .. php:interface:: BuilderInterface
 
-  .. php:method:: __construct (EngineInterface`  $engine, ConfigurationInterface`  $config)
+  .. php:method:: public __construct (EngineInterface`  $engine, ConfigurationInterface`  $config)
 
     :param EngineInterface`  $engine:
     :param ConfigurationInterface`  $config:
 
-  .. php:method:: createObject ()
+  .. php:method:: public createObject ()
 
 
-  .. php:method:: getObject ()
+  .. php:method:: public getObject ()
 
 

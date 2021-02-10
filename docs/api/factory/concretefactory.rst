@@ -6,32 +6,32 @@ ConcreteFactory
 
 .. php:class:: ConcreteFactory
 
-  .. php:method:: makeBuilder (Container & $container)
+  .. php:method:: public makeBuilder (Container & $container)
 
-    :param Container $container:
+    :param Container & $container:
     :returns: BuilderInterface
 
-  .. php:method:: makeConfig (Container & $container)
+  .. php:method:: public makeConfig (Container & $container) -> Configuration
 
-    :param Container $container:
-    :returns: Configuration
+    :param Container & $container:
+    :returns: :class:`Configuration` -- 
 
-  .. php:method:: makeDocument (Container & $container)
+  .. php:method:: public makeDocument (Container & $container) -> Document
 
-    :param Container $container:
-    :returns: Document
+    :param Container & $container:
+    :returns: :class:`Document` -- 
 
-  .. php:method:: makeElementPool ()
+  .. php:method:: public makeElementPool ()
 
     :returns: ElementPool
 
-  .. php:method:: makeEngine (Container & $container)
+  .. php:method:: public makeEngine (Container & $container) -> Engine
 
-    :param Container $container:
-    :returns: Engine
+    :param Container & $container:
+    :returns: :class:`Engine` -- 
 
-  .. php:method:: makeKernel (Container & $container)
+  .. php:method:: public makeKernel (Container & $container) -> Kernel
 
-    :param Container $container:
-    :returns: Kernel
+    :param Container & $container:
+    :returns: :class:`Kernel` -- 
 
