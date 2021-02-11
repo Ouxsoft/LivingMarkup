@@ -16,7 +16,6 @@ use ArrayIterator;
 use Countable;
 use IteratorAggregate;
 use Ouxsoft\LivingMarkup\Contract\ElementPoolInterface;
-use Traversable;
 
 /**
  * Class ElementPool
@@ -34,6 +33,7 @@ class ElementPool implements
 
     /**
      * Returns a count of number of elements in collection
+     *
      * @return int
      */
     public function count(): int
@@ -44,7 +44,7 @@ class ElementPool implements
     /**
      * Iterator to go through element pool
      *
-     * @return ArrayIterator|Traversable
+     * @return ArrayIterator
      */
     public function getIterator(): ArrayIterator
     {

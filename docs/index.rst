@@ -3,7 +3,7 @@
 Welcome to LivingMarkup Documentation
 =====================================
 
-| ***LivingMarkup is an PHP implementation of a LHTML parser.***
+| **LivingMarkup is an PHP implementation of a LHTML parser.**
 | It is a powerful and flexible way to build dynamic web pages.
 
 
