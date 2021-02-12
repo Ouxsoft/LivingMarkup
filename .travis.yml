@@ -22,7 +22,7 @@ notifications:
 
 before_script:
   - composer clear
-  - composer install --no-scripts --no-dev -vvv
+  - composer install --no-scripts -vvv
   - curl --data-binary @codecov.yml https://codecov.io/validate
 
 jobs:
