@@ -36,7 +36,7 @@ ElementPool
 
     Iterator to go through element pool
 
-    :returns: ArrayIterator|Traversable
+    :returns: ArrayIterator
 
   .. php:method:: public getPropertiesById (string $element_id) -> array
 
