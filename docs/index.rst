@@ -75,4 +75,4 @@ Indices and tables
 * :ref:`genindex`
 * :ref:`search`
 
-.. |alt text| image:: https://github.com/hxtree/LivingMarkup/raw/master/assets/images/logo/readme.jpg
+.. |alt text| image:: https://github.com/hxtree/LivingMarkup/raw/master/docs/logo.jpg
