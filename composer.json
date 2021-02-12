@@ -21,7 +21,7 @@
     "ext-dom": "*",
     "ext-json": "*",
     "ext-libxml": "*",
-    "laminas/laminas-config": "3.5.x-dev",
+    "laminas/laminas-config": "3.4.0",
     "laminas/laminas-validator": "2.15.x-dev",
     "pimple/pimple": "3.3.x-dev"
   },

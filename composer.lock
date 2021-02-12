@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "dfc21cd4f9672656b98e5165ab78982b",
+    "content-hash": "7629e146c3e12717002f7553fc78298c",
     "packages": [
         {
             "name": "container-interop/container-interop",
@@ -44,16 +44,16 @@
         },
         {
             "name": "laminas/laminas-config",
-            "version": "dev-develop",
+            "version": "3.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laminas/laminas-config.git",
-                "reference": "ca969f355dca1a09e79e0b0cf5be865d75f3c163"
+                "reference": "0bce6f5abab41dc673196741883b19018a2b5994"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laminas/laminas-config/zipball/ca969f355dca1a09e79e0b0cf5be865d75f3c163",
-                "reference": "ca969f355dca1a09e79e0b0cf5be865d75f3c163",
+                "url": "https://api.github.com/repos/laminas/laminas-config/zipball/0bce6f5abab41dc673196741883b19018a2b5994",
+                "reference": "0bce6f5abab41dc673196741883b19018a2b5994",
                 "shasum": ""
             },
             "require": {
@@ -118,7 +118,7 @@
                     "type": "community_bridge"
                 }
             ],
-            "time": "2020-08-25T11:58:26+00:00"
+            "time": "2020-08-25T11:56:37+00:00"
         },
         {
             "name": "laminas/laminas-stdlib",
@@ -4449,7 +4449,6 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "laminas/laminas-config": 20,
         "laminas/laminas-validator": 20,
         "pimple/pimple": 20,
         "friendsofphp/php-cs-fixer": 20
@@ -4457,7 +4456,7 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": ">=7.3",
+        "php": "^7.3 || ~8.0.0",
         "ext-dom": "*",
         "ext-json": "*",
         "ext-libxml": "*"
