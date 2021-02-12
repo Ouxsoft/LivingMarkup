@@ -13,8 +13,8 @@ Released: TBD. Notable changes:
 
 ## LivingMarkup 3.0.2
 Released: 2021-02-11. Notable changes:
-* Added: Sphinx Doxygen PHP Generated documentation.
-* Added: Ouxsoft namespace prefix
+* Added: Sphinx Doxygen PHP Generated documentation. [e232405](https://github.com/ouxsoft/LivingMarkup/commit/e232405d8f83f47a826f25fa0e4e2b5f55cb7cf6)
+* Added: Ouxsoft namespace prefix [e232405](https://github.com/ouxsoft/LivingMarkup/commit/e232405d8f83f47a826f25fa0e4e2b5f55cb7cf6)
 
 ## LivingMarkup 3.0.1
 Released: 2021-02-05. Notable changes:
