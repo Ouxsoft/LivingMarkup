@@ -16,7 +16,6 @@ use PHPUnit\Framework\TestCase;
 
 class DynamicPageBuilderTest extends TestCase
 {
-
     private $processor;
 
     public function setUp(): void
@@ -37,12 +36,12 @@ class DynamicPageBuilderTest extends TestCase
     public function test__construct()
     {
         $builder = $this->processor->getBuilder();
-        $this->assertInstanceOf(DynamicPageBuilder::class,$builder);
+        $this->assertInstanceOf(DynamicPageBuilder::class, $builder);
     }
 
-     /**
-     * @covers \Ouxsoft\LivingMarkup\Builder\DynamicPageBuilder::getObject
-     */
+    /**
+    * @covers \Ouxsoft\LivingMarkup\Builder\DynamicPageBuilder::getObject
+    */
     public function testGetObject()
     {
         $test_results = $this->processor->parseFile(TEST_DIR . 'Resource/inputs/index.html');

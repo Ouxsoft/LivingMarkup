@@ -25,7 +25,6 @@ use Pimple\Container;
 
 class ConcreteFactory implements AbstractFactoryInterface
 {
-
     public function makeDocument(Container &$container): DocumentInterface
     {
         return new Document();
@@ -70,5 +69,3 @@ class ConcreteFactory implements AbstractFactoryInterface
         );
     }
 }
-
-

@@ -33,7 +33,6 @@ final class ProcessorTest extends TestCase
 
     public function testParseStringWithLoadConfig()
     {
-
         $this->processor->loadConfig(TEST_DIR . 'Resource/config/phpunit.json');
 
         $html = file_get_contents(TEST_DIR . 'Resource/inputs/index.html');
@@ -48,7 +47,6 @@ final class ProcessorTest extends TestCase
 
     public function testParseFileWithLoadConfig()
     {
-
         $this->processor->loadConfig(TEST_DIR . 'Resource/config/phpunit.json');
 
         $test_results = $this->processor->parseFile(TEST_DIR . 'Resource/inputs/index.html');

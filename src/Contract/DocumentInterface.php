@@ -10,7 +10,20 @@
 
 namespace Ouxsoft\LivingMarkup\Contract;
 
+/**
+ * Interface DocumentInterface
+ * @package Ouxsoft\LivingMarkup\Contract
+ */
 interface DocumentInterface
 {
+    /**
+     * DocumentInterface constructor.
+     */
+    public function __construct();
 
+    /**
+     * @param string $source
+     * @return bool
+     */
+    public function loadSource(string $source): bool;
 }

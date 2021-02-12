@@ -57,7 +57,6 @@ class ConfigurationTest extends TestCase
         $this->config->addElement($element);
         $results = $this->config->getElements();
         $this->assertCount(0, array_diff_assoc($results[0], $element));
-
     }
 
     /**
@@ -144,6 +143,5 @@ class ConfigurationTest extends TestCase
         // load a file that is invalid, this should not work
         $this->expectException(Exception::class);
         $this->config->loadFile(TEST_DIR . 'Resource/config/invalid.json');
-
     }
 }

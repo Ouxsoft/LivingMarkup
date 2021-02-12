@@ -41,8 +41,7 @@ class Kernel implements KernelInterface
         EngineInterface &$engine,
         BuilderInterface &$builder,
         ConfigurationInterface &$config
-    )
-    {
+    ) {
         $this->engine = &$engine;
         $this->builder = &$builder;
         $this->config = &$config;

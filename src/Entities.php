@@ -15,7 +15,7 @@ namespace Ouxsoft\LivingMarkup;
 /**
  * Class Entities
  *
- * entities are required to avoid server side DOM parse errors
+ * Entities are required to avoid server side DOM parse errors
  *
  * @package Ouxsoft\LivingMarkup
  */

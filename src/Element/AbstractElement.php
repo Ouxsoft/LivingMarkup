@@ -14,7 +14,6 @@ namespace Ouxsoft\LivingMarkup\Element;
 
 use Ouxsoft\LivingMarkup\ArgumentArray;
 
-
 /**
  * Class Element
  *
@@ -52,7 +51,6 @@ abstract class AbstractElement
      */
     final public function __construct(ArgumentArray $args = null)
     {
-
         // set object id
         $this->element_id = spl_object_hash($this);
 

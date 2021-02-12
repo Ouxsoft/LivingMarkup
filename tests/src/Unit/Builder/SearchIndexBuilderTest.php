@@ -16,7 +16,6 @@ use PHPUnit\Framework\TestCase;
 
 class SearchIndexBuilderTest extends TestCase
 {
-
     private $processor;
 
     public function setUp(): void
@@ -37,7 +36,7 @@ class SearchIndexBuilderTest extends TestCase
     public function test__construct()
     {
         $builder = $this->processor->getBuilder();
-        $this->assertInstanceOf(SearchIndexBuilder::class,$builder);
+        $this->assertInstanceOf(SearchIndexBuilder::class, $builder);
     }
 
     /**

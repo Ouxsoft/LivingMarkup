@@ -36,7 +36,7 @@ class StaticPageBuilderTest extends TestCase
     public function test__construct()
     {
         $builder = $this->processor->getBuilder();
-        $this->assertInstanceOf(StaticPageBuilder::class,$builder);
+        $this->assertInstanceOf(StaticPageBuilder::class, $builder);
     }
 
     /**

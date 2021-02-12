@@ -166,7 +166,6 @@ class ProcessorTest extends TestCase
      */
     public function testParseBuffer()
     {
-
         $this->processor->parseBuffer();
         $input = '<html lang="en"><b>Test</b></html>';
         echo $input;
@@ -196,7 +195,6 @@ class ProcessorTest extends TestCase
      */
     public function testSetStatus()
     {
-
         $this->processor->setStatus(false);
         $status = $this->processor->getStatus();
         $this->assertFalse($status);

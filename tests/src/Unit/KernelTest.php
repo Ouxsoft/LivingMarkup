@@ -23,7 +23,6 @@ use Ouxsoft\LivingMarkup\Exception\Exception;
 
 class KernelTest extends TestCase
 {
-
     private $kernel;
 
     public function setUp() : void

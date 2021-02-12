@@ -1,46 +1,28 @@
 {
   "name": "ouxsoft/livingmarkup",
-  "description": "A LHTML implementation written in PHP.",
+  "description": "A Processor for Markup written in PHP. Allows extraction of Markup into a data structure, orchestrated nested manipulation of said structure, and output as (optimized) Markup. ",
+  "license": "MIT",
   "keywords": [
     "LivingMarkup",
-    "templating engine",
-    "xml",
+    "markup",
     "processor",
-    "dom",
-    "engine",
-    "lhtml",
-    "html5",
-    "html",
-    "markup"
+    "templating engine",
+    "lhtml"
   ],
   "type": "library",
-  "license": "MIT",
-  "authors": [
-    {
-      "name": "Ouxsoft",
-      "homepage": "https://github.com/ouxsoft",
-      "role": "Organization"
-    },
-    {
-      "name": "Matthew Heroux",
-      "homepage": "https://github.com/hxtree",
-      "role": "Senior Full-Stack Engineer"
-    }
-  ],
   "homepage": "https://github.com/ouxsoft/LivingMarkup",
-  "minimum-stability": "dev",
   "support": {
+    "docs": "https://livingmarkup.readthedocs.io",
+    "source": "https://github.com/ouxsoft/LivingMarkup",
     "issues": "https://github.com/ouxsoft/LivingMarkup/issues"
   },
   "require": {
-    "php": ">=7.3",
+    "php": "^7.3 || ~8.0.0",
     "ext-dom": "*",
     "ext-json": "*",
     "ext-libxml": "*",
     "laminas/laminas-config": "3.5.x-dev",
     "laminas/laminas-validator": "2.15.x-dev",
-    "laminas/laminas-router": "3.5.x-dev",
-    "laminas/laminas-http": "2.15.x-dev",
     "pimple/pimple": "3.3.x-dev"
   },
   "require-dev": {
@@ -49,27 +31,25 @@
   },
   "autoload": {
     "psr-4": {
-      "Ouxsoft\\LivingMarkup\\": "src/",
-      "Ouxsoft\\LivingMarkup\\Tests\\": "tests/src/"
+      "Ouxsoft\\LivingMarkup\\": "src/"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "Ouxsoft\\LivingMarkup\\": "src/",
       "Ouxsoft\\LivingMarkup\\Tests\\": "tests/src/"
     }
   },
   "scripts": {
     "build": [
       "php-cs-fixer fix --rules=@PSR2 --using-cache=no src/",
-      "php-cs-fixer fix --rules=@PSR2 --using-cache=no test/"
+      "php-cs-fixer fix --rules=@PSR2 --using-cache=no tests/"
     ],
     "test": [
       "XDEBUG_MODE=coverage phpunit"
     ],
     "fix-code": [
       "php-cs-fixer fix --rules=@PSR2 --using-cache=no src/",
-      "php-cs-fixer fix --rules=@PSR2 --using-cache=no test/"
+      "php-cs-fixer fix --rules=@PSR2 --using-cache=no tests/"
     ]
   }
 }

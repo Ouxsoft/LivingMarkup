@@ -23,8 +23,7 @@ class ContainerFactory
      */
     public static function buildContainer(
         AbstractFactoryInterface $abstractFactory
-    ): Container
-    {
+    ): Container {
         $container = new Container();
 
         $container['document'] = $abstractFactory->makeDocument($container);

@@ -49,8 +49,7 @@ class Configuration implements ConfigurationInterface
     public function __construct(
         DocumentInterface &$document,
         ?string $config_file_path = null
-    )
-    {
+    ) {
         $this->document = &$document;
 
         if ($config_file_path !== null) {
@@ -121,10 +120,10 @@ class Configuration implements ConfigurationInterface
     {
         $this->clearConfig();
 
-        foreach($config as $key => $value){
-            switch($key){
+        foreach ($config as $key => $value) {
+            switch ($key) {
                 case 'version':
-                    if($value != self::VERSION){
+                    if ($value != self::VERSION) {
                         throw new Exception('Unsupported config version');
                     }
                     break;
@@ -159,16 +158,15 @@ class Configuration implements ConfigurationInterface
      */
     public function addElement(array $element): void
     {
-        if(!array_key_exists('xpath', $element)){
+        if (!array_key_exists('xpath', $element)) {
             throw new Exception('Xpath required for addElements');
         }
 
-        if(!array_key_exists('class_name', $element)){
+        if (!array_key_exists('class_name', $element)) {
             throw new Exception('class_name required for addElements');
         }
 
-        if (!in_array($element, $this->elements))
-        {
+        if (!in_array($element, $this->elements)) {
             $this->elements[] = $element;
         }
     }
@@ -180,7 +178,7 @@ class Configuration implements ConfigurationInterface
      */
     public function addElements(array $elements): void
     {
-        foreach($elements as $element){
+        foreach ($elements as $element) {
             $this->addElement($element);
         }
     }
@@ -202,12 +200,11 @@ class Configuration implements ConfigurationInterface
      */
     public function addRoutine(array $routine): void
     {
-        if(!array_key_exists('method', $routine)){
+        if (!array_key_exists('method', $routine)) {
             throw new Exception('Method required for addRoutines');
         }
 
-        if (!in_array($routine, $this->routines))
-        {
+        if (!in_array($routine, $this->routines)) {
             $this->routines[] = $routine;
         }
     }
@@ -219,7 +216,7 @@ class Configuration implements ConfigurationInterface
      */
     public function addRoutines(array $routines): void
     {
-        foreach($routines as $routine){
+        foreach ($routines as $routine) {
             $this->addRoutine($routine);
         }
     }

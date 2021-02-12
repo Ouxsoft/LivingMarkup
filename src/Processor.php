@@ -38,8 +38,7 @@ class Processor
     public function __construct(
         KernelInterface &$kernel,
         ConfigurationInterface &$config
-    )
-    {
+    ) {
         $this->kernel = &$kernel;
         $this->config = &$config;
     }

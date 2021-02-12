@@ -13,12 +13,9 @@ namespace Ouxsoft\LivingMarkup\Contract;
 use Ouxsoft\LivingMarkup\Engine;
 
 /**
- * Class Builder
- *
- * The Builder receives parameters passed from the Kernel and uses them to instantiate and return a
- * Document object.
- *
- * @package Ouxsoft\LivingMarkup\Page\Builder
+ * Interface BuilderInterface
+ * Builders receive parameters passed from the Kernel and use them to instantiate and return a Document object.
+ * @package Ouxsoft\LivingMarkup\Contract
  */
 interface BuilderInterface
 {

@@ -18,6 +18,10 @@ use Ouxsoft\LivingMarkup\Engine;
 use Ouxsoft\LivingMarkup\Kernel;
 use Pimple\Container;
 
+/**
+ * Interface AbstractFactoryInterface
+ * @package Ouxsoft\LivingMarkup\Contract
+ */
 interface AbstractFactoryInterface
 {
     /**

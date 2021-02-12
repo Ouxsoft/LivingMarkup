@@ -25,7 +25,6 @@ use Ouxsoft\LivingMarkup\Engine;
  */
 class SearchIndexBuilder implements BuilderInterface
 {
-
     private $engine;
     private $config;
 
@@ -45,7 +44,7 @@ class SearchIndexBuilder implements BuilderInterface
     {
         // instantiate elements
         foreach ($this->config->getElements() as $element) {
-            if(
+            if (
                 array_key_exists('search_index', $element)
                 && ($element['search_index'] == false)
             ) {

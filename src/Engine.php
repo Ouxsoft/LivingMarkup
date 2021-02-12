@@ -57,8 +57,7 @@ class Engine implements EngineInterface
     public function __construct(
         DocumentInterface &$document,
         ElementPoolInterface &$element_pool
-    )
-    {
+    ) {
         $this->dom = &$document;
 
         $this->element_pool = &$element_pool;
