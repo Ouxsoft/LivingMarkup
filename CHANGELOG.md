@@ -10,8 +10,11 @@ All releases must adhere to [SemVer 2](https://semver.org/) naming convention an
 
 ## LivingMarkup [Unreleased]
 Released: TBD. Notable changes:
+
+## LivingMarkup 3.0.2
+Released: 2021-02-11. Notable changes:
 * Added: Sphinx Doxygen PHP Generated documentation.
-* Added: Ouxsoft namespace prefix.
+* Added: Ouxsoft namespace prefix
 
 ## LivingMarkup 3.0.1
 Released: 2021-02-05. Notable changes:
