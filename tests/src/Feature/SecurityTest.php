@@ -36,8 +36,14 @@ final class SecurityTest extends TestCase
     {
         $this->processor->addElement([
             'name' => 'Bitwise',
-            'xpath' => '//bitwise[process=true]',
+            'xpath' => "//bitwise",
             'class_name' => 'Ouxsoft\LivingMarkup\Tests\Resource\Element\Bitwise'
+        ]);
+
+        $this->processor->addElement([
+            'name' => 'HelloWolrd',
+            'xpath' => "//helloworld[not(ancestor::*[@process='false'])]",
+            'class_name' => 'Ouxsoft\LivingMarkup\Tests\Resource\Element\HelloWorld'
         ]);
 
         $this->processor->addRoutine([
@@ -46,13 +52,12 @@ final class SecurityTest extends TestCase
             'execute' => 'RETURN_CALL'
         ]);
 
-
-        $html = file_get_contents(TEST_DIR . 'Resource/inputs/index.html');
+        $html = file_get_contents(TEST_DIR . 'Resource/inputs/security-test.html');
 
         $test_results = $this->processor->parseString($html);
 
         $this->assertStringMatchesFormatFile(
-            TEST_DIR . 'Resource/outputs/index.html',
+            TEST_DIR . 'Resource/outputs/security-test.html',
             $test_results
         );
     }
