@@ -10,6 +10,8 @@ All releases must adhere to [SemVer 2](https://semver.org/) naming convention an
 
 ## LivingMarkup [Unreleased]
 Released: TBD. Notable changes:
+* Added: Code of conduct
+* Added: PSR 12 Coding Standard
 
 ## LivingMarkup 3.0.2
 Released: 2021-02-11. Notable changes:

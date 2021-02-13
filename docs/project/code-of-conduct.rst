@@ -1,6 +1,6 @@
 .. _code_of_conduct:
 
-Contributor Covenant Code of Conduct
+Code of Conduct
 ++++++++++++++++++++++++++++++++++++
 
 Our Pledge
@@ -66,7 +66,7 @@ Enforcement
 
 Instances of abusive, harassing, or otherwise unacceptable behavior may be
 reported by contacting the Code of Conduct Committee at
-<conduct@kernel.org>. All complaints will be reviewed and investigated
+<conduct@ouxsoft.com>. All complaints will be reviewed and investigated
 and will result in a response that is deemed necessary and appropriate
 to the circumstances. The Code of Conduct Committee is obligated to
 maintain confidentiality with regard to the reporter of an incident.
@@ -78,9 +78,3 @@ Attribution
 
 This Code of Conduct is adapted from the Contributor Covenant, version 1.4,
 available at https://www.contributor-covenant.org/version/1/4/code-of-conduct.html
-
-Interpretation
-==============
-
-See the :ref:`code_of_conduct_interpretation` document for how the Linux
-kernel community will be interpreting this document.
