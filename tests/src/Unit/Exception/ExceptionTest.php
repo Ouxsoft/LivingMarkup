@@ -15,7 +15,6 @@ use PHPUnit\Framework\TestCase;
 
 class ExceptionTest extends TestCase
 {
-
     /**
      * @covers \Ouxsoft\LivingMarkup\Exception\Exception::__construct
      * @covers \Ouxsoft\LivingMarkup\Exception\Exception::getLog

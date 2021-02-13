@@ -15,7 +15,6 @@ use PHPUnit\Framework\TestCase;
 
 class AbstractElementTest extends TestCase
 {
-
     /**
      * @covers \Ouxsoft\LivingMarkup\Element\AbstractElement::getArgByName
      */

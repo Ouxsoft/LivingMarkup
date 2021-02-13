@@ -21,7 +21,7 @@ namespace Ouxsoft\LivingMarkup;
  */
 class Entities
 {
-    const HTML5 = <<<'ENTITY'
+    public const HTML5 = <<<'ENTITY'
 <!ENTITY aacute "&amp;#193">
 <!ENTITY abreve "&amp;#258">
 <!ENTITY ac "&amp;#8766">

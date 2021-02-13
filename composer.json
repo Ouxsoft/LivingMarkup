@@ -41,15 +41,15 @@
   },
   "scripts": {
     "build": [
-      "php-cs-fixer fix --rules=@PSR2 --using-cache=no src/",
-      "php-cs-fixer fix --rules=@PSR2 --using-cache=no tests/"
+      "php-cs-fixer fix --rules=@PSR12 --using-cache=no src/",
+      "php-cs-fixer fix --rules=@PSR12 --using-cache=no tests/"
     ],
     "test": [
       "XDEBUG_MODE=coverage phpunit"
     ],
     "fix-code": [
-      "php-cs-fixer fix --rules=@PSR2 --using-cache=no src/",
-      "php-cs-fixer fix --rules=@PSR2 --using-cache=no tests/"
+      "php-cs-fixer fix --rules=@PSR12 --using-cache=no src/",
+      "php-cs-fixer fix --rules=@PSR12 --using-cache=no tests/"
     ]
   }
 }

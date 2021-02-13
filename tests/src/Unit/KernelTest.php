@@ -25,7 +25,7 @@ class KernelTest extends TestCase
 {
     private $kernel;
 
-    public function setUp() : void
+    public function setUp(): void
     {
         $abstractFactory = new ConcreteFactory();
 
@@ -36,7 +36,7 @@ class KernelTest extends TestCase
         $this->kernel = &$container['kernel'];
     }
 
-    public function tearDown() : void
+    public function tearDown(): void
     {
         unset($this->kernel);
     }

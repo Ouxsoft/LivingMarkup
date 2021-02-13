@@ -23,7 +23,7 @@ use Ouxsoft\LivingMarkup\Contract\DocumentInterface;
  */
 class Document extends DomDocument implements DocumentInterface
 {
-    const DEFAULT_LANG = "en";
+    public const DEFAULT_LANG = "en";
 
     /**
      * Document constructor.

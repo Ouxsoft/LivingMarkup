@@ -15,7 +15,6 @@ use PHPUnit\Framework\TestCase;
 
 class DocumentTest extends TestCase
 {
-
     /**
      * @covers \Ouxsoft\LivingMarkup\Document::loadSource
      */

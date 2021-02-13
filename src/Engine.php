@@ -30,10 +30,10 @@ use Ouxsoft\LivingMarkup\Exception\Exception;
 class Engine implements EngineInterface
 {
     // TODO: implement LivingMarkup const
-    const RETURN_CALL = 1;
+    public const RETURN_CALL = 1;
 
     // marker attribute used by Engine to identify DOMElement during processing
-    const INDEX_ATTRIBUTE = '_ELEMENT_ID';
+    public const INDEX_ATTRIBUTE = '_ELEMENT_ID';
 
     // Document Object Model (DOM)
     public $dom;
@@ -339,7 +339,7 @@ class Engine implements EngineInterface
      */
     public function getElementArgs(DOMElement $element): ArgumentArray
     {
-        $args = new ArgumentArray;
+        $args = new ArgumentArray();
 
         // set attributes belonging to DOMElement as args
         if ($element->hasAttributes()) {
@@ -407,7 +407,7 @@ class Engine implements EngineInterface
                 break;
             case 'bool':
             case 'boolean':
-                $value = (boolean)$value;
+                $value = (bool)$value;
                 break;
             case 'null':
                 $value = null;

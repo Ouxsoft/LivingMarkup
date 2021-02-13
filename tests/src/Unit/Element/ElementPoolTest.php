@@ -18,13 +18,12 @@ use PHPUnit\Framework\TestCase;
 
 class ElementPoolTest extends TestCase
 {
-
     /**
      * @covers \Ouxsoft\LivingMarkup\Element\ElementPool::getIterator
      */
     public function testGetIterator()
     {
-        $pool = new ElementPool;
+        $pool = new ElementPool();
         $this->assertTrue(($pool->getIterator() instanceof ArrayIterator));
     }
 
@@ -33,7 +32,7 @@ class ElementPoolTest extends TestCase
      */
     public function testGetPropertiesById()
     {
-        $pool = new ElementPool;
+        $pool = new ElementPool();
         $lhtml_element = new HelloWorld();
         $pool->add($lhtml_element);
         $this->assertIsArray($pool->getPropertiesById($lhtml_element->element_id));
@@ -44,7 +43,7 @@ class ElementPoolTest extends TestCase
      */
     public function testGetById()
     {
-        $pool = new ElementPool;
+        $pool = new ElementPool();
         $lhtml_element = new HelloWorld();
         $pool->add($lhtml_element);
         $this->assertTrue(($pool->getById($lhtml_element->element_id) instanceof AbstractElement));
@@ -57,7 +56,7 @@ class ElementPoolTest extends TestCase
      */
     public function testAdd()
     {
-        $pool = new ElementPool;
+        $pool = new ElementPool();
         $lhtml_element = new HelloWorld();
         $pool->add($lhtml_element);
         $this->assertTrue(($pool->getById($lhtml_element->element_id) instanceof AbstractElement));
@@ -78,7 +77,7 @@ class ElementPoolTest extends TestCase
      */
     public function testCount()
     {
-        $pool = new ElementPool;
+        $pool = new ElementPool();
         $lhtml_element = new HelloWorld();
         $pool->add($lhtml_element);
         $this->assertCount(1, $pool);

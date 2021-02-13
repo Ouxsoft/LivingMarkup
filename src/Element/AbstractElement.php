@@ -24,7 +24,6 @@ use Ouxsoft\LivingMarkup\ArgumentArray;
  */
 abstract class AbstractElement
 {
-
     // id used to reference object
     public $element_id = 0;
     // id used to load args

@@ -66,6 +66,7 @@ Navigation
    project/elements.rst
    project/configuration.rst
    project/security.rst
+   project/code-of-conduct.rst
 
    Classes <api.rst>
 

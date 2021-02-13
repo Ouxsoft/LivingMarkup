@@ -29,9 +29,9 @@ use Throwable;
  */
 class Configuration implements ConfigurationInterface
 {
-    const VERSION = 3;
-    const LOCAL_FILENAME = 'config.json';
-    const DIST_FILENAME = 'config.dist.json';
+    public const VERSION = 3;
+    public const LOCAL_FILENAME = 'config.json';
+    public const DIST_FILENAME = 'config.dist.json';
 
     private $document;
 

@@ -18,7 +18,6 @@ use Ouxsoft\LivingMarkup\Element\AbstractElement as AbstractElement;
  */
 class Bitwise extends AbstractElement
 {
-
     /**
      * Renders output of BitWise operator
      *
