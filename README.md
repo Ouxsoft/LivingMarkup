@@ -48,4 +48,5 @@ Read our docs for usage [livingmarkup.readthedocs.io](https://livingmarkup.readt
 ## Acknowledgement
 
 Thanks to Andy Beak for providing code reviews. Thanks to Bob Crowley for providing Project Management advising. Thanks
- to Aswin Vijayakumar for their useful comments. All of have led to changes to this implementation.
+ to Aswin Vijayakumar for their useful comments. Thanks to Alexander Romanovich of White Whale Web Services for his work 
+ on the free class [XPHP](http://technologies.whitewhale.net/xphp/). All of have led to changes to this implementation.
