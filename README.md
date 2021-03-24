@@ -39,14 +39,12 @@ git clone git@github.com:ouxsoft/LivingMarkup.git
 ## Documentation
 Read our docs for usage [livingmarkup.readthedocs.io](https://livingmarkup.readthedocs.io).
 
-## Creators
-
-***Matthew Heroux***
-
-  * [https://github.com/hxtree](https://github.com/hxtree)
+## Contributing
+LivingMarkup is an open source project. If you find a problem or want to discuss new features or improvements
+please create an issue, and/or if possible create a pull request.
 
 ## Acknowledgement
-
-Thanks to Andy Beak for providing code reviews. Thanks to Bob Crowley for providing Project Management advising. Thanks
- to Aswin Vijayakumar for their useful comments. Thanks to Alexander Romanovich of White Whale Web Services for his work 
- on the free class [XPHP](http://technologies.whitewhale.net/xphp/). All of have led to changes to this implementation.
+Thanks to Matthew Heroux for leading the development of LivingMarkup. Thanks to Andy Beak for providing code reviews. 
+Thanks to Bob Crowley for providing Project Management advising. Thanks to Aswin Vijayakumar for their useful comments. 
+Thanks to Alexander Romanovich of White Whale Web Services for his work on the free class 
+[XPHP](http://technologies.whitewhale.net/xphp/). All of have led to changes to this implementation.
